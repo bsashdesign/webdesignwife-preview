@@ -765,7 +765,7 @@ html.drawer-open { overflow: hidden; }
 .finder__nav { display: flex; justify-content: space-between; margin-top: 16px; min-height: 1.5em; }
 .finder__nav .linkbtn { color: var(--ink-soft); text-decoration: none; font-weight: 600; }
 
-.also { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0 0; font-weight: 600; font-size: .92rem; }
+.also { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 28px 0 56px; font-weight: 600; font-size: .92rem; }
 .also span { padding: 5px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-weight: 500; }
 .also span::before { content: "✓ "; color: var(--done); font-weight: 700; }
 
