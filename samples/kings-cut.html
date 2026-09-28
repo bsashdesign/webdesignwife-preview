@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kings Cut Barbers — The Bronx</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#121212; --panel:#1c1c1c; --gold:#d4a24c; --red:#c8372d; --txt:#f2efe9; --soft:#a39f98; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:400 17px/1.6 Inter, sans-serif; background:var(--bg); color:var(--txt); }
+  a { color:inherit; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 20px; }
+  h1,h2,h3 { font-family:Anton, sans-serif; font-weight:400; text-transform:uppercase; line-height:.92; margin:0 0 .35em; letter-spacing:.01em; }
+  .pole { animation: pole 6s linear infinite; height:8px; background:repeating-linear-gradient(-45deg, var(--red) 0 14px, #fff 14px 28px, #1f4ea3 28px 42px, #fff 42px 56px); }
+  .nav { display:flex; align-items:center; gap:24px; height:76px; }
+  .logo { font:400 1.8rem Anton; letter-spacing:.04em; text-decoration:none; }
+  .logo span { color:var(--gold); }
+  .nav nav { margin-left:auto; display:flex; gap:26px; font-weight:500; color:var(--soft); }
+  .nav nav a { text-decoration:none; }
+  .walk { background:var(--gold); color:#121212; font-weight:700; padding:11px 18px; border-radius:4px; text-decoration:none; }
+  .hero { padding:64px 0 88px; position:relative; }
+  .hero h1 { font-size:clamp(4rem,12vw,10rem); }
+  .hero h1 .o { -webkit-text-stroke:2px var(--gold); color:transparent; }
+  .hero p { max-width:40ch; color:var(--soft); font-size:1.15rem; }
+  .open { display:inline-flex; align-items:center; gap:10px; margin-top:22px; background:var(--panel); padding:10px 16px; border-radius:999px; font-weight:500; }
+  .open i { width:10px; height:10px; border-radius:50%; background:#3ecf6e; box-shadow:0 0 0 4px rgba(62,207,110,.2); }
+  section { padding:80px 0; }
+  .board { background:var(--panel); border:1px solid #2c2c2c; border-radius:6px; padding:36px; }
+  .board h2 { font-size:clamp(2.5rem,5vw,3.6rem); color:var(--gold); }
+  .row { display:flex; justify-content:space-between; gap:20px; padding:14px 0; border-bottom:1px dashed #3a3a3a; font-size:1.1rem; }
+  .row b { font-family:Anton; font-weight:400; font-size:1.5rem; color:var(--gold); }
+  .row small { display:block; color:var(--soft); font-size:.85rem; }
+  .grid { display:grid; grid-template-columns:1.2fr 1fr; gap:28px; }
+  .gallery { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:28px; }
+  .gallery div { aspect-ratio:3/4; border-radius:4px; background:linear-gradient(160deg,#2a2a2a,#161616); position:relative; overflow:hidden; }
+  .gallery div::after { content:attr(data-cut); position:absolute; left:12px; bottom:10px; font:400 1.1rem Anton; letter-spacing:.04em; color:var(--gold); }
+  .gallery div::before { content:""; position:absolute; inset:18% 22% 30%; border-radius:50% 50% 45% 45%; background:linear-gradient(#3a3a3a,#262626); }
+  .info { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .info div { background:var(--panel); border-radius:6px; padding:24px; }
+  .info h3 { font-size:1.6rem; color:var(--gold); }
+  .info p { margin:0; color:var(--soft); }
+  footer { padding:30px 0 90px; color:var(--soft); border-top:1px solid #262626; font-size:.9rem; }
+  .wdw-ribbon { position:fixed; right:14px; bottom:14px; z-index:999; background:#fff; color:#1b1530; font:500 12px/1 system-ui, sans-serif; padding:9px 14px; border-radius:999px; text-decoration:none; }
+  @keyframes pole { to { background-position: 112px 0; } }
+  @media (prefers-reduced-motion: reduce) { .pole { animation: none; } }
+  @media (max-width:820px) { .nav nav { display:none; } .walk { margin-left:auto; } .grid, .info { grid-template-columns:1fr; } .gallery { grid-template-columns:repeat(2,1fr); } }
+</style>
+<style id="wdw-shared">
+  /* Shared across sample sites: entrance animations, embed mode and mobile polish */
+  .wdw-in { opacity: 0; transform: translateY(18px); animation: wdwIn .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-pop { opacity: 0; transform: scale(.86) rotate(-3deg); animation: wdwPop .9s cubic-bezier(.34,1.45,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-slide { opacity: 0; transform: translateX(40px); animation: wdwIn 1s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-drop { opacity: 0; transform: translateY(-40px); animation: wdwIn .8s cubic-bezier(.34,1.3,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-reveal { clip-path: inset(100% 0 0 0); animation: wdwReveal 1.3s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-spin { opacity: 0; transform: rotate(-120deg) scale(.7); animation: wdwIn 1.4s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-sweep { background-size: 0% 100%; background-repeat: no-repeat; animation: wdwSweep .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  @keyframes wdwIn { to { opacity: 1; transform: none; } }
+  @keyframes wdwPop { to { opacity: 1; transform: none; } }
+  @keyframes wdwReveal { to { clip-path: inset(0 0 0 0); } }
+  @keyframes wdwSweep { to { background-size: 100% 100%; } }
+  @media (prefers-reduced-motion: reduce) { .wdw-in, .wdw-pop, .wdw-slide, .wdw-drop, .wdw-reveal, .wdw-spin, .wdw-sweep { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; background-size: 100% 100% !important; } }
+  html.embed .wdw-ribbon { display: none; }
+  .logo { white-space: nowrap; }
+  .wrap.hero { padding-left: 20px; padding-right: 20px; }
+  @media (max-width: 480px) {
+    .nav > a:last-child, .call, .res, .book, .walk { padding: 9px 13px !important; font-size: .85rem !important; white-space: nowrap; }
+    .logo { font-size: 1.15rem !important; }
+  }
+</style>
+<script>if (/[?&]embed/.test(location.search)) document.documentElement.classList.add("embed");</script>
+</head>
+<body>
+<div class="pole"></div>
+<div class="wrap nav">
+  <a class="logo" href="#">Kings<span>Cut</span></a>
+  <nav><a href="#prices">Prices</a><a href="#cuts">Cuts</a><a href="#find">Find us</a></nav>
+  <a class="walk" href="#find">Book a chair</a>
+</div>
+<div class="wrap hero">
+  <h1 class="wdw-in" style="--d:100">Sharp cuts.<br><span class="o">No waiting</span><br>around.</h1>
+  <p class="wdw-in" style="--d:300">Classic and modern cuts on Arthur Avenue since 2014. Book ahead or just walk in. There's always a chair by the window.</p>
+  <div class="open wdw-pop" style="--d:500"><i></i> Open now · walk-ins welcome until 8pm</div>
+</div>
+
+<section id="prices">
+  <div class="wrap grid">
+    <div class="board">
+      <h2>Price board</h2>
+      <div class="row"><span>Haircut<small>Scissor or clipper, hot towel finish</small></span><b>$35</b></div>
+      <div class="row"><span>Skin fade<small>Bald or shadow fade, lined up</small></span><b>$40</b></div>
+      <div class="row"><span>Beard trim &amp; shape<small>Straight razor edges</small></span><b>$20</b></div>
+      <div class="row"><span>The King<small>Cut, beard, hot towel shave</small></span><b>$65</b></div>
+      <div class="row"><span>Kids cut<small>12 and under</small></span><b>$25</b></div>
+    </div>
+    <div class="board" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <h2>Walk in or book</h2>
+        <p style="color:#a39f98">Skip the wait by booking your barber online. Walk-ins are always welcome. Check the live wait time before you head over.</p>
+      </div>
+      <div>
+        <div class="row"><span>Current wait</span><b>~15 min</b></div>
+        <a class="walk" href="#" style="display:inline-block;margin-top:18px">Book online</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cuts" style="padding-top:0">
+  <div class="wrap">
+    <h2 style="font-size:clamp(2.5rem,5vw,3.6rem)">Fresh from the chair</h2>
+    <div class="gallery"><div data-cut="Taper fade"></div><div data-cut="Buzz &amp; line"></div><div data-cut="Textured crop"></div><div data-cut="Classic side part"></div></div>
+  </div>
+</section>
+
+<section id="find" style="padding-top:0">
+  <div class="wrap info">
+    <div><h3>Find us</h3><p>2381 Arthur Avenue<br>The Bronx, NY</p></div>
+    <div><h3>Hours</h3><p>Mon–Sat 9am–8pm<br>Sun 10am–5pm</p></div>
+    <div><h3>Reviews</h3><p>★★★★★ 4.8 on Google<br>from 340+ customers</p></div>
+  </div>
+</section>
+<footer><div class="wrap">Kings Cut Barbers · Belmont, The Bronx</div></footer>
+<a class="wdw-ribbon" href="../index.html" target="_top">Sample site by Web Design Wife · fictional business</a>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bright Park Dental — Upper West Side</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --teal:#0f8b8d; --teal-d:#0a5f61; --mint:#e3f4f2; --ink:#12232e; --soft:#5a6b75; --sun:#ffd166; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:400 17px/1.65 "Plus Jakarta Sans", sans-serif; color:var(--ink); background:#fff; }
+  a { color:inherit; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 20px; }
+  h1,h2,h3 { line-height:1.08; margin:0 0 .45em; letter-spacing:-.02em; font-weight:800; }
+  .nav { display:flex; align-items:center; gap:24px; height:76px; }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.25rem; text-decoration:none; }
+  .logo i { width:30px; height:30px; border-radius:10px 10px 14px 14px; background:var(--teal); position:relative; }
+  .logo i::after { content:""; position:absolute; inset:7px 8px 11px; border-radius:50%; background:#fff; }
+  .nav nav { margin-left:auto; display:flex; gap:26px; font-weight:500; color:var(--soft); }
+  .nav nav a { text-decoration:none; }
+  .btn { display:inline-block; background:var(--teal); color:#fff; padding:13px 22px; border-radius:12px; text-decoration:none; font-weight:700; }
+  .btn.l { background:#fff; color:var(--teal-d); border:2px solid #cfe7e5; }
+  .hero { background:var(--mint); border-radius:28px; margin:0 20px; padding:64px 0; }
+  .hero .wrap { display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center; }
+  .hero h1 { font-size:clamp(2.6rem,5.5vw,4.2rem); }
+  .hero p { font-size:1.15rem; color:var(--soft); max-width:40ch; }
+  .ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+  .offer { background:#fff; border-radius:22px; padding:30px; box-shadow:0 30px 60px -36px rgba(15,139,141,.55); position:relative; }
+  .offer .tag { position:absolute; top:-14px; left:24px; background:var(--sun); font-weight:700; font-size:.8rem; padding:6px 12px; border-radius:999px; }
+  .offer .price { font-size:3.4rem; font-weight:800; color:var(--teal); line-height:1; margin:10px 0; }
+  .offer ul { padding-left:18px; color:var(--soft); margin:14px 0 0; }
+  section { padding:88px 0; }
+  h2 { font-size:clamp(2rem,4vw,3rem); }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:32px; }
+  .card { border:1px solid #e3ebee; border-radius:18px; padding:24px; }
+  .card h3 { font-size:1.15rem; } .card p { margin:0; color:var(--soft); font-size:.95rem; }
+  .card .dot { width:36px; height:36px; border-radius:12px; background:var(--mint); margin-bottom:16px; display:grid; place-items:center; color:var(--teal); font-weight:800; }
+  .ins { background:var(--ink); color:#dbe7ec; border-radius:28px; margin:0 20px; }
+  .ins h2 { color:#fff; }
+  .logos { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+  .logos span { border:1px solid #33505f; padding:10px 16px; border-radius:999px; font-weight:500; }
+  .faq details { border-bottom:1px solid #e3ebee; padding:18px 0; }
+  .faq summary { font-weight:700; cursor:pointer; }
+  .faq p { color:var(--soft); margin:10px 0 0; }
+  .two { display:grid; grid-template-columns:1fr 1.3fr; gap:56px; }
+  footer { padding:36px 0 90px; color:var(--soft); font-size:.92rem; }
+  .wdw-ribbon { position:fixed; right:14px; bottom:14px; z-index:999; background:#1b1530; color:#fff; font:500 12px/1 system-ui, sans-serif; padding:9px 14px; border-radius:999px; text-decoration:none; }
+  @media (max-width:860px) { .nav nav { display:none; } .nav .btn { margin-left:auto; } .hero .wrap, .two { grid-template-columns:1fr; } .cards { grid-template-columns:1fr 1fr; } .hero, .ins { margin:0 10px; } }
+</style>
+<style id="wdw-shared">
+  /* Shared across sample sites: entrance animations, embed mode and mobile polish */
+  .wdw-in { opacity: 0; transform: translateY(18px); animation: wdwIn .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-pop { opacity: 0; transform: scale(.86) rotate(-3deg); animation: wdwPop .9s cubic-bezier(.34,1.45,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-slide { opacity: 0; transform: translateX(40px); animation: wdwIn 1s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-drop { opacity: 0; transform: translateY(-40px); animation: wdwIn .8s cubic-bezier(.34,1.3,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-reveal { clip-path: inset(100% 0 0 0); animation: wdwReveal 1.3s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-spin { opacity: 0; transform: rotate(-120deg) scale(.7); animation: wdwIn 1.4s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-sweep { background-size: 0% 100%; background-repeat: no-repeat; animation: wdwSweep .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  @keyframes wdwIn { to { opacity: 1; transform: none; } }
+  @keyframes wdwPop { to { opacity: 1; transform: none; } }
+  @keyframes wdwReveal { to { clip-path: inset(0 0 0 0); } }
+  @keyframes wdwSweep { to { background-size: 100% 100%; } }
+  @media (prefers-reduced-motion: reduce) { .wdw-in, .wdw-pop, .wdw-slide, .wdw-drop, .wdw-reveal, .wdw-spin, .wdw-sweep { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; background-size: 100% 100% !important; } }
+  html.embed .wdw-ribbon { display: none; }
+  .logo { white-space: nowrap; }
+  .wrap.hero { padding-left: 20px; padding-right: 20px; }
+  @media (max-width: 480px) {
+    .nav > a:last-child, .call, .res, .book, .walk { padding: 9px 13px !important; font-size: .85rem !important; white-space: nowrap; }
+    .logo { font-size: 1.15rem !important; }
+  }
+</style>
+<script>if (/[?&]embed/.test(location.search)) document.documentElement.classList.add("embed");</script>
+</head>
+<body>
+<div class="wrap nav">
+  <a class="logo" href="#"><i></i>Bright Park Dental</a>
+  <nav><a href="#services">Services</a><a href="#insurance">Insurance</a><a href="#faq">FAQ</a></nav>
+  <a class="btn" href="#">Book a visit</a>
+</div>
+<div class="hero"><div class="wrap">
+  <div>
+    <h1 class="wdw-in" style="--d:100">Gentle dentistry for the whole family.</h1>
+    <p class="wdw-in" style="--d:250">Modern, anxiety-free care on West 86th Street. Evening and Saturday appointments, and we'll handle your insurance paperwork.</p>
+    <div class="ctas wdw-in" style="--d:400"><a class="btn" href="#">Book online</a><a class="btn l" href="#insurance">Check your insurance</a></div>
+  </div>
+  <div class="offer wdw-slide" style="--d:550">
+    <span class="tag">New patient special</span>
+    <strong>Exam, X-rays &amp; cleaning</strong>
+    <div class="price">$99</div>
+    <ul><li>For patients without insurance</li><li>Includes a personalized care plan</li><li>Same-week appointments</li></ul>
+  </div>
+</div></div>
+
+<section id="services">
+  <div class="wrap">
+    <h2>Everything under one roof</h2>
+    <div class="cards">
+      <div class="card"><div class="dot">01</div><h3>Cleanings &amp; exams</h3><p>Thorough, gentle and never rushed.</p></div>
+      <div class="card"><div class="dot">02</div><h3>Invisalign</h3><p>Clear aligners with a free consultation.</p></div>
+      <div class="card"><div class="dot">03</div><h3>Whitening</h3><p>In-office or take-home options.</p></div>
+      <div class="card"><div class="dot">04</div><h3>Emergencies</h3><p>Same-day care for pain or broken teeth.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ins" id="insurance">
+  <div class="wrap">
+    <h2>We accept most major insurance</h2>
+    <p>Not sure if you're covered? Send us your plan and we'll check before your visit.</p>
+    <div class="logos"><span>Delta Dental</span><span>Aetna</span><span>Cigna</span><span>MetLife</span><span>Guardian</span><span>UnitedHealthcare</span></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap two">
+    <div><h2>Questions, answered</h2><p style="color:#5a6b75">Still wondering about something? Call or message us anytime.</p></div>
+    <div class="faq">
+      <details open><summary>I'm nervous about the dentist. Can you help?</summary><p>Absolutely. We explain every step, offer noise-canceling headphones and never rush. Many of our patients are nervous at first.</p></details>
+      <details><summary>Do you see children?</summary><p>Yes, from their first tooth onward.</p></details>
+      <details><summary>What if I have a dental emergency?</summary><p>Call us first thing. We hold same-day slots for emergencies.</p></details>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">Bright Park Dental · 210 W 86th St, New York · Mon–Fri 8am–7pm, Sat 9am–3pm</div></footer>
+<a class="wdw-ribbon" href="../index.html" target="_top">Sample site by Web Design Wife · fictional business</a>
+</body>
+</html>

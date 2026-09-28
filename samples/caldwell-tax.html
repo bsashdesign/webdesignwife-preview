@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caldwell Tax &amp; Accounting — Midtown Manhattan</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#14213d; --gold:#b08d57; --ivory:#f7f5f0; --ink:#1c1f26; --soft:#5d6470; --line:#dcd7cc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:400 18px/1.65 "Source Sans 3", sans-serif; color:var(--ink); background:var(--ivory); }
+  a { color:inherit; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 22px; }
+  h1,h2,h3 { font-family:"Libre Baskerville", serif; font-weight:400; line-height:1.15; margin:0 0 .5em; }
+  .bar { background:var(--navy); color:#c9cfdb; font-size:.9rem; }
+  .bar .wrap { display:flex; justify-content:space-between; padding:8px 22px; }
+  .nav { display:flex; align-items:center; gap:24px; height:84px; border-bottom:1px solid var(--line); }
+  .logo { font-family:"Libre Baskerville"; font-size:1.3rem; text-decoration:none; }
+  .logo small { display:block; font:600 .68rem "Source Sans 3"; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+  .nav nav { margin-left:auto; display:flex; gap:28px; }
+  .nav nav a { text-decoration:none; color:var(--soft); }
+  .btn { display:inline-block; background:var(--navy); color:#fff; padding:14px 24px; text-decoration:none; font-weight:600; border-radius:2px; }
+  .btn.o { background:transparent; color:var(--navy); border:1px solid var(--navy); }
+  .hero { display:grid; grid-template-columns:1.3fr .7fr; gap:56px; padding:80px 0; align-items:center; }
+  .hero h1 { font-size:clamp(2.4rem,5vw,3.8rem); }
+  .hero h1 i { color:var(--gold); }
+  .hero p { color:var(--soft); font-size:1.15rem; max-width:44ch; }
+  .ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+  .deadline { background:var(--navy); color:#fff; padding:30px; border-top:4px solid var(--gold); }
+  .deadline small { letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:600; font-size:.72rem; }
+  .deadline .d { font:700 3.6rem/1 "Libre Baskerville"; margin:10px 0; }
+  .deadline p { color:#c9cfdb; margin:0; }
+  section { padding:84px 0; border-top:1px solid var(--line); }
+  h2 { font-size:clamp(1.9rem,3.6vw,2.7rem); }
+  .svcs { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:28px; border-top:1px solid var(--line); }
+  .svcs div { padding:28px 26px 28px 0; border-bottom:1px solid var(--line); }
+  .svcs div:not(:nth-child(3n)) { border-right:1px solid var(--line); }
+  .svcs div:not(:nth-child(3n+1)) { padding-left:26px; }
+  .svcs h3 { font-size:1.2rem; } .svcs p { color:var(--soft); margin:0; font-size:1rem; }
+  .creds { display:flex; flex-wrap:wrap; gap:40px; margin-top:24px; }
+  .creds div b { display:block; font:700 2.2rem "Libre Baskerville"; color:var(--navy); }
+  .creds div span { color:var(--soft); }
+  blockquote { margin:0; font:italic 400 clamp(1.3rem,2.4vw,1.7rem)/1.5 "Libre Baskerville"; max-width:760px; }
+  blockquote footer { font:600 .95rem "Source Sans 3"; color:var(--gold); margin-top:14px; font-style:normal; }
+  footer.site { background:var(--navy); color:#c9cfdb; padding:34px 0 90px; font-size:.92rem; }
+  .wdw-ribbon { position:fixed; right:14px; bottom:14px; z-index:999; background:#1b1530; color:#fff; font:500 12px/1 system-ui, sans-serif; padding:9px 14px; border-radius:999px; text-decoration:none; }
+  @media (max-width:860px) { .nav nav { display:none; } .nav .btn { margin-left:auto; } .hero, .svcs { grid-template-columns:1fr; } .svcs div { border-right:0 !important; padding-left:0 !important; } .bar .wrap span:last-child { display:none; } }
+</style>
+<style id="wdw-shared">
+  /* Shared across sample sites: entrance animations, embed mode and mobile polish */
+  .wdw-in { opacity: 0; transform: translateY(18px); animation: wdwIn .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-pop { opacity: 0; transform: scale(.86) rotate(-3deg); animation: wdwPop .9s cubic-bezier(.34,1.45,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-slide { opacity: 0; transform: translateX(40px); animation: wdwIn 1s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-drop { opacity: 0; transform: translateY(-40px); animation: wdwIn .8s cubic-bezier(.34,1.3,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-reveal { clip-path: inset(100% 0 0 0); animation: wdwReveal 1.3s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-spin { opacity: 0; transform: rotate(-120deg) scale(.7); animation: wdwIn 1.4s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-sweep { background-size: 0% 100%; background-repeat: no-repeat; animation: wdwSweep .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  @keyframes wdwIn { to { opacity: 1; transform: none; } }
+  @keyframes wdwPop { to { opacity: 1; transform: none; } }
+  @keyframes wdwReveal { to { clip-path: inset(0 0 0 0); } }
+  @keyframes wdwSweep { to { background-size: 100% 100%; } }
+  @media (prefers-reduced-motion: reduce) { .wdw-in, .wdw-pop, .wdw-slide, .wdw-drop, .wdw-reveal, .wdw-spin, .wdw-sweep { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; background-size: 100% 100% !important; } }
+  html.embed .wdw-ribbon { display: none; }
+  .logo { white-space: nowrap; }
+  .wrap.hero { padding-left: 20px; padding-right: 20px; }
+  @media (max-width: 480px) {
+    .nav > a:last-child, .call, .res, .book, .walk { padding: 9px 13px !important; font-size: .85rem !important; white-space: nowrap; }
+    .logo { font-size: 1.15rem !important; }
+  }
+</style>
+<script>if (/[?&]embed/.test(location.search)) document.documentElement.classList.add("embed");</script>
+</head>
+<body>
+<div class="bar"><div class="wrap"><span>Now booking 2027 tax appointments</span><span>Virtual or in-office · 5th Avenue</span></div></div>
+<div class="wrap nav">
+  <a class="logo" href="#">Caldwell<small>Tax &amp; Accounting</small></a>
+  <nav><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <a class="btn" href="#contact">Book a consultation</a>
+</div>
+<div class="wrap hero">
+  <div>
+    <h1 class="wdw-in" style="--d:100">Clear answers for your taxes, <i>all year long.</i></h1>
+    <p class="wdw-in" style="--d:250">CPAs for small businesses, freelancers and families in Manhattan. Fixed fees quoted upfront, and a real person who answers your emails.</p>
+    <div class="ctas wdw-in" style="--d:400"><a class="btn" href="#contact">Book a free 20-minute call</a><a class="btn o" href="#services">Our services</a></div>
+  </div>
+  <div class="deadline wdw-slide" style="--d:550">
+    <small>Next federal deadline</small>
+    <div class="d">Jan 15</div>
+    <p>Q4 estimated tax payment. Not sure what you owe? We'll calculate it for you.</p>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <h2>How we help</h2>
+    <div class="svcs">
+      <div><h3>Personal tax returns</h3><p>Federal, NY State and NYC returns, done right and on time.</p></div>
+      <div><h3>Small business taxes</h3><p>LLCs, S-corps and partnerships, with year-round planning.</p></div>
+      <div><h3>Bookkeeping</h3><p>Monthly books so tax season is never a scramble.</p></div>
+      <div><h3>Freelancers &amp; creatives</h3><p>Deductions, estimated payments and 1099s handled.</p></div>
+      <div><h3>IRS notices</h3><p>Got a letter? We'll read it, respond and resolve it.</p></div>
+      <div><h3>Payroll</h3><p>Hassle-free payroll for teams of 1 to 50.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>Experience you can count on</h2>
+    <div class="creds"><div><b>25</b><span>years in practice</span></div><div><b>1,200+</b><span>clients served</span></div><div><b>CPA</b><span>licensed in New York</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <blockquote>“Eleanor turned my shoebox of receipts into a clean return and saved me more than her fee. I'll never do my taxes alone again.”<footer>Freelance photographer, Chelsea</footer></blockquote>
+  </div>
+</section>
+<footer class="site" id="contact"><div class="wrap">Caldwell Tax &amp; Accounting · Fifth Avenue, New York · Mon–Fri 9am–6pm</div></footer>
+<a class="wdw-ribbon" href="../index.html" target="_top">Sample site by Web Design Wife · fictional business</a>
+</body>
+</html>

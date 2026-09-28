@@ -1,0 +1,105 @@
+/* Direction D (concept): "Wedding stationery" — invitation cards, serif display,
+   champagne details. Leans into the marriage idea without costumes or clichés. */
+.theme-wedding {
+  --ink: #1f2336;
+  --ink-soft: #5b5e70;
+  --paper: #fdfcf9;
+  --tint: #f5f1e9;
+  --line: #e6dece;
+  --violet: #1f2336;
+  --violet-deep: #000;
+  --lilac: #ede7da;
+  --marigold: #b8955a;
+  --done: #5f8a6a;
+  --sky: #e4ebf2;
+  --mint: #e7eee6;
+  --sun: #f4ecdb;
+  --rose: #ece8f0;
+  --gold: #b8955a;
+  --dusty: #8fa7bf;
+
+  --display: "Cormorant Garamond", Georgia, serif;
+  --mono: "Figtree", system-ui, sans-serif;
+  --r: 4px;
+  --r-lg: 6px;
+}
+.theme-wedding body, body.theme-wedding { background: var(--paper); }
+.theme-wedding h1, .theme-wedding h2 { font-weight: 500; letter-spacing: -0.01em; line-height: 1.02; }
+.theme-wedding h1 { font-size: clamp(3rem, 6.4vw, 5rem); }
+.theme-wedding h2 { font-size: clamp(2.3rem, 4.6vw, 3.4rem); }
+.theme-wedding h3 { font-family: var(--display); font-weight: 600; font-size: 1.45rem; letter-spacing: 0; }
+
+/* Labels read like an invitation line, flanked by hairlines */
+.theme-wedding .eyebrow { display: inline-flex; align-items: center; gap: 12px; font: 500 .72rem/1 var(--body); letter-spacing: .32em; color: var(--gold); }
+.theme-wedding .eyebrow::before, .theme-wedding .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .6; }
+.theme-wedding .eyebrow--light { color: #d9c49a; }
+
+/* Hero: pearl paper with a faint champagne glow */
+.theme-wedding .hero { background:
+    radial-gradient(700px 420px at 85% 15%, rgba(184, 149, 90, .16), transparent 70%),
+    radial-gradient(520px 360px at 55% 100%, rgba(143, 167, 191, .18), transparent 70%),
+    var(--paper); }
+.theme-wedding .hl { background: none; font-style: italic; color: var(--gold); }
+.theme-wedding .for { background: var(--tint); color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 500 1.25rem var(--display); }
+
+/* Buttons: ink with a champagne ring on hover */
+.theme-wedding .btn { border-radius: 999px; letter-spacing: .02em; }
+.theme-wedding .btn--primary { background: var(--ink); box-shadow: none; }
+.theme-wedding .btn--primary:hover { background: #000; box-shadow: 0 0 0 4px rgba(184, 149, 90, .35); }
+.theme-wedding .btn--ghost { border-color: var(--gold); color: var(--ink); }
+.theme-wedding .btn--ghost:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+
+/* Invitation cards: hairline border with an inner frame */
+.theme-wedding .steps li, .theme-wedding .features li, .theme-wedding .plan, .theme-wedding .promises p,
+.theme-wedding .post-card, .theme-wedding .extras, .theme-wedding .scope > div, .theme-wedding .finder__result {
+  background: #fff; border: 1px solid var(--line); border-radius: 4px;
+  box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px rgba(184, 149, 90, .28);
+}
+.theme-wedding .steps li::before { background: none !important; border: 1px solid var(--gold); color: var(--gold) !important; font: italic 600 1.2rem var(--display); }
+.theme-wedding .tag { background: none; border: 1px solid currentColor; letter-spacing: .12em; }
+.theme-wedding .tag--all { color: var(--done); }
+.theme-wedding .tag--biz { color: #54708c; }
+.theme-wedding .tag--full { color: var(--gold); background: none; }
+.theme-wedding .extras__grid li { background: var(--tint); border-radius: 4px; }
+
+/* Pricing: the marriage joke is at home here */
+.theme-wedding .billing { border-radius: 999px; border-color: var(--line); }
+.theme-wedding .billing button[aria-checked="true"] { background: var(--ink); }
+.theme-wedding .billing button span, .theme-wedding .billing button[aria-checked="true"] span { color: var(--gold); }
+.theme-wedding .plan--best { border-color: var(--gold); box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px var(--gold), 0 30px 60px -40px rgba(31, 35, 54, .45); }
+.theme-wedding .plan__badge { background: var(--ink); color: #fff; border-radius: 999px; }
+.theme-wedding .plan__price span { font-weight: 600; }
+.theme-wedding .plan__terms strong { color: var(--gold); }
+.theme-wedding .plan.is-recommended { border-color: var(--gold); box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px var(--gold); }
+.theme-wedding .edits-banner { background: var(--ink); border-radius: 4px; }
+.theme-wedding .edits-banner__kicker { color: #d9c49a; letter-spacing: .28em; }
+
+/* Vows: centered, numbered in roman numerals */
+.theme-wedding .promises { counter-reset: vow; }
+.theme-wedding .promises p { text-align: center; counter-increment: vow; padding: 34px 26px; background: #fff !important; }
+.theme-wedding .promises p::before { content: counter(vow, upper-roman); display: block; font: italic 500 1.5rem var(--display); color: var(--gold); margin-bottom: 8px; }
+.theme-wedding .promises strong { font-family: var(--display); font-weight: 600; font-size: 1.4rem; }
+
+/* Local section and boroughs */
+.theme-wedding .boroughs li { background: #fff !important; border: 1px solid var(--line); border-radius: 4px; }
+.theme-wedding .boroughs strong { font-weight: 600; font-size: 1.4rem; }
+
+/* Dark sections in deep ink, gold accents */
+.theme-wedding .section--ink { background: var(--ink); }
+.theme-wedding .section--violet { background: var(--ink); }
+.theme-wedding .section--violet .btn--light { background: var(--gold); color: #fff; }
+.theme-wedding .formcard { background: rgba(255, 255, 255, .06); border-color: rgba(217, 196, 154, .35); border-radius: 4px; }
+.theme-wedding .tabs { border-radius: 999px; }
+.theme-wedding .tabs button[aria-selected="true"] { color: var(--ink); }
+.theme-wedding .about__photo { background: repeating-linear-gradient(45deg, #f1ebdf 0 14px, #f8f4ec 14px 28px); color: var(--gold); border-radius: 999px 999px 4px 4px; }
+.theme-wedding .about__lead { font: italic 500 1.7rem/1.3 var(--display); color: var(--ink); }
+.theme-wedding .faq__list summary { font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
+.theme-wedding .faq__list summary::after { color: var(--gold); }
+.theme-wedding .gallery__chips button[aria-selected="true"], .theme-wedding .viewer__modes button[aria-checked="true"] { background: var(--ink); }
+.theme-wedding .post-card__cover { background: var(--tint) !important; }
+.theme-wedding .compare__head .us { background: var(--ink); }
+.theme-wedding .compare .us { background: #f6f1e6; }
+.theme-wedding .mobilebar { background: var(--ink); }
+
+/* A small ornament between the page's main sections */
+.theme-wedding .section > .wrap > .eyebrow:first-child::before, .theme-wedding .section-head .eyebrow::before { width: 28px; }

@@ -1,0 +1,166 @@
+/* Direction B: "Subway" — New York transit signage, inspired not copied. */
+.theme-subway {
+  --ink: #111111;
+  --ink-soft: #4d4d4d;
+  --tint: #f2f2ef;
+  --line: #dcdcd7;
+  --violet: #0b5cd6;
+  --violet-deep: #0847a8;
+  --lilac: #e6eefc;
+  --marigold: #fccc0a;
+  --sky: #dfeaff;
+  --mint: #dcf2e3;
+  --sun: #fff4c2;
+  --rose: #ffe1dc;
+
+  --red: #e8392e;
+  --green: #00933c;
+  --blue: #0b5cd6;
+  --orange: #ff6319;
+  --purple: #a336b0;
+  --yellow: #fccc0a;
+  --gray: #8a8c8d;
+
+  --display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --r: 8px;
+  --r-lg: 12px;
+}
+.theme-subway h1, .theme-subway h2 { letter-spacing: -0.035em; }
+
+/* Line strip under the nav */
+.theme-subway .nav { border-bottom: 0; }
+.theme-subway .nav::after {
+  content: ""; display: block; height: 6px;
+  background: linear-gradient(90deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0);
+}
+
+/* Section labels as station signs */
+.theme-subway .eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #111; color: #fff;
+  font: 700 .82rem/1 var(--display); letter-spacing: .01em; text-transform: none;
+  padding: 6px 12px 6px 6px; border-radius: 6px;
+}
+.theme-subway .eyebrow::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--dot, var(--red)); flex-shrink: 0; }
+.theme-subway .eyebrow--light { background: #fff; color: #111; }
+.theme-subway #examples { --dot: var(--orange); }
+.theme-subway #compare { --dot: var(--green); }
+.theme-subway #how { --dot: var(--blue); }
+.theme-subway #features { --dot: var(--purple); }
+.theme-subway #maps { --dot: var(--green); }
+.theme-subway #local { --dot: var(--yellow); }
+.theme-subway #finder { --dot: var(--red); }
+.theme-subway #pricing { --dot: var(--blue); }
+.theme-subway #promises { --dot: var(--orange); }
+.theme-subway #about { --dot: var(--purple); }
+.theme-subway #faq { --dot: var(--gray); }
+.theme-subway #blog { --dot: var(--green); }
+.theme-subway #audit { --dot: var(--yellow); }
+
+/* Hero: a dark platform */
+.theme-subway .hero { background: #111; color: #fff; }
+.theme-subway .hero .eyebrow { background: #fff; color: #111; --dot: var(--yellow); }
+.theme-subway .hero h1 { color: #fff; }
+.theme-subway .hl { background: linear-gradient(transparent 66%, var(--yellow) 66%); color: #fff; }
+.theme-subway .hero .lede, .theme-subway .hero__facts { color: #c9c9c4; }
+.theme-subway .hero .btn--ghost { border-color: #fff; color: #fff; }
+.theme-subway .hero .btn--ghost:hover { background: #fff; color: #111; }
+.theme-subway .phone { border-color: #e8e8e4; }
+.theme-subway .browser { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .9); }
+.theme-subway .for { background: var(--yellow); color: #111; font-weight: 600; }
+
+/* Buttons: squarer, signage-like */
+.theme-subway .btn { border-radius: 8px; }
+.theme-subway .btn--primary { box-shadow: none; }
+.theme-subway .gallery__chips button, .theme-subway .billing, .theme-subway .billing button, .theme-subway .viewer__modes, .theme-subway .viewer__modes button, .theme-subway .tabs, .theme-subway .tabs button, .theme-subway .finder__form label span { border-radius: 8px; }
+
+/* Feature tags as line bullets */
+.theme-subway .tag { background: none; color: var(--ink); padding: 0; display: inline-flex; align-items: center; gap: 7px; font: 700 .78rem var(--display); letter-spacing: 0; text-transform: none; }
+.theme-subway .tag::before { content: ""; width: 14px; height: 14px; border-radius: 50%; }
+.theme-subway .tag--all::before { background: var(--green); }
+.theme-subway .tag--biz::before { background: var(--blue); }
+.theme-subway .tag--full::before { background: var(--purple); }
+.theme-subway .features li { border-radius: 10px; }
+
+/* Steps: numbered line bullets */
+.theme-subway .steps li::before { border-radius: 50%; color: #fff; font: 800 1.1rem var(--display); }
+.theme-subway .steps li:nth-child(1)::before { background: var(--green); color: #fff; }
+.theme-subway .steps li:nth-child(2)::before { background: var(--blue); color: #fff; }
+.theme-subway .steps li:nth-child(3)::before { background: var(--orange); color: #fff; }
+
+/* Boroughs as a line map */
+.theme-subway .boroughs { gap: 0; border-left: 6px solid #111; padding-left: 0; }
+.theme-subway .boroughs li { background: none !important; border-radius: 0; border-bottom: 1px solid var(--line); padding: 18px 20px 18px 34px; position: relative; }
+.theme-subway .boroughs li::before { content: ""; position: absolute; left: -15px; top: 50%; width: 24px; height: 24px; margin-top: -12px; border-radius: 50%; background: #fff; border: 6px solid var(--c); box-sizing: border-box; }
+.theme-subway .boroughs li:nth-child(1) { --c: var(--red); }
+.theme-subway .boroughs li:nth-child(2) { --c: var(--green); }
+.theme-subway .boroughs li:nth-child(3) { --c: var(--purple); }
+.theme-subway .boroughs li:nth-child(4) { --c: var(--orange); }
+.theme-subway .boroughs li:nth-child(5) { --c: var(--blue); }
+
+/* Plans: colored top lines */
+.theme-subway .plan { border-top: 8px solid var(--c, var(--gray)); }
+.theme-subway #plan-simple { --c: var(--green); }
+.theme-subway #plan-business { --c: var(--blue); border-top-width: 8px; }
+.theme-subway #plan-full { --c: var(--purple); }
+.theme-subway .plan--best { border-color: var(--blue); }
+.theme-subway .plan__badge { background: var(--blue); color: #fff; border-radius: 6px; }
+.theme-subway .plan__rec { border-radius: 6px; background: var(--yellow); }
+
+/* Promises: white cards with colored edges */
+.theme-subway .promises p { background: #fff !important; border-left: 8px solid var(--c); border-radius: 8px; }
+.theme-subway .promises p:nth-child(1) { --c: var(--red); }
+.theme-subway .promises p:nth-child(2) { --c: var(--green); }
+.theme-subway .promises p:nth-child(3) { --c: var(--yellow); }
+.theme-subway .promises p:nth-child(4) { --c: var(--blue); }
+
+.theme-subway .finder__result { border-color: #111; }
+.theme-subway .about__photo { background: repeating-linear-gradient(45deg, #ececea 0 14px, #f6f6f4 14px 28px); color: #111; }
+.theme-subway .section--violet { background: #111; }
+.theme-subway .section--violet .btn--light { background: var(--yellow); color: #111; }
+.theme-subway .formcard { background: #1d1d1d; border-color: #333; }
+.theme-subway .tabs { background: #000; }
+.theme-subway .tabs button[aria-selected="true"] { background: var(--yellow); color: #111; }
+.theme-subway .mobilebar { background: #111; border-radius: 8px; }
+/* Keep the demo's own colors on the dark hero */
+.theme-subway .demo { color: var(--ink); }
+.theme-subway .edits-banner { border-radius: 12px; border-top: 8px solid var(--yellow); }
+.theme-subway .edits-banner__kicker { color: var(--yellow); font-family: var(--display); font-weight: 700; }
+
+/* How it works as a line map: each step is a stop */
+.theme-subway .steps { position: relative; gap: 28px; }
+.theme-subway .steps::before { content: ""; position: absolute; left: 40px; right: 40px; top: 48px; height: 6px; background: #111; border-radius: 3px; z-index: 0; }
+.theme-subway .steps li { position: relative; z-index: 1; background: #fff; border: 0; border-top: 0; padding-top: 30px; }
+.theme-subway .steps li::before { width: 44px; height: 44px; border: 6px solid #fff; box-shadow: 0 0 0 2px #111; }
+.theme-subway #how { background: var(--tint); }
+
+/* Plan finder stepper as stations */
+.theme-subway .stepper::before { background: #111; height: 6px; top: 12px; }
+.theme-subway .stepper span { border-color: #111; }
+.theme-subway .stepper li.is-current span { background: var(--yellow); border-color: #111; color: #111; box-shadow: none; }
+.theme-subway .stepper li.is-done span { background: #111; }
+.theme-subway .finder-dialog .opt > span { border-radius: 10px; }
+.theme-subway .finder-dialog .opt input:checked + span { border-color: var(--blue); background: #eef4ff; }
+.theme-subway .serp__list li.is-you { background: #eef4ff; }
+.theme-subway .serp__map i.is-you { background: var(--blue); }
+@media (max-width: 960px) { .theme-subway .steps::before { display: none; } }
+
+/* Blog */
+.theme-subway .blog-hero { background: #111; color: #fff; padding-bottom: 56px; }
+.theme-subway .blog-hero h1 { color: #fff; }
+.theme-subway .blog-hero .intro { color: #c9c9c4; }
+.theme-subway .blog-hero .eyebrow { background: #fff; color: #111; --dot: var(--yellow); }
+.theme-subway .blog-list { padding-top: 64px; }
+.theme-subway .post-card { border-radius: 10px; border-top: 6px solid var(--c, var(--blue)); }
+.theme-subway .post-card:nth-child(4n+1) { --c: var(--red); }
+.theme-subway .post-card:nth-child(4n+2) { --c: var(--green); }
+.theme-subway .post-card:nth-child(4n+3) { --c: var(--orange); }
+.theme-subway .post-card:nth-child(4n+4) { --c: var(--purple); }
+.theme-subway .post-card__kicker { color: var(--ink-soft); }
+.theme-subway .lede-note { border-left-color: var(--yellow); }
+.theme-subway .vs-table thead th:last-child, .theme-subway .vs-table td:last-child { background: #eef4ff; }
+.theme-subway .quickcheck { background: #111; border-top: 8px solid var(--yellow); border-radius: 12px; }
+.theme-subway .qc-url { color: var(--yellow); }
+.theme-subway .article__back { color: var(--blue); }

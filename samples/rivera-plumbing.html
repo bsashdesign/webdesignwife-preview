@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rivera Plumbing — Queens, NY</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0b2545; --navy-2:#13315c; --orange:#ff6b1a; --sky:#e8f1fb; --ink:#10151d; --soft:#51606f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:400 17px/1.6 Barlow, sans-serif; color:var(--ink); background:#fff; }
+  a { color:inherit; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+  h1,h2,h3 { font-family:"Barlow Condensed", sans-serif; text-transform:uppercase; line-height:.95; margin:0 0 .4em; letter-spacing:.01em; }
+  .alert { background:var(--orange); color:#fff; font-weight:600; text-align:center; padding:8px 16px; font-size:.95rem; }
+  .alert b { font-weight:800; }
+  header { background:var(--navy); color:#fff; }
+  .nav { display:flex; align-items:center; gap:24px; height:72px; }
+  .logo { display:flex; align-items:center; gap:10px; font:800 1.6rem "Barlow Condensed"; text-transform:uppercase; letter-spacing:.02em; text-decoration:none; }
+  .logo svg { width:34px; height:34px; }
+  .nav nav { margin-left:auto; display:flex; gap:24px; font-weight:500; }
+  .nav nav a { text-decoration:none; opacity:.85; }
+  .call { background:var(--orange); color:#fff; text-decoration:none; font:700 1.1rem "Barlow Condensed"; text-transform:uppercase; padding:12px 20px; border-radius:6px; letter-spacing:.03em; }
+  .hero { background:linear-gradient(160deg, var(--navy) 0 55%, var(--navy-2) 55%); color:#fff; padding:72px 0 96px; position:relative; overflow:hidden; }
+  .hero .wrap { display:grid; grid-template-columns:1.2fr .8fr; gap:48px; align-items:center; }
+  .hero h1 { font-size:clamp(3rem,7vw,5.6rem); }
+  .hero h1 span { color:var(--orange); }
+  .hero p { font-size:1.2rem; color:#c9d6e8; max-width:34ch; }
+  .ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+  .btn { display:inline-block; padding:15px 24px; border-radius:6px; font:700 1.15rem "Barlow Condensed"; text-transform:uppercase; letter-spacing:.04em; text-decoration:none; }
+  .btn.o { background:var(--orange); color:#fff; } .btn.g { border:2px solid #fff; color:#fff; }
+  .badge { background:#fff; color:var(--navy); border-radius:18px; padding:28px; box-shadow:0 30px 60px -30px rgba(0,0,0,.6); }
+  .badge .big { font:800 5.5rem/.8 "Barlow Condensed"; color:var(--orange); }
+  .badge ul { list-style:none; padding:0; margin:18px 0 0; }
+  .badge li { padding:8px 0; border-top:1px solid #e3e9f1; font-weight:600; }
+  .badge li::before { content:"✓"; color:var(--orange); font-weight:800; margin-right:10px; }
+  .trust { background:var(--sky); }
+  .trust .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; padding:22px 20px; font-weight:600; color:var(--navy); }
+  section { padding:88px 0; }
+  .eyebrow { color:var(--orange); font:700 1rem "Barlow Condensed"; letter-spacing:.12em; text-transform:uppercase; }
+  h2 { font-size:clamp(2.2rem,4.5vw,3.4rem); color:var(--navy); }
+  .services { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px; }
+  .svc { border:2px solid #e3e9f1; border-top:6px solid var(--orange); border-radius:14px; padding:26px; transition:border-color .2s, transform .2s; }
+  .svc:hover { border-color:var(--orange); transform:translateY(-3px); }
+  .svc .ic { width:46px; height:46px; border-radius:10px; background:var(--sky); display:grid; place-items:center; margin-bottom:14px; }
+  .svc h3 { font-size:1.6rem; color:var(--navy); }
+  .svc p { margin:0; color:var(--soft); }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .reviews { background:var(--navy); color:#fff; }
+  .reviews h2 { color:#fff; }
+  .rv { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:32px; }
+  .rv blockquote { margin:0; background:var(--navy-2); border-radius:14px; padding:24px; }
+  .rv .stars { color:#ffc53d; letter-spacing:2px; }
+  .rv footer { color:#9fb3cc; font-size:.9rem; margin-top:10px; }
+  .areas { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+  .areas span { background:var(--sky); color:var(--navy); font-weight:600; padding:8px 14px; border-radius:999px; }
+  .quote { background:var(--sky); border-radius:18px; padding:32px; }
+  .quote label { display:block; font-weight:600; margin-bottom:12px; }
+  .quote input, .quote select { width:100%; margin-top:6px; padding:12px; border:2px solid #d3deeb; border-radius:8px; font:inherit; }
+  .quote .btn { width:100%; border:0; cursor:pointer; margin-top:8px; }
+  footer.site { background:var(--ink); color:#9aa6b4; padding:36px 0 90px; font-size:.95rem; }
+  .wdw-ribbon { position:fixed; right:14px; bottom:14px; z-index:999; background:#1b1530; color:#fff; font:500 12px/1 system-ui, sans-serif; padding:9px 14px; border-radius:999px; text-decoration:none; box-shadow:0 8px 20px -8px rgba(0,0,0,.5); }
+  @media (max-width:820px) {
+    .nav nav { display:none; } .call { margin-left:auto; padding:10px 14px; }
+    .hero .wrap, .split { grid-template-columns:1fr; }
+    .services, .rv { grid-template-columns:1fr; }
+  }
+</style>
+<style id="wdw-shared">
+  /* Shared across sample sites: entrance animations, embed mode and mobile polish */
+  .wdw-in { opacity: 0; transform: translateY(18px); animation: wdwIn .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-pop { opacity: 0; transform: scale(.86) rotate(-3deg); animation: wdwPop .9s cubic-bezier(.34,1.45,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-slide { opacity: 0; transform: translateX(40px); animation: wdwIn 1s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-drop { opacity: 0; transform: translateY(-40px); animation: wdwIn .8s cubic-bezier(.34,1.3,.64,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-reveal { clip-path: inset(100% 0 0 0); animation: wdwReveal 1.3s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-spin { opacity: 0; transform: rotate(-120deg) scale(.7); animation: wdwIn 1.4s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  .wdw-sweep { background-size: 0% 100%; background-repeat: no-repeat; animation: wdwSweep .9s cubic-bezier(.22,1,.36,1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+  @keyframes wdwIn { to { opacity: 1; transform: none; } }
+  @keyframes wdwPop { to { opacity: 1; transform: none; } }
+  @keyframes wdwReveal { to { clip-path: inset(0 0 0 0); } }
+  @keyframes wdwSweep { to { background-size: 100% 100%; } }
+  @media (prefers-reduced-motion: reduce) { .wdw-in, .wdw-pop, .wdw-slide, .wdw-drop, .wdw-reveal, .wdw-spin, .wdw-sweep { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; background-size: 100% 100% !important; } }
+  html.embed .wdw-ribbon { display: none; }
+  .logo { white-space: nowrap; }
+  .wrap.hero { padding-left: 20px; padding-right: 20px; }
+  @media (max-width: 480px) {
+    .nav > a:last-child, .call, .res, .book, .walk { padding: 9px 13px !important; font-size: .85rem !important; white-space: nowrap; }
+    .logo { font-size: 1.15rem !important; }
+  }
+</style>
+<script>if (/[?&]embed/.test(location.search)) document.documentElement.classList.add("embed");</script>
+</head>
+<body>
+<div class="alert wdw-drop" style="--d:0">Burst pipe? <b>24/7 emergency service</b> across Queens. We pick up.</div>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4c6 8 11 14 11 20a11 11 0 0 1-22 0c0-6 5-12 11-20z" fill="#ff6b1a"/><path d="M15 25a5 5 0 0 0 5 5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></svg>Rivera Plumbing</a>
+    <nav><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#area">Service area</a></nav>
+    <a class="call" href="#quote">(718) 555‑0142</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1 class="wdw-in" style="--d:150">Fast, honest plumbing. <span>Same-day.</span></h1>
+      <p class="wdw-in" style="--d:300">Licensed Queens plumbers since 2009. Upfront pricing before we start, and we clean up after.</p>
+      <div class="ctas wdw-in" style="--d:450"><a class="btn o" href="#quote">Get a free quote</a><a class="btn g" href="#services">See services</a></div>
+    </div>
+    <div class="badge wdw-pop" style="--d:650">
+      <div class="big">24/7</div>
+      <strong>Emergency response</strong>
+      <ul><li>Licensed &amp; insured</li><li>Upfront, flat-rate pricing</li><li>1-year workmanship guarantee</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="trust"><div class="wrap"><span>★★★★★ 4.9 on Google (212)</span><span>NYC Master Plumber #2231</span><span>Same-day appointments</span><span>Se habla español</span></div></div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">What we fix</div>
+    <h2>Plumbing services</h2>
+    <div class="services">
+      <div class="svc"><h3>Leak repair</h3><p>Dripping faucets to hidden leaks behind walls, found and fixed.</p></div>
+      <div class="svc"><h3>Drain cleaning</h3><p>Clogged sinks, tubs and main lines cleared with camera inspection.</p></div>
+      <div class="svc"><h3>Water heaters</h3><p>Tank and tankless installs, repairs and same-day replacements.</p></div>
+      <div class="svc"><h3>Toilets</h3><p>Running, leaking or clogged toilets repaired or replaced.</p></div>
+      <div class="svc"><h3>Commercial</h3><p>Restaurants, offices and buildings, with after-hours service.</p></div>
+      <div class="svc"><h3>Gas lines</h3><p>Licensed gas line repair, installation and inspection.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">Reviews</div>
+    <h2>Queens trusts Rivera</h2>
+    <div class="rv">
+      <blockquote><div class="stars">★★★★★</div><p>Showed up within two hours on a Sunday and fixed our burst pipe. Fair price, no surprises.</p><footer>Maria G., Astoria</footer></blockquote>
+      <blockquote><div class="stars">★★★★★</div><p>Replaced our water heater the same day. Clean, fast and explained everything.</p><footer>David L., Forest Hills</footer></blockquote>
+      <blockquote><div class="stars">★★★★★</div><p>We use them for all three of our restaurants. Always reliable.</p><footer>Chris P., Jackson Heights</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="area">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Service area</div>
+      <h2>All over Queens</h2>
+      <p>Based in Astoria, with plumbers on the road across the borough every day.</p>
+      <div class="areas"><span>Astoria</span><span>Long Island City</span><span>Jackson Heights</span><span>Flushing</span><span>Forest Hills</span><span>Bayside</span><span>Ridgewood</span><span>Jamaica</span></div>
+    </div>
+    <form class="quote" id="quote" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thanks! We\'ll call you shortly.'">
+      <h3 style="font-size:2rem;color:#0b2545">Get a free quote</h3>
+      <label>Name<input required></label>
+      <label>Phone<input type="tel" required></label>
+      <label>What do you need?<select><option>Leak repair</option><option>Drain cleaning</option><option>Water heater</option><option>Something else</option></select></label>
+      <button class="btn o" type="submit">Request my quote</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site"><div class="wrap">Rivera Plumbing · Astoria, Queens · Open 24/7 for emergencies</div></footer>
+<a class="wdw-ribbon" href="../index.html" target="_top">Sample site by Web Design Wife · fictional business</a>
+</body>
+</html>

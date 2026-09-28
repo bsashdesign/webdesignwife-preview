@@ -1,0 +1,119 @@
+/* Direction C: "Bold blocks" — bright color blocks, thick outlines, hard shadows. */
+.theme-blocks {
+  --ink: #0e0e0e;
+  --ink-soft: #3b3b3b;
+  --tint: #ffffff;
+  --line: #0e0e0e;
+  --violet: #ff6a1a;
+  --violet-deep: #e55400;
+  --lilac: #ffd8f0;
+  --marigold: #ffd23f;
+  --sky: #9fd8ff;
+  --mint: #b6f5c8;
+  --sun: #ffe27a;
+  --rose: #ffb3e0;
+  --lime: #d4ff4f;
+  --cobalt: #3355ff;
+
+  --display: "Unbounded", system-ui, sans-serif;
+  --r: 14px;
+  --r-lg: 18px;
+  --edge: 2.5px solid var(--ink);
+  --shadow: 5px 5px 0 var(--ink);
+}
+.theme-blocks h1 { font-size: clamp(2.2rem, 4.4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+.theme-blocks h2 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+.theme-blocks h3 { font-family: var(--body); font-weight: 800; letter-spacing: -0.01em; }
+
+/* Section color blocks */
+.theme-blocks .hero { background: var(--lime); border-bottom: var(--edge); }
+.theme-blocks .nav { border-bottom: var(--edge); background: #fff; }
+.theme-blocks .for { background: var(--ink); color: #fff; }
+.theme-blocks #compare { background: var(--cobalt); color: #fff; }
+.theme-blocks #compare h2, .theme-blocks #compare .eyebrow { color: #fff; }
+.theme-blocks #how { background: var(--rose); }
+.theme-blocks #features { background: #fff; }
+.theme-blocks #local { background: var(--sky); }
+.theme-blocks #finder { background: var(--sun); }
+.theme-blocks #pricing { background: #fff; }
+.theme-blocks #promises { background: var(--lime); }
+.theme-blocks #faq { background: var(--lilac); }
+.theme-blocks #audit { background: var(--cobalt); }
+.theme-blocks .section { border-bottom: var(--edge); }
+.theme-blocks .section--tint { background: #fff; }
+
+/* Eyebrows as stickers */
+.theme-blocks .eyebrow { display: inline-block; background: #fff; color: var(--ink); border: var(--edge); border-radius: 999px; padding: 6px 12px; transform: rotate(-2deg); font-weight: 500; }
+.theme-blocks .eyebrow--light, .theme-blocks #compare .eyebrow { background: var(--lime); color: var(--ink); }
+.theme-blocks .hl { background: #fff; border: var(--edge); border-radius: 12px; padding: 0 .15em; box-shadow: var(--shadow); display: inline-block; margin-top: 8px; }
+
+/* Outlined, hard-shadow components */
+.theme-blocks .btn { border: var(--edge); box-shadow: 4px 4px 0 var(--ink); transition: transform .15s ease, box-shadow .15s ease, background-color .2s ease; }
+.theme-blocks .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.theme-blocks .btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+.theme-blocks .btn--primary { background: var(--violet); color: var(--ink); }
+.theme-blocks .btn--primary:hover { background: var(--violet); }
+.theme-blocks .btn--ghost { background: #fff; color: var(--ink); }
+.theme-blocks .btn--ghost:hover { background: #fff; color: var(--ink); }
+.theme-blocks .btn--light { background: var(--lime); color: var(--ink); }
+
+.theme-blocks .browser, .theme-blocks .viewer, .theme-blocks .report, .theme-blocks .compare, .theme-blocks .steps li, .theme-blocks .features li,
+.theme-blocks .plan, .theme-blocks .scope > div, .theme-blocks .promises p, .theme-blocks .post-card, .theme-blocks .finder__result,
+.theme-blocks .card, .theme-blocks .boroughs li, .theme-blocks .formcard {
+  border: var(--edge); box-shadow: var(--shadow);
+}
+.theme-blocks .browser { box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks .phone { border-width: 6px; box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks .compare { color: var(--ink); }
+.theme-blocks .compare .us { background: var(--lime); }
+.theme-blocks .compare__head .us { background: var(--ink); color: var(--lime); }
+.theme-blocks .compare__row > span { border-top: 1.5px solid var(--ink); }
+
+.theme-blocks .features li { transition: transform .2s ease, box-shadow .2s ease; }
+.theme-blocks .features li:hover { transform: translate(-2px, -2px) rotate(-.6deg); box-shadow: 7px 7px 0 var(--ink); }
+.theme-blocks .tag { border: 1.5px solid var(--ink); }
+.theme-blocks .tag--all { background: var(--mint); color: var(--ink); }
+.theme-blocks .tag--biz { background: var(--sky); color: var(--ink); }
+.theme-blocks .tag--full { background: var(--violet); color: var(--ink); }
+
+.theme-blocks .steps li::before { border: var(--edge); }
+.theme-blocks .boroughs li { background: #fff !important; }
+.theme-blocks .boroughs li:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.theme-blocks .promises p:nth-child(1) { background: #fff; }
+.theme-blocks .promises p:nth-child(2) { background: var(--sky); }
+.theme-blocks .promises p:nth-child(3) { background: #fff; }
+.theme-blocks .promises p:nth-child(4) { background: var(--rose); }
+
+.theme-blocks .plan--best { background: var(--sun); border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks .plan__badge { border: var(--edge); background: var(--cobalt); color: #fff; }
+.theme-blocks .plan__rec { border: var(--edge); }
+.theme-blocks .finder-dialog { border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks .metric__track { border: 1.5px solid var(--ink); }
+.theme-blocks .plan.is-recommended { border-color: var(--ink); box-shadow: 8px 8px 0 var(--marigold); }
+.theme-blocks .finder__form label span, .theme-blocks .gallery__chips button, .theme-blocks .billing, .theme-blocks .viewer__modes { border: 2px solid var(--ink); }
+.theme-blocks .finder__form input:checked + span, .theme-blocks .gallery__chips button[aria-selected="true"] { background: var(--ink); color: var(--lime); }
+.theme-blocks .billing button[aria-checked="true"], .theme-blocks .viewer__modes button[aria-checked="true"] { background: var(--ink); color: var(--lime); }
+.theme-blocks .viewer__bar, .theme-blocks .browser__bar { border-bottom: var(--edge); }
+.theme-blocks .viewer__foot { border-top: var(--edge); }
+
+.theme-blocks .section--ink .report { box-shadow: 8px 8px 0 var(--lime); }
+.theme-blocks .formcard { background: #fff; color: var(--ink); }
+.theme-blocks .form label { color: var(--ink); }
+.theme-blocks .form input, .theme-blocks .form select, .theme-blocks .form textarea { border: 2px solid var(--ink); }
+.theme-blocks .tabs { background: var(--tint); border: 2px solid var(--ink); }
+.theme-blocks .tabs button { color: var(--ink); }
+.theme-blocks .tabs button[aria-selected="true"] { background: var(--ink); color: var(--lime); }
+.theme-blocks .form__msg { color: var(--ink); }
+.theme-blocks .section--violet h2, .theme-blocks .section--violet { color: #fff; }
+.theme-blocks .about__photo { border: var(--edge); background: repeating-linear-gradient(45deg, var(--sun) 0 14px, #fff 14px 28px); color: var(--ink); }
+.theme-blocks .faq__list details { border-color: var(--ink); }
+.theme-blocks .mobilebar { background: var(--violet); color: var(--ink); border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .hero h1 { font-size: clamp(2rem, 3.7vw, 3rem); }
+/* The mockup keeps its own typeface */
+.theme-blocks .site__h { font-family: "Bricolage Grotesque", system-ui, sans-serif; }
+.theme-blocks .edits-banner { background: var(--sky); color: var(--ink); border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks .edits-banner h3 { color: var(--ink); font-family: var(--display); font-weight: 700; }
+.theme-blocks .edits-banner p:not(.edits-banner__kicker) { color: var(--ink-soft); }
+.theme-blocks .edits-banner__kicker { color: var(--ink); }
+.theme-blocks .edits-banner__list li { background: #fff; border: 2px solid var(--ink); }
+.theme-blocks .edits-banner__list li::before { color: var(--ink); filter: none; }
