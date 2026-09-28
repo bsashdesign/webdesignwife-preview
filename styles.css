@@ -555,7 +555,7 @@ html.drawer-open { overflow: hidden; }
 .cf[data-mode="mobile"] { --cw: 250px; --sw: 390; --sh: 780; }
 .cf__controls { display: flex; justify-content: flex-end; margin-bottom: 10px; }
 .cf__stage { position: relative; height: calc(var(--cw) * var(--sh) / var(--sw) + 150px); perspective: 1600px; transition: height .5s var(--ease-out); }
-.cf__track { position: absolute; inset: 0; transform-style: preserve-3d; }
+.cf__track { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
 .cf-card {
   position: absolute; left: 56px; top: 0; width: var(--cw); margin-left: 0;
   transform: translateX(var(--tx, 0px)) translateZ(var(--tz, 0px)) rotateY(var(--ty, 0deg)) scale(var(--sc, 1)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-origin: 0 45%;
@@ -565,7 +565,12 @@ html.drawer-open { overflow: hidden; }
 }
 .cf { --gap: 330px; } .cf[data-mode="mobile"] { --gap: 190px; }
 .cf-card { transition-property: transform, opacity, filter; }
+.cf-card { pointer-events: auto; }
 .cf-card.is-far { opacity: 0; pointer-events: none; }
+.cf-card__view { display: inline-flex; align-items: center; gap: 6px; margin: 14px 4px 0; font-weight: 600; font-size: .95rem; color: var(--ink); text-decoration: none; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
+.cf-card__view:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cf-card.is-active .cf-card__view { opacity: 1; pointer-events: auto; }
+.cf__stage { height: calc(var(--cw) * var(--sh) / var(--sw) + 190px); }
 .cf:not(.is-ready) .cf-card { transition: none !important; }
 .cf-card.is-active { cursor: default; transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .5s ease; }
 .cf-card.is-tilting { transition: transform .12s linear; }
@@ -597,7 +602,7 @@ html.drawer-open { overflow: hidden; }
 .cf-pick span { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translate(-50%, 4px); white-space: nowrap; padding: 5px 10px; border-radius: 8px; background: var(--ink); color: #fff; font: 600 .78rem var(--body); opacity: 0; pointer-events: none; transition: opacity .15s ease, transform .2s var(--ease-out); }
 .cf-pick:hover span, .cf-pick:focus-visible span { opacity: 1; transform: translate(-50%, 0); }
 .cf-pick[aria-selected="true"] { background: #fff; border-color: var(--line); box-shadow: 0 6px 14px -10px rgba(0,0,0,.4); }
-.cf__foot { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 18px 0 0; font-size: .92rem; }
+.cf__foot { display: flex; justify-content: center; margin: 14px 0 0; font-size: .95rem; }
 .cf__note { color: var(--ink-soft); }
 .cf__foot a { font-weight: 600; text-decoration: none; }
 @media (max-width: 900px) { .cf-card { left: 0; } .cf { --cw: min(560px, 74vw); --gap: 46vw; } .cf[data-mode="mobile"] { --cw: 210px; --gap: 150px; } .cf__arrow { width: 40px; height: 40px; } }

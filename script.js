@@ -318,7 +318,6 @@
   const cards = [...cf.querySelectorAll(".cf-card")];
   const picks = [...cf.querySelectorAll(".cf-pick")];
   const modes = [...cf.querySelectorAll(".viewer__modes button")];
-  const open = document.getElementById("cf-open");
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let active = 0;
 
@@ -369,7 +368,7 @@
       if (a <= range()) load(c, replay && o === 0);
     });
     picks.forEach((p, i) => p.setAttribute("aria-selected", String(i === active)));
-    open.href = cards[active].dataset.src;
+    cards.forEach((c, i) => { const v = c.querySelector(".cf-card__view"); if (v) v.tabIndex = i === active ? 0 : -1; });
   }
 
   function go(i) { active = (i + cards.length) % cards.length; render(true); }
@@ -377,7 +376,7 @@
   cf.querySelector(".cf__arrow--prev").addEventListener("click", () => go(active - 1));
   cf.querySelector(".cf__arrow--next").addEventListener("click", () => go(active + 1));
   picks.forEach((p, i) => p.addEventListener("click", () => go(i)));
-  cards.forEach((c, i) => c.addEventListener("click", () => { if (i !== active) go(i); }));
+  cards.forEach((c, i) => c.addEventListener("click", (e) => { if (i !== active) { e.preventDefault(); go(i); } }));
   cf.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") go(active - 1); if (e.key === "ArrowRight") go(active + 1); });
 
   modes.forEach((b) => b.addEventListener("click", () => {
