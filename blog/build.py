@@ -200,7 +200,7 @@ HEAD = """<!DOCTYPE html>
         <a href="../index.html#faq">FAQ</a>
         <a href="index.html">Blog</a>
       </nav>
-      <a class="btn btn--primary btn--sm nav__cta" href="../index.html#audit">Free website audit</a>
+      <a class="btn btn--primary btn--sm nav__cta" href="../index.html#audit">Free website + Maps audit</a>
       <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </header>
@@ -251,7 +251,7 @@ FOOT = """  </main>
       <div class="footer__brand">
         <a class="brand" href="../index.html"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
         <p>Managed websites for New York local businesses. Your web partner, for the long haul.</p>
-        <a class="btn btn--primary btn--sm" href="../index.html#audit">Free website audit</a>
+        <a class="btn btn--primary btn--sm" href="../index.html#audit">Free website + Maps audit</a>
       </div>
       <nav class="footer__col" aria-label="Explore">
         <h4>Explore</h4>
@@ -271,7 +271,7 @@ FOOT = """  </main>
       </nav>
       <nav class="footer__col" aria-label="Get in touch">
         <h4>Get in touch</h4>
-        <a href="../index.html#audit">Free website audit</a>
+        <a href="../index.html#audit">Free website + Maps audit</a>
         <a href="../index.html#audit">Speak to Ben</a>
         <a href="../index.html#custom">Custom projects</a>
         <span>Based in New York, NY</span>
@@ -383,7 +383,7 @@ for a in ALL:
     page = HEAD.format(title=f"{html.escape(a['title'])} — Web Design Wife", description=html.escape(a["summary"]))
     page += f"""    <article class="article">
       <div class="article__wrap">
-        <a class="article__back" href="index.html">← All articles</a>
+        <a class="article__back" href="index.html"><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> All articles</a>
         <h1>{html.escape(a['title'])}</h1>
         <p class="article__meta">By Ben Sash · {a['minutes']} min read</p>
         <div class="article__body">{a['body'].replace("{{CHECK}}", MID_CHECK)}</div>

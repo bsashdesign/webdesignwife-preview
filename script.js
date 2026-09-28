@@ -1,3 +1,5 @@
+const CHEV_L = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // ---------------------------------------------------------------
 // Hero demo: a client messages a change, the site updates live.
 // ---------------------------------------------------------------
@@ -205,9 +207,14 @@
       const price = Number(plan.dataset.price);
       const setup = Number(plan.dataset.setup);
       const terms = plan.querySelector(".plan__terms");
+      const yearly = Math.round(price * 12 * 0.8);
+      const perMonth = Math.round(price * 0.8);
+      plan.querySelector(".plan__price").innerHTML = mode === "yearly"
+        ? `<span>$${perMonth}</span>/month`
+        : `<span>$${price}</span>/month`;
       terms.innerHTML = mode === "yearly"
-        ? `<s>${money(setup)} setup</s> <strong>Free setup, our wedding gift to you</strong><br>Billed ${money(price * 12)} yearly`
-        : `Plus ${money(setup)} one-time setup`;
+        ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>+ ${money(setup)} one-time setup`
+        : `+ ${money(setup)} one-time setup`;
       const cta = plan.querySelector(".plan__cta");
       if (cta) cta.textContent = mode === "yearly" ? "Say “I do”" : "Get started";
     });
@@ -321,7 +328,6 @@
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let active = 0;
 
-  const range = () => (cf.dataset.mode === "mobile" ? 3 : 2);
 
   function sizeFrames() {
     const st = getComputedStyle(cf);
@@ -341,43 +347,54 @@
 
   function render(replay) {
     const n = cards.length;
+    const mobile = cf.dataset.mode === "mobile";
+    const SC = mobile ? [1, 0.7, 0.6, 0.52, 0.46] : [1, 0.64, 0.48, 0.38, 0.32];
+    const shown = mobile ? 4 : 3;           // the last one fades out at the edge
     cards.forEach((c, i) => {
-      // Only the current site and the ones after it are shown, to the right.
-      let o = (i - active + n) % n;
-      if (o === n - 1) o = -1;               // the previous one waits off to the left
+      // A straight line: the current site first, the next ones to its right.
+      const o = i - active;
       const a = Math.abs(o);
-      const mobile = cf.dataset.mode === "mobile";
       const cw = c.offsetWidth || 600;
-      const SC = mobile ? [1, 0.7, 0.6, 0.52] : [1, 0.64, 0.48, 0.38];
       let x = 0;
       if (o > 0) {
         // Desktop cards tuck behind each other; phones sit side by side with a small gap.
         x = mobile ? cw + 28 : cw * 0.9;
         for (let k = 2; k <= o; k++) {
-          const w = cw * SC[Math.min(k - 1, 3)];
+          const w = cw * SC[Math.min(k - 1, 4)];
           x += mobile ? w + 20 : w * 0.74;
         }
       }
-      if (o < 0) x = -cw * 0.6;
+      if (o < 0) x = -cw * 0.5;
+      // Scale around the middle of the device, so every device lines up on one center line.
+      const f = c.querySelector(".cf-card__frame");
+      c.style.transformOrigin = `0 ${f.offsetTop + f.offsetHeight / 2}px`;
       c.style.setProperty("--tx", `${x}px`);
-      c.style.setProperty("--tz", `${-Math.max(0, o) * 120}px`);
-      c.style.setProperty("--ty", `${Math.max(0, o) ? (mobile ? 10 : 14) : 0}deg`);
-      c.style.setProperty("--sc", o > 0 ? SC[Math.min(o, 3)] : 1);
+      c.style.setProperty("--tz", `${-Math.max(0, Math.min(o, 5)) * 120}px`);
+      c.style.setProperty("--ty", `${o > 0 ? (mobile ? 10 : 14) : 0}deg`);
+      c.style.setProperty("--sc", o > 0 ? SC[Math.min(o, 4)] : 1);
       c.style.setProperty("--o", o);
       c.style.setProperty("--a", a);
       c.classList.toggle("is-active", o === 0);
-      c.classList.toggle("is-far", o < 0 || o > range());
+      c.classList.toggle("is-far", o < 0 || o > shown);
       c.setAttribute("aria-hidden", o === 0 ? "false" : "true");
-      if (a <= range()) load(c, replay && o === 0);
+      if (o >= 0 && o <= shown) load(c, replay && o === 0);
     });
     picks.forEach((p, i) => p.setAttribute("aria-selected", String(i === active)));
     cards.forEach((c, i) => { const v = c.querySelector(".cf-card__view"); if (v) v.tabIndex = i === active ? 0 : -1; });
+    prev.hidden = active === 0;
+    const atEnd = active === n - 1;
+    next.classList.toggle("is-restart", atEnd);
+    next.setAttribute("aria-label", atEnd ? "Back to the first sample" : "Next sample");
+    next.innerHTML = atEnd ? '<span>Back to the first</span>' : CHEV_R;
+    cf.classList.toggle("is-end", n - 1 - active < shown);
   }
 
-  function go(i) { active = (i + cards.length) % cards.length; render(true); }
+  const prev = cf.querySelector(".cf__arrow--prev");
+  const next = cf.querySelector(".cf__arrow--next");
+  function go(i) { active = Math.max(0, Math.min(cards.length - 1, i)); render(true); }
 
-  cf.querySelector(".cf__arrow--prev").addEventListener("click", () => go(active - 1));
-  cf.querySelector(".cf__arrow--next").addEventListener("click", () => go(active + 1));
+  prev.addEventListener("click", () => go(active - 1));
+  next.addEventListener("click", () => go(active === cards.length - 1 ? 0 : active + 1));
   picks.forEach((p, i) => p.addEventListener("click", () => go(i)));
   cards.forEach((c, i) => c.addEventListener("click", (e) => { if (i !== active) { e.preventDefault(); go(i); } }));
   cf.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") go(active - 1); if (e.key === "ArrowRight") go(active + 1); });
@@ -648,7 +665,7 @@
     })(start);
   }
   if (reduced) { fig.classList.add("is-played"); return; }
-  counter.textContent = "1";
+  if (counter) counter.textContent = "1";
   let done = false;
   function check() {
     if (done) return;
@@ -702,7 +719,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     const hint = document.createElement("div");
     hint.className = "swipe-hint";
     hint.setAttribute("aria-hidden", "true");
-    hint.innerHTML = '<button type="button" aria-label="Previous">←</button>' + "<i></i>".repeat(n) + '<button type="button" aria-label="Next">→</button>';
+    hint.innerHTML = '<button type="button" aria-label="Previous">' + CHEV_L + '</button>' + "<i></i>".repeat(n) + '<button type="button" aria-label="Next">' + CHEV_R + '</button>';
     hint.removeAttribute("aria-hidden");
     row.after(hint);
     const dots = [...hint.querySelectorAll("i")];

@@ -131,8 +131,9 @@
 
 /* How it works as a line map: each step is a stop */
 .theme-subway .steps { position: relative; gap: 28px; }
-.theme-subway .steps::before { content: ""; position: absolute; left: 40px; right: 40px; top: 55px; height: 6px; background: #111; border-radius: 3px; z-index: 0; }
-.theme-subway .steps li { position: relative; z-index: 1; background: #fff; border: 0; border-top: 0; padding-top: 30px; }
+
+.theme-subway .steps li { position: relative; z-index: 1; background: #fff; border: 1px solid var(--line); border-top: 6px solid var(--c, #111); padding-top: 30px; }
+.theme-subway .steps li:nth-child(1) { --c: var(--green); } .theme-subway .steps li:nth-child(2) { --c: var(--blue); } .theme-subway .steps li:nth-child(3) { --c: var(--orange); }
 .theme-subway .steps li::before { width: 56px; height: 56px; font-size: 1.35rem; }
 
 
@@ -199,3 +200,6 @@
 .theme-subway .extras, .theme-subway .features li, .theme-subway .cc { background: #fff; }
 /* Extras rows take their colors from their line dots */
 .theme-subway .ticks:not(.ticks--dark) li::after { border-color: #111; }
+
+.theme-subway .tier--biz { border-top: 6px solid var(--blue); } .theme-subway .tier--full { border-top: 6px solid var(--purple); }
+.theme-subway .guarantee__seal { border-color: #111; background: var(--yellow); border-style: solid; }

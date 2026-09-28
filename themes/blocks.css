@@ -128,3 +128,6 @@
 
 /* Comparison cards on phones sit on the blue section: keep their text dark */
 .theme-blocks .cc { color: var(--ink); }
+.theme-blocks .incl li, .theme-blocks .tier, .theme-blocks .guarantee, .theme-blocks .moodcard, .theme-blocks .work-feature__shot { border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .moodcard[aria-pressed="true"] { box-shadow: 6px 6px 0 var(--violet); }
+.theme-blocks .guarantee__seal { border: var(--edge); background: var(--lime); }
