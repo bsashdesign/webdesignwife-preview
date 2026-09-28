@@ -263,22 +263,48 @@
 })();
 
 // ---------------------------------------------------------------
-// Mobile menu
+// Side drawer menu
 // ---------------------------------------------------------------
 (function () {
   const button = document.querySelector(".nav__menu");
-  const links = document.getElementById("nav-links");
-  if (!button || !links) return;
-  button.addEventListener("click", () => {
-    const open = links.classList.toggle("is-open");
-    button.setAttribute("aria-expanded", String(open));
-    button.textContent = open ? "Close" : "Menu";
+  const drawer = document.getElementById("drawer");
+  if (!button || !drawer) return;
+  const panel = drawer.querySelector(".drawer__panel");
+  drawer.querySelectorAll(".drawer__item").forEach((el, n) => el.style.setProperty("--n", n));
+
+  function open() {
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    button.setAttribute("aria-expanded", "true");
+    document.documentElement.classList.add("drawer-open");
+    setTimeout(() => drawer.querySelector(".drawer__close").focus(), 50);
+  }
+  function close(returnFocus = true) {
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    button.setAttribute("aria-expanded", "false");
+    document.documentElement.classList.remove("drawer-open");
+    if (returnFocus) button.focus();
+  }
+  button.addEventListener("click", () => (drawer.classList.contains("is-open") ? close() : open()));
+  drawer.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close-drawer]")) close();
+    const link = e.target.closest("a");
+    if (link) {
+      close(false);
+      if (link.hasAttribute("data-open-finder-after")) {
+        setTimeout(() => { const f = document.querySelector("[data-open-finder]"); if (f) f.click(); }, 500);
+      }
+    }
   });
-  links.addEventListener("click", (e) => {
-    if (e.target.closest("a")) {
-      links.classList.remove("is-open");
-      button.setAttribute("aria-expanded", "false");
-      button.textContent = "Menu";
+  document.addEventListener("keydown", (e) => {
+    if (!drawer.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "Tab") {
+      // Keep focus inside the drawer while it's open.
+      const f = [...panel.querySelectorAll("a, button")];
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
     }
   });
 })();

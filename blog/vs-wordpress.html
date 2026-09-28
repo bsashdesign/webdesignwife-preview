@@ -29,9 +29,55 @@
         <a href="index.html">Blog</a>
       </nav>
       <a class="btn btn--primary btn--sm nav__cta" href="../index.html#audit">Free website audit</a>
-      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </header>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" data-close-drawer></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer__head">
+        <span class="drawer__label">Menu</span>
+        <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
+      </div>
+      <nav class="drawer__nav" aria-label="Menu">
+        <div class="drawer__item">
+          <a class="drawer__big" href="../index.html#examples">Examples</a>
+          <p class="drawer__sub">Ten sample homepages for New York businesses</p>
+        </div>
+        <div class="drawer__item">
+          <a class="drawer__big" href="../index.html#how">How it works</a>
+          <p class="drawer__sub">From first call to launch in about two weeks</p>
+        </div>
+        <div class="drawer__item">
+          <a class="drawer__big" href="../index.html#features">Features</a>
+          <div class="drawer__links"><a href="../index.html#features">On every plan</a><a href="../index.html#maps">Google Maps</a><a href="../index.html#local">Local to NYC</a></div>
+        </div>
+        <div class="drawer__item">
+          <a class="drawer__big" href="../index.html#pricing">Pricing</a>
+          <p class="drawer__sub">From $99/month, with hosting and edits included</p>
+          <div class="drawer__links"><a href="../index.html#pricing" data-open-finder-after>Help me choose a plan</a></div>
+        </div>
+        <div class="drawer__item">
+          <a class="drawer__big" href="../index.html#about">About</a>
+          <p class="drawer__sub">Meet Ben, and why we're called Web Design Wife</p>
+        </div>
+        <div class="drawer__item">
+          <a class="drawer__big" href="../index.html#faq">FAQ</a>
+        </div>
+        <div class="drawer__item">
+          <a class="drawer__big" href="index.html">Blog</a>
+          <div class="drawer__links"><a href="index.html#compare">Compare website builders</a><a href="diy-website-guide.html">Build-it-yourself guide</a><a href="google-maps-profile.html">Google Maps guide</a></div>
+        </div>
+      </nav>
+      <div class="drawer__foot">
+        <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website audit</a>
+        <a class="drawer__ben" href="../index.html#audit" data-tab="callback">Or speak to Ben →</a>
+        <p>Based in New York, NY</p>
+      </div>
+    </aside>
+  </div>
+
   <main>
     <article class="article">
       <div class="article__wrap">

@@ -164,3 +164,17 @@
 .theme-subway .quickcheck { background: #111; border-top: 8px solid var(--yellow); border-radius: 12px; }
 .theme-subway .qc-url { color: var(--yellow); }
 .theme-subway .article__back { color: var(--blue); }
+
+/* Drawer: each section is a stop on the line */
+.theme-subway .drawer__item { position: relative; padding-left: 26px; }
+.theme-subway .drawer__item::before { content: ""; position: absolute; left: 0; top: 26px; width: 12px; height: 12px; border-radius: 50%; background: var(--c, var(--gray)); }
+.theme-subway .drawer__item:nth-child(1) { --c: var(--orange); }
+.theme-subway .drawer__item:nth-child(2) { --c: var(--blue); }
+.theme-subway .drawer__item:nth-child(3) { --c: var(--purple); }
+.theme-subway .drawer__item:nth-child(4) { --c: var(--green); }
+.theme-subway .drawer__item:nth-child(5) { --c: var(--red); }
+.theme-subway .drawer__item:nth-child(6) { --c: var(--gray); }
+.theme-subway .drawer__item:nth-child(7) { --c: var(--yellow); }
+.theme-subway .drawer__head { border-bottom: 6px solid #111; padding-bottom: 14px; }
+.theme-subway .drawer__links a, .theme-subway .drawer__close, .theme-subway .nav__menu { border-radius: 8px; }
+.theme-subway .drawer__big:hover { color: var(--blue); }

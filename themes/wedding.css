@@ -103,3 +103,6 @@
 
 /* A small ornament between the page's main sections */
 .theme-wedding .section > .wrap > .eyebrow:first-child::before, .theme-wedding .section-head .eyebrow::before { width: 28px; }
+
+.theme-wedding .drawer__big { font-weight: 500; font-size: 2.3rem; letter-spacing: 0; }
+.theme-wedding .drawer__big:hover { color: var(--gold); }
