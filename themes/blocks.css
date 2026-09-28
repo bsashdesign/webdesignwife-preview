@@ -128,3 +128,6 @@
 /* Extras rows take their colors from their badges */
 .theme-blocks .extras__grid--biz li { background: transparent; border-color: #2a6fb0; }
 .theme-blocks .extras__grid--full li { background: #ffe3cf; }
+
+/* Comparison cards on phones sit on the blue section: keep their text dark */
+.theme-blocks .cc { color: var(--ink); }

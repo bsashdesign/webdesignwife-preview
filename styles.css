@@ -176,7 +176,7 @@ html.drawer-open { overflow: hidden; }
 .browser__url { font: 400 .78rem var(--mono); color: var(--ink-soft); background: #fff; padding: 4px 12px; border-radius: 999px; }
 
 .live {
-  margin-left: auto;
+  margin-left: auto; white-space: nowrap; flex-shrink: 0;
   display: inline-flex; align-items: center; gap: 7px;
   font: 500 .72rem var(--mono); letter-spacing: .02em;
   color: var(--done); background: #e6f6ee;
@@ -588,7 +588,7 @@ html.drawer-open { overflow: hidden; }
 .cf[data-mode="mobile"] .cf-card__frame { border-radius: 30px; border: 8px solid var(--ink); }
 .cf__stage .cf-card__bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: var(--tint); border-bottom: 1px solid var(--line); font: 400 .75rem var(--mono); color: var(--ink-soft); }
 .cf-card__bar i { width: 8px; height: 8px; border-radius: 50%; background: #d9d4e6; }
-.cf-card__bar span { margin-left: 8px; }
+.cf-card__bar span { margin-left: 2px; }
 .cf[data-mode="mobile"] .cf-card__bar { display: none; }
 .cf-card__screen { position: relative; width: var(--cw); height: calc(var(--cw) * var(--sh) / var(--sw)); overflow: hidden; background: var(--tint); }
 .cf[data-mode="mobile"] .cf-card__screen { width: calc(var(--cw) - 16px); }
@@ -1029,10 +1029,28 @@ html.drawer-open { overflow: hidden; }
   .hero__ctas .btn { flex: 1 1 100%; }
   .for__inner { gap: 14px; }
   .for__row li { font-size: 1.05rem; }
+  /* Hero demo on phones: the chat sits beside the headline, the edits land below */
   .demo { height: auto; }
-  .site__info { max-width: none; }
-  .site { padding-bottom: 64px; }
-  .phone { position: relative; right: auto; width: 88%; height: 340px; margin: -48px auto 0; }
+  .browser__bar { padding: 9px 10px; gap: 8px; }
+  .browser__url { font-size: .72rem; padding: 3px 10px; }
+  .site { padding-bottom: 18px; font-size: .85rem; }
+  .site__nav { padding: 12px 14px; }
+  .site__nav span { display: none; }
+  .site__h { font-size: 1.2rem; max-width: 54%; padding: 4px 14px 0; }
+  .site__btn { margin: 0 14px 14px; padding: 7px 12px; font-size: .78rem; }
+  .site__info { max-width: none; margin: 78px 14px 0; }
+  .row { grid-template-columns: 62px 1fr; }
+  .phone { position: absolute; right: 8px; top: 64px; width: 42%; height: 250px; border-width: 5px; border-radius: 22px; }
+  .phone__status { padding: 5px 12px 0; font-size: .6rem; }
+  .phone__head { padding: 5px 8px 6px; gap: 6px; }
+  .phone__avatar { width: 20px; height: 20px; }
+  .phone__who strong { font-size: .66rem; }
+  .phone__who small { display: none; }
+  .thread { padding: 2px 6px 6px; }
+  .bubble { font-size: .64rem; padding: 5px 8px; border-radius: 12px; max-width: 94%; }
+  .bubble__check { width: 11px; height: 11px; margin-right: 3px; }
+  .stamp, .receipt > span { font-size: .55rem; }
+  .phone__compose { margin: 0 6px 6px; padding: 4px 8px; min-height: 24px; font-size: .64rem; }
   .promises, .posts, .work, .scope, .edits-banner { grid-template-columns: 1fr; }
   /* Features stay two across on phones, in a more compact card */
   .features, .features--core { grid-template-columns: 1fr 1fr; gap: 10px; }
