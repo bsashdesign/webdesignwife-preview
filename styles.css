@@ -558,7 +558,7 @@ html.drawer-open { overflow: hidden; }
 .cf__track { position: absolute; inset: 0; transform-style: preserve-3d; }
 .cf-card {
   position: absolute; left: 50%; top: 0; width: var(--cw); margin-left: calc(var(--cw) / -2);
-  transform: translateX(var(--tx, 0px)) translateZ(var(--tz, 0px)) rotateY(var(--ty, 0deg)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform: translateX(var(--tx, 0px)) translateZ(var(--tz, 0px)) rotateY(var(--ty, 0deg)) scale(var(--sc, 1)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-origin: 50% 40%;
   z-index: calc(20 - var(--a)); filter: brightness(calc(1 - var(--a) * .06));
   transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .5s ease, width .5s var(--ease-out), margin .5s var(--ease-out);
   cursor: pointer; will-change: transform;

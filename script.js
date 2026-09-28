@@ -347,15 +347,21 @@
       if (o > n / 2) o -= n;
       if (o < -n / 2) o += n;
       const a = Math.abs(o);
-      // Orbit: cards sit on a circle around a center point and face outward.
+      // Orbit: the front card is big and flat; the others shrink, sit further
+      // back and turn gently away from the center.
       const mobile = cf.dataset.mode === "mobile";
       const cw = c.offsetWidth || 600;
-      const step = (mobile ? 24 : 32) * Math.PI / 180;
-      const R = (cw * (mobile ? 0.92 : 0.62)) / Math.sin(step);
-      const ang = o * step;
-      c.style.setProperty("--tx", `${R * Math.sin(ang)}px`);
-      c.style.setProperty("--tz", `${R * (Math.cos(ang) - 1)}px`);
-      c.style.setProperty("--ty", `${o * (mobile ? 24 : 32)}deg`);
+      const sc = [1, 0.62, 0.46, 0.36][Math.min(a, 3)];
+      const sign = Math.sign(o);
+      let x = 0;
+      for (let k = 1; k <= a; k++) {
+        const prev = [1, 0.62, 0.46, 0.36][k - 1], cur = [1, 0.62, 0.46, 0.36][Math.min(k, 3)];
+        x += cw * (prev / 2) + cw * cur * (mobile ? 0.62 : 0.18);
+      }
+      c.style.setProperty("--tx", `${sign * x}px`);
+      c.style.setProperty("--tz", `${-a * 160}px`);
+      c.style.setProperty("--ty", `${o * (mobile ? 14 : 16)}deg`);
+      c.style.setProperty("--sc", sc);
       c.style.setProperty("--o", o);
       c.style.setProperty("--a", a);
       c.classList.toggle("is-active", o === 0);
