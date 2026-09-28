@@ -516,10 +516,11 @@
     const limit = window.innerHeight * 0.94;
     pending.forEach((el) => {
       const r = el.getBoundingClientRect();
-      if (r.top < limit && r.bottom > 0) reveal(el);
+      if (r.top < limit) reveal(el); // in view, or already scrolled past
     });
   }
-  const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
+  // A short timer rather than requestAnimationFrame, which background tabs pause.
+  const schedule = () => { if (!queued) { queued = true; setTimeout(check, 60); } };
 
   els.forEach((el) => {
     if (reduced) return;
@@ -564,7 +565,7 @@
       setTimeout(play, 300);
     }
   }
-  const onScroll = () => requestAnimationFrame(check);
+  const onScroll = () => setTimeout(check, 60);
   window.addEventListener("scroll", onScroll, { passive: true });
   check();
 })();
