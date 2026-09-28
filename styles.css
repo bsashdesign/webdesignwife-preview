@@ -873,9 +873,21 @@ html.drawer-open { overflow: hidden; }
 .post-card[hidden] { display: none; }
 .posts--index { margin-top: 0; }
 
-/* ---------- Scroll reveals: quiet, once, no bounce ---------- */
-.js [data-reveal] { opacity: 0; transform: translateY(10px); transition: opacity .9s ease, transform 1s cubic-bezier(.2, .65, .25, 1); }
-.js [data-reveal].is-in { opacity: 1; transform: none; }
+/* ---------- Motion ---------- */
+/* Headings: each word rises out of its own mask. */
+.m-on .m-words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.m-on .m-words .w > span { display: inline-block; transform: translateY(0); }
+.m-on .m-words.m-ready:not(.m-in) .w > span { transform: translateY(108%); }
+.m-on .m-words.m-in .w > span { transition: transform .9s cubic-bezier(.19, 1, .22, 1); transition-delay: calc(var(--wi, 0) * 45ms); }
+/* Labels pop in with a little spring. */
+.m-on .eyebrow.m-ready:not(.m-in) { transform: scale(.85); opacity: 0; }
+.m-on .eyebrow.m-in { transition: transform .6s var(--spring), opacity .3s ease; }
+/* 3D icons hop once as they arrive. */
+.m-on .m-ready.m-in:is(.ico, .xicon, .post-card__cover img, .vs-logo) { animation: hop .8s var(--spring) both; animation-delay: calc(var(--hi, 0) * 70ms); }
+@keyframes hop { 0% { transform: translateY(14px) scale(.8) rotate(-8deg); opacity: 0; } 60% { transform: translateY(-6px) scale(1.04) rotate(3deg); opacity: 1; } 100% { transform: none; } }
+/* Hero highlight is drawn on like a marker. */
+.m-on .hl.m-ready { background-size: 0% 100%; background-repeat: no-repeat; }
+.m-on .hl.m-in { background-size: 100% 100%; transition: background-size 1s cubic-bezier(.65, 0, .35, 1) .35s; }
 
 /* ---------- Mood switcher ---------- */
 .mood { position: fixed; left: 16px; bottom: 16px; z-index: 50; }
@@ -1034,6 +1046,6 @@ html.drawer-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   .for__row[aria-hidden] { display: none; }
   .for__row { flex-wrap: wrap; flex-shrink: 1; row-gap: 6px; }
-  .js [data-reveal], .js .rank .rank__you { opacity: 1 !important; transform: none !important; }
+  .js .rank .rank__you { opacity: 1 !important; transform: none !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }

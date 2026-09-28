@@ -159,7 +159,7 @@ COMPARE = [{
     "summary": p["summary"], "minutes": 5, "body": comparison_body(p),
 } for p in PLATFORMS]
 LOCALS = [{
-    "slug": b["slug"], "kicker": "Local guide", "group": "local",
+    "slug": b["slug"], "kicker": "Borough guide", "group": "local",
     "title": f"Websites for businesses in {b.get('in', b['name'])}",
     "summary": b["summary"], "minutes": 4, "body": borough_body(b),
 } for b in BOROUGHS]
@@ -322,7 +322,7 @@ def quickcheck(title, sub):
 MID_CHECK = quickcheck("Want our honest take on your website?", "Enter your web address and we'll look it over personally. Free, with no obligation.")
 END_CHECK = quickcheck("Want a second opinion on your site?", "Tell us your web address and we'll send you a short, honest review of what to fix first.")
 
-ICONS = {"Local guide": "pin", "Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
+ICONS = {"Borough guide": "pin", "Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
 COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]
 
 BRANDS = {"vs-wix": ("wix", "#0C6EFC"), "vs-squarespace": ("squarespace", "#111111"), "vs-wordpress": ("wordpress", "#21759B"), "vs-webflow": ("webflow", "#146EF5"), "vs-shopify": ("shopify", "#5E8E3E"), "vs-godaddy": ("godaddy", "#111111"), "vs-square-online": ("square", "#3E4348"), "vs-framer": ("framer", "#0055FF"), "vs-carrd": ("carrd", "#596CAF"), "vs-google-sites": ("google", "#4285F4"), "vs-hostinger": ("hostinger", "#673DE6")}
@@ -369,8 +369,8 @@ index += """    <section class="blog-hero">
         <div class="filters" role="toolbar" aria-label="Filter articles">
           <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(len(ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="compare" aria-pressed="false">Comparisons <span>""" + str(sum(a["group"] == "compare" for a in ALL)) + """</span></button>
-          <button type="button" class="filter" data-filter="local" aria-pressed="false">Local guides <span>""" + str(sum(a["group"] == "local" for a in ALL)) + """</span></button>
-          <button type="button" class="filter" data-filter="guides" aria-pressed="false">Guides <span>""" + str(sum(a["group"] == "guides" for a in ALL)) + """</span></button>
+          <button type="button" class="filter" data-filter="local" aria-pressed="false">NYC boroughs <span>""" + str(sum(a["group"] == "local" for a in ALL)) + """</span></button>
+          <button type="button" class="filter" data-filter="guides" aria-pressed="false">Tips &amp; how-tos <span>""" + str(sum(a["group"] == "guides" for a in ALL)) + """</span></button>
         </div>
         <div class="posts posts--index">
 """

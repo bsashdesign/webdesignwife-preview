@@ -554,40 +554,56 @@
 })();
 
 // ---------------------------------------------------------------
-// Quiet scroll reveals: fade and rise once, staggered in grids
+// Motion: headings rise word by word, labels pop, icons hop.
+// Content is never hidden before its moment; nothing waits on scroll to exist.
 // ---------------------------------------------------------------
 (function () {
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const singles = ".section-head, .section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .intro, .maps > div:first-child, .pricing__head, .about > div:last-child, .faq > div:first-child, .audit > div:first-child";
-  const groups = [".features > li", ".extras__grid > li", ".steps > li", ".plans > .plan", ".promises > p", ".posts > a", ".boroughs > .borough", ".compare-cards > .cc", ".faq__list > details"];
-  const els = new Set(document.querySelectorAll(singles));
-  groups.forEach((sel) => document.querySelectorAll(sel).forEach((el, n) => { el.style.setProperty("--i", n % 4); els.add(el); }));
+  const root = document.documentElement;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const pending = new Set();
-  function reveal(el) {
-    pending.delete(el);
-    el.classList.add("is-in");
-    // Hand hover transitions back to the element once the reveal is done.
-    setTimeout(() => { el.removeAttribute("data-reveal"); el.classList.remove("is-in"); el.style.removeProperty("--i"); }, 1500 + 85 * 4);
-  }
-  // A plain position check on scroll: robust everywhere, cheap with requestAnimationFrame.
+  // Split section headings into masked words.
+  document.querySelectorAll(".section h2, .blog-hero h1, .article h1").forEach((h) => {
+    if (h.closest(".finder-dialog, .drawer")) return;
+    const walk = (node) => {
+      [...node.childNodes].forEach((n) => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach((part) => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+            const w = document.createElement("span");
+            w.className = "w";
+            const inner = document.createElement("span");
+            inner.textContent = part;
+            w.appendChild(inner);
+            frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && !n.matches("br")) walk(n);
+      });
+    };
+    walk(h);
+    h.querySelectorAll(".w > span").forEach((sp, i) => sp.style.setProperty("--wi", i));
+    h.classList.add("m-words");
+  });
+
+  const targets = [...document.querySelectorAll(".m-words, .eyebrow, .features .ico, .extras__grid .xicon, .hl, .post-card__cover img, .vs-logo")];
+  targets.forEach((el) => el.classList.add("m-ready"));
+  // Icons within one group hop one after another.
+  document.querySelectorAll(".features, .extras__grid").forEach((g) => g.querySelectorAll(".ico, .xicon").forEach((el, i) => el.style.setProperty("--hi", i % 6)));
+  root.classList.add("m-on");
+
+  const pending = new Set(targets);
   let queued = false;
   function check() {
     queued = false;
-    const limit = window.innerHeight * 0.94;
+    const limit = window.innerHeight * 0.9;
     pending.forEach((el) => {
       const r = el.getBoundingClientRect();
-      if (r.top < limit) reveal(el); // in view, or already scrolled past
+      if (r.top < limit && r.bottom > -40) { el.classList.add("m-in"); pending.delete(el); }
     });
   }
-  // A short timer rather than requestAnimationFrame, which background tabs pause.
-  const schedule = () => { if (!queued) { queued = true; setTimeout(check, 60); } };
-
-  els.forEach((el) => {
-    if (reduced) return;
-    el.setAttribute("data-reveal", "");
-    pending.add(el);
-  });
+  const schedule = () => { if (!queued) { queued = true; setTimeout(check, 40); } };
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", schedule);
   schedule();
