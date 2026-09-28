@@ -134,7 +134,7 @@
 .theme-subway .steps::before { content: ""; position: absolute; left: 40px; right: 40px; top: 55px; height: 6px; background: #111; border-radius: 3px; z-index: 0; }
 .theme-subway .steps li { position: relative; z-index: 1; background: #fff; border: 0; border-top: 0; padding-top: 30px; }
 .theme-subway .steps li::before { width: 56px; height: 56px; font-size: 1.35rem; }
-.theme-subway #how { background: var(--tint); }
+
 
 /* Plan finder stepper as stations */
 .theme-subway .stepper::before { background: #111; height: 6px; top: 12px; }
@@ -182,3 +182,18 @@
 .theme-subway .post-card.post-card--article { border-top: 6px solid var(--cover-dark, var(--c)); }
 .theme-subway .rank__mark { border-radius: 50%; }
 .theme-subway .filter { border-radius: 8px; }
+
+/* Section rhythm: subtle alternating backgrounds so neighbors never match */
+.theme-subway #examples { background: #fff; }
+.theme-subway #compare { background: #f2f2ef; }
+.theme-subway #how { background: #fff; }
+.theme-subway #features { background: #eef3fb; }
+.theme-subway #local { background: #fff; }
+.theme-subway #pricing { background: #f7f5ef; }
+.theme-subway #promises { background: #fff; }
+.theme-subway #about { background: #eef6f1; }
+.theme-subway #faq { background: #fff; }
+.theme-subway #blog { background: #f2f2ef; }
+.theme-subway .section + .section { padding-top: 104px; }
+@media (max-width: 640px) { .theme-subway .section + .section { padding-top: 72px; } }
+.theme-subway .extras, .theme-subway .features li, .theme-subway .cc { background: #fff; }

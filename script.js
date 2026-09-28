@@ -343,29 +343,28 @@
   function render(replay) {
     const n = cards.length;
     cards.forEach((c, i) => {
-      let o = i - active;
-      if (o > n / 2) o -= n;
-      if (o < -n / 2) o += n;
+      // Only the current site and the ones after it are shown, to the right.
+      let o = (i - active + n) % n;
+      if (o === n - 1) o = -1;               // the previous one waits off to the left
       const a = Math.abs(o);
-      // Orbit: the front card is big and flat; the others shrink, sit further
-      // back and turn gently away from the center.
       const mobile = cf.dataset.mode === "mobile";
       const cw = c.offsetWidth || 600;
-      const sc = [1, 0.62, 0.46, 0.36][Math.min(a, 3)];
-      const sign = Math.sign(o);
+      const SC = mobile ? [1, 0.84, 0.7, 0.58] : [1, 0.64, 0.48, 0.38];
+      const GAP = mobile ? 0.9 : 0.74;       // how much of each card shows past the one before
       let x = 0;
-      for (let k = 1; k <= a; k++) {
-        const prev = [1, 0.62, 0.46, 0.36][k - 1], cur = [1, 0.62, 0.46, 0.36][Math.min(k, 3)];
-        x += cw * (prev / 2) + cw * cur * (mobile ? 0.62 : 0.18);
+      if (o > 0) {
+        x = cw * (mobile ? 1.06 : 0.9);
+        for (let k = 2; k <= o; k++) x += cw * SC[Math.min(k - 1, 3)] * GAP;
       }
-      c.style.setProperty("--tx", `${sign * x}px`);
-      c.style.setProperty("--tz", `${-a * 160}px`);
-      c.style.setProperty("--ty", `${o * (mobile ? 14 : 16)}deg`);
-      c.style.setProperty("--sc", sc);
+      if (o < 0) x = -cw * 0.6;
+      c.style.setProperty("--tx", `${x}px`);
+      c.style.setProperty("--tz", `${-Math.max(0, o) * 120}px`);
+      c.style.setProperty("--ty", `${Math.max(0, o) ? (mobile ? 10 : 14) : 0}deg`);
+      c.style.setProperty("--sc", o > 0 ? SC[Math.min(o, 3)] : 1);
       c.style.setProperty("--o", o);
       c.style.setProperty("--a", a);
       c.classList.toggle("is-active", o === 0);
-      c.classList.toggle("is-far", a > range());
+      c.classList.toggle("is-far", o < 0 || o > range());
       c.setAttribute("aria-hidden", o === 0 ? "false" : "true");
       if (a <= range()) load(c, replay && o === 0);
     });
@@ -593,7 +592,7 @@
     h.classList.add("m-words");
   });
 
-  const targets = [...document.querySelectorAll(".m-words, .eyebrow, .features .ico, .extras__grid .xicon, .hl, .post-card__cover img, .vs-logo")];
+  const targets = [...document.querySelectorAll(".m-words, .eyebrow, .hl")];
   targets.forEach((el) => el.classList.add("m-ready"));
   // Icons within one group hop one after another.
   document.querySelectorAll(".features, .extras__grid").forEach((g) => g.querySelectorAll(".ico, .xicon").forEach((el, i) => el.style.setProperty("--hi", i % 6)));
