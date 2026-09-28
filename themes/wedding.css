@@ -40,7 +40,9 @@
     radial-gradient(520px 360px at 55% 100%, rgba(143, 167, 191, .18), transparent 70%),
     var(--paper); }
 .theme-wedding .hl { background: none; font-style: italic; color: var(--gold); }
-.theme-wedding .for { background: var(--tint); color: var(--ink); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font: italic 500 1.25rem var(--display); }
+.theme-wedding .for { background: var(--tint); }
+.theme-wedding .for__row li { font: italic 500 1.45rem var(--display); }
+.theme-wedding .for__row li::after { content: "✦"; width: auto; height: auto; background: none; color: var(--gold); font-style: normal; font-size: .8rem; }
 
 /* Buttons: ink with a champagne ring on hover */
 .theme-wedding .btn { border-radius: 999px; letter-spacing: .02em; }
@@ -81,8 +83,9 @@
 .theme-wedding .promises strong { font-family: var(--display); font-weight: 600; font-size: 1.4rem; }
 
 /* Local section and boroughs */
-.theme-wedding .boroughs li { background: #fff !important; border: 1px solid var(--line); border-radius: 4px; }
-.theme-wedding .boroughs strong { font-weight: 600; font-size: 1.4rem; }
+.theme-wedding .borough { background: #fff; border-radius: 4px; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(184, 149, 90, .28); }
+.theme-wedding .borough strong { font-weight: 600; font-size: 1.45rem; }
+.theme-wedding .borough em { color: var(--gold); }
 
 /* Dark sections in deep ink, gold accents */
 .theme-wedding .section--ink { background: var(--ink); }
@@ -104,5 +107,5 @@
 /* A small ornament between the page's main sections */
 .theme-wedding .section > .wrap > .eyebrow:first-child::before, .theme-wedding .section-head .eyebrow::before { width: 28px; }
 
-.theme-wedding .drawer__big { font-weight: 500; font-size: 2.3rem; letter-spacing: 0; }
-.theme-wedding .drawer__big:hover { color: var(--gold); }
+.theme-wedding .drawer__big span { font-weight: 500; font-size: 2.3rem; letter-spacing: 0; }
+.theme-wedding .drawer__big:hover span { color: var(--gold); }

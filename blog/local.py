@@ -1,0 +1,123 @@
+# Borough guides: how we approach a website for businesses in each borough.
+# Each one is written around what's genuinely different about that borough,
+# not the same page with the name swapped.
+
+BOROUGHS = [
+  {
+    "slug": "websites-manhattan", "name": "Manhattan",
+    "summary": "Dense blocks, busy customers and lots of competition. Here's how we build websites for Manhattan businesses.",
+    "intro": "In Manhattan, your competitor is often on the same block. Customers are usually on foot, on their phone and deciding in seconds, so your website and Google Maps listing have to answer their questions instantly.",
+    "different": [
+      "People search by neighborhood and even by street, like “Midtown lunch” or “dentist near Columbus Circle”",
+      "Many customers are office workers or visitors, so hours and holiday closures need to be exactly right",
+      "Walk-in decisions happen on a phone screen in a few seconds",
+      "Competition is dense, so reviews and photos often decide who gets the visit",
+    ],
+    "build": [
+      "Your cross streets and nearest subway stops, right next to your address",
+      "A map pin placed on your actual entrance, not the middle of the building",
+      "Hours that are easy to update for holidays and special events",
+      "Tap-to-call and directions as the first things people see on mobile",
+      "Neighborhood names in your copy, so you show up for the searches people actually make",
+    ],
+    "hoods": "Midtown, the Upper West Side, the Upper East Side, Harlem, Chelsea, the West Village, the Lower East Side and the Financial District",
+  },
+  {
+    "slug": "websites-brooklyn", "name": "Brooklyn",
+    "summary": "Brooklyn customers are loyal to their neighborhood. Here's how we build websites that feel local.",
+    "intro": "Brooklyn is a borough of neighborhoods, and people identify with theirs. A business that feels like part of Park Slope, Bay Ridge or Williamsburg earns a kind of loyalty that no ad can buy.",
+    "different": [
+      "People search with neighborhood names, like “coffee in Greenpoint” or “plumber Bay Ridge”",
+      "Customers want to know the people behind the business, not just the services",
+      "Long-time residents and newcomers often find businesses in different ways",
+      "Word of mouth and reviews carry a lot of weight on every block",
+    ],
+    "build": [
+      "Your neighborhood name in your headline and service descriptions",
+      "Real photos of your storefront, team and street, not stock images",
+      "A short story about who you are and how long you've been there",
+      "Reviews from local customers, featured front and center",
+      "Clear service areas if you work across several neighborhoods",
+    ],
+    "hoods": "Park Slope, Williamsburg, Greenpoint, Bay Ridge, Bushwick, Crown Heights, Flatbush, Sunset Park and Brooklyn Heights",
+  },
+  {
+    "slug": "websites-queens", "name": "Queens",
+    "summary": "Queens is one of the most diverse places anywhere. Here's how we build websites that welcome every customer.",
+    "intro": "Queens is famously diverse, with neighborhoods where you'll hear dozens of languages on a single street. The businesses that do best online make every customer feel like the site was made for them.",
+    "different": [
+      "Many customers are more comfortable reading in a language other than English",
+      "Neighborhoods are spread out, so service-area businesses need to be clear about where they go",
+      "People search by neighborhood, like “Astoria” or “Flushing,” more than by “Queens”",
+      "Family recommendations and reviews often drive the first visit",
+    ],
+    "build": [
+      "Key information in a second language when your customers need it",
+      "A clear list of the neighborhoods you serve, for plumbers, cleaners and other visiting services",
+      "Nearby subway and train stops for walk-in businesses",
+      "Photos that show the people and the place behind the business",
+      "Simple, fast pages that work well on any phone",
+    ],
+    "hoods": "Astoria, Long Island City, Jackson Heights, Flushing, Forest Hills, Bayside, Ridgewood, Sunnyside and Jamaica",
+  },
+  {
+    "slug": "websites-bronx", "name": "The Bronx", "in": "the Bronx",
+    "summary": "Family-run businesses, strong neighborhoods and loyal customers. Here's how we build websites for the Bronx.",
+    "intro": "The Bronx is full of family-run businesses with deep roots, from Arthur Avenue to City Island. Your website should carry that same warmth and make it easy for new customers to become regulars.",
+    "different": [
+      "Many customers prefer Spanish, so bilingual information can make a real difference",
+      "Customers value clear, upfront prices and easy ways to call",
+      "People search by neighborhood, like “Belmont” or “Riverdale”",
+      "Most visitors will find you on a phone, often on the go",
+    ],
+    "build": [
+      "Bilingual English and Spanish content where it helps your customers",
+      "Prices or starting prices on the page, so there are no surprises",
+      "A tap-to-call button that's always one thumb away",
+      "Your story and how long you've served the neighborhood",
+      "Google reviews shown on your site to build trust quickly",
+    ],
+    "hoods": "Belmont and Arthur Avenue, Riverdale, Fordham, Mott Haven, Pelham Bay, Parkchester, Throgs Neck and City Island",
+  },
+  {
+    "slug": "websites-staten-island", "name": "Staten Island",
+    "summary": "More driving, more home services and a lot of word of mouth. Here's how we build websites for Staten Island.",
+    "intro": "Staten Island works a little differently from the rest of the city. More customers drive, more businesses serve people at home, and a good reputation travels fast across the island.",
+    "different": [
+      "Customers often drive, so parking and directions matter",
+      "Contractors, landscapers and other home services cover the whole island",
+      "Recommendations from neighbors carry a lot of weight",
+      "People compare a few local options carefully before calling",
+    ],
+    "build": [
+      "Parking information and directions right next to your address",
+      "A clear map or list of the areas you serve",
+      "Project photos and before-and-after pictures for home services",
+      "A simple quote or estimate form",
+      "Your license, insurance and years in business, easy to find",
+    ],
+    "hoods": "St. George, Great Kills, Tottenville, New Dorp, Todt Hill, Stapleton, Port Richmond and Eltingville",
+  },
+]
+
+
+def borough_body(b):
+    li = lambda items: "".join(f"<li>{x}</li>" for x in items)
+    where = b.get("in", b["name"])
+    return f"""
+<p class="lede-note">{b['intro']}</p>
+
+<h2>What's different about {where}</h2>
+<ul>{li(b['different'])}</ul>
+
+<h2>What we put on every website in {where}</h2>
+<ul>{li(b['build'])}</ul>
+
+{{{{CHECK}}}}
+
+<h2>Neighborhoods we work with</h2>
+<p>We work with businesses across {where}, including {b['hoods']}. Don't see yours? We'd still love to hear from you.</p>
+
+<h2>Everything else is handled</h2>
+<p>Every plan includes hosting, security, unlimited minor edits and a real person to talk to. Business and Full Suite plans also include setting up and managing your Google Maps profile, which matters as much as your website for most local businesses.</p>
+"""

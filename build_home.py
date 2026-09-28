@@ -8,25 +8,25 @@ TEMPLATE = (HERE / "home.template.html").read_text()
 
 DIRECTIONS = {
     "refined": {
-        "label": "A · Refined",
+        "label": "Modern",
         "file": "design-a.html",
         "fonts": "",
         "css": "",
     },
     "subway": {
-        "label": "B · Subway",
+        "label": "Metro",
         "file": "design-b.html",
         "fonts": '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">',
         "css": '<link rel="stylesheet" href="themes/subway.css">',
     },
     "blocks": {
-        "label": "C · Bold blocks",
+        "label": "Tangy",
         "file": "design-c.html",
         "fonts": '<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">',
         "css": '<link rel="stylesheet" href="themes/blocks.css">',
     },
     "wedding": {
-        "label": "D · Wedding (concept)",
+        "label": "Magazine",
         "file": "design-d.html",
         "fonts": '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">',
         "css": '<link rel="stylesheet" href="themes/wedding.css">',
@@ -50,7 +50,7 @@ def switcher(current):
         '<a href="{}"{}>{}</a>'.format(d["file"], current_attr if key == current else "", d["label"])
         for key, d in DIRECTIONS.items()
     )
-    return f'<nav class="switcher" aria-label="Design directions"><span>Design</span>{links}</nav>'
+    return f'<nav class="switcher" aria-label="Design directions"><span>Style</span>{links}</nav>'
 
 
 def render(key, with_switcher):

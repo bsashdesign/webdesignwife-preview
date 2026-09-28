@@ -32,7 +32,7 @@
 </head>
 <body class="theme-refined">
   <a class="skip" href="#main">Skip to content</a>
-  <nav class="switcher" aria-label="Design directions"><span>Design</span><a href="design-a.html" aria-current="page">A · Refined</a><a href="design-b.html">B · Subway</a><a href="design-c.html">C · Bold blocks</a><a href="design-d.html">D · Wedding (concept)</a></nav>
+  <nav class="switcher" aria-label="Design directions"><span>Style</span><a href="design-a.html" aria-current="page">Modern</a><a href="design-b.html">Metro</a><a href="design-c.html">Tangy</a><a href="design-d.html">Magazine</a></nav>
 
   <header class="nav">
     <div class="wrap nav__inner">
@@ -61,35 +61,22 @@
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
-        <div class="drawer__item">
-          <a class="drawer__big" href="#examples">Examples</a>
-          <p class="drawer__sub">Ten sample homepages for New York businesses</p>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="#how">How it works</a>
-          <p class="drawer__sub">From first call to launch in about two weeks</p>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="#features">Features</a>
-          <div class="drawer__links"><a href="#features">On every plan</a><a href="#maps">Google Maps</a><a href="#local">Local to NYC</a></div>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="#pricing">Pricing</a>
-          <p class="drawer__sub">From $99/month, with hosting and edits included</p>
-          <div class="drawer__links"><a href="#pricing" data-open-finder-after>Help me choose a plan</a></div>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="#about">About</a>
-          <p class="drawer__sub">Meet Ben, and why we're called Web Design Wife</p>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="#faq">FAQ</a>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="blog/index.html">Blog</a>
-          <div class="drawer__links"><a href="blog/index.html#compare">Compare website builders</a><a href="blog/diy-website-guide.html">Build-it-yourself guide</a><a href="blog/google-maps-profile.html">Google Maps guide</a></div>
-        </div>
+        <a class="drawer__big" href="#examples"><span>Examples</span><small>Ten sample homepages for New York businesses</small></a>
+        <a class="drawer__big" href="#how"><span>How it works</span><small>From first call to launch in about two weeks</small></a>
+        <a class="drawer__big" href="#features"><span>Features</span><small>Everything included on every plan</small></a>
+        <a class="drawer__big" href="#pricing"><span>Pricing</span><small>From $99/month, with hosting and edits included</small></a>
+        <a class="drawer__big" href="#about"><span>About</span><small>Meet Ben, and why we're called Web Design Wife</small></a>
+        <a class="drawer__big" href="#faq"><span>FAQ</span><small>Ownership, cancelling, edits and more</small></a>
+        <a class="drawer__big" href="blog/index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
+      <div class="drawer__more">
+        <p class="drawer__label">More</p>
+        <a href="#pricing" data-open-finder-after>Help me choose a plan</a>
+        <a href="#maps">Google Maps management</a>
+        <a href="#local">Local to New York</a>
+        <a href="blog/index.html#compare">Compare website builders</a>
+        <a href="blog/diy-website-guide.html">Build-it-yourself guide</a>
+      </div>
       <div class="drawer__foot">
         <a class="btn btn--primary btn--block" href="#audit">Get a free website audit</a>
         <a class="drawer__ben" href="#audit" data-tab="callback">Or speak to Ben →</a>
@@ -153,9 +140,13 @@
       </div>
     </section>
 
-    <section class="for">
-      <div class="wrap">
-        <p>Built for plumbers, salons, barbers, dentists, restaurants, contractors, cleaners, gyms, accountants, bakeries and every local business across the five boroughs.</p>
+    <section class="for" aria-label="Who we build for">
+      <div class="wrap for__inner">
+        <span class="for__label">Built for</span>
+        <div class="for__track">
+          <ul class="for__row"><li>Plumbers</li><li>Salons</li><li>Barbers</li><li>Dentists</li><li>Restaurants</li><li>Contractors</li><li>Cleaners</li><li>Gyms</li><li>Accountants</li><li>Bakeries</li><li>Florists</li><li>Pharmacies</li><li>Law offices</li><li>Auto shops</li></ul>
+          <ul class="for__row" aria-hidden="true"><li>Plumbers</li><li>Salons</li><li>Barbers</li><li>Dentists</li><li>Restaurants</li><li>Contractors</li><li>Cleaners</li><li>Gyms</li><li>Accountants</li><li>Bakeries</li><li>Florists</li><li>Pharmacies</li><li>Law offices</li><li>Auto shops</li></ul>
+        </div>
       </div>
     </section>
 
@@ -250,6 +241,11 @@
             <span role="cell" class="us">Set up and managed on Business and Full Suite</span>
           </div>
         </div>
+        <div class="compare-cards" aria-hidden="true">
+          <div class="cc"><h3>Do it yourself</h3><ul><li>No build fee</li><li>$20–$50/mo, plus your evenings</li><li>You make every change</li></ul></div>
+          <div class="cc"><h3>Hire an agency</h3><ul><li>$3,000–$10,000 upfront</li><li>Edits billed hourly</li><li>Google Maps usually extra</li></ul></div>
+          <div class="cc cc--us"><h3>Web Design Wife</h3><ul><li>Small setup fee, free on yearly</li><li>$99–$249/mo, all included</li><li>We make changes. Just message us.</li></ul></div>
+        </div>
       </div>
     </section>
 
@@ -282,35 +278,35 @@
         <h2>Everything you need, on every plan</h2>
         <p class="muted intro">Even our $99 plan is a complete, professionally built website that we look after for you.</p>
         <ul class="features features--core">
-          <li><img class="feat__icon" src="images/icons/palette.png" alt="" width="64" height="64" loading="lazy"><h3>Custom design</h3><p>Designed and written for your business by us, not a template you fill in yourself.</p></li>
-          <li><img class="feat__icon" src="images/icons/phone.png" alt="" width="64" height="64" loading="lazy"><h3>Built for phones</h3><p>Fast and easy to use on any screen, with tap-to-call and directions.</p></li>
-          <li><img class="feat__icon" src="images/icons/envelope.png" alt="" width="64" height="64" loading="lazy"><h3>Contact form</h3><p>Messages from customers go straight to your inbox.</p></li>
-          <li><img class="feat__icon" src="images/icons/pencil.png" alt="" width="64" height="64" loading="lazy"><h3>Unlimited minor edits</h3><p>New hours, prices, photos or a promo banner, done within one business day.</p></li>
-          <li><img class="feat__icon" src="images/icons/shield.png" alt="" width="64" height="64" loading="lazy"><h3>Hosting, security and uptime</h3><p>Fast, secure hosting with backups. If your site goes down, we're alerted and fix it.</p></li>
-          <li><img class="feat__icon" src="images/icons/speech.png" alt="" width="64" height="64" loading="lazy"><h3>WhatsApp and social links</h3><p>A tap-to-chat button and links to all your social profiles.</p></li>
+          <li><span class="ico ico--violet"><img src="images/icons/palette.png" alt="" width="40" height="40" loading="lazy"></span><h3>Custom design</h3><p>Designed and written for your business by us, not a template you fill in yourself.</p></li>
+          <li><span class="ico ico--blue"><img src="images/icons/phone.png" alt="" width="40" height="40" loading="lazy"></span><h3>Built for phones</h3><p>Fast and easy to use on any screen, with tap-to-call and directions.</p></li>
+          <li><span class="ico ico--amber"><img src="images/icons/envelope.png" alt="" width="40" height="40" loading="lazy"></span><h3>Contact form</h3><p>Messages from customers go straight to your inbox.</p></li>
+          <li><span class="ico ico--rose"><img src="images/icons/pencil.png" alt="" width="40" height="40" loading="lazy"></span><h3>Unlimited minor edits</h3><p>New hours, prices, photos or a promo banner, done within one business day.</p></li>
+          <li><span class="ico ico--green"><img src="images/icons/shield.png" alt="" width="40" height="40" loading="lazy"></span><h3>Hosting, security and uptime</h3><p>Fast, secure hosting with backups. If your site goes down, we're alerted and fix it.</p></li>
+          <li><span class="ico ico--teal"><img src="images/icons/wave.png" alt="" width="40" height="40" loading="lazy"></span><h3>One-tap chat and social links</h3><p>A chat button that opens WhatsApp, text or Instagram messages, plus links to all your profiles.</p></li>
         </ul>
 
         <div class="extras">
           <p class="extras__title">Want more? Here's what else you can get.</p>
           <div class="extras__row">
             <span class="extras__plan"><span class="tag tag--biz">Business &amp; up</span></span>
-            <ul class="extras__line">
-              <li><img src="images/icons/pin.png" alt="" width="24" height="24" loading="lazy">Google Maps management</li>
-              <li><img src="images/icons/star.png" alt="" width="24" height="24" loading="lazy">Live Google reviews</li>
-              <li><img src="images/icons/camera.png" alt="" width="24" height="24" loading="lazy">Live Instagram feed</li>
-              <li><img src="images/icons/chart.png" alt="" width="24" height="24" loading="lazy">Competitor comparison</li>
-              <li>Up to 5 pages</li>
+            <ul class="extras__grid extras__grid--5">
+              <li><span class="ico ico--rose ico--sm"><img src="images/icons/pin.png" alt="" width="30" height="30" loading="lazy"></span><span>Google Maps management</span></li>
+              <li><span class="ico ico--amber ico--sm"><img src="images/icons/star.png" alt="" width="30" height="30" loading="lazy"></span><span>Live Google reviews</span></li>
+              <li><span class="ico ico--violet ico--sm"><img src="images/icons/camera.png" alt="" width="30" height="30" loading="lazy"></span><span>Live Instagram feed</span></li>
+              <li><span class="ico ico--blue ico--sm"><img src="images/icons/chart.png" alt="" width="30" height="30" loading="lazy"></span><span>Competitor comparison</span></li>
+              <li><span class="ico ico--teal ico--sm"><img src="images/icons/files.png" alt="" width="30" height="30" loading="lazy"></span><span>Up to 5 pages</span></li>
             </ul>
           </div>
           <div class="extras__row extras__row--full">
             <span class="extras__plan"><span class="tag tag--full">Full Suite</span></span>
-            <ul class="extras__grid">
-              <li><img src="images/icons/robot.png" alt="" width="40" height="40" loading="lazy"><span>AI chat assistant</span></li>
-              <li><img src="images/icons/search.png" alt="" width="40" height="40" loading="lazy"><span>Neighborhood SEO pages</span></li>
-              <li><img src="images/icons/memo.png" alt="" width="40" height="40" loading="lazy"><span>Monthly blog post</span></li>
-              <li><img src="images/icons/megaphone.png" alt="" width="40" height="40" loading="lazy"><span>Monthly Google posts</span></li>
-              <li><img src="images/icons/rocket.png" alt="" width="40" height="40" loading="lazy"><span>Priority edits</span></li>
-              <li><img src="images/icons/sparkles.png" alt="" width="40" height="40" loading="lazy"><span>Up to 10 pages</span></li>
+            <ul class="extras__grid extras__grid--glow">
+              <li><span class="ico ico--violet ico--sm"><img src="images/icons/robot.png" alt="" width="30" height="30" loading="lazy"></span><span>AI chat assistant</span></li>
+              <li><span class="ico ico--blue ico--sm"><img src="images/icons/search.png" alt="" width="30" height="30" loading="lazy"></span><span>Neighborhood SEO pages</span></li>
+              <li><span class="ico ico--rose ico--sm"><img src="images/icons/memo.png" alt="" width="30" height="30" loading="lazy"></span><span>Monthly blog post</span></li>
+              <li><span class="ico ico--amber ico--sm"><img src="images/icons/megaphone.png" alt="" width="30" height="30" loading="lazy"></span><span>Monthly Google posts</span></li>
+              <li><span class="ico ico--green ico--sm"><img src="images/icons/rocket.png" alt="" width="30" height="30" loading="lazy"></span><span>Priority edits</span></li>
+              <li><span class="ico ico--teal ico--sm"><img src="images/icons/sparkles.png" alt="" width="30" height="30" loading="lazy"></span><span>Up to 10 pages</span></li>
             </ul>
           </div>
           <a class="extras__link" href="#pricing">Compare plans →</a>
@@ -334,12 +330,12 @@
         </div>
         <figure class="rank" id="rank">
           <figcaption>
-            <span class="report__tag">What customers see</span>
             <strong>Someone nearby searches “plumber near me”</strong>
+            <span class="report__sub">Here's where your business shows up, before and after.</span>
           </figcaption>
           <div class="rank__panes">
             <div class="rank__pane rank__pane--bad">
-              <p class="serp__label"><span class="serp__dot"></span>Neglected listing</p>
+              <p class="rank__label rank__label--bad"><span class="rank__mark">✕</span>Unoptimized listing</p>
               <div class="rank__screen">
                 <div class="rank__bar"><span class="rank__q">plumber near me</span><span class="rank__page">Page <b data-count-to="8">8</b></span></div>
                 <div class="rank__feed"><div class="rank__scroll"><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i><i class="sk"><span></span><span></span></i></div></div>
@@ -348,7 +344,7 @@
               <p class="rank__caption"><b>Page 8.</b> Most people never scroll this far.</p>
             </div>
             <div class="rank__pane rank__pane--good">
-              <p class="serp__label"><span class="serp__dot"></span>Managed listing</p>
+              <p class="rank__label rank__label--good"><span class="rank__mark">✓</span>Optimized listing</p>
               <div class="rank__screen">
                 <div class="rank__bar"><span class="rank__q">plumber near me</span><span class="rank__page">Page <b>1</b></span></div>
                 <div class="rank__you rank__you--good"><span class="rank__thumb"></span><span><strong>Your business</strong><small>★ 4.9 (212) · Open now · Photos</small></span></div>
@@ -364,19 +360,21 @@
 
     <!-- NYC -->
     <section class="section" id="local">
-      <div class="wrap local">
-        <div>
-          <p class="eyebrow">Local first</p>
-          <h2>Based in New York. Your local web partner.</h2>
-          <p class="muted intro">We work with small businesses across the five boroughs. We know how your customers search, from “bagels near me” to “emergency plumber in Bay Ridge.” And because we're local, we know the neighborhoods your customers live in.</p>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Local first</p>
+            <h2>Based in New York. Your local web partner.</h2>
+          </div>
+          <p class="muted">We work with small businesses in all five boroughs. Each one searches a little differently, so we build your site around the neighborhoods your customers live in.</p>
         </div>
-        <ul class="boroughs">
-          <li><strong>Manhattan</strong><span>Midtown · UWS · Harlem · Chelsea</span></li>
-          <li><strong>Brooklyn</strong><span>Park Slope · Williamsburg · Bay Ridge</span></li>
-          <li><strong>Queens</strong><span>Astoria · Flushing · Forest Hills</span></li>
-          <li><strong>The Bronx</strong><span>Belmont · Riverdale · Fordham</span></li>
-          <li><strong>Staten Island</strong><span>St. George · Great Kills · Tottenville</span></li>
-        </ul>
+        <div class="boroughs">
+          <a class="borough" href="blog/websites-manhattan.html"><strong>Manhattan</strong><span>Midtown · UWS · Harlem · Chelsea</span><em>How we build for Manhattan →</em></a>
+          <a class="borough" href="blog/websites-brooklyn.html"><strong>Brooklyn</strong><span>Park Slope · Williamsburg · Bay Ridge</span><em>How we build for Brooklyn →</em></a>
+          <a class="borough" href="blog/websites-queens.html"><strong>Queens</strong><span>Astoria · Flushing · Forest Hills</span><em>How we build for Queens →</em></a>
+          <a class="borough" href="blog/websites-bronx.html"><strong>The Bronx</strong><span>Belmont · Riverdale · Fordham</span><em>How we build for the Bronx →</em></a>
+          <a class="borough" href="blog/websites-staten-island.html"><strong>Staten Island</strong><span>St. George · Great Kills · Tottenville</span><em>How we build for Staten Island →</em></a>
+        </div>
       </div>
     </section>
 
@@ -482,11 +480,11 @@
     <section class="section" id="about">
       <div class="wrap about">
         <!-- TODO: replace with a real photo of Ben -->
-        <div class="about__photo" role="img" aria-label="Photo of Ben Sash">Your photo here</div>
+        <div class="about__visual"><div class="about__photo" role="img" aria-label="Photo of Ben Sash">Your photo here</div><div class="hearts" aria-hidden="true"><i style="--x:12%;--d:0s;--s:0.8"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:30%;--d:2.2s;--s:1.1"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:48%;--d:0.9s;--s:0.7"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:66%;--d:3.1s;--s:1"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:82%;--d:1.6s;--s:0.85"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:22%;--d:4.2s;--s:0.6"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:58%;--d:5s;--s:0.9"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:90%;--d:3.8s;--s:0.7"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i></div></div>
         <div>
-          <p class="eyebrow">About</p>
+          <p class="eyebrow">Love is in the air</p>
           <h2>Hi, I'm Ben.</h2>
-          <p class="about__lead">And no, I can't be your actual wife, but I can be your web design wife.</p>
+          <p class="about__lead">Sorry, I can't be your actual wife, but I can be your web design wife ;)</p>
           <p>The name is about commitment. Most web designers build your site and disappear. At Web Design Wife, we stick around for the long haul and handle everything website-related, so you can focus on your business.</p>
           <p>I've spent 8+ years designing and building websites in New York, from neighborhood shops to large e-commerce platforms. I founded Web Design Wife to give local businesses a partner they can count on, and I still speak with every new client myself.</p>
         </div>
@@ -554,7 +552,7 @@
         </div>
         <div class="posts">
           <a class="post-card post-card--article" href="blog/local-business-website-checklist.html">
-            <span class="post-card__cover" style="--cover:#dfeaff"><img src="images/icons/clipboard.png" alt="" width="88" height="88" loading="lazy"></span>
+            <span class="post-card__cover" style="--cover:#dfeaff;--cover-dark:#a9c4f2"><img src="images/icons/clipboard.png" alt="" width="88" height="88" loading="lazy"></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Checklist</span>
               <h3>7 things every local business website needs</h3>
@@ -563,7 +561,7 @@
             </span>
           </a>
           <a class="post-card post-card--article" href="blog/google-maps-profile.html">
-            <span class="post-card__cover" style="--cover:#dcf2e3"><img src="images/icons/map.png" alt="" width="88" height="88" loading="lazy"></span>
+            <span class="post-card__cover" style="--cover:#dcf2e3;--cover-dark:#9fd7b2"><img src="images/icons/map.png" alt="" width="88" height="88" loading="lazy"></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Google Maps</span>
               <h3>Why your Google Maps profile might matter more than your website</h3>
@@ -572,7 +570,7 @@
             </span>
           </a>
           <a class="post-card post-card--article" href="blog/vs-wix.html">
-            <span class="post-card__cover" style="--cover:#fff4c2"><img src="images/icons/scale.png" alt="" width="88" height="88" loading="lazy"></span>
+            <span class="post-card__cover" style="--cover:#fff4c2;--cover-dark:#f0d86b"><img src="images/icons/scale.png" alt="" width="88" height="88" loading="lazy"></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Comparison</span>
               <h3>Web Design Wife vs. Wix: an honest comparison</h3>
@@ -602,6 +600,7 @@
           <div class="tabs" role="tablist" aria-label="Choose a request">
             <button type="button" role="tab" id="tab-audit" aria-selected="true" aria-controls="form-audit">Free audit</button>
             <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1">Speak to Ben</button>
+            <button type="button" role="tab" id="tab-note" aria-selected="false" aria-controls="form-note" tabindex="-1">Secret note ♥</button>
           </div>
 
           <!-- TODO: connect both forms to a form backend (Webflow forms, Formspree, etc.) -->
@@ -627,6 +626,14 @@
             </label>
             <label><span>What would you like to talk about? <span class="opt">(optional)</span></span><textarea name="topic" rows="3"></textarea></label>
             <button class="btn btn--light btn--block" type="submit">Request a call with Ben</button>
+            <p class="form__msg" role="status" aria-live="polite"></p>
+          </form>
+          <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate hidden data-success="Sealed and sent ♥ We'll write back within one business day.">
+            <p class="note__intro">Not ready for a call? Slip us a note, admirer. Ask anything, no pressure.</p>
+            <label>Your name<input name="name" required autocomplete="name"></label>
+            <label>Email<input name="email" type="email" required autocomplete="email"></label>
+            <label>Your note<textarea name="note" rows="4" required placeholder="Dear Web Design Wife…"></textarea></label>
+            <button class="btn btn--light btn--block" type="submit">Seal it and send ♥</button>
             <p class="form__msg" role="status" aria-live="polite"></p>
           </form>
         </div>

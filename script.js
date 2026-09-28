@@ -270,7 +270,7 @@
   const drawer = document.getElementById("drawer");
   if (!button || !drawer) return;
   const panel = drawer.querySelector(".drawer__panel");
-  drawer.querySelectorAll(".drawer__item").forEach((el, n) => el.style.setProperty("--n", n));
+  drawer.querySelectorAll(".drawer__big").forEach((el, n) => el.style.setProperty("--n", n));
 
   function open() {
     drawer.classList.add("is-open");
@@ -522,8 +522,8 @@
 // ---------------------------------------------------------------
 (function () {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const singles = ".hero__copy > *, .demo, .section-head, .section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .intro, .viewer, .gallery__chips, .compare, .extras__title, .extras__row, .maps > div, .local > div, .pricing__head, .edits-banner, .about > *, .faq > div:first-child, .audit > *, .blog-hero .wrap > *, .article__wrap > *";
-  const groups = [".features > li", ".extras__grid > li", ".steps > li", ".plans > .plan", ".promises > p", ".posts > a", ".boroughs > li", ".faq__list > details"];
+  const singles = ".hero__copy > *, .demo, .section-head, .section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .intro, .viewer, .gallery__chips, .compare, .extras__title, .extras__row, .maps > div, .pricing__head, .edits-banner, .about > *, .faq > div:first-child, .audit > *, .blog-hero .wrap > *, .article__wrap > *";
+  const groups = [".features > li", ".extras__grid > li", ".steps > li", ".plans > .plan", ".promises > p", ".posts > a", ".boroughs > .borough", ".compare-cards > .cc", ".faq__list > details"];
   const els = new Set(document.querySelectorAll(singles));
   groups.forEach((sel) => document.querySelectorAll(sel).forEach((el, n) => { el.style.setProperty("--i", n % 4); els.add(el); }));
   document.querySelectorAll(".hero__copy > *").forEach((el, n) => el.style.setProperty("--i", n));
@@ -601,3 +601,12 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   const tab = document.getElementById("tab-callback");
   if (tab) tab.click();
 }));
+
+// Nav: the color strip shows at the top of the page, then tucks away
+(function () {
+  const nav = document.querySelector(".nav");
+  if (!nav) return;
+  const update = () => nav.classList.toggle("is-scrolled", window.scrollY > 24);
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();

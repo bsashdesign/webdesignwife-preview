@@ -2,6 +2,7 @@
 # Edit the ARTICLES list below, then run: python3 blog/build.py
 import pathlib, html
 from comparisons import PLATFORMS, EXTRA, comparison_body
+from local import BOROUGHS, borough_body
 
 HERE = pathlib.Path(__file__).parent
 
@@ -154,7 +155,12 @@ COMPARE = [{
     "title": f"Web Design Wife vs. {p['name']}: an honest comparison",
     "summary": p["summary"], "minutes": 5, "body": comparison_body(p),
 } for p in PLATFORMS]
-ALL = EXTRA[:1] + COMPARE + ARTICLES + EXTRA[1:]
+LOCALS = [{
+    "slug": b["slug"], "kicker": "Local guide", "group": "local",
+    "title": f"Websites for businesses in {b.get('in', b['name'])}",
+    "summary": b["summary"], "minutes": 4, "body": borough_body(b),
+} for b in BOROUGHS]
+ALL = EXTRA[:1] + COMPARE + LOCALS + ARTICLES + EXTRA[1:]
 
 HEAD = """<!DOCTYPE html>
 <html lang="en">
@@ -199,35 +205,21 @@ HEAD = """<!DOCTYPE html>
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
-        <div class="drawer__item">
-          <a class="drawer__big" href="../index.html#examples">Examples</a>
-          <p class="drawer__sub">Ten sample homepages for New York businesses</p>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="../index.html#how">How it works</a>
-          <p class="drawer__sub">From first call to launch in about two weeks</p>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="../index.html#features">Features</a>
-          <div class="drawer__links"><a href="../index.html#features">On every plan</a><a href="../index.html#maps">Google Maps</a><a href="../index.html#local">Local to NYC</a></div>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="../index.html#pricing">Pricing</a>
-          <p class="drawer__sub">From $99/month, with hosting and edits included</p>
-          <div class="drawer__links"><a href="../index.html#pricing" data-open-finder-after>Help me choose a plan</a></div>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="../index.html#about">About</a>
-          <p class="drawer__sub">Meet Ben, and why we're called Web Design Wife</p>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="../index.html#faq">FAQ</a>
-        </div>
-        <div class="drawer__item">
-          <a class="drawer__big" href="index.html">Blog</a>
-          <div class="drawer__links"><a href="index.html#compare">Compare website builders</a><a href="diy-website-guide.html">Build-it-yourself guide</a><a href="google-maps-profile.html">Google Maps guide</a></div>
-        </div>
+        <a class="drawer__big" href="../index.html#examples"><span>Examples</span><small>Ten sample homepages for New York businesses</small></a>
+        <a class="drawer__big" href="../index.html#how"><span>How it works</span><small>From first call to launch in about two weeks</small></a>
+        <a class="drawer__big" href="../index.html#features"><span>Features</span><small>Everything included on every plan</small></a>
+        <a class="drawer__big" href="../index.html#pricing"><span>Pricing</span><small>From $99/month, with hosting and edits included</small></a>
+        <a class="drawer__big" href="../index.html#about"><span>About</span><small>Meet Ben, and why we're called Web Design Wife</small></a>
+        <a class="drawer__big" href="../index.html#faq"><span>FAQ</span><small>Ownership, cancelling, edits and more</small></a>
+        <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
+      <div class="drawer__more">
+        <p class="drawer__label">More</p>
+        <a href="../index.html#maps">Google Maps management</a>
+        <a href="../index.html#local">Local to New York</a>
+        <a href="index.html#compare">Compare website builders</a>
+        <a href="diy-website-guide.html">Build-it-yourself guide</a>
+      </div>
       <div class="drawer__foot">
         <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website audit</a>
         <a class="drawer__ben" href="../index.html#audit" data-tab="callback">Or speak to Ben →</a>
@@ -316,13 +308,13 @@ def quickcheck(title, sub):
 MID_CHECK = quickcheck("Want our honest take on your website?", "Enter your web address and we'll look it over personally. Free, with no obligation.")
 END_CHECK = quickcheck("Want a second opinion on your site?", "Tell us your web address and we'll send you a short, honest review of what to fix first.")
 
-ICONS = {"Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
-COVERS = ["#dfeaff", "#dcf2e3", "#fff4c2", "#ffe1dc", "#efe6ff", "#e0f4f7"]
+ICONS = {"Local guide": "pin", "Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
+COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]
 
 def card(a, n=0):
     icon = ICONS.get(a["kicker"], "memo")
     return f"""        <a class="post-card post-card--article" href="{a['slug']}.html">
-          <span class="post-card__cover" style="--cover:{COVERS[n % len(COVERS)]}"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>
+          <span class="post-card__cover" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>
           <span class="post-card__body">
             <span class="post-card__kicker">{a['kicker']}</span>
             <h3>{html.escape(a['title'])}</h3>
@@ -347,6 +339,12 @@ index += """    <section class="blog-hero">
         <div class="posts">
 """
 index += "".join(card(a, n) for n, a in enumerate([a for a in ALL if a["group"] == "compare"]))
+index += """        </div>
+        <h2 class="blog-list__h" id="local">Local guides</h2>
+        <p class="muted">How we approach websites for businesses in each borough.</p>
+        <div class="posts">
+"""
+index += "".join(card(a, n + 1) for n, a in enumerate([a for a in ALL if a["group"] == "local"]))
 index += """        </div>
         <h2 class="blog-list__h">Guides</h2>
         <div class="posts">
