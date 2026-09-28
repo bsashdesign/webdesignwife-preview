@@ -417,6 +417,7 @@
   new ResizeObserver(() => { sizeFrames(); render(false); }).observe(cf);
   sizeFrames();
   render(false);
+  requestAnimationFrame(() => requestAnimationFrame(() => cf.classList.add("is-ready")));
 })();
 
 // ---------------------------------------------------------------

@@ -566,9 +566,10 @@ html.drawer-open { overflow: hidden; }
 .cf { --gap: 330px; } .cf[data-mode="mobile"] { --gap: 190px; }
 .cf-card { transition-property: transform, opacity, filter; }
 .cf-card.is-far { opacity: 0; pointer-events: none; }
+.cf:not(.is-ready) .cf-card { transition: none !important; }
 .cf-card.is-active { cursor: default; transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .5s ease; }
 .cf-card.is-tilting { transition: transform .12s linear; }
-.cf-card__head { display: flex; align-items: center; gap: 10px; margin: 0 4px 12px; opacity: .55; transition: opacity .4s ease; }
+.cf-card__head { display: flex; align-items: center; gap: 10px; margin: 0 4px 12px; opacity: 0; transition: opacity .4s ease; }
 .cf-card.is-active .cf-card__head { opacity: 1; }
 .cf-card__head img { width: 40px; height: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,.15)); }
 .cf-card__head strong { display: block; font: 700 1.05rem var(--display); letter-spacing: -0.01em; line-height: 1.2; }
