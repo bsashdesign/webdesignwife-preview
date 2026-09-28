@@ -41,7 +41,8 @@ SPARKLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.5 4.6 
 
 
 def dots(m):
-    return '<span class="mood__dots">' + "".join(f'<i style="background:{c}"></i>' for c in m["sw"]) + "</span>"
+    # The mood's little "Aa" tile, set in its own colors and typeface.
+    return f'<span class="moodicon moodicon--{m["key"]}" aria-hidden="true">Aa</span>'
 
 
 def switcher():

@@ -419,30 +419,29 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     sx = null;
   });
 
-  // Every visible device tilts toward the pointer, like a collectible card.
-  // Only the device frame moves; the title above it stays put.
+  // The device under the pointer tilts toward it, like a collectible card.
+  // Only its frame moves; the title above stays put.
   if (!reduced) {
-    const stage = cf.querySelector(".cf__stage");
-    stage.addEventListener("pointermove", (e) => {
-      cards.forEach((c) => {
-        if (c.classList.contains("is-far")) return;
-        const f = c.querySelector(".cf-card__frame");
-        const r = f.getBoundingClientRect();
-        const x = Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5));
-        const y = Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5));
-        const k = c.classList.contains("is-active") ? 1 : 0.6;
-        c.classList.add("is-tilting");
-        f.style.setProperty("--ry", `${x * 12 * k}deg`);
-        f.style.setProperty("--rx", `${-y * 9 * k}deg`);
-        f.style.setProperty("--gx", `${(x + 0.5) * 100}%`);
-        f.style.setProperty("--gy", `${(y + 0.5) * 100}%`);
-      });
-    });
-    stage.addEventListener("pointerleave", () => cards.forEach((c) => {
+    const reset = (c) => {
       c.classList.remove("is-tilting");
       const f = c.querySelector(".cf-card__frame");
       f.style.removeProperty("--rx"); f.style.removeProperty("--ry");
-    }));
+    };
+    cards.forEach((c) => {
+      const f = c.querySelector(".cf-card__frame");
+      f.addEventListener("pointermove", (e) => {
+        if (c.classList.contains("is-far")) return;
+        const r = f.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        c.classList.add("is-tilting");
+        f.style.setProperty("--ry", `${x * 12}deg`);
+        f.style.setProperty("--rx", `${-y * 9}deg`);
+        f.style.setProperty("--gx", `${(x + 0.5) * 100}%`);
+        f.style.setProperty("--gy", `${(y + 0.5) * 100}%`);
+      });
+      f.addEventListener("pointerleave", () => reset(c));
+    });
   }
 
   new ResizeObserver(() => { sizeFrames(); render(false); }).observe(cf);
@@ -699,25 +698,28 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   update();
 })();
 
-// Hearts float up once when the About section comes into view
+// Hearts float up each time the About section comes into view
 (function () {
   const hearts = document.querySelector(".hearts");
   if (!hearts || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let inView = false;
   function check() {
     const r = hearts.getBoundingClientRect();
-    if (r.top < window.innerHeight * 0.75 && r.bottom > 0) {
+    const now = r.top < window.innerHeight * 0.75 && r.bottom > window.innerHeight * 0.1;
+    if (now && !inView) {
+      hearts.classList.remove("is-bursting");
+      void hearts.offsetWidth;          // restart the animation
       hearts.classList.add("is-bursting");
-      window.removeEventListener("scroll", onScroll);
     }
+    inView = now;
   }
-  const onScroll = () => setTimeout(check, 60);
-  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("scroll", () => setTimeout(check, 60), { passive: true });
   check();
 })();
 
 // Dots under swipeable rows
 (function () {
-  document.querySelectorAll("#blog .posts, .steps").forEach((row) => {
+  document.querySelectorAll("#blog .posts, .steps, .boroughs").forEach((row) => {
     const n = row.children.length;
     const hint = document.createElement("div");
     hint.className = "swipe-hint";
@@ -735,10 +737,12 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
       let best = 0, bestD = Infinity;
       kids.forEach((k, i) => { const d = Math.abs(k.getBoundingClientRect().left - row.getBoundingClientRect().left - 20); if (d < bestD) { bestD = d; best = i; } });
       dots.forEach((d, i) => d.classList.toggle("is-on", i === best));
+      hint.style.visibility = row.scrollWidth > row.clientWidth + 2 ? "" : "hidden";
       prev.disabled = row.scrollLeft < 4;
       next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
     };
     row.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+    window.addEventListener("resize", update);
     update();
   });
 })();
@@ -777,7 +781,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     document.querySelectorAll("[data-mood]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mood === key)));
     // The mood button shows the current mood's colors.
     const btn = document.querySelector(".mood__btn");
-    const opt = document.querySelector(`.mood__opt[data-mood="${key}"] .mood__dots`);
+    const opt = document.querySelector(`.mood__opt[data-mood="${key}"] .moodicon`);
     if (btn && opt) btn.innerHTML = opt.outerHTML;
   }
   function apply(key, save) {

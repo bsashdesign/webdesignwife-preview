@@ -130,4 +130,10 @@
 .theme-blocks .cc { color: var(--ink); }
 .theme-blocks .incl li, .theme-blocks .tier, .theme-blocks .guarantee, .theme-blocks .moodcard, .theme-blocks .work-feature__shot { border: var(--edge); box-shadow: var(--shadow); }
 .theme-blocks .moodcard[aria-pressed="true"] { box-shadow: 6px 6px 0 var(--violet); }
-.theme-blocks .guarantee__seal { border: var(--edge); background: var(--lime); }
+
+.theme-blocks #moods { background: #d4ff4f; }
+.theme-blocks .incl .ico { box-shadow: inset 0 0 0 2px var(--ink); }
+.theme-blocks .incl li:nth-child(odd) .ico { background: var(--sky); } .theme-blocks .incl li:nth-child(even) .ico { background: var(--rose); }
+.theme-blocks .incl li:nth-child(3) .ico { background: var(--lime); } .theme-blocks .incl li:nth-child(6) .ico { background: var(--sun); }
+.theme-blocks .tier--biz { --tier: var(--cobalt); } .theme-blocks .tier--full { --tier: var(--violet); }
+.theme-blocks .seal { filter: drop-shadow(4px 4px 0 var(--ink)); } .theme-blocks .seal__edge, .theme-blocks .seal__inner { fill: var(--violet); }

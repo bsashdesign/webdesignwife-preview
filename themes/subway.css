@@ -201,5 +201,16 @@
 /* Extras rows take their colors from their line dots */
 .theme-subway .ticks:not(.ticks--dark) li::after { border-color: #111; }
 
-.theme-subway .tier--biz { border-top: 6px solid var(--blue); } .theme-subway .tier--full { border-top: 6px solid var(--purple); }
-.theme-subway .guarantee__seal { border-color: #111; background: var(--yellow); border-style: solid; }
+
+/* More black: the mood section sits on the platform */
+.theme-subway #moods { background: #111; color: #fff; }
+.theme-subway #moods h2 { color: #fff; }
+.theme-subway #moods .muted { color: #c9c9c4; }
+.theme-subway #moods .eyebrow { background: #fff; color: #111; }
+/* Included tiles: black outline, line colors */
+.theme-subway .incl .ico { box-shadow: inset 0 0 0 2px #111; }
+.theme-subway .incl li:nth-child(1) .ico { background: #ffe1dc; } .theme-subway .incl li:nth-child(2) .ico { background: #dfeaff; }
+.theme-subway .incl li:nth-child(3) .ico { background: #fff4c2; } .theme-subway .incl li:nth-child(4) .ico { background: #dcf2e3; }
+.theme-subway .incl li:nth-child(5) .ico { background: #f3e1f5; } .theme-subway .incl li:nth-child(6) .ico { background: #ffe6d6; }
+.theme-subway .tier--biz { --tier: var(--blue); } .theme-subway .tier--full { --tier: var(--purple); }
+.theme-subway .seal__edge, .theme-subway .seal__inner { fill: #111; } .theme-subway .seal__arc { fill: var(--yellow); }
