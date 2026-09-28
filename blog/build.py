@@ -387,10 +387,21 @@ for a in ALL:
         <h1>{html.escape(a['title'])}</h1>
         <p class="article__meta">By Ben Sash · {a['minutes']} min read</p>
         <div class="article__body">{a['body'].replace("{{CHECK}}", MID_CHECK)}</div>
-{END_CHECK}      </div>
+{END_CHECK}        <section class="related" data-slug="{a['slug']}" data-group="{a['group']}" aria-label="Related articles" hidden>
+          <h2 class="related__h">Keep reading</h2>
+          <div class="related__list"></div>
+        </section>
+      </div>
     </article>
 """
     page += FOOT
     (HERE / f"{a['slug']}.html").write_text(fill(page))
 
+# Article index for the related-posts widget (script.js). New articles are picked up automatically.
+import json
+(HERE / "posts.json").write_text(json.dumps([
+    {"slug": a["slug"], "title": a["title"], "summary": a["summary"], "group": a["group"],
+     "kicker": a["kicker"], "minutes": a["minutes"], "cover": cover(a)}
+    for a in ALL
+], ensure_ascii=False))
 print("built", len(ALL), "articles")

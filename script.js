@@ -781,7 +781,10 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   const m = document.getElementById("mood");
   if (!m) return;
   const btn = m.querySelector(".mood__btn");
-  btn.addEventListener("click", () => { const o = m.classList.toggle("is-open"); btn.setAttribute("aria-expanded", String(o)); });
+  const setOpen = (o) => { m.classList.toggle("is-open", o); btn.setAttribute("aria-expanded", String(o)); };
+  btn.addEventListener("click", () => setOpen(!m.classList.contains("is-open")));
+  m.querySelector(".mood__close").addEventListener("click", () => { setOpen(false); btn.focus(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && m.classList.contains("is-open")) setOpen(false); });
   document.addEventListener("click", (e) => { if (!m.contains(e.target)) { m.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); } });
 })();
 
@@ -799,4 +802,56 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   const hash = location.hash.replace("#", "");
   const pre = bar.querySelector(`[data-filter="${hash}"]`);
   if (pre) pre.click();
+})();
+
+// Pricing on phones: long feature lists start collapsed
+(function () {
+  document.querySelectorAll(".plan").forEach((plan) => {
+    const list = plan.querySelector(".ticks");
+    if (!list || list.children.length <= 4) return;
+    plan.classList.add("is-collapsible");
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "plan__more";
+    const label = () => (plan.classList.contains("is-expanded") ? "Show fewer" : `Show all ${list.children.length} features`);
+    b.textContent = label();
+    b.addEventListener("click", () => { plan.classList.toggle("is-expanded"); b.textContent = label(); });
+    list.after(b);
+  });
+})();
+
+// ---------------------------------------------------------------
+// Related articles: picked automatically from posts.json.
+// Same category ranks first, then shared topic words; the top three show.
+// ---------------------------------------------------------------
+(function () {
+  const box = document.querySelector(".related");
+  if (!box) return;
+  const STOP = new Set("a an and are as at be by can do for from how in is it of on or our the to vs we what when which who why with you your web design wife website websites business businesses local honest comparison".split(" "));
+  const words = (t) => new Set(t.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length > 2 && !STOP.has(w)));
+  fetch("posts.json").then((r) => r.json()).then((posts) => {
+    const me = posts.find((p) => p.slug === box.dataset.slug);
+    if (!me) return;
+    const mine = words(me.title + " " + me.summary);
+    const picks = posts
+      .filter((p) => p.slug !== me.slug)
+      .map((p) => {
+        let score = p.group === me.group ? 10 : 0;
+        words(p.title + " " + p.summary).forEach((w) => { if (mine.has(w)) score += 2; });
+        return { p, score };
+      })
+      .sort((a, b) => b.score - a.score || a.p.title.localeCompare(b.p.title))
+      .slice(0, 3)
+      .map(({ p }) => p);
+    box.querySelector(".related__list").innerHTML = picks.map((p) => `
+      <a class="post-card post-card--article related__card" href="${p.slug}.html">
+        ${p.cover}
+        <span class="post-card__body">
+          <span class="post-card__kicker">${p.kicker}</span>
+          <h3>${p.title}</h3>
+          <span class="post-card__meta">${p.minutes} min read</span>
+        </span>
+      </a>`).join("");
+    box.hidden = false;
+  }).catch(() => {});
 })();

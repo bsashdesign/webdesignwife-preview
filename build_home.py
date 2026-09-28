@@ -13,10 +13,10 @@ TEMPLATE = (HERE / "home.template.html").read_text()
 
 # key: URL value. cls: the theme class the stylesheets are scoped to.
 MOODS = [
-    {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, airy and uncluttered. Lets your work do the talking.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
-    {"key": "transit", "cls": "theme-subway", "label": "Transit", "note": "Inspired by New York subway signs: bold, direct, easy to follow.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
-    {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright colors and chunky outlines, like a citrus soda can.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
-    {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Inspired by wedding stationery: serif type and champagne details.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
+    {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, quiet and easy on the eyes.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
+    {"key": "transit", "cls": "theme-subway", "label": "Transit", "note": "Bold and direct, inspired by New York subway signs.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
+    {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright, bouncy and a little loud.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
+    {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
 DEFAULT = "transit"
 
@@ -51,7 +51,7 @@ def switcher():
     )
     return f'''<div class="mood" id="mood">
     <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood">{dots(MOODS[1])}</button>
-    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><p>Choose your mood</p>{opts}</div>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><button type="button" class="mood__close" aria-label="Close">×</button><p class="mood__title">Choose your mood</p><p class="mood__intro">See this website in four different styles. Same content, a different feel.</p>{opts}</div>
   </div>'''
 
 

@@ -116,7 +116,6 @@
 .theme-wedding .duo { display: block; width: 30px; height: 30px; color: var(--gold); }
 .theme-wedding .ico { background: none; box-shadow: none; border: 1px solid rgba(184, 149, 90, .45); border-radius: 50%; }
 .theme-wedding .extras__grid .duo { width: 32px; height: 32px; }
-.theme-wedding .cf-pick { padding: 6px 14px; }
 .theme-wedding .post-card__cover img { filter: grayscale(1) sepia(.35) drop-shadow(0 10px 12px rgba(0,0,0,.15)); }
 .theme-wedding .compare .compare__head .us { background: var(--ink); color: #fff; }
 .theme-wedding .cc--us { border-color: var(--gold); }

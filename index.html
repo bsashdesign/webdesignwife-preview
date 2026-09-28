@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790594969">
-  <link rel="stylesheet" href="themes/subway.css?v=1790594969">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790594969">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790594969">
+  <link rel="stylesheet" href="styles.css?v=1790622922">
+  <link rel="stylesheet" href="themes/subway.css?v=1790622922">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790622922">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790622922">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
   <script type="application/ld+json">
   {
@@ -37,7 +37,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <div class="mood" id="mood">
     <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood"><span class="mood__dots"><i style="background:#111111"></i><i style="background:#fccc0a"></i><i style="background:#0b5cd6"></i></span></button>
-    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><p>Choose your mood</p><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="mood__dots"><i style="background:#ffffff"></i><i style="background:#5b3df5"></i><i style="background:#ece8ff"></i></span><span><strong>Calm</strong><small>Soft, airy and uncluttered. Lets your work do the talking.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="mood__dots"><i style="background:#111111"></i><i style="background:#fccc0a"></i><i style="background:#0b5cd6"></i></span><span><strong>Transit</strong><small>Inspired by New York subway signs: bold, direct, easy to follow.</small></span></button><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="mood__dots"><i style="background:#d4ff4f"></i><i style="background:#ff6a1a"></i><i style="background:#3355ff"></i></span><span><strong>Tangy</strong><small>Bright colors and chunky outlines, like a citrus soda can.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="mood__dots"><i style="background:#f4ecdb"></i><i style="background:#b8955a"></i><i style="background:#1f2336"></i></span><span><strong>Sophisticated</strong><small>Inspired by wedding stationery: serif type and champagne details.</small></span></button></div>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><button type="button" class="mood__close" aria-label="Close">×</button><p class="mood__title">Choose your mood</p><p class="mood__intro">See this website in four different styles. Same content, a different feel.</p><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="mood__dots"><i style="background:#ffffff"></i><i style="background:#5b3df5"></i><i style="background:#ece8ff"></i></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="mood__dots"><i style="background:#111111"></i><i style="background:#fccc0a"></i><i style="background:#0b5cd6"></i></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="mood__dots"><i style="background:#d4ff4f"></i><i style="background:#ff6a1a"></i><i style="background:#3355ff"></i></span><span><strong>Tangy</strong><small>Bright, bouncy and a little loud.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="mood__dots"><i style="background:#f4ecdb"></i><i style="background:#b8955a"></i><i style="background:#1f2336"></i></span><span><strong>Sophisticated</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button></div>
   </div>
 
   <header class="nav">
@@ -323,7 +323,7 @@
           <li><span class="ico ico--green"><img src="images/icons/shield.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,56v56c0,96-88,120-88,120S40,208,40,112V56a8,8,0,0,1,8-8H208A8,8,0,0,1,216,56Z" opacity="0.2"/><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg></span><h3>Hosting, security and uptime</h3><p>Fast, secure hosting with backups. If your site goes down, we're alerted and fix it.</p></li>
           <li><span class="ico ico--teal"><img src="images/icons/wave.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128A96,96,0,0,1,79.93,211.11h0L42.54,223.58a8,8,0,0,1-10.12-10.12l12.47-37.39h0A96,96,0,1,1,224,128Z" opacity="0.2"/><path d="M128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-4-1.08,7.85,7.85,0,0,0-2.53.42L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Zm12-88a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm-44,0a12,12,0,1,1-12-12A12,12,0,0,1,96,128Zm88,0a12,12,0,1,1-12-12A12,12,0,0,1,184,128Z"/></svg></span><h3>One-tap chat and social links</h3><p>A chat button that opens WhatsApp, text or Instagram messages, plus links to all your profiles.</p></li>
         </ul>
-        <p class="also">Also on every plan: <span>Privacy policy page</span><span>Terms of service page</span><span>SSL security certificate</span><span>Regular backups</span></p>
+        <div class="also"><p class="also__label">Also on every plan</p><ul class="also__list"><li>Privacy policy page</li><li>Terms of service page</li><li>SSL security certificate</li><li>Regular backups</li></ul></div>
 
         <div class="extras">
           <p class="extras__title">Want more? Here's what else you can get.</p>
@@ -790,6 +790,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website audit</a>
 
-  <script src="script.js?v=1790594969"></script>
+  <script src="script.js?v=1790622922"></script>
 </body>
 </html>
