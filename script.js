@@ -381,6 +381,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     });
     picks.forEach((p, i) => p.setAttribute("aria-selected", String(i === active)));
     cards.forEach((c, i) => { const v = c.querySelector(".cf-card__view"); if (v) v.tabIndex = i === active ? 0 : -1; });
+    // Keep the 3D vanishing point level with the devices so they share one center line.
+    const af = cards[active].querySelector(".cf-card__frame");
+    cf.querySelector(".cf__stage").style.perspectiveOrigin = `50% ${af.offsetTop + af.offsetHeight / 2}px`;
     prev.hidden = active === 0;
     const atEnd = active === n - 1;
     next.classList.toggle("is-restart", atEnd);

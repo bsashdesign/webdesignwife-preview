@@ -987,6 +987,44 @@ html.drawer-open { overflow: hidden; }
 .js .rank.profile:not(.is-played) .profile__pane--after li { opacity: 0; transform: translateX(-6px); }
 .rank.profile.is-played .profile__pane--after li { transition: opacity .4s ease, transform .5s var(--ease-out); transition-delay: calc(.3s + var(--k) * 140ms); }
 
+
+/* ---------- Phones: shorter page ---------- */
+@media (max-width: 640px) {
+  .incl { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .incl li { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; }
+  .incl small { font-size: .82rem; }
+  .tier { padding: 16px 18px; }
+  .tier .ticks li { padding: 2px 0 2px 24px; font-size: .92rem; }
+  .moods-sec__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .moodcard { grid-template-columns: 1fr; gap: 10px; padding: 10px; }
+  .moodcard__art { height: 56px; }
+  .moodcard__text small { display: none; }
+  .promises { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .promises p { padding: 16px 14px; font-size: .86rem; }
+  .promises strong { font-size: 1rem; }
+  .profile__panes { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .profile__pane { padding: 12px; }
+  .profile__pane ul { font-size: .8rem; gap: 6px; }
+  .profile__pane li { padding-left: 18px; }
+  .profile__pane li::before { width: 11px; height: 11px; }
+  .maps > div:first-child .ticks { display: none; }
+  .boroughs { display: flex; overflow-x: auto; gap: 10px; margin-right: -20px; padding-right: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .boroughs .borough { flex: 0 0 62%; scroll-snap-align: start; }
+  .about__photo { max-width: 200px; }
+  .plan { padding: 22px 18px; }
+  .plan .ticks li { padding: 3px 0 3px 26px; font-size: .95rem; }
+  .plan__for { margin-bottom: 10px; }
+  .edits-banner h3 { font-size: 1.35rem; }
+  .scope-note { font-size: .82rem; }
+  .footer { padding-top: 44px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+  .footer__col:nth-child(4) { grid-column: 1 / -1; }
+  .footer__brand p { margin: 10px 0 14px; }
+  .footer__moods { margin-top: 28px; padding: 16px; }
+  .footer__moods p { display: none; }
+  .faq__list summary { padding: 14px 36px 14px 0; font-size: 1rem; }
+}
+
 /* ---------- Motion ---------- */
 /* Headings: each word rises out of its own mask. */
 .m-on .m-words .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
