@@ -71,5 +71,5 @@ def with_copy(html, key):
 
 for key, d in DIRECTIONS.items():
     (HERE / d["file"]).write_text(with_copy(render(key, True), key))
-(HERE / "index.html").write_text(with_copy(render(DEFAULT, False), DEFAULT))
+(HERE / "index.html").write_text(with_copy(render(DEFAULT, True), DEFAULT))
 print("built", ", ".join(d["file"] for d in DIRECTIONS.values()), "+ index.html")
