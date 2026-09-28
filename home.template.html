@@ -48,7 +48,7 @@
         <a href="#faq">FAQ</a>
         <a href="blog/index.html">Blog</a>
       </nav>
-      <a class="btn btn--primary btn--sm nav__cta" href="#audit">Free website + Maps audit</a>
+      <a class="btn btn--primary btn--sm nav__cta" href="#audit">Free website audit</a>
       <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </header>
@@ -179,9 +179,9 @@
           <div>
             <p class="eyebrow">Examples</p>
             <h2>See what we'd make for a business like yours</h2>
+            <p class="muted section-head__sub">Concept sites we designed to show the range of styles we build.</p>
           </div>
           <div class="section-head__side">
-            <p class="muted">Concept sites we designed to show the range of styles we build.</p>
             <div class="viewer__modes cf__modes" role="radiogroup" aria-label="Preview size">
               <button type="button" role="radio" aria-checked="true" data-mode="desktop">Desktop</button>
               <button type="button" role="radio" aria-checked="false" data-mode="mobile">Mobile</button>
@@ -251,34 +251,45 @@
     </section>
 
     <!-- MOODS -->
-    <section class="section section--moods" id="moods">
-      <div class="wrap moods-sec">
-        <div class="moods-sec__copy">
-          <p class="eyebrow">Choose your mood</p>
-          <h2>Same site, four personalities.</h2>
-          <p class="muted">It's a taste of the range we design in. Pick one and watch this whole page change.</p>
-        </div>
-        <div class="moods-sec__grid">
-            <button type="button" class="moodcard moodcard--calm" data-mood="calm" aria-pressed="false">
-              <span class="moodcard__art" aria-hidden="true"><span class="moodcard__aa">Aa</span><span class="moodcard__bars"><i></i><i></i><i></i></span></span>
-              <span class="moodcard__text"><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span>
-              <span class="moodcard__on" aria-hidden="true">Current</span>
-            </button>
-            <button type="button" class="moodcard moodcard--transit" data-mood="transit" aria-pressed="false">
-              <span class="moodcard__art" aria-hidden="true"><span class="moodcard__aa">Aa</span><span class="moodcard__bars"><i></i><i></i><i></i></span></span>
-              <span class="moodcard__text"><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span>
-              <span class="moodcard__on" aria-hidden="true">Current</span>
-            </button>
-            <button type="button" class="moodcard moodcard--tangy" data-mood="tangy" aria-pressed="false">
-              <span class="moodcard__art" aria-hidden="true"><span class="moodcard__aa">Aa</span><span class="moodcard__bars"><i></i><i></i><i></i></span></span>
-              <span class="moodcard__text"><strong>Tangy</strong><small>Bright, bouncy and a little loud.</small></span>
-              <span class="moodcard__on" aria-hidden="true">Current</span>
-            </button>
-            <button type="button" class="moodcard moodcard--sophisticated" data-mood="sophisticated" aria-pressed="false">
-              <span class="moodcard__art" aria-hidden="true"><span class="moodcard__aa">Aa</span><span class="moodcard__bars"><i></i><i></i><i></i></span></span>
-              <span class="moodcard__text"><strong>Sophisticated</strong><small>Elegant and refined, inspired by wedding stationery.</small></span>
-              <span class="moodcard__on" aria-hidden="true">Current</span>
-            </button>
+    <section class="section section--play" id="moods" aria-labelledby="moods-title">
+      <div class="wrap">
+        <div class="play">
+          <div class="play__copy">
+            <p class="eyebrow">Try it</p>
+            <h2 id="moods-title">Same site, four personalities.</h2>
+            <p>It's a taste of the range we design in. Tap a style and watch this whole page redesign itself.</p>
+            <button type="button" class="play__shuffle" data-shuffle-mood><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3.5c1.6 0 2.6.7 3.5 2l1 1.5c.9 1.3 1.9 2 3.5 2H17M14.5 9 17 11.5 14.5 14M3 14h3.5c1 0 1.8-.3 2.4-.9M14.5 3.5 17 6l-2.5 2.5M17 6h-2.5c-1 0-1.8.3-2.4.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Surprise me</button>
+          </div>
+          <div class="play__chips" role="group" aria-label="Choose a style">
+              <button type="button" class="chip chip--calm" data-mood="calm" aria-pressed="false" style="--i:0">
+                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="chip__name">Calm</span>
+                <span class="chip__desc">Soft and quiet</span>
+                <span class="chip__on" aria-hidden="true">Showing now</span>
+              </button>
+              <button type="button" class="chip chip--transit" data-mood="transit" aria-pressed="false" style="--i:1">
+                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="chip__name">Transit</span>
+                <span class="chip__desc">Bold, like a subway sign</span>
+                <span class="chip__on" aria-hidden="true">Showing now</span>
+              </button>
+              <button type="button" class="chip chip--tangy" data-mood="tangy" aria-pressed="false" style="--i:2">
+                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="chip__name">Tangy</span>
+                <span class="chip__desc">Bright and bouncy</span>
+                <span class="chip__on" aria-hidden="true">Showing now</span>
+              </button>
+              <button type="button" class="chip chip--sophisticated" data-mood="sophisticated" aria-pressed="false" style="--i:3">
+                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="chip__name">Sophisticated</span>
+                <span class="chip__desc">Refined, like stationery</span>
+                <span class="chip__on" aria-hidden="true">Showing now</span>
+              </button>
+          </div>
         </div>
       </div>
     </section>
@@ -502,10 +513,10 @@
     <section class="section section--ink" id="maps">
       <div class="wrap maps">
         <div>
-          <p class="eyebrow eyebrow--light">Google Maps</p>
+          <p class="eyebrow eyebrow--light">Google Maps · Included in Business &amp; Full Suite</p>
           <h2>Get found by customers near you</h2>
           <p>For most local businesses, the Google Maps listing brings in more calls than the website. We set yours up properly, or if you already have one, we audit it and fix what's holding it back.</p>
-          <p class="maps__note">Business and Full Suite plans include setup, ongoing updates and a comparison with your top local competitors.</p>
+          <p class="maps__included"><strong>Included in Business and Full Suite.</strong> Setup, ongoing updates and a comparison with your top local competitors.</p>
         </div>
         <figure class="rank profile" id="rank">
           <div class="gmap" aria-hidden="true">
@@ -646,7 +657,7 @@
           <a class="btn btn--ghost" href="blog/index.html">All articles</a>
         </div>
         <div class="posts">
-          <a class="post-card post-card--article" href="blog/local-business-website-checklist.html" style="--cover:#dfeaff;--cover-dark:#a9c4f2">
+          <a class="post-card post-card--article" href="blog/local-business-website-checklist.html" style="--cover:#dfeaff;--cover-dark:#a9c4f2" data-tone="blue">
             <span class="post-card__cover"><img src="images/icons/clipboard.png" alt="" width="88" height="88" loading="lazy"></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Checklist</span>
@@ -655,7 +666,7 @@
               <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 2 min read</span>
             </span>
           </a>
-          <a class="post-card post-card--article" href="blog/google-maps-profile.html" style="--cover:#dcf2e3;--cover-dark:#9fd7b2">
+          <a class="post-card post-card--article" href="blog/google-maps-profile.html" style="--cover:#dcf2e3;--cover-dark:#9fd7b2" data-tone="green">
             <span class="post-card__cover"><img src="images/icons/map.png" alt="" width="88" height="88" loading="lazy"></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Google Maps</span>
@@ -664,7 +675,7 @@
               <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 2 min read</span>
             </span>
           </a>
-          <a class="post-card post-card--article" href="blog/vs-wix.html" style="--cover:#fff4c2;--cover-dark:#f0d86b">
+          <a class="post-card post-card--article" href="blog/vs-wix.html" style="--cover:#fff4c2;--cover-dark:#f0d86b" data-tone="yellow">
             <span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo"><svg aria-hidden="true" fill="#0C6EFC" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m0 7.354 2.113 9.292h.801a1.54 1.54 0 0 0 1.506-1.218l1.351-6.34a.171.171 0 0 1 .167-.137c.08 0 .15.058.167.137l1.352 6.34a1.54 1.54 0 0 0 1.506 1.218h.805l2.113-9.292h-.565c-.62 0-1.159.43-1.296 1.035l-1.26 5.545-1.106-5.176a1.76 1.76 0 0 0-2.19-1.324c-.639.176-1.113.716-1.251 1.365l-1.094 5.127-1.26-5.537A1.33 1.33 0 0 0 .563 7.354H0zm13.992 0a.951.951 0 0 0-.951.95v8.342h.635a.952.952 0 0 0 .951-.95V7.353h-.635zm1.778 0 3.158 4.66-3.14 4.632h1.325c.368 0 .712-.181.918-.486l1.756-2.59a.12.12 0 0 1 .197 0l1.754 2.59c.206.305.55.486.918.486h1.326l-3.14-4.632L24 7.354h-1.326c-.368 0-.712.181-.918.486l-1.772 2.617a.12.12 0 0 1-.197 0L18.014 7.84a1.108 1.108 0 0 0-.918-.486H15.77z"/></svg></span></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Comparison</span>

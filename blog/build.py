@@ -324,6 +324,7 @@ END_CHECK = quickcheck("Want a second opinion on your site?", "Tell us your web 
 
 ICONS = {"Borough guide": "pin", "Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
 COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]
+TONES = ["blue", "green", "yellow", "red", "purple", "teal"]
 
 BRANDS = {"vs-wix": ("wix", "#0C6EFC"), "vs-squarespace": ("squarespace", "#111111"), "vs-wordpress": ("wordpress", "#21759B"), "vs-webflow": ("webflow", "#146EF5"), "vs-shopify": ("shopify", "#5E8E3E"), "vs-godaddy": ("godaddy", "#111111"), "vs-square-online": ("square", "#3E4348"), "vs-framer": ("framer", "#0055FF"), "vs-carrd": ("carrd", "#596CAF"), "vs-google-sites": ("google", "#4285F4"), "vs-hostinger": ("hostinger", "#673DE6")}
 BOROUGH_ART = {"websites-manhattan": "manhattan", "websites-brooklyn": "brooklyn", "websites-queens": "queens", "websites-bronx": "bronx", "websites-staten-island": "staten-island"}
@@ -345,7 +346,7 @@ def cover(a):
     return f"""<span class="post-card__cover"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>"""
 
 def card(a, n=0):
-    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" data-group="{a['group']}" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
+    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" data-group="{a['group']}" data-tone="{TONES[n % len(TONES)]}" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
           {cover(a)}
           <span class="post-card__body">
             <span class="post-card__kicker">{a['kicker']}</span>
@@ -357,7 +358,7 @@ def card(a, n=0):
 """
 
 index = HEAD.format(title="Blog — Web Design Wife", description="Practical advice for local business websites, Google Maps profiles and reviews.")
-index += """    <section class="blog-hero">
+index += """    <section class="blog-hero blog-hero--center">
       <div class="wrap">
         <p class="eyebrow">Blog</p>
         <h1>Practical advice for local business websites</h1>

@@ -131,3 +131,9 @@
 .theme-wedding .tier--biz { --tier: #54708c; } .theme-wedding .tier--full { --tier: var(--gold); }
 .theme-wedding .tier { border-top-width: 1px; }
 .theme-wedding .moodcard { border-radius: 4px; }
+
+.theme-wedding { --price-bg: #efe6d2; }
+.theme-wedding #examples { --cf-fade: var(--tint); }
+.theme-wedding .play { border-radius: 6px; box-shadow: 0 40px 90px -50px rgba(31,35,54,.5), inset 0 0 0 8px #fff, inset 0 0 0 9px rgba(184,149,90,.3); }
+.theme-wedding .chip { border-radius: 4px; }
+.theme-wedding .play__shuffle { border-style: solid; border-color: var(--gold); color: var(--ink); }

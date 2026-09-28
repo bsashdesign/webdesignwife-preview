@@ -324,7 +324,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   if (!cf || !cf.classList.contains("cf")) return;
   const cards = [...cf.querySelectorAll(".cf-card")];
   const picks = [...cf.querySelectorAll(".cf-pick")];
-  const modes = [...cf.querySelectorAll(".viewer__modes button")];
+  const modes = [...document.querySelectorAll(".cf__modes button, #gallery .viewer__modes button")];
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let active = 0;
 
@@ -383,7 +383,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     cards.forEach((c, i) => { const v = c.querySelector(".cf-card__view"); if (v) v.tabIndex = i === active ? 0 : -1; });
     // Keep the 3D vanishing point level with the devices so they share one center line.
     const af = cards[active].querySelector(".cf-card__frame");
-    cf.querySelector(".cf__stage").style.perspectiveOrigin = `50% ${af.offsetTop + af.offsetHeight / 2}px`;
+    const mid = af.offsetTop + af.offsetHeight / 2;
+    const stageEl = cf.querySelector(".cf__stage");
+    stageEl.style.perspectiveOrigin = `50% ${mid}px`;
+    stageEl.style.setProperty("--mid", `${mid}px`);
     prev.hidden = active === 0;
     const atEnd = active === n - 1;
     next.classList.toggle("is-restart", atEnd);
@@ -636,7 +639,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const limit = window.innerHeight * 0.9;
     pending.forEach((el) => {
       const r = el.getBoundingClientRect();
-      if (r.top < limit && r.bottom > -40) { el.classList.add("m-in"); pending.delete(el); }
+      // Anything in view, or already scrolled past, is revealed.
+      if (r.top < limit) { el.classList.add("m-in"); pending.delete(el); }
     });
   }
   const schedule = () => { if (!queued) { queued = true; setTimeout(check, 40); } };
@@ -724,7 +728,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     const hint = document.createElement("div");
     hint.className = "swipe-hint";
     hint.setAttribute("aria-hidden", "true");
-    hint.innerHTML = '<button type="button" aria-label="Previous">' + CHEV_L + '</button>' + "<i></i>".repeat(n) + '<button type="button" aria-label="Next">' + CHEV_R + '</button>';
+    hint.innerHTML = '<button type="button" aria-label="Previous">' + CHEV_L + '</button><button type="button" aria-label="Next">' + CHEV_R + '</button>';
     hint.removeAttribute("aria-hidden");
     row.after(hint);
     const dots = [...hint.querySelectorAll("i")];
@@ -736,7 +740,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
       const kids = [...row.children];
       let best = 0, bestD = Infinity;
       kids.forEach((k, i) => { const d = Math.abs(k.getBoundingClientRect().left - row.getBoundingClientRect().left - 20); if (d < bestD) { bestD = d; best = i; } });
-      dots.forEach((d, i) => d.classList.toggle("is-on", i === best));
+
       hint.style.visibility = row.scrollWidth > row.clientWidth + 2 ? "" : "hidden";
       prev.disabled = row.scrollLeft < 4;
       next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
@@ -797,9 +801,30 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   }
   apply(root.dataset.mood || "transit", false);
 
+  const WIPE = { calm: "#5b3df5", transit: "#111111", tangy: "#d4ff4f", sophisticated: "#f4ecdb" };
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function switchTo(key, from) {
+    if (key === root.dataset.mood) return;
+    if (reduced || !from) { apply(key, true); return; }
+    const r = from.getBoundingClientRect();
+    const wipe = document.createElement("div");
+    wipe.className = "mood-wipe";
+    wipe.style.setProperty("--x", `${r.left + r.width / 2}px`);
+    wipe.style.setProperty("--y", `${r.top + r.height / 2}px`);
+    wipe.style.background = WIPE[key];
+    document.body.appendChild(wipe);
+    requestAnimationFrame(() => wipe.classList.add("is-in"));
+    setTimeout(() => { apply(key, true); wipe.classList.add("is-out"); }, 420);
+    setTimeout(() => wipe.remove(), 1000);
+  }
   document.addEventListener("click", (e) => {
     const b = e.target.closest("button[data-mood]");
-    if (b) apply(b.dataset.mood, true);
+    if (b) switchTo(b.dataset.mood, b);
+    const sh = e.target.closest("[data-shuffle-mood]");
+    if (sh) {
+      const others = Object.keys(MOODS).filter((k) => k !== root.dataset.mood);
+      switchTo(others[Math.floor(Math.random() * others.length)], sh);
+    }
   });
 
   const m = document.getElementById("mood");

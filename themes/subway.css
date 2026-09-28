@@ -214,3 +214,29 @@
 .theme-subway .incl li:nth-child(5) .ico { background: #f3e1f5; } .theme-subway .incl li:nth-child(6) .ico { background: #ffe6d6; }
 .theme-subway .tier--biz { --tier: var(--blue); } .theme-subway .tier--full { --tier: var(--purple); }
 .theme-subway .seal__edge, .theme-subway .seal__inner { fill: #111; } .theme-subway .seal__arc { fill: var(--yellow); }
+
+/* Section rhythm with more black */
+.theme-subway #work { background: #fff; }
+.theme-subway #examples { background: #f2f2ef; --cf-fade: #f2f2ef; }
+.theme-subway #moods { background: #111; color: #fff; }
+.theme-subway #compare { background: #fff; }
+.theme-subway #how { background: #111; }
+.theme-subway #how h2 { color: #fff; }
+.theme-subway #how .eyebrow { background: #fff; color: #111; }
+.theme-subway #pricing { background: #fff4c2; }
+.theme-subway #features { background: #fff; }
+.theme-subway #local { background: #eef3fb; }
+.theme-subway #promises { background: #fff; }
+.theme-subway #promises .promises p { border: 1px solid var(--line); border-left: 8px solid var(--c); }
+.theme-subway #about { background: #eef6f1; }
+.theme-subway #faq { background: #fff; }
+.theme-subway #blog { background: #f2f2ef; }
+.theme-subway .play { --play-bg: #fff; }
+/* Accent bars use the line colors */
+.theme-subway .post-card.post-card--article { border-top-color: var(--c); }
+.theme-subway [data-tone="blue"] { --c: var(--blue); } .theme-subway [data-tone="green"] { --c: var(--green); }
+.theme-subway [data-tone="yellow"] { --c: var(--yellow); } .theme-subway [data-tone="red"] { --c: var(--red); }
+.theme-subway [data-tone="purple"] { --c: var(--purple); } .theme-subway [data-tone="teal"] { --c: var(--gray); }
+.theme-subway #moods .play, .theme-subway #moods .play h2 { color: #111; }
+.theme-subway #moods .play .eyebrow { background: #111; color: #fff; }
+.theme-subway #moods .play p:not(.eyebrow) { color: #4d4d4d; }
