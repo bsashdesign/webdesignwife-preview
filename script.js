@@ -742,6 +742,8 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
       kids.forEach((k, i) => { const d = Math.abs(k.getBoundingClientRect().left - row.getBoundingClientRect().left - 20); if (d < bestD) { bestD = d; best = i; } });
 
       hint.style.visibility = row.scrollWidth > row.clientWidth + 2 ? "" : "hidden";
+      row.style.setProperty("--fade-l", row.scrollLeft > 4 ? "60px" : "0px");
+      row.style.setProperty("--fade-r", row.scrollLeft + row.clientWidth < row.scrollWidth - 4 ? "90px" : "0px");
       prev.disabled = row.scrollLeft < 4;
       next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
     };
@@ -801,29 +803,14 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   }
   apply(root.dataset.mood || "transit", false);
 
-  const WIPE = { calm: "#5b3df5", transit: "#111111", tangy: "#d4ff4f", sophisticated: "#f4ecdb" };
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function switchTo(key, from) {
-    if (key === root.dataset.mood) return;
-    if (reduced || !from) { apply(key, true); return; }
-    const r = from.getBoundingClientRect();
-    const wipe = document.createElement("div");
-    wipe.className = "mood-wipe";
-    wipe.style.setProperty("--x", `${r.left + r.width / 2}px`);
-    wipe.style.setProperty("--y", `${r.top + r.height / 2}px`);
-    wipe.style.background = WIPE[key];
-    document.body.appendChild(wipe);
-    requestAnimationFrame(() => wipe.classList.add("is-in"));
-    setTimeout(() => { apply(key, true); wipe.classList.add("is-out"); }, 420);
-    setTimeout(() => wipe.remove(), 1000);
-  }
+  function switchTo(key) { if (key !== root.dataset.mood) apply(key, true); }
   document.addEventListener("click", (e) => {
     const b = e.target.closest("button[data-mood]");
-    if (b) switchTo(b.dataset.mood, b);
+    if (b) switchTo(b.dataset.mood);
     const sh = e.target.closest("[data-shuffle-mood]");
     if (sh) {
       const others = Object.keys(MOODS).filter((k) => k !== root.dataset.mood);
-      switchTo(others[Math.floor(Math.random() * others.length)], sh);
+      switchTo(others[Math.floor(Math.random() * others.length)]);
     }
   });
 

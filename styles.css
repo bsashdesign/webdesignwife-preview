@@ -1503,3 +1503,37 @@ html.drawer-open { overflow: hidden; }
 .blog-hero--center + .blog-list .filters { justify-content: center; }
 .blog-hero--center { padding-bottom: 24px; }
 .blog-hero--center .intro { margin-bottom: 0; }
+
+/* ================================================================
+   Website settings section: its own section, no floating panel
+   ================================================================ */
+#compare { background: var(--paper); }
+#moods { background: var(--tint); }
+.section--play { padding: 104px 0; }
+.play { margin: 0; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+.chip, .chip:hover, .chip[aria-pressed="true"], .chip:active { box-shadow: none; }
+.chip--calm { box-shadow: inset 0 0 0 1px #e2dafc; }
+.chip--calm:hover, .chip--calm[aria-pressed="true"] { box-shadow: inset 0 0 0 1px #e2dafc; }
+.chip--tangy, .chip--tangy:hover, .chip--tangy[aria-pressed="true"] { box-shadow: 6px 6px 0 #0e0e0e, inset 0 0 0 2.5px #0e0e0e; }
+.chip--sophisticated, .chip--sophisticated:hover, .chip--sophisticated[aria-pressed="true"] { box-shadow: inset 0 0 0 6px #f4ecdb, inset 0 0 0 7px rgba(184,149,90,.5); }
+@media (max-width: 960px) { .play { margin: 0; padding: 0; } }
+@media (max-width: 640px) { .section--play { padding: 56px 0; } .play { margin: 0; padding: 0; } }
+
+/* ================================================================
+   Floating mood button: just the tile, with a border and soft shadow
+   ================================================================ */
+.mood__btn { width: auto; height: auto; padding: 0; border: 0; border-radius: 14px; background: none; box-shadow: none; }
+.mood__btn .moodicon { width: 50px; height: 50px; border-radius: 14px; font-size: 20px; border: 1px solid rgba(0,0,0,.12); box-shadow: 0 8px 18px -10px rgba(0,0,0,.45); }
+.mood__btn .moodicon--calm { border-color: #d9d0ff; }
+.mood__btn .moodicon--transit { border: 1px solid #cfcfca; border-top: 4px solid #ff6319; box-shadow: 0 8px 18px -10px rgba(0,0,0,.45); }
+.mood__btn .moodicon--tangy { border: 2px solid #0e0e0e; box-shadow: 4px 4px 0 #0e0e0e; font-size: 16px; }
+.mood__btn .moodicon--sophisticated { background: #efe4cf; border-color: #d9c8a4; font-size: 24px; }
+.moodicon--transit { box-shadow: none; border-top: 3px solid #ff6319; }
+
+/* ================================================================
+   Boroughs: fades follow the scroll position
+   ================================================================ */
+.boroughs {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 90px)), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 90px)), transparent 100%);
+}
