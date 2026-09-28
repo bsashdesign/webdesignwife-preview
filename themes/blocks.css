@@ -37,7 +37,7 @@
 .theme-blocks #features { background: #fff; }
 .theme-blocks #local { background: var(--sky); }
 .theme-blocks #finder { background: var(--sun); }
-.theme-blocks #pricing { background: #fff; }
+.theme-blocks #pricing { background: #eaf3d2; }
 .theme-blocks #promises { background: var(--lime); }
 .theme-blocks #faq { background: var(--lilac); }
 .theme-blocks #audit { background: var(--cobalt); }

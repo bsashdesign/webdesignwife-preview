@@ -1,7 +1,7 @@
 # Builds index.html from home.template.html.
 #   python3 build_home.py
 # Every mood's styles ship with the page; script.js switches moods in place
-# (saved per visitor, or forced with ?mood=calm|energetic|tangy|sophisticated).
+# (saved per visitor, or forced with ?mood=calm|transit|tangy|sophisticated).
 import pathlib
 import re
 import time
@@ -13,12 +13,12 @@ TEMPLATE = (HERE / "home.template.html").read_text()
 
 # key: URL value. cls: the theme class the stylesheets are scoped to.
 MOODS = [
-    {"key": "calm", "cls": "theme-refined", "label": "Calm", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
-    {"key": "energetic", "cls": "theme-subway", "label": "Energetic", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
-    {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
-    {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
+    {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, airy and uncluttered. Lets your work do the talking.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
+    {"key": "transit", "cls": "theme-subway", "label": "Transit", "note": "Inspired by New York subway signs: bold, direct, easy to follow.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
+    {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright colors and chunky outlines, like a citrus soda can.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
+    {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Inspired by wedding stationery: serif type and champagne details.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
-DEFAULT = "energetic"
+DEFAULT = "transit"
 
 FONTS = (
     '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700'
@@ -46,11 +46,11 @@ def dots(m):
 
 def switcher():
     opts = "".join(
-        f'<button type="button" class="mood__opt" data-mood="{m["key"]}" aria-pressed="false">{dots(m)}{m["label"]}</button>'
+        f'<button type="button" class="mood__opt" data-mood="{m["key"]}" aria-pressed="false">{dots(m)}<span><strong>{m["label"]}</strong><small>{m["note"]}</small></span></button>'
         for m in MOODS
     )
     return f'''<div class="mood" id="mood">
-    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood">{SPARKLE}</button>
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood">{dots(MOODS[1])}</button>
     <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><p>Choose your mood</p>{opts}</div>
   </div>'''
 
@@ -91,7 +91,7 @@ page = (TEMPLATE
 (HERE / "index.html").write_text(bust(add_alt_copy(page)))
 
 # Old per-style URLs now open the homepage in that mood.
-for old, key in (("design-a", "calm"), ("design-b", "energetic"), ("design-c", "tangy"), ("design-d", "sophisticated")):
+for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):
     (HERE / f"{old}.html").write_text(
         f'<!DOCTYPE html><meta charset="utf-8"><meta name="robots" content="noindex">'
         f'<meta http-equiv="refresh" content="0;url=index.html?mood={key}"><a href="index.html?mood={key}">Continue</a>')

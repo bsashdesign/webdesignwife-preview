@@ -733,7 +733,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
 // Moods: switch the whole look in place, like light and dark mode
 // ---------------------------------------------------------------
 (function () {
-  const MOODS = { calm: "theme-refined", energetic: "theme-subway", tangy: "theme-blocks", sophisticated: "theme-wedding" };
+  const MOODS = { calm: "theme-refined", transit: "theme-subway", tangy: "theme-blocks", sophisticated: "theme-wedding" };
   const root = document.documentElement;
 
   function swapCopy(cls) {
@@ -744,6 +744,10 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   }
   function mark(key) {
     document.querySelectorAll("[data-mood]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mood === key)));
+    // The mood button shows the current mood's colors.
+    const btn = document.querySelector(".mood__btn");
+    const opt = document.querySelector(`.mood__opt[data-mood="${key}"] .mood__dots`);
+    if (btn && opt) btn.innerHTML = opt.outerHTML;
   }
   function apply(key, save) {
     if (!MOODS[key]) return;
@@ -756,7 +760,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     // Let size-dependent pieces (carousel, nav) re-measure for the new fonts.
     setTimeout(() => window.dispatchEvent(new Event("resize")), 60);
   }
-  apply(root.dataset.mood || "energetic", false);
+  apply(root.dataset.mood || "transit", false);
 
   document.addEventListener("click", (e) => {
     const b = e.target.closest("button[data-mood]");
