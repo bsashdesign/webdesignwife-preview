@@ -216,7 +216,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>+ ${money(setup)} one-time setup`
         : `+ ${money(setup)} one-time setup`;
       const cta = plan.querySelector(".plan__cta");
-      if (cta) cta.textContent = mode === "yearly" ? "Say “I do”" : "Get started";
+      if (cta) cta.textContent = mode === "yearly" ? "Say “I Do”" : "Get Started";
     });
   }
   buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.billing)));
@@ -391,7 +391,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const atEnd = active === n - 1;
     next.classList.toggle("is-restart", atEnd);
     next.setAttribute("aria-label", atEnd ? "Back to the first sample" : "Next sample");
-    next.innerHTML = atEnd ? '<span>Back to the first</span>' : CHEV_R;
+    next.innerHTML = atEnd ? '<span>Back to the First</span>' : CHEV_R;
     cf.classList.toggle("is-end", n - 1 - active < shown);
   }
 
@@ -508,7 +508,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       </div>`).join("");
     others.hidden = true;
     othersToggle.setAttribute("aria-expanded", "false");
-    othersToggle.textContent = "View other plans";
+    othersToggle.textContent = "View Other Plans";
   }
 
   // Picking an answer moves to the next step.
@@ -524,7 +524,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const open = others.hidden;
     others.hidden = !open;
     othersToggle.setAttribute("aria-expanded", String(open));
-    othersToggle.textContent = open ? "Hide other plans" : "View other plans";
+    othersToggle.textContent = open ? "Hide Other Plans" : "View Other Plans";
   });
 
   function choose(planId) {

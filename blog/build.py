@@ -6,6 +6,7 @@ from local import BOROUGHS, borough_body
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 import mood_parts as MP
+import titlecase
 
 HERE = pathlib.Path(__file__).parent
 
@@ -165,6 +166,7 @@ LOCALS = [{
 } for b in BOROUGHS]
 ALL = EXTRA[:1] + COMPARE + LOCALS + ARTICLES + EXTRA[1:]
 for a in ALL:
+    a["title"] = titlecase.title(a["title"])
     words = len(re.sub(r"<[^>]+>", " ", a["body"]).split()) + 120  # plus the review box copy
     a["minutes"] = max(2, round(words / 230))
 
@@ -244,6 +246,10 @@ def fill(page):
     css = MP.THEME_CSS.replace('href="themes/', 'href="../themes/').replace('.css"', ".css?v=" + MP.VERSION + '"')
     return (page.replace("{MOOD_FONTS}", MP.FONTS).replace("{MOOD_CSS}", css).replace("{MOOD_BOOT}", MP.BOOT)
             .replace("{MOOD_SWITCHER}", MP.SWITCHER).replace("{V}", MP.VERSION))
+
+
+def finish(page):
+    return titlecase.apply(fill(page))
 
 FOOT = """  </main>
   <footer class="footer">
@@ -378,7 +384,7 @@ index += """    <section class="blog-hero blog-hero--center">
 order = [a for a in ALL if a["group"] == "guides"][:2] + [a for a in ALL if a["group"] == "compare"] + [a for a in ALL if a["group"] == "local"] + [a for a in ALL if a["group"] == "guides"][2:]
 index += "".join(card(a, n) for n, a in enumerate(order))
 index += "        </div>\n      </div>\n    </section>\n" + FOOT
-(HERE / "index.html").write_text(fill(index))
+(HERE / "index.html").write_text(finish(index))
 
 for a in ALL:
     page = HEAD.format(title=f"{html.escape(a['title'])} — Web Design Wife", description=html.escape(a["summary"]))
@@ -396,7 +402,7 @@ for a in ALL:
     </article>
 """
     page += FOOT
-    (HERE / f"{a['slug']}.html").write_text(fill(page))
+    (HERE / f"{a['slug']}.html").write_text(finish(page))
 
 # Article index for the related-posts widget (script.js). New articles are picked up automatically.
 import json

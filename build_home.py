@@ -6,6 +6,8 @@ import pathlib
 import re
 import time
 
+import titlecase
+
 VERSION = str(int(time.time()))
 
 HERE = pathlib.Path(__file__).parent
@@ -72,7 +74,7 @@ def mood_boot():
 
 def add_alt_copy(html):
     for cls, old, new in ALT_COPY:
-        html = html.replace(f">{old}<", f'><span data-alt-{cls}="{new}">{old}</span><', 1)
+        html = html.replace(f">{old}<", f'><span data-alt-{cls}="{titlecase.title(new)}">{old}</span><', 1)
     return html
 
 
@@ -89,7 +91,7 @@ page = (TEMPLATE
         .replace("{{SWITCHER}}", switcher())
         .replace("{{MOODS}}", footer_moods())
         .replace("{{HOME}}", "index.html"))
-(HERE / "index.html").write_text(bust(add_alt_copy(page)))
+(HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(page))))
 
 # Old per-style URLs now open the homepage in that mood.
 for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):
