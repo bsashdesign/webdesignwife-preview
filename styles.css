@@ -1463,7 +1463,8 @@ html.drawer-open { overflow: hidden; }
 .cf__arrow { top: calc(var(--mid, 45%) - 22px); }
 .cf__arrow--prev { left: -64px; } .cf__arrow--next { right: -8px; }
 .cf__stage::after { right: 0; width: 200px; }
-@media (max-width: 1300px) { .cf__arrow--prev { left: 6px; } .cf-card { left: 0; } }
+@media (max-width: 1259px) { .cf__arrow--prev { left: 0; } .cf-card { left: 56px; } }
+@media (max-width: 640px) { .cf-card { left: 0; } .cf__arrow--prev { left: 4px; } }
 
 /* ================================================================
    Mood button: square, matching its icon
