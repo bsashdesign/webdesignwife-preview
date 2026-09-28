@@ -742,7 +742,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
       kids.forEach((k, i) => { const d = Math.abs(k.getBoundingClientRect().left - row.getBoundingClientRect().left - 20); if (d < bestD) { bestD = d; best = i; } });
 
       hint.style.visibility = row.scrollWidth > row.clientWidth + 2 ? "" : "hidden";
-      row.style.setProperty("--fade-l", row.scrollLeft > 4 ? "60px" : "0px");
+      row.style.setProperty("--fade-l", row.scrollLeft > 30 ? "60px" : "0px");
       row.style.setProperty("--fade-r", row.scrollLeft + row.clientWidth < row.scrollWidth - 4 ? "90px" : "0px");
       prev.disabled = row.scrollLeft < 4;
       next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
