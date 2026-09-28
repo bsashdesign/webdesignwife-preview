@@ -195,8 +195,7 @@
 .theme-subway #faq { background: #fff; }
 .theme-subway #blog { background: #f2f2ef; }
 .theme-subway .section + .section { padding-top: 104px; }
-@media (max-width: 640px) { .theme-subway .section + .section { padding-top: 72px; } }
+@media (max-width: 640px) { .theme-subway .section + .section { padding-top: 56px; } }
 .theme-subway .extras, .theme-subway .features li, .theme-subway .cc { background: #fff; }
 /* Extras rows take their colors from their line dots */
-.theme-subway .extras__grid--biz li { background: transparent; border-color: #b9cff5; }
-.theme-subway .extras__grid--full li { background: #f6ecf8; border-color: #e3c6ea; }
+.theme-subway .ticks:not(.ticks--dark) li::after { border-color: #111; }

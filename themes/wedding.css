@@ -62,7 +62,7 @@
 .theme-wedding .tag--all { color: var(--done); }
 .theme-wedding .tag--biz { color: #54708c; }
 .theme-wedding .tag--full { color: var(--gold); background: none; }
-.theme-wedding .extras__grid li { background: var(--tint); border-radius: 4px; }
+.theme-wedding .extras__grid li { background: #fff; border-radius: 4px; }
 
 /* Pricing: the marriage joke is at home here */
 .theme-wedding .billing { border-radius: 999px; border-color: var(--line); }
@@ -115,13 +115,14 @@
 .theme-wedding .cf-card__head img, .theme-wedding .cf-pick img { filter: grayscale(.85) sepia(.35) saturate(.9); }
 .theme-wedding .duo { display: block; width: 30px; height: 30px; color: var(--gold); }
 .theme-wedding .ico { background: none; box-shadow: none; border: 1px solid rgba(184, 149, 90, .45); border-radius: 50%; }
-.theme-wedding .extras__grid .duo { width: 32px; height: 32px; }
+.theme-wedding .extras__grid .duo { width: 24px; height: 24px; }
 .theme-wedding .post-card__cover img { filter: grayscale(1) sepia(.35) drop-shadow(0 10px 12px rgba(0,0,0,.15)); }
 .theme-wedding .compare .compare__head .us { background: var(--ink); color: #fff; }
 .theme-wedding .cc--us { border-color: var(--gold); }
 
 /* Extras rows take their colors from their badges */
-.theme-wedding .extras__grid--biz li { background: transparent; border: 1px solid #b7c6d6; }
-.theme-wedding .extras__grid--biz .duo { color: #54708c; }
-.theme-wedding .extras__grid--full li { background: #f6efe2; border: 1px solid #dcc79f; }
-.theme-wedding .extras__grid--full .duo { color: var(--gold); }
+
+/* Blog review box: a clear title and a button that stands out on ink */
+.theme-wedding .quickcheck__title { font-size: 1.7rem; font-weight: 500; }
+.theme-wedding .quickcheck .btn--primary { background: var(--gold); color: #fff; }
+.theme-wedding .quickcheck .btn--primary:hover { background: #a3824a; box-shadow: none; }

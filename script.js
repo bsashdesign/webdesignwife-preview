@@ -446,7 +446,7 @@
   const others = document.getElementById("finder-others");
 
   const PLANS = [
-    { id: "plan-simple", name: "Simple Site", price: 99, why: "Everything a small business needs on one polished page.",
+    { id: "plan-simple", name: "Essentials", price: 99, why: "Everything a small business needs on one polished page.",
       feats: ["One scrolling page", "Contact form", "Hosting, backups and uptime monitoring", "Unlimited minor edits"] },
     { id: "plan-business", name: "Business", price: 149, why: "A full site that helps nearby customers find you.",
       feats: ["Up to 5 pages", "Google Maps setup and management", "Live Google reviews and Instagram feed", "Unlimited minor edits"] },
@@ -697,7 +697,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
 
 // Dots under swipeable rows
 (function () {
-  document.querySelectorAll(".plans, #blog .posts, .steps").forEach((row) => {
+  document.querySelectorAll("#blog .posts, .steps").forEach((row) => {
     const n = row.children.length;
     const hint = document.createElement("div");
     hint.className = "swipe-hint";
@@ -804,21 +804,7 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   if (pre) pre.click();
 })();
 
-// Pricing on phones: long feature lists start collapsed
-(function () {
-  document.querySelectorAll(".plan").forEach((plan) => {
-    const list = plan.querySelector(".ticks");
-    if (!list || list.children.length <= 4) return;
-    plan.classList.add("is-collapsible");
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "plan__more";
-    const label = () => (plan.classList.contains("is-expanded") ? "Show fewer" : `Show all ${list.children.length} features`);
-    b.textContent = label();
-    b.addEventListener("click", () => { plan.classList.toggle("is-expanded"); b.textContent = label(); });
-    list.after(b);
-  });
-})();
+
 
 // ---------------------------------------------------------------
 // Related articles: picked automatically from posts.json.
