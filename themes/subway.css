@@ -150,7 +150,7 @@
 /* Blog */
 .theme-subway .blog-hero { background: radial-gradient(700px 380px at 85% 0%, #e9f0ff, transparent 70%), #fff; padding-bottom: 40px; }
 .theme-subway .blog-hero .eyebrow { --dot: var(--yellow); }
-.theme-subway .blog-list { padding-top: 64px; }
+.theme-subway .blog-list { padding-top: 8px; }
 .theme-subway .post-card { border-radius: 10px; border-top: 6px solid var(--c, var(--blue)); }
 .theme-subway .post-card:nth-child(4n+1) { --c: var(--red); }
 .theme-subway .post-card:nth-child(4n+2) { --c: var(--green); }
@@ -181,3 +181,4 @@
 /* Blog cards: accent bar in a deeper shade of the cover */
 .theme-subway .post-card.post-card--article { border-top: 6px solid var(--cover-dark, var(--c)); }
 .theme-subway .rank__mark { border-radius: 50%; }
+.theme-subway .filter { border-radius: 8px; }

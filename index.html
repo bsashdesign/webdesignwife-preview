@@ -13,9 +13,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790590513">
-  <link rel="stylesheet" href="themes/subway.css?v=1790590513">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1790593971">
+  <link rel="stylesheet" href="themes/subway.css?v=1790593971">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790593971">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790593971">
+  <script>(function(){var M={"calm":"theme-refined","energetic":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="energetic";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,13 +33,16 @@
   }
   </script>
 </head>
-<body class="theme-subway">
+<body>
   <a class="skip" href="#main">Skip to content</a>
-  <nav class="switcher" aria-label="Design directions"><span>Style</span><a href="design-a.html">Modern</a><a href="design-b.html" aria-current="page">Metro</a><a href="design-c.html">Tangy</a><a href="design-d.html">Magazine</a></nav>
+  <div class="mood" id="mood">
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.5 4.6 2.4 6.5 7 7-4.6.5-6.5 2.4-7 7-.5-4.6-2.4-6.5-7-7 4.6-.5 6.5-2.4 7-7Z" fill="currentColor"/><path d="M19 15.5c.2 1.8 1 2.6 2.8 2.8-1.8.2-2.6 1-2.8 2.8-.2-1.8-1-2.6-2.8-2.8 1.8-.2 2.6-1 2.8-2.8Z" fill="currentColor" opacity=".6"/></svg></button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><p>Choose your mood</p><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="mood__dots"><i style="background:#ffffff"></i><i style="background:#5b3df5"></i><i style="background:#ece8ff"></i></span>Calm</button><button type="button" class="mood__opt" data-mood="energetic" aria-pressed="false"><span class="mood__dots"><i style="background:#111111"></i><i style="background:#fccc0a"></i><i style="background:#0b5cd6"></i></span>Energetic</button><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="mood__dots"><i style="background:#d4ff4f"></i><i style="background:#ff6a1a"></i><i style="background:#3355ff"></i></span>Tangy</button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="mood__dots"><i style="background:#f4ecdb"></i><i style="background:#b8955a"></i><i style="background:#1f2336"></i></span>Sophisticated</button></div>
+  </div>
 
   <header class="nav">
     <div class="wrap nav__inner">
-      <a class="brand" href="design-b.html" aria-label="Web Design Wife home">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
         <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
       </a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
@@ -79,7 +85,7 @@
       </div>
       <div class="drawer__foot">
         <a class="btn btn--primary btn--block" href="#audit">Get a free website audit</a>
-        <a class="drawer__ben" href="#audit" data-tab="callback">Or speak to Ben →</a>
+        <a class="drawer__ben" href="#audit" data-tab="callback">Or let's talk →</a>
         <p>Based in New York, NY</p>
       </div>
     </aside>
@@ -158,42 +164,64 @@
             <p class="eyebrow">Examples</p>
             <h2>See the kind of site you'd get</h2>
           </div>
-          <p class="muted">Ten sample homepages for made-up New York businesses. Pick an industry and switch between desktop and mobile.</p>
+          <p class="muted">Ten sample homepages, one for every kind of local business. Swipe through them, and switch to mobile to see how they look on a phone.</p>
         </div>
 
-        <div class="gallery" id="gallery">
-          <div class="gallery__chips" role="tablist" aria-label="Choose an industry">
-            <button role="tab" aria-selected="true" data-src="samples/rivera-plumbing.html" data-url="riveraplumbing.com" data-name="Rivera Plumbing" data-meta="Plumber · Astoria, Queens">Plumber</button>
-            <button role="tab" aria-selected="false" data-src="samples/juniper-hair.html" data-url="juniperhair.com" data-name="Juniper Hair Studio" data-meta="Hair salon · Park Slope, Brooklyn">Hair salon</button>
-            <button role="tab" aria-selected="false" data-src="samples/kings-cut.html" data-url="kingscutbarbers.com" data-name="Kings Cut Barbers" data-meta="Barbershop · Belmont, The Bronx">Barbershop</button>
-            <button role="tab" aria-selected="false" data-src="samples/nonna-rosa.html" data-url="nonnarosa.nyc" data-name="Nonna Rosa Trattoria" data-meta="Restaurant · Astoria, Queens">Restaurant</button>
-            <button role="tab" aria-selected="false" data-src="samples/bright-park-dental.html" data-url="brightparkdental.com" data-name="Bright Park Dental" data-meta="Dentist · Upper West Side">Dentist</button>
-            <button role="tab" aria-selected="false" data-src="samples/borough-build.html" data-url="boroughbuild.co" data-name="Borough Build Co." data-meta="Contractor · Staten Island">Contractor</button>
-            <button role="tab" aria-selected="false" data-src="samples/fresh-slate.html" data-url="freshslatecleaning.com" data-name="Fresh Slate Cleaning" data-meta="Cleaning service · Manhattan">Cleaning</button>
-            <button role="tab" aria-selected="false" data-src="samples/ironline-fitness.html" data-url="ironlinefitness.com" data-name="Ironline Fitness" data-meta="Gym · Long Island City">Fitness</button>
-            <button role="tab" aria-selected="false" data-src="samples/caldwell-tax.html" data-url="caldwelltax.com" data-name="Caldwell Tax &amp; Accounting" data-meta="Accountant · Midtown">Accountant</button>
-            <button role="tab" aria-selected="false" data-src="samples/crumb-kettle.html" data-url="crumbandkettle.com" data-name="Crumb &amp; Kettle" data-meta="Bakery · Williamsburg">Bakery</button>
-          </div>
-
-          <div class="viewer" data-mode="desktop">
-            <div class="viewer__bar">
-              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="browser__url" id="viewer-url">riveraplumbing.com</span>
-              <div class="viewer__modes" role="radiogroup" aria-label="Preview size">
-                <button type="button" role="radio" aria-checked="true" data-mode="desktop">Desktop</button>
-                <button type="button" role="radio" aria-checked="false" data-mode="phone">Mobile</button>
-              </div>
-            </div>
-            <div class="viewer__stage" id="viewer-stage">
-              <div class="viewer__frame" id="viewer-frame">
-                <iframe id="viewer-iframe" title="Sample website preview" src="samples/rivera-plumbing.html?embed" loading="lazy" scrolling="no" tabindex="-1"></iframe>
-              </div>
-            </div>
-            <div class="viewer__foot">
-              <p><strong id="viewer-name">Rivera Plumbing</strong> <span id="viewer-meta">Plumber · Astoria, Queens</span> <span class="viewer__fict">Fictional business</span></p>
-              <a id="viewer-open" href="samples/rivera-plumbing.html" target="_blank" rel="noopener">See the full page ↗</a>
+        <div class="cf" id="gallery" data-mode="desktop">
+          <div class="cf__controls">
+            <div class="viewer__modes" role="radiogroup" aria-label="Preview size">
+              <button type="button" role="radio" aria-checked="true" data-mode="desktop">Desktop</button>
+              <button type="button" role="radio" aria-checked="false" data-mode="mobile">Mobile</button>
             </div>
           </div>
+          <div class="cf__stage" aria-roledescription="carousel" aria-label="Sample websites">
+            <button type="button" class="cf__arrow cf__arrow--prev" aria-label="Previous sample">←</button>
+            <div class="cf__track">
+            <article class="cf-card" data-i="0" data-src="samples/rivera-plumbing.html" aria-label="Rivera Plumbing, Plumber">
+              <header class="cf-card__head"><img src="images/icons/i-plumber.png" alt="" width="40" height="40"><span><strong>Rivera Plumbing</strong><small>Plumber · Astoria, Queens</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>riveraplumbing.com</span></div><div class="cf-card__screen"><iframe title="Rivera Plumbing sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="1" data-src="samples/juniper-hair.html" aria-label="Juniper Hair Studio, Hair salon">
+              <header class="cf-card__head"><img src="images/icons/i-salon.png" alt="" width="40" height="40"><span><strong>Juniper Hair Studio</strong><small>Hair salon · Park Slope, Brooklyn</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>juniperhair.com</span></div><div class="cf-card__screen"><iframe title="Juniper Hair Studio sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="2" data-src="samples/kings-cut.html" aria-label="Kings Cut Barbers, Barbershop">
+              <header class="cf-card__head"><img src="images/icons/i-barber.png" alt="" width="40" height="40"><span><strong>Kings Cut Barbers</strong><small>Barbershop · Belmont, the Bronx</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>kingscutbarbers.com</span></div><div class="cf-card__screen"><iframe title="Kings Cut Barbers sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="3" data-src="samples/nonna-rosa.html" aria-label="Nonna Rosa Trattoria, Restaurant">
+              <header class="cf-card__head"><img src="images/icons/i-restaurant.png" alt="" width="40" height="40"><span><strong>Nonna Rosa Trattoria</strong><small>Restaurant · Astoria, Queens</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>nonnarosa.nyc</span></div><div class="cf-card__screen"><iframe title="Nonna Rosa Trattoria sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="4" data-src="samples/bright-park-dental.html" aria-label="Bright Park Dental, Dentist">
+              <header class="cf-card__head"><img src="images/icons/i-dentist.png" alt="" width="40" height="40"><span><strong>Bright Park Dental</strong><small>Dentist · Upper West Side</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>brightparkdental.com</span></div><div class="cf-card__screen"><iframe title="Bright Park Dental sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="5" data-src="samples/borough-build.html" aria-label="Borough Build Co., Contractor">
+              <header class="cf-card__head"><img src="images/icons/i-contractor.png" alt="" width="40" height="40"><span><strong>Borough Build Co.</strong><small>Contractor · Staten Island</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>boroughbuild.co</span></div><div class="cf-card__screen"><iframe title="Borough Build Co. sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="6" data-src="samples/fresh-slate.html" aria-label="Fresh Slate Cleaning, Cleaning service">
+              <header class="cf-card__head"><img src="images/icons/i-cleaning.png" alt="" width="40" height="40"><span><strong>Fresh Slate Cleaning</strong><small>Cleaning service · Manhattan</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>freshslatecleaning.com</span></div><div class="cf-card__screen"><iframe title="Fresh Slate Cleaning sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="7" data-src="samples/ironline-fitness.html" aria-label="Ironline Fitness, Gym">
+              <header class="cf-card__head"><img src="images/icons/i-fitness.png" alt="" width="40" height="40"><span><strong>Ironline Fitness</strong><small>Gym · Long Island City</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>ironlinefitness.com</span></div><div class="cf-card__screen"><iframe title="Ironline Fitness sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="8" data-src="samples/caldwell-tax.html" aria-label="Caldwell Tax &amp; Accounting, Accountant">
+              <header class="cf-card__head"><img src="images/icons/i-accountant.png" alt="" width="40" height="40"><span><strong>Caldwell Tax &amp; Accounting</strong><small>Accountant · Midtown</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>caldwelltax.com</span></div><div class="cf-card__screen"><iframe title="Caldwell Tax &amp; Accounting sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            <article class="cf-card" data-i="9" data-src="samples/crumb-kettle.html" aria-label="Crumb &amp; Kettle, Bakery">
+              <header class="cf-card__head"><img src="images/icons/i-bakery.png" alt="" width="40" height="40"><span><strong>Crumb &amp; Kettle</strong><small>Bakery · Williamsburg</small></span></header>
+              <div class="cf-card__frame"><div class="cf-card__bar"><i></i><i></i><i></i><span>crumbandkettle.com</span></div><div class="cf-card__screen"><iframe title="Crumb &amp; Kettle sample homepage" scrolling="no" tabindex="-1"></iframe><span class="cf-card__glare"></span></div></div>
+            </article>
+            </div>
+            <button type="button" class="cf__arrow cf__arrow--next" aria-label="Next sample">→</button>
+          </div>
+          <div class="cf__picks" role="tablist" aria-label="Choose an industry"><button type="button" class="cf-pick" data-i="0" aria-label="Plumber"><img src="images/icons/i-plumber.png" alt="" width="28" height="28"><span>Plumber</span></button><button type="button" class="cf-pick" data-i="1" aria-label="Hair salon"><img src="images/icons/i-salon.png" alt="" width="28" height="28"><span>Hair salon</span></button><button type="button" class="cf-pick" data-i="2" aria-label="Barbershop"><img src="images/icons/i-barber.png" alt="" width="28" height="28"><span>Barbershop</span></button><button type="button" class="cf-pick" data-i="3" aria-label="Restaurant"><img src="images/icons/i-restaurant.png" alt="" width="28" height="28"><span>Restaurant</span></button><button type="button" class="cf-pick" data-i="4" aria-label="Dentist"><img src="images/icons/i-dentist.png" alt="" width="28" height="28"><span>Dentist</span></button><button type="button" class="cf-pick" data-i="5" aria-label="Contractor"><img src="images/icons/i-contractor.png" alt="" width="28" height="28"><span>Contractor</span></button><button type="button" class="cf-pick" data-i="6" aria-label="Cleaning service"><img src="images/icons/i-cleaning.png" alt="" width="28" height="28"><span>Cleaning service</span></button><button type="button" class="cf-pick" data-i="7" aria-label="Gym"><img src="images/icons/i-fitness.png" alt="" width="28" height="28"><span>Gym</span></button><button type="button" class="cf-pick" data-i="8" aria-label="Accountant"><img src="images/icons/i-accountant.png" alt="" width="28" height="28"><span>Accountant</span></button><button type="button" class="cf-pick" data-i="9" aria-label="Bakery"><img src="images/icons/i-bakery.png" alt="" width="28" height="28"><span>Bakery</span></button></div>
+          <p class="cf__foot"><span class="cf__note">Ten businesses, ten looks. And endless possibilities for yours.</span> <a id="cf-open" href="samples/rivera-plumbing.html" target="_blank" rel="noopener">Open this sample ↗</a></p>
         </div>
       </div>
     </section>
@@ -253,10 +281,10 @@
     <section class="section" id="how">
       <div class="wrap">
         <p class="eyebrow">How it works</p>
-        <h2>From first call to live site in about two weeks</h2>
+        <h2><span data-alt-theme-wedding="From first date to launch day in about two weeks">From first call to live site in about two weeks</span></h2>
         <ol class="steps">
           <li>
-            <h3>A quick call</h3>
+            <h3><span data-alt-theme-wedding="A first date">A quick call</span></h3>
             <p>Fifteen minutes about your business, your customers and what you want people to do when they find you.</p>
           </li>
           <li>
@@ -278,35 +306,37 @@
         <h2>Everything you need, on every plan</h2>
         <p class="muted intro">Even our $99 plan is a complete, professionally built website that we look after for you.</p>
         <ul class="features features--core">
-          <li><span class="ico ico--violet"><img src="images/icons/palette.png" alt="" width="40" height="40" loading="lazy"></span><h3>Custom design</h3><p>Designed and written for your business by us, not a template you fill in yourself.</p></li>
-          <li><span class="ico ico--blue"><img src="images/icons/phone.png" alt="" width="40" height="40" loading="lazy"></span><h3>Built for phones</h3><p>Fast and easy to use on any screen, with tap-to-call and directions.</p></li>
-          <li><span class="ico ico--amber"><img src="images/icons/envelope.png" alt="" width="40" height="40" loading="lazy"></span><h3>Contact form</h3><p>Messages from customers go straight to your inbox.</p></li>
-          <li><span class="ico ico--rose"><img src="images/icons/pencil.png" alt="" width="40" height="40" loading="lazy"></span><h3>Unlimited minor edits</h3><p>New hours, prices, photos or a promo banner, done within one business day.</p></li>
-          <li><span class="ico ico--green"><img src="images/icons/shield.png" alt="" width="40" height="40" loading="lazy"></span><h3>Hosting, security and uptime</h3><p>Fast, secure hosting with backups. If your site goes down, we're alerted and fix it.</p></li>
-          <li><span class="ico ico--teal"><img src="images/icons/wave.png" alt="" width="40" height="40" loading="lazy"></span><h3>One-tap chat and social links</h3><p>A chat button that opens WhatsApp, text or Instagram messages, plus links to all your profiles.</p></li>
+          <li><span class="ico ico--violet"><img src="images/icons/palette.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,127.17a96.48,96.48,0,0,1-2.39,22.18A24,24,0,0,1,198.21,168H152a24,24,0,0,0-24,24,24,24,0,0,1-32,22.61C58.73,201.44,32,169.81,32,128a96,96,0,0,1,95-96C179.84,31.47,223.55,74.35,224,127.17Z" opacity="0.2"/><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"/></svg></span><h3>Custom design</h3><p>Designed and written for your business by us, not a template you fill in yourself.</p></li>
+          <li><span class="ico ico--blue"><img src="images/icons/phone.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M192,56V200H64V56Z" opacity="0.2"/><path d="M176,16H80A24,24,0,0,0,56,40V216a24,24,0,0,0,24,24h96a24,24,0,0,0,24-24V40A24,24,0,0,0,176,16ZM72,64H184V192H72Zm8-32h96a8,8,0,0,1,8,8v8H72V40A8,8,0,0,1,80,32Zm96,192H80a8,8,0,0,1-8-8v-8H184v8A8,8,0,0,1,176,224Z"/></svg></span><h3>Built for phones</h3><p>Fast and easy to use on any screen, with tap-to-call and directions.</p></li>
+          <li><span class="ico ico--amber"><img src="images/icons/envelope.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,56l-96,88L32,56Z" opacity="0.2"/><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg></span><h3>Contact form</h3><p>Messages from customers go straight to your inbox.</p></li>
+          <li><span class="ico ico--rose"><img src="images/icons/pencil.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,90.34,192,120,136,64l29.66-29.66a8,8,0,0,1,11.31,0L221.66,79A8,8,0,0,1,221.66,90.34Z" opacity="0.2"/><path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM48,163.31l88-88L180.69,120l-88,88H48Zm144-54.62L147.32,64l24-24L216,84.69Z"/></svg></span><h3>Unlimited minor edits</h3><p>New hours, prices, photos or a promo banner, done within one business day.</p></li>
+          <li><span class="ico ico--green"><img src="images/icons/shield.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,56v56c0,96-88,120-88,120S40,208,40,112V56a8,8,0,0,1,8-8H208A8,8,0,0,1,216,56Z" opacity="0.2"/><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg></span><h3>Hosting, security and uptime</h3><p>Fast, secure hosting with backups. If your site goes down, we're alerted and fix it.</p></li>
+          <li><span class="ico ico--teal"><img src="images/icons/wave.png" alt="" width="40" height="40" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128A96,96,0,0,1,79.93,211.11h0L42.54,223.58a8,8,0,0,1-10.12-10.12l12.47-37.39h0A96,96,0,1,1,224,128Z" opacity="0.2"/><path d="M128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-4-1.08,7.85,7.85,0,0,0-2.53.42L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Zm12-88a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm-44,0a12,12,0,1,1-12-12A12,12,0,0,1,96,128Zm88,0a12,12,0,1,1-12-12A12,12,0,0,1,184,128Z"/></svg></span><h3>One-tap chat and social links</h3><p>A chat button that opens WhatsApp, text or Instagram messages, plus links to all your profiles.</p></li>
         </ul>
+        <p class="also">Also on every plan: <span>Privacy policy page</span><span>Terms of service page</span><span>SSL security certificate</span><span>Regular backups</span></p>
 
         <div class="extras">
           <p class="extras__title">Want more? Here's what else you can get.</p>
           <div class="extras__row">
             <span class="extras__plan"><span class="tag tag--biz">Business &amp; up</span></span>
-            <ul class="extras__grid extras__grid--5">
-              <li><span class="ico ico--rose ico--sm"><img src="images/icons/pin.png" alt="" width="30" height="30" loading="lazy"></span><span>Google Maps management</span></li>
-              <li><span class="ico ico--amber ico--sm"><img src="images/icons/star.png" alt="" width="30" height="30" loading="lazy"></span><span>Live Google reviews</span></li>
-              <li><span class="ico ico--violet ico--sm"><img src="images/icons/camera.png" alt="" width="30" height="30" loading="lazy"></span><span>Live Instagram feed</span></li>
-              <li><span class="ico ico--blue ico--sm"><img src="images/icons/chart.png" alt="" width="30" height="30" loading="lazy"></span><span>Competitor comparison</span></li>
-              <li><span class="ico ico--teal ico--sm"><img src="images/icons/files.png" alt="" width="30" height="30" loading="lazy"></span><span>Up to 5 pages</span></li>
+            <ul class="extras__grid extras__grid--biz">
+              <li><img class="xicon" src="images/icons/cookie.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a96,96,0,1,1-96-96,48,48,0,0,0,48,48A48,48,0,0,0,224,128Z" opacity="0.2"/><path d="M164.49,163.51a12,12,0,1,1-17,0A12,12,0,0,1,164.49,163.51Zm-81-8a12,12,0,1,0,17,0A12,12,0,0,0,83.51,155.51Zm9-39a12,12,0,1,0-17,0A12,12,0,0,0,92.49,116.49Zm48-1a12,12,0,1,0,0,17A12,12,0,0,0,140.49,115.51ZM232,128A104,104,0,1,1,128,24a8,8,0,0,1,8,8,40,40,0,0,0,40,40,8,8,0,0,1,8,8,40,40,0,0,0,40,40A8,8,0,0,1,232,128Zm-16.31,7.39A56.13,56.13,0,0,1,168.5,87.5a56.13,56.13,0,0,1-47.89-47.19,88,88,0,1,0,95.08,95.08Z"/></svg><span>Visitor analytics &amp; cookie consent</span></li>
+              <li><img class="xicon" src="images/icons/pin.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24a80,80,0,0,0-80,80c0,72,80,128,80,128s80-56,80-128A80,80,0,0,0,128,24Zm0,112a32,32,0,1,1,32-32A32,32,0,0,1,128,136Z" opacity="0.2"/><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></svg><span>Google Maps management</span></li>
+              <li><img class="xicon" src="images/icons/star.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.06,108.79l-48.7,42,14.88,62.79a8.4,8.4,0,0,1-12.52,9.17L128,189.09,73.28,222.74a8.4,8.4,0,0,1-12.52-9.17l14.88-62.79-48.7-42A8.46,8.46,0,0,1,31.73,94L95.64,88.8l24.62-59.6a8.36,8.36,0,0,1,15.48,0l24.62,59.6L224.27,94A8.46,8.46,0,0,1,229.06,108.79Z" opacity="0.2"/><path d="M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z"/></svg><span>Live Google reviews</span></li>
+              <li><img class="xicon" src="images/icons/camera.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M176,32H80A48,48,0,0,0,32,80v96a48,48,0,0,0,48,48h96a48,48,0,0,0,48-48V80A48,48,0,0,0,176,32ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z" opacity="0.2"/><path d="M176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm64-84a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg><span>Live Instagram feed</span></li>
+              <li><img class="xicon" src="images/icons/chart.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40V208H152V40Z" opacity="0.2"/><path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"/></svg><span>Competitor comparison</span></li>
+              <li><img class="xicon" src="images/icons/files.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,72V184a8,8,0,0,1-8,8H176V104L136,64H80V40a8,8,0,0,1,8-8h80Z" opacity="0.2"/><path d="M213.66,66.34l-40-40A8,8,0,0,0,168,24H88A16,16,0,0,0,72,40V56H56A16,16,0,0,0,40,72V216a16,16,0,0,0,16,16H168a16,16,0,0,0,16-16V200h16a16,16,0,0,0,16-16V72A8,8,0,0,0,213.66,66.34ZM168,216H56V72h76.69L168,107.31v84.53c0,.06,0,.11,0,.16s0,.1,0,.16V216Zm32-32H184V104a8,8,0,0,0-2.34-5.66l-40-40A8,8,0,0,0,136,56H88V40h76.69L200,75.31Zm-56-32a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h48A8,8,0,0,1,144,152Zm0,32a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h48A8,8,0,0,1,144,184Z"/></svg><span>Up to 5 pages</span></li>
             </ul>
           </div>
           <div class="extras__row extras__row--full">
             <span class="extras__plan"><span class="tag tag--full">Full Suite</span></span>
-            <ul class="extras__grid extras__grid--glow">
-              <li><span class="ico ico--violet ico--sm"><img src="images/icons/robot.png" alt="" width="30" height="30" loading="lazy"></span><span>AI chat assistant</span></li>
-              <li><span class="ico ico--blue ico--sm"><img src="images/icons/search.png" alt="" width="30" height="30" loading="lazy"></span><span>Neighborhood SEO pages</span></li>
-              <li><span class="ico ico--rose ico--sm"><img src="images/icons/memo.png" alt="" width="30" height="30" loading="lazy"></span><span>Monthly blog post</span></li>
-              <li><span class="ico ico--amber ico--sm"><img src="images/icons/megaphone.png" alt="" width="30" height="30" loading="lazy"></span><span>Monthly Google posts</span></li>
-              <li><span class="ico ico--green ico--sm"><img src="images/icons/rocket.png" alt="" width="30" height="30" loading="lazy"></span><span>Priority edits</span></li>
-              <li><span class="ico ico--teal ico--sm"><img src="images/icons/sparkles.png" alt="" width="30" height="30" loading="lazy"></span><span>Up to 10 pages</span></li>
+            <ul class="extras__grid extras__grid--full">
+              <li><img class="xicon" src="images/icons/robot.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,56H56A24,24,0,0,0,32,80V192a24,24,0,0,0,24,24H200a24,24,0,0,0,24-24V80A24,24,0,0,0,200,56ZM164,184H92a20,20,0,0,1,0-40h72a20,20,0,0,1,0,40Z" opacity="0.2"/><path d="M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16ZM72,108a12,12,0,1,1,12,12A12,12,0,0,1,72,108Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,108Zm4,28H92a28,28,0,0,0,0,56h72a28,28,0,0,0,0-56Zm-24,16v24H116V152ZM80,164a12,12,0,0,1,12-12h8v24H92A12,12,0,0,1,80,164Zm84,12h-8V152h8a12,12,0,0,1,0,24Z"/></svg><span>AI chat assistant</span></li>
+              <li><img class="xicon" src="images/icons/search.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M192,112a80,80,0,1,1-80-80A80,80,0,0,1,192,112Z" opacity="0.2"/><path d="M229.66,218.34,179.6,168.28a88.21,88.21,0,1,0-11.32,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg><span>Neighborhood SEO pages</span></li>
+              <li><img class="xicon" src="images/icons/memo.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M80,40V216H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8Z" opacity="0.2"/><path d="M184,112a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h64A8,8,0,0,1,184,112Zm-8,24H112a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm48-88V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM48,208H72V48H48Zm160,0V48H88V208H208Z"/></svg><span>Monthly blog post</span></li>
+              <li><img class="xicon" src="images/icons/megaphone.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M240,120a40,40,0,0,1-40,40H160V80h40A40,40,0,0,1,240,120Z" opacity="0.2"/><path d="M248,120a48.05,48.05,0,0,0-48-48H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48.07,48.07,0,0,0,248,120ZM48,199.93V40h0c42.81,35.91,86.63,45,104,47.24v65.48C134.65,155,90.84,164.07,48,199.93Zm131,8,0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z"/></svg><span>Monthly Google posts</span></li>
+              <li><img class="xicon" src="images/icons/rocket.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M184,120v61.65a8,8,0,0,1-2.34,5.65l-34.35,34.35a8,8,0,0,1-13.57-4.53L128,176ZM136,72H74.35a8,8,0,0,0-5.65,2.34L34.35,108.69a8,8,0,0,0,4.53,13.57L80,128ZM40,216c37.65,0,50.69-19.69,54.56-28.18L68.18,161.44C59.69,165.31,40,178.35,40,216Z" opacity="0.2"/><path d="M223.85,47.12a16,16,0,0,0-15-15c-12.58-.75-44.73.4-71.41,27.07L132.69,64H74.36A15.91,15.91,0,0,0,63,68.68L28.7,103a16,16,0,0,0,9.07,27.16l38.47,5.37,44.21,44.21,5.37,38.49a15.94,15.94,0,0,0,10.78,12.92,16.11,16.11,0,0,0,5.1.83A15.91,15.91,0,0,0,153,227.3L187.32,193A15.91,15.91,0,0,0,192,181.64V123.31l4.77-4.77C223.45,91.86,224.6,59.71,223.85,47.12ZM74.36,80h42.33L77.16,119.52,40,114.34Zm74.41-9.45a76.65,76.65,0,0,1,59.11-22.47,76.46,76.46,0,0,1-22.42,59.16L128,164.68,91.32,128ZM176,181.64,141.67,216l-5.19-37.17L176,139.31Zm-74.16,9.5C97.34,201,82.29,224,40,224a8,8,0,0,1-8-8c0-42.29,23-57.34,32.86-61.85a8,8,0,0,1,6.64,14.56c-6.43,2.93-20.62,12.36-23.12,38.91,26.55-2.5,36-16.69,38.91-23.12a8,8,0,1,1,14.56,6.64Z"/></svg><span>Priority edits</span></li>
+              <li><img class="xicon" src="images/icons/sparkles.png" alt="" width="36" height="36" loading="lazy"><svg class="duo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M194.82,151.43l-55.09,20.3-20.3,55.09a7.92,7.92,0,0,1-14.86,0l-20.3-55.09-55.09-20.3a7.92,7.92,0,0,1,0-14.86l55.09-20.3,20.3-55.09a7.92,7.92,0,0,1,14.86,0l20.3,55.09,55.09,20.3A7.92,7.92,0,0,1,194.82,151.43Z" opacity="0.2"/><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></svg><span>Up to 10 pages</span></li>
             </ul>
           </div>
           <a class="extras__link" href="#pricing">Compare plans →</a>
@@ -422,6 +452,7 @@
               <li>Google Maps setup and management</li>
               <li>Live Google reviews and Instagram feed</li>
               <li>Competitor comparison report</li>
+              <li>Visitor analytics with a cookie consent banner</li>
               <li>Basic SEO</li>
             </ul>
             <a class="btn btn--primary btn--block plan__cta" href="#audit">Get started</a>
@@ -446,7 +477,7 @@
           </article>
         </div>
 
-        <p class="pricing__extra">Outgrowing your plan? Move up anytime. Need something different? <a href="#audit">Ask us about a custom package.</a></p>
+        <p class="pricing__extra">Need something different? <a href="#audit" data-tab="callback">Ask about a custom package.</a></p>
 
         <div class="edits-banner">
           <div>
@@ -465,10 +496,10 @@
     <!-- PROMISES -->
     <section class="section section--tint" id="promises">
       <div class="wrap">
-        <p class="eyebrow">Our promises</p>
-        <h2>What every client can count on</h2>
+        <p class="eyebrow"><span data-alt-theme-wedding="Our vows">Our promises</span></p>
+        <h2><span data-alt-theme-wedding="Our vows to every client">What every client can count on</span></h2>
         <div class="promises">
-          <p><strong>Real people, real answers.</strong> No call centers or ticket queues. And you can always speak to Ben, our founder.</p>
+          <p><strong>Real people, real answers.</strong> No call centers or ticket queues. And you can always reach me directly.</p>
           <p><strong>Fast replies.</strong> We get back to you within one business day, usually much sooner.</p>
           <p><strong>Your web address is yours.</strong> Your domain name, like <em>yourbusiness.com</em>, is registered in your name. If you ever leave, it goes with you.</p>
           <p><strong>A way out.</strong> You can buy your website outright at any time.</p>
@@ -485,8 +516,8 @@
           <p class="eyebrow">Love is in the air</p>
           <h2>Hi, I'm Ben.</h2>
           <p class="about__lead">Sorry, I can't be your actual wife, but I can be your web design wife ;)</p>
-          <p>The name is about commitment. Most web designers build your site and disappear. At Web Design Wife, we stick around for the long haul and handle everything website-related, so you can focus on your business.</p>
-          <p>I've spent 8+ years designing and building websites in New York, from neighborhood shops to large e-commerce platforms. I founded Web Design Wife to give local businesses a partner they can count on, and I still speak with every new client myself.</p>
+          <p>The name is about commitment. Most web designers build your site and disappear. We stick around for the long haul and handle everything website-related, so you can focus on your business.</p>
+          <p>We've spent 8+ years designing and building websites in New York, from neighborhood shops to large e-commerce platforms. Web Design Wife exists to give local businesses a partner they can count on, and we still speak with every new client personally.</p>
         </div>
       </div>
     </section>
@@ -497,7 +528,7 @@
         <div>
           <p class="eyebrow">FAQ</p>
           <h2>Good questions</h2>
-          <p class="muted">Something else on your mind? <a href="#audit">Request a call with Ben</a> and he'll answer it personally.</p>
+          <p class="muted">Something else on your mind? <a href="#audit" data-tab="callback">Let's talk</a> and I'll answer it personally.</p>
         </div>
         <div class="faq__list">
           <details>
@@ -534,7 +565,7 @@
           </details>
           <details id="custom">
             <summary>I need an online store or booking system. Can you help?</summary>
-            <p>These plans are for informational websites. We can link to booking tools you already use, like Square, Vagaro or Calendly. For e-commerce and custom features, we take on custom projects. Request a call with Ben and we'll talk it through.</p>
+            <p>These plans are for informational websites. We can link to booking tools you already use, like Square, Vagaro or Calendly. For e-commerce and custom features, we take on custom projects. Get in touch and let's talk it through.</p>
           </details>
         </div>
       </div>
@@ -557,7 +588,7 @@
               <span class="post-card__kicker">Checklist</span>
               <h3>7 things every local business website needs</h3>
               <p>The short list that separates sites that get calls from sites that don't.</p>
-              <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 5 min read</span>
+              <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 2 min read</span>
             </span>
           </a>
           <a class="post-card post-card--article" href="blog/google-maps-profile.html" style="--cover:#dcf2e3;--cover-dark:#9fd7b2">
@@ -566,16 +597,16 @@
               <span class="post-card__kicker">Google Maps</span>
               <h3>Why your Google Maps profile might matter more than your website</h3>
               <p>Where local customers actually find you, and how to show up.</p>
-              <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 5 min read</span>
+              <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 2 min read</span>
             </span>
           </a>
           <a class="post-card post-card--article" href="blog/vs-wix.html" style="--cover:#fff4c2;--cover-dark:#f0d86b">
-            <span class="post-card__cover"><img src="images/icons/scale.png" alt="" width="88" height="88" loading="lazy"></span>
+            <span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo"><svg aria-hidden="true" fill="#0C6EFC" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m0 7.354 2.113 9.292h.801a1.54 1.54 0 0 0 1.506-1.218l1.351-6.34a.171.171 0 0 1 .167-.137c.08 0 .15.058.167.137l1.352 6.34a1.54 1.54 0 0 0 1.506 1.218h.805l2.113-9.292h-.565c-.62 0-1.159.43-1.296 1.035l-1.26 5.545-1.106-5.176a1.76 1.76 0 0 0-2.19-1.324c-.639.176-1.113.716-1.251 1.365l-1.094 5.127-1.26-5.537A1.33 1.33 0 0 0 .563 7.354H0zm13.992 0a.951.951 0 0 0-.951.95v8.342h.635a.952.952 0 0 0 .951-.95V7.353h-.635zm1.778 0 3.158 4.66-3.14 4.632h1.325c.368 0 .712-.181.918-.486l1.756-2.59a.12.12 0 0 1 .197 0l1.754 2.59c.206.305.55.486.918.486h1.326l-3.14-4.632L24 7.354h-1.326c-.368 0-.712.181-.918.486l-1.772 2.617a.12.12 0 0 1-.197 0L18.014 7.84a1.108 1.108 0 0 0-.918-.486H15.77z"/></svg></span></span>
             <span class="post-card__body">
               <span class="post-card__kicker">Comparison</span>
               <h3>Web Design Wife vs. Wix: an honest comparison</h3>
               <p>When a do-it-yourself builder is the right call, and when it isn't.</p>
-              <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 5 min read</span>
+              <span class="post-card__meta"><img src="images/favicon.jpg" alt="" width="22" height="22">Ben Sash · 3 min read</span>
             </span>
           </a>
         </div>
@@ -586,25 +617,26 @@
     <section class="section section--violet" id="audit">
       <div class="wrap audit">
         <div>
-          <p class="eyebrow eyebrow--light">Free website audit</p>
-          <h2>See how your business looks online</h2>
-          <p>We'll review your website and Google Maps profile, compare you with your top local competitors and send you a report ranking what to fix. Then, if you'd like, walk through it with Ben on a free 15-minute call.</p>
-          <ol class="audit__steps">
-            <li>Tell us about your business</li>
-            <li>Get your audit report within one business day</li>
-            <li>Walk through it with Ben on a free 15-minute call</li>
-          </ol>
+          <p class="eyebrow eyebrow--light"><span data-alt-theme-wedding="RSVP">Get in touch</span></p>
+          <h2>Let's talk about your website</h2>
+          <p>However you'd like to start, it comes straight to me. No sales team, no pressure.</p>
+          <ul class="audit__ways">
+            <li><strong>Free audit</strong> A report on your website and Google Maps profile</li>
+            <li><strong>Let's talk</strong> A quick call, whenever suits you</li>
+            <li><strong>Secret note</strong> A question, no strings attached</li>
+          </ul>
         </div>
 
         <div class="formcard">
           <div class="tabs" role="tablist" aria-label="Choose a request">
             <button type="button" role="tab" id="tab-audit" aria-selected="true" aria-controls="form-audit">Free audit</button>
-            <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1">Speak to Ben</button>
+            <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1">Let's talk</button>
             <button type="button" role="tab" id="tab-note" aria-selected="false" aria-controls="form-note" tabindex="-1">Secret note ♥</button>
           </div>
 
           <!-- TODO: connect both forms to a form backend (Webflow forms, Formspree, etc.) -->
-          <form class="form" id="form-audit" role="tabpanel" aria-labelledby="tab-audit" novalidate data-success="Thanks! Your audit is on its way. We'll email your report within one business day.">
+          <form class="form" id="form-audit" role="tabpanel" aria-labelledby="tab-audit" novalidate data-success="Thanks! Your audit is on its way. I'll email your report within one business day.">
+            <p class="form__desc">I'll review your website and Google Maps profile, compare you with your top local competitors and send a report ranking what to fix, within one business day. Then, if you'd like, we'll walk through it on a free 15-minute call.</p>
             <label>Business name<input name="business" required autocomplete="organization"></label>
             <label>Neighborhood or borough<input name="city" required autocomplete="address-level2" placeholder="e.g. Astoria, Queens"></label>
             <label><span>Current website <span class="opt">(optional)</span></span><input name="website" type="url" placeholder="https://" inputmode="url"></label>
@@ -614,7 +646,8 @@
             <p class="form__msg" role="status" aria-live="polite"></p>
           </form>
 
-          <form class="form" id="form-callback" role="tabpanel" aria-labelledby="tab-callback" novalidate hidden data-success="Thanks! Ben will call you back within one business day.">
+          <form class="form" id="form-callback" role="tabpanel" aria-labelledby="tab-callback" novalidate hidden data-success="Thanks! I'll call you back within one business day.">
+            <p class="form__desc">Leave your number and a good time, and I'll call you back within one business day.</p>
             <label>Your name<input name="name" required autocomplete="name"></label>
             <label>Phone number<input name="phone" type="tel" required autocomplete="tel"></label>
             <label>Best time to call
@@ -625,11 +658,11 @@
               </select>
             </label>
             <label><span>What would you like to talk about? <span class="opt">(optional)</span></span><textarea name="topic" rows="3"></textarea></label>
-            <button class="btn btn--light btn--block" type="submit">Request a call with Ben</button>
+            <button class="btn btn--light btn--block" type="submit">Request a call</button>
             <p class="form__msg" role="status" aria-live="polite"></p>
           </form>
-          <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate hidden data-success="Sealed and sent ♥ We'll write back within one business day.">
-            <p class="note__intro">Not ready for a call? Slip us a note, admirer. Ask anything, no pressure.</p>
+          <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate hidden data-success="Sealed and sent ♥ I'll write back within one business day.">
+            <p class="form__desc note__intro">Not ready for a call? Slip me a note, admirer. Ask anything, no pressure.</p>
             <label>Your name<input name="name" required autocomplete="name"></label>
             <label>Email<input name="email" type="email" required autocomplete="email"></label>
             <label>Your note<textarea name="note" rows="4" required placeholder="Dear Web Design Wife…"></textarea></label>
@@ -644,7 +677,7 @@
   <footer class="footer">
     <div class="wrap footer__grid">
       <div class="footer__brand">
-        <a class="brand" href="design-b.html"><img src="images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
+        <a class="brand" href="index.html"><img src="images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
         <p>Managed websites for New York local businesses. Your web partner, for the long haul.</p>
         <a class="btn btn--primary btn--sm" href="#audit">Free website audit</a>
       </div>
@@ -667,16 +700,23 @@
       <nav class="footer__col" aria-label="Get in touch">
         <h4>Get in touch</h4>
         <a href="#audit">Free website audit</a>
-        <a href="#audit" data-tab="callback">Speak to Ben</a>
+        <a href="#audit" data-tab="callback">Let's talk</a>
         <a href="#custom">Custom projects</a>
         <span>Based in New York, NY</span>
       </nav>
     </div>
+    <div class="wrap footer__moods">
+      <div>
+        <h4>Choose your mood</h4>
+        <p>Same site, four personalities. It's a small taste of the range we design in.</p>
+      </div>
+      <div class="moods" role="group" aria-label="Choose your mood"><button type="button" class="moods__card" data-mood="calm" aria-pressed="false"><span class="mood__dots"><i style="background:#ffffff"></i><i style="background:#5b3df5"></i><i style="background:#ece8ff"></i></span><span>Calm</span></button><button type="button" class="moods__card" data-mood="energetic" aria-pressed="false"><span class="mood__dots"><i style="background:#111111"></i><i style="background:#fccc0a"></i><i style="background:#0b5cd6"></i></span><span>Energetic</span></button><button type="button" class="moods__card" data-mood="tangy" aria-pressed="false"><span class="mood__dots"><i style="background:#d4ff4f"></i><i style="background:#ff6a1a"></i><i style="background:#3355ff"></i></span><span>Tangy</span></button><button type="button" class="moods__card" data-mood="sophisticated" aria-pressed="false"><span class="mood__dots"><i style="background:#f4ecdb"></i><i style="background:#b8955a"></i><i style="background:#1f2336"></i></span><span>Sophisticated</span></button></div>
+    </div>
     <div class="wrap footer__bottom">
       <p>© 2026 Web Design Wife</p>
       <nav aria-label="Legal">
-        <a href="https://webdesignwife.com/privacy-policy">Privacy</a>
-        <a href="https://webdesignwife.com/terms-of-use">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
         <a href="images/icons/LICENSE-fluent-emoji.txt">Icon credits</a>
       </nav>
     </div>
@@ -740,6 +780,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website audit</a>
 
-  <script src="script.js?v=1790590513"></script>
+  <script src="script.js?v=1790593971"></script>
 </body>
 </html>

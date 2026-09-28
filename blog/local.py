@@ -101,6 +101,9 @@ BOROUGHS = [
 ]
 
 
+MISTAKES = {'websites-manhattan': ['Listing only the building address, without cross streets or the nearest subway', "Hours that don't reflect early closings for holidays and events", 'A homepage that loads slowly on a phone, where most people are searching'], 'websites-brooklyn': ['Using stock photos that could be anywhere instead of your actual block', 'Leaving out the neighborhood name, so you miss searches like “Park Slope”', "A generic About page that doesn't say who's behind the business"], 'websites-queens': ['Important details only in English when many customers prefer another language', 'Saying “Queens” when customers search for “Astoria” or “Flushing”', 'Not listing which neighborhoods a service business actually travels to'], 'websites-bronx': ['No prices anywhere, which sends cautious customers to a competitor', "A phone number that's hard to tap on a small screen", 'Missing Spanish information when a large share of customers would prefer it'], 'websites-staten-island': ['No mention of parking, which matters when most customers drive', 'Project photos that are years old, or missing entirely', 'Leaving out license and insurance details for home services']}
+
+
 def borough_body(b):
     li = lambda items: "".join(f"<li>{x}</li>" for x in items)
     where = b.get("in", b["name"])
@@ -114,6 +117,12 @@ def borough_body(b):
 <ul>{li(b['build'])}</ul>
 
 {{{{CHECK}}}}
+
+<h2>Common mistakes we see</h2>
+<ul>{li(MISTAKES[b['slug']])}</ul>
+
+<h2>Don't forget Google Maps</h2>
+<p>In a city this dense, the Google Maps listing is often the first thing a customer sees, before they ever reach your website. Make sure your categories, hours, photos and neighborhood details there match your site exactly, and ask happy customers for reviews regularly.</p>
 
 <h2>Neighborhoods we work with</h2>
 <p>We work with businesses across {where}, including {b['hoods']}. Don't see yours? We'd still love to hear from you.</p>

@@ -109,3 +109,13 @@
 
 .theme-wedding .drawer__big span { font-weight: 500; font-size: 2.3rem; letter-spacing: 0; }
 .theme-wedding .drawer__big:hover span { color: var(--gold); }
+
+/* Magazine: two-tone line art instead of 3D emoji */
+.theme-wedding .ico img, .theme-wedding .xicon, .theme-wedding .cf-card__head img, .theme-wedding .cf-pick img { display: none; }
+.theme-wedding .duo { display: block; width: 30px; height: 30px; color: var(--gold); }
+.theme-wedding .ico { background: none; box-shadow: none; border: 1px solid rgba(184, 149, 90, .45); border-radius: 50%; }
+.theme-wedding .extras__grid .duo { width: 32px; height: 32px; }
+.theme-wedding .cf-pick { padding: 6px 14px; }
+.theme-wedding .post-card__cover img { filter: grayscale(1) sepia(.35) drop-shadow(0 10px 12px rgba(0,0,0,.15)); }
+.theme-wedding .compare .compare__head .us { background: var(--ink); color: #fff; }
+.theme-wedding .cc--us { border-color: var(--gold); }

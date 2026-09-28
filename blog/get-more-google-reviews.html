@@ -11,11 +11,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=1790590197">
-  <link rel="stylesheet" href="../themes/subway.css?v=1790590197">
+  <link rel="stylesheet" href="../styles.css?v=1790593971">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../themes/subway.css?v=1790593971">
+  <link rel="stylesheet" href="../themes/blocks.css?v=1790593971">
+  <link rel="stylesheet" href="../themes/wedding.css?v=1790593971">
+  <script>(function(){var M={"calm":"theme-refined","energetic":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="energetic";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
 </head>
-<body class="theme-subway">
+<body>
+  <div class="mood" id="mood">
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.5 4.6 2.4 6.5 7 7-4.6.5-6.5 2.4-7 7-.5-4.6-2.4-6.5-7-7 4.6-.5 6.5-2.4 7-7Z" fill="currentColor"/><path d="M19 15.5c.2 1.8 1 2.6 2.8 2.8-1.8.2-2.6 1-2.8 2.8-.2-1.8-1-2.6-2.8-2.8 1.8-.2 2.6-1 2.8-2.8Z" fill="currentColor" opacity=".6"/></svg></button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><p>Choose your mood</p><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="mood__dots"><i style="background:#ffffff"></i><i style="background:#5b3df5"></i><i style="background:#ece8ff"></i></span>Calm</button><button type="button" class="mood__opt" data-mood="energetic" aria-pressed="false"><span class="mood__dots"><i style="background:#111111"></i><i style="background:#fccc0a"></i><i style="background:#0b5cd6"></i></span>Energetic</button><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="mood__dots"><i style="background:#d4ff4f"></i><i style="background:#ff6a1a"></i><i style="background:#3355ff"></i></span>Tangy</button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="mood__dots"><i style="background:#f4ecdb"></i><i style="background:#b8955a"></i><i style="background:#1f2336"></i></span>Sophisticated</button></div>
+  </div>
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
@@ -69,7 +76,7 @@
       <div class="article__wrap">
         <a class="article__back" href="index.html">← All articles</a>
         <h1>How to get more Google reviews (without being pushy)</h1>
-        <p class="article__meta">By Ben Sash · 4 min read</p>
+        <p class="article__meta">By Ben Sash · 2 min read</p>
         <div class="article__body">
 <p>Reviews are one of the first things new customers look at. The good news is that most happy customers are willing to leave one. They just need to be asked at the right moment, in the easiest way possible.</p>
 
@@ -158,13 +165,13 @@
     <div class="wrap footer__bottom">
       <p>© 2026 Web Design Wife</p>
       <nav aria-label="Legal">
-        <a href="https://webdesignwife.com/privacy-policy">Privacy</a>
-        <a href="https://webdesignwife.com/terms-of-use">Terms</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
         <a href="../images/icons/LICENSE-fluent-emoji.txt">Icon credits</a>
       </nav>
     </div>
   </footer>
   <a class="mobilebar" href="../index.html#audit">Get a free website audit</a>
-  <script src="../script.js?v=1790590197"></script>
+  <script src="../script.js?v=1790593971"></script>
 </body>
 </html>

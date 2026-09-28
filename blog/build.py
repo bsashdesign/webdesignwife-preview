@@ -1,8 +1,11 @@
 # Generates the blog index and article pages from one template.
 # Edit the ARTICLES list below, then run: python3 blog/build.py
-import pathlib, html
+import pathlib, html, re
 from comparisons import PLATFORMS, EXTRA, comparison_body
 from local import BOROUGHS, borough_body
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+import mood_parts as MP
 
 HERE = pathlib.Path(__file__).parent
 
@@ -161,6 +164,9 @@ LOCALS = [{
     "summary": b["summary"], "minutes": 4, "body": borough_body(b),
 } for b in BOROUGHS]
 ALL = EXTRA[:1] + COMPARE + LOCALS + ARTICLES + EXTRA[1:]
+for a in ALL:
+    words = len(re.sub(r"<[^>]+>", " ", a["body"]).split()) + 120  # plus the review box copy
+    a["minutes"] = max(2, round(words / 230))
 
 HEAD = """<!DOCTYPE html>
 <html lang="en">
@@ -175,11 +181,13 @@ HEAD = """<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=1790590197">
-  <link rel="stylesheet" href="../themes/subway.css?v=1790590197">
+  <link rel="stylesheet" href="../styles.css?v={{V}}">
+  {{MOOD_FONTS}}
+  {{MOOD_CSS}}
+  {{MOOD_BOOT}}
 </head>
-<body class="theme-subway">
+<body>
+  {{MOOD_SWITCHER}}
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
@@ -231,6 +239,12 @@ HEAD = """<!DOCTYPE html>
   <main>
 """
 
+def fill(page):
+    # Mood styles, switcher and asset versions, shared with the homepage.
+    css = MP.THEME_CSS.replace('href="themes/', 'href="../themes/').replace('.css"', ".css?v=" + MP.VERSION + '"')
+    return (page.replace("{MOOD_FONTS}", MP.FONTS).replace("{MOOD_CSS}", css).replace("{MOOD_BOOT}", MP.BOOT)
+            .replace("{MOOD_SWITCHER}", MP.SWITCHER).replace("{V}", MP.VERSION))
+
 FOOT = """  </main>
   <footer class="footer">
     <div class="wrap footer__grid">
@@ -266,14 +280,14 @@ FOOT = """  </main>
     <div class="wrap footer__bottom">
       <p>© 2026 Web Design Wife</p>
       <nav aria-label="Legal">
-        <a href="https://webdesignwife.com/privacy-policy">Privacy</a>
-        <a href="https://webdesignwife.com/terms-of-use">Terms</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
         <a href="../images/icons/LICENSE-fluent-emoji.txt">Icon credits</a>
       </nav>
     </div>
   </footer>
   <a class="mobilebar" href="../index.html#audit">Get a free website audit</a>
-  <script src="../script.js?v=1790590197"></script>
+  <script src="../script.js?v={V}"></script>
 </body>
 </html>
 """
@@ -311,10 +325,28 @@ END_CHECK = quickcheck("Want a second opinion on your site?", "Tell us your web 
 ICONS = {"Local guide": "pin", "Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
 COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]
 
-def card(a, n=0):
+BRANDS = {"vs-wix": ("wix", "#0C6EFC"), "vs-squarespace": ("squarespace", "#111111"), "vs-wordpress": ("wordpress", "#21759B"), "vs-webflow": ("webflow", "#146EF5"), "vs-shopify": ("shopify", "#5E8E3E"), "vs-godaddy": ("godaddy", "#111111"), "vs-square-online": ("square", "#3E4348"), "vs-framer": ("framer", "#0055FF"), "vs-carrd": ("carrd", "#596CAF"), "vs-google-sites": ("google", "#4285F4"), "vs-hostinger": ("hostinger", "#673DE6")}
+BOROUGH_ART = {"websites-manhattan": "manhattan", "websites-brooklyn": "brooklyn", "websites-queens": "queens", "websites-bronx": "bronx", "websites-staten-island": "staten-island"}
+
+def brand_svg(name, color):
+    s = (HERE.parent / "images" / "brands" / f"{name}.svg").read_text()
+    s = re.sub(r"<title>.*?</title>", "", s)
+    return s.replace("<svg ", f'<svg aria-hidden="true" fill="{color}" ', 1)
+
+def cover(a):
+    if a["slug"] in BRANDS:
+        name, color = BRANDS[a["slug"]]
+        return f"""<span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="../images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo">{brand_svg(name, color)}</span></span>"""
+    if a["slug"] == "vs-agency":
+        return """<span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="../images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo"><img src="../images/icons/hammer.png" alt=""></span></span>"""
+    if a["slug"] in BOROUGH_ART:
+        return f"""<span class="post-card__cover post-card__cover--art"><img src="../images/boroughs/{BOROUGH_ART[a['slug']]}.svg" alt=""></span>"""
     icon = ICONS.get(a["kicker"], "memo")
-    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
-          <span class="post-card__cover"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>
+    return f"""<span class="post-card__cover"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>"""
+
+def card(a, n=0):
+    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" data-group="{a['group']}" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
+          {cover(a)}
           <span class="post-card__body">
             <span class="post-card__kicker">{a['kicker']}</span>
             <h3>{html.escape(a['title'])}</h3>
@@ -334,24 +366,18 @@ index += """    <section class="blog-hero">
     </section>
     <section class="blog-list">
       <div class="wrap">
-        <h2 class="blog-list__h" id="compare">Compare your options</h2>
-        <p class="muted">Honest comparisons with every major way to get a website, including when another option is the better choice.</p>
-        <div class="posts">
+        <div class="filters" role="toolbar" aria-label="Filter articles">
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(len(ALL)) + """</span></button>
+          <button type="button" class="filter" data-filter="compare" aria-pressed="false">Comparisons <span>""" + str(sum(a["group"] == "compare" for a in ALL)) + """</span></button>
+          <button type="button" class="filter" data-filter="local" aria-pressed="false">Local guides <span>""" + str(sum(a["group"] == "local" for a in ALL)) + """</span></button>
+          <button type="button" class="filter" data-filter="guides" aria-pressed="false">Guides <span>""" + str(sum(a["group"] == "guides" for a in ALL)) + """</span></button>
+        </div>
+        <div class="posts posts--index">
 """
-index += "".join(card(a, n) for n, a in enumerate([a for a in ALL if a["group"] == "compare"]))
-index += """        </div>
-        <h2 class="blog-list__h" id="local">Local guides</h2>
-        <p class="muted">How we approach websites for businesses in each borough.</p>
-        <div class="posts">
-"""
-index += "".join(card(a, n + 1) for n, a in enumerate([a for a in ALL if a["group"] == "local"]))
-index += """        </div>
-        <h2 class="blog-list__h">Guides</h2>
-        <div class="posts">
-"""
-index += "".join(card(a, n + 2) for n, a in enumerate([a for a in ALL if a["group"] == "guides"]))
+order = [a for a in ALL if a["group"] == "guides"][:2] + [a for a in ALL if a["group"] == "compare"] + [a for a in ALL if a["group"] == "local"] + [a for a in ALL if a["group"] == "guides"][2:]
+index += "".join(card(a, n) for n, a in enumerate(order))
 index += "        </div>\n      </div>\n    </section>\n" + FOOT
-(HERE / "index.html").write_text(index)
+(HERE / "index.html").write_text(fill(index))
 
 for a in ALL:
     page = HEAD.format(title=f"{html.escape(a['title'])} — Web Design Wife", description=html.escape(a["summary"]))
@@ -365,6 +391,6 @@ for a in ALL:
     </article>
 """
     page += FOOT
-    (HERE / f"{a['slug']}.html").write_text(page)
+    (HERE / f"{a['slug']}.html").write_text(fill(page))
 
 print("built", len(ALL), "articles")

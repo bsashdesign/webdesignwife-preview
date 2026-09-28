@@ -115,6 +115,9 @@ PLATFORMS = [
 ]
 
 
+EXTRA_INFO = {'vs-wix': ("Wix sites can't be exported to another platform. If you leave, you keep your domain name and your content, but the design has to be rebuilt somewhere else.", 'The base plan is only part of the picture. Many businesses add paid apps for bookings, reviews or forms, and the bigger cost is usually the hours you spend building and updating.'), 'vs-squarespace': ('Squarespace lets you export some content, like pages and blog posts, but the design itself stays behind. Moving usually means rebuilding the look elsewhere.', 'Plans are straightforward, but good photography is often the hidden cost. Templates look their best with professional-quality images.'), 'vs-wordpress': ('WordPress is the easiest to move: the whole site can be copied to a new host. That freedom is a real advantage if you have someone technical to help.', "The software is free, but hosting, premium themes, plugins, security and a developer's time for updates and fixes all add up."), 'vs-webflow': ('Webflow can export the code for a site, but not the content management (CMS) features like a blog. Many owners who leave rebuild on another platform.', 'Webflow has separate plans for the site and for the account, which can be confusing to compare. Budget for a designer if you want custom work.'), 'vs-shopify': ('Shopify lets you export products, customers and orders, which makes moving a store realistic. The theme and apps stay behind.', 'Beyond the monthly plan, budget for payment processing fees, paid apps and a premium theme if you want one.'), 'vs-godaddy': ('Sites made with the builder stay on GoDaddy. Your domain can be moved anywhere, but the site would need to be rebuilt.', 'Watch renewal prices and add-ons like email and extra security, which are often sold separately.'), 'vs-square-online': ('Your items and orders live in Square, so they stay with your Square account. The website design would need to be rebuilt elsewhere.', 'The website is inexpensive, but payment processing fees apply to every online order.'), 'vs-framer': ("Framer sites live on Framer. Moving means rebuilding the design somewhere else, since the site can't be exported as a whole.", "Plans scale with traffic and features. Budget for a designer's time if you want changes you can't make yourself."), 'vs-carrd': ('A Carrd site is small, so rebuilding it elsewhere is quick if you outgrow it.', "It's one of the lowest-cost options available. The real limit is what a single page can do."), 'vs-google-sites': ("Content can be copied out easily because there's so little of it, but the design can't be moved.", "It's free, but you'll likely want to upgrade to a proper website as your business grows."), 'vs-hostinger': ("Sites made with Hostinger's builder stay on Hostinger. Your domain can be moved, but the site would need rebuilding.", 'Introductory prices are low, but renewals are often higher. Check the full renewal price before committing.')}
+
+
 def comparison_body(p):
     li = lambda items: "".join(f"<li>{x}</li>" for x in items)
     return f"""
@@ -144,8 +147,25 @@ def comparison_body(p):
 <h2>Choose a managed website if…</h2>
 <p>…{p['us']}</p>
 
+<h2>What it really costs</h2>
+<p>{EXTRA_INFO[p['slug']][1]} With any do-it-yourself builder, the biggest cost is usually time. A few hours a month on updates, fixes and design tweaks adds up to several full days a year.</p>
+
+<h2>If you want to switch later</h2>
+<p>{EXTRA_INFO[p['slug']][0]} Whatever you choose, make sure your domain name is registered in your own name. That's what lets you move without losing your web address.</p>
+
+<h2>Questions to ask yourself</h2>
+<ul>
+  <li>Do I enjoy working on my website, or do I put it off?</li>
+  <li>When did I last update my hours, prices or photos?</li>
+  <li>Do I need to sell online, or do I mainly need customers to call, book or visit?</li>
+  <li>How much is an hour of my time worth to my business?</li>
+</ul>
+
 <h2>Going with {p['name']}? Our tips</h2>
 <ol>{li(p['tips'])}</ol>
+
+<h2>Still not sure?</h2>
+<p>That's normal. Send us your current website, or tell us what you're considering, and we'll give you an honest recommendation, even if it isn't us.</p>
 """
 
 

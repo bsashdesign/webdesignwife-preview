@@ -122,5 +122,6 @@
 
 .theme-blocks .plan__rec { border: 2px solid var(--ink); }
 .theme-blocks .extras__grid li { border: 2px solid var(--ink); }
-.theme-blocks .extras__grid--glow li { background: #fff; box-shadow: 4px 4px 0 var(--violet); }
-.theme-blocks .extras__grid--glow li::after { display: none; }
+.theme-blocks .extras__grid--full li { background: #f3efff; }
+.theme-blocks .section + .section { padding-top: 104px; }
+@media (max-width: 640px) { .theme-blocks .section + .section { padding-top: 72px; } }

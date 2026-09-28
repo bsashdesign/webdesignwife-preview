@@ -310,72 +310,108 @@
 })();
 
 // ---------------------------------------------------------------
-// Examples gallery: pick an industry, preview the sample site
+// Examples: 3D carousel with a tilt-on-hover front card
 // ---------------------------------------------------------------
 (function () {
-  const gallery = document.getElementById("gallery");
-  if (!gallery) return;
-  const chips = gallery.querySelectorAll(".gallery__chips button");
-  const viewer = gallery.querySelector(".viewer");
-  const stage = document.getElementById("viewer-stage");
-  const frame = document.getElementById("viewer-frame");
-  const iframe = document.getElementById("viewer-iframe");
-  const modeButtons = gallery.querySelectorAll(".viewer__modes button");
-  const url = document.getElementById("viewer-url");
-  const name = document.getElementById("viewer-name");
-  const meta = document.getElementById("viewer-meta");
-  const open = document.getElementById("viewer-open");
+  const cf = document.getElementById("gallery");
+  if (!cf || !cf.classList.contains("cf")) return;
+  const cards = [...cf.querySelectorAll(".cf-card")];
+  const picks = [...cf.querySelectorAll(".cf-pick")];
+  const modes = [...cf.querySelectorAll(".viewer__modes button")];
+  const open = document.getElementById("cf-open");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let active = 0;
 
-  const DESKTOP_W = 1280, PHONE_W = 390, PHONE_H = 800, PHONE_BORDER = 10;
+  const range = () => (cf.dataset.mode === "mobile" ? 3 : 2);
 
-  function layout() {
-    const W = stage.clientWidth, H = stage.clientHeight;
-    if (viewer.dataset.mode === "phone") {
-      const outerW = PHONE_W + PHONE_BORDER * 2, outerH = PHONE_H + PHONE_BORDER * 2;
-      const s = Math.min(1, (H - 40) / outerH, (W - 24) / outerW);
-      frame.style.width = PHONE_W + PHONE_BORDER * 2 + "px";
-      frame.style.height = PHONE_H + PHONE_BORDER * 2 + "px";
-      frame.style.transform = `scale(${s})`;
-      frame.style.left = (W - outerW * s) / 2 + "px";
-      frame.style.top = (H - outerH * s) / 2 + "px";
-    } else {
-      const s = W / DESKTOP_W;
-      frame.style.width = DESKTOP_W + "px";
-      frame.style.height = H / s + "px";
-      frame.style.transform = `scale(${s})`;
-      frame.style.left = "0px";
-      frame.style.top = "0px";
-    }
+  function sizeFrames() {
+    const st = getComputedStyle(cf);
+    cards.forEach((c) => {
+      const screen = c.querySelector(".cf-card__screen");
+      const f = c.querySelector("iframe");
+      const sw = parseFloat(st.getPropertyValue("--sw"));
+      f.style.transform = `scale(${screen.clientWidth / sw})`;
+    });
   }
 
-  function show(chip) {
-    chips.forEach((c) => c.setAttribute("aria-selected", String(c === chip)));
-    reload(chip.dataset.src);
-    url.textContent = chip.dataset.url;
-    name.textContent = chip.dataset.name;
-    meta.textContent = chip.dataset.meta;
-    open.href = chip.dataset.src;
+  function load(card, fresh) {
+    const f = card.querySelector("iframe");
+    const want = card.dataset.src + "?embed" + (cf.dataset.mode === "mobile" ? "&m=1" : "");
+    if (fresh || f.dataset.loaded !== want) { f.dataset.loaded = want; f.src = want + "&t=" + Date.now(); }
   }
-  // Reloading replays each sample's entrance animation.
-  function reload(src) {
-    frame.classList.add("is-loading");
-    setTimeout(() => { iframe.src = src + "?embed&t=" + Date.now(); }, 200);
-  }
-  iframe.addEventListener("load", () => frame.classList.remove("is-loading"));
 
-  chips.forEach((chip) => chip.addEventListener("click", () => show(chip)));
-  modeButtons.forEach((b) => b.addEventListener("click", () => {
-    modeButtons.forEach((x) => x.setAttribute("aria-checked", String(x === b)));
-    frame.classList.add("is-loading");
-    setTimeout(() => {
-      viewer.dataset.mode = b.dataset.mode;
-      layout();
-      iframe.src = open.getAttribute("href") + "?embed&t=" + Date.now();
-    }, 200);
+  function render(replay) {
+    const n = cards.length;
+    cards.forEach((c, i) => {
+      let o = i - active;
+      if (o > n / 2) o -= n;
+      if (o < -n / 2) o += n;
+      const a = Math.abs(o);
+      // Orbit: cards sit on a circle around a center point and face outward.
+      const mobile = cf.dataset.mode === "mobile";
+      const cw = c.offsetWidth || 600;
+      const step = (mobile ? 24 : 32) * Math.PI / 180;
+      const R = (cw * (mobile ? 0.92 : 0.62)) / Math.sin(step);
+      const ang = o * step;
+      c.style.setProperty("--tx", `${R * Math.sin(ang)}px`);
+      c.style.setProperty("--tz", `${R * (Math.cos(ang) - 1)}px`);
+      c.style.setProperty("--ty", `${o * (mobile ? 24 : 32)}deg`);
+      c.style.setProperty("--o", o);
+      c.style.setProperty("--a", a);
+      c.classList.toggle("is-active", o === 0);
+      c.classList.toggle("is-far", a > range());
+      c.setAttribute("aria-hidden", o === 0 ? "false" : "true");
+      if (a <= range()) load(c, replay && o === 0);
+    });
+    picks.forEach((p, i) => p.setAttribute("aria-selected", String(i === active)));
+    open.href = cards[active].dataset.src;
+  }
+
+  function go(i) { active = (i + cards.length) % cards.length; render(true); }
+
+  cf.querySelector(".cf__arrow--prev").addEventListener("click", () => go(active - 1));
+  cf.querySelector(".cf__arrow--next").addEventListener("click", () => go(active + 1));
+  picks.forEach((p, i) => p.addEventListener("click", () => go(i)));
+  cards.forEach((c, i) => c.addEventListener("click", () => { if (i !== active) go(i); }));
+  cf.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") go(active - 1); if (e.key === "ArrowRight") go(active + 1); });
+
+  modes.forEach((b) => b.addEventListener("click", () => {
+    modes.forEach((x) => x.setAttribute("aria-checked", String(x === b)));
+    cf.dataset.mode = b.dataset.mode;
+    setTimeout(() => { sizeFrames(); render(false); }, 20);
+    setTimeout(() => { sizeFrames(); render(false); }, 550);
   }));
 
-  new ResizeObserver(layout).observe(stage);
-  layout();
+  // Swipe on touch screens
+  let sx = null;
+  cf.addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  cf.addEventListener("touchend", (e) => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) go(active + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+
+  // Tilt the front card toward the pointer, like a collectible card
+  if (!reduced) {
+    cf.addEventListener("pointermove", (e) => {
+      const c = cards[active];
+      const r = c.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      if (x < 0 || x > 1 || y < 0 || y > 1) return reset();
+      c.classList.add("is-tilting");
+      c.style.setProperty("--ry", `${(x - 0.5) * 12}deg`);
+      c.style.setProperty("--rx", `${(0.5 - y) * 9}deg`);
+      c.style.setProperty("--gx", `${x * 100}%`);
+      c.style.setProperty("--gy", `${y * 100}%`);
+    });
+    const reset = () => cards.forEach((c) => { c.classList.remove("is-tilting"); c.style.removeProperty("--rx"); c.style.removeProperty("--ry"); });
+    cf.addEventListener("pointerleave", reset);
+  }
+
+  new ResizeObserver(() => { sizeFrames(); render(false); }).observe(cf);
+  sizeFrames();
+  render(false);
 })();
 
 // ---------------------------------------------------------------
@@ -522,11 +558,10 @@
 // ---------------------------------------------------------------
 (function () {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const singles = ".hero__copy > *, .demo, .section-head, .section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .intro, .viewer, .gallery__chips, .compare, .extras__title, .extras__row, .maps > div, .pricing__head, .edits-banner, .about > *, .faq > div:first-child, .audit > *, .blog-hero .wrap > *, .article__wrap > *";
+  const singles = ".section-head, .section > .wrap > .eyebrow, .section > .wrap > h2, .section > .wrap > .intro, .maps > div:first-child, .pricing__head, .about > div:last-child, .faq > div:first-child, .audit > div:first-child";
   const groups = [".features > li", ".extras__grid > li", ".steps > li", ".plans > .plan", ".promises > p", ".posts > a", ".boroughs > .borough", ".compare-cards > .cc", ".faq__list > details"];
   const els = new Set(document.querySelectorAll(singles));
   groups.forEach((sel) => document.querySelectorAll(sel).forEach((el, n) => { el.style.setProperty("--i", n % 4); els.add(el); }));
-  document.querySelectorAll(".hero__copy > *").forEach((el, n) => el.style.setProperty("--i", n));
 
   const pending = new Set();
   function reveal(el) {
@@ -609,4 +644,122 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   const update = () => nav.classList.toggle("is-scrolled", window.scrollY > 24);
   window.addEventListener("scroll", update, { passive: true });
   update();
+})();
+
+// Hearts float up once when the About section comes into view
+(function () {
+  const hearts = document.querySelector(".hearts");
+  if (!hearts || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  function check() {
+    const r = hearts.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.75 && r.bottom > 0) {
+      hearts.classList.add("is-bursting");
+      window.removeEventListener("scroll", onScroll);
+    }
+  }
+  const onScroll = () => setTimeout(check, 60);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  check();
+})();
+
+// Dots under swipeable rows
+(function () {
+  document.querySelectorAll(".plans, #blog .posts, .steps").forEach((row) => {
+    const n = row.children.length;
+    const hint = document.createElement("div");
+    hint.className = "swipe-hint";
+    hint.setAttribute("aria-hidden", "true");
+    hint.innerHTML = '<button type="button" aria-label="Previous">←</button>' + "<i></i>".repeat(n) + '<button type="button" aria-label="Next">→</button>';
+    hint.removeAttribute("aria-hidden");
+    row.after(hint);
+    const dots = [...hint.querySelectorAll("i")];
+    const [prev, next] = hint.querySelectorAll("button");
+    const stepBy = (d) => { const w = row.children[0].getBoundingClientRect().width + 16; row.scrollBy({ left: d * w, behavior: "smooth" }); };
+    prev.addEventListener("click", () => stepBy(-1));
+    next.addEventListener("click", () => stepBy(1));
+    const update = () => {
+      const kids = [...row.children];
+      let best = 0, bestD = Infinity;
+      kids.forEach((k, i) => { const d = Math.abs(k.getBoundingClientRect().left - row.getBoundingClientRect().left - 20); if (d < bestD) { bestD = d; best = i; } });
+      dots.forEach((d, i) => d.classList.toggle("is-on", i === best));
+      prev.disabled = row.scrollLeft < 4;
+      next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+    };
+    row.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
+    update();
+  });
+})();
+
+// Nav: switch to the menu button as soon as the links would wrap
+(function () {
+  const nav = document.querySelector(".nav");
+  const links = document.getElementById("nav-links");
+  if (!nav || !links) return;
+  const inner = nav.querySelector(".nav__inner");
+  function fit() {
+    nav.classList.remove("nav--compact");
+    const wraps = [...links.children].some((a) => a.offsetTop !== links.firstElementChild.offsetTop) || links.scrollWidth > links.clientWidth + 1;
+    const overflow = inner.scrollWidth > inner.clientWidth + 1;
+    if (getComputedStyle(links).display !== "none" && (wraps || overflow)) nav.classList.add("nav--compact");
+  }
+  window.addEventListener("resize", fit);
+  if (document.fonts) document.fonts.ready.then(fit);
+  fit();
+})();
+
+// ---------------------------------------------------------------
+// Moods: switch the whole look in place, like light and dark mode
+// ---------------------------------------------------------------
+(function () {
+  const MOODS = { calm: "theme-refined", energetic: "theme-subway", tangy: "theme-blocks", sophisticated: "theme-wedding" };
+  const root = document.documentElement;
+
+  function swapCopy(cls) {
+    document.querySelectorAll("[data-alt-theme-wedding]").forEach((el) => {
+      if (!el.dataset.orig) el.dataset.orig = el.textContent;
+      el.textContent = cls === "theme-wedding" ? el.getAttribute("data-alt-theme-wedding") : el.dataset.orig;
+    });
+  }
+  function mark(key) {
+    document.querySelectorAll("[data-mood]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mood === key)));
+  }
+  function apply(key, save) {
+    if (!MOODS[key]) return;
+    Object.values(MOODS).forEach((c) => root.classList.remove(c));
+    root.classList.add(MOODS[key]);
+    root.dataset.mood = key;
+    swapCopy(MOODS[key]);
+    mark(key);
+    if (save) { try { localStorage.setItem("wdw-mood", key); } catch (e) {} }
+    // Let size-dependent pieces (carousel, nav) re-measure for the new fonts.
+    setTimeout(() => window.dispatchEvent(new Event("resize")), 60);
+  }
+  apply(root.dataset.mood || "energetic", false);
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-mood]");
+    if (b) apply(b.dataset.mood, true);
+  });
+
+  const m = document.getElementById("mood");
+  if (!m) return;
+  const btn = m.querySelector(".mood__btn");
+  btn.addEventListener("click", () => { const o = m.classList.toggle("is-open"); btn.setAttribute("aria-expanded", String(o)); });
+  document.addEventListener("click", (e) => { if (!m.contains(e.target)) { m.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); } });
+})();
+
+// Blog filters
+(function () {
+  const bar = document.querySelector(".filters");
+  if (!bar) return;
+  const cards = [...document.querySelectorAll(".posts--index > .post-card")];
+  bar.addEventListener("click", (e) => {
+    const b = e.target.closest(".filter"); if (!b) return;
+    bar.querySelectorAll(".filter").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    const f = b.dataset.filter;
+    cards.forEach((c) => { c.hidden = !(f === "all" || c.dataset.group === f); });
+  });
+  const hash = location.hash.replace("#", "");
+  const pre = bar.querySelector(`[data-filter="${hash}"]`);
+  if (pre) pre.click();
 })();
