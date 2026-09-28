@@ -125,3 +125,6 @@
 .theme-blocks .extras__grid--full li { background: #f3efff; }
 .theme-blocks .section + .section { padding-top: 104px; }
 @media (max-width: 640px) { .theme-blocks .section + .section { padding-top: 72px; } }
+/* Extras rows take their colors from their badges */
+.theme-blocks .extras__grid--biz li { background: transparent; border-color: #2a6fb0; }
+.theme-blocks .extras__grid--full li { background: #ffe3cf; }

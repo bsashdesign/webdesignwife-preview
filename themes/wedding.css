@@ -119,3 +119,9 @@
 .theme-wedding .post-card__cover img { filter: grayscale(1) sepia(.35) drop-shadow(0 10px 12px rgba(0,0,0,.15)); }
 .theme-wedding .compare .compare__head .us { background: var(--ink); color: #fff; }
 .theme-wedding .cc--us { border-color: var(--gold); }
+
+/* Extras rows take their colors from their badges */
+.theme-wedding .extras__grid--biz li { background: transparent; border: 1px solid #b7c6d6; }
+.theme-wedding .extras__grid--biz .duo { color: #54708c; }
+.theme-wedding .extras__grid--full li { background: #f6efe2; border: 1px solid #dcc79f; }
+.theme-wedding .extras__grid--full .duo { color: var(--gold); }
