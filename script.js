@@ -210,7 +210,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const yearly = Math.round(price * 12 * 0.8);
       const perMonth = Math.round(price * 0.8);
       plan.querySelector(".plan__price").innerHTML = mode === "yearly"
-        ? `<span>$${perMonth}</span>/month`
+        ? `<s class="plan__was">$${price}</s><span>$${perMonth}</span>/month`
         : `<span>$${price}</span>/month`;
       terms.innerHTML = mode === "yearly"
         ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>+ ${money(setup)} one-time setup`
