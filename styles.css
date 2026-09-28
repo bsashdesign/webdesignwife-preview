@@ -1363,3 +1363,10 @@ html.drawer-open { overflow: hidden; }
   .section-head > div:first-child { flex: 1 1 auto; min-width: 0; }
   .section-head__side { flex: 0 0 auto; max-width: 340px; }
 }
+
+/* ---------- Contact tabs fit on phones ---------- */
+@media (max-width: 640px) {
+  .formcard { padding: 8px 16px 22px; }
+  .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 16px; }
+  .tabs button { white-space: normal; line-height: 1.2; font-size: .82rem; padding: 9px 6px; border-radius: 12px; }
+}
