@@ -552,13 +552,13 @@ html.drawer-open { overflow: hidden; }
 
 /* ---------- Examples: 3D carousel ---------- */
 .cf { margin-top: 28px; --cw: 620px; --sw: 1280; --sh: 800; }
-.cf[data-mode="mobile"] { --cw: 250px; --sw: 390; --sh: 780; }
+.cf[data-mode="mobile"] { --cw: 300px; --sw: 390; --sh: 780; }
 .cf__controls { display: flex; justify-content: flex-end; margin-bottom: 10px; }
 .cf__stage { position: relative; height: calc(var(--cw) * var(--sh) / var(--sw) + 150px); perspective: 1600px; transition: height .5s var(--ease-out); }
 .cf__track { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
 .cf-card {
   position: absolute; left: 56px; top: 0; width: var(--cw); margin-left: 0;
-  transform: translateX(var(--tx, 0px)) translateZ(var(--tz, 0px)) rotateY(var(--ty, 0deg)) scale(var(--sc, 1)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-origin: 0 45%;
+  transform: translateX(var(--tx, 0px)) translateZ(var(--tz, 0px)) rotateY(var(--ty, 0deg)) scale(var(--sc, 1)); transform-origin: 0 45%;
   z-index: calc(20 - var(--a)); filter: brightness(calc(1 - var(--a) * .06));
   transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .5s ease, width .5s var(--ease-out), margin .5s var(--ease-out);
   cursor: pointer; will-change: transform;
@@ -573,7 +573,8 @@ html.drawer-open { overflow: hidden; }
 .cf__stage { height: calc(var(--cw) * var(--sh) / var(--sw) + 190px); }
 .cf:not(.is-ready) .cf-card { transition: none !important; }
 .cf-card.is-active { cursor: default; transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .5s ease; }
-.cf-card.is-tilting { transition: transform .12s linear; }
+.cf-card__frame { transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .6s var(--ease-out); }
+.cf-card.is-tilting .cf-card__frame { transition: transform .12s linear; }
 .cf-card__head { display: flex; align-items: center; gap: 10px; margin: 0 4px 12px; opacity: 0; transition: opacity .4s ease; }
 .cf-card.is-active .cf-card__head { opacity: 1; }
 .cf-card__head img { width: 40px; height: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,.15)); }

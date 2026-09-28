@@ -348,12 +348,15 @@
       const a = Math.abs(o);
       const mobile = cf.dataset.mode === "mobile";
       const cw = c.offsetWidth || 600;
-      const SC = mobile ? [1, 0.84, 0.7, 0.58] : [1, 0.64, 0.48, 0.38];
-      const GAP = mobile ? 0.9 : 0.74;       // how much of each card shows past the one before
+      const SC = mobile ? [1, 0.7, 0.6, 0.52] : [1, 0.64, 0.48, 0.38];
       let x = 0;
       if (o > 0) {
-        x = cw * (mobile ? 1.06 : 0.9);
-        for (let k = 2; k <= o; k++) x += cw * SC[Math.min(k - 1, 3)] * GAP;
+        // Desktop cards tuck behind each other; phones sit side by side with a small gap.
+        x = mobile ? cw + 28 : cw * 0.9;
+        for (let k = 2; k <= o; k++) {
+          const w = cw * SC[Math.min(k - 1, 3)];
+          x += mobile ? w + 20 : w * 0.74;
+        }
       }
       if (o < 0) x = -cw * 0.6;
       c.style.setProperty("--tx", `${x}px`);
@@ -396,21 +399,30 @@
     sx = null;
   });
 
-  // Tilt the front card toward the pointer, like a collectible card
+  // Every visible device tilts toward the pointer, like a collectible card.
+  // Only the device frame moves; the title above it stays put.
   if (!reduced) {
-    cf.addEventListener("pointermove", (e) => {
-      const c = cards[active];
-      const r = c.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      if (x < 0 || x > 1 || y < 0 || y > 1) return reset();
-      c.classList.add("is-tilting");
-      c.style.setProperty("--ry", `${(x - 0.5) * 12}deg`);
-      c.style.setProperty("--rx", `${(0.5 - y) * 9}deg`);
-      c.style.setProperty("--gx", `${x * 100}%`);
-      c.style.setProperty("--gy", `${y * 100}%`);
+    const stage = cf.querySelector(".cf__stage");
+    stage.addEventListener("pointermove", (e) => {
+      cards.forEach((c) => {
+        if (c.classList.contains("is-far")) return;
+        const f = c.querySelector(".cf-card__frame");
+        const r = f.getBoundingClientRect();
+        const x = Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5));
+        const y = Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5));
+        const k = c.classList.contains("is-active") ? 1 : 0.6;
+        c.classList.add("is-tilting");
+        f.style.setProperty("--ry", `${x * 12 * k}deg`);
+        f.style.setProperty("--rx", `${-y * 9 * k}deg`);
+        f.style.setProperty("--gx", `${(x + 0.5) * 100}%`);
+        f.style.setProperty("--gy", `${(y + 0.5) * 100}%`);
+      });
     });
-    const reset = () => cards.forEach((c) => { c.classList.remove("is-tilting"); c.style.removeProperty("--rx"); c.style.removeProperty("--ry"); });
-    cf.addEventListener("pointerleave", reset);
+    stage.addEventListener("pointerleave", () => cards.forEach((c) => {
+      c.classList.remove("is-tilting");
+      const f = c.querySelector(".cf-card__frame");
+      f.style.removeProperty("--rx"); f.style.removeProperty("--ry");
+    }));
   }
 
   new ResizeObserver(() => { sizeFrames(); render(false); }).observe(cf);
