@@ -1,7 +1,10 @@
+import re
 # Builds the homepage in each design direction from home.template.html.
 #   python3 build_home.py
 # index.html uses the default direction; design-*.html are side-by-side previews.
-import pathlib
+import pathlib, time
+
+VERSION = str(int(time.time()))
 
 HERE = pathlib.Path(__file__).parent
 TEMPLATE = (HERE / "home.template.html").read_text()
@@ -69,7 +72,13 @@ def with_copy(html, key):
     return html
 
 
+def bust(html):
+    # Version asset links so browsers pick up new styles after each publish.
+    html = re.sub(r'(href="(?:styles|themes/[a-z]+)\.css)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
+    return re.sub(r'(src="script\.js)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
+
+
 for key, d in DIRECTIONS.items():
-    (HERE / d["file"]).write_text(with_copy(render(key, True), key))
-(HERE / "index.html").write_text(with_copy(render(DEFAULT, True), DEFAULT))
+    (HERE / d["file"]).write_text(bust(with_copy(render(key, True), key)))
+(HERE / "index.html").write_text(bust(with_copy(render(DEFAULT, True), DEFAULT)))
 print("built", ", ".join(d["file"] for d in DIRECTIONS.values()), "+ index.html")
