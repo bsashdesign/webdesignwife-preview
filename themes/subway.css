@@ -179,5 +179,5 @@
 
 .theme-subway .nav.is-scrolled::after { height: 0; opacity: 0; }
 /* Blog cards: accent bar in a deeper shade of the cover */
-.theme-subway .post-card--article { border-top: 6px solid var(--cover-dark, var(--c)); }
+.theme-subway .post-card.post-card--article { border-top: 6px solid var(--cover-dark, var(--c)); }
 .theme-subway .rank__mark { border-radius: 50%; }

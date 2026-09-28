@@ -313,8 +313,8 @@ COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b")
 
 def card(a, n=0):
     icon = ICONS.get(a["kicker"], "memo")
-    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html">
-          <span class="post-card__cover" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>
+    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
+          <span class="post-card__cover"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>
           <span class="post-card__body">
             <span class="post-card__kicker">{a['kicker']}</span>
             <h3>{html.escape(a['title'])}</h3>

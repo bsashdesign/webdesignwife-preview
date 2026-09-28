@@ -589,7 +589,8 @@ html.drawer-open { overflow: hidden; }
   background: var(--sun); color: var(--ink); font: 700 .85rem var(--body);
   animation: rec-in .45s var(--ease-out);
 }
-@keyframes rec-in { from { opacity: 0; transform: translateY(-6px); } } }
+@keyframes rec-in { from { opacity: 0; transform: translateY(-6px); } }
+.plan__rec[hidden] { display: none; } }
 .plan__rec[hidden] { display: none; }
 .plan__info { width: 18px; height: 18px; border-radius: 50%; border: 0; background: var(--ink); color: #fff; font: 700 .7rem/1 Georgia, serif; font-style: italic; cursor: pointer; display: grid; place-items: center; padding: 0; }
 .plan__tip {
