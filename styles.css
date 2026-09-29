@@ -1885,9 +1885,11 @@ main p.eyebrow { max-width: none; }
    Pricing: yearly prices never push the cards off screen
    ================================================================ */
 .plans > .plan { min-width: 0; }
-/* The old price sits on its own line above the new one */
+/* The old price sits beside the new one, and only wraps above it when the card is too narrow */
 .plan__price { display: flex; flex-wrap: wrap; align-items: baseline; }
-.plan__was { flex-basis: 100%; margin: 0 0 6px; font-size: 1.15rem; }
+.plan__was { margin-right: 8px; }
+/* The price and "/month" always stay together */
+.plan__now { font-weight: inherit; white-space: nowrap; }
 /* Tablets keep three columns: a slightly smaller price and tighter padding */
 @media (min-width: 641px) and (max-width: 900px) {
   .plan { padding: 24px 16px; }
@@ -1906,3 +1908,7 @@ main p.eyebrow { max-width: none; }
 /* Examples arrows: level with the current site's name and tags, on the right */
 .cf { position: relative; }
 .cf__nav { position: absolute; right: 0; top: var(--head-y, 110px); z-index: 45; transform: translateY(-50%); }
+
+/* Pricing intro: the plan finder is a link at the end of the description */
+.pricing__link { font-weight: 600; color: var(--accent-ink, var(--violet)); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.pricing__head .billing { margin-top: 24px; }
