@@ -165,3 +165,4 @@
 .theme-blocks .news__row input { border: 2px solid var(--ink); }
 /* Switch knob: smaller, so its outline never touches the track's outline */
 .theme-blocks .billing__switch i { top: 8px; left: 8px; width: 18px; height: 18px; }
+.theme-blocks .play__shuffle { border-radius: 999px; }

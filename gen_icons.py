@@ -12,6 +12,8 @@ NAMES = [
     "wrench", "hair-dryer", "scissors", "fork-knife", "tooth", "hammer", "broom", "barbell", "calculator", "bread",
     # blog covers
     "map-pin", "clipboard-text", "map-trifold", "scales", "star", "note-pencil", "buildings",
+    # mood tiles
+    "smiley-wink",
 ]
 # Calm: regular · Transit: bold · Tangy: fill · Sophisticated: thin
 WEIGHTS = {"regular": "", "bold": ".theme-subway ", "fill": ".theme-blocks ", "thin": ".theme-wedding "}

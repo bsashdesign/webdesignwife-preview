@@ -246,3 +246,7 @@
 .theme-subway .promises p:nth-child(3)::before { color: #111; }
 .theme-subway .news { border-top: 8px solid var(--yellow); border-radius: 12px; }
 .theme-subway .news__row input { border-radius: 8px; }
+/* Switch: a squared signage toggle */
+.theme-subway .billing__switch { border-radius: 8px; --switch-off: #cfcfca; --switch-on: var(--blue); }
+.theme-subway .billing__switch i { border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+.theme-subway .billing__switch[aria-checked="true"] i { background: var(--yellow); }
