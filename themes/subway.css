@@ -250,3 +250,11 @@
 .theme-subway .billing__switch { border-radius: 8px; --switch-off: #cfcfca; --switch-on: var(--blue); }
 .theme-subway .billing__switch i { border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
 .theme-subway .billing__switch[aria-checked="true"] i { background: var(--yellow); }
+/* Included tiles: solid line-colored circles, like subway bullets */
+.theme-subway .incl .ico { border-radius: 50%; box-shadow: none; color: #fff; }
+.theme-subway .incl li:nth-child(1) .ico { background: var(--red); }
+.theme-subway .incl li:nth-child(2) .ico { background: var(--orange); }
+.theme-subway .incl li:nth-child(3) .ico { background: var(--yellow); color: #111; }
+.theme-subway .incl li:nth-child(4) .ico { background: var(--green); }
+.theme-subway .incl li:nth-child(5) .ico { background: var(--blue); }
+.theme-subway .incl li:nth-child(6) .ico { background: var(--purple); }
