@@ -124,6 +124,14 @@
       };
       const nav = document.querySelector(".nav");
       const fit = () => document.documentElement.style.setProperty("--nav-h", (nav ? nav.getBoundingClientRect().height : 69) + "px");
+      // Tabs glide to their section (this page only; the rest of the site jumps).
+      tabs.forEach((t) => t.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.getElementById(t.dataset.tabFor);
+        const top = target.getBoundingClientRect().top + scrollY - (nav ? nav.getBoundingClientRect().height : 69) - 56;
+        scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        history.replaceState(null, "", "#" + target.id);
+      }));
       addEventListener("scroll", () => { mark(); fit(); }, { passive: true });
       addEventListener("resize", fit);
       mark(); fit();
