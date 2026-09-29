@@ -242,6 +242,5 @@
 /* Shared tokens */
 .theme-subway { --icon: #111; --cover-ink: #111; --us-bg: #eef4ff; --us-edge: var(--blue); }
 .theme-subway .nav.is-scrolled { border-bottom: 1px solid var(--line); }
-.theme-subway .tabs.tabs--side { background: none; }
 .theme-subway .promises p::before { content: counter(vow); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--c); color: #fff; font-size: 1.05rem; letter-spacing: 0; }
 .theme-subway .promises p:nth-child(3)::before { color: #111; }

@@ -727,14 +727,14 @@
           <p class="eyebrow eyebrow--light">Get in touch</p>
           <h2>Not ready for a new website? Let me look at the one you have.</h2>
           <p>However you'd like to start, it comes straight to me. No sales team, no pressure.</p>
-          <div class="tabs tabs--side" role="tablist" aria-label="Choose a request">
-            <button type="button" role="tab" id="tab-audit" aria-selected="true" aria-controls="form-audit"><strong>Website + Maps audit</strong><small>I review your site, your Google Maps listing and a few local competitors.</small></button>
-            <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1"><strong>Request a callback</strong><small>Leave your number and a good time. I'll call within one business day.</small></button>
-            <button type="button" role="tab" id="tab-note" aria-selected="false" aria-controls="form-note" tabindex="-1"><strong>Secret note ♥</strong><small>A question you'd rather write down. It stays between us.</small></button>
-          </div>
         </div>
 
         <div class="formcard">
+          <div class="tabs" role="tablist" aria-label="Choose a request">
+            <button type="button" role="tab" id="tab-audit" aria-selected="true" aria-controls="form-audit">Website + Maps audit</button>
+            <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1">Request a callback</button>
+            <button type="button" role="tab" id="tab-note" aria-selected="false" aria-controls="form-note" tabindex="-1">Secret note ♥</button>
+          </div>
 
           <!-- TODO: connect both forms to a form backend (Webflow forms, Formspree, etc.) -->
           <form class="form" id="form-audit" role="tabpanel" aria-labelledby="tab-audit" novalidate data-success="Thanks! Your audit is on its way. I'll email your report within one business day.">
