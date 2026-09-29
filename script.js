@@ -401,8 +401,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     // The edge fade starts just past the front device, so it never dims it.
     const cardRight = stageEl.getBoundingClientRect().left + cards[active].offsetLeft + af.offsetWidth;
     stageEl.style.setProperty("--fade-w", `${Math.max(48, Math.min(360, document.documentElement.clientWidth - cardRight - 16))}px`);
-    prev.hidden = active === 0;
-    next.hidden = active === n - 1;
+    prev.disabled = active === 0;
+    next.disabled = active === n - 1;
+    // The edge fade uses the section's own background, whatever the mood.
+    const sec = cf.closest("section");
+    if (sec) stageEl.style.setProperty("--cf-fade", getComputedStyle(sec).backgroundColor);
     // The last card is a small "that's all" card with its own buttons.
     cards[n - 1].querySelectorAll("a, button").forEach((b) => { b.tabIndex = active === n - 1 ? 0 : -1; });
     cf.classList.toggle("is-end", n - 1 - active < shown);
@@ -736,14 +739,14 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   check();
 })();
 
-// Swipeable rows: arrows sit beside the row, centered on the cards
+// Swipeable rows: a pair of arrows sits above the row, on the right
 (function () {
   document.querySelectorAll("#blog .posts, .steps, .boroughs").forEach((row) => {
     const box = document.createElement("div");
     box.className = "rowx rowx--" + (row.classList.contains("boroughs") ? "boroughs" : row.classList.contains("steps") ? "steps" : "posts");
     row.before(box);
-    box.innerHTML = '<button type="button" class="rowx__btn rowx__btn--prev" aria-label="Previous">' + CHEV_L + '</button><button type="button" class="rowx__btn rowx__btn--next" aria-label="Next">' + CHEV_R + '</button>';
-    box.insertBefore(row, box.lastChild);
+    box.innerHTML = '<div class="rowx__nav"><button type="button" class="rowx__btn rowx__btn--prev" aria-label="Previous">' + CHEV_L + '</button><button type="button" class="rowx__btn rowx__btn--next" aria-label="Next">' + CHEV_R + '</button></div>';
+    box.appendChild(row);
     const [prev, next] = box.querySelectorAll(".rowx__btn");
     // Arrows move a whole view at a time: the first card that isn't fully visible becomes
     // the new first card (or last card, going back), so nothing is ever skipped.

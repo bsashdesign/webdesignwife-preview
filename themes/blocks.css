@@ -158,7 +158,7 @@
 .theme-blocks .billing__switch { box-shadow: inset 0 0 0 2px var(--ink); }
 .theme-blocks .billing__switch i { background: var(--lime); box-shadow: 0 0 0 2px var(--ink); }
 .theme-blocks .promises p::before { color: var(--ink); }
-.theme-blocks .rowx__btn { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.theme-blocks .rowx__btn, .theme-blocks .cf__nav .cf__arrow { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
 .theme-blocks .news { background: var(--sun); border: var(--edge); box-shadow: var(--shadow); }
 .theme-blocks .news__row input { border: 2px solid var(--ink); }
 /* Switch knob: smaller, so its outline never touches the track's outline */

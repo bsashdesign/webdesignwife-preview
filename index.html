@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790664200">
-  <link rel="stylesheet" href="themes/subway.css?v=1790664200">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790664200">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790664200">
+  <link rel="stylesheet" href="styles.css?v=1790664321">
+  <link rel="stylesheet" href="themes/subway.css?v=1790664321">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790664321">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790664321">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
   <script type="application/ld+json">
   {
@@ -186,17 +186,20 @@
             <h2>See What I'd Make for a Business Like Yours</h2>
             <p class="muted section-head__sub">Concept sites I designed to show the range of styles I build.</p>
           </div>
-          <div class="section-head__side">
+        </div>
+
+        <div class="cf" id="gallery" data-mode="desktop">
+          <div class="cf__bar">
             <div class="viewer__modes cf__modes" role="radiogroup" aria-label="Preview size">
               <button type="button" role="radio" aria-checked="true" data-mode="desktop">Desktop</button>
               <button type="button" role="radio" aria-checked="false" data-mode="mobile">Mobile</button>
             </div>
+            <div class="cf__nav">
+              <button type="button" class="cf__arrow cf__arrow--prev" aria-label="Previous sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button type="button" class="cf__arrow cf__arrow--next" aria-label="Next sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
           </div>
-        </div>
-
-        <div class="cf" id="gallery" data-mode="desktop">
           <div class="cf__stage" aria-roledescription="carousel" aria-label="Sample websites">
-            <button type="button" class="cf__arrow cf__arrow--prev" aria-label="Previous sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <div class="cf__track">
             <article class="cf-card" data-i="0" data-src="samples/rivera-plumbing.html" aria-label="Rivera Plumbing, Plumber">
               <header class="cf-card__head"><i class="pi pi--wrench" aria-hidden="true"></i><span><strong>Rivera Plumbing</strong><small>Plumber · Astoria, Queens</small></span></header>
@@ -263,7 +266,6 @@
               </div></div>
             </article>
             </div>
-            <button type="button" class="cf__arrow cf__arrow--next" aria-label="Next sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </div>
         </div>
       </div>
@@ -371,7 +373,7 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="section section--inset" id="how">
+    <section class="section" id="how">
       <div class="wrap">
         <p class="eyebrow">How it works</p>
         <h2><span data-alt-theme-wedding="From First Date to Launch Day in About Two Weeks">From First Call to Live Site in About Two Weeks</span></h2>
@@ -592,7 +594,7 @@
     </section>
 
     <!-- NYC -->
-    <section class="section section--inset" id="local">
+    <section class="section" id="local">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -696,7 +698,7 @@
     </section>
 
     <!-- BLOG TEASER -->
-    <section class="section section--inset" id="blog">
+    <section class="section" id="blog">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -900,6 +902,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790664200"></script>
+  <script src="script.js?v=1790664321"></script>
 </body>
 </html>

@@ -1760,32 +1760,30 @@ h2 { text-wrap: balance; }
 }
 
 /* ================================================================
-   Swipeable rows: arrows beside the row, centered on the cards
+   Carousels: a pair of arrows above the row, on the right
    ================================================================ */
-.rowx { position: relative; margin-top: 32px; }
+.rowx { margin-top: 32px; }
 .rowx > .boroughs { margin: 0; padding: 4px 8px 16px 0; scroll-padding-left: 0; }
-.rowx__btn { position: absolute; top: calc(50% - 6px); z-index: 3; display: none; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; transform: translateY(-50%); box-shadow: 0 6px 14px -8px rgba(0,0,0,.35); transition: opacity .2s ease, background-color .2s ease; }
-.rowx.is-scrollable .rowx__btn { display: grid; }
-.rowx__btn svg { width: 18px; height: 18px; display: block; }
-.rowx__btn:hover:not(:disabled) { background: var(--tint); }
-.rowx__btn:disabled { opacity: .3; cursor: default; box-shadow: none; }
-.rowx__btn--prev { left: -54px; } .rowx__btn--next { right: -54px; }
+.rowx__nav { display: none; justify-content: flex-end; gap: 10px; margin-bottom: 14px; }
+.rowx.is-scrollable .rowx__nav { display: flex; }
+.rowx__btn, .cf__nav .cf__arrow { position: static; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; transform: none; box-shadow: 0 6px 14px -8px rgba(0,0,0,.35); transition: opacity .2s ease, background-color .2s ease; }
+.rowx__btn svg, .cf__nav .cf__arrow svg { width: 18px; height: 18px; display: block; }
+.rowx__btn:hover:not(:disabled), .cf__nav .cf__arrow:hover:not(:disabled) { background: var(--tint); transform: none; }
+.rowx__btn:disabled, .cf__nav .cf__arrow:disabled { opacity: .35; cursor: default; box-shadow: none; }
 .rowx.is-scrollable > .boroughs, .rowx.is-scrollable > .posts, .rowx.is-scrollable > .steps {
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 56px)), transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 56px)), transparent 100%);
 }
-@media (max-width: 1263px) {
-  .rowx--boroughs { margin-left: 56px; margin-right: 56px; }
-}
 @media (max-width: 1080px) {
-  .rowx--posts, .rowx--steps { margin: 0 56px; }
   .rowx > .posts, .rowx > .steps { margin: 0; padding: 12px 8px 24px 0; scroll-padding-left: 0; }
 }
-@media (max-width: 640px) {
-  .rowx--boroughs, .rowx--posts, .rowx--steps { margin-left: 44px; margin-right: 44px; }
-  .rowx__btn { width: 38px; height: 38px; }
-  .rowx__btn--prev { left: -44px; } .rowx__btn--next { right: -44px; }
-}
+@media (max-width: 640px) { .rowx__btn, .cf__nav .cf__arrow { width: 40px; height: 40px; } }
+
+/* Examples: Desktop/Mobile on the left, arrows on the right, both above the devices */
+.cf__bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
+.cf__bar .viewer__modes { margin-left: 0; }
+.cf__nav { display: flex; gap: 10px; }
+.cf-card, .cf[data-mode="mobile"] .cf-card { left: 0; }
 
 /* ================================================================
    Our vows: numbered on every mood
@@ -1851,15 +1849,7 @@ h2 { text-wrap: balance; }
   .vow { top: calc(100% + 8px); }
 }
 
-/* ================================================================
-   Inset sections: when a section holds a card carousel with side
-   arrows, its heading and text line up with the first card
-   ================================================================ */
-.section--inset { --inset: 0px; }
-@media (max-width: 1263px) { #local.section--inset { --inset: 56px; } }
-@media (max-width: 1080px) { .section--inset { --inset: 56px; } }
-@media (max-width: 640px) { .section--inset { --inset: 44px; } }
-.section--inset > .wrap > * { margin-left: var(--inset); margin-right: var(--inset); }
+
 
 /* ================================================================
    Readable line length: body text stays around 70 characters per line
