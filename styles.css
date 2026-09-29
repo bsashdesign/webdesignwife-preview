@@ -2136,3 +2136,5 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .has-sheet .sheet-scrim { opacity: 1; visibility: visible; }
 .has-sheet body { overflow: hidden; }
 .mood { z-index: 75; }
+/* The audit section already explains the audit beside the form; the pop-up keeps the description */
+#audit .form__desc { display: none; }
