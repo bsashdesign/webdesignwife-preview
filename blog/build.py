@@ -245,7 +245,7 @@ def fill(page):
     # Mood styles, switcher and asset versions, shared with the homepage.
     css = MP.THEME_CSS.replace('href="themes/', 'href="../themes/').replace('.css"', ".css?v=" + MP.VERSION + '"')
     return (page.replace("{MOOD_FONTS}", MP.FONTS).replace("{MOOD_CSS}", css).replace("{MOOD_BOOT}", MP.BOOT)
-            .replace("{MOOD_SWITCHER}", MP.SWITCHER).replace("{V}", MP.VERSION))
+            .replace("{MOOD_SWITCHER}", MP.SWITCHER).replace("{MOOD_NEWS}", MP.NEWSLETTER).replace("{V}", MP.VERSION))
 
 
 def finish(page):
@@ -253,6 +253,7 @@ def finish(page):
 
 FOOT = """  </main>
   <footer class="footer">
+    {MOOD_NEWS}
     <div class="wrap footer__grid">
       <div class="footer__brand">
         <a class="brand" href="../index.html"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>

@@ -256,7 +256,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   }
 
   // Front-end validation only until a form backend is connected.
-  document.querySelectorAll("form.form").forEach((form) => {
+  document.querySelectorAll("form.form, form.news__form").forEach((form) => {
     const msg = form.querySelector(".form__msg");
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -267,7 +267,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         if (!ok && !firstInvalid) firstInvalid = field;
       });
       if (firstInvalid) {
-        msg.textContent = "Fill in the highlighted fields and try again.";
+        msg.textContent = form.dataset.error || "Fill in the highlighted fields and try again.";
         firstInvalid.focus();
         return;
       }

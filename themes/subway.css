@@ -244,3 +244,5 @@
 .theme-subway .nav.is-scrolled { border-bottom: 1px solid var(--line); }
 .theme-subway .promises p::before { content: counter(vow); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--c); color: #fff; font-size: 1.05rem; letter-spacing: 0; }
 .theme-subway .promises p:nth-child(3)::before { color: #111; }
+.theme-subway .news { border-top: 8px solid var(--yellow); border-radius: 12px; }
+.theme-subway .news__row input { border-radius: 8px; }

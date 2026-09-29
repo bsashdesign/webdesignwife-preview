@@ -56,6 +56,17 @@ def switcher():
   </div>'''
 
 
+def newsletter():
+    # TODO: connect to an email service (Mailchimp, ConvertKit, Buttondown...). Front-end only for now.
+    return ('<div class="wrap"><div class="news">'
+            '<div class="news__copy"><h4>Local business notes, once a month.</h4>'
+            '<p>What\'s actually working for small businesses in New York: maps, reviews, and the questions clients ask me most. No pitches.</p></div>'
+            '<form class="news__form" novalidate data-error="Enter a valid email address." data-success="You\'re on the list! Your first note arrives next month.">'
+            '<div class="news__row"><input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">'
+            '<button class="btn btn--primary" type="submit">Subscribe</button></div>'
+            '<p class="form__msg" role="status" aria-live="polite"></p></form></div></div>')
+
+
 def footer_moods():
     return '<div class="moods" role="group" aria-label="Choose your mood">' + "".join(
         f'<button type="button" class="moods__card" data-mood="{m["key"]}" aria-pressed="false">{dots(m)}<span>{m["label"]}</span></button>'
@@ -88,6 +99,7 @@ page = (TEMPLATE
         .replace(' class="{{BODY_CLASS}}"', "")
         .replace("{{SWITCHER}}", switcher())
         .replace("{{MOODS}}", footer_moods())
+        .replace("{{NEWSLETTER}}", newsletter())
         .replace("{{HOME}}", "index.html"))
 (HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(page))))
 
@@ -105,5 +117,6 @@ for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "ta
     f"BOOT = {mood_boot()!r}\n"
     f"SWITCHER = {switcher()!r}\n"
     f"FOOTER_MOODS = {footer_moods()!r}\n"
+    f"NEWSLETTER = {newsletter()!r}\n"
     f"VERSION = {VERSION!r}\n")
 print("built index.html (moods: " + ", ".join(m["label"] for m in MOODS) + ")")
