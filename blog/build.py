@@ -219,7 +219,7 @@ HEAD = """<!DOCTYPE html>
         <a class="drawer__big" href="../index.html#how"><span>How it works</span><small>From first call to launch in about two weeks</small></a>
         <a class="drawer__big" href="../index.html#features"><span>Features</span><small>Everything included on every plan</small></a>
         <a class="drawer__big" href="../index.html#pricing"><span>Pricing</span><small>From $99/month, with hosting and edits included</small></a>
-        <a class="drawer__big" href="../index.html#about"><span>About</span><small>Meet Ben, and why we're called Web Design Wife</small></a>
+        <a class="drawer__big" href="../index.html#about"><span>About</span><small>Meet Ben, and why I'm called Web Design Wife</small></a>
         <a class="drawer__big" href="../index.html#faq"><span>FAQ</span><small>Ownership, cancelling, edits and more</small></a>
         <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
@@ -307,12 +307,12 @@ def quickcheck(title, sub):
     <p class="quickcheck__sub">{sub}</p>
     <div class="quickcheck__row">
       <input name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" aria-label="Your website address">
-      <button class="btn btn--primary" type="submit">Get our take</button>
+      <button class="btn btn--primary" type="submit">Get my take</button>
     </div>
   </div>
   <div class="quickcheck__step" data-step="email" hidden>
-    <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> <span class="qc-url"></span> is in our review queue</p>
-    <p class="quickcheck__sub">Where should we send your notes? A real person reviews every site and replies within one business day.</p>
+    <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> <span class="qc-url"></span> is in my review queue</p>
+    <p class="quickcheck__sub">Where should I send your notes? I review every site personally and reply within one business day.</p>
     <div class="quickcheck__row">
       <input name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" aria-label="Your email">
       <button class="btn btn--primary" type="submit">Send my notes</button>
@@ -320,14 +320,14 @@ def quickcheck(title, sub):
   </div>
   <div class="quickcheck__step" data-step="done" hidden>
     <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> You're all set</p>
-    <p class="quickcheck__sub">We'll email our notes on <span class="qc-url"></span> within one business day.</p>
+    <p class="quickcheck__sub">I'll email my notes on <span class="qc-url"></span> within one business day.</p>
   </div>
   <p class="quickcheck__msg" role="status" aria-live="polite"></p>
 </form>
 """
 
-MID_CHECK = quickcheck("Want our honest take on your website?", "Enter your web address and we'll look it over personally. Free, with no obligation.")
-END_CHECK = quickcheck("Want a second opinion on your site?", "Tell us your web address and we'll send you a short, honest review of what to fix first.")
+MID_CHECK = quickcheck("Want my honest take on your website?", "Enter your web address and I'll look it over personally. Free, with no obligation.")
+END_CHECK = quickcheck("Want a second opinion on your site?", "Tell me your web address and I'll send you a short, honest review of what to fix first.")
 
 ICONS = {"Borough guide": "map-pin", "Checklist": "clipboard-text", "Google Maps": "map-trifold", "Buying guide": "scales", "Reviews": "star", "Guide": "hammer", "Comparison": "scales"}
 COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]

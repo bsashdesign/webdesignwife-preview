@@ -1,11 +1,11 @@
-# Borough guides: how we approach a website for businesses in each borough.
+# Borough guides: how I approach a website for businesses in each borough.
 # Each one is written around what's genuinely different about that borough,
 # not the same page with the name swapped.
 
 BOROUGHS = [
   {
     "slug": "websites-manhattan", "name": "Manhattan",
-    "summary": "Dense blocks, busy customers and lots of competition. Here's how we build websites for Manhattan businesses.",
+    "summary": "Dense blocks, busy customers and lots of competition. Here's how I build websites for Manhattan businesses.",
     "intro": "In Manhattan, your competitor is often on the same block. Customers are usually on foot, on their phone and deciding in seconds, so your website and Google Maps listing have to answer their questions instantly.",
     "different": [
       "People search by neighborhood and even by street, like “Midtown lunch” or “dentist near Columbus Circle”",
@@ -24,7 +24,7 @@ BOROUGHS = [
   },
   {
     "slug": "websites-brooklyn", "name": "Brooklyn",
-    "summary": "Brooklyn customers are loyal to their neighborhood. Here's how we build websites that feel local.",
+    "summary": "Brooklyn customers are loyal to their neighborhood. Here's how I build websites that feel local.",
     "intro": "Brooklyn is a borough of neighborhoods, and people identify with theirs. A business that feels like part of Park Slope, Bay Ridge or Williamsburg earns a kind of loyalty that no ad can buy.",
     "different": [
       "People search with neighborhood names, like “coffee in Greenpoint” or “plumber Bay Ridge”",
@@ -43,7 +43,7 @@ BOROUGHS = [
   },
   {
     "slug": "websites-queens", "name": "Queens",
-    "summary": "Queens is one of the most diverse places anywhere. Here's how we build websites that welcome every customer.",
+    "summary": "Queens is one of the most diverse places anywhere. Here's how I build websites that welcome every customer.",
     "intro": "Queens is famously diverse, with neighborhoods where you'll hear dozens of languages on a single street. The businesses that do best online make every customer feel like the site was made for them.",
     "different": [
       "Many customers are more comfortable reading in a language other than English",
@@ -62,7 +62,7 @@ BOROUGHS = [
   },
   {
     "slug": "websites-bronx", "name": "The Bronx", "in": "the Bronx",
-    "summary": "Family-run businesses, strong neighborhoods and loyal customers. Here's how we build websites for the Bronx.",
+    "summary": "Family-run businesses, strong neighborhoods and loyal customers. Here's how I build websites for the Bronx.",
     "intro": "The Bronx is full of family-run businesses with deep roots, from Arthur Avenue to City Island. Your website should carry that same warmth and make it easy for new customers to become regulars.",
     "different": [
       "Many customers prefer Spanish, so bilingual information can make a real difference",
@@ -81,7 +81,7 @@ BOROUGHS = [
   },
   {
     "slug": "websites-staten-island", "name": "Staten Island",
-    "summary": "More driving, more home services and a lot of word of mouth. Here's how we build websites for Staten Island.",
+    "summary": "More driving, more home services and a lot of word of mouth. Here's how I build websites for Staten Island.",
     "intro": "Staten Island works a little differently from the rest of the city. More customers drive, more businesses serve people at home, and a good reputation travels fast across the island.",
     "different": [
       "Customers often drive, so parking and directions matter",
@@ -113,19 +113,19 @@ def borough_body(b):
 <h2>What's different about {where}</h2>
 <ul>{li(b['different'])}</ul>
 
-<h2>What we put on every website in {where}</h2>
+<h2>What I put on every website in {where}</h2>
 <ul>{li(b['build'])}</ul>
 
 {{{{CHECK}}}}
 
-<h2>Common mistakes we see</h2>
+<h2>Common mistakes I see</h2>
 <ul>{li(MISTAKES[b['slug']])}</ul>
 
 <h2>Don't forget Google Maps</h2>
 <p>In a city this dense, the Google Maps listing is often the first thing a customer sees, before they ever reach your website. Make sure your categories, hours, photos and neighborhood details there match your site exactly, and ask happy customers for reviews regularly.</p>
 
-<h2>Neighborhoods we work with</h2>
-<p>We work with businesses across {where}, including {b['hoods']}. Don't see yours? We'd still love to hear from you.</p>
+<h2>Neighborhoods I work with</h2>
+<p>I work with businesses across {where}, including {b['hoods']}. Don't see yours? I'd still love to hear from you.</p>
 
 <h2>Everything else is handled</h2>
 <p>Every plan includes hosting, security, unlimited minor edits and a real person to talk to. Every plan also keeps your Google Maps profile up to date, which matters as much as your website for most local businesses. Business and Full Suite go further, with ongoing optimization and a review routine.</p>

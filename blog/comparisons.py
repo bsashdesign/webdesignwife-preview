@@ -35,7 +35,7 @@ PLATFORMS = [
   {
     "slug": "vs-webflow", "name": "Webflow",
     "summary": "Webflow gives designers amazing control. Here's whether it makes sense for a local business owner.",
-    "short": "Webflow is a professional design tool, and we use it for many client sites ourselves. It's fantastic in a designer's hands, but it has a steep learning curve for a business owner building a site alone.",
+    "short": "Webflow is a professional design tool, and I use it for many client sites myself. It's fantastic in a designer's hands, but it has a steep learning curve for a business owner building a site alone.",
     "good": ["Pixel-level design control without writing code", "Fast, clean, well-built sites", "A powerful CMS for blogs and listings", "An easy editor for text and photo updates once the site is built"],
     "watch": ["Building a site from scratch means learning web design concepts", "Plans and add-ons can be confusing to compare", "It's built for designers, not for quick do-it-yourself setups", "Big layout changes still need someone who knows Webflow"],
     "them": "you're a designer, or you have one on your team.",
@@ -45,7 +45,7 @@ PLATFORMS = [
   {
     "slug": "vs-shopify", "name": "Shopify",
     "summary": "If you sell products online, Shopify is probably the right answer. Here's the honest breakdown.",
-    "short": "If your main goal is selling products online, use Shopify. It's excellent at what it does. Our plans are for informational websites that bring in calls, bookings and visits, so we're not the right fit for an online store.",
+    "short": "If your main goal is selling products online, use Shopify. It's excellent at what it does. My plans are for informational websites that bring in calls, bookings and visits, so I'm not the right fit for an online store.",
     "good": ["Checkout, payments, inventory and shipping built in", "Thousands of apps for reviews, subscriptions and marketing", "A point-of-sale system if you also sell in person", "Reliable hosting that handles busy sales days"],
     "watch": ["It's more than you need if you don't sell products online", "Monthly fees, app subscriptions and transaction fees add up", "You'll still manage products, photos and orders yourself"],
     "them": "you sell physical or digital products online.",
@@ -69,7 +69,7 @@ PLATFORMS = [
     "good": ["Connects directly to your Square payments and items", "Online ordering for pickup and delivery", "Works with Square Appointments for bookings", "Inexpensive to start"],
     "watch": ["Fewer design options than dedicated website builders", "Built around selling, so storytelling and services pages are limited", "Makes the most sense only if you already use Square"],
     "them": "you use Square and mainly need online ordering or booking.",
-    "us": "you want a full website that tells your story. We can link it straight to your Square ordering or booking page.",
+    "us": "you want a full website that tells your story. I can link it straight to your Square ordering or booking page.",
     "tips": ["Keep your item photos and descriptions up to date", "Mark items sold out quickly so customers aren't disappointed", "Add your hours and pickup instructions clearly", "Link your Square site from your Google Business Profile", "Use the same business name everywhere online"],
   },
   {
@@ -85,7 +85,7 @@ PLATFORMS = [
   {
     "slug": "vs-carrd", "name": "Carrd",
     "summary": "Carrd makes simple one-page sites for very little money. Here's how it compares.",
-    "short": "Carrd is one of the cheapest ways to get a simple one-page site, and it's great for what it is. The difference with our Simple Site plan is that we design it, write it and keep it updated for you.",
+    "short": "Carrd is one of the cheapest ways to get a simple one-page site, and it's great for what it is. The difference with my Essentials plan is that I design it, write it and keep it updated for you.",
     "good": ["Very low cost", "Quick to build a clean one-page site", "Simple, focused editor", "Good for landing pages and link-in-bio pages"],
     "watch": ["One page per site, with limited features", "Design and writing are entirely up to you", "No help with Google Maps, reviews or updates"],
     "them": "you're on a tight budget and happy to build a simple page yourself.",
@@ -126,8 +126,8 @@ def comparison_body(p):
 <table class="vs-table">
   <thead><tr><th></th><th>{p['name']}</th><th>Web Design Wife</th></tr></thead>
   <tbody>
-    <tr><th>Who builds the site</th><td>You</td><td>We do</td></tr>
-    <tr><th>Who makes updates</th><td>You</td><td>We do. Just send a message.</td></tr>
+    <tr><th>Who builds the site</th><td>You</td><td>I do</td></tr>
+    <tr><th>Who makes updates</th><td>You</td><td>I do. Just send a message.</td></tr>
     <tr><th>Google Maps help</th><td>Up to you</td><td>Kept up to date on every plan; growth on Business and Full Suite</td></tr>
     <tr><th>Best for</th><td>{p['them'][0].upper() + p['them'][1:]}</td><td>Busy owners who want it handled</td></tr>
   </tbody>
@@ -161,11 +161,11 @@ def comparison_body(p):
   <li>How much is an hour of my time worth to my business?</li>
 </ul>
 
-<h2>Going with {p['name']}? Our tips</h2>
+<h2>Going with {p['name']}? My tips</h2>
 <ol>{li(p['tips'])}</ol>
 
 <h2>Still not sure?</h2>
-<p>That's normal. Send us your current website, or tell us what you're considering, and we'll give you an honest recommendation, even if it isn't us.</p>
+<p>That's normal. Send me your current website, or tell me what you're considering, and I'll give you an honest recommendation, even if it isn't me.</p>
 """
 
 
@@ -196,7 +196,7 @@ EXTRA = [
 {{CHECK}}
 
 <h2>Choose an agency if…</h2>
-<p>…you need a large or highly custom project, like an online store with thousands of products or a web app. We take on custom projects like these too, quoted separately.</p>
+<p>…you need a large or highly custom project, like an online store with thousands of products or a web app. I take on custom projects like these too, quoted separately.</p>
 
 <h2>Choose a managed website if…</h2>
 <p>…you want a professional informational site for a predictable monthly price, with updates handled whenever you need them.</p>
@@ -240,7 +240,7 @@ EXTRA = [
 <p>Your team, your space and your work build more trust than any stock photo. A recent phone camera is plenty.</p>
 
 <h2>6. Set up your Google Business Profile</h2>
-<p>For most local businesses, it brings in as many customers as the website. Read our guide on <a href="google-maps-profile.html">why your Google Maps profile matters</a>.</p>
+<p>For most local businesses, it brings in as many customers as the website. Read my guide on <a href="google-maps-profile.html">why your Google Maps profile matters</a>.</p>
 
 <h2>7. Check it on your phone</h2>
 <p>Most of your visitors will be on a phone. Tap every button and fill in your own contact form.</p>

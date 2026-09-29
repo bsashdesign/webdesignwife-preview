@@ -598,7 +598,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       } else if (stage === "email") {
         if (!input.checkValidity() || !input.value.trim()) {
           input.setAttribute("aria-invalid", "true");
-          msg.textContent = "Enter an email address so we can send your notes.";
+          msg.textContent = "Enter an email address so I can send your notes.";
           return;
         }
         go("done");
