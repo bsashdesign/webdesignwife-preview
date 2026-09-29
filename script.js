@@ -414,7 +414,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
   prev.addEventListener("click", () => go(active - 1));
   next.addEventListener("click", () => go(active + 1));
-  cf.querySelectorAll("[data-cf-restart]").forEach((b) => b.addEventListener("click", () => go(0)));
+  // Stop here, or the end card's own click handler would jump straight back to it.
+  cf.querySelectorAll("[data-cf-restart]").forEach((b) => b.addEventListener("click", (e) => { e.stopPropagation(); go(0); }));
   picks.forEach((p, i) => p.addEventListener("click", () => go(i)));
   cards.forEach((c, i) => c.addEventListener("click", (e) => { if (i !== active) { e.preventDefault(); go(i); } }));
   cf.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") go(active - 1); if (e.key === "ArrowRight") go(active + 1); });
