@@ -2204,3 +2204,13 @@ main p.assure, main .guarantee p, main .ssum__promise p { max-width: none; }
 .theme-refined .section--violet .form select option { color: var(--ink); }
 .theme-refined .section--violet .form--note textarea { border: 1px solid rgba(255,255,255,.4); }
 #blog .section-head { flex-wrap: nowrap; }
+
+/* Carousel heads: the arrows always sit on the right, level with the bottom of the title or intro,
+   at every width. The text narrows to make room instead of the arrows dropping below. */
+.carousel-head, #blog .section-head { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.carousel-head > h2, .carousel-head > p, #blog .section-head > div:first-child { flex: 1 1 auto; min-width: 0; }
+[data-nav-slot] { flex: 0 0 auto; }
+/* Phones and touch screens: no arrows, people swipe the rows */
+@media (max-width: 640px), (hover: none) and (pointer: coarse) {
+  .rowx__nav, [data-nav-slot], .cf__nav { display: none !important; }
+}
