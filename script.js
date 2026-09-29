@@ -405,9 +405,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     next.disabled = active === n - 1;
     // The arrows sit level with the current site's name and tags.
     const head = cards[active].querySelector(".cf-card__head");
+    // Measured from layout (offsets), not the screen, so a card still sliding into place can't skew it.
     if (head) {
-      const hr = head.getBoundingClientRect(), cr = cf.getBoundingClientRect();
-      cf.style.setProperty("--head-y", `${hr.top - cr.top + hr.height / 2}px`);
+      const track = cards[active].offsetParent;
+      const y = stageEl.offsetTop + (track ? track.offsetTop : 0) + cards[active].offsetTop + head.offsetTop + head.offsetHeight / 2;
+      cf.style.setProperty("--head-y", `${y}px`);
     }
     // The edge fade uses the section's own background, whatever the mood.
     const sec = cf.closest("section");

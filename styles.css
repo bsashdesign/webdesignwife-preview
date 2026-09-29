@@ -1912,3 +1912,10 @@ main p.eyebrow { max-width: none; }
 /* Pricing intro: the plan finder is a link at the end of the description */
 .pricing__link { font-weight: 600; color: var(--accent-ink, var(--violet)); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .pricing__head .billing { margin-top: 24px; }
+
+/* Carousel cards shrink a little (never below 280px) when that lets every card fit,
+   so the arrows only show when something is actually off screen */
+@media (max-width: 1080px) {
+  #blog .posts > *, .steps > * { flex: 1 0 min(280px, 74vw); }
+}
+.boroughs .borough { flex: 1 0 auto; }
