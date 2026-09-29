@@ -714,10 +714,31 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 })();
 
 // Footer "Speak to Ben" opens the callback tab
-document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventListener("click", () => {
-  const tab = document.getElementById("tab-callback");
-  if (tab) tab.click();
-}));
+// "Free audit" and "let's talk" links open the get-in-touch forms in a pop-up instead of scrolling.
+// The one form card moves into the pop-up while it's open, then goes back to its section.
+(function () {
+  const dialog = document.getElementById("audit-dialog");
+  const card = document.querySelector("#audit .formcard");
+  if (!dialog || !card || typeof dialog.showModal !== "function") return;
+  const home = card.parentElement, after = card.nextSibling;
+  const slot = dialog.querySelector("[data-audit-slot]");
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href="#audit"]');
+    if (!link) return;
+    e.preventDefault();
+    document.querySelectorAll("dialog[open]").forEach((d) => { if (d !== dialog) d.close(); });
+    slot.appendChild(card);
+    const tab = document.getElementById(link.dataset.tab === "callback" ? "tab-callback" : "tab-audit");
+    if (tab) tab.click();
+    if (!dialog.open) dialog.showModal();
+    const first = card.querySelector("form:not([hidden]) input");
+    if (first) first.focus({ preventScroll: true });
+  });
+  dialog.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close-audit]") || e.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("close", () => home.insertBefore(card, after));
+})();
 
 // Nav: the color strip shows at the top of the page, then tucks away
 (function () {

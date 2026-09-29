@@ -167,3 +167,5 @@
 .theme-blocks .mplan + .mplan { border-color: var(--ink); border-width: 2px; }
 .theme-blocks .mplan__ico { background: var(--lime); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
 .theme-blocks .mplan--grow .mplan__ico { background: var(--violet); }
+.theme-blocks .audit-dialog { background: var(--cobalt); border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks .audit-dialog .formcard { background: #fff; padding: 18px; border: var(--edge); }

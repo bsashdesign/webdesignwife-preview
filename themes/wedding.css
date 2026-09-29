@@ -167,3 +167,5 @@
 /* Light sections: navy lines. Dark sections (Get in touch, blog review box): light lines. */
 .theme-wedding { --field-line: rgba(31, 35, 54, .45); --field-ink: var(--ink); }
 .theme-wedding .section--violet, .theme-wedding .quickcheck { --field-line: rgba(255, 255, 255, .5); --field-ink: #fff; }
+.theme-wedding .audit-dialog { border-radius: 4px; }
+.theme-wedding .audit-dialog__title { font-weight: 500; font-size: 1.8rem; }

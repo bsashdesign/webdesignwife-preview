@@ -896,6 +896,13 @@
     </div>
   </dialog>
 
+  <!-- Get in touch pop-up: the same three forms, opened from any "free audit" or "let's talk" link -->
+  <dialog class="audit-dialog section--violet" id="audit-dialog" aria-labelledby="audit-dialog-title">
+    <button type="button" class="finder-dialog__close audit-dialog__close" data-close-audit aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <p class="audit-dialog__title" id="audit-dialog-title">Get in touch</p>
+    <div data-audit-slot></div>
+  </dialog>
+
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
   <script src="script.js"></script>
