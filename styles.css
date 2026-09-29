@@ -2161,3 +2161,5 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .theme-subway .mobile__points li:nth-child(1) .ico { background: var(--red); } .theme-subway .mobile__points li:nth-child(2) .ico { background: var(--yellow); color: #111; } .theme-subway .mobile__points li:nth-child(3) .ico { background: var(--blue); }
 .theme-wedding .mobile__points li { border-radius: 4px; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(184, 149, 90, .28); }
 .theme-wedding .mobile__points strong { font-weight: 600; font-size: 1.3rem; }
+/* The line-length cap is for running text; a one-line list and the guarantee card's text use their full width */
+main p.assure, main .guarantee p, main .ssum__promise p { max-width: none; }
