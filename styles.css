@@ -2352,3 +2352,5 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-wedding h2, .theme-wedding #how h2, .theme-wedding #audit h2, .theme-wedding #pricing .pricing__head h2 { max-width: none; text-wrap: balance; }
 /* Centered titles still center when they wrap */
 .blog-hero--center h1, .fhero h1, .pricing__head h2 { margin-left: auto; margin-right: auto; }
+/* Hero title: "Your website, handled." wraps only when it has to; the price always starts its own line */
+.hero__line { display: block; text-wrap: balance; }
