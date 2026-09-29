@@ -168,7 +168,7 @@
 .theme-wedding { --field-line: rgba(31, 35, 54, .45); --field-ink: var(--ink); }
 .theme-wedding .section--violet, .theme-wedding .quickcheck { --field-line: rgba(255, 255, 255, .5); --field-ink: #fff; }
 .theme-wedding .audit-dialog { border-radius: 4px; }
-.theme-wedding .audit-dialog__title { font-weight: 500; font-size: 1.8rem; }
+.theme-wedding .audit-dialog .audit-dialog__title { font-weight: 500; font-size: 1.8rem; }
 /* The secret note keeps its lined notepaper, just with square corners */
 .theme-wedding .form--note textarea, .theme-wedding .form--note textarea:focus { background: #fffdf6 repeating-linear-gradient(transparent 0 27px, #e9e2cf 27px 28px); color: var(--ink); border-color: #fffdf6; padding-top: 6px; line-height: 28px; }
 .theme-wedding .form--note textarea:focus { border-color: #d9c49a; }
