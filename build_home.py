@@ -169,6 +169,8 @@ contact = full_page((HERE / "contact.template.html").read_text()).replace("{{AUD
 PRICING_MAIN = "\n".join(block(page, f'<section class="{c}" id="{i}">') for c, i in (("section", "pricing"), ("section section--tint", "faq")))
 pricing = full_page((HERE / "pricing.template.html").read_text()).replace("{{MAIN}}", PRICING_MAIN + "\n" + AUDIT_SECTION).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG)
 (HERE / "pricing.html").write_text(bust(titlecase.apply(add_alt_copy(pricing))))
+features = full_page((HERE / "features.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
+(HERE / "features.html").write_text(bust(titlecase.apply(add_alt_copy(features))))
 
 # Old per-style URLs now open the homepage in that mood.
 for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):
@@ -190,7 +192,7 @@ print("built index.html (moods: " + ", ".join(m["label"] for m in MOODS) + ")")
 
 # Sitemap for the live domain (webdesignwife.com). Regenerated on every build.
 SITE = "https://webdesignwife.com/"
-pages = ["", "pricing.html", "contact.html", "start.html", "blog/"] + sorted(
+pages = ["", "pricing.html", "features.html", "contact.html", "start.html", "blog/"] + sorted(
     "blog/" + f.name for f in (HERE / "blog").glob("*.html") if f.name != "index.html")
 today = time.strftime("%Y-%m-%d")
 (HERE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

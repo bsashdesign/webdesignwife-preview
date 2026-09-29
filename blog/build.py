@@ -195,6 +195,7 @@ HEAD = """<!DOCTYPE html>
       <a class="brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
         <a href="../pricing.html">Pricing</a>
+        <a href="../features.html">Features</a>
         <a href="../contact.html">Contact</a>
         <a href="index.html">Blog</a>
       </nav>
@@ -258,6 +259,7 @@ FOOT = """  </main>
       <nav class="footer__col" aria-label="Pages">
         <h4>Pages</h4>
         <a href="../pricing.html">Pricing</a>
+        <a href="../features.html">Features</a>
         <a href="../contact.html">Contact</a>
         <a href="index.html">Blog</a>
         <a href="../start.html">Get started</a>

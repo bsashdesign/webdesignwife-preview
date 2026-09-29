@@ -104,6 +104,23 @@ BOROUGHS = [
 MISTAKES = {'websites-manhattan': ['Listing only the building address, without cross streets or the nearest subway', "Hours that don't reflect early closings for holidays and events", 'A homepage that loads slowly on a phone, where most people are searching'], 'websites-brooklyn': ['Using stock photos that could be anywhere instead of your actual block', 'Leaving out the neighborhood name, so you miss searches like “Park Slope”', "A generic About page that doesn't say who's behind the business"], 'websites-queens': ['Important details only in English when many customers prefer another language', 'Saying “Queens” when customers search for “Astoria” or “Flushing”', 'Not listing which neighborhoods a service business actually travels to'], 'websites-bronx': ['No prices anywhere, which sends cautious customers to a competitor', "A phone number that's hard to tap on a small screen", 'Missing Spanish information when a large share of customers would prefer it'], 'websites-staten-island': ['No mention of parking, which matters when most customers drive', 'Project photos that are years old, or missing entirely', 'Leaving out license and insurance details for home services']}
 
 
+# Neighborhood guides that exist so far (slug per neighborhood). Tiles link to them; the rest are listed plainly.
+HOOD_ARTICLES = {}
+
+
+def hood_names(b):
+    import re
+    return [x.strip() for x in re.split(r",| and ", b["hoods"]) if x.strip()]
+
+
+def hood_tiles(b):
+    tiles = []
+    for name in hood_names(b):
+        slug = HOOD_ARTICLES.get(name)
+        tiles.append(f'<li><a href="{slug}.html">{name}</a></li>' if slug else f"<li><span>{name}</span></li>")
+    return "".join(tiles)
+
+
 def borough_body(b):
     li = lambda items: "".join(f"<li>{x}</li>" for x in items)
     where = b.get("in", b["name"])
@@ -124,8 +141,9 @@ def borough_body(b):
 <h2>Don't forget Google Maps</h2>
 <p>In a city this dense, the Google Maps listing is often the first thing a customer sees, before they ever reach your website. Make sure your categories, hours, photos and neighborhood details there match your site exactly, and ask happy customers for reviews regularly.</p>
 
-<h2>Neighborhoods I work with</h2>
-<p>I work with businesses across {where}, including {b['hoods']}. Don't see yours? I'd still love to hear from you.</p>
+<h2 id="neighborhoods">Neighborhoods I work with</h2>
+<p>I work with businesses in every corner of {where}. Each neighborhood searches a little differently, and I'm writing a guide for each one. Don't see yours? I'd still love to hear from you.</p>
+<ul class="hoods">{hood_tiles(b)}</ul>
 
 <h2>Everything else is handled</h2>
 <p>Every plan includes hosting, security, unlimited minor edits and a real person to talk to. Every plan also keeps your Google Maps profile up to date, which matters as much as your website for most local businesses. Business and Full Suite go further, with ongoing optimization and a review routine.</p>

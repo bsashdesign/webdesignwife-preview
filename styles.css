@@ -2272,3 +2272,74 @@ ul.assure li::before { content: ""; width: 16px; height: 16px; flex-shrink: 0; b
 .theme-blocks ul.assure li::before { background: var(--ink); }
 .buyout__note { font-size: .88rem; color: var(--ink-soft); }
 .related__list { grid-template-columns: minmax(0, 1fr); }
+/* A highlighted feature in a plan list */
+.plan__star { margin: 2px -10px; padding: 6px 10px 6px 10px; border-radius: 10px; background: color-mix(in srgb, var(--violet) 10%, transparent); }
+.theme-wedding .plan__star { border-radius: 2px; background: #f6f1e6; }
+.theme-blocks .plan__star { background: var(--lime); box-shadow: inset 0 0 0 2px var(--ink); }
+.theme-subway .plan__star { border-radius: 6px; background: #fff4c2; }
+.borough__more { font-weight: 600; color: var(--ink); white-space: nowrap; }
+/* Borough guides: every neighborhood as a tile (linked once its guide exists) */
+.article__body ul.hoods { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.article__body ul.hoods li { margin: 0; }
+.hoods span, .hoods a { display: inline-block; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: .9rem; color: var(--ink); text-decoration: none; }
+.hoods a { border-color: var(--ink); font-weight: 600; }
+.theme-wedding .hoods span, .theme-wedding .hoods a { border-radius: 2px; }
+.theme-blocks .hoods span, .theme-blocks .hoods a { border: 2px solid var(--ink); }
+
+/* ================================================================
+   Features page: a plan-by-plan tour
+   ================================================================ */
+.fhero { padding: 96px 0 56px; text-align: center; }
+.fhero h1 { max-width: 16ch; margin: 10px auto 18px; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; }
+.fhero__lede { margin: 0 auto; font-size: 1.2rem; color: var(--ink-soft); }
+.fhero__jump { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.fhero__jump a { padding: 9px 18px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-weight: 600; text-decoration: none; }
+.fhero__jump a:hover { border-color: var(--ink); }
+.fchap { padding: 88px 0; }
+.fchap--tint { background: var(--tint); }
+.fchap__kicker { margin: 0 0 8px; font: 600 .8rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink, var(--violet)); }
+.fchap h2 { max-width: 22ch; margin: 0 0 40px; font-size: clamp(2rem, 4.4vw, 3.2rem); }
+.feats { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.feat { padding: 26px 24px; border: 1px solid var(--line); border-radius: var(--r-lg); background: #fff; }
+.feat .ico { width: 48px; height: 48px; border-radius: 14px; margin-bottom: 16px; }
+.feat .ico .pi { font-size: 24px; }
+.feat h3 { margin: 0 0 6px; font: 700 1.15rem/1.25 var(--display); color: var(--ink); }
+.feat p { margin: 0; color: var(--ink-soft); font-size: .95rem; line-height: 1.55; }
+.spot { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 56px; align-items: center; margin-bottom: 20px; padding: 44px; border-radius: var(--r-lg); background: var(--ink); color: #fff; }
+.spot__label { margin: 0 0 8px; font: 600 .78rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--marigold); }
+.spot h3 { margin: 0 0 14px; font: 800 clamp(1.8rem, 3.6vw, 2.6rem)/1.05 var(--display); letter-spacing: -0.02em; color: #fff; }
+.spot__copy p:not(.spot__label) { margin: 0; color: rgba(255,255,255,.8); font-size: 1.05rem; line-height: 1.6; }
+.spot__steps { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.spot__steps li { counter-increment: s; display: grid; grid-template-columns: 36px 1fr; gap: 2px 14px; padding: 16px 18px; border-radius: var(--r); background: rgba(255,255,255,.08); }
+.spot__steps li::before { content: counter(s); grid-row: span 2; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--marigold); color: var(--ink); font-weight: 800; }
+.spot__steps strong { color: #fff; }
+.spot__steps span { color: rgba(255,255,255,.7); font-size: .92rem; }
+.fown { padding: 96px 0; text-align: center; background: var(--tint); }
+.fown h2 { margin: 0 auto 14px; }
+.fown p { margin: 0 auto; font-size: 1.1rem; color: var(--ink-soft); }
+.fown__ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.pricing__more { margin: 26px auto 0; text-align: center; font-weight: 600; }
+.pricing__more a { color: var(--accent-ink, var(--violet)); text-underline-offset: 3px; }
+@media (max-width: 860px) { .spot { grid-template-columns: minmax(0, 1fr); padding: 28px 22px; } }
+@media (max-width: 640px) { .fhero { padding: 56px 0 32px; } .fchap, .fown { padding: 56px 0; } }
+/* Per mood */
+.theme-blocks .feat, .theme-blocks .fhero__jump a { border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .feat .ico { box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); background: var(--lime); }
+.theme-blocks .spot { border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .spot__steps li::before { background: var(--lime); }
+.theme-subway .feat { border-radius: 10px; border-top: 6px solid var(--c, var(--blue)); }
+.theme-subway #every .feat { --c: var(--green); } .theme-subway #business .feat { --c: var(--blue); } .theme-subway #full .feat { --c: var(--purple); }
+.theme-subway .feat .ico { border-radius: 50%; background: #111; color: #fff; }
+.theme-subway .spot__steps li::before, .theme-subway .spot__label { background: var(--yellow); color: #111; }
+.theme-subway .spot__label { display: inline-block; padding: 4px 10px; border-radius: 6px; }
+.theme-wedding .feat, .theme-wedding .spot { border-radius: 4px; }
+.theme-wedding .feat { box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px rgba(184, 149, 90, .28); }
+.theme-wedding .feat h3 { font-weight: 600; font-size: 1.4rem; }
+.theme-wedding .spot h3 { font-weight: 500; }
+.theme-wedding .spot__label { color: #d9c49a; }
+.theme-wedding .spot__steps li::before { background: none; box-shadow: inset 0 0 0 1px #d9c49a; color: #d9c49a; font: italic 600 1.1rem var(--display); }
+.theme-wedding .fhero__jump a { border-radius: 2px; }
+.theme-wedding .spot h3 { font-size: clamp(2rem, 4vw, 2.8rem); }
+/* Article section headings: the same modest size in every mood */
+.article .article__body h2 { font-size: 1.55rem; line-height: 1.2; margin: 1.5em 0 .4em; max-width: none; }
+.theme-wedding .article .article__body h2 { font-size: 1.8rem; }
