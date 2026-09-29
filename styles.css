@@ -2034,3 +2034,46 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .stepper li.is-done:hover span { transform: scale(1.08); }
 .stepper li.is-done:focus-visible { outline: 3px solid var(--violet); outline-offset: 4px; border-radius: 8px; }
 .finder__links { display: flex; justify-content: center; align-items: center; gap: 10px; color: var(--ink-soft); }
+
+/* ================================================================
+   Hero demo: the banner spans the whole site, and the phone never
+   covers the site's content at any width
+   ================================================================ */
+.site__banner p { max-width: none; }
+@media (max-width: 640px) {
+  .demo { min-height: 340px; }
+  .demo .browser { width: 100%; }
+  /* The site's content keeps to the left; the phone sits over the empty right side */
+  .demo .site > :not(.site__banner) { margin-right: 44%; }
+  .demo .site__info { margin-right: 44%; }
+  .demo .phone { top: 92px; right: -6px; width: 42%; }
+}
+
+/* ================================================================
+   Hero phone: each mood has its own handset and chat style
+   ================================================================ */
+/* Calm: a soft lilac handset with rounded bubbles */
+.theme-refined .phone { border-color: #e4ddff; box-shadow: 0 40px 70px -28px rgba(91, 61, 245, .35), 0 0 0 1px #d4c9ff; }
+.theme-refined .m--them .bubble { background: #f1eefb; }
+.theme-refined .bubble { border-radius: 18px; }
+/* Transit: a black handset, squared bubbles, subway-line strip under the header */
+.theme-subway .phone { border-color: #111; border-radius: 22px; }
+.theme-subway .phone__head { border-bottom: 0; box-shadow: inset 0 -4px 0 0 transparent; background: linear-gradient(90deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0) bottom / 100% 4px no-repeat; }
+.theme-subway .phone__avatar { background: var(--yellow); }
+.theme-subway .bubble { border-radius: 6px; font-weight: 500; }
+.theme-subway .m--us .bubble { background: var(--blue); border-bottom-left-radius: 0; }
+.theme-subway .m--them .bubble { background: #ececea; border-bottom-right-radius: 0; }
+.theme-subway .phone__compose { border-radius: 6px; }
+/* Tangy: outlined bubbles in the mood's colors */
+.theme-blocks .bubble { border: 2px solid var(--ink); }
+.theme-blocks .m--us .bubble { background: var(--violet); color: var(--ink); }
+.theme-blocks .m--them .bubble { background: var(--lime); }
+.theme-blocks .phone__compose { border: 2px solid var(--ink); }
+/* Sophisticated: a slim navy handset with a champagne ring, stationery-like bubbles */
+.theme-wedding .phone { border-width: 5px; border-color: var(--ink); box-shadow: 0 0 0 1px var(--gold), 0 40px 70px -28px rgba(31, 35, 54, .5); }
+.theme-wedding .phone__who strong { font: 600 .95rem var(--display); }
+.theme-wedding .bubble { border-radius: 4px; }
+.theme-wedding .m--us .bubble { background: var(--ink); color: #fff; }
+.theme-wedding .m--them .bubble { background: #f7f2e8; color: var(--ink); box-shadow: inset 0 0 0 1px #e6dece; }
+.theme-wedding .bubble__check { background: var(--gold); }
+.theme-wedding .phone__compose { border-radius: 4px; border-color: #e6dece; }
