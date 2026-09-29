@@ -174,7 +174,7 @@
 .theme-subway .drawer__big:nth-child(5) { --c: var(--red); }
 .theme-subway .drawer__big:nth-child(6) { --c: var(--gray); }
 .theme-subway .drawer__big:nth-child(7) { --c: var(--yellow); }
-.theme-subway .drawer__head { border-bottom: 6px solid #111; padding-bottom: 14px; }
+
 .theme-subway .drawer__links a, .theme-subway .drawer__close, .theme-subway .nav__menu { border-radius: 8px; }
 .theme-subway .drawer__big:hover span { color: var(--blue); }
 

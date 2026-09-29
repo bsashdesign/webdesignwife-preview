@@ -2512,3 +2512,22 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 
 /* Sophisticated: the serif display face runs small, so non-heading titles in it get sized up to match */
 .theme-wedding :is(h3, h4, .yours__title, .quickcheck__title, .tryon__cue p, .drawer__big span, .borough strong, .faq__list summary, .promises strong, .ssum__plan, .mplan h3, .feat h3, .guarantee h3, .news h4, .footer__moods h4) { font-size-adjust: ex-height 0.46; }
+/* Transit menu: only the color strip under the logo, no black rule */
+.theme-subway .drawer__head, .theme-subway .drawer__head + * { border-top: 0; }
+.theme-subway .drawer__head { border-bottom: 0 !important; }
+
+/* Design refresh spotlight, per mood */
+.theme-subway .spot { background: #111; box-shadow: inset 8px 0 0 var(--yellow); border-radius: 12px;
+  background-image: linear-gradient(180deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0); background-size: 8px 100%; background-repeat: no-repeat; box-shadow: none; }
+.theme-subway .spot__steps li:nth-child(1)::before { background: var(--green); color: #fff; }
+.theme-subway .spot__steps li:nth-child(2)::before { background: var(--blue); color: #fff; }
+.theme-subway .spot__steps li:nth-child(3)::before { background: var(--orange); color: #fff; }
+.theme-subway .spot__steps li { border-radius: 8px; }
+.theme-blocks .spot { background: var(--cobalt); }
+.theme-blocks .spot__label { color: var(--lime); }
+.theme-blocks .spot__steps li { background: #fff; color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.theme-blocks .spot__steps strong { color: var(--ink); } .theme-blocks .spot__steps span { color: var(--ink-soft); }
+.theme-blocks .spot__steps li:nth-child(1)::before { background: var(--lime); } .theme-blocks .spot__steps li:nth-child(2)::before { background: var(--rose); } .theme-blocks .spot__steps li:nth-child(3)::before { background: var(--sun); }
+.theme-blocks .spot__steps li::before { box-shadow: inset 0 0 0 2px var(--ink); color: var(--ink); }
+.theme-wedding .spot__steps li::before { content: counter(s, upper-roman); }
+.theme-wedding .spot__steps li { background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(217,196,154,.3); border-radius: 2px; }
