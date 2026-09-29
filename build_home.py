@@ -41,7 +41,7 @@ SPARKLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.5 4.6 
 
 
 def dots(m):
-    # The mood's little tile: a winking face drawn in that mood's own colors and icon weight.
+    # The mood's little tile: that mood's own face, in its own colors.
     return f'<span class="moodicon moodicon--{m["key"]}" aria-hidden="true"><i class="mi"></i></span>'
 
 

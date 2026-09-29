@@ -1563,7 +1563,6 @@ h2 { text-wrap: balance; }
 .pi--star { -webkit-mask-image: url(images/ph/regular/star.svg); mask-image: url(images/ph/regular/star.svg); }
 .pi--note-pencil { -webkit-mask-image: url(images/ph/regular/note-pencil.svg); mask-image: url(images/ph/regular/note-pencil.svg); }
 .pi--buildings { -webkit-mask-image: url(images/ph/regular/buildings.svg); mask-image: url(images/ph/regular/buildings.svg); }
-.pi--smiley-wink { -webkit-mask-image: url(images/ph/regular/smiley-wink.svg); mask-image: url(images/ph/regular/smiley-wink.svg); }
 .theme-subway .pi--palette { -webkit-mask-image: url(images/ph/bold/palette.svg); mask-image: url(images/ph/bold/palette.svg); }
 .theme-subway .pi--device-mobile { -webkit-mask-image: url(images/ph/bold/device-mobile.svg); mask-image: url(images/ph/bold/device-mobile.svg); }
 .theme-subway .pi--envelope-simple { -webkit-mask-image: url(images/ph/bold/envelope-simple.svg); mask-image: url(images/ph/bold/envelope-simple.svg); }
@@ -1587,7 +1586,6 @@ h2 { text-wrap: balance; }
 .theme-subway .pi--star { -webkit-mask-image: url(images/ph/bold/star.svg); mask-image: url(images/ph/bold/star.svg); }
 .theme-subway .pi--note-pencil { -webkit-mask-image: url(images/ph/bold/note-pencil.svg); mask-image: url(images/ph/bold/note-pencil.svg); }
 .theme-subway .pi--buildings { -webkit-mask-image: url(images/ph/bold/buildings.svg); mask-image: url(images/ph/bold/buildings.svg); }
-.theme-subway .pi--smiley-wink { -webkit-mask-image: url(images/ph/bold/smiley-wink.svg); mask-image: url(images/ph/bold/smiley-wink.svg); }
 .theme-blocks .pi--palette { -webkit-mask-image: url(images/ph/fill/palette.svg); mask-image: url(images/ph/fill/palette.svg); }
 .theme-blocks .pi--device-mobile { -webkit-mask-image: url(images/ph/fill/device-mobile.svg); mask-image: url(images/ph/fill/device-mobile.svg); }
 .theme-blocks .pi--envelope-simple { -webkit-mask-image: url(images/ph/fill/envelope-simple.svg); mask-image: url(images/ph/fill/envelope-simple.svg); }
@@ -1611,7 +1609,6 @@ h2 { text-wrap: balance; }
 .theme-blocks .pi--star { -webkit-mask-image: url(images/ph/fill/star.svg); mask-image: url(images/ph/fill/star.svg); }
 .theme-blocks .pi--note-pencil { -webkit-mask-image: url(images/ph/fill/note-pencil.svg); mask-image: url(images/ph/fill/note-pencil.svg); }
 .theme-blocks .pi--buildings { -webkit-mask-image: url(images/ph/fill/buildings.svg); mask-image: url(images/ph/fill/buildings.svg); }
-.theme-blocks .pi--smiley-wink { -webkit-mask-image: url(images/ph/fill/smiley-wink.svg); mask-image: url(images/ph/fill/smiley-wink.svg); }
 .theme-wedding .pi--palette { -webkit-mask-image: url(images/ph/thin/palette.svg); mask-image: url(images/ph/thin/palette.svg); }
 .theme-wedding .pi--device-mobile { -webkit-mask-image: url(images/ph/thin/device-mobile.svg); mask-image: url(images/ph/thin/device-mobile.svg); }
 .theme-wedding .pi--envelope-simple { -webkit-mask-image: url(images/ph/thin/envelope-simple.svg); mask-image: url(images/ph/thin/envelope-simple.svg); }
@@ -1635,7 +1632,6 @@ h2 { text-wrap: balance; }
 .theme-wedding .pi--star { -webkit-mask-image: url(images/ph/thin/star.svg); mask-image: url(images/ph/thin/star.svg); }
 .theme-wedding .pi--note-pencil { -webkit-mask-image: url(images/ph/thin/note-pencil.svg); mask-image: url(images/ph/thin/note-pencil.svg); }
 .theme-wedding .pi--buildings { -webkit-mask-image: url(images/ph/thin/buildings.svg); mask-image: url(images/ph/thin/buildings.svg); }
-.theme-wedding .pi--smiley-wink { -webkit-mask-image: url(images/ph/thin/smiley-wink.svg); mask-image: url(images/ph/thin/smiley-wink.svg); }
 /* ICONS:END */
 
 /* ================================================================
@@ -1831,14 +1827,14 @@ h2 { text-wrap: balance; }
 @media (max-width: 420px) { .news__row { flex-direction: column; } .news__row .btn { width: 100%; } }
 
 /* ================================================================
-   Mood tiles: a winking face in each mood's own icon weight
+   Mood tiles: each mood has its own face (images/moods)
    ================================================================ */
 .moodicon .mi { display: block; width: 64%; height: 64%; background: currentColor; -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
-.moodicon--calm .mi { -webkit-mask-image: url(images/ph/regular/smiley-wink.svg); mask-image: url(images/ph/regular/smiley-wink.svg); }
-.moodicon--transit .mi { -webkit-mask-image: url(images/ph/bold/smiley-wink.svg); mask-image: url(images/ph/bold/smiley-wink.svg); }
+.moodicon--calm .mi { -webkit-mask-image: url(images/moods/calm.svg); mask-image: url(images/moods/calm.svg); }
+.moodicon--transit .mi { -webkit-mask-image: url(images/moods/transit.svg); mask-image: url(images/moods/transit.svg); }
 .moodicon--tangy { color: #0e0e0e; }
-.moodicon--tangy .mi { -webkit-mask-image: url(images/ph/fill/smiley-wink.svg); mask-image: url(images/ph/fill/smiley-wink.svg); }
-.moodicon--sophisticated .mi { width: 72%; height: 72%; -webkit-mask-image: url(images/ph/thin/smiley-wink.svg); mask-image: url(images/ph/thin/smiley-wink.svg); }
+.moodicon--tangy .mi { -webkit-mask-image: url(images/moods/tangy.svg); mask-image: url(images/moods/tangy.svg); }
+.moodicon--sophisticated .mi { width: 74%; height: 74%; -webkit-mask-image: url(images/moods/sophisticated.svg); mask-image: url(images/moods/sophisticated.svg); }
 
 /* Mood popup: the chosen mood is a black row with a white check */
 .mood__opt[aria-pressed="true"], .mood__opt[aria-pressed="true"]:hover { background: #111; color: #fff; border-color: #111; }
