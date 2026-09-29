@@ -2540,3 +2540,9 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-subway .ftabs a[aria-current] { border-bottom-color: var(--yellow); }
 .theme-wedding .ftabs a[aria-current] { border-bottom: 1px solid var(--gold-ink); }
 .theme-blocks .ftabs a[aria-current] { border-bottom-width: 4px; }
+/* Current page in the nav and menu */
+.nav__links a[aria-current="page"] { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; text-decoration-color: var(--accent-ink, var(--violet)); }
+.theme-subway .nav__links a[aria-current="page"] { text-decoration-color: var(--yellow); }
+.theme-wedding .nav__links a[aria-current="page"] { font-weight: 600; text-decoration-thickness: 1px; text-decoration-color: var(--gold-ink); }
+.theme-blocks .nav__links a[aria-current="page"] { text-decoration-color: var(--ink); text-decoration-thickness: 3px; }
+.drawer__big[aria-current="page"] span { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; text-decoration-color: var(--accent-ink, var(--violet)); }

@@ -1102,3 +1102,16 @@ function openSheet(d) {
     io.observe(sec.querySelector(".tryon"));
   }
 })();
+
+// Mark the current page in the nav and the menu drawer.
+(function () {
+  const here = location.pathname.replace(/\/index\.html$/, "/");
+  const section = /\/blog\//.test(here) ? "blog" : (here.match(/\/(pricing|features|contact)\.html$/) || [])[1];
+  if (!section) return;
+  document.querySelectorAll(".nav__links a, .drawer__big").forEach((a) => {
+    const href = a.getAttribute("href") || "";
+    const match = section === "blog" ? /blog\/(index\.html)?$|^index\.html$/.test(href) && href.includes("index.html") && (href.startsWith("blog/") || !href.includes("/") && location.pathname.includes("/blog/"))
+                                     : href.replace(/^\.\.\//, "").split("#")[0] === section + ".html";
+    if (match) a.setAttribute("aria-current", "page");
+  });
+})();
