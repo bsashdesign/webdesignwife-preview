@@ -2480,3 +2480,8 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 /* "Build mine" spans the card, with "Back to the demo" centered under it */
 .yours__back .btn, #moods .yours__back .btn { justify-self: stretch; }
 .yours__back .yours__close { justify-self: center; }
+/* The selected mood card says it's the one showing, instead of inviting a click */
+.chip__try-on { display: none; }
+.chip[aria-pressed="true"] .chip__try-go { display: none; }
+.chip[aria-pressed="true"] .chip__try-on { display: inline; }
+.chip[aria-pressed="true"]:hover .chip__try { text-decoration: none; }
