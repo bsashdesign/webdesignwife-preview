@@ -2129,3 +2129,10 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .welcome__embed { min-height: 520px; overflow: auto; border-radius: var(--r-lg); background: #fff; }
 /* The mood button stays above the menu drawer too */
 .mood { z-index: 65; }
+
+/* Pop-ups: ordinary fixed layers with our own backdrop, so the mood button can sit above them */
+.finder-dialog[open], .audit-dialog[open] { position: fixed; inset: 0; z-index: 70; margin: auto; }
+.sheet-scrim { position: fixed; inset: 0; z-index: 69; background: rgba(27, 21, 48, .5); backdrop-filter: blur(3px); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s; }
+.has-sheet .sheet-scrim { opacity: 1; visibility: visible; }
+.has-sheet body { overflow: hidden; }
+.mood { z-index: 75; }

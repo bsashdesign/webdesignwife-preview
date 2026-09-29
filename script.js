@@ -579,7 +579,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   others.addEventListener("click", (e) => { const b = e.target.closest("[data-pick]"); if (b) choose(b.dataset.pick); });
 
   document.addEventListener("click", (e) => {
-    if (e.target.closest("[data-open-finder]")) { e.preventDefault(); form.reset(); show(0); dialog.showModal(); }
+    if (e.target.closest("[data-open-finder]")) { e.preventDefault(); form.reset(); openSheet(dialog); show(0); }
     if (e.target.closest("[data-close-finder]")) dialog.close();
   });
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
@@ -738,7 +738,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   const dialog = document.getElementById("audit-dialog");
   // Pages with the audit section lend it their form; other pages carry their own copy in the pop-up.
   const card = document.querySelector("#audit .formcard") || (dialog && dialog.querySelector(".formcard"));
-  if (!dialog || !card || typeof dialog.showModal !== "function") return;
+  if (!dialog || !card) return;
   const borrowed = !dialog.contains(card);
   const home = card.parentElement, after = card.nextSibling;
   const slot = dialog.querySelector("[data-audit-slot]");
@@ -749,7 +749,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     document.querySelectorAll("dialog[open]").forEach((d) => { if (d !== dialog) d.close(); });
     if (borrowed) slot.appendChild(card);
 
-    if (!dialog.open) dialog.showModal();
+    if (!dialog.open) openSheet(dialog);
     const first = card.querySelector("form:not([hidden]) input");
     if (first) first.focus({ preventScroll: true });
   });
@@ -1043,19 +1043,25 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   });
 })();
 
-// Keep the mood button usable while a pop-up is open: an open dialog blocks everything outside it,
-// so the button moves into the open dialog (after its opening animation) and back when it closes.
+// Pop-ups open as ordinary page layers (not the browser's modal top layer) with a dimmed backdrop
+// of our own. That keeps the mood button above them and usable, with no tricks or delay.
+function openSheet(d) {
+  document.querySelectorAll("dialog[open]").forEach((o) => { if (o !== d) o.close(); });
+  if (!d.open) d.show();
+}
 (function () {
-  const mood = document.getElementById("mood");
-  if (!mood) return;
-  const home = mood.parentElement, after = mood.nextSibling;
-  let timer;
-  const place = () => {
-    clearTimeout(timer);
-    const open = [...document.querySelectorAll("dialog[open]")].pop();
-    if (open) timer = setTimeout(() => { if (open.open && mood.parentElement !== open) open.appendChild(mood); }, 380);
-    else if (mood.parentElement !== home) home.insertBefore(mood, after && after.parentElement === home ? after : null);
-  };
-  const watch = new MutationObserver(place);
-  document.querySelectorAll("dialog").forEach((d) => watch.observe(d, { attributes: true, attributeFilter: ["open"] }));
+  const dialogs = [...document.querySelectorAll("dialog")];
+  if (!dialogs.length) return;
+  const scrim = document.createElement("div");
+  scrim.className = "sheet-scrim";
+  document.body.appendChild(scrim);
+  const sync = () => document.documentElement.classList.toggle("has-sheet", dialogs.some((d) => d.open));
+  const watch = new MutationObserver(sync);
+  dialogs.forEach((d) => watch.observe(d, { attributes: true, attributeFilter: ["open"] }));
+  scrim.addEventListener("click", () => dialogs.forEach((d) => d.open && d.close()));
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const open = dialogs.filter((d) => d.open).pop();
+    if (open) { e.preventDefault(); open.close(); }
+  });
 })();
