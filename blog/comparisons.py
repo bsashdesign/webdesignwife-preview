@@ -128,7 +128,7 @@ def comparison_body(p):
   <tbody>
     <tr><th>Who builds the site</th><td>You</td><td>We do</td></tr>
     <tr><th>Who makes updates</th><td>You</td><td>We do. Just send a message.</td></tr>
-    <tr><th>Google Maps help</th><td>Up to you</td><td>Included on Business and Full Suite</td></tr>
+    <tr><th>Google Maps help</th><td>Up to you</td><td>Kept up to date on every plan; growth on Business and Full Suite</td></tr>
     <tr><th>Best for</th><td>{p['them'][0].upper() + p['them'][1:]}</td><td>Busy owners who want it handled</td></tr>
   </tbody>
 </table>

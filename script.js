@@ -469,9 +469,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
   const PLANS = [
     { id: "plan-simple", name: "Essentials", price: 99, why: "Everything a small business needs on one polished page.",
-      feats: ["One scrolling page", "Contact form", "Hosting, backups and uptime monitoring", "Unlimited minor edits"] },
+      feats: ["One scrolling page", "Contact form", "Google Maps kept up to date", "Unlimited minor edits"] },
     { id: "plan-business", name: "Business", price: 149, why: "A full site that helps nearby customers find you.",
-      feats: ["Up to 5 pages", "Google Maps setup and management", "Live Google reviews and Instagram feed", "Unlimited minor edits"] },
+      feats: ["Up to 5 pages", "Google Maps growth and review routine", "Live Google reviews and Instagram feed", "Unlimited minor edits"] },
     { id: "plan-full", name: "Full Suite", price: 249, why: "Everything, plus tools that keep bringing in new customers.",
       feats: ["Up to 10 pages", "AI chat assistant", "Neighborhood SEO pages and a monthly blog post", "Priority edits"] },
   ];

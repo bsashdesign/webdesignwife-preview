@@ -16,6 +16,7 @@
   --sun: #f4ecdb;
   --rose: #ece8f0;
   --gold: #b8955a;
+  --gold-ink: #8a6a30; /* gold dark enough to read as text on paper */
   --dusty: #8fa7bf;
 
   --display: "Cormorant Garamond", Georgia, serif;
@@ -30,7 +31,7 @@
 .theme-wedding h3 { font-family: var(--display); font-weight: 600; font-size: 1.45rem; letter-spacing: 0; }
 
 /* Labels read like an invitation line, flanked by hairlines */
-.theme-wedding .eyebrow { display: inline-flex; align-items: center; gap: 12px; font: 500 .72rem/1 var(--body); letter-spacing: .32em; color: var(--gold); }
+.theme-wedding .eyebrow { display: inline-flex; align-items: center; gap: 12px; font: 500 .72rem/1 var(--body); letter-spacing: .32em; color: var(--gold-ink); }
 .theme-wedding .eyebrow::before, .theme-wedding .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .6; }
 .theme-wedding .eyebrow--light { color: #d9c49a; }
 
@@ -39,7 +40,7 @@
     radial-gradient(700px 420px at 85% 15%, rgba(184, 149, 90, .16), transparent 70%),
     radial-gradient(520px 360px at 55% 100%, rgba(143, 167, 191, .18), transparent 70%),
     var(--paper); }
-.theme-wedding .hl { background: none; font-style: italic; color: var(--gold); }
+.theme-wedding .hl { background: none; font-style: italic; color: var(--gold-ink); }
 .theme-wedding .for { background: var(--tint); }
 .theme-wedding .for__row li { font: italic 500 1.45rem var(--display); }
 .theme-wedding .for__row li::after { content: "✦"; width: auto; height: auto; background: none; color: var(--gold); font-style: normal; font-size: .8rem; }
@@ -49,7 +50,7 @@
 .theme-wedding .btn--primary { background: var(--ink); box-shadow: none; }
 .theme-wedding .btn--primary:hover { background: #000; box-shadow: 0 0 0 4px rgba(184, 149, 90, .35); }
 .theme-wedding .btn--ghost { border-color: var(--gold); color: var(--ink); }
-.theme-wedding .btn--ghost:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.theme-wedding .btn--ghost:hover { background: var(--gold-ink); border-color: var(--gold-ink); color: #fff; }
 
 /* Invitation cards: hairline border with an inner frame */
 .theme-wedding .steps li, .theme-wedding .features li, .theme-wedding .plan, .theme-wedding .promises p,
@@ -61,17 +62,18 @@
 .theme-wedding .tag { background: none; border: 1px solid currentColor; letter-spacing: .12em; }
 .theme-wedding .tag--all { color: var(--done); }
 .theme-wedding .tag--biz { color: #54708c; }
-.theme-wedding .tag--full { color: var(--gold); background: none; }
+.theme-wedding .tag--full { color: var(--gold-ink); background: none; }
 .theme-wedding .extras__grid li { background: #fff; border-radius: 4px; }
 
 /* Pricing: the marriage joke is at home here */
 .theme-wedding .billing { border-radius: 999px; border-color: var(--line); }
 .theme-wedding .billing button[aria-checked="true"] { background: var(--ink); }
-.theme-wedding .billing button span, .theme-wedding .billing button[aria-checked="true"] span { color: var(--gold); }
+.theme-wedding .billing button span { color: var(--gold-ink); }
+.theme-wedding .billing button[aria-checked="true"] span { color: var(--gold); }
 .theme-wedding .plan--best { border-color: var(--gold); box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px var(--gold), 0 30px 60px -40px rgba(31, 35, 54, .45); }
 .theme-wedding .plan__badge { background: var(--ink); color: #fff; border-radius: 999px; }
 .theme-wedding .plan__price span { font-weight: 600; }
-.theme-wedding .plan__terms strong { color: var(--gold); }
+.theme-wedding .plan__terms strong { color: var(--gold-ink); }
 .theme-wedding .plan.is-recommended { border-color: var(--gold); box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px var(--gold); }
 .theme-wedding .edits-banner { background: var(--ink); border-radius: 4px; }
 .theme-wedding .edits-banner__kicker { color: #d9c49a; letter-spacing: .28em; }
@@ -85,16 +87,16 @@
 /* Local section and boroughs */
 .theme-wedding .borough { background: #fff; border-radius: 4px; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(184, 149, 90, .28); }
 .theme-wedding .borough strong { font-weight: 600; font-size: 1.45rem; }
-.theme-wedding .borough em { color: var(--gold); }
+.theme-wedding .borough em { color: var(--gold-ink); }
 
 /* Dark sections in deep ink, gold accents */
 .theme-wedding .section--ink { background: var(--ink); }
 .theme-wedding .section--violet { background: var(--ink); }
-.theme-wedding .section--violet .btn--light { background: var(--gold); color: #fff; }
+.theme-wedding .section--violet .btn--light { background: var(--gold-ink); color: #fff; }
 .theme-wedding .formcard { background: rgba(255, 255, 255, .06); border-color: rgba(217, 196, 154, .35); border-radius: 4px; }
 .theme-wedding .tabs { border-radius: 999px; }
 .theme-wedding .tabs button[aria-selected="true"] { color: var(--ink); }
-.theme-wedding .about__photo { background: repeating-linear-gradient(45deg, #f1ebdf 0 14px, #f8f4ec 14px 28px); color: var(--gold); border-radius: 999px 999px 4px 4px; }
+.theme-wedding .about__photo { background: repeating-linear-gradient(45deg, #f1ebdf 0 14px, #f8f4ec 14px 28px); color: var(--gold-ink); border-radius: 999px 999px 4px 4px; }
 .theme-wedding .about__lead { font: italic 500 1.7rem/1.3 var(--display); color: var(--ink); }
 .theme-wedding .faq__list summary { font-family: var(--display); font-size: 1.35rem; font-weight: 600; }
 .theme-wedding .faq__list summary::after { color: var(--gold); }
@@ -124,8 +126,8 @@
 
 /* Blog review box: a clear title and a button that stands out on ink */
 .theme-wedding .quickcheck__title { font-size: 1.7rem; font-weight: 500; }
-.theme-wedding .quickcheck .btn--primary { background: var(--gold); color: #fff; }
-.theme-wedding .quickcheck .btn--primary:hover { background: #a3824a; box-shadow: none; }
+.theme-wedding .quickcheck .btn--primary { background: var(--gold-ink); color: #fff; }
+.theme-wedding .quickcheck .btn--primary:hover { background: #75592a; box-shadow: none; }
 .theme-wedding .incl li, .theme-wedding .tier, .theme-wedding .guarantee { border-radius: 4px; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(184, 149, 90, .28); }
 .theme-wedding .seal__edge, .theme-wedding .seal__inner { fill: var(--gold); } .theme-wedding .seal__num { font-family: var(--display); font-style: italic; font-size: 26px; }
 .theme-wedding .tier--biz { --tier: #54708c; } .theme-wedding .tier--full { --tier: var(--gold); }

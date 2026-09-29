@@ -138,6 +138,11 @@
 .theme-blocks .tier--biz { --tier: var(--cobalt); } .theme-blocks .tier--full { --tier: var(--violet); }
 .theme-blocks .seal { filter: drop-shadow(4px 4px 0 var(--ink)); } .theme-blocks .seal__edge, .theme-blocks .seal__inner { fill: var(--violet); }
 
+/* Orange is too light for small text on pale sections; text links use a deeper orange */
+.theme-blocks { --accent-ink: #c24a00; }
+.theme-blocks .pricing__help .linkbtn strong, .theme-blocks #pricing p a:not(.btn), .theme-blocks .borough em,
+.theme-blocks #faq p a:not(.btn), .theme-blocks .post-card__kicker { color: var(--accent-ink); }
+
 /* Section rhythm */
 .theme-blocks #work { background: #fff; }
 .theme-blocks #examples { background: var(--sun); --cf-fade: var(--sun); }

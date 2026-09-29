@@ -128,5 +128,5 @@ def borough_body(b):
 <p>We work with businesses across {where}, including {b['hoods']}. Don't see yours? We'd still love to hear from you.</p>
 
 <h2>Everything else is handled</h2>
-<p>Every plan includes hosting, security, unlimited minor edits and a real person to talk to. Business and Full Suite plans also include setting up and managing your Google Maps profile, which matters as much as your website for most local businesses.</p>
+<p>Every plan includes hosting, security, unlimited minor edits and a real person to talk to. Every plan also keeps your Google Maps profile up to date, which matters as much as your website for most local businesses. Business and Full Suite go further, with ongoing optimization and a review routine.</p>
 """
