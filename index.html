@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790659692">
-  <link rel="stylesheet" href="themes/subway.css?v=1790659692">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790659692">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790659692">
+  <link rel="stylesheet" href="styles.css?v=1790660078">
+  <link rel="stylesheet" href="themes/subway.css?v=1790660078">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790660078">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790660078">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
   <script type="application/ld+json">
   {
@@ -550,13 +550,26 @@
     <!-- GOOGLE MAPS -->
     <section class="section section--ink" id="maps">
       <div class="wrap maps">
-        <div>
-          <p class="eyebrow eyebrow--light">Google Maps · Included on every plan</p>
-          <h2>Get Found by Customers Near You</h2>
+        <div class="maps__head">
+          <div>
+            <p class="eyebrow eyebrow--light">Google Maps · Included on every plan</p>
+            <h2>Get Found by Customers Near You</h2>
+          </div>
           <p>For most local businesses, the Google Maps listing brings in more calls than the website. We set yours up properly, or if you already have one, we audit it and fix what's holding it back.</p>
-          <p class="maps__included"><strong>Every plan:</strong> we set up or clean up your listing, and when your hours, phone or photos change, we update your site and Google Maps together.<br><strong>Business and Full Suite:</strong> ongoing optimization, a review routine, live reviews on your site and a comparison with your top local competitors.</p>
         </div>
-        <figure class="rank profile" id="rank">
+        <div class="maps__body">
+          <div class="mtiers">
+            <div class="mtier" role="button" tabindex="0" data-tier="all" aria-pressed="false">
+              <span class="mtier__ico"><i class="pi pi--seal-check" aria-hidden="true"></i></span>
+              <span class="mtier__txt"><span class="mtier__kicker">Every plan</span><strong>Kept up to date</strong><span>We set up or clean up your listing. When your hours, phone or photos change, we update your site and Google Maps together.</span></span>
+            </div>
+            <div class="mtier mtier--biz" role="button" tabindex="0" data-tier="biz" aria-pressed="true">
+              <span class="mtier__ico"><i class="pi pi--trend-up" aria-hidden="true"></i></span>
+              <span class="mtier__txt"><span class="mtier__kicker">Business &amp; Full Suite</span><strong>Built to grow</strong><span>Ongoing optimization, a review routine, live reviews on your site and a comparison with your top local competitors.</span></span>
+            </div>
+            <p class="mtiers__hint">Tap a plan level to see what changes on your listing.</p>
+          </div>
+        <figure class="rank profile" id="rank" data-tier="biz">
           <div class="gmap" aria-hidden="true">
             <svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice"><rect width="400" height="120" fill="#e8eef3"/><path d="M0 70 C80 60 120 90 200 76 S320 50 400 64" stroke="#fff" stroke-width="12" fill="none"/><path d="M130 0 L150 120 M270 0 L250 120" stroke="#fff" stroke-width="8"/><rect x="20" y="16" width="70" height="36" rx="4" fill="#d6ead8"/><rect x="300" y="84" width="80" height="30" rx="4" fill="#d6ead8"/><path d="M0 104 H400" stroke="#cfe0f5" stroke-width="10"/></svg>
             <span class="gmap__pin"><svg viewBox="0 0 24 34"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 34 12 34s12-13.2 12-22.1C24 5.3 18.6 0 12 0Z" fill="#ea4335"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg></span>
@@ -569,14 +582,15 @@
           <div class="profile__panes">
             <div class="profile__pane profile__pane--before">
               <p class="profile__label">Before</p>
-              <ul><li>Incomplete profile</li><li>Wrong main category</li><li>A few old photos</li><li>Services missing</li><li>No plan for reviews</li><li>Last update: years ago</li></ul>
+              <ul><li>Incomplete profile</li><li>Old hours and phone</li><li>A few old photos</li><li>Wrong main category</li><li>No plan for reviews</li><li>No reviews on your site</li><li>No idea how rivals compare</li></ul>
             </div>
             <div class="profile__pane profile__pane--after">
               <p class="profile__label">After</p>
-              <ul><li style="--k:0">Complete profile</li><li style="--k:1">The right categories</li><li style="--k:2">Fresh, real photos</li><li style="--k:3">Every service listed</li><li style="--k:4">A simple review routine</li><li style="--k:5">Regular updates</li></ul>
+              <ul><li style="--k:0">Complete, accurate profile</li><li style="--k:1">Hours and phone always current</li><li style="--k:2">Fresh photos when you send them</li><li style="--k:3" data-tier="biz">The right categories</li><li style="--k:4" data-tier="biz">A simple review routine</li><li style="--k:5" data-tier="biz">Live reviews on your site</li><li style="--k:6" data-tier="biz">Compared with rivals</li></ul>
             </div>
           </div>
         </figure>
+        </div>
       </div>
     </section>
 
@@ -889,6 +903,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790659692"></script>
+  <script src="script.js?v=1790660078"></script>
 </body>
 </html>

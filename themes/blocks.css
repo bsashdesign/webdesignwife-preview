@@ -166,3 +166,7 @@
 /* Switch knob: smaller, so its outline never touches the track's outline */
 .theme-blocks .billing__switch i { top: 8px; left: 8px; width: 18px; height: 18px; }
 .theme-blocks .play__shuffle { border-radius: 999px; }
+.theme-blocks .mtier { border: var(--edge); background: #fff; color: var(--ink); box-shadow: var(--shadow); }
+.theme-blocks .mtier[aria-pressed="true"] { background: var(--lime); }
+.theme-blocks .mtier__ico { background: var(--tint); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.theme-blocks .mtier[aria-pressed="true"] .mtier__ico { background: #fff; }
