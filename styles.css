@@ -2485,3 +2485,8 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .chip[aria-pressed="true"] .chip__try-go { display: none; }
 .chip[aria-pressed="true"] .chip__try-on { display: inline; }
 .chip[aria-pressed="true"]:hover .chip__try { text-decoration: none; }
+/* Calm: the "Your site" flip side uses the brand violet instead of near-black,
+   and white buttons on dark or colored backgrounds get a darker shadow, not a light glow */
+.theme-refined .yours__back { background: var(--violet); }
+.theme-refined .yours__back p:not(.yours__title) { color: rgba(255,255,255,.88); }
+.theme-refined #moods .yours__back .btn, .theme-refined .section--violet .btn--light, .theme-refined .section--violet .btn { box-shadow: 0 10px 22px -10px rgba(20, 12, 60, .55); }
