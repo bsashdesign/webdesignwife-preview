@@ -208,7 +208,7 @@ HEAD = """<!DOCTYPE html>
     <div class="drawer__backdrop" data-close-drawer></div>
     <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawer__head">
-        <span class="drawer__label">Menu</span>
+        <a class="brand drawer__brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
@@ -216,11 +216,20 @@ HEAD = """<!DOCTYPE html>
         <a class="drawer__big" href="../contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
         <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
-      <div class="drawer__foot">
-        <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website + Maps audit</a>
-        <a class="btn btn--ghost btn--block" href="../start.html">Get started</a>
-        <p>Based in Brooklyn, NY</p>
+      <div class="drawer__cta">
+        <a class="btn btn--primary btn--block" href="../start.html">Get started</a>
+        <a class="btn btn--ghost btn--block" href="../index.html#audit">Get a free website + Maps audit</a>
       </div>
+      <div class="drawer__more">
+        <p class="drawer__label">Helpful links</p>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#work">My work: New Age Pharmacy</a>
+        <a href="../index.html#maps">Google Maps management</a>
+        <a href="../pricing.html#faq">FAQ</a>
+        <a href="index.html#compare">Compare website builders</a>
+        <a href="diy-website-guide.html">Build-it-yourself guide</a>
+      </div>
+      <p class="drawer__where">Based in Brooklyn, NY</p>
     </aside>
   </div>
 

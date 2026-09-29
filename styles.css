@@ -2163,3 +2163,44 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .theme-wedding .mobile__points strong { font-weight: 600; font-size: 1.3rem; }
 /* The line-length cap is for running text; a one-line list and the guarantee card's text use their full width */
 main p.assure, main .guarantee p, main .ssum__promise p { max-width: none; }
+
+/* ================================================================
+   Menu drawer: logo on top, buttons right under the pages, then helpful links
+   ================================================================ */
+.drawer__brand img { height: 26px; width: auto; display: block; }
+.drawer__cta { display: grid; gap: 10px; padding: 8px 28px 18px; }
+.drawer__more { padding-top: 14px; border-top: 1px solid var(--line); margin: 0 28px; padding-left: 0; padding-right: 0; }
+.drawer__where { margin: auto 0 0; padding: 20px 28px 28px; text-align: center; font-size: .85rem; color: var(--ink-soft); }
+.theme-subway .drawer__head { border-bottom: 0; padding-bottom: 18px; background:
+  linear-gradient(90deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0) bottom / 100% 6px no-repeat, #fff; }
+
+/* No soft shadows under icons or the guarantee seal (Tangy keeps its hard 3D edge) */
+.ico { box-shadow: none; }
+.seal { filter: none; }
+.theme-blocks .seal { filter: drop-shadow(4px 4px 0 var(--ink)); }
+.theme-blocks .mobile__points .ico, .theme-blocks .incl .ico { box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); }
+
+/* Tabs anywhere (contact card, pop-up): size to their labels, never squeezed into a 3-column grid */
+.tabs { display: flex; }
+.tabs button { flex: 1 1 auto; }
+@media (max-width: 640px) { .tabs { display: flex; } .contact__card .tabs button { padding: 10px 10px; } }
+
+/* Forms: no empty space under the button until there's a message to show */
+.form__msg:empty { display: none; }
+.formcard { padding-bottom: 24px; }
+.contact .contact__card { padding-bottom: 26px; }
+.audit-dialog { padding-bottom: 26px; }
+
+/* Calm: fields take on the background with a soft outline, so the white button stands apart */
+.theme-refined .section--violet .form input, .theme-refined .section--violet .form select, .theme-refined .section--violet .form:not(.form--note) textarea,
+.theme-refined .audit-dialog .form input, .theme-refined .audit-dialog .form select {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.4); color: #fff; padding: 13px 15px;
+}
+.theme-refined .section--violet .form input:focus, .theme-refined .section--violet .form select:focus, .theme-refined .section--violet .form textarea:focus,
+.theme-refined .audit-dialog .form input:focus, .theme-refined .audit-dialog .form select:focus {
+  border: 2px solid #fff; padding: 12px 14px; background: rgba(255,255,255,.18);
+}
+.theme-refined .section--violet .form ::placeholder, .theme-refined .audit-dialog .form ::placeholder { color: rgba(255,255,255,.6); }
+.theme-refined .section--violet .form select option { color: var(--ink); }
+.theme-refined .section--violet .form--note textarea { border: 1px solid rgba(255,255,255,.4); }
+#blog .section-head { flex-wrap: nowrap; }

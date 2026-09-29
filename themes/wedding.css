@@ -190,3 +190,8 @@
 .theme-wedding .seal__ring { r: 50px; stroke-width: 1; }
 /* Hero phone: same corner radius, border weight and color as the desktop browser beside it */
 .theme-wedding .phone { border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: 0 40px 80px -40px rgba(27, 21, 48, .45); }
+/* Carousel arrows: a fine gold ring, no fill or shadow, hairline chevrons */
+.theme-wedding .rowx__btn, .theme-wedding .cf__nav .cf__arrow { background: transparent; border: 1px solid var(--gold); box-shadow: none; color: var(--ink); }
+.theme-wedding .rowx__btn svg path, .theme-wedding .cf__nav .cf__arrow svg path { stroke-width: 1.1; }
+.theme-wedding .rowx__btn:hover:not(:disabled), .theme-wedding .cf__nav .cf__arrow:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); color: #fff; }
+.theme-wedding .rowx__btn:disabled, .theme-wedding .cf__nav .cf__arrow:disabled { opacity: .3; }

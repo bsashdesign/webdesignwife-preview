@@ -20,7 +20,7 @@ BOROUGHS = [
       "Tap-to-call and directions as the first things people see on mobile",
       "Neighborhood names in your copy, so you show up for the searches people actually make",
     ],
-    "hoods": "Midtown, the Upper West Side, the Upper East Side, Harlem, Chelsea, the West Village, the Lower East Side and the Financial District",
+    "hoods": "Midtown, Hell's Kitchen, Murray Hill, the Upper West Side, the Upper East Side, Harlem, East Harlem, Washington Heights, Inwood, Chelsea, the Flatiron District, Gramercy, the West Village, Greenwich Village, the East Village, SoHo, Tribeca, Chinatown, the Lower East Side, Battery Park City and the Financial District",
   },
   {
     "slug": "websites-brooklyn", "name": "Brooklyn",
@@ -39,7 +39,7 @@ BOROUGHS = [
       "Reviews from local customers, featured front and center",
       "Clear service areas if you work across several neighborhoods",
     ],
-    "hoods": "Park Slope, Williamsburg, Greenpoint, Bay Ridge, Bushwick, Crown Heights, Flatbush, Sunset Park and Brooklyn Heights",
+    "hoods": "Park Slope, Williamsburg, Greenpoint, Bushwick, Bed-Stuy, Crown Heights, Prospect Heights, Flatbush, Ditmas Park, Kensington, Windsor Terrace, Carroll Gardens, Cobble Hill, Boerum Hill, Brooklyn Heights, DUMBO, Fort Greene, Clinton Hill, Red Hook, Gowanus, Sunset Park, Bay Ridge, Dyker Heights, Bensonhurst, Borough Park, Midwood, Sheepshead Bay, Brighton Beach, Coney Island, Canarsie and East New York",
   },
   {
     "slug": "websites-queens", "name": "Queens",
@@ -58,7 +58,7 @@ BOROUGHS = [
       "Photos that show the people and the place behind the business",
       "Simple, fast pages that work well on any phone",
     ],
-    "hoods": "Astoria, Long Island City, Jackson Heights, Flushing, Forest Hills, Bayside, Ridgewood, Sunnyside and Jamaica",
+    "hoods": "Astoria, Long Island City, Sunnyside, Woodside, Jackson Heights, Elmhurst, Corona, Flushing, Forest Hills, Rego Park, Kew Gardens, Bayside, Whitestone, Ridgewood, Maspeth, Middle Village, Richmond Hill, Ozone Park, Howard Beach, Jamaica, Fresh Meadows and the Rockaways",
   },
   {
     "slug": "websites-bronx", "name": "The Bronx", "in": "the Bronx",
@@ -77,7 +77,7 @@ BOROUGHS = [
       "Your story and how long you've served the neighborhood",
       "Google reviews shown on your site to build trust quickly",
     ],
-    "hoods": "Belmont and Arthur Avenue, Riverdale, Fordham, Mott Haven, Pelham Bay, Parkchester, Throgs Neck and City Island",
+    "hoods": "Belmont and Arthur Avenue, Riverdale, Kingsbridge, Fordham, Bedford Park, Norwood, Mott Haven, Port Morris, Hunts Point, Concourse, Morris Park, Pelham Bay, Parkchester, Throgs Neck, Co-op City and City Island",
   },
   {
     "slug": "websites-staten-island", "name": "Staten Island",
@@ -96,7 +96,7 @@ BOROUGHS = [
       "A simple quote or estimate form",
       "Your license, insurance and years in business, easy to find",
     ],
-    "hoods": "St. George, Great Kills, Tottenville, New Dorp, Todt Hill, Stapleton, Port Richmond and Eltingville",
+    "hoods": "St. George, Tompkinsville, Stapleton, Port Richmond, West Brighton, Westerleigh, Todt Hill, New Springville, New Dorp, Great Kills, Eltingville, Annadale and Tottenville",
   },
 ]
 
