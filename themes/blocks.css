@@ -169,3 +169,7 @@
 .theme-blocks .mplan--grow .mplan__ico { background: var(--violet); }
 .theme-blocks .audit-dialog { background: var(--cobalt); border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
 .theme-blocks .audit-dialog .formcard { background: #fff; padding: 18px; border: var(--edge); }
+.theme-blocks .splan > span, .theme-blocks .ssum, .theme-blocks .sbilling span, .theme-blocks .sform input:not([type="radio"]):not([type="checkbox"]) { border: 2px solid var(--ink); }
+.theme-blocks .ssum { box-shadow: var(--shadow); }
+.theme-blocks .splan input:checked + span { background: var(--lime); box-shadow: 4px 4px 0 var(--ink); }
+.theme-blocks .sbilling input:checked + span { background: var(--ink); color: var(--lime); }

@@ -59,9 +59,9 @@ def switcher():
 def newsletter():
     # TODO: connect to an email service (Mailchimp, ConvertKit, Buttondown...). Front-end only for now.
     return ('<div class="wrap"><div class="news">'
-            '<div class="news__copy"><h4>Local business notes, once a month.</h4>'
-            '<p>What\'s actually working for small businesses in New York: maps, reviews, and the questions clients ask me most. No pitches.</p></div>'
-            '<form class="news__form" novalidate data-error="Enter a valid email address." data-success="You\'re on the list! Your first note arrives next month.">'
+            '<div class="news__copy"><h4>Get tips, news and deals by email</h4>'
+            '<p>About once a month: practical tips for your website and Google Maps, New York small business news, and deals on my plans. Unsubscribe anytime.</p></div>'
+            '<form class="news__form" novalidate data-error="Enter a valid email address." data-success="You\'re subscribed! Watch your inbox.">'
             '<div class="news__row"><input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">'
             '<button class="btn btn--primary" type="submit">Subscribe</button></div>'
             '<p class="form__msg" role="status" aria-live="polite"></p></form></div></div>')
@@ -90,7 +90,7 @@ def add_alt_copy(html):
 def bust(html):
     # Version asset links so browsers pick up new styles after each publish.
     html = re.sub(r'(href="(?:\.\./)?(?:styles|themes/[a-z]+)\.css)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
-    return re.sub(r'(src="(?:\.\./)?script\.js)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
+    return re.sub(r'(src="(?:\.\./)?(?:script|start)\.js)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
 
 
 page = (TEMPLATE
@@ -102,6 +102,13 @@ page = (TEMPLATE
         .replace("{{NEWSLETTER}}", newsletter())
         .replace("{{HOME}}", "index.html"))
 (HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(page))))
+
+# The Get started page shares the moods and switcher.
+start = ((HERE / "start.template.html").read_text()
+         .replace("{{FONTS}}", FONTS)
+         .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
+         .replace("{{SWITCHER}}", switcher()))
+(HERE / "start.html").write_text(bust(titlecase.apply(start)))
 
 # Old per-style URLs now open the homepage in that mood.
 for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):

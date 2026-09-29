@@ -194,15 +194,11 @@ HEAD = """<!DOCTYPE html>
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
-        <a href="../index.html#examples">Examples</a>
-        <a href="../index.html#how">How it works</a>
-        <a href="../index.html#features">Features</a>
         <a href="../index.html#pricing">Pricing</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#faq">FAQ</a>
         <a href="index.html">Blog</a>
       </nav>
-      <a class="btn btn--primary btn--sm nav__cta" href="../index.html#audit">Free website + Maps audit</a>
+      <a class="btn btn--ghost btn--sm nav__start" href="../start.html">Get started</a>
+      <a class="btn btn--primary btn--sm nav__cta" href="../index.html#audit">Free website audit</a>
       <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
     </div>
   </header>
@@ -215,7 +211,6 @@ HEAD = """<!DOCTYPE html>
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
-        <a class="drawer__big" href="../index.html#examples"><span>Examples</span><small>Ten sample homepages for New York businesses</small></a>
         <a class="drawer__big" href="../index.html#how"><span>How it works</span><small>From first call to launch in about two weeks</small></a>
         <a class="drawer__big" href="../index.html#features"><span>Features</span><small>Everything included on every plan</small></a>
         <a class="drawer__big" href="../index.html#pricing"><span>Pricing</span><small>From $99/month, with hosting and edits included</small></a>
@@ -232,6 +227,7 @@ HEAD = """<!DOCTYPE html>
       </div>
       <div class="drawer__foot">
         <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website audit</a>
+        <a class="btn btn--ghost btn--block" href="../start.html">Get started</a>
         <a class="drawer__ben" href="../index.html#audit" data-tab="callback">Or speak to Ben →</a>
         <p>Based in New York, NY</p>
       </div>
@@ -262,7 +258,6 @@ FOOT = """  </main>
       </div>
       <nav class="footer__col" aria-label="Explore">
         <h4>Explore</h4>
-        <a href="../index.html#examples">Examples</a>
         <a href="../index.html#how">How it works</a>
         <a href="../index.html#features">Features</a>
         <a href="../index.html#pricing">Pricing</a>

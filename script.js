@@ -222,6 +222,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         : `+ ${money(setup)} one-time setup`;
       const cta = plan.querySelector(".plan__cta");
       if (cta) cta.textContent = mode === "yearly" ? "Say “I Do”" : "Get Started";
+      if (cta) { const u = new URL(cta.getAttribute("href"), location.href); u.searchParams.set("billing", mode); cta.setAttribute("href", "start.html" + u.search); }
     });
   }
   buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.billing)));
@@ -233,27 +234,28 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 // Audit / callback tabs and forms
 // ---------------------------------------------------------------
 (function () {
-  const tabs = document.querySelectorAll('.tabs [role="tab"]');
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => select(tab));
-    tab.addEventListener("keydown", (e) => {
-      const fwd = e.key === "ArrowRight" || e.key === "ArrowDown";
-      if (!fwd && e.key !== "ArrowLeft" && e.key !== "ArrowUp") return;
-      e.preventDefault();
-      const list = [...tabs];
-      const next = list[(list.indexOf(tab) + (fwd ? 1 : list.length - 1)) % list.length];
-      select(next);
-      next.focus();
-    });
-  });
-  function select(tab) {
-    tabs.forEach((t) => {
+  // Each tab list switches only its own panels (the "Talk to me" panel has a small list inside it).
+  document.querySelectorAll('[role="tablist"]').forEach((listEl) => {
+    const tabs = [...listEl.querySelectorAll('[role="tab"]')];
+    const select = (tab) => tabs.forEach((t) => {
       const on = t === tab;
       t.setAttribute("aria-selected", String(on));
       t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      const panel = document.getElementById(t.getAttribute("aria-controls"));
+      if (panel) panel.hidden = !on;
     });
-  }
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("keydown", (e) => {
+        const fwd = e.key === "ArrowRight" || e.key === "ArrowDown";
+        if (!fwd && e.key !== "ArrowLeft" && e.key !== "ArrowUp") return;
+        e.preventDefault();
+        const next = tabs[(tabs.indexOf(tab) + (fwd ? 1 : tabs.length - 1)) % tabs.length];
+        select(next);
+        next.focus();
+      });
+    });
+  });
 
   // Front-end validation only until a form backend is connected.
   document.querySelectorAll("form.form, form.news__form").forEach((form) => {
@@ -728,8 +730,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     e.preventDefault();
     document.querySelectorAll("dialog[open]").forEach((d) => { if (d !== dialog) d.close(); });
     slot.appendChild(card);
-    const tab = document.getElementById(link.dataset.tab === "callback" ? "tab-callback" : "tab-audit");
-    if (tab) tab.click();
+    if (link.dataset.tab === "callback") {
+      document.getElementById("tab-talk")?.click();
+      document.getElementById("tab-callback")?.click();
+    } else document.getElementById("tab-audit")?.click();
     if (!dialog.open) dialog.showModal();
     const first = card.querySelector("form:not([hidden]) input");
     if (first) first.focus({ preventScroll: true });
@@ -941,4 +945,78 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       </a>`).join("");
     box.hidden = false;
   }).catch(() => {});
+})();
+
+// Address search: suggestions from OpenStreetMap (Photon), leaning toward New York.
+// Any field with data-address gets it; typing a full address by hand still works.
+(function () {
+  const fields = document.querySelectorAll("input[data-address]");
+  if (!fields.length) return;
+  const API = "https://photon.komoot.io/api/?limit=5&lang=en&lat=40.72&lon=-73.95&q=";
+  const label = (p) => {
+    const street = [p.housenumber, p.street].filter(Boolean).join(" ") || p.name || "";
+    const area = p.district || p.city || p.locality || "";
+    const state = p.state === "New York" ? "NY" : p.state || "";
+    return [street, area, [state, p.postcode].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+  };
+  fields.forEach((input, n) => {
+    const box = input.closest(".saddr") || input.parentElement;
+    const list = document.createElement("ul");
+    list.className = "saddr__list";
+    list.id = `addr-list-${n}`;
+    list.setAttribute("role", "listbox");
+    list.hidden = true;
+    box.appendChild(list);
+    input.setAttribute("role", "combobox");
+    input.setAttribute("aria-autocomplete", "list");
+    input.setAttribute("aria-controls", list.id);
+    input.setAttribute("aria-expanded", "false");
+    let items = [], active = -1, timer, last = "";
+    const open = (on) => { list.hidden = !on; input.setAttribute("aria-expanded", String(on)); };
+    const highlight = (i) => {
+      active = i;
+      [...list.querySelectorAll("[role=option]")].forEach((li, k) => li.setAttribute("aria-selected", String(k === i)));
+      if (i >= 0) input.setAttribute("aria-activedescendant", `${list.id}-${i}`); else input.removeAttribute("aria-activedescendant");
+    };
+    const choose = (i) => {
+      if (!items[i]) return;
+      input.value = items[i];
+      open(false);
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      last = input.value;
+    };
+    const show = (results) => {
+      items = results;
+      list.innerHTML = results.map((t, i) => `<li role="option" id="${list.id}-${i}" aria-selected="false">${t.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c])}</li>`).join("")
+        + (results.length ? '<li class="saddr__credit" aria-hidden="true">Address data © OpenStreetMap</li>' : "");
+      highlight(-1);
+      open(results.length > 0);
+    };
+    input.addEventListener("input", () => {
+      const q = input.value.trim();
+      if (q === last) return;
+      clearTimeout(timer);
+      if (q.length < 4) { open(false); return; }
+      timer = setTimeout(async () => {
+        try {
+          const res = await fetch(API + encodeURIComponent(q));
+          const data = await res.json();
+          const seen = new Set();
+          show(data.features.map((f) => label(f.properties)).filter((t) => t && !seen.has(t) && seen.add(t)));
+        } catch (e) { open(false); }
+      }, 250);
+    });
+    input.addEventListener("keydown", (e) => {
+      if (list.hidden) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); highlight(Math.min(active + 1, items.length - 1)); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); highlight(Math.max(active - 1, 0)); }
+      else if (e.key === "Enter" && active >= 0) { e.preventDefault(); choose(active); }
+      else if (e.key === "Escape") { open(false); }
+    });
+    list.addEventListener("mousedown", (e) => {
+      const li = e.target.closest("[role=option]");
+      if (li) { e.preventDefault(); choose(+li.id.split("-").pop()); }
+    });
+    input.addEventListener("blur", () => setTimeout(() => open(false), 120));
+  });
 })();

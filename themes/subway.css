@@ -262,3 +262,5 @@
 .theme-subway .mplan__ico { border-radius: 50%; background: var(--green); }
 .theme-subway .mplan--grow .mplan__ico { background: var(--blue); }
 .theme-subway .profile__pane--after li[data-tier="biz"]::before { background: var(--blue); }
+/* Section rhythm after removing Examples */
+.theme-subway #compare { background: #f2f2ef; }
