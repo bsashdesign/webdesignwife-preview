@@ -41,6 +41,7 @@
       </a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
         <a href="#pricing">Pricing</a>
+        <a href="contact.html">Contact</a>
         <a href="blog/index.html">Blog</a>
       </nav>
       <a class="btn btn--ghost btn--sm nav__start" href="start.html">Get started</a>
@@ -62,6 +63,7 @@
         <a class="drawer__big" href="#features"><span>Features</span><small>Everything included on every plan</small></a>
         <a class="drawer__big" href="#about"><span>About</span><small>Meet Ben, and why I'm called Web Design Wife</small></a>
         <a class="drawer__big" href="#faq"><span>FAQ</span><small>Ownership, cancelling, edits and more</small></a>
+        <a class="drawer__big" href="contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
         <a class="drawer__big" href="blog/index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
       <div class="drawer__more">
@@ -75,7 +77,7 @@
       <div class="drawer__foot">
         <a class="btn btn--primary btn--block" href="#audit">Get a free website + Maps audit</a>
         <a class="btn btn--ghost btn--block" href="start.html">Get started</a>
-        <a class="drawer__ben" href="#audit" data-tab="callback">Or let's talk <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="drawer__ben" href="contact.html?type=callback">Or let's talk <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <p>Based in New York, NY</p>
       </div>
     </aside>
@@ -394,7 +396,7 @@
           </div>
         </div>
 
-        <p class="pricing__extra">Need something different? <a href="#audit" data-tab="callback">Ask about a custom package.</a></p>
+        <p class="pricing__extra">Need something different? <a href="contact.html?type=callback">Ask about a custom package.</a></p>
 
         <div class="edits-banner">
           <div>
@@ -548,7 +550,7 @@
         <div>
           <p class="eyebrow">FAQ</p>
           <h2>Good questions</h2>
-          <p class="muted">Something else on your mind? <a href="#audit" data-tab="callback">Let's talk</a> and I'll answer it personally.</p>
+          <p class="muted">Something else on your mind? <a href="contact.html?type=callback">Let's talk</a> and I'll answer it personally.</p>
         </div>
         <div class="faq__list">
           <details>
@@ -644,19 +646,16 @@
     <section class="section section--violet" id="audit">
       <div class="wrap audit">
         <div>
-          <p class="eyebrow eyebrow--light">Get in touch</p>
-          <h2>Let's talk about your website</h2>
-          <p>Want a free audit of the site you have now? Or would you rather chat first, or just ask a question? Either way, it comes straight to me. No sales team, no pressure.</p>
+          <p class="eyebrow eyebrow--light">Free website audit</p>
+          <h2>Get a free audit of your website</h2>
+          <p>Thinking about improving your website? I'll personally review your site and your Google Maps listing, compare you with a few local competitors, and send you the highest-impact fixes within one business day. Free, no pressure.</p>
+          <p class="audit__alt">Have a question instead? <a href="contact.html">Contact me</a></p>
         </div>
 
         <div class="formcard">
-          <div class="tabs" role="tablist" aria-label="What would you like?">
-            <button type="button" role="tab" id="tab-audit" aria-selected="true" aria-controls="form-audit">Free website audit</button>
-            <button type="button" role="tab" id="tab-talk" aria-selected="false" aria-controls="panel-talk" tabindex="-1">Talk to me</button>
-          </div>
 
           <!-- TODO: connect both forms to a form backend (Webflow forms, Formspree, etc.) -->
-          <form class="form" id="form-audit" role="tabpanel" aria-labelledby="tab-audit" novalidate data-success="Thanks! Your audit is on its way. I'll email your report within one business day.">
+          <form class="form" id="form-audit" novalidate data-success="Thanks! Your audit is on its way. I'll email your report within one business day.">
             <p class="form__desc">I personally review every audit. I'll look at your website, your Google Maps listing and a few local competitors, then send you the highest-impact things I'd fix first, within one business day.</p>
             <label>Business name<input name="business" required autocomplete="organization"></label>
             <label>Business address<span class="saddr"><input name="address" required autocomplete="off" data-address placeholder="Start typing your business address"></span></label>
@@ -666,36 +665,6 @@
             <button class="btn btn--light btn--block" type="submit">Get my free audit</button>
             <p class="form__msg" role="status" aria-live="polite"></p>
           </form>
-
-          <div id="panel-talk" role="tabpanel" aria-labelledby="tab-talk" hidden>
-            <div class="subtabs tabs-sub" role="tablist" aria-label="How would you like to talk?">
-              <button type="button" role="tab" id="tab-callback" aria-selected="true" aria-controls="form-callback">Request a callback</button>
-              <button type="button" role="tab" id="tab-note" aria-selected="false" aria-controls="form-note" tabindex="-1">Write me a note ♥</button>
-            </div>
-            <form class="form" id="form-callback" role="tabpanel" aria-labelledby="tab-callback" novalidate data-success="Thanks! I'll call you back within one business day.">
-            <p class="form__desc">Leave your number and a good time, and I'll call you back within one business day.</p>
-            <label>Your name<input name="name" required autocomplete="name"></label>
-            <label>Phone number<input name="phone" type="tel" required autocomplete="tel"></label>
-            <label>Best time to call
-              <select name="time">
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
-            </label>
-            <label><span>What would you like to talk about? <span class="opt">(optional)</span></span><textarea name="topic" rows="3"></textarea></label>
-            <button class="btn btn--light btn--block" type="submit">Request a call</button>
-            <p class="form__msg" role="status" aria-live="polite"></p>
-          </form>
-          <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate hidden data-success="Sealed and sent ♥ I'll write back within one business day.">
-            <p class="form__desc note__intro">Not ready for a call? Send me a note with any question. It stays between us, no pressure.</p>
-            <label>Your name<input name="name" required autocomplete="name"></label>
-            <label>Email<input name="email" type="email" required autocomplete="email"></label>
-            <label>Your note<textarea name="note" rows="4" required placeholder="Dear Web Design Wife…"></textarea></label>
-            <button class="btn btn--light btn--block" type="submit">Seal it and send ♥</button>
-            <p class="form__msg" role="status" aria-live="polite"></p>
-          </form>
-          </div>
         </div>
       </div>
     </section>
@@ -727,7 +696,7 @@
       <nav class="footer__col" aria-label="Get in touch">
         <h4>Get in touch</h4>
         <a href="#audit">Free website + Maps audit</a>
-        <a href="#audit" data-tab="callback">Let's talk</a>
+        <a href="contact.html?type=callback">Let's talk</a>
         <a href="#custom">Custom projects</a>
         <span>Based in New York, NY</span>
       </nav>
@@ -811,7 +780,7 @@
   <!-- Get in touch pop-up: the same three forms, opened from any "free audit" or "let's talk" link -->
   <dialog class="audit-dialog section--violet" id="audit-dialog" aria-labelledby="audit-dialog-title">
     <button type="button" class="finder-dialog__close audit-dialog__close" data-close-audit aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-    <p class="audit-dialog__title" id="audit-dialog-title">Get in touch</p>
+    <p class="audit-dialog__title" id="audit-dialog-title">Get a free website audit</p>
     <div data-audit-slot></div>
   </dialog>
 

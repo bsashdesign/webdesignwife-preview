@@ -740,10 +740,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     e.preventDefault();
     document.querySelectorAll("dialog[open]").forEach((d) => { if (d !== dialog) d.close(); });
     slot.appendChild(card);
-    if (link.dataset.tab === "callback") {
-      document.getElementById("tab-talk")?.click();
-      document.getElementById("tab-callback")?.click();
-    } else document.getElementById("tab-audit")?.click();
+
     if (!dialog.open) dialog.showModal();
     const first = card.querySelector("form:not([hidden]) input");
     if (first) first.focus({ preventScroll: true });

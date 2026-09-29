@@ -195,6 +195,7 @@ HEAD = """<!DOCTYPE html>
       <a class="brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
         <a href="../index.html#pricing">Pricing</a>
+        <a href="../contact.html">Contact</a>
         <a href="index.html">Blog</a>
       </nav>
       <a class="btn btn--ghost btn--sm nav__start" href="../start.html">Get started</a>
@@ -216,6 +217,7 @@ HEAD = """<!DOCTYPE html>
         <a class="drawer__big" href="../index.html#pricing"><span>Pricing</span><small>From $99/month, with hosting and edits included</small></a>
         <a class="drawer__big" href="../index.html#about"><span>About</span><small>Meet Ben, and why I'm called Web Design Wife</small></a>
         <a class="drawer__big" href="../index.html#faq"><span>FAQ</span><small>Ownership, cancelling, edits and more</small></a>
+        <a class="drawer__big" href="../contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
         <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
       <div class="drawer__more">
@@ -228,7 +230,7 @@ HEAD = """<!DOCTYPE html>
       <div class="drawer__foot">
         <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website audit</a>
         <a class="btn btn--ghost btn--block" href="../start.html">Get started</a>
-        <a class="drawer__ben" href="../index.html#audit" data-tab="callback">Or speak to Ben →</a>
+        <a class="drawer__ben" href="../contact.html?type=callback">Or speak to Ben →</a>
         <p>Based in New York, NY</p>
       </div>
     </aside>

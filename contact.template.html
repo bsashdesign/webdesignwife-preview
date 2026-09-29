@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Contact — Web Design Wife</title>
+  <meta name="description" content="Get in touch with Ben at Web Design Wife: write a note or request a callback.">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{FONTS}}
+  <link rel="stylesheet" href="styles.css">
+  {{THEME_CSS}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {{SWITCHER}}
+
+  <header class="nav nav--simple">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
+        <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <a class="start__back" href="index.html">← Back to home</a>
+    </div>
+  </header>
+
+  <main id="main" class="start contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h1 class="start__title">Get in touch</h1>
+      <p class="start__intro">A question about your website, a plan, or anything else? It comes straight to me, and I reply within one business day.</p>
+
+      <div class="start__grid">
+        <div class="contact__card section--violet">
+          <div class="formcard">
+            <div class="tabs" role="tablist" aria-label="How would you like to talk?">
+              <button type="button" role="tab" id="tab-note" aria-selected="true" aria-controls="form-note">Write me a note ♥</button>
+              <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1">Request a callback</button>
+            </div>
+            <!-- TODO: connect these forms to a form backend (Formspree, etc.) -->
+            <form class="form" id="form-callback" role="tabpanel" aria-labelledby="tab-callback" novalidate hidden data-success="Thanks! I'll call you back within one business day.">
+            <p class="form__desc">Leave your number and a good time, and I'll call you back within one business day.</p>
+            <label>Your name<input name="name" required autocomplete="name"></label>
+            <label>Phone number<input name="phone" type="tel" required autocomplete="tel"></label>
+            <label>Best time to call
+              <select name="time">
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+              </select>
+            </label>
+            <label><span>What would you like to talk about? <span class="opt">(optional)</span></span><textarea name="topic" rows="3"></textarea></label>
+            <button class="btn btn--light btn--block" type="submit">Request a call</button>
+            <p class="form__msg" role="status" aria-live="polite"></p>
+          </form>
+          <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate data-success="Sealed and sent ♥ I'll write back within one business day.">
+            <p class="form__desc note__intro">Not ready for a call? Send me a note with any question. It stays between us, no pressure.</p>
+            <label>Your name<input name="name" required autocomplete="name"></label>
+            <label>Email<input name="email" type="email" required autocomplete="email"></label>
+            <label>Your note<textarea name="note" rows="4" required placeholder="Dear Web Design Wife…"></textarea></label>
+            <button class="btn btn--light btn--block" type="submit">Seal it and send ♥</button>
+            <p class="form__msg" role="status" aria-live="polite"></p>
+          </form>
+          </div>
+        </div>
+
+        <aside class="contact__info" aria-label="Contact details">
+          <dl class="contact__list">
+            <div><dt>Email</dt><dd><a href="mailto:hello@webdesignwife.com">hello@webdesignwife.com</a></dd></div>
+            <div><dt>Based in</dt><dd>New York, NY. Working with businesses in all five boroughs.</dd></div>
+            <div><dt>Replies</dt><dd>Within one business day, Monday to Friday</dd></div>
+          </dl>
+          <div class="contact__next">
+            <p><strong>Want a free website audit?</strong> I'll review your site and Google Maps listing and send you the fixes that matter most.</p>
+            <a class="btn btn--primary btn--block" href="index.html#audit">Get a free audit</a>
+          </div>
+          <div class="contact__next">
+            <p><strong>Ready to start?</strong> Pick a plan and tell me about your business.</p>
+            <a class="btn btn--ghost btn--block" href="start.html">Get started</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer--simple">
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife · New York, NY</p>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Open the callback form when linked with ?type=callback
+    if (new URLSearchParams(location.search).get("type") === "callback") document.getElementById("tab-callback").click();
+  </script>
+</body>
+</html>

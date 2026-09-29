@@ -109,6 +109,11 @@ start = ((HERE / "start.template.html").read_text()
          .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
          .replace("{{SWITCHER}}", switcher()))
 (HERE / "start.html").write_text(bust(titlecase.apply(start)))
+contact = ((HERE / "contact.template.html").read_text()
+           .replace("{{FONTS}}", FONTS)
+           .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
+           .replace("{{SWITCHER}}", switcher()))
+(HERE / "contact.html").write_text(bust(titlecase.apply(contact)))
 
 # Old per-style URLs now open the homepage in that mood.
 for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):
