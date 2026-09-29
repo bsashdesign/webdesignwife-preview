@@ -36,8 +36,8 @@
 
       <div class="start__grid">
         <section class="welcome__cal" aria-label="Book our first call">
-          <!-- TODO: embed the scheduling calendar here (Cal.com or Calendly inline embed). -->
-          <div class="welcome__placeholder">
+          <div id="cal-inline" class="welcome__embed" hidden></div>
+          <div class="welcome__placeholder" id="cal-placeholder">
             <strong>Pick a day and time</strong>
             <p>Your booking calendar goes here. It shows the times I'm free and sends you a calendar invite.</p>
           </div>
@@ -65,12 +65,28 @@
 
   <script src="script.js"></script>
   <script>
+    // Your Cal.com event, e.g. "ben/first-call". Leave empty to show the placeholder.
+    const CAL_LINK = "";
+
+    let details = {};
+    try { details = JSON.parse(localStorage.getItem("wdw-start") || "{}"); } catch (e) {}
     // Greet them by first name if they just came from the Get started form.
-    try {
-      const d = JSON.parse(localStorage.getItem("wdw-start") || "{}");
-      const first = (d.name || "").trim().split(" ")[0];
-      if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
-    } catch (e) {}
+    const first = (details.name || "").trim().split(" ")[0];
+    if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
+
+    // Cal.com inline booking calendar, with their name, email and business filled in.
+    if (CAL_LINK) {
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", { origin: "https://cal.com" });
+      Cal("inline", {
+        elementOrSelector: "#cal-inline",
+        calLink: CAL_LINK,
+        config: { name: details.name || "", email: details.email || "", notes: details.business ? `Business: ${details.business}${details.address ? ", " + details.address : ""}` : "" },
+      });
+      Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      document.getElementById("cal-inline").hidden = false;
+      document.getElementById("cal-placeholder").hidden = true;
+    }
   </script>
 </body>
 </html>

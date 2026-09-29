@@ -12,10 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790668051">
-  <link rel="stylesheet" href="themes/subway.css?v=1790668051">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790668051">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790668051">
+  <link rel="stylesheet" href="styles.css?v=1790668182">
+  <link rel="stylesheet" href="themes/subway.css?v=1790668182">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790668182">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790668182">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
 </head>
 <body>
@@ -42,8 +42,8 @@
 
       <div class="start__grid">
         <section class="welcome__cal" aria-label="Book our first call">
-          <!-- TODO: embed the scheduling calendar here (Cal.com or Calendly inline embed). -->
-          <div class="welcome__placeholder">
+          <div id="cal-inline" class="welcome__embed" hidden></div>
+          <div class="welcome__placeholder" id="cal-placeholder">
             <strong>Pick a day and time</strong>
             <p>Your booking calendar goes here. It shows the times I'm free and sends you a calendar invite.</p>
           </div>
@@ -69,14 +69,30 @@
     </div>
   </footer>
 
-  <script src="script.js?v=1790668051"></script>
+  <script src="script.js?v=1790668182"></script>
   <script>
+    // Your Cal.com event, e.g. "ben/first-call". Leave empty to show the placeholder.
+    const CAL_LINK = "";
+
+    let details = {};
+    try { details = JSON.parse(localStorage.getItem("wdw-start") || "{}"); } catch (e) {}
     // Greet them by first name if they just came from the Get started form.
-    try {
-      const d = JSON.parse(localStorage.getItem("wdw-start") || "{}");
-      const first = (d.name || "").trim().split(" ")[0];
-      if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
-    } catch (e) {}
+    const first = (details.name || "").trim().split(" ")[0];
+    if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
+
+    // Cal.com inline booking calendar, with their name, email and business filled in.
+    if (CAL_LINK) {
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", { origin: "https://cal.com" });
+      Cal("inline", {
+        elementOrSelector: "#cal-inline",
+        calLink: CAL_LINK,
+        config: { name: details.name || "", email: details.email || "", notes: details.business ? `Business: ${details.business}${details.address ? ", " + details.address : ""}` : "" },
+      });
+      Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      document.getElementById("cal-inline").hidden = false;
+      document.getElementById("cal-placeholder").hidden = true;
+    }
   </script>
 </body>
 </html>
