@@ -544,13 +544,18 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     othersToggle.textContent = "View Other Plans";
   }
 
-  // Picking an answer moves to the next step.
-  form.addEventListener("change", () => {
-    setTimeout(() => {
+  // Picking an answer moves to the next step, including re-picking the answer that's
+  // already selected after going back (that fires a click but no change).
+  let advance;
+  const next = () => {
+    clearTimeout(advance);
+    advance = setTimeout(() => {
       if (current < 2) show(current + 1);
       else { renderResult(); show(3); }
     }, 260);
-  });
+  };
+  form.addEventListener("change", next);
+  form.addEventListener("click", (e) => { if (e.target.matches('input[type="radio"]')) next(); });
   back.addEventListener("click", () => show(Math.max(0, current - 1)));
   stepper.forEach((li, n) => {
     const go = () => { if (n < current) show(n); };
