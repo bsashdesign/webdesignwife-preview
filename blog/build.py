@@ -288,7 +288,7 @@ FOOT = """  </main>
       <nav aria-label="Legal">
         <a href="../privacy.html">Privacy</a>
         <a href="../terms.html">Terms</a>
-        <a href="../images/icons/LICENSE-fluent-emoji.txt">Icon credits</a>
+        <a href="../images/ph/LICENSE.txt">Icon credits</a>
       </nav>
     </div>
   </footer>
@@ -328,7 +328,7 @@ def quickcheck(title, sub):
 MID_CHECK = quickcheck("Want our honest take on your website?", "Enter your web address and we'll look it over personally. Free, with no obligation.")
 END_CHECK = quickcheck("Want a second opinion on your site?", "Tell us your web address and we'll send you a short, honest review of what to fix first.")
 
-ICONS = {"Borough guide": "pin", "Checklist": "clipboard", "Google Maps": "map", "Buying guide": "scale", "Reviews": "star", "Guide": "hammer", "Comparison": "scale"}
+ICONS = {"Borough guide": "map-pin", "Checklist": "clipboard-text", "Google Maps": "map-trifold", "Buying guide": "scales", "Reviews": "star", "Guide": "hammer", "Comparison": "scales"}
 COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]
 TONES = ["blue", "green", "yellow", "red", "purple", "teal"]
 
@@ -345,11 +345,11 @@ def cover(a):
         name, color = BRANDS[a["slug"]]
         return f"""<span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="../images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo">{brand_svg(name, color)}</span></span>"""
     if a["slug"] == "vs-agency":
-        return """<span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="../images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo"><img src="../images/icons/hammer.png" alt=""></span></span>"""
+        return """<span class="post-card__cover post-card__cover--vs"><span class="vs-logo vs-logo--us"><img src="../images/favicon.jpg" alt=""></span><span class="vs-x">vs</span><span class="vs-logo"><i class="pi pi--buildings" aria-hidden="true"></i></span></span>"""
     if a["slug"] in BOROUGH_ART:
         return f"""<span class="post-card__cover post-card__cover--art"><img src="../images/boroughs/{BOROUGH_ART[a['slug']]}.svg" alt=""></span>"""
-    icon = ICONS.get(a["kicker"], "memo")
-    return f"""<span class="post-card__cover"><img src="../images/icons/{icon}.png" alt="" width="88" height="88" loading="lazy"></span>"""
+    icon = ICONS.get(a["kicker"], "note-pencil")
+    return f"""<span class="post-card__cover"><i class="pi pi--{icon}" aria-hidden="true"></i></span>"""
 
 def card(a, n=0):
     return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" data-group="{a['group']}" data-tone="{TONES[n % len(TONES)]}" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">

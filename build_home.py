@@ -30,8 +30,6 @@ THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n i
 
 # Copy that changes with a mood: (mood class, current text, mood text)
 ALT_COPY = [
-    ("theme-wedding", "Our promises", "Our vows"),
-    ("theme-wedding", "What every client can count on", "Our vows to every client"),
     ("theme-wedding", "Get in touch", "RSVP"),
     ("theme-wedding", "From first call to live site in about two weeks", "From first date to launch day in about two weeks"),
     ("theme-wedding", "A quick call", "A first date"),

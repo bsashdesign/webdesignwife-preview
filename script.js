@@ -197,12 +197,17 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 // ---------------------------------------------------------------
 (function () {
   const buttons = document.querySelectorAll("[data-billing]");
+  const sw = document.querySelector(".billing__switch");
+  const billing = document.querySelector(".billing");
   const plans = document.querySelectorAll(".plan[data-price]");
   if (!buttons.length) return;
   const money = (n) => "$" + n.toLocaleString("en-US");
 
   function render(mode) {
-    buttons.forEach((b) => b.setAttribute("aria-checked", String(b.dataset.billing === mode)));
+    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.billing === mode)));
+    if (sw) sw.setAttribute("aria-checked", String(mode === "yearly"));
+    // Yearly is the commitment: the ring box opens.
+    if (billing) billing.classList.toggle("is-yearly", mode === "yearly");
     plans.forEach((plan) => {
       const price = Number(plan.dataset.price);
       const setup = Number(plan.dataset.setup);
@@ -220,6 +225,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     });
   }
   buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.billing)));
+  if (sw) sw.addEventListener("click", () => render(sw.getAttribute("aria-checked") === "true" ? "monthly" : "yearly"));
   render("monthly");
 })();
 
@@ -231,9 +237,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => select(tab));
     tab.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const fwd = e.key === "ArrowRight" || e.key === "ArrowDown";
+      if (!fwd && e.key !== "ArrowLeft" && e.key !== "ArrowUp") return;
+      e.preventDefault();
       const list = [...tabs];
-      const next = list[(list.indexOf(tab) + (e.key === "ArrowRight" ? 1 : list.length - 1)) % list.length];
+      const next = list[(list.indexOf(tab) + (fwd ? 1 : list.length - 1)) % list.length];
       select(next);
       next.focus();
     });
@@ -334,6 +342,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     cards.forEach((c) => {
       const screen = c.querySelector(".cf-card__screen");
       const f = c.querySelector("iframe");
+      if (!f) return;
       const sw = parseFloat(st.getPropertyValue("--sw"));
       f.style.transform = `scale(${screen.clientWidth / sw})`;
     });
@@ -341,6 +350,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
   function load(card, fresh) {
     const f = card.querySelector("iframe");
+    if (!f) return;
     const want = card.dataset.src + "?embed" + (cf.dataset.mode === "mobile" ? "&m=1" : "");
     if (fresh || f.dataset.loaded !== want) { f.dataset.loaded = want; f.src = want + "&t=" + Date.now(); }
   }
@@ -387,11 +397,14 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const stageEl = cf.querySelector(".cf__stage");
     stageEl.style.perspectiveOrigin = `50% ${mid}px`;
     stageEl.style.setProperty("--mid", `${mid}px`);
+    stageEl.style.setProperty("--fb", `${af.offsetTop + af.offsetHeight}px`);
+    // The edge fade starts just past the front device, so it never dims it.
+    const cardRight = stageEl.getBoundingClientRect().left + cards[active].offsetLeft + af.offsetWidth;
+    stageEl.style.setProperty("--fade-w", `${Math.max(48, Math.min(360, document.documentElement.clientWidth - cardRight - 16))}px`);
     prev.hidden = active === 0;
-    const atEnd = active === n - 1;
-    next.classList.toggle("is-restart", atEnd);
-    next.setAttribute("aria-label", atEnd ? "Back to the first sample" : "Next sample");
-    next.innerHTML = atEnd ? '<span>Back to the First</span>' : CHEV_R;
+    next.hidden = active === n - 1;
+    // The last card is a small "that's all" card with its own buttons.
+    cards[n - 1].querySelectorAll("a, button").forEach((b) => { b.tabIndex = active === n - 1 ? 0 : -1; });
     cf.classList.toggle("is-end", n - 1 - active < shown);
   }
 
@@ -400,7 +413,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   function go(i) { active = Math.max(0, Math.min(cards.length - 1, i)); render(true); }
 
   prev.addEventListener("click", () => go(active - 1));
-  next.addEventListener("click", () => go(active === cards.length - 1 ? 0 : active + 1));
+  next.addEventListener("click", () => go(active + 1));
+  cf.querySelectorAll("[data-cf-restart]").forEach((b) => b.addEventListener("click", () => go(0)));
   picks.forEach((p, i) => p.addEventListener("click", () => go(i)));
   cards.forEach((c, i) => c.addEventListener("click", (e) => { if (i !== active) { e.preventDefault(); go(i); } }));
   cf.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") go(active - 1); if (e.key === "ArrowRight") go(active + 1); });
@@ -721,29 +735,22 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   check();
 })();
 
-// Dots under swipeable rows
+// Swipeable rows: arrows sit beside the row, centered on the cards
 (function () {
   document.querySelectorAll("#blog .posts, .steps, .boroughs").forEach((row) => {
-    const n = row.children.length;
-    const hint = document.createElement("div");
-    hint.className = "swipe-hint";
-    hint.setAttribute("aria-hidden", "true");
-    hint.innerHTML = '<button type="button" aria-label="Previous">' + CHEV_L + '</button><button type="button" aria-label="Next">' + CHEV_R + '</button>';
-    hint.removeAttribute("aria-hidden");
-    row.after(hint);
-    const dots = [...hint.querySelectorAll("i")];
-    const [prev, next] = hint.querySelectorAll("button");
-    const stepBy = (d) => { const w = row.children[0].getBoundingClientRect().width + 16; row.scrollBy({ left: d * w, behavior: "smooth" }); };
+    const box = document.createElement("div");
+    box.className = "rowx rowx--" + (row.classList.contains("boroughs") ? "boroughs" : row.classList.contains("steps") ? "steps" : "posts");
+    row.before(box);
+    box.innerHTML = '<button type="button" class="rowx__btn rowx__btn--prev" aria-label="Previous">' + CHEV_L + '</button><button type="button" class="rowx__btn rowx__btn--next" aria-label="Next">' + CHEV_R + '</button>';
+    box.insertBefore(row, box.lastChild);
+    const [prev, next] = box.querySelectorAll(".rowx__btn");
+    const stepBy = (d) => { const w = row.children[0].getBoundingClientRect().width + 14; row.scrollBy({ left: d * w, behavior: "smooth" }); };
     prev.addEventListener("click", () => stepBy(-1));
     next.addEventListener("click", () => stepBy(1));
     const update = () => {
-      const kids = [...row.children];
-      let best = 0, bestD = Infinity;
-      kids.forEach((k, i) => { const d = Math.abs(k.getBoundingClientRect().left - row.getBoundingClientRect().left - 20); if (d < bestD) { bestD = d; best = i; } });
-
-      hint.style.visibility = row.scrollWidth > row.clientWidth + 2 ? "" : "hidden";
-      row.style.setProperty("--fade-l", row.scrollLeft > 30 ? "60px" : "0px");
-      row.style.setProperty("--fade-r", row.scrollLeft + row.clientWidth < row.scrollWidth - 4 ? "90px" : "0px");
+      box.classList.toggle("is-scrollable", row.scrollWidth > row.clientWidth + 2);
+      row.style.setProperty("--fade-l", row.scrollLeft > 30 ? "40px" : "0px");
+      row.style.setProperty("--fade-r", row.scrollLeft + row.clientWidth < row.scrollWidth - 4 ? "56px" : "0px");
       prev.disabled = row.scrollLeft < 4;
       next.disabled = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
     };
@@ -818,7 +825,14 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
   if (!m) return;
   const btn = m.querySelector(".mood__btn");
   const setOpen = (o) => { m.classList.toggle("is-open", o); btn.setAttribute("aria-expanded", String(o)); };
-  btn.addEventListener("click", () => setOpen(!m.classList.contains("is-open")));
+  const hover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  btn.addEventListener("click", () => setOpen(hover || !m.classList.contains("is-open")));
+  // With a mouse, hovering the button opens the panel and moving away closes it.
+  if (hover) {
+    let t;
+    m.addEventListener("mouseenter", () => { clearTimeout(t); setOpen(true); });
+    m.addEventListener("mouseleave", () => { clearTimeout(t); t = setTimeout(() => setOpen(false), 250); });
+  }
   m.querySelector(".mood__close").addEventListener("click", () => { setOpen(false); btn.focus(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && m.classList.contains("is-open")) setOpen(false); });
   document.addEventListener("click", (e) => { if (!m.contains(e.target)) { m.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); } });

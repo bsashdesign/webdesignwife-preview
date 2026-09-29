@@ -29,8 +29,16 @@ def title(text):
 
 def _inner(html):
     # Title-case only the text between tags; leave tags and entities alone.
+    # Descriptions in <small> stay in sentence case.
     parts = re.split(r"(<[^>]+>|&[a-z]+;)", html)
-    return "".join(p if (p.startswith("<") or p.startswith("&")) else title(p) for p in parts)
+    out, small = [], False
+    for p in parts:
+        if p.startswith("<small"):
+            small = True
+        elif p.startswith("</small"):
+            small = False
+        out.append(p if (p.startswith("<") or p.startswith("&") or small) else title(p))
+    return "".join(out)
 
 
 def apply(html):
