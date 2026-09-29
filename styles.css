@@ -1848,7 +1848,8 @@ h2 { text-wrap: balance; }
 .mood__opt[aria-pressed="true"], .mood__opt[aria-pressed="true"]:hover { background: #111; color: #fff; border-color: #111; }
 .mood__opt[aria-pressed="true"] small { color: rgba(255,255,255,.72); }
 .mood__opt[aria-pressed="true"]::after { background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat; }
-.mood__opt .moodicon--transit { box-shadow: 0 0 0 1.5px #fff; }
+/* Same edge as the floating button: a thin light border, orange strip on top */
+.mood__opt .moodicon--transit { box-shadow: none; border: 1px solid #cfcfca; border-top: 4px solid #ff6319; }
 
 /* Yearly: the ring box and "Let's get married!" appear under the switch */
 .billing { transition: margin-bottom .4s ease .45s; }
