@@ -1902,8 +1902,11 @@ main p.eyebrow { max-width: none; }
    Pricing: yearly prices never push the cards off screen
    ================================================================ */
 .plans > .plan { min-width: 0; }
+/* The old price sits on its own line above the new one */
 .plan__price { display: flex; flex-wrap: wrap; align-items: baseline; }
-.plan__was { margin-right: 8px; }
-@media (max-width: 900px) {
-  .plans { grid-template-columns: minmax(0, 1fr); max-width: 560px; margin-left: auto; margin-right: auto; }
+.plan__was { flex-basis: 100%; margin: 0 0 6px; font-size: 1.15rem; }
+/* Tablets keep three columns: a slightly smaller price and tighter padding */
+@media (min-width: 641px) and (max-width: 900px) {
+  .plan { padding: 24px 16px; }
+  .plan__price span { font-size: 2.2rem; }
 }
