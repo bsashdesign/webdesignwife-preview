@@ -217,8 +217,8 @@ HEAD = """<!DOCTYPE html>
         <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
       <div class="drawer__cta">
-        <a class="btn btn--primary btn--block" href="../start.html">Get started</a>
-        <a class="btn btn--ghost btn--block" href="../index.html#audit">Get a free website + Maps audit</a>
+        <a class="btn btn--ghost btn--block" href="../start.html">Get started</a>
+        <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website + Maps audit</a>
       </div>
       <div class="drawer__more">
         <p class="drawer__label">Helpful links</p>
