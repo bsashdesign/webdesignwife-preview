@@ -2231,3 +2231,7 @@ main p.assure { width: fit-content; max-width: 820px; margin: 22px auto 0; paddi
   .theme-wedding .guarantee h3 { font-size: 1.2rem; }
   .guarantee p { font-size: .8rem; line-height: 1.5; }
 }
+/* Drawer: more breathing room around the buttons and the helpful links */
+.drawer__cta { padding-bottom: 28px; }
+.drawer__more { padding-top: 28px; gap: 12px; }
+.drawer__more .drawer__label { margin: 0 0 4px; }
