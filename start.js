@@ -26,22 +26,26 @@
   try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
   Object.entries(saved).forEach(([name, value]) => {
     const field = form.elements[name];
-    if (!field || name === "agree") return;
+    if (!field || name === "agree" || name === "billing") return;
     if (field instanceof RadioNodeList) field.value = value; else field.value = value;
   });
   if (PLANS[params.get("plan")]) form.elements.plan.value = params.get("plan");
-  if (["monthly", "yearly"].includes(params.get("billing"))) form.elements.billing.value = params.get("billing");
+  // Billing uses the same switch as the homepage (script.js runs it); this page just reads it.
+  const sw = document.querySelector(".billing__switch");
+  const billing = () => (sw && sw.getAttribute("aria-checked") === "true" ? "yearly" : "monthly");
+  const wantBilling = ["monthly", "yearly"].includes(params.get("billing")) ? params.get("billing") : saved.billing;
+  if (wantBilling === "yearly") document.querySelector('[data-billing="yearly"]')?.click();
 
   function render() {
     const p = PLANS[form.elements.plan.value] || PLANS.business;
-    const isYearly = form.elements.billing.value === "yearly";
+    const isYearly = billing() === "yearly";
     sum("plan").textContent = p.name;
     sum("today").textContent = money(p.setup);
     sum("start").textContent = startDate;
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;
     sum("then-note").textContent = isYearly
-      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts 14 days from today, around when your site goes live.`
-      : "Your plan starts 14 days from today, around when your site goes live.";
+      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts 14 days from today, when your site goes live.`
+      : "Your plan starts 14 days from today, when your site goes live.";
     document.querySelectorAll("[data-price]").forEach((el) => {
       const q = PLANS[el.dataset.price];
       el.textContent = isYearly ? `${money(Math.round(q.price * 0.8))}/month, billed yearly` : `${money(q.price)}/month`;
@@ -54,11 +58,17 @@
       if (!f.name || f.type === "checkbox" || f.type === "submit") return;
       if (f.type === "radio") { if (f.checked) data[f.name] = f.value; } else data[f.name] = f.value;
     });
+    data.billing = billing();
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
   }
 
   form.addEventListener("input", () => { render(); save(); });
   form.addEventListener("change", () => { render(); save(); });
+  // The switch lives in the form, so its clicks re-render after script.js flips it.
+  form.addEventListener("click", (e) => { if (e.target.closest(".billing")) setTimeout(() => { render(); save(); }, 0); });
+  // "Back to website" returns to wherever they came from on this site.
+  const backLink = document.querySelector("[data-back]");
+  if (backLink && document.referrer.startsWith(location.origin)) backLink.addEventListener("click", (e) => { e.preventDefault(); history.back(); });
   render();
 
   const msg = form.querySelector(".sform__msg");
@@ -77,7 +87,8 @@
       return;
     }
     save();
-    // TODO: create a Stripe Checkout session here and redirect to it.
-    msg.textContent = "Secure checkout isn't connected yet in this preview. Your details are saved on this device.";
+    // TODO: create a Stripe Checkout session here and redirect to it, with welcome.html as the
+    // success page. Until then, the preview skips checkout and goes straight to the welcome page.
+    location.href = "welcome.html";
   });
 })();

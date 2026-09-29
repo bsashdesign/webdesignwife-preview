@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Welcome — Web Design Wife</title>
+  <meta name="description" content="Start your Web Design Wife website. Pick a plan, tell me about your business, and I'll get to work.">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{FONTS}}
+  <link rel="stylesheet" href="styles.css">
+  {{THEME_CSS}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {{SWITCHER}}
+
+  <header class="nav nav--simple">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
+        <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <a class="start__back" href="index.html" data-back>← Back to website</a>
+    </div>
+  </header>
+
+  <main id="main" class="start welcome">
+    <div class="wrap">
+      <p class="eyebrow">You're in</p>
+      <h1 class="start__title">It's official<span data-welcome-name></span>!</h1>
+      <p class="start__intro">Thank you for choosing Web Design Wife. One last step: pick a time for our first call. It's about 15 minutes, and it's where I learn about your business, your customers and what you want your site to do.</p>
+
+      <div class="start__grid">
+        <section class="welcome__cal" aria-label="Book our first call">
+          <!-- TODO: embed the scheduling calendar here (Cal.com or Calendly inline embed). -->
+          <div class="welcome__placeholder">
+            <strong>Pick a day and time</strong>
+            <p>Your booking calendar goes here. It shows the times I'm free and sends you a calendar invite.</p>
+          </div>
+        </section>
+
+        <aside class="ssum" aria-label="What happens next">
+          <p class="ssum__kicker">What happens next</p>
+          <ol class="welcome__steps">
+            <li><strong>Our first call</strong><span>About 15 minutes, at the time you pick.</span></li>
+            <li><strong>I design your site</strong><span>You review it and ask for changes until it's right.</span></li>
+            <li><strong>You go live</strong><span>Within 14 days of our first call, or your money back.</span></li>
+          </ol>
+          <p class="welcome__note">A receipt and a summary of your plan are on their way to your email.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer--simple">
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife · Brooklyn, NY</p>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Greet them by first name if they just came from the Get started form.
+    try {
+      const d = JSON.parse(localStorage.getItem("wdw-start") || "{}");
+      const first = (d.name || "").trim().split(" ")[0];
+      if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
+    } catch (e) {}
+  </script>
+</body>
+</html>

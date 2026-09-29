@@ -194,7 +194,7 @@ HEAD = """<!DOCTYPE html>
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
       <nav class="nav__links" id="nav-links" aria-label="Main">
-        <a href="../index.html#pricing">Pricing</a>
+        <a href="../pricing.html">Pricing</a>
         <a href="../contact.html">Contact</a>
         <a href="index.html">Blog</a>
       </nav>
@@ -212,26 +212,14 @@ HEAD = """<!DOCTYPE html>
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
-        <a class="drawer__big" href="../index.html#how"><span>How it works</span><small>From first call to launch in about two weeks</small></a>
-        <a class="drawer__big" href="../index.html#features"><span>Features</span><small>Everything included on every plan</small></a>
-        <a class="drawer__big" href="../index.html#pricing"><span>Pricing</span><small>From $99/month, with hosting and edits included</small></a>
-        <a class="drawer__big" href="../index.html#about"><span>About</span><small>Meet Ben, and why I'm called Web Design Wife</small></a>
-        <a class="drawer__big" href="../index.html#faq"><span>FAQ</span><small>Ownership, cancelling, edits and more</small></a>
+        <a class="drawer__big" href="../pricing.html"><span>Pricing</span><small>Plans from $99/month, what's included and FAQs</small></a>
         <a class="drawer__big" href="../contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
         <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
       </nav>
-      <div class="drawer__more">
-        <p class="drawer__label">More</p>
-        <a href="../index.html#maps">Google Maps management</a>
-        <a href="../index.html#local">Local to New York</a>
-        <a href="index.html#compare">Compare website builders</a>
-        <a href="diy-website-guide.html">Build-it-yourself guide</a>
-      </div>
       <div class="drawer__foot">
-        <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website audit</a>
+        <a class="btn btn--primary btn--block" href="../index.html#audit">Get a free website + Maps audit</a>
         <a class="btn btn--ghost btn--block" href="../start.html">Get started</a>
-        <a class="drawer__ben" href="../contact.html?type=callback">Or speak to Ben →</a>
-        <p>Based in New York, NY</p>
+        <p>Based in Brooklyn, NY</p>
       </div>
     </aside>
   </div>
@@ -262,9 +250,9 @@ FOOT = """  </main>
         <h4>Explore</h4>
         <a href="../index.html#how">How it works</a>
         <a href="../index.html#features">Features</a>
-        <a href="../index.html#pricing">Pricing</a>
+        <a href="../pricing.html">Pricing</a>
         <a href="../index.html#about">About</a>
-        <a href="../index.html#faq">FAQ</a>
+        <a href="../pricing.html#faq">FAQ</a>
       </nav>
       <nav class="footer__col" aria-label="Resources">
         <h4>Resources</h4>
@@ -276,9 +264,9 @@ FOOT = """  </main>
       <nav class="footer__col" aria-label="Get in touch">
         <h4>Get in touch</h4>
         <a href="../index.html#audit">Free website + Maps audit</a>
-        <a href="../index.html#audit">Speak to Ben</a>
-        <a href="../index.html#custom">Custom projects</a>
-        <span>Based in New York, NY</span>
+        <a href="../contact.html">Contact</a>
+        <a href="../pricing.html#custom">Custom projects</a>
+        <span>Based in Brooklyn, NY</span>
       </nav>
     </div>
     <div class="wrap footer__bottom">

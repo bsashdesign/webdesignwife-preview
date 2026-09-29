@@ -12,10 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790666787">
-  <link rel="stylesheet" href="themes/subway.css?v=1790666787">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790666787">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790666787">
+  <link rel="stylesheet" href="styles.css?v=1790668051">
+  <link rel="stylesheet" href="themes/subway.css?v=1790668051">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790668051">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790668051">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
 </head>
 <body>
@@ -30,15 +30,15 @@
       <a class="brand" href="index.html" aria-label="Web Design Wife home">
         <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
       </a>
-      <a class="start__back" href="index.html#pricing">← Back to plans</a>
+      <a class="start__back" href="index.html" data-back>← Back to website</a>
     </div>
   </header>
 
   <main id="main" class="start">
     <div class="wrap">
       <p class="eyebrow">Get started</p>
-      <h1 class="start__title">Let's Build Your Website</h1>
-      <p class="start__intro">A few quick details and I'll get to work. It takes about two minutes, and I'll email you within one business day to set up a short first call.</p>
+      <h1 class="start__title">Let's Make It Official</h1>
+      <p class="start__intro">This is the start of a long-term partnership: I design your site, host it and look after it from here on. A few quick details and we're off. I'll email you within one business day to set up a short first call.</p>
 
       <div class="start__grid">
         <!-- TODO: connect "Continue to secure checkout" to Stripe Checkout:
@@ -51,9 +51,10 @@
               <label class="splan"><input type="radio" name="plan" value="business" checked><span><strong>Business</strong><small>A full site that gets you found</small><em data-price="business"></em></span></label>
               <label class="splan"><input type="radio" name="plan" value="full"><span><strong>Full Suite</strong><small>Everything, plus growth tools</small><em data-price="full"></em></span></label>
             </div>
-            <div class="sbilling" role="radiogroup" aria-label="Billing">
-              <label><input type="radio" name="billing" value="monthly" checked><span>Pay monthly</span></label>
-              <label><input type="radio" name="billing" value="yearly"><span>Pay yearly <b>Save 20%</b></span></label>
+            <div class="billing sbill">
+              <button type="button" class="billing__opt" data-billing="monthly" aria-pressed="true">Monthly</button>
+              <button type="button" class="billing__switch" role="switch" aria-checked="false" aria-label="Pay yearly and save 20%"><i></i></button>
+              <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="false">Yearly <em class="billing__save">Save 20%</em></button>
             </div>
           </fieldset>
 
@@ -69,7 +70,7 @@
             <legend>About you</legend>
             <label>Your name<input name="name" required autocomplete="name"></label>
             <label>Email<input name="email" type="email" required autocomplete="email"></label>
-            <label><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" autocomplete="tel"></label>
+            <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
           </fieldset>
 
           <label class="sform__agree"><input type="checkbox" name="agree" required><span>I agree to the <a href="terms.html" target="_blank" rel="noopener">terms</a>, including the setup fee today and my plan starting in 14 days.</span></label>
@@ -82,18 +83,27 @@
           <h2 class="ssum__plan" data-sum="plan">Business</h2>
           <dl class="ssum__lines">
             <div><dt>Due today</dt><dd data-sum="today">$399</dd></div>
-            <dd class="ssum__note">One-time setup fee: I design and write your site.</dd>
+            <dd class="ssum__note">One-time setup fee: I design and develop your site.</dd>
             <div><dt data-sum="then-label">Then, from <span data-sum="start"></span></dt><dd data-sum="then">$149/month</dd></div>
             <dd class="ssum__note" data-sum="then-note">Your plan starts 14 days from today, around when your site goes live.</dd>
           </dl>
           <div class="ssum__promise">
-            <strong>Love it, or your money back</strong>
-            <p>Until your site goes live, you can get a full refund of everything you've paid, no questions asked. Once it's live, payments are non-refundable, but you can cancel anytime.</p>
+            <span class="ssum__seal"><svg class="seal" viewBox="0 0 128 128" aria-hidden="true">
+              <polygon points="124.0,64.0 118.7,70.2 122.5,77.4 115.9,82.2 118.1,90.0 110.6,93.3 110.9,101.4 102.9,102.9 101.4,110.9 93.3,110.6 90.0,118.1 82.2,115.9 77.4,122.5 70.2,118.7 64.0,124.0 57.8,118.7 50.6,122.5 45.8,115.9 38.0,118.1 34.7,110.6 26.6,110.9 25.1,102.9 17.1,101.4 17.4,93.3 9.9,90.0 12.1,82.2 5.5,77.4 9.3,70.2 4.0,64.0 9.3,57.8 5.5,50.6 12.1,45.8 9.9,38.0 17.4,34.7 17.1,26.6 25.1,25.1 26.6,17.1 34.7,17.4 38.0,9.9 45.8,12.1 50.6,5.5 57.8,9.3 64.0,4.0 70.2,9.3 77.4,5.5 82.2,12.1 90.0,9.9 93.3,17.4 101.4,17.1 102.9,25.1 110.9,26.6 110.6,34.7 118.1,38.0 115.9,45.8 122.5,50.6 118.7,57.8" class="seal__edge"/>
+              <circle cx="64" cy="64" r="48" class="seal__ring"/>
+              <circle cx="64" cy="64" r="43" class="seal__inner"/>
+              <defs><path id="sealTop" d="M 30 64 A 34 34 0 0 1 98 64"/><path id="sealBottom" d="M 26 64 A 38 38 0 0 0 102 64"/></defs>
+              <text class="seal__arc"><textPath href="#sealTop" startOffset="50%" text-anchor="middle">MONEY-BACK</textPath></text>
+              <text x="64" y="72" text-anchor="middle" class="seal__num">100%</text>
+              <text class="seal__arc"><textPath href="#sealBottom" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
+            </svg></span>
+            <div><strong>Live in 14 days, or your money back</strong>
+            <p>If your site isn't live within 14 days of our first call, or you don't love your design, you get a full refund of everything you've paid, no questions asked. Once it's live, payments are non-refundable, but you can cancel anytime.</p></div>
           </div>
           <ul class="ssum__list">
-            <li>Your domain is always registered in your name</li>
-            <li>Unlimited minor edits, done within one business day</li>
-            <li>Cancel anytime</li>
+            <li>Your domain is always registered in your name.</li>
+            <li>Unlimited minor edits, done within one business day.</li>
+            <li>Cancel anytime.</li>
           </ul>
         </aside>
       </div>
@@ -102,12 +112,12 @@
 
   <footer class="footer footer--simple">
     <div class="wrap footer__bottom">
-      <p>© 2026 Web Design Wife · New York, NY</p>
+      <p>© 2026 Web Design Wife · Brooklyn, NY</p>
       <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
     </div>
   </footer>
 
-  <script src="script.js?v=1790666787"></script>
-  <script src="start.js?v=1790666787"></script>
+  <script src="script.js?v=1790668051"></script>
+  <script src="start.js?v=1790668051"></script>
 </body>
 </html>

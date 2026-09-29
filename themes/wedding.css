@@ -178,3 +178,5 @@
 .theme-wedding .splan > span, .theme-wedding .ssum { border-radius: 4px; }
 .theme-wedding .splan input:checked + span { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .theme-wedding .ssum__plan, .theme-wedding .splan strong { font-weight: 500; }
+/* Hero phone: a slimmer, less rounded handset */
+.theme-wedding .phone { border-width: 3px; border-radius: 16px; }

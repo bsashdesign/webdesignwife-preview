@@ -300,7 +300,7 @@ html.drawer-open { overflow: hidden; }
 .for__row li:nth-child(4n+2)::after { --dot: var(--marigold); }
 .for__row li:nth-child(4n+3)::after { --dot: var(--done); }
 .for__row li:nth-child(4n+4)::after { --dot: #e8577a; }
-.for:hover .for__row { animation-play-state: paused; }
+
 @keyframes for-scroll { to { transform: translateX(-100%); } }
 
 /* Sections */
@@ -984,8 +984,10 @@ html.drawer-open { overflow: hidden; }
 .m-on .m-words.m-ready:not(.m-in) .w > span { transform: translateY(108%); }
 .m-on .m-words.m-in .w > span { transition: transform .9s cubic-bezier(.19, 1, .22, 1); transition-delay: calc(var(--wi, 0) * 45ms); }
 /* Labels pop in with a little spring. */
-.m-on .eyebrow.m-ready:not(.m-in) { transform: scale(.85); opacity: 0; }
-.m-on .eyebrow.m-in { transition: transform .6s var(--spring), opacity .3s ease; }
+/* Uses "scale", not "transform", so a mood's own label tilt is never overridden mid-animation */
+.m-on .eyebrow.m-ready:not(.m-in) { scale: .85; opacity: 0; }
+.m-on .eyebrow.m-in { transition: scale .6s var(--spring), opacity .3s ease; }
+.m-on .m-instant, .m-on .m-instant * { transition: none !important; }
 /* 3D icons hop once as they arrive. */
 @keyframes hop { 0% { transform: translateY(14px) scale(.8) rotate(-8deg); opacity: 0; } 60% { transform: translateY(-6px) scale(1.04) rotate(3deg); opacity: 1; } 100% { transform: none; } }
 /* Hero highlight is drawn on like a marker. */
@@ -2100,3 +2102,27 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 
 /* The audit card no longer has tabs above the form */
 #audit .formcard { padding-top: 26px; }
+
+/* Get started: switch, seal, summary list */
+.sform .billing.sbill { display: flex; justify-content: flex-start; margin: 4px 0 0; }
+.ssum__promise { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 14px; }
+.ssum__seal { display: block; width: 64px; }
+.ssum__seal .seal { width: 64px; height: 64px; display: block; }
+.ssum__list { gap: 8px; }
+.ssum__list li { line-height: 1.4; }
+
+/* Pricing page: the FAQ sits on the tinted background so it never matches What's included */
+.pricing-page #faq { background: var(--tint); }
+.theme-subway .pricing-page #faq { background: #f2f2ef; }
+
+/* Welcome page (after checkout): book the first call */
+.welcome__cal { min-height: 420px; }
+.welcome__placeholder { display: grid; place-content: center; gap: 8px; min-height: 420px; padding: 32px; border: 2px dashed var(--line); border-radius: var(--r-lg); background: #fff; text-align: center; }
+.welcome__placeholder strong { font: 700 1.2rem var(--display); color: var(--ink); }
+.welcome__placeholder p { margin: 0 auto; color: var(--ink-soft); }
+.welcome__steps { display: grid; gap: 14px; margin: 14px 0 18px; padding-left: 20px; }
+.welcome__steps strong { display: block; color: var(--ink); }
+.welcome__steps span { color: var(--ink-soft); font-size: .92rem; }
+.welcome__note { margin: 0; font-size: .88rem; color: var(--ink-soft); }
+.theme-wedding .welcome__placeholder { border-radius: 4px; }
+.theme-blocks .welcome__placeholder { border: 2px dashed var(--ink); }

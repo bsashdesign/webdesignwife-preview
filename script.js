@@ -671,15 +671,21 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   root.classList.add("m-on");
 
   const pending = new Set(targets);
-  let queued = false;
+  let queued = false, first = true;
   function check() {
     queued = false;
     const limit = window.innerHeight * 0.9;
     pending.forEach((el) => {
       const r = el.getBoundingClientRect();
-      // Anything in view, or already scrolled past, is revealed.
-      if (r.top < limit) { el.classList.add("m-in"); pending.delete(el); }
+      // Anything in view, or already scrolled past, is revealed. Labels already on screen
+      // when the page opens just appear; the pop is for ones you scroll to.
+      if (r.top < limit) {
+        if (first && el.classList.contains("eyebrow")) el.classList.add("m-instant");
+        el.classList.add("m-in");
+        pending.delete(el);
+      }
     });
+    first = false;
   }
   const schedule = () => { if (!queued) { queued = true; setTimeout(check, 40); } };
   window.addEventListener("scroll", schedule, { passive: true });
@@ -730,8 +736,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 // The one form card moves into the pop-up while it's open, then goes back to its section.
 (function () {
   const dialog = document.getElementById("audit-dialog");
-  const card = document.querySelector("#audit .formcard");
+  // Pages with the audit section lend it their form; other pages carry their own copy in the pop-up.
+  const card = document.querySelector("#audit .formcard") || (dialog && dialog.querySelector(".formcard"));
   if (!dialog || !card || typeof dialog.showModal !== "function") return;
+  const borrowed = !dialog.contains(card);
   const home = card.parentElement, after = card.nextSibling;
   const slot = dialog.querySelector("[data-audit-slot]");
   document.addEventListener("click", (e) => {
@@ -739,7 +747,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     if (!link) return;
     e.preventDefault();
     document.querySelectorAll("dialog[open]").forEach((d) => { if (d !== dialog) d.close(); });
-    slot.appendChild(card);
+    if (borrowed) slot.appendChild(card);
 
     if (!dialog.open) dialog.showModal();
     const first = card.querySelector("form:not([hidden]) input");
@@ -748,7 +756,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   dialog.addEventListener("click", (e) => {
     if (e.target.closest("[data-close-audit]") || e.target === dialog) dialog.close();
   });
-  dialog.addEventListener("close", () => home.insertBefore(card, after));
+  dialog.addEventListener("close", () => { if (borrowed) home.insertBefore(card, after); });
 })();
 
 // Nav: the color strip shows at the top of the page, then tucks away
@@ -959,7 +967,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 (function () {
   const fields = document.querySelectorAll("input[data-address]");
   if (!fields.length) return;
-  const API = "https://photon.komoot.io/api/?limit=5&lang=en&lat=40.72&lon=-73.95&q=";
+  // Limited to the five boroughs and to real street addresses, which keeps results relevant and fast.
+  const API = "https://photon.komoot.io/api/?limit=6&lang=en&bbox=-74.26,40.49,-73.69,40.92&layer=house&layer=street&q=";
+  const cache = new Map();
   const label = (p) => {
     const street = [p.housenumber, p.street].filter(Boolean).join(" ") || p.name || "";
     const area = p.district || p.city || p.locality || "";
@@ -978,7 +988,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     input.setAttribute("aria-autocomplete", "list");
     input.setAttribute("aria-controls", list.id);
     input.setAttribute("aria-expanded", "false");
-    let items = [], active = -1, timer, last = "";
+    let items = [], active = -1, timer, last = "", pending;
     const open = (on) => { list.hidden = !on; input.setAttribute("aria-expanded", String(on)); };
     const highlight = (i) => {
       active = i;
@@ -1003,15 +1013,20 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const q = input.value.trim();
       if (q === last) return;
       clearTimeout(timer);
-      if (q.length < 4) { open(false); return; }
+      if (q.length < 3) { open(false); return; }
+      if (cache.has(q)) { show(cache.get(q)); return; }
       timer = setTimeout(async () => {
+        if (pending) pending.abort();   // only the latest search matters
+        pending = new AbortController();
         try {
-          const res = await fetch(API + encodeURIComponent(q));
+          const res = await fetch(API + encodeURIComponent(q), { signal: pending.signal });
           const data = await res.json();
           const seen = new Set();
-          show(data.features.map((f) => label(f.properties)).filter((t) => t && !seen.has(t) && seen.add(t)));
-        } catch (e) { open(false); }
-      }, 250);
+          const found = data.features.map((f) => label(f.properties)).filter((t) => t && !seen.has(t) && seen.add(t)).slice(0, 5);
+          cache.set(q, found);
+          if (input.value.trim() === q) show(found);
+        } catch (e) { if (e.name !== "AbortError") open(false); }
+      }, 180);
     });
     input.addEventListener("keydown", (e) => {
       if (list.hidden) return;

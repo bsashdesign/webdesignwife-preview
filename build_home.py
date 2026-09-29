@@ -31,7 +31,7 @@ THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n i
 # Copy that changes with a mood: (mood class, current text, mood text)
 ALT_COPY = [
     ("theme-wedding", "Get in touch", "RSVP"),
-    ("theme-wedding", "From first call to live site in about two weeks", "From first date to launch day in about two weeks"),
+    ("theme-wedding", "From first call to live site in 14 days", "From first date to launch day in 14 days"),
     ("theme-wedding", "A quick call", "A first date"),
 ]
 
@@ -109,11 +109,56 @@ start = ((HERE / "start.template.html").read_text()
          .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
          .replace("{{SWITCHER}}", switcher()))
 (HERE / "start.html").write_text(bust(titlecase.apply(start)))
-contact = ((HERE / "contact.template.html").read_text()
+welcome = ((HERE / "welcome.template.html").read_text()
            .replace("{{FONTS}}", FONTS)
            .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
            .replace("{{SWITCHER}}", switcher()))
-(HERE / "contact.html").write_text(bust(titlecase.apply(contact)))
+(HERE / "welcome.html").write_text(bust(titlecase.apply(welcome)))
+# Pieces shared with the other full pages (Pricing, Contact), taken from the finished homepage
+# so the header, menu and footer never drift apart.
+def between(html, start, end_tag):
+    i = html.index(start)
+    return html[i:html.index(end_tag, i) + len(end_tag)]
+
+def block(html, start):
+    """The element that starts at `start`, through its matching closing tag."""
+    i = html.index(start)
+    tag = re.match(r"<(\w+)", start).group(1)
+    depth = 0
+    for m in re.finditer(rf"<{tag}\b|</{tag}>", html[i:]):
+        depth += 1 if not m.group(0).startswith("</") else -1
+        if depth == 0:
+            return html[i:i + m.end()]
+
+def away(html):
+    # On other pages, homepage anchors point back to the homepage (the audit pop-up stays local).
+    return re.sub(r'href="#(?!audit"|main")', 'href="index.html#', html)
+
+PARTS = {
+    "{{NAV}}": away(block(page, '<header class="nav">')),
+    "{{DRAWER}}": away(block(page, '<div class="drawer" id="drawer"')),
+    "{{FOOTER}}": away(block(page, '<footer class="footer">')),
+    "{{MOBILEBAR}}": block(page, '<a class="mobilebar"'),
+    "{{FINDER}}": block(page, '<dialog class="finder-dialog"'),
+}
+AUDIT_SECTION = block(page, '<section class="section section--violet" id="audit">')
+AUDIT_DIALOG = block(page, '<dialog class="audit-dialog')
+# Pages without the audit section carry their own copy of the form inside the pop-up.
+AUDIT_DIALOG_STANDALONE = AUDIT_DIALOG.replace("<div data-audit-slot></div>", "<div data-audit-slot>" + block(AUDIT_SECTION, '<div class="formcard">') + "</div>")
+
+def full_page(template):
+    html = template.replace("{{FONTS}}", FONTS).replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot()).replace("{{SWITCHER}}", switcher())
+    for k, v in PARTS.items():
+        html = html.replace(k, v)
+    return html
+
+contact = full_page((HERE / "contact.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
+(HERE / "contact.html").write_text(bust(titlecase.apply(add_alt_copy(contact))))
+
+# Pricing page: the plans, what's included, the FAQ and the free audit.
+PRICING_MAIN = "\n".join(block(page, f'<section class="{c}" id="{i}">') for c, i in (("section", "pricing"), ("section section--tint", "features"), ("section section--tint", "faq")))
+pricing = full_page((HERE / "pricing.template.html").read_text()).replace("{{MAIN}}", PRICING_MAIN + "\n" + AUDIT_SECTION).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG)
+(HERE / "pricing.html").write_text(bust(titlecase.apply(add_alt_copy(pricing))))
 
 # Old per-style URLs now open the homepage in that mood.
 for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):

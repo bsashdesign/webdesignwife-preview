@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Welcome — Web Design Wife</title>
+  <meta name="description" content="Start your Web Design Wife website. Pick a plan, tell me about your business, and I'll get to work.">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1790668051">
+  <link rel="stylesheet" href="themes/subway.css?v=1790668051">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790668051">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790668051">
+  <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="mood" id="mood">
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Choose your mood</p><p class="mood__intro">See this website in four different styles. Same content, a different feel.</p><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span><span><strong>Tangy</strong><small>Bright, bouncy and a little loud.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span><span><strong>Sophisticated</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button></div>
+  </div>
+
+  <header class="nav nav--simple">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
+        <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <a class="start__back" href="index.html" data-back>← Back to website</a>
+    </div>
+  </header>
+
+  <main id="main" class="start welcome">
+    <div class="wrap">
+      <p class="eyebrow">You're in</p>
+      <h1 class="start__title">It's Official<span data-welcome-name></span>!</h1>
+      <p class="start__intro">Thank you for choosing Web Design Wife. One last step: pick a time for our first call. It's about 15 minutes, and it's where I learn about your business, your customers and what you want your site to do.</p>
+
+      <div class="start__grid">
+        <section class="welcome__cal" aria-label="Book our first call">
+          <!-- TODO: embed the scheduling calendar here (Cal.com or Calendly inline embed). -->
+          <div class="welcome__placeholder">
+            <strong>Pick a day and time</strong>
+            <p>Your booking calendar goes here. It shows the times I'm free and sends you a calendar invite.</p>
+          </div>
+        </section>
+
+        <aside class="ssum" aria-label="What happens next">
+          <p class="ssum__kicker">What happens next</p>
+          <ol class="welcome__steps">
+            <li><strong>Our first call</strong><span>About 15 minutes, at the time you pick.</span></li>
+            <li><strong>I design your site</strong><span>You review it and ask for changes until it's right.</span></li>
+            <li><strong>You go live</strong><span>Within 14 days of our first call, or your money back.</span></li>
+          </ol>
+          <p class="welcome__note">A receipt and a summary of your plan are on their way to your email.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer--simple">
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife · Brooklyn, NY</p>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1790668051"></script>
+  <script>
+    // Greet them by first name if they just came from the Get started form.
+    try {
+      const d = JSON.parse(localStorage.getItem("wdw-start") || "{}");
+      const first = (d.name || "").trim().split(" ")[0];
+      if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
+    } catch (e) {}
+  </script>
+</body>
+</html>
