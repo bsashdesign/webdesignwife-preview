@@ -289,7 +289,7 @@ FOOT = """  </main>
       <nav aria-label="Legal">
         <a href="../privacy.html">Privacy</a>
         <a href="../terms.html">Terms</a>
-        <a href="../images/ph/LICENSE.txt">Icon credits</a>
+        <a href="../images/CREDITS.txt">Icon credits</a>
       </nav>
     </div>
   </footer>

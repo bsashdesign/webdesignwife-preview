@@ -1837,12 +1837,12 @@ h2 { text-wrap: balance; }
 /* ================================================================
    Mood tiles: each mood has its own face (images/moods)
    ================================================================ */
-.moodicon .mi { display: block; width: 64%; height: 64%; background: currentColor; -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
+.moodicon .mi { display: block; width: 66%; height: 66%; background: currentColor; -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
 .moodicon--calm .mi { -webkit-mask-image: url(images/moods/calm.svg); mask-image: url(images/moods/calm.svg); }
 .moodicon--transit .mi { -webkit-mask-image: url(images/moods/transit.svg); mask-image: url(images/moods/transit.svg); }
 .moodicon--tangy { color: #0e0e0e; }
 .moodicon--tangy .mi { -webkit-mask-image: url(images/moods/tangy.svg); mask-image: url(images/moods/tangy.svg); }
-.moodicon--sophisticated .mi { width: 74%; height: 74%; -webkit-mask-image: url(images/moods/sophisticated.svg); mask-image: url(images/moods/sophisticated.svg); }
+.moodicon--sophisticated .mi { -webkit-mask-image: url(images/moods/sophisticated.svg); mask-image: url(images/moods/sophisticated.svg); }
 
 /* Mood popup: the chosen mood is a black row with a white check */
 .mood__opt[aria-pressed="true"], .mood__opt[aria-pressed="true"]:hover { background: #111; color: #fff; border-color: #111; }
