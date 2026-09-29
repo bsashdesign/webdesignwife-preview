@@ -176,3 +176,5 @@
 .theme-blocks .contact__card .formcard, .theme-blocks .audit-dialog .formcard { background: none; padding: 0; border: 0; box-shadow: none; color: var(--ink); }
 .theme-blocks .audit-dialog .audit-dialog__title, .theme-blocks .contact__card .form__desc, .theme-blocks .audit-dialog .form__desc { color: var(--ink); }
 .theme-blocks .contact__card .tabs { background: #fff; }
+.theme-blocks .quickcheck { background: var(--sun); border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .quickcheck__row input { border: 2px solid var(--ink); }

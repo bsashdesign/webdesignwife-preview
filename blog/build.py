@@ -300,7 +300,7 @@ def quickcheck(title, sub):
     return f"""
 <form class="quickcheck" novalidate>
   <div class="quickcheck__step" data-step="url">
-    <p class="quickcheck__title">{title}</p>
+    <p class="quickcheck__title tc">{title}</p>
     <p class="quickcheck__sub">{sub}</p>
     <div class="quickcheck__row">
       <input name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" aria-label="Your website address">
@@ -391,7 +391,7 @@ for a in ALL:
         <a class="article__back" href="index.html"><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> All articles</a>
         <h1>{html.escape(a['title'])}</h1>
         <p class="article__meta">By Ben Sash · {a['minutes']} min read</p>
-        <div class="article__body">{a['body'].replace("{{CHECK}}", MID_CHECK)}</div>
+        <div class="article__body">{a['body'].replace("{{CHECK}}", MID_CHECK if len(re.sub(r"<[^>]+>", " ", a["body"]).split()) > 900 else "")}</div>
 {END_CHECK}        <section class="related" data-slug="{a['slug']}" data-group="{a['group']}" aria-label="Related articles" hidden>
           <h2 class="related__h">Keep reading</h2>
           <div class="related__list"></div>

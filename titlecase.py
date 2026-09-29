@@ -45,4 +45,6 @@ def apply(html):
     html = re.sub(r"(<h[12][^>]*>)(.*?)(</h[12]>)", lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
     html = re.sub(r'(<a [^>]*class="[^"]*\bbtn\b[^"]*"[^>]*>)(.*?)(</a>)', lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
     html = re.sub(r"(<button\b[^>]*>)(.*?)(</button>)", lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
+    # Anything else marked class="tc" (titles set as a link or paragraph) gets Title Case too.
+    html = re.sub(r'(<(a|p|span)\b[^>]*class="(?:[^"]*\s)?tc(?:\s[^"]*)?"[^>]*>)(.*?)(</\2>)', lambda m: m.group(1) + _inner(m.group(3)) + m.group(4), html, flags=re.S)
     return html

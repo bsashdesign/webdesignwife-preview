@@ -160,8 +160,8 @@
 .theme-subway .post-card__kicker { color: var(--ink-soft); }
 .theme-subway .lede-note { border-left-color: var(--yellow); }
 .theme-subway .vs-table thead th:last-child, .theme-subway .vs-table td:last-child { background: #eef4ff; }
-.theme-subway .quickcheck { background: #111; border-top: 8px solid var(--yellow); border-radius: 12px; }
-.theme-subway .qc-url { color: var(--yellow); }
+.theme-subway .quickcheck { background: #f2f2ef; border: 0; border-top: 8px solid var(--yellow); border-radius: 12px; }
+.theme-subway .qc-url { color: var(--ink); }
 .theme-subway .article__back { color: var(--blue); }
 
 /* Drawer: each section is a stop on the line */

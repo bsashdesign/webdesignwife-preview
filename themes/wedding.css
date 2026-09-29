@@ -166,7 +166,7 @@
 .theme-wedding .form select option { color: var(--ink); }
 /* Light sections: navy lines. Dark sections (Get in touch, blog review box): light lines. */
 .theme-wedding { --field-line: rgba(31, 35, 54, .45); --field-ink: var(--ink); }
-.theme-wedding .section--violet, .theme-wedding .quickcheck { --field-line: rgba(255, 255, 255, .5); --field-ink: #fff; }
+.theme-wedding .section--violet { --field-line: rgba(255, 255, 255, .5); --field-ink: #fff; }
 .theme-wedding .audit-dialog { border-radius: 4px; }
 .theme-wedding .audit-dialog .audit-dialog__title { font-weight: 500; font-size: 1.8rem; }
 /* The secret note keeps its lined notepaper, just with square corners */
@@ -195,3 +195,4 @@
 .theme-wedding .rowx__btn svg path, .theme-wedding .cf__nav .cf__arrow svg path { stroke-width: 1.1; }
 .theme-wedding .rowx__btn:hover:not(:disabled), .theme-wedding .cf__nav .cf__arrow:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); color: #fff; }
 .theme-wedding .rowx__btn:disabled, .theme-wedding .cf__nav .cf__arrow:disabled { opacity: .3; }
+.theme-wedding .quickcheck { border-radius: 4px; box-shadow: inset 0 0 0 6px var(--tint), inset 0 0 0 7px rgba(184, 149, 90, .35); border: 0; }

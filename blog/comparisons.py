@@ -216,37 +216,120 @@ EXTRA = [
     "summary": "Doing it yourself is a perfectly good choice. Here's a practical plan to get it right the first time.",
     "minutes": 7,
     "body": """
-<p class="lede-note"><strong>The short answer:</strong> plenty of local businesses build their own websites and do great. The key is keeping it simple, focusing on what customers need and keeping it up to date.</p>
+<p class="lede-note"><strong>The short answer:</strong> plenty of local businesses build their own websites and do great. The key is keeping it simple, focusing on what customers need, and keeping it up to date. Here's the plan I'd follow, step by step.</p>
 
 <h2>1. Pick a builder that fits you</h2>
-<p>If you enjoy design, look at <a href="vs-squarespace.html">Squarespace</a> or <a href="vs-wix.html">Wix</a>. If you use Square for payments, <a href="vs-square-online.html">Square Online</a> may be enough. If you sell products, go with <a href="vs-shopify.html">Shopify</a>.</p>
+<p>If you enjoy design, look at <a class="tc" href="vs-squarespace.html">Squarespace</a> or <a class="tc" href="vs-wix.html">Wix</a>. If you already take payments with Square, <a class="tc" href="vs-square-online.html">Square Online</a> may be enough. If you mainly sell products, go with <a class="tc" href="vs-shopify.html">Shopify</a>. Pick one and commit: moving a site between builders later usually means rebuilding it.</p>
 
-<h2>2. Register your domain in your own name</h2>
-<p>Your domain (like yourbusiness.com) is your address online. Make sure the account is in your name and that you have the login, even if someone else helps you.</p>
+<h2>2. Get the right domain, in your own name</h2>
+<p>Your domain (like yourbusiness.com) is your address online, and it's the one part of your website you should never let someone else own. Register it with an account in your name, with your email and your login, even if someone else builds the site.</p>
 
-<h2>3. Plan five pages, not fifteen</h2>
-<p>Most local businesses need only a homepage, services, about, reviews and contact. Fewer pages means less to keep updated.</p>
+<h3>Where to buy it</h3>
+<p>Any of the big registrars are fine: <strong>Cloudflare Registrar</strong> (sells domains at cost), <strong>Namecheap</strong>, <strong>Porkbun</strong> or <strong>Squarespace Domains</strong> (which took over Google Domains). A .com usually costs about $10 to $20 a year. Watch for a cheap first year followed by a much higher renewal price, and turn on auto-renew so it never lapses.</p>
 
-<h2>4. Write for your customers</h2>
+<h3>Check whether it's taken</h3>
 <ul>
-  <li>Say what you do and where, in the first line</li>
-  <li>Use the words customers search for, like “emergency plumber in Queens”</li>
-  <li>Keep sentences short, and put your phone number everywhere</li>
+  <li>Search the name on any registrar. If it's available, you'll see a price.</li>
+  <li>If it's taken, type the address into your browser to see whether it's an active business or just parked. <strong>ICANN Lookup</strong> (lookup.icann.org) shows when it was registered and when it expires.</li>
+  <li>Before you commit to a name, search the <strong>USPTO trademark database</strong> so you don't build on a name someone else has protected.</li>
+</ul>
+
+<h3>If the .com you want is taken</h3>
+<p>You can usually still get a .com by adding a word that keeps the essence of your name:</p>
+<ul>
+  <li><strong>Add your location:</strong> rosebakerybrooklyn.com, kingscutbronx.com</li>
+  <li><strong>Add what you do:</strong> rivera<em>plumbing</em>.com, juniper<em>hairstudio</em>.com</li>
+  <li><strong>Add a short prefix or suffix:</strong> <em>get</em>, <em>try</em>, <em>hello</em>, <em>shop</em> or <em>studio</em>, like hellojuniper.com</li>
+  <li><strong>Use your full legal name</strong> if your short name is taken: caldwelltaxandaccounting.com</li>
+</ul>
+<p>Avoid hyphens and numbers. They're hard to say out loud and easy to mistype.</p>
+
+<h3>Alternatives to .com</h3>
+<p>If your business grows by word of mouth, people will type ".com" out of habit, so it's worth the effort to get one. If most customers find you on Google Maps or Instagram, the ending matters less. Good options:</p>
+<ul>
+  <li><strong>.nyc:</strong> the official New York City ending. You need an address in the city to register one, which makes it a nice local signal.</li>
+  <li><strong>.co:</strong> short and professional, but people sometimes add the "m" by mistake.</li>
+  <li><strong>Industry endings</strong> like .salon, .dental, .studio or .shop: memorable, but less familiar to older customers.</li>
+</ul>
+
+<h2>3. Start with one page</h2>
+<p>Most local businesses don't need a big website. They need one page that answers a customer's questions in the right order. You can always add pages later, and every extra page is one more thing to keep updated.</p>
+
+<h3>One page is enough if you're…</h3>
+<p>A barber, cleaner, food truck, handyman, solo therapist or trainer, or any business with a short list of services. Organize the page top to bottom like this:</p>
+<ol>
+  <li><strong>What you do and where</strong>, with one clear button: "Call now," "Book online" or "Get a quote"</li>
+  <li><strong>Your services</strong>, with prices or starting prices if you can</li>
+  <li><strong>Reviews</strong>: your Google rating and three to five real reviews</li>
+  <li><strong>About you</strong>, with a real photo of you or your team</li>
+  <li><strong>Hours, address and a map</strong></li>
+  <li><strong>Contact</strong>: phone, text, email or a short form, repeated at the bottom</li>
+</ol>
+
+<h3>Three pages make sense if you're…</h3>
+<ul>
+  <li><strong>A restaurant or café:</strong> Home, Menu, Visit (hours, location, reservations)</li>
+  <li><strong>A salon or spa:</strong> Home, Services and prices, Book</li>
+  <li><strong>A dentist, clinic or law office:</strong> Home, Services, About the team</li>
+  <li><strong>A contractor:</strong> Home, Services, Past projects</li>
+</ul>
+<p>Add a separate <strong>Contact</strong> page when you have a longer form, several locations or a booking tool. Keep contact details on every page anyway.</p>
+
+<h2>4. Write for your customers, not about yourself</h2>
+<p>Visitors skim. They're looking for their exact problem, a sign they can trust you, and the fastest way to reach you. Write every section with that in mind.</p>
+<ul>
+  <li><strong>Lead with what you do and where.</strong> "Emergency plumbing in Queens, same-day service" beats "Welcome to our website." Someone should know they're in the right place in three seconds.</li>
+  <li><strong>Name your services the way customers do.</strong> Not "plumbing solutions," but "drain cleaning," "leak repair" and "water heater installation." That's also what Google matches against.</li>
+  <li><strong>Talk about their problem, then your fix.</strong> "Water heater out? I can usually replace it the same day." Short and concrete.</li>
+  <li><strong>Show proof.</strong> Reviews, years in business, licenses, insurance, "family-run since 1987." Proof does more than adjectives.</li>
+  <li><strong>Give prices, or at least a range.</strong> "Haircuts from $35" gets more calls than no price at all, because people assume the worst.</li>
+  <li><strong>Mention your neighborhood.</strong> Cross streets, nearby landmarks and the areas you serve help locals and help Google.</li>
+  <li><strong>One button per section.</strong> Every section should end with a clear next step, and your phone number should be one tap away on a phone.</li>
+  <li><strong>Answer the questions you hear every day</strong> in a short FAQ: parking, payment, walk-ins, how long it takes.</li>
 </ul>
 
 {{CHECK}}
 
-<h2>5. Use real photos</h2>
-<p>Your team, your space and your work build more trust than any stock photo. A recent phone camera is plenty.</p>
+<h2>5. Use real photos, and make them look their best</h2>
+<p>Your team, your space and your work build more trust than any stock photo, and a recent phone camera is plenty. What makes a good photo for a website:</p>
+<ul>
+  <li><strong>Natural light.</strong> Shoot near a window or outside in the shade. Turn off the flash.</li>
+  <li><strong>A clean background.</strong> Move the clutter out of the frame.</li>
+  <li><strong>People doing the work.</strong> A barber mid-cut beats an empty chair.</li>
+  <li><strong>Your storefront</strong>, so people recognize it when they arrive.</li>
+  <li><strong>Before and after</strong>, if your work allows it.</li>
+  <li><strong>Landscape (sideways)</strong> photos for the top of the page. Vertical photos get cropped awkwardly.</li>
+</ul>
+<h3>Cleaning up photos with AI, honestly</h3>
+<p>AI tools like ChatGPT can fix lighting and color in a phone photo in seconds. The rule: improve the photo, never change what it shows. A customer should walk in and see exactly what was on your website. Upload your photo and use a prompt like this:</p>
+<blockquote class="prompt"><p>Improve the lighting, color and sharpness of this photo so it looks professionally shot, with soft, even, natural-looking light. Do not change, add or remove anything in the image: keep every person's face, body and expression exactly as they are, and keep the space, products, food and work exactly as they are. Do not add or remove objects, text or people. Only correct exposure, white balance, color, sharpness and noise, and gently straighten the horizon if it's tilted.</p></blockquote>
+<p>Always compare the result to the original before you use it. If anything looks different, like a changed face, extra objects or food that looks better than what you serve, use the original instead.</p>
 
 <h2>6. Set up your Google Business Profile</h2>
-<p>For most local businesses, it brings in as many customers as the website. Read my guide on <a href="google-maps-profile.html">why your Google Maps profile matters</a>.</p>
+<p>For most local businesses, the Google Maps listing brings in as many customers as the website, often more. Before you finish your site, make sure your profile is working for you:</p>
+<ul>
+  <li><strong>Claim and verify it</strong> at business.google.com, using an account you own.</li>
+  <li><strong>Pick the most specific main category</strong>, like "Emergency plumber" rather than "Plumber," then add a few secondary ones.</li>
+  <li><strong>Keep hours exact</strong>, including holiday hours, and match them to your website.</li>
+  <li><strong>Add real photos</strong> of your storefront, your team and your work, and keep adding new ones.</li>
+  <li><strong>List your services</strong> with the same names you use on your website.</li>
+  <li><strong>Link to your website</strong> and your booking page.</li>
+  <li><strong>Ask for reviews</strong> after every good job, and reply to every review, good or bad.</li>
+</ul>
+<p>More detail in my guide: <a class="tc" href="google-maps-profile.html">Why your Google Maps profile might matter more than your website</a>.</p>
 
-<h2>7. Check it on your phone</h2>
-<p>Most of your visitors will be on a phone. Tap every button and fill in your own contact form.</p>
+<h2>7. Test it properly before you share it</h2>
+<p>Most of your visitors will be on a phone, so test there first, then on a computer.</p>
+<ul>
+  <li><strong>Tap every button and link.</strong> Do the call button, directions and booking links go to the right place?</li>
+  <li><strong>Send yourself a message</strong> through your own contact form, and confirm it arrives in your inbox, not spam.</li>
+  <li><strong>Check the speed</strong> with Google's free PageSpeed Insights. Large photos are the usual culprit, so shrink them before you upload.</li>
+  <li><strong>Proofread</strong> your phone number, address, hours and prices twice. These are the mistakes that cost calls.</li>
+  <li><strong>Ask a friend</strong> to find your hours and contact you, without your help. Watch where they get stuck.</li>
+</ul>
 
-<h2>8. Put updates on your calendar</h2>
-<p>Set a monthly reminder to check hours, prices and photos. An outdated website quietly costs you customers.</p>
+<h2>8. Keep it current</h2>
+<p>An outdated website quietly costs you customers: wrong hours send people away, and old prices start arguments. Put a monthly reminder on your calendar to check hours (including upcoming holidays), prices, services, photos and your Google profile. It takes fifteen minutes, and it's the difference between a website that works and one that just exists.</p>
 """,
   },
 ]
