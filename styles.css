@@ -61,7 +61,7 @@ h1, h2, h3, h4, legend, summary { text-wrap: balance; }
 }
 .eyebrow--light { color: #d9d1ff; }
 .muted { color: var(--ink-soft); }
-.intro { max-width: 56ch; font-size: 1.1rem; }
+.intro { max-width: 34em; font-size: 1.1rem; }
 
 /* Buttons */
 .btn {
@@ -426,7 +426,7 @@ html.drawer-open { overflow: hidden; }
 .edits-banner__list li { padding: 9px 14px; border-radius: 999px; background: rgba(255, 255, 255, .1); font-weight: 500; font-size: .95rem; }
 .edits-banner__list .dup { display: none; }
 .edits-banner__list li::before { content: "✓"; color: var(--done); font-weight: 800; margin-right: 7px; filter: brightness(1.5); }
-.scope-note { max-width: 70ch; margin: 20px auto 0; text-align: center; font-size: .9rem; color: var(--ink-soft); }
+.scope-note { max-width: 34em; margin: 20px auto 0; text-align: center; font-size: .9rem; color: var(--ink-soft); }
 
 /* Promises */
 .promises { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
@@ -442,7 +442,7 @@ html.drawer-open { overflow: hidden; }
 .about { display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: center; }
 .about__photo { aspect-ratio: 4 / 5; border-radius: var(--r-lg); background: repeating-linear-gradient(45deg, #ece8ff 0 14px, #f3f0ff 14px 28px); display: grid; place-items: center; font: 500 .8rem var(--mono); color: var(--violet-deep); text-transform: uppercase; letter-spacing: .1em; }
 .about__lead { font: 700 1.4rem/1.3 var(--display); }
-.about p:not(.eyebrow):not(.about__lead) { color: var(--ink-soft); font-size: 1.08rem; max-width: 56ch; }
+.about p:not(.eyebrow):not(.about__lead) { color: var(--ink-soft); font-size: 1.08rem; max-width: 34em; }
 
 .about__visual { position: relative; }
 .hearts { position: absolute; inset: -30% 0 0; pointer-events: none; overflow: hidden; }
@@ -1866,3 +1866,9 @@ h2 { text-wrap: balance; }
 @media (max-width: 1080px) { .section--inset { --inset: 56px; } }
 @media (max-width: 640px) { .section--inset { --inset: 44px; } }
 .section--inset > .wrap > * { margin-left: var(--inset); margin-right: var(--inset); }
+
+/* ================================================================
+   Readable line length: body text stays around 70 characters per line
+   ================================================================ */
+main p, .maps__included { max-width: 34em; }
+.pricing__head p:not(.eyebrow), .assure, .pricing__extra, .scope-note, .blog-hero--center p:not(.eyebrow) { margin-left: auto; margin-right: auto; }
