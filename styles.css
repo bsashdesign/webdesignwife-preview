@@ -1349,13 +1349,6 @@ html.drawer-open { overflow: hidden; }
   .section-head > div:first-child { flex: 1 1 auto; min-width: 0; }
   .section-head__side { flex: 0 0 auto; max-width: 340px; }
 }
-/* A heading with just a button beside it: the title wraps (up to about three lines)
-   before the button drops below it */
-@media (min-width: 481px) {
-  #blog .section-head { flex-wrap: nowrap; }
-  #blog .section-head > div:first-child { flex: 1 1 auto; min-width: 0; }
-  #blog .section-head > .btn { flex-shrink: 0; }
-}
 
 /* ---------- Contact tabs fit on phones ---------- */
 @media (max-width: 640px) {
@@ -1763,9 +1756,11 @@ h2 { text-wrap: balance; }
    Carousels: a pair of arrows above the row, on the right
    ================================================================ */
 .rowx { margin-top: 32px; }
-.rowx > .boroughs { margin: 0; padding: 4px 8px 16px 0; scroll-padding-left: 0; }
-.rowx__nav { display: none; justify-content: flex-end; gap: 10px; margin-bottom: 14px; }
-.rowx.is-scrollable .rowx__nav { display: flex; }
+/* Rows scroll sideways, which clips anything outside their box. Extra padding gives card
+   shadows room, and matching negative margins keep the cards lined up with the text. */
+.rowx > .boroughs, .rowx > .posts, .rowx > .steps { --pad-x: 20px; margin: -16px calc(var(--pad-x) * -1) -24px; padding: 16px var(--pad-x) 36px; scroll-padding: 0 var(--pad-x); }
+.rowx__nav { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 14px; }
+.rowx__nav[hidden] { display: none; }
 .rowx__btn, .cf__nav .cf__arrow { position: static; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; transform: none; box-shadow: 0 6px 14px -8px rgba(0,0,0,.35); transition: opacity .2s ease, background-color .2s ease; }
 .rowx__btn svg, .cf__nav .cf__arrow svg { width: 18px; height: 18px; display: block; }
 .rowx__btn:hover:not(:disabled), .cf__nav .cf__arrow:hover:not(:disabled) { background: var(--tint); transform: none; }
@@ -1774,9 +1769,7 @@ h2 { text-wrap: balance; }
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 56px)), transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0, #000 var(--fade-l, 0px), #000 calc(100% - var(--fade-r, 56px)), transparent 100%);
 }
-@media (max-width: 1080px) {
-  .rowx > .posts, .rowx > .steps { margin: 0; padding: 12px 8px 24px 0; scroll-padding-left: 0; }
-}
+
 @media (max-width: 640px) { .rowx__btn, .cf__nav .cf__arrow { width: 40px; height: 40px; } }
 
 /* Examples: Desktop/Mobile on the left, arrows on the right, both above the devices */
@@ -1900,3 +1893,16 @@ main p.eyebrow { max-width: none; }
   .plan { padding: 24px 16px; }
   .plan__price span { font-size: 2.2rem; }
 }
+
+/* Blog teaser: "All articles" sits centered under the cards */
+.blog__more { display: flex; justify-content: center; max-width: none; margin: 36px 0 0; }
+
+/* Arrows share a line with the section's heading or intro, never a row of their own */
+.carousel-head, #blog .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px 32px; }
+.carousel-head > h2, .carousel-head > p { margin-bottom: 0; }
+.carousel-head > p { margin-top: 0; }
+[data-nav-slot] { flex-shrink: 0; }
+[data-nav-slot] .rowx__nav { margin: 0; }
+/* Examples arrows: level with the current site's name and tags, on the right */
+.cf { position: relative; }
+.cf__nav { position: absolute; right: 0; top: var(--head-y, 110px); z-index: 45; transform: translateY(-50%); }

@@ -403,6 +403,12 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     stageEl.style.setProperty("--fade-w", `${Math.max(48, Math.min(360, document.documentElement.clientWidth - cardRight - 16))}px`);
     prev.disabled = active === 0;
     next.disabled = active === n - 1;
+    // The arrows sit level with the current site's name and tags.
+    const head = cards[active].querySelector(".cf-card__head");
+    if (head) {
+      const hr = head.getBoundingClientRect(), cr = cf.getBoundingClientRect();
+      cf.style.setProperty("--head-y", `${hr.top - cr.top + hr.height / 2}px`);
+    }
     // The edge fade uses the section's own background, whatever the mood.
     const sec = cf.closest("section");
     if (sec) stageEl.style.setProperty("--cf-fade", getComputedStyle(sec).backgroundColor);
@@ -747,22 +753,30 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     row.before(box);
     box.innerHTML = '<div class="rowx__nav"><button type="button" class="rowx__btn rowx__btn--prev" aria-label="Previous">' + CHEV_L + '</button><button type="button" class="rowx__btn rowx__btn--next" aria-label="Next">' + CHEV_R + '</button></div>';
     box.appendChild(row);
-    const [prev, next] = box.querySelectorAll(".rowx__btn");
+    // Put the arrows on the same line as the section's own heading or intro when there's a slot for them.
+    const nav = box.querySelector(".rowx__nav");
+    const slot = row.closest("section")?.querySelector("[data-nav-slot]");
+    if (slot) slot.appendChild(nav);
+    const [prev, next] = nav.querySelectorAll(".rowx__btn");
     // Arrows move a whole view at a time: the first card that isn't fully visible becomes
     // the new first card (or last card, going back), so nothing is ever skipped.
     const stepBy = (d) => {
-      const box = row.getBoundingClientRect(), from = row.scrollLeft, view = row.clientWidth;
+      const box = row.getBoundingClientRect(), from = row.scrollLeft;
+      const pad = parseFloat(getComputedStyle(row).paddingLeft) || 0;   // room left for card shadows
+      const view = row.clientWidth - pad * 2;
       const fade = 56;   // the edge fade hides the last bit of the view
       const cards = [...row.children].map((k) => { const r = k.getBoundingClientRect(); return { l: r.left - box.left + from, r: r.right - box.left + from }; });
       let to;
-      if (d > 0) { const c = cards.find((c) => c.r > from + view - fade + 2); to = c ? c.l : from + view; }
-      else { const c = [...cards].reverse().find((c) => c.l < from - 2); to = c ? c.r - view + fade : 0; }
-      row.scrollTo({ left: Math.max(0, Math.min(to, row.scrollWidth - view)), behavior: "smooth" });
+      if (d > 0) { const c = cards.find((c) => c.r > from + pad + view - fade + 2); to = c ? c.l - pad : from + view; }
+      else { const c = [...cards].reverse().find((c) => c.l < from + pad - 2); to = c ? c.r - pad - view + fade : 0; }
+      row.scrollTo({ left: Math.max(0, Math.min(to, row.scrollWidth - row.clientWidth)), behavior: "smooth" });
     };
     prev.addEventListener("click", () => stepBy(-1));
     next.addEventListener("click", () => stepBy(1));
     const update = () => {
-      box.classList.toggle("is-scrollable", row.scrollWidth > row.clientWidth + 2);
+      const scrollable = row.scrollWidth > row.clientWidth + 2;
+      box.classList.toggle("is-scrollable", scrollable);
+      nav.hidden = !scrollable;
       row.style.setProperty("--fade-l", row.scrollLeft > 30 ? "40px" : "0px");
       row.style.setProperty("--fade-r", row.scrollLeft + row.clientWidth < row.scrollWidth - 4 ? "56px" : "0px");
       prev.disabled = row.scrollLeft < 4;
