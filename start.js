@@ -10,7 +10,6 @@
   };
   const money = (n) => "$" + n.toLocaleString("en-US");
   const yearly = (p) => Math.round(p.price * 12 * 0.8);
-  const startDate = new Date(Date.now() + 14 * 864e5).toLocaleDateString("en-US", { month: "long", day: "numeric" });
   const sum = (k) => document.querySelector(`[data-sum="${k}"]`);
   const KEY = "wdw-start";
 
@@ -41,11 +40,10 @@
     const isYearly = billing() === "yearly";
     sum("plan").textContent = p.name;
     sum("today").textContent = money(p.setup);
-    sum("start").textContent = startDate;
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;
     sum("then-note").textContent = isYearly
-      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts 14 days from today, when your site goes live.`
-      : "Your plan starts 14 days from today, when your site goes live.";
+      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts 14 days after our first call, when your site goes live.`
+      : "Your plan starts 14 days after our first call, when your site goes live.";
     document.querySelectorAll("[data-price]").forEach((el) => {
       const q = PLANS[el.dataset.price];
       el.textContent = isYearly ? `${money(Math.round(q.price * 0.8))}/month, billed yearly` : `${money(q.price)}/month`;

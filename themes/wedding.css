@@ -188,3 +188,5 @@
 /* One circle only, moved out past the lettering */
 .theme-wedding .seal__inner { display: none; }
 .theme-wedding .seal__ring { r: 50px; stroke-width: 1; }
+/* Hero phone: same corner radius, border weight and color as the desktop browser beside it */
+.theme-wedding .phone { border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: 0 40px 80px -40px rgba(27, 21, 48, .45); }

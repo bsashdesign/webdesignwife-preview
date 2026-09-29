@@ -17,18 +17,138 @@
   <link rel="stylesheet" href="styles.css">
   {{THEME_CSS}}
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Web Design Wife",
-    "url": "https://webdesignwife.com",
-    "founder": { "@type": "Person", "name": "Ben Sash" },
-    "areaServed": ["Manhattan", "Brooklyn", "Queens", "The Bronx", "Staten Island"],
-    "address": { "@type": "PostalAddress", "addressLocality": "Brooklyn", "addressRegion": "NY", "addressCountry": "US" },
-    "description": "Managed websites for New York local businesses: design, hosting, edits and support. Plans from $99/month.",
-    "priceRange": "$99–$249/month"
-  }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "ProfessionalService",
+        "LocalBusiness"
+      ],
+      "@id": "https://webdesignwife.com/#business",
+      "name": "Web Design Wife",
+      "url": "https://webdesignwife.com/",
+      "logo": "https://webdesignwife.com/images/logo.svg",
+      "image": "https://webdesignwife.com/images/favicon.jpg",
+      "email": "ben@webdesignwife.com",
+      "founder": {
+        "@id": "https://webdesignwife.com/#ben"
+      },
+      "description": "Managed websites for New York small businesses: custom design, hosting, unlimited minor edits and Google Maps upkeep for a monthly fee. Plans from $99 to $249 a month, live in 14 days or your money back.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Brooklyn",
+        "addressRegion": "NY",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "New York"
+        },
+        {
+          "@type": "Place",
+          "name": "Manhattan"
+        },
+        {
+          "@type": "Place",
+          "name": "Brooklyn"
+        },
+        {
+          "@type": "Place",
+          "name": "Queens"
+        },
+        {
+          "@type": "Place",
+          "name": "The Bronx"
+        },
+        {
+          "@type": "Place",
+          "name": "Staten Island"
+        }
+      ],
+      "priceRange": "$99–$249/month",
+      "knowsAbout": [
+        "Small business web design",
+        "Website hosting and maintenance",
+        "Google Business Profile optimization",
+        "Local SEO"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Managed website plans",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Essentials",
+            "description": "A one-page website with hosting, unlimited minor edits and Google Maps kept up to date.",
+            "price": "99",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "99",
+              "priceCurrency": "USD",
+              "unitText": "MONTH"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Business",
+            "description": "Up to 5 pages, Google Maps growth and review routine, live reviews and a competitor comparison.",
+            "price": "149",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "149",
+              "priceCurrency": "USD",
+              "unitText": "MONTH"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Full Suite",
+            "description": "Up to 10 pages, AI chat assistant, neighborhood SEO pages, a monthly blog post, AI search optimization and priority edits.",
+            "price": "249",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "249",
+              "priceCurrency": "USD",
+              "unitText": "MONTH"
+            }
+          }
+        ]
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "Person",
+      "@id": "https://webdesignwife.com/#ben",
+      "name": "Benjamin Sash",
+      "alternateName": "Ben Sash",
+      "jobTitle": "Web designer",
+      "worksFor": {
+        "@id": "https://webdesignwife.com/#business"
+      },
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Brooklyn, New York"
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://webdesignwife.com/#site",
+      "url": "https://webdesignwife.com/",
+      "name": "Web Design Wife",
+      "publisher": {
+        "@id": "https://webdesignwife.com/#business"
+      }
+    }
+  ]
+}
   </script>
+  {{FAQ_SCHEMA}}
 </head>
 <body class="{{BODY_CLASS}}">
   <a class="skip" href="#main">Skip to content</a>
@@ -187,10 +307,10 @@
             <span role="cell" class="us">I do. Just send a message.</span>
           </div>
           <div class="compare__row" role="row">
-            <span role="rowheader">Design quality</span>
-            <span role="cell">A template</span>
-            <span role="cell">Professional</span>
-            <span role="cell" class="us">Professional</span>
+            <span role="rowheader">Who handles the design?</span>
+            <span role="cell">You do</span>
+            <span role="cell">The agency does</span>
+            <span role="cell" class="us">I do</span>
           </div>
           <div class="compare__row" role="row">
             <span role="rowheader">Google Maps profile</span>
@@ -359,6 +479,7 @@
               <li>Done-for-you local SEO pages</li>
               <li>Monthly Google Maps posts</li>
               <li>A monthly blog post, written with you</li>
+              <li>AI search optimization</li>
               <li>Priority edits</li>
             </ul>
             <a class="btn btn--ghost btn--block plan__cta" href="start.html?plan=full">Get started</a>
@@ -378,8 +499,8 @@
               <text class="seal__arc"><textPath href="#sealBottom" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
             </svg></div>
           <div>
-            <h3>Live in 14 days, and a design you love. Or your money back.</h3>
-            <p>If your site isn't live within 14 days of our first call, or you don't love the design and decide not to move forward, you get back 100% of what you paid, setup fee included. Once your site is live, payments are non-refundable, but you can cancel anytime.</p>
+            <h3>100% money-back guarantee</h3>
+            <p>If your site isn't live within 14 days of our first call, or you don't love the design, you may cancel to get back 100% of what you paid, setup fee included. Once your site is live, payments are non-refundable, but you can cancel anytime.</p>
           </div>
         </div>
 
@@ -399,42 +520,19 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
-    <section class="section section--tint" id="features">
-      <div class="wrap">
-        <p class="eyebrow">What's included</p>
-        <h2>Everything you need, on every plan</h2>
-        <ul class="incl">
-          <li><span class="ico ico--violet"><i class="pi pi--palette" aria-hidden="true"></i></span><span><strong>Custom design</strong><small>Designed and written for your business.</small></span></li>
-          <li><span class="ico ico--teal"><i class="pi pi--map-pin" aria-hidden="true"></i></span><span><strong>Google Maps kept up to date</strong><small>Your listing always matches your site.</small></span></li>
-          <li><span class="ico ico--blue"><i class="pi pi--device-mobile" aria-hidden="true"></i></span><span><strong>Built for phones</strong><small>Fast on any screen, with tap-to-call.</small></span></li>
-          <li><span class="ico ico--amber"><i class="pi pi--envelope-simple" aria-hidden="true"></i></span><span><strong>Contact form</strong><small>Messages go straight to your inbox.</small></span></li>
-          <li><span class="ico ico--rose"><i class="pi pi--pencil-simple" aria-hidden="true"></i></span><span><strong>Unlimited minor edits</strong><small>Hours, prices, photos, done in a day.</small></span></li>
-          <li><span class="ico ico--green"><i class="pi pi--shield-check" aria-hidden="true"></i></span><span><strong>Hosting, security and uptime</strong><small>Secure, backed up and monitored.</small></span></li>
-        </ul>
-        <p class="incl__also">Plus one-tap chat and social links, privacy policy and terms pages, an SSL certificate and regular backups.</p>
-        <div class="tiers">
-          <div class="tier tier--biz">
-            <div class="tier__head"><h3>Business &amp; up</h3><p>Everything above, plus</p></div>
-            <ul class="ticks ticks--plain">
-              <li>Google Maps growth and review routine</li>
-              <li>Live Google reviews and Instagram feed</li>
-              <li>Competitor comparison report</li>
-              <li>Visitor analytics with cookie consent</li>
-              <li>Up to 5 pages</li>
-            </ul>
-          </div>
-          <div class="tier tier--full">
-            <div class="tier__head"><h3>Full Suite</h3><p>Everything in Business, plus</p></div>
-            <ul class="ticks ticks--plain">
-              <li>AI chat assistant</li>
-              <li>Neighborhood SEO pages</li>
-              <li>A monthly blog post and Google posts</li>
-              <li>Priority edits</li>
-              <li>Up to 10 pages</li>
-            </ul>
-          </div>
+    <!-- BUILT FOR PHONES -->
+    <section class="section section--tint" id="mobile">
+      <div class="wrap mobile">
+        <div class="mobile__copy">
+          <p class="eyebrow">Built for phones</p>
+          <h2>Built for the phone in your customer's hand</h2>
+          <p class="mobile__lede">Your site is designed to look great, load quickly and make the important stuff easy to find on any screen. No tiny buttons, awkward layouts or bloated pages.</p>
         </div>
+        <ul class="mobile__points">
+          <li><span class="ico"><i class="pi pi--device-mobile" aria-hidden="true"></i></span><span><strong>Designed mobile-first</strong><small>Calls, directions, bookings and key info are always one tap away.</small></span></li>
+          <li><span class="ico"><i class="pi pi--shield-check" aria-hidden="true"></i></span><span><strong>Fast and lightweight</strong><small>No unnecessary clutter slowing things down.</small></span></li>
+          <li><span class="ico"><i class="pi pi--palette" aria-hidden="true"></i></span><span><strong>Custom to your business</strong><small>Not an off-the-shelf site with your logo dropped in.</small></span></li>
+        </ul>
         <p class="section-cta"><a class="btn btn--primary" href="start.html">Get started</a><a class="section-cta__alt" href="#audit">or get a free audit first</a></p>
       </div>
     </section>
@@ -665,25 +763,28 @@
         <p>Managed websites for New York local businesses. Your web partner, for the long haul.</p>
         <a class="btn btn--primary btn--sm" href="#audit">Free website + Maps audit</a>
       </div>
-      <nav class="footer__col" aria-label="Explore">
-        <h4>Explore</h4>
-        <a href="#work">Work</a>
+      <nav class="footer__col" aria-label="Pages">
+        <h4>Pages</h4>
         <a href="pricing.html">Pricing</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="start.html">Get started</a>
+        <a href="#audit">Free website audit</a>
+      </nav>
+      <nav class="footer__col" aria-label="On the homepage">
+        <h4>On the homepage</h4>
+        <a href="#work">My work</a>
+        <a href="#how">How it works</a>
+        <a href="#maps">Google Maps</a>
+        <a href="#local">Local to New York</a>
+        <a href="#about">About me</a>
         <a href="#faq">FAQ</a>
       </nav>
       <nav class="footer__col" aria-label="Resources">
         <h4>Resources</h4>
-        <a href="blog/index.html">Blog</a>
         <a href="blog/index.html#compare">Compare website builders</a>
         <a href="blog/diy-website-guide.html">Build-it-yourself guide</a>
         <a href="blog/google-maps-profile.html">Google Maps guide</a>
-      </nav>
-      <nav class="footer__col" aria-label="Get in touch">
-        <h4>Get in touch</h4>
-        <a href="#audit">Free website + Maps audit</a>
-        <a href="contact.html">Contact</a>
         <a href="pricing.html#custom">Custom projects</a>
         <span>Based in Brooklyn, NY</span>
       </nav>

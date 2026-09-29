@@ -501,7 +501,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     { id: "plan-business", name: "Business", price: 149, why: "A full site that helps nearby customers find you.",
       feats: ["Up to 5 pages", "Google Maps growth and review routine", "Live Google reviews and Instagram feed", "Unlimited minor edits"] },
     { id: "plan-full", name: "Full Suite", price: 249, why: "Everything, plus tools that keep bringing in new customers.",
-      feats: ["Up to 10 pages", "AI chat assistant", "Neighborhood SEO pages and a monthly blog post", "Priority edits"] },
+      feats: ["Up to 10 pages", "AI chat assistant", "Neighborhood SEO pages and a monthly blog post", "AI search optimization"] },
   ];
 
   let current = 0;

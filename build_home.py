@@ -101,6 +101,16 @@ page = (TEMPLATE
         .replace("{{MOODS}}", footer_moods())
         .replace("{{NEWSLETTER}}", newsletter())
         .replace("{{HOME}}", "index.html"))
+# FAQ as structured data, generated from the visible FAQ so the two never disagree.
+def faq_schema(html):
+    import html as H, json
+    items = re.findall(r"<details[^>]*>\s*<summary>(.*?)</summary>(.*?)</details>", html, re.S)
+    clean = lambda t: H.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t))).strip().replace(" ,", ",").replace(" .", ".")
+    data = {"@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": clean(q), "acceptedAnswer": {"@type": "Answer", "text": clean(a)}} for q, a in items]}
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
+
+page = page.replace("{{FAQ_SCHEMA}}", faq_schema(page))
 (HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(page))))
 
 # The Get started page shares the moods and switcher.
@@ -156,7 +166,7 @@ contact = full_page((HERE / "contact.template.html").read_text()).replace("{{AUD
 (HERE / "contact.html").write_text(bust(titlecase.apply(add_alt_copy(contact))))
 
 # Pricing page: the plans, what's included, the FAQ and the free audit.
-PRICING_MAIN = "\n".join(block(page, f'<section class="{c}" id="{i}">') for c, i in (("section", "pricing"), ("section section--tint", "features"), ("section section--tint", "faq")))
+PRICING_MAIN = "\n".join(block(page, f'<section class="{c}" id="{i}">') for c, i in (("section", "pricing"), ("section section--tint", "faq")))
 pricing = full_page((HERE / "pricing.template.html").read_text()).replace("{{MAIN}}", PRICING_MAIN + "\n" + AUDIT_SECTION).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG)
 (HERE / "pricing.html").write_text(bust(titlecase.apply(add_alt_copy(pricing))))
 
@@ -177,3 +187,11 @@ for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "ta
     f"NEWSLETTER = {newsletter()!r}\n"
     f"VERSION = {VERSION!r}\n")
 print("built index.html (moods: " + ", ".join(m["label"] for m in MOODS) + ")")
+
+# Sitemap for the live domain (webdesignwife.com). Regenerated on every build.
+SITE = "https://webdesignwife.com/"
+pages = ["", "pricing.html", "contact.html", "start.html", "blog/"] + sorted(
+    "blog/" + f.name for f in (HERE / "blog").glob("*.html") if f.name != "index.html")
+today = time.strftime("%Y-%m-%d")
+(HERE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + "".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{today}</lastmod></url>\n" for p in pages) + "</urlset>\n")

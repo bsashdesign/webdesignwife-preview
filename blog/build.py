@@ -246,25 +246,28 @@ FOOT = """  </main>
         <p>Managed websites for New York local businesses. Your web partner, for the long haul.</p>
         <a class="btn btn--primary btn--sm" href="../index.html#audit">Free website + Maps audit</a>
       </div>
-      <nav class="footer__col" aria-label="Explore">
-        <h4>Explore</h4>
-        <a href="../index.html#how">How it works</a>
-        <a href="../index.html#features">Features</a>
+      <nav class="footer__col" aria-label="Pages">
+        <h4>Pages</h4>
         <a href="../pricing.html">Pricing</a>
-        <a href="../index.html#about">About</a>
-        <a href="../pricing.html#faq">FAQ</a>
+        <a href="../contact.html">Contact</a>
+        <a href="index.html">Blog</a>
+        <a href="../start.html">Get started</a>
+        <a href="../index.html#audit">Free website audit</a>
+      </nav>
+      <nav class="footer__col" aria-label="On the homepage">
+        <h4>On the homepage</h4>
+        <a href="../index.html#work">My work</a>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#maps">Google Maps</a>
+        <a href="../index.html#local">Local to New York</a>
+        <a href="../index.html#about">About me</a>
+        <a href="../index.html#faq">FAQ</a>
       </nav>
       <nav class="footer__col" aria-label="Resources">
         <h4>Resources</h4>
-        <a href="index.html">Blog</a>
         <a href="index.html#compare">Compare website builders</a>
         <a href="diy-website-guide.html">Build-it-yourself guide</a>
         <a href="google-maps-profile.html">Google Maps guide</a>
-      </nav>
-      <nav class="footer__col" aria-label="Get in touch">
-        <h4>Get in touch</h4>
-        <a href="../index.html#audit">Free website + Maps audit</a>
-        <a href="../contact.html">Contact</a>
         <a href="../pricing.html#custom">Custom projects</a>
         <span>Based in Brooklyn, NY</span>
       </nav>
