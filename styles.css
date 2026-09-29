@@ -2436,3 +2436,36 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .tryon { align-items: center; }
 .yours { align-self: stretch; }
 @media (max-width: 640px) { .tryon .play__chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Try on a look, round 2: centered, friendlier cue with shuffle beside it, a real "Your site" card */
+.tryon__head { max-width: 680px; margin: 0 auto; text-align: center; }
+.tryon__head p:not(.eyebrow) { margin: 0 auto; }
+.tryon__head h2 { margin-left: auto; margin-right: auto; }
+.tryon__cue { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 14px; margin: 30px 0 34px; font: inherit; letter-spacing: 0; text-transform: none; color: inherit; }
+.tryon__cue p { margin: 0; max-width: none; font: 700 1.05rem var(--display); letter-spacing: -0.01em; color: var(--accent-ink, var(--violet)); }
+.tryon__cue p span { display: inline-block; animation: cue-bob 1.6s ease-in-out infinite; }
+.tryon__or { color: var(--ink-soft); font-size: .9rem; }
+.tryon__cue .tryon__shuffle { font-size: .95rem; }
+.theme-wedding .tryon__cue p { font: italic 500 1.3rem var(--display); color: var(--gold-ink); }
+/* Your site: a paper card with a sketched-out layout, tilted like the others */
+.yours__front { position: relative; overflow: hidden; background: #fff repeating-linear-gradient(0deg, transparent 0 17px, rgba(0,0,0,.05) 17px 18px), repeating-linear-gradient(90deg, transparent 0 17px, rgba(0,0,0,.05) 17px 18px);
+  transform: rotate(2.5deg) translateY(6px); box-shadow: 0 18px 30px -18px rgba(0,0,0,.45); }
+.yours__front:hover { transform: rotate(0) translateY(-8px) scale(1.03); }
+.yours__sketch { position: absolute; right: 14px; top: 16px; display: grid; gap: 6px; width: 42%; opacity: .5; }
+.yours__sketch i { display: block; height: 8px; border-radius: 4px; border: 1.5px dashed var(--ink-soft); }
+.yours__sketch i:nth-child(1) { width: 70%; } .yours__sketch i:nth-child(2) { height: 34px; } .yours__sketch i:nth-child(3) { width: 85%; } .yours__sketch i:nth-child(4) { width: 50%; }
+.yours__back { transform: rotate(2.5deg); }
+@media (max-width: 1080px) {
+  .tryon__arrow { display: none; }
+  .yours { max-width: 560px; justify-self: center; width: 100%; margin-top: 10px; }
+  .yours__front { transform: rotate(-1.5deg); min-height: 150px; }
+  .yours__sketch { width: 30%; }
+  .yours__back { transform: rotate(-1.5deg); }
+}
+.theme-subway #moods .yours__front { background-color: #1d1d1d; background-image: repeating-linear-gradient(0deg, transparent 0 17px, rgba(255,255,255,.07) 17px 18px), repeating-linear-gradient(90deg, transparent 0 17px, rgba(255,255,255,.07) 17px 18px); }
+.theme-subway #moods .yours__sketch i { border-color: #999; }
+.theme-blocks .yours__front { box-shadow: 6px 6px 0 var(--ink); }
+.theme-wedding .yours__front { box-shadow: 0 18px 30px -18px rgba(0,0,0,.3); }
+.tryon__cue p span { margin: 0 6px; }
+.theme-subway #moods .tryon__cue p { color: var(--yellow); }
+.theme-subway #moods .tryon__or { color: #999; }

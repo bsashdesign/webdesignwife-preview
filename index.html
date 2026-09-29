@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790722673">
-  <link rel="stylesheet" href="themes/subway.css?v=1790722673">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790722673">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790722673">
+  <link rel="stylesheet" href="styles.css?v=1790722956">
+  <link rel="stylesheet" href="themes/subway.css?v=1790722956">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790722956">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790722956">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
   <script type="application/ld+json">
 {
@@ -314,7 +314,7 @@
           <h2 id="moods-title">Try on a Look</h2>
           <p>Same website, four completely different personalities. These aren't templates, just a taste of my range. Click one and watch this whole page transform.</p>
         </div>
-        <p class="tryon__cue" aria-hidden="true"><span>↓</span> Pick one. Seriously, click it <span>↓</span></p>
+        <div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Pick one. Seriously, click it. <span>↓</span></p><span class="tryon__or" aria-hidden="true">or</span><button type="button" class="linkbtn tryon__shuffle" data-shuffle-mood><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3.5c1.6 0 2.6.7 3.5 2l1 1.5c.9 1.3 1.9 2 3.5 2H17M14.5 9 17 11.5 14.5 14M3 14h3.5c1 0 1.8-.3 2.4-.9M14.5 3.5 17 6l-2.5 2.5M17 6h-2.5c-1 0-1.8.3-2.4.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Shuffle the Demo</button></div>
         <div class="tryon">
           <div class="play__chips" role="group" aria-label="Try a style on this page">
               <button type="button" class="chip chip--calm" data-mood="calm" aria-pressed="false" style="--i:0">
@@ -353,6 +353,7 @@
           <span class="tryon__arrow" aria-hidden="true">→</span>
           <div class="yours" data-yours>
             <button type="button" class="yours__front" aria-expanded="false" aria-controls="yours-back">
+              <span class="yours__sketch" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
               <span class="yours__q" aria-hidden="true">?</span>
               <span class="yours__name">Your Site</span>
               <small class="yours__desc">The one I haven't made yet.</small>
@@ -366,7 +367,7 @@
             </div>
           </div>
         </div>
-        <p class="tryon__more"><button type="button" class="linkbtn tryon__shuffle" data-shuffle-mood><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3.5c1.6 0 2.6.7 3.5 2l1 1.5c.9 1.3 1.9 2 3.5 2H17M14.5 9 17 11.5 14.5 14M3 14h3.5c1 0 1.8-.3 2.4-.9M14.5 3.5 17 6l-2.5 2.5M17 6h-2.5c-1 0-1.8.3-2.4.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Shuffle the Demo</button></p>
+        
       </div>
       <div class="tryon__toast" role="status" aria-live="polite"></div>
     </section>
@@ -878,6 +879,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790722673"></script>
+  <script src="script.js?v=1790722956"></script>
 </body>
 </html>
