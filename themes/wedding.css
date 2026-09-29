@@ -150,3 +150,20 @@
 .theme-wedding .mplan + .mplan { border-color: rgba(217, 196, 154, .35); }
 .theme-wedding .mplan__ico, .theme-wedding .mplan--grow .mplan__ico { border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px rgba(217, 196, 154, .6); color: #d9c49a; }
 .theme-wedding .profile__pane--after li[data-tier="biz"]::before { background: var(--gold-ink); }
+
+/* Fields: square, outlined, no fill. Focus doubles the outline in the same color instead of a gold ring.
+   (1px border + 1px extra padding, swapped for a 2px border on focus, so nothing shifts.) */
+.theme-wedding .form input, .theme-wedding .form select, .theme-wedding .form textarea,
+.theme-wedding .news__row input, .theme-wedding .quickcheck__row input {
+  border-radius: 0; background: transparent; border: 1px solid var(--field-line); padding: 13px 15px; color: var(--field-ink); box-shadow: none;
+}
+.theme-wedding .form input:focus, .theme-wedding .form select:focus, .theme-wedding .form textarea:focus,
+.theme-wedding .news__row input:focus, .theme-wedding .quickcheck__row input:focus,
+.theme-wedding .news__row input:focus-visible {
+  outline: none; border: 2px solid var(--field-ink); padding: 12px 14px;
+}
+.theme-wedding .form ::placeholder, .theme-wedding .news__row ::placeholder, .theme-wedding .quickcheck__row ::placeholder { color: var(--field-line); opacity: 1; }
+.theme-wedding .form select option { color: var(--ink); }
+/* Light sections: navy lines. Dark sections (Get in touch, blog review box): light lines. */
+.theme-wedding { --field-line: rgba(31, 35, 54, .45); --field-ink: var(--ink); }
+.theme-wedding .section--violet, .theme-wedding .quickcheck { --field-line: rgba(255, 255, 255, .5); --field-ink: #fff; }
