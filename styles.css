@@ -2477,3 +2477,6 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-blocks #moods .yours__back .btn { background: var(--violet); color: var(--ink); border-color: var(--ink); }
 .theme-subway #moods .yours__back .btn { background: var(--blue); color: #fff; border-color: var(--blue); }
 .yours__back .yours__close { justify-self: start; }
+/* "Build mine" spans the card, with "Back to the demo" centered under it */
+.yours__back .btn, #moods .yours__back .btn { justify-self: stretch; }
+.yours__back .yours__close { justify-self: center; }
