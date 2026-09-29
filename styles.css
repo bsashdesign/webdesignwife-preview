@@ -2469,3 +2469,11 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .tryon__cue p span { margin: 0 6px; }
 .theme-subway #moods .tryon__cue p { color: var(--yellow); }
 .theme-subway #moods .tryon__or { color: #999; }
+/* "Build mine" on the dark flip side: a light button in every mood */
+.yours__back .btn { background: #fff; color: var(--ink); border-color: #fff; justify-self: start; }
+.yours__back .btn:hover { background: #fff; color: var(--ink); }
+.theme-subway #moods .yours__back .btn { background: var(--blue); color: #fff; border-color: var(--blue); }
+#moods .yours__back .btn { background: #fff; color: var(--ink); border-color: #fff; }
+.theme-blocks #moods .yours__back .btn { background: var(--violet); color: var(--ink); border-color: var(--ink); }
+.theme-subway #moods .yours__back .btn { background: var(--blue); color: #fff; border-color: var(--blue); }
+.yours__back .yours__close { justify-self: start; }
