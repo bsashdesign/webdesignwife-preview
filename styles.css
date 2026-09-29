@@ -1856,3 +1856,13 @@ h2 { text-wrap: balance; }
   .billing.is-yearly { margin-bottom: 66px; }
   .vow { top: calc(100% + 8px); }
 }
+
+/* ================================================================
+   Inset sections: when a section holds a card carousel with side
+   arrows, its heading and text line up with the first card
+   ================================================================ */
+.section--inset { --inset: 0px; }
+@media (max-width: 1263px) { #local.section--inset { --inset: 56px; } }
+@media (max-width: 1080px) { .section--inset { --inset: 56px; } }
+@media (max-width: 640px) { .section--inset { --inset: 44px; } }
+.section--inset > .wrap > * { margin-left: var(--inset); margin-right: var(--inset); }

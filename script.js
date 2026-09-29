@@ -745,7 +745,17 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     box.innerHTML = '<button type="button" class="rowx__btn rowx__btn--prev" aria-label="Previous">' + CHEV_L + '</button><button type="button" class="rowx__btn rowx__btn--next" aria-label="Next">' + CHEV_R + '</button>';
     box.insertBefore(row, box.lastChild);
     const [prev, next] = box.querySelectorAll(".rowx__btn");
-    const stepBy = (d) => { const w = row.children[0].getBoundingClientRect().width + 14; row.scrollBy({ left: d * w, behavior: "smooth" }); };
+    // Arrows move a whole view at a time: the first card that isn't fully visible becomes
+    // the new first card (or last card, going back), so nothing is ever skipped.
+    const stepBy = (d) => {
+      const box = row.getBoundingClientRect(), from = row.scrollLeft, view = row.clientWidth;
+      const fade = 56;   // the edge fade hides the last bit of the view
+      const cards = [...row.children].map((k) => { const r = k.getBoundingClientRect(); return { l: r.left - box.left + from, r: r.right - box.left + from }; });
+      let to;
+      if (d > 0) { const c = cards.find((c) => c.r > from + view - fade + 2); to = c ? c.l : from + view; }
+      else { const c = [...cards].reverse().find((c) => c.l < from - 2); to = c ? c.r - view + fade : 0; }
+      row.scrollTo({ left: Math.max(0, Math.min(to, row.scrollWidth - view)), behavior: "smooth" });
+    };
     prev.addEventListener("click", () => stepBy(-1));
     next.addEventListener("click", () => stepBy(1));
     const update = () => {
