@@ -2354,3 +2354,18 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .blog-hero--center h1, .fhero h1, .pricing__head h2 { margin-left: auto; margin-right: auto; }
 /* Hero title: "Your website, handled." wraps only when it has to; the price always starts its own line */
 .hero__line { display: block; text-wrap: balance; }
+
+/* Three ways to get a website: three cards side by side on desktop, stacked on phones */
+#compare .compare-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 40px; }
+#compare .compare-cards .cc { padding: 28px 28px 30px; }
+#compare .compare-cards .cc + .cc { border-top: 0; border-left: 1px solid var(--line); }
+#compare .compare-cards .cc h3 { font-size: 1.25rem; margin-bottom: 12px; }
+#compare .compare-cards .cc ul { display: grid; gap: 6px; font-size: 1rem; }
+#compare .compare-cards .cc--us { box-shadow: inset 0 5px 0 var(--us-edge, var(--violet)); }
+@media (max-width: 860px) {
+  #compare .compare-cards { grid-template-columns: minmax(0, 1fr); margin-top: 28px; }
+  #compare .compare-cards .cc + .cc { border-left: 0; border-top: 1px solid var(--line); }
+  #compare .compare-cards .cc--us { box-shadow: inset 5px 0 0 var(--us-edge, var(--violet)); }
+}
+.theme-blocks #compare .compare-cards .cc + .cc { border-left: 2px solid var(--ink); }
+@media (max-width: 860px) { .theme-blocks #compare .compare-cards .cc + .cc { border-left: 0; border-top: 2px solid var(--ink); } }
