@@ -513,7 +513,12 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       li.classList.toggle("is-done", n < i);
     });
     back.hidden = i === 0 || i === 3;
-    restart.hidden = i !== 3;
+    // Finished steps can be clicked to go back to them.
+    stepper.forEach((li, n) => {
+      const done = n < i;
+      li.tabIndex = done ? 0 : -1;
+      if (done) li.setAttribute("role", "button"); else li.removeAttribute("role");
+    });
     const focusable = steps[i].querySelector("input:checked, input, button");
     if (focusable) focusable.focus({ preventScroll: true });
   }
@@ -547,6 +552,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     }, 260);
   });
   back.addEventListener("click", () => show(Math.max(0, current - 1)));
+  stepper.forEach((li, n) => {
+    const go = () => { if (n < current) show(n); };
+    li.addEventListener("click", go);
+    li.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  });
   restart.addEventListener("click", () => { form.reset(); show(0); });
   othersToggle.addEventListener("click", () => {
     const open = others.hidden;

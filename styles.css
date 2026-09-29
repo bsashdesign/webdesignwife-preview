@@ -2027,3 +2027,10 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 #compare { background: var(--tint); }
 #moods { background: var(--paper); }
 #how { background: var(--tint); }
+
+/* Plan finder: centered label, clickable finished steps, secondary links on one line */
+.finder-dialog .finder-dialog__inner > p.eyebrow { display: flex; justify-content: center; width: fit-content; margin-left: auto; margin-right: auto; }
+.stepper li.is-done { cursor: pointer; }
+.stepper li.is-done:hover span { transform: scale(1.08); }
+.stepper li.is-done:focus-visible { outline: 3px solid var(--violet); outline-offset: 4px; border-radius: 8px; }
+.finder__links { display: flex; justify-content: center; align-items: center; gap: 10px; color: var(--ink-soft); }

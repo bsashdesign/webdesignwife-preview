@@ -792,14 +792,17 @@
           <ul class="ticks ticks--dark finder__feats" id="finder-feats"></ul>
           <button class="btn btn--primary btn--block" type="button" id="finder-apply">Choose this plan</button>
           <div class="finder__others-wrap">
-            <button type="button" class="linkbtn" id="finder-others-toggle" aria-expanded="false" aria-controls="finder-others">View other plans</button>
+            <div class="finder__links">
+              <button type="button" class="linkbtn" id="finder-others-toggle" aria-expanded="false" aria-controls="finder-others">View other plans</button>
+              <span aria-hidden="true">·</span>
+              <button type="button" class="linkbtn" id="finder-restart">Start over</button>
+            </div>
             <div class="finder__others" id="finder-others" hidden></div>
           </div>
         </div>
 
         <div class="finder__nav">
           <button type="button" class="linkbtn" id="finder-back" hidden>← Back</button>
-          <button type="button" class="linkbtn" id="finder-restart" hidden>Start over</button>
         </div>
       </form>
     </div>
