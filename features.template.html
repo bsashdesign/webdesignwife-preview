@@ -27,9 +27,16 @@
         <p class="eyebrow">Features</p>
         <h1>Everything your website needs. Handled.</h1>
         <p class="fhero__lede">Every plan comes with a custom site, hosting and unlimited edits. Business helps nearby customers find you. Full Suite keeps you growing and keeps your site fresh, year after year.</p>
-        <nav class="fhero__jump" aria-label="Jump to a plan"><a href="#every">Every plan</a><a href="#business">Business</a><a href="#full">Full Suite</a></nav>
       </div>
     </section>
+
+    <nav class="ftabs" aria-label="Plans">
+      <div class="wrap ftabs__inner">
+        <a href="#every" data-tab-for="every">Essentials <small>every plan</small></a>
+        <a href="#business" data-tab-for="business">Business</a>
+        <a href="#full" data-tab-for="full">Full Suite</a>
+      </div>
+    </nav>
 
     <section class="fchap" id="every">
       <div class="wrap">
@@ -104,5 +111,23 @@
   {{AUDIT_DIALOG}}
 
   <script src="script.js"></script>
+  <script>
+    // Sticky plan tabs: the tab for the plan you're reading lights up; tapping one jumps straight there.
+    (function () {
+      const tabs = [...document.querySelectorAll("[data-tab-for]")];
+      const secs = tabs.map((t) => document.getElementById(t.dataset.tabFor));
+      const mark = () => {
+        const y = 170;
+        let cur = secs[0];
+        secs.forEach((s) => { if (s.getBoundingClientRect().top <= y) cur = s; });
+        tabs.forEach((t) => t.toggleAttribute("aria-current", t.dataset.tabFor === cur.id));
+      };
+      const nav = document.querySelector(".nav");
+      const fit = () => document.documentElement.style.setProperty("--nav-h", (nav ? nav.getBoundingClientRect().height : 69) + "px");
+      addEventListener("scroll", () => { mark(); fit(); }, { passive: true });
+      addEventListener("resize", fit);
+      mark(); fit();
+    })();
+  </script>
 </body>
 </html>

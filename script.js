@@ -578,7 +578,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const badge = card.querySelector(".plan__rec");
       if (badge) badge.hidden = !on;
     });
-    setTimeout(() => document.getElementById(planId).scrollIntoView({ behavior: "smooth", block: "center" }), 150);
+    setTimeout(() => document.getElementById(planId).scrollIntoView({ block: "center" }), 150);
   }
   document.getElementById("finder-apply").addEventListener("click", () => choose(recommended().id));
   others.addEventListener("click", (e) => { const b = e.target.closest("[data-pick]"); if (b) choose(b.dataset.pick); });

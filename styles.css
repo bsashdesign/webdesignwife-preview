@@ -26,7 +26,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; overflow-x: clip; }
+html { scroll-behavior: auto; scroll-padding-top: 80px; overflow-x: clip; }
 body { overflow-x: clip; }
 body {
   margin: 0;
@@ -2490,3 +2490,25 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-refined .yours__back { background: var(--violet); }
 .theme-refined .yours__back p:not(.yours__title) { color: rgba(255,255,255,.88); }
 .theme-refined #moods .yours__back .btn, .theme-refined .section--violet .btn--light, .theme-refined .section--violet .btn { box-shadow: 0 10px 22px -10px rgba(20, 12, 60, .55); }
+
+/* Features: less space under the intro, sticky plan tabs under the nav */
+.fhero { padding-bottom: 36px; }
+.ftabs { position: sticky; top: var(--nav-h, 69px); z-index: 15; background: color-mix(in srgb, var(--paper, #fff) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.ftabs__inner { display: flex; justify-content: center; gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+.ftabs a { display: inline-flex; align-items: baseline; gap: 6px; padding: 8px 18px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-weight: 600; text-decoration: none; transition: background-color .2s ease, color .2s ease; }
+.ftabs a small { font-weight: 500; font-size: .75rem; opacity: .7; }
+.ftabs a[aria-current] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.features-page .fchap { scroll-margin-top: 140px; }
+@media (max-width: 640px) { .ftabs a { padding: 7px 12px; font-size: .9rem; } .ftabs a small { display: none; } }
+.theme-wedding .ftabs a { border-radius: 2px; }
+.theme-subway .ftabs a { border-radius: 8px; }
+.theme-subway .ftabs a[aria-current] { background: var(--yellow); border-color: var(--yellow); color: #111; }
+.theme-blocks .ftabs a { border: 2px solid var(--ink); }
+.theme-blocks .ftabs a[aria-current] { background: var(--ink); color: var(--lime); }
+
+/* Calm: the design-refresh spotlight uses soft lilac accents, not orange */
+.theme-refined .spot__label { color: #c9bdfc; }
+.theme-refined .spot__steps li::before { background: #fff; color: var(--violet); }
+
+/* Sophisticated: the serif display face runs small, so non-heading titles in it get sized up to match */
+.theme-wedding :is(h3, h4, .yours__title, .quickcheck__title, .tryon__cue p, .drawer__big span, .borough strong, .faq__list summary, .promises strong, .ssum__plan, .mplan h3, .feat h3, .guarantee h3, .news h4, .footer__moods h4) { font-size-adjust: ex-height 0.46; }
