@@ -1042,3 +1042,20 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     input.addEventListener("blur", () => setTimeout(() => open(false), 120));
   });
 })();
+
+// Keep the mood button usable while a pop-up is open: an open dialog blocks everything outside it,
+// so the button moves into the open dialog (after its opening animation) and back when it closes.
+(function () {
+  const mood = document.getElementById("mood");
+  if (!mood) return;
+  const home = mood.parentElement, after = mood.nextSibling;
+  let timer;
+  const place = () => {
+    clearTimeout(timer);
+    const open = [...document.querySelectorAll("dialog[open]")].pop();
+    if (open) timer = setTimeout(() => { if (open.open && mood.parentElement !== open) open.appendChild(mood); }, 380);
+    else if (mood.parentElement !== home) home.insertBefore(mood, after && after.parentElement === home ? after : null);
+  };
+  const watch = new MutationObserver(place);
+  document.querySelectorAll("dialog").forEach((d) => watch.observe(d, { attributes: true, attributeFilter: ["open"] }));
+})();

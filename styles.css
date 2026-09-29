@@ -2127,3 +2127,5 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .theme-wedding .welcome__placeholder { border-radius: 4px; }
 .theme-blocks .welcome__placeholder { border: 2px dashed var(--ink); }
 .welcome__embed { min-height: 520px; overflow: auto; border-radius: var(--r-lg); background: #fff; }
+/* The mood button stays above the menu drawer too */
+.mood { z-index: 65; }
