@@ -2369,3 +2369,70 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 }
 .theme-blocks #compare .compare-cards .cc + .cc { border-left: 2px solid var(--ink); }
 @media (max-width: 860px) { .theme-blocks #compare .compare-cards .cc + .cc { border-left: 0; border-top: 2px solid var(--ink); } }
+
+/* ================================================================
+   Try on a look: four live styles, then your site
+   ================================================================ */
+.tryon__head { max-width: 720px; }
+.tryon__head h2 { margin-bottom: 12px; }
+.tryon__head p:not(.eyebrow) { margin: 0; color: var(--ink-soft); font-size: 1.08rem; }
+.tryon__cue { display: flex; align-items: center; gap: 10px; margin: 30px 0 16px; font: 600 .78rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink, var(--violet)); }
+.tryon__cue span { display: inline-block; animation: cue-bob 1.6s ease-in-out infinite; }
+@keyframes cue-bob { 50% { transform: translateY(3px); } }
+.tryon { display: grid; grid-template-columns: minmax(0, 4fr) auto minmax(0, 1fr); align-items: stretch; gap: 18px; }
+.tryon .play__chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tryon__arrow { align-self: center; font: 700 1.8rem var(--display); color: var(--ink-soft); }
+/* Cards read as buttons: lift on hover, press on click, a "Try this look" line */
+.chip { cursor: pointer; }
+.chip:active { transform: rotate(0) translateY(-4px) scale(.96); transition-duration: .1s; }
+.chip:hover .chip__face { transform: rotate(-8deg) scale(1.08); }
+.chip__face { transition: transform .35s var(--spring); }
+.chip__try { margin-top: 10px; font: 700 .82rem var(--body); opacity: .85; }
+.chip:hover .chip__try { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+.is-inviting .play__chips .chip { animation: chip-invite .6s var(--spring) both; animation-delay: calc(var(--i) * 140ms + 150ms); }
+@keyframes chip-invite { 40% { translate: 0 -12px; } 100% { translate: 0 0; } }
+/* Your site: clearly not another mood */
+.yours { position: relative; min-height: 250px; }
+.yours__front { display: grid; align-content: start; gap: 6px; width: 100%; height: 100%; padding: 18px 16px 16px; border: 2px dashed var(--ink-soft); border-radius: 20px; background: transparent; color: var(--ink); text-align: left; font: inherit; cursor: pointer; transition: border-color .2s ease, transform .3s var(--spring); }
+.yours__front:hover { border-color: var(--ink); transform: translateY(-6px); }
+.yours__q { display: grid; place-items: center; width: 64px; height: 64px; margin-bottom: auto; border-radius: 50%; border: 2px dashed currentColor; font: 800 2rem var(--display); }
+.yours__name { font: 700 1.05rem var(--body); margin-top: 18px; }
+.yours__desc { font-size: .85rem; line-height: 1.35; color: var(--ink-soft); }
+.yours.is-open .yours__front { display: none; }
+.yours__back { display: grid; align-content: center; gap: 12px; height: 100%; padding: 20px; border-radius: 20px; background: var(--ink); color: #fff; animation: yours-in .45s var(--spring); }
+.yours__title { margin: 0; font: 700 1.15rem/1.2 var(--display); color: #fff; }
+.yours__back p:not(.yours__title) { margin: 0; font-size: .88rem; line-height: 1.5; color: rgba(255,255,255,.8); }
+.yours__back .linkbtn { color: rgba(255,255,255,.75); font-size: .85rem; }
+@keyframes yours-in { from { opacity: 0; transform: rotateY(70deg); } }
+.tryon__more { margin: 22px 0 0; text-align: center; max-width: none; }
+.tryon__shuffle { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-soft); font-weight: 600; }
+.tryon__shuffle svg { width: 18px; height: 18px; }
+.tryon__toast { position: fixed; left: 50%; top: 84px; z-index: 80; padding: 10px 18px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: .92rem; opacity: 0; transform: translate(-50%, -10px); pointer-events: none; transition: opacity .25s ease, transform .35s var(--ease-out); }
+.tryon__toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 1080px) {
+  .tryon { grid-template-columns: minmax(0, 1fr); }
+  .tryon__arrow { transform: rotate(90deg); justify-self: center; }
+  .yours { min-height: 0; }
+  .yours__front { grid-template-columns: auto 1fr; grid-template-rows: auto auto auto; column-gap: 16px; align-items: center; }
+  .yours__q { grid-row: span 3; margin: 0; }
+  .yours__name { margin: 0; }
+}
+@media (max-width: 640px) { .tryon__cue { margin-top: 22px; } }
+@media (prefers-reduced-motion: reduce) { .tryon__cue span { animation: none; } }
+/* Per mood */
+.theme-subway #moods .tryon__head p:not(.eyebrow), .theme-subway #moods .tryon__arrow, .theme-subway #moods .tryon__shuffle, .theme-subway #moods .yours__desc { color: #c9c9c4; }
+.theme-subway #moods .yours__front { border-color: #666; color: #fff; }
+.theme-subway #moods .yours__front:hover { border-color: #fff; }
+.theme-subway #moods .tryon__cue { color: var(--yellow); }
+.theme-subway #moods .yours__back { background: #fff; color: #111; }
+.theme-subway #moods .yours__back .yours__title { color: #111; } .theme-subway #moods .yours__back p:not(.yours__title), .theme-subway #moods .yours__back .linkbtn { color: #444; }
+.theme-blocks .yours__front { border: 2.5px dashed var(--ink); }
+.theme-blocks .yours__back { border: var(--edge); box-shadow: var(--shadow); }
+.theme-wedding .yours__front, .theme-wedding .yours__back { border-radius: 4px; }
+.theme-wedding .yours__front { border: 1px dashed var(--gold); }
+.theme-wedding .yours__q { border-width: 1px; font-weight: 500; font-style: italic; }
+.yours__back[hidden] { display: none; }
+.chip__desc, .chip__try, .yours__desc { display: block; }
+.tryon { align-items: center; }
+.yours { align-self: stretch; }
+@media (max-width: 640px) { .tryon .play__chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

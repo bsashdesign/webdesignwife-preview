@@ -1070,3 +1070,35 @@ function openSheet(d) {
     if (open) { e.preventDefault(); open.close(); }
   });
 })();
+
+// "Try on a look": the Your site card flips, a note confirms the switch, and the cards lift once on arrival.
+(function () {
+  const sec = document.getElementById("moods");
+  if (!sec) return;
+  const yours = sec.querySelector("[data-yours]");
+  if (yours) {
+    const front = yours.querySelector(".yours__front"), back = yours.querySelector(".yours__back");
+    const flip = (open) => { yours.classList.toggle("is-open", open); back.hidden = !open; front.setAttribute("aria-expanded", String(open)); };
+    front.addEventListener("click", () => flip(true));
+    yours.querySelector(".yours__close").addEventListener("click", () => { flip(false); front.focus(); });
+  }
+  const toast = sec.querySelector(".tryon__toast");
+  let t;
+  sec.addEventListener("click", (e) => {
+    const b = e.target.closest(".chip[data-mood], [data-shuffle-mood]");
+    if (!b || !toast) return;
+    setTimeout(() => {
+      const name = { calm: "Calm", transit: "Transit", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
+      toast.textContent = `✨ You're viewing ${name}. Keep scrolling.`;
+      toast.classList.add("is-on");
+      clearTimeout(t);
+      t = setTimeout(() => toast.classList.remove("is-on"), 2600);
+    }, 60);
+  });
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) { sec.classList.add("is-inviting"); io.disconnect(); }
+    }, { threshold: 0.5 });
+    io.observe(sec.querySelector(".tryon"));
+  }
+})();
