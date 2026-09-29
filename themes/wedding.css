@@ -185,3 +185,6 @@
 .theme-wedding .seal__edge, .theme-wedding .seal__inner { fill: none; stroke: var(--gold-ink); stroke-width: 1.2; }
 .theme-wedding .seal__ring { stroke: var(--gold-ink); stroke-width: .8; }
 .theme-wedding .seal__arc, .theme-wedding .seal__num { fill: var(--gold-ink); }
+/* One circle only, moved out past the lettering */
+.theme-wedding .seal__inner { display: none; }
+.theme-wedding .seal__ring { r: 50px; stroke-width: 1; }
