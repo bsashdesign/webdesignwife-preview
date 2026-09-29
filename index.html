@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790661588">
-  <link rel="stylesheet" href="themes/subway.css?v=1790661588">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790661588">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790661588">
+  <link rel="stylesheet" href="styles.css?v=1790663855">
+  <link rel="stylesheet" href="themes/subway.css?v=1790663855">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790663855">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790663855">
   <script>(function(){var M={"calm":"theme-refined","transit":"theme-subway","tangy":"theme-blocks","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="transit";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();</script>
   <script type="application/ld+json">
   {
@@ -337,34 +337,34 @@
           </div>
           <div class="play__chips" role="group" aria-label="Choose a style">
               <button type="button" class="chip chip--calm" data-mood="calm" aria-pressed="false" style="--i:0">
-                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__face" aria-hidden="true"></span>
                 <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span class="chip__name">Calm</span>
                 <span class="chip__desc">Soft and Quiet</span>
                 <span class="chip__on" aria-hidden="true">Showing Now</span>
               </button>
               <button type="button" class="chip chip--transit" data-mood="transit" aria-pressed="false" style="--i:1">
-                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__face" aria-hidden="true"></span>
                 <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span class="chip__name">Transit</span>
                 <span class="chip__desc">Bold, Like a Subway Sign</span>
                 <span class="chip__on" aria-hidden="true">Showing Now</span>
               </button>
               <button type="button" class="chip chip--tangy" data-mood="tangy" aria-pressed="false" style="--i:2">
-                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__face" aria-hidden="true"></span>
                 <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span class="chip__name">Tangy</span>
                 <span class="chip__desc">Bright and Bouncy</span>
                 <span class="chip__on" aria-hidden="true">Showing Now</span>
               </button>
               <button type="button" class="chip chip--sophisticated" data-mood="sophisticated" aria-pressed="false" style="--i:3">
-                <span class="chip__aa" aria-hidden="true">Aa</span>
+                <span class="chip__face" aria-hidden="true"></span>
                 <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
                 <span class="chip__name">Sophisticated</span>
                 <span class="chip__desc">Refined, Like Stationery</span>
                 <span class="chip__on" aria-hidden="true">Showing Now</span>
               </button>
-              <button type="button" class="play__shuffle" data-shuffle-mood><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3.5c1.6 0 2.6.7 3.5 2l1 1.5c.9 1.3 1.9 2 3.5 2H17M14.5 9 17 11.5 14.5 14M3 14h3.5c1 0 1.8-.3 2.4-.9M14.5 3.5 17 6l-2.5 2.5M17 6h-2.5c-1 0-1.8.3-2.4.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Surprise Me</button>
+              <button type="button" class="btn btn--primary play__shuffle" data-shuffle-mood><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3.5c1.6 0 2.6.7 3.5 2l1 1.5c.9 1.3 1.9 2 3.5 2H17M14.5 9 17 11.5 14.5 14M3 14h3.5c1 0 1.8-.3 2.4-.9M14.5 3.5 17 6l-2.5 2.5M17 6h-2.5c-1 0-1.8.3-2.4.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Surprise Me</button>
           </div>
         </div>
       </div>
@@ -550,26 +550,23 @@
     <!-- GOOGLE MAPS -->
     <section class="section section--ink" id="maps">
       <div class="wrap maps">
+        <p class="eyebrow eyebrow--light">Google Maps · Included on every plan</p>
         <div class="maps__head">
-          <div>
-            <p class="eyebrow eyebrow--light">Google Maps · Included on every plan</p>
-            <h2>Get Found by Customers Near You</h2>
-          </div>
+          <h2>Get Found by Customers Near You</h2>
           <p>For most local businesses, the Google Maps listing brings in more calls than the website. We set yours up properly, or if you already have one, we audit it and fix what's holding it back.</p>
         </div>
         <div class="maps__body">
-          <div class="mtiers">
-            <div class="mtier" role="button" tabindex="0" data-tier="all" aria-pressed="false">
-              <span class="mtier__ico"><i class="pi pi--seal-check" aria-hidden="true"></i></span>
-              <span class="mtier__txt"><span class="mtier__kicker">Every plan</span><strong>Kept up to date</strong><span>We set up or clean up your listing. When your hours, phone or photos change, we update your site and Google Maps together.</span></span>
+          <div class="mplans">
+            <div class="mplan">
+              <span class="mplan__ico"><i class="pi pi--seal-check" aria-hidden="true"></i></span>
+              <div><p class="mplan__kicker">Every plan</p><h3>Kept up to date</h3><p>We set up or clean up your listing. When your hours, phone or photos change, we update your site and Google Maps together.</p></div>
             </div>
-            <div class="mtier mtier--biz" role="button" tabindex="0" data-tier="biz" aria-pressed="true">
-              <span class="mtier__ico"><i class="pi pi--trend-up" aria-hidden="true"></i></span>
-              <span class="mtier__txt"><span class="mtier__kicker">Business &amp; Full Suite</span><strong>Built to grow</strong><span>Ongoing optimization, a review routine, live reviews on your site and a comparison with your top local competitors.</span></span>
+            <div class="mplan mplan--grow">
+              <span class="mplan__ico"><i class="pi pi--trend-up" aria-hidden="true"></i></span>
+              <div><p class="mplan__kicker">Business &amp; Full Suite</p><h3>Built to grow</h3><p>Ongoing optimization, a review routine, live reviews on your site and a comparison with your top local competitors.</p></div>
             </div>
-            <p class="mtiers__hint">Tap a plan level to see what changes on your listing.</p>
           </div>
-        <figure class="rank profile" id="rank" data-tier="biz">
+        <figure class="rank profile" id="rank">
           <div class="gmap" aria-hidden="true">
             <svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid slice"><rect width="400" height="120" fill="#e8eef3"/><path d="M0 70 C80 60 120 90 200 76 S320 50 400 64" stroke="#fff" stroke-width="12" fill="none"/><path d="M130 0 L150 120 M270 0 L250 120" stroke="#fff" stroke-width="8"/><rect x="20" y="16" width="70" height="36" rx="4" fill="#d6ead8"/><rect x="300" y="84" width="80" height="30" rx="4" fill="#d6ead8"/><path d="M0 104 H400" stroke="#cfe0f5" stroke-width="10"/></svg>
             <span class="gmap__pin"><svg viewBox="0 0 24 34"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 34 12 34s12-13.2 12-22.1C24 5.3 18.6 0 12 0Z" fill="#ea4335"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg></span>
@@ -586,7 +583,7 @@
             </div>
             <div class="profile__pane profile__pane--after">
               <p class="profile__label">After</p>
-              <ul><li style="--k:0">Complete, accurate profile</li><li style="--k:1">Hours and phone always current</li><li style="--k:2">Fresh photos when you send them</li><li style="--k:3" data-tier="biz">The right categories</li><li style="--k:4" data-tier="biz">A simple review routine</li><li style="--k:5" data-tier="biz">Live reviews on your site</li><li style="--k:6" data-tier="biz">Compared with rivals</li></ul>
+              <ul><li style="--k:0">Complete, accurate profile</li><li style="--k:1">Hours and phone always current</li><li style="--k:2">Fresh photos when you send them</li><li class="profile__divider" style="--k:3">Included in Business &amp; Full Suite</li><li style="--k:4" data-tier="biz">The right categories</li><li style="--k:5" data-tier="biz">A simple review routine</li><li style="--k:6" data-tier="biz">Live reviews on your site</li><li style="--k:7" data-tier="biz">Compared with rivals</li></ul>
             </div>
           </div>
         </figure>
@@ -903,6 +900,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790661588"></script>
+  <script src="script.js?v=1790663855"></script>
 </body>
 </html>

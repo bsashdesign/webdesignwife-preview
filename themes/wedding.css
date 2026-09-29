@@ -45,8 +45,8 @@
 .theme-wedding .for__row li { font: italic 500 1.45rem var(--display); }
 .theme-wedding .for__row li::after { content: "✦"; width: auto; height: auto; background: none; color: var(--gold); font-style: normal; font-size: .8rem; }
 
-/* Buttons: ink with a champagne ring on hover */
-.theme-wedding .btn { border-radius: 999px; letter-spacing: .02em; }
+/* Buttons: sharp corners, like engraved stationery; ink with a champagne ring on hover */
+.theme-wedding .btn { border-radius: 0; letter-spacing: .02em; }
 .theme-wedding .btn--primary { background: var(--ink); box-shadow: none; }
 .theme-wedding .btn--primary:hover { background: #000; box-shadow: 0 0 0 4px rgba(184, 149, 90, .35); }
 .theme-wedding .btn--ghost { border-color: var(--gold); color: var(--ink); }
@@ -90,7 +90,6 @@
 .theme-wedding .section--violet { background: var(--ink); }
 .theme-wedding .section--violet .btn--light { background: var(--gold-ink); color: #fff; }
 .theme-wedding .formcard { background: rgba(255, 255, 255, .06); border-color: rgba(217, 196, 154, .35); border-radius: 4px; }
-.theme-wedding .tabs { border-radius: 999px; }
 .theme-wedding .tabs button[aria-selected="true"] { color: var(--ink); }
 .theme-wedding .about__photo { background: repeating-linear-gradient(45deg, #f1ebdf 0 14px, #f8f4ec 14px 28px); color: var(--gold-ink); border-radius: 999px 999px 4px 4px; }
 .theme-wedding .about__lead { font: italic 500 1.7rem/1.3 var(--display); color: var(--ink); }
@@ -133,7 +132,6 @@
 .theme-wedding { --price-bg: #efe6d2; }
 .theme-wedding #examples { --cf-fade: var(--tint); }
 .theme-wedding .chip { border-radius: 4px; }
-.theme-wedding .play__shuffle { border-radius: 4px; }
 
 /* Shared tokens */
 .theme-wedding { --icon: var(--gold-ink); --us-bg: #f6f1e6; --us-edge: var(--gold-ink); --switch-on: var(--gold-ink); --cover-ink: var(--gold-ink); }
@@ -147,7 +145,7 @@
 .theme-wedding .billing__switch i { top: 6px; left: 6px; width: 18px; height: 18px; background: var(--gold); box-shadow: none; }
 .theme-wedding .billing__switch[aria-checked="true"] { background: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .theme-wedding .billing__switch[aria-checked="true"] i { transform: translateX(28px); background: #d9c49a; }
-.theme-wedding .mtier { border-radius: 4px; border-color: rgba(217, 196, 154, .35); }
-.theme-wedding .mtier__ico { border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px rgba(217, 196, 154, .6); color: #d9c49a; }
-.theme-wedding .mtier[aria-pressed="true"] { box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(184, 149, 90, .45); }
-.theme-wedding .mtier[aria-pressed="true"] .mtier__ico, .theme-wedding .mtier--biz[aria-pressed="true"] .mtier__ico { background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); }
+.theme-wedding .mplans { border-radius: 4px; border-color: rgba(217, 196, 154, .35); }
+.theme-wedding .mplan + .mplan { border-color: rgba(217, 196, 154, .35); }
+.theme-wedding .mplan__ico, .theme-wedding .mplan--grow .mplan__ico { border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px rgba(217, 196, 154, .6); color: #d9c49a; }
+.theme-wedding .profile__pane--after li[data-tier="biz"]::before { background: var(--gold-ink); }

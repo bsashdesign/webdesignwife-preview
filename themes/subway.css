@@ -232,11 +232,11 @@
 .theme-subway .play { --play-bg: #fff; }
 /* Accent bars use the line colors */
 .theme-subway .post-card.post-card--article { border-top-color: var(--c); }
-.theme-subway [data-tone="blue"] { --c: var(--blue); } .theme-subway [data-tone="green"] { --c: var(--green); }
-.theme-subway [data-tone="yellow"] { --c: var(--yellow); } .theme-subway [data-tone="red"] { --c: var(--red); }
-.theme-subway [data-tone="purple"] { --c: var(--purple); } .theme-subway [data-tone="teal"] { --c: var(--gray); }
+/* .post-card in the selector so the cover's own color beats the nth-child line colors above */
+.theme-subway .post-card[data-tone="blue"] { --c: var(--blue); } .theme-subway .post-card[data-tone="green"] { --c: var(--green); }
+.theme-subway .post-card[data-tone="yellow"] { --c: var(--yellow); } .theme-subway .post-card[data-tone="red"] { --c: var(--red); }
+.theme-subway .post-card[data-tone="purple"] { --c: var(--purple); } .theme-subway .post-card[data-tone="teal"] { --c: var(--gray); }
 .theme-subway #moods .play p:not(.eyebrow) { color: #c9c9c4; }
-.theme-subway #moods .play__shuffle { --shuffle-bg: var(--yellow); --shuffle-fg: #111; }
 .theme-subway #moods .chip--transit { box-shadow: inset 0 0 0 1px #444; }
 
 /* Shared tokens */
@@ -258,7 +258,7 @@
 .theme-subway .incl li:nth-child(4) .ico { background: var(--green); }
 .theme-subway .incl li:nth-child(5) .ico { background: var(--blue); }
 .theme-subway .incl li:nth-child(6) .ico { background: var(--purple); }
-.theme-subway .mtier { border-radius: 10px; }
-.theme-subway .mtier__ico { border-radius: 50%; }
-.theme-subway .mtier[aria-pressed="true"] .mtier__ico { background: var(--green); }
-.theme-subway .mtier--biz[aria-pressed="true"] .mtier__ico { background: var(--blue); }
+.theme-subway .mplans { border-radius: 12px; }
+.theme-subway .mplan__ico { border-radius: 50%; background: var(--green); }
+.theme-subway .mplan--grow .mplan__ico { background: var(--blue); }
+.theme-subway .profile__pane--after li[data-tier="biz"]::before { background: var(--blue); }

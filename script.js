@@ -902,18 +902,3 @@ document.querySelectorAll('a[data-tab="callback"]').forEach((a) => a.addEventLis
     box.hidden = false;
   }).catch(() => {});
 })();
-
-// Google Maps: plan-level cards change what the "after" listing shows
-(function () {
-  const tiers = document.querySelectorAll(".mtier");
-  const fig = document.getElementById("rank");
-  if (!tiers.length || !fig) return;
-  const pick = (t) => {
-    tiers.forEach((x) => x.setAttribute("aria-pressed", String(x === t)));
-    fig.dataset.tier = t.dataset.tier;
-  };
-  tiers.forEach((t) => {
-    t.addEventListener("click", () => pick(t));
-    t.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(t); } });
-  });
-})();
