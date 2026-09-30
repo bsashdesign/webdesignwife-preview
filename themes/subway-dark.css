@@ -145,7 +145,7 @@
 .theme-dark :is(.gallery__chips button[aria-selected="true"], .viewer__modes button[aria-checked="true"], .cf-pick span, .finder__form input:checked + span, .filter[aria-pressed="true"], .swipe-hint i.is-on, .ftabs a[aria-current], .paysample__plans button[aria-pressed="true"], .level--focus .level__plan, .plan__info, .plan__tip, .psteps li::before) { color: #111; }
 /* the payment sample card on Pricing */
 .theme-dark :is(.paysample, .paysample__card, .paysample__row) { background: var(--card); color: var(--ink); }
-.theme-subway.theme-dark :is(.filter[aria-pressed="true"], .ftabs a[aria-current]) { background: #f2f2ee; color: #111; }
+.theme-subway.theme-dark .filter[aria-pressed="true"] { background: #f2f2ee; color: #111; }
 
 /* Change the Channel is black, so its neighbours are colour bands: blue before it, green after it */
 .theme-subway.theme-dark #compare { background: #0b5cd6; --ink-soft: rgba(255,255,255,.82); }
@@ -206,3 +206,18 @@
 .theme-subway.theme-dark #compare .compare-cards { background: none; border: 0; box-shadow: none; }
 .theme-subway.theme-dark #compare .btn--primary { background: #fccc0a; border-color: #fccc0a; color: #111; }
 .theme-subway.theme-dark #compare .compare-cards .cc:nth-child(1), .theme-subway.theme-dark #compare .compare-cards .cc:nth-child(2) { border-top-color: #4a4a4a; }
+
+/* Features: the tab bar is one clean dark strip; the current tab is marked by its yellow underline */
+.theme-subway.theme-dark .ftabs { background: rgba(18, 18, 18, .92); border-bottom-color: var(--line); }
+.theme-subway.theme-dark .ftabs a, .theme-subway.theme-dark .ftabs a[aria-current] { background: none; color: var(--ink-soft); border-color: transparent; }
+.theme-subway.theme-dark .ftabs a:hover { color: #fff; }
+.theme-subway.theme-dark .ftabs a[aria-current] { color: #fff; border-bottom-color: #fccc0a; }
+/* the chat: my messages are Transit blue, theirs dark grey */
+.theme-subway.theme-dark .fx-chat__msg--them { background: #2a2a2a; color: var(--ink); }
+.theme-subway.theme-dark .fx-chat__msg--me { background: #0b5cd6; color: #fff; }
+/* the monthly plan's labels take subway line colours */
+.theme-subway.theme-dark .fx-tag { background: #a336b0; color: #fff; }
+.theme-subway.theme-dark .fx-tag--b { background: #00933c; color: #fff; }
+.theme-subway.theme-dark .fx-tag--c { background: #fccc0a; color: #111; }
+.theme-subway.theme-dark .fx-tag--d { background: #e8392e; color: #fff; }
+.theme-subway.theme-dark .fx-cal li, .theme-subway.theme-dark .fx-cal > * > li { background: #242424; }

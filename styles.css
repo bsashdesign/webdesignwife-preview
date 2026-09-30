@@ -4190,3 +4190,27 @@ span.plan-ring:empty { display: none; }
 .plans .plan .plan-gem.is-paused { animation: none; }
 .plans .plan .plan-gem { transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
 .plans .plan .plan-ring-tile .plan-gem.is-held { transform: translateY(3px); transition-duration: .12s; }
+
+/* ================================================================
+   The mood pop-up takes the current mood's own look and type (the keys keep their sockets)
+   ================================================================ */
+#mood .mood__panel { background: #fff; color: var(--ink); border-radius: 22px; box-shadow: 0 30px 70px -24px rgba(27, 21, 48, .45), 0 0 0 1px var(--line); }
+#mood .mood__title { color: var(--ink); font-family: var(--display); font-weight: 700; }
+#mood .mood__intro { color: var(--ink-soft); font-family: var(--body); }
+#mood .mood__close { background: var(--tint, #f1f1ee); color: var(--ink); }
+#mood .mood__close:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
+#mood .mood__opt, #mood .mood__opt:hover, #mood .mood__opt[aria-pressed="true"], #mood .mood__opt[aria-pressed="true"]:hover { color: var(--ink); }
+#mood .mood__opt:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+#mood .mood__opt[data-mood] strong { font-family: var(--display); font-style: normal; font-weight: 700; font-size: 1rem; letter-spacing: 0; }
+#mood .mood__opt small, #mood .mood__opt[aria-pressed="true"] small { color: var(--ink-soft); font-family: var(--body); }
+#mood .mood__opt::after { background: color-mix(in srgb, var(--ink) 18%, transparent); box-shadow: none; }
+/* Tangy: ink outline and hard shadow */
+.theme-blocks #mood .mood__panel { border-radius: 18px; box-shadow: 6px 6px 0 var(--ink), 0 0 0 2.5px var(--ink); }
+.theme-blocks #mood .mood__close { background: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
+/* After Dark: near-black with the subway stripe along the top */
+.theme-subway #mood .mood__panel { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #121212; border-radius: 12px; box-shadow: 0 0 0 1px #2f2f2f, 0 30px 70px -24px rgba(0, 0, 0, .8); }
+.theme-subway #mood .mood__close { background: #242424; color: #fff; }
+/* Sophisticated: cream stationery with a fine gold frame */
+.theme-wedding #mood .mood__panel { background: #fffdf8; border-radius: 4px; box-shadow: inset 0 0 0 7px #fffdf8, inset 0 0 0 8px var(--gold), 0 30px 60px -30px rgba(31, 35, 54, .45), 0 0 0 1px rgba(184, 149, 90, .35); }
+.theme-wedding #mood .mood__opt[data-mood] strong { font-weight: 600; font-size: 1.15rem; }
+.theme-wedding #mood .mood__close { border-radius: 2px; }

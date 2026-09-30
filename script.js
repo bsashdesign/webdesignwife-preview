@@ -861,7 +861,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 // Moods: switch the whole look in place, like light and dark mode
 // ---------------------------------------------------------------
 (function () {
-  const MOODS = { calm: "theme-refined", transit: "theme-subway", transitdark: "theme-subway theme-dark", tangy: "theme-blocks", sophisticated: "theme-wedding" };
+  const MOODS = { calm: "theme-refined", transit: "theme-subway theme-dark", tangy: "theme-blocks", sophisticated: "theme-wedding" };
   const root = document.documentElement;
 
   function swapCopy(cls) {
@@ -893,6 +893,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     miniTimer = setTimeout(() => { screen.classList.remove("is-showing"); setTimeout(() => (stage.innerHTML = ""), 400); }, 2600);
   }
   function apply(key, save) {
+    if (key === "transitdark") key = "transit"; // the old name for After Dark
     if (!MOODS[key]) return;
     // a mood can be more than one class (Transit Dark is Transit plus the dark layer)
     Object.values(MOODS).forEach((c) => root.classList.remove(...c.split(" ")));
@@ -1158,7 +1159,7 @@ function openSheet(d) {
     const b = e.target.closest(".chip[data-mood], [data-shuffle-mood]");
     if (!b || !toast) return;
     setTimeout(() => {
-      const name = { calm: "Calm", transit: "Transit", transitdark: "Transit Dark", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
+      const name = { calm: "Calm", transit: "After Dark", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
       toast.textContent = `✨ You're viewing ${name}. Keep scrolling.`;
       toast.classList.add("is-on");
       clearTimeout(t);
@@ -1355,7 +1356,7 @@ function wdwCalInline(selector, calLink, config) {
   const sec = document.getElementById("moods-tv");
   if (!sec) return;
   const root = document.documentElement;
-  const NAMES = { tangy: "Tangy", calm: "Calm", transit: "Transit", sophisticated: "Sophisticated" };
+  const NAMES = { tangy: "Tangy", calm: "Calm", transit: "After Dark", sophisticated: "Sophisticated" };
   const keys = [...sec.querySelectorAll("[data-tv-key]")];
   const show = sec.querySelector("[data-tv-show]");
   const nameEl = sec.querySelector("[data-tv-name]");
@@ -1368,7 +1369,7 @@ function wdwCalInline(selector, calLink, config) {
   // power: the set goes dark on the press, then a moment later switches on like an old tube, with its "sweee"
   const play = (key, power) => {
     // the label above the title names whatever's on
-    if (eyebrow) eyebrow.textContent = key === "transitdark" ? "Transit Dark" : NAMES[key] || eyebrow.textContent;
+    if (eyebrow) eyebrow.textContent = NAMES[key === "transitdark" ? "transit" : key] || eyebrow.textContent;
     if (key === "transitdark") key = "transit"; // the TV plays the Transit channel for Transit Dark too
     if (key === playing || !NAMES[key]) return;
     playing = key;

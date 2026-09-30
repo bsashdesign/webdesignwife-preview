@@ -18,9 +18,9 @@ TEMPLATE = (HERE / "home.template.html").read_text()
 MOODS = [
     {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright, bouncy and a little loud.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
     {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, quiet and easy on the eyes.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
-    {"key": "transit", "cls": "theme-subway", "label": "Transit", "note": "Bold and direct, inspired by New York subway signs.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
-    # Transit Dark: everything Transit has, on a dark page. On trial; if it wins, it becomes the main Transit.
-    {"key": "transitdark", "cls": "theme-subway theme-dark", "label": "Transit Dark", "note": "The subway look, after dark.", "sw": ["#111111", "#fccc0a", "#ff6319"]},
+    # After Dark: the subway-sign look on a dark page (it replaced the original light Transit). Its key stays
+    # "transit" so old links and saved choices still work; "transitdark" is kept as an alias below.
+    {"key": "transit", "cls": "theme-subway theme-dark", "label": "After Dark", "note": "Bold and direct, inspired by New York subway signs, after dark.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
     {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
 DEFAULT = "tangy"
@@ -91,7 +91,7 @@ def footer_moods():
 
 
 def mood_boot():
-    table = ",".join(f'"{m["key"]}":"{m["cls"]}"' for m in MOODS)
+    table = ",".join(f'"{m["key"]}":"{m["cls"]}"' for m in MOODS) + ',"transitdark":"theme-subway theme-dark"' 
     return (f'<script>(function(){{var M={{{table}}},k=new URLSearchParams(location.search).get("mood");'
             f'try{{if(!M[k])k=localStorage.getItem("wdw-mood")}}catch(e){{}}if(!M[k])k="{DEFAULT}";'
             f'M[k].split(" ").forEach(function(c){{document.documentElement.classList.add(c)}});document.documentElement.dataset.mood=k}})();'
