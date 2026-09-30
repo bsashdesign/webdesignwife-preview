@@ -2648,3 +2648,10 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .yours__back.is-leaving { animation: yours-out .25s ease-in forwards; }
 @keyframes yours-out { to { opacity: 0; transform: rotateY(-70deg); } }
 .yours__front.is-back { animation: yours-in .45s var(--spring); }
+/* Blog must reads: a swipeable row of standard cards */
+.must-reads__list { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.must-reads__list::-webkit-scrollbar { display: none; }
+.must-reads__list > .post-card { flex: 0 0 min(340px, 80vw); scroll-snap-align: start; }
+.must-reads .carousel-head { margin-bottom: 16px; }
+.must-reads__h { margin: 0; }
+.must-reads .rowx { margin-top: 0; }

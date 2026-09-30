@@ -794,7 +794,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
 // Swipeable rows: a pair of arrows sits above the row, on the right
 (function () {
-  document.querySelectorAll("#blog .posts, .steps, .boroughs").forEach((row) => {
+  document.querySelectorAll("#blog .posts, .steps, .boroughs, .must-reads__list").forEach((row) => {
     const box = document.createElement("div");
     box.className = "rowx rowx--" + (row.classList.contains("boroughs") ? "boroughs" : row.classList.contains("steps") ? "steps" : "posts");
     row.before(box);
