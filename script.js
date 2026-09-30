@@ -1169,7 +1169,9 @@ function openSheet(d) {
   const chips = document.querySelectorAll(".ref-chip[data-slug]");
   if (!chips.length) return;
   let posts = null, card = null, openChip = null;
-  const load = () => posts || (posts = fetch("posts.json").then((r) => r.json()).catch(() => []));
+  // Chips live in /blog/ articles and on other pages (like Features); paths are relative to the chip's own link.
+  const base = chips[0].getAttribute("href").replace(/[^/]*$/, "");
+  const load = () => posts || (posts = fetch(base + "posts.json").then((r) => r.json()).catch(() => []));
   const close = () => {
     if (!card || !openChip) return;
     card.classList.remove("is-on");
@@ -1194,12 +1196,12 @@ function openSheet(d) {
       document.body.appendChild(card);
     }
     close();
-    card.href = p.slug + ".html";
+    card.href = base + p.slug + ".html";
     card.dataset.tone = p.tone;
     card.style.setProperty("--cover", p.bg);
     card.style.setProperty("--cover-dark", p.bgDark);
     card.setAttribute("aria-label", "Read: " + p.title);
-    card.innerHTML = `${p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span><span class="ref-preview__go">Read the article →</span></span>`;
+    card.innerHTML = `${base ? p.cover.replaceAll('src="../', `src="${base}../`) : p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="${base}../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span><span class="ref-preview__go">Read the article →</span></span>`;
     openChip = chip;
     chip.setAttribute("aria-expanded", "true");
     place();
