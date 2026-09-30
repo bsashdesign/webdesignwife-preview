@@ -221,3 +221,5 @@
 .theme-subway.theme-dark .fx-tag--c { background: #fccc0a; color: #111; }
 .theme-subway.theme-dark .fx-tag--d { background: #e8392e; color: #fff; }
 .theme-subway.theme-dark .fx-cal li, .theme-subway.theme-dark .fx-cal > * > li { background: #242424; }
+/* the two alternatives have no top bar (only ours keeps its yellow one) */
+.theme-subway.theme-dark #compare .compare-cards .cc:not(.cc--us) { border-top: 1px solid var(--line); padding-top: 33px; }
