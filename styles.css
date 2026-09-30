@@ -2740,3 +2740,6 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 @media (max-width: 860px) { .theme-subway #compare .compare-cards .cc--us { box-shadow: inset 6px 0 0 var(--yellow); } }
 .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); }
 @media (max-width: 860px) { .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); } }
+/* Sophisticated: the Web Design Wife comparison card in golden brown */
+.theme-wedding #compare .compare-cards .cc--us { background: var(--gold-ink); }
+.theme-wedding #compare .cc--us .cc__ico--us { box-shadow: 0 0 0 1px #d9c49a; }
