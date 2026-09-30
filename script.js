@@ -872,10 +872,25 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   }
   function mark(key) {
     document.querySelectorAll("[data-mood]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mood === key)));
-    // The mood button shows the current mood's colors.
+    // The floating button is a mini TV in the current mood's style, showing its face.
     const btn = document.querySelector(".mood__btn");
-    const opt = document.querySelector(`.mood__opt[data-mood="${key}"] .moodicon`);
-    if (btn && opt) btn.innerHTML = opt.outerHTML;
+    if (btn) btn.dataset.tv = key;
+  }
+  // When the channel changes, the mini TV flickers on and plays a tiny copy of that mood's channel
+  // (when this page has one) for a couple of seconds, then settles on the face and stays there.
+  let miniTimer = 0;
+  function miniPlay(key) {
+    const tv = document.querySelector(".mood__btn .minitv"); if (!tv) return;
+    const screen = tv.querySelector(".minitv__screen"), stage = tv.querySelector(".minitv__show");
+    clearTimeout(miniTimer);
+    const scene = document.querySelector(`#moods-tv .tv-ch--${key === "transitdark" ? "transit" : key}`);
+    stage.innerHTML = "";
+    if (scene && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const copy = scene.cloneNode(true); copy.style.display = "block"; stage.appendChild(copy);
+      screen.classList.add("is-showing");
+    }
+    screen.classList.remove("is-flicker"); void screen.offsetWidth; screen.classList.add("is-flicker");
+    miniTimer = setTimeout(() => { screen.classList.remove("is-showing"); setTimeout(() => (stage.innerHTML = ""), 400); }, 2600);
   }
   function apply(key, save) {
     if (!MOODS[key]) return;
@@ -885,7 +900,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     root.dataset.mood = key;
     swapCopy(MOODS[key]);
     mark(key);
-    if (save) { try { localStorage.setItem("wdw-mood", key); } catch (e) {} }
+    if (save) { try { localStorage.setItem("wdw-mood", key); } catch (e) {} miniPlay(key); }
     // Let size-dependent pieces (carousel, nav) re-measure for the new fonts.
     setTimeout(() => window.dispatchEvent(new Event("resize")), 60);
   }
@@ -1348,7 +1363,7 @@ function wdwCalInline(selector, calLink, config) {
 
   const eyebrow = sec.querySelector("[data-tv-eyebrow]");
   let powerTimer = 0;
-  // power: the set goes dark on the press, then half a second later flickers on with the tube's "sweee"
+  // power: the set goes dark on the press, then a moment later switches on like an old tube, with its "sweee"
   const play = (key, power) => {
     // the label above the title names whatever's on
     if (eyebrow) eyebrow.textContent = key === "transitdark" ? "Transit Dark" : NAMES[key] || eyebrow.textContent;
@@ -1367,7 +1382,7 @@ function wdwCalInline(selector, calLink, config) {
     powerTimer = setTimeout(() => {
       screen.classList.remove("is-off"); void screen.offsetWidth; screen.classList.add("is-powering");
       if (window.wdwTvOn) window.wdwTvOn();
-    }, 500);
+    }, 300);
   };
   // Buttons act the moment they're pressed down (like a real button), not when you let go.
   // Keyboard presses arrive as a click with no pointer, so those still work.
