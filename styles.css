@@ -3150,3 +3150,5 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-subway .work-founding__crown { background: var(--yellow); color: #111; border-radius: 6px; }
 .theme-wedding .work-founding { background: #fffdf8; border-radius: 2px; box-shadow: inset 0 0 0 1px var(--gold); }
 .theme-wedding .work-founding__crown { background: var(--ink); color: #e9d9b4; border-radius: 2px; }
+.work-feature__live { display: flex; justify-content: flex-end; max-width: none; margin: 12px 0 0; font-size: .92rem; font-weight: 600; }
+.work-feature__shot:hover { transform: none; }

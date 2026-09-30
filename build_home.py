@@ -118,10 +118,12 @@ def work_visual():
     """New Age before/after slider once the old-site screenshot is in images/, else the current site alone."""
     after = '<img src="images/New-Age-Pharmacy-image.jpg" alt="The New Age Pharmacy website I designed" width="1809" height="1031" loading="lazy">'
     before = HERE / "images" / "new-age-before.jpg"
+    # A quiet text link under the preview; the preview itself isn't a link.
+    live = ('<p class="work-feature__live"><a href="https://newagepharm.com/" target="_blank" rel="noopener">'
+            'Visit the live site ↗</a></p>')
     if not before.exists():
-        return ('<a class="work-feature__shot" href="https://newagepharm.com/" target="_blank" rel="noopener" '
-                f'aria-label="Open the New Age Pharmacy website">{after}</a>')
-    return ('<figure class="ba" style="--pos:50%">'
+        return f'<div class="work-feature__visual"><div class="work-feature__shot">{after}</div>{live}</div>'
+    return ('<div class="work-feature__visual"><figure class="ba" style="--pos:50%">'
             '<div class="ba__frame">'
             f'{after.replace("<img ", "<img class=\"ba__after\" ")}'
             '<img class="ba__before" src="images/new-age-before.jpg" alt="The old New Age page, built on a pharmacy-network template" loading="lazy">'
@@ -130,7 +132,7 @@ def work_visual():
             '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Slide to compare the old and new New Age Pharmacy websites">'
             '</div>'
             '<figcaption>Before: a generic pharmacy-network page. After: built around New Age and its customers.</figcaption>'
-            '</figure>')
+            '</figure>' + live + '</div>')
 
 
 def bust(html):
