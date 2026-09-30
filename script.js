@@ -1156,3 +1156,40 @@ function openSheet(d) {
   const h = document.querySelector(".article h1");
   if (h) try { sessionStorage.setItem("wdw-title:" + location.pathname, h.textContent.trim()); } catch (e) {}
 })();
+
+// Reference chips in articles: hovering (or focusing) one shows a preview card of that article.
+(function () {
+  const chips = document.querySelectorAll(".ref-chip[data-slug]");
+  if (!chips.length || !window.matchMedia("(hover: hover)").matches) return;
+  let posts = null, card = null, hideT;
+  const load = () => posts || (posts = fetch("posts.json").then((r) => r.json()).catch(() => []));
+  const hide = () => { hideT = setTimeout(() => card && card.classList.remove("is-on"), 120); };
+  const show = async (chip) => {
+    clearTimeout(hideT);
+    const list = await load();
+    const p = list.find((x) => x.slug === chip.dataset.slug);
+    if (!p) return;
+    if (!card) {
+      card = document.createElement("a");
+      card.className = "ref-preview post-card post-card--article";
+      card.addEventListener("mouseenter", () => clearTimeout(hideT));
+      card.addEventListener("mouseleave", hide);
+      document.body.appendChild(card);
+    }
+    card.href = p.slug + ".html";
+    card.innerHTML = `${p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span></span>`;
+    const r = chip.getBoundingClientRect(), w = 320;
+    const left = Math.min(Math.max(12, r.left + r.width / 2 - w / 2), innerWidth - w - 12);
+    const below = r.bottom + 360 < innerHeight;
+    card.style.left = left + scrollX + "px";
+    card.style.top = (below ? r.bottom + 8 : r.top - 8) + scrollY + "px";
+    card.classList.toggle("is-above", !below);
+    card.classList.add("is-on");
+  };
+  chips.forEach((c) => {
+    c.addEventListener("mouseenter", () => show(c));
+    c.addEventListener("mouseleave", hide);
+    c.addEventListener("focus", () => show(c));
+    c.addEventListener("blur", hide);
+  });
+})();

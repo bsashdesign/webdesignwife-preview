@@ -458,8 +458,8 @@ TITLES = {x["slug"]: x["title"] for x in ALL}
 SHORT = {x["slug"]: (x["title"].split(": ")[0].replace("Web Design Wife ", "") if x["group"] == "compare" else x["title"].split(": ")[0]) for x in ALL}
 
 def chip(slug):
-    return (f'<a class="ref-chip" href="{slug}.html" title="{html.escape(TITLES[slug])}">'
-            f'<i class="pi pi--note-pencil" aria-hidden="true"></i><span>{html.escape(SHORT[slug])}</span></a>')
+    return (f'<a class="ref-chip" href="{slug}.html" data-slug="{slug}" aria-label="Article: {html.escape(TITLES[slug])}">'
+            f'<i class="pi pi--article" aria-hidden="true"></i><span>{html.escape(SHORT[slug])}</span></a>')
 
 def references(body):
     link = re.compile(r'<a (?:class="tc" )?href="([a-z0-9-]+)\.html">(.*?)</a>', re.S)
