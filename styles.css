@@ -2938,7 +2938,9 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .ftabs__inner { overflow-x: auto; scrollbar-width: none; }
 .ftabs__inner::-webkit-scrollbar { display: none; }
 .ftabs a { white-space: nowrap; flex: 0 0 auto; }
-@media (max-width: 1000px) { .ftabs__inner { justify-content: flex-start; } }
+/* Centered while every tab fits; once they overflow, auto margins collapse and the strip scrolls from the start. */
+.ftabs__inner { justify-content: flex-start; }
+.ftabs__inner > a:first-child { margin-left: auto; } .ftabs__inner > a:last-child { margin-right: auto; }
 .features-page .fsec { padding: 56px 0; }
 @media (max-width: 700px) { .features-page .fsec { padding: 40px 0; } .features-page .fsec__grid { gap: 24px; } }
 .fsec--tint { background: var(--tint); }
