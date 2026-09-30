@@ -4261,3 +4261,6 @@ span.plan-ring:empty { display: none; }
 .level--essentials .level__tag .plan-gem { margin-right: -13px; }
 .level--business .level__tag .plan-gem { margin-right: -9px; }
 .level--full .level__tag .plan-gem { margin-right: -8px; }
+.level--essentials .level__tag .plan-gem { top: -1px; }
+.level--business .level__tag .plan-gem { left: 2px; }
+.level--full .level__tag .plan-gem { left: 4px; }
