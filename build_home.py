@@ -102,7 +102,7 @@ def founding(html):
     html = re.sub(r"<!-- FOUNDING:START -->(.*?)<!-- FOUNDING:END -->", (lambda m: m.group(1)) if on else "", html, flags=re.S)
     left = FOUNDING["left"]
     banner = ('<div class="founding">'
-              '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-simple"></i><span>Founding</span><b>5</b></div>'
+              '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Founding</span><b>5</b></div>'
               '<div class="founding__body">'
               '<h2 class="founding__title">The Founding 5</h2>'
               '<p class="founding__text">The managed service is new, so I\'m opening it to five businesses first. '
