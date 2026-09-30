@@ -3479,8 +3479,9 @@ span.plan-ring:empty { display: none; }
 .theme-wedding .plan-ring-tile { width: 80px; height: 94px; border-radius: 40px 40px 4px 4px; background: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px color-mix(in srgb, var(--gold) 45%, transparent); }
 .plan__head { display: flow-root; }
 @media (max-width: 1100px) { .plan-ring-tile { width: 66px; height: 66px; margin: -6px -6px 8px 10px; } .plan-ring { width: 60px; height: 60px; } .theme-wedding .plan-ring-tile { width: 62px; height: 74px; } }
-/* Tangy: the most popular plan is light blue, to go with its blue ring */
-.theme-blocks .plans .plan--best { background: var(--sky); }
+/* Tangy plan cards: all white; only the most popular one keeps the 3D shadow */
+.theme-blocks .plans .plan--best { background: #fff; }
+.theme-blocks .plans .plan:not(.plan--best) { box-shadow: none; }
 /* hefty keys on wider screens */
 @media (min-width: 601px) {
   .tv-keys { gap: 18px; padding: 22px 26px 18px; }
@@ -3521,3 +3522,59 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-yours .tv-yours__back .tv-yours__title { font-size: .98rem; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
 .tv-yours__back p { margin-bottom: 4px; }
 .tv-yours__back .btn { margin-top: 2px; }
+
+/* ================================================================
+   Now playing, tightened: a smaller TV; the buttons and the "Yours?" card on one row
+   ================================================================ */
+.tv-nook { width: min(100%, 520px); padding: 16px; }
+.tv__show { padding: 22px 24px 46px; } .tv__face { width: 84px; height: 84px; } .tv__aa { font-size: clamp(2.4rem, 6vw, 3.6rem); }
+.tv { grid-template-columns: minmax(0, 1fr) 56px; padding: 14px; }
+.tv__knob { width: 32px; height: 32px; } .tv__knob--sm { width: 24px; height: 24px; } .tv__grille { width: 40px; height: 76px; }
+.tv-panel { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 16px; width: 100%; container-type: inline-size; }
+.tv-panel .tryon__cue { flex: 0 0 100%; margin: 0; }
+.tv-panel .tv-yours { flex: 0 0 190px; width: auto; }
+.tv-yours__inner { min-height: 0; }
+/* front: a dotted card */
+.tv-yours__front { gap: 6px; }
+.tv-yours__go { color: var(--accent-ink, var(--violet)); font-weight: 600; font-size: .86rem; }
+/* back: same look as the original "Your site" card, per mood */
+.tv-yours__back { background: var(--violet); color: #fff; box-shadow: 0 16px 28px -16px rgba(0,0,0,.4); gap: 6px; padding: 16px 16px 14px; }
+.tv-yours__back[hidden] { display: grid; visibility: hidden; }
+#moods-tv .tv-yours .tv-yours__back .tv-yours__title { color: inherit; font-size: 1.15rem; }
+.tv-yours__back p { margin: 0; font-size: .82rem; line-height: 1.4; color: inherit; opacity: .85; }
+.tv-yours__actions { display: grid; justify-items: center; gap: 6px; margin-top: 4px; }
+.tv-yours__cta { background: #fff; color: var(--ink); border-color: #fff; }
+.tv-yours__link { font-size: .8rem; font-weight: 600; color: inherit; opacity: .9; }
+.tv-yours__close { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.14); color: inherit; cursor: pointer; }
+.tv-yours__close svg { width: 14px; height: 14px; }
+.tv-yours__close:hover { background: rgba(255,255,255,.28); }
+.theme-blocks .tv-yours__back { background: #fff; color: var(--ink); border: 2px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+.theme-blocks .tv-yours__cta { background: var(--orange, #ff6a1a); color: var(--ink); border: 2px solid var(--ink); }
+.theme-blocks .tv-yours__close { background: rgba(14,14,14,.08); }
+.theme-subway .tv-yours__back { background: #111; color: #fff; }
+.theme-subway .tv-yours__cta { background: var(--yellow); color: #111; border-color: var(--yellow); }
+.theme-wedding .tv-yours__back { background: var(--ink); color: #f4ecdb; box-shadow: inset 0 0 0 5px var(--ink), inset 0 0 0 6px #b8955a; }
+.theme-wedding .tv-yours__cta { background: #b8955a; color: #fff; border-color: #b8955a; }
+/* when the card can't share the row, it becomes one slim bar under the buttons */
+@container (max-width: 820px) {
+  .tv-panel .tv-yours { flex: 0 0 100%; max-width: 560px; }
+  .tv-yours__inner { min-height: 64px; }
+  .tv-yours__front { grid-auto-flow: column; justify-content: center; align-items: center; gap: 12px; padding: 12px 16px; }
+  .tv-yours__q { width: 32px; height: 32px; margin: 0; font-size: 1rem; }
+  .tv-yours.is-flipped .tv-yours__inner { min-height: 150px; }
+}
+@media (max-width: 600px) { .tv-keys { width: 100%; } }
+
+/* ================================================================
+   Plan ring tiles, revised: centered rings; Calm soft square, Tangy black square,
+   Transit a solid circle with a white ring, Sophisticated a plain tinted square
+   ================================================================ */
+.plan-ring-tile { box-shadow: none; border: 0; }
+.theme-blocks .plan-ring-tile { background: #0e0e0e; border: 0; box-shadow: none; border-radius: 10px; }
+.theme-subway .plan-ring-tile { border-radius: 50%; background: var(--ring); box-shadow: none; }
+.theme-subway .plan-ring { color: #fff; }
+.theme-wedding .plan-ring-tile, .theme-wedding .plan-ring-tile { width: 84px; height: 84px; border-radius: 4px; background: color-mix(in srgb, var(--ring) 20%, #fff); box-shadow: none; }
+@media (max-width: 1100px) { .theme-wedding .plan-ring-tile { width: 66px; height: 66px; } }
+/* Tangy: the most popular badge is blue, like its ring */
+.theme-blocks .plans .plan--best .plan__badge { background: #3355ff; color: #fff; }
+@media (max-width: 600px) { .tv { grid-template-columns: minmax(0, 1fr); padding: 10px; } .tv__side { display: none; } .tv__show { padding: 16px 18px 42px; gap: 6px 12px; } .tv__face { width: 64px; height: 64px; } }

@@ -890,12 +890,28 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   }
   apply(root.dataset.mood || "tangy", false);
 
-  function switchTo(key) { if (key !== root.dataset.mood) apply(key, true); }
+  // Moods change the height of sections, so the page would jump. Keep what you were looking at in the same place:
+  // the button you pressed, or (for the floating switcher) whatever is in the middle of the screen.
+  function keepInView(anchor, change) {
+    const inFlow = anchor && anchor.isConnected && !anchor.closest(".mood");
+    const a = inFlow ? anchor : document.elementFromPoint(innerWidth / 2, innerHeight / 2);
+    const top = a ? a.getBoundingClientRect().top : 0;
+    change();
+    if (!a) return;
+    const settle = () => { const d = a.getBoundingClientRect().top - top; if (Math.abs(d) > 1) window.scrollBy(0, d); };
+    // keep it pinned for a moment, while the new mood's fonts arrive and sizes settle
+    const until = performance.now() + 1200;
+    const hold = () => { settle(); if (performance.now() < until) requestAnimationFrame(hold); };
+    hold();
+    [250, 500, 900, 1400].forEach((ms) => setTimeout(settle, ms));
+    if (document.fonts) { document.fonts.ready.then(settle); document.fonts.addEventListener("loadingdone", settle, { once: true }); }
+  }
+  function switchTo(key, anchor) { if (key !== root.dataset.mood) keepInView(anchor, () => apply(key, true)); }
   // The "Now playing" TV section switches moods through this too.
   window.wdwSetMood = switchTo;
   document.addEventListener("click", (e) => {
     const b = e.target.closest("button[data-mood]");
-    if (b) switchTo(b.dataset.mood);
+    if (b) switchTo(b.dataset.mood, b);
     const sh = e.target.closest("[data-shuffle-mood]");
     if (sh) {
       const others = Object.keys(MOODS).filter((k) => k !== root.dataset.mood);
@@ -1339,7 +1355,7 @@ function wdwCalInline(selector, calLink, config) {
     const k = e.target.closest("[data-tv-key]");
     if (!k) return;
     play(k.dataset.tvKey);
-    if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey);
+    if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
   });
   // A mood picked anywhere else presses its button here too.
   let lastMood = root.dataset.mood;
@@ -1409,7 +1425,13 @@ function wdwCalInline(selector, calLink, config) {
     full: () => band({ w: 0.36, t: 0.17 }).concat(diamond(0.6, 1.02)),
   };
   const cache = {};
-  const model = (plan) => cache[plan] || (cache[plan] = MODELS[plan]());
+  // Each model with its size and middle, so every ring is centered and fills its tile the same way.
+  const model = (plan) => cache[plan] || (cache[plan] = (() => {
+    const tris = MODELS[plan](), pts = tris.flat();
+    const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
+    const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+    return { tris, mx: (minX + maxX) / 2, my: (minY + maxY) / 2, size: Math.max(maxX - minX, maxY - minY) };
+  })());
   function draw(cv, t) {
     const dpr = Math.min(window.devicePixelRatio || 1, 2), W = cv.clientWidth, H = cv.clientHeight;
     if (!W) return;
@@ -1417,19 +1439,22 @@ function wdwCalInline(selector, calLink, config) {
     const ctx = cv.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = ctx.strokeStyle = getComputedStyle(cv).color;
-    ctx.lineWidth = 0.6; ctx.lineJoin = "round";
+    const color = getComputedStyle(cv).color;
+    const m = model(cv.dataset.plan);
     const a = (t / TURN) * 2 * Math.PI, ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(TILT), st = Math.sin(TILT);
-    const scale = H / 3.5, cx = W / 2, cy = H * 0.6, f = 7;
+    const scale = Math.min(W, H) / (m.size * 1.18), f = 7;
+    // put the model's middle (leaned like the ring) in the middle of the canvas
+    const cx = W / 2 - (m.mx * ct - m.my * st) * scale, cy = H / 2 + (m.mx * st + m.my * ct) * scale;
     const project = ([x, y, z]) => {
       const x1 = x * ca + z * sa, z1 = -x * sa + z * ca, x2 = x1 * ct - y * st, y2 = x1 * st + y * ct, k = f / (f - z1);
       return [cx + x2 * k * scale, cy - y2 * k * scale];
     };
-    for (const tri of model(cv.dataset.plan)) {
-      const [p, q, r] = tri.map(project);
-      ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.lineTo(r[0], r[1]); ctx.closePath();
-      ctx.fill(); ctx.stroke();
-    }
+    const flat = m.tris.map((tri) => tri.map(project));
+    const pass = (fill, stroke, width) => {
+      ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.lineJoin = "round";
+      for (const [p, q, r] of flat) { ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.lineTo(r[0], r[1]); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+    };
+    pass(color, color, 0.6);
   }
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const live = new Set();
