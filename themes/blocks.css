@@ -154,7 +154,6 @@
 /* Shared tokens */
 .theme-blocks { --icon: var(--ink); --us-bg: var(--lime); --us-edge: var(--ink); --us-head: var(--lime); --switch-off: #fff; --cover-ink: var(--ink); }
 .theme-blocks #compare .compare-cards { border: var(--edge); box-shadow: var(--shadow); }
-.theme-blocks #compare .compare-cards .cc + .cc { border-top: 2px solid var(--ink); }
 .theme-blocks .billing__switch { box-shadow: inset 0 0 0 2px var(--ink); }
 .theme-blocks .billing__switch i { background: var(--lime); box-shadow: 0 0 0 2px var(--ink); }
 .theme-blocks .promises p::before { color: var(--ink); }
