@@ -4237,3 +4237,11 @@ span.plan-ring:empty { display: none; }
 .level--essentials .level__tag .plan-gem { margin-left: -10px; margin-right: -9px; }
 .level--business .level__tag .plan-gem { margin-left: -7px; margin-right: -5px; }
 .level--full .level__tag .plan-gem { margin-left: -5px; margin-right: -3px; }
+/* the Features tabs follow the nav's subway stripe exactly: red, orange, yellow, green, blue, purple, grey, then again */
+.theme-subway .ftabs a:nth-child(7n+1) { --c: var(--red); }
+.theme-subway .ftabs a:nth-child(7n+2) { --c: var(--orange); }
+.theme-subway .ftabs a:nth-child(7n+3) { --c: var(--yellow); }
+.theme-subway .ftabs a:nth-child(7n+4) { --c: var(--green); }
+.theme-subway .ftabs a:nth-child(7n+5) { --c: var(--blue); }
+.theme-subway .ftabs a:nth-child(7n+6) { --c: var(--purple); }
+.theme-subway .ftabs a:nth-child(7n+7) { --c: var(--gray); }
