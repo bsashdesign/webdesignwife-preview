@@ -2933,7 +2933,6 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
    ================================================================ */
 .fhero h1 { max-width: none; text-wrap: balance; }
 .fhero__lede { text-wrap: pretty; }
-.fhero__more { margin: 18px auto 0; font-weight: 600; text-align: center; }
 .ftabs__inner { overflow-x: auto; scrollbar-width: none; }
 .ftabs__inner::-webkit-scrollbar { display: none; }
 .ftabs a { white-space: nowrap; flex: 0 0 auto; }
