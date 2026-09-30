@@ -861,7 +861,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 // Moods: switch the whole look in place, like light and dark mode
 // ---------------------------------------------------------------
 (function () {
-  const MOODS = { calm: "theme-refined", transit: "theme-subway", tangy: "theme-blocks", sophisticated: "theme-wedding" };
+  const MOODS = { calm: "theme-refined", transit: "theme-subway", transitdark: "theme-subway theme-dark", tangy: "theme-blocks", sophisticated: "theme-wedding" };
   const root = document.documentElement;
 
   function swapCopy(cls) {
@@ -879,8 +879,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   }
   function apply(key, save) {
     if (!MOODS[key]) return;
-    Object.values(MOODS).forEach((c) => root.classList.remove(c));
-    root.classList.add(MOODS[key]);
+    // a mood can be more than one class (Transit Dark is Transit plus the dark layer)
+    Object.values(MOODS).forEach((c) => root.classList.remove(...c.split(" ")));
+    root.classList.add(...MOODS[key].split(" "));
     root.dataset.mood = key;
     swapCopy(MOODS[key]);
     mark(key);
@@ -1140,7 +1141,7 @@ function openSheet(d) {
     const b = e.target.closest(".chip[data-mood], [data-shuffle-mood]");
     if (!b || !toast) return;
     setTimeout(() => {
-      const name = { calm: "Calm", transit: "Transit", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
+      const name = { calm: "Calm", transit: "Transit", transitdark: "Transit Dark", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
       toast.textContent = `✨ You're viewing ${name}. Keep scrolling.`;
       toast.classList.add("is-on");
       clearTimeout(t);
@@ -1346,6 +1347,7 @@ function wdwCalInline(selector, calLink, config) {
   let playing = null;
 
   const play = (key) => {
+    if (key === "transitdark") key = "transit"; // the TV plays the Transit channel for Transit Dark too
     if (key === playing || !NAMES[key]) return;
     playing = key;
     keys.forEach((k) => k.setAttribute("aria-pressed", String(k.dataset.tvKey === key)));

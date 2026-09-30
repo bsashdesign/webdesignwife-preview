@@ -1,0 +1,153 @@
+/* Transit Dark: everything Transit has, on a dark page. Loaded after subway.css and only active with
+   .theme-dark (which always comes with .theme-subway). Coloured sections stay bright for emphasis. */
+.theme-subway.theme-dark {
+  color-scheme: dark;
+  --paper: #121212;
+  --card: #1c1c1c;
+  --card-2: #242424;
+  --ink: #f2f2ee;
+  --ink-soft: #a9a9a3;
+  --tint: #181818;
+  --line: #2f2f2f;
+  --lilac: #17233a;
+  --sky: #16243d;
+  --mint: #12291c;
+  --sun: #2e2710;
+  --rose: #34191a;
+  --violet: #4d8dff;
+  --violet-deep: #8fb6ff;
+}
+.theme-dark body { background: var(--paper); color: var(--ink); }
+
+/* bands that were white are the page colour now */
+.theme-dark #compare .compare-cards,
+.theme-subway.theme-dark #examples,
+.theme-subway.theme-dark #how,
+.theme-subway.theme-dark #local,
+.theme-subway.theme-dark #promises,
+.theme-subway.theme-dark #faq,
+.theme-subway.theme-dark #work,
+.theme-subway.theme-dark #compare,
+.theme-subway.theme-dark #features { background: var(--paper); }
+
+/* cards, panels and fields that were white are dark cards */
+.theme-dark .compare,
+.theme-dark .cc,
+.theme-dark .steps li,
+.theme-dark .features li,
+.theme-dark .plan,
+.theme-dark .scope > div,
+.theme-dark .post-card,
+.theme-dark .tabs button[aria-selected="true"],
+.theme-dark .form input,
+.theme-dark .form select,
+.theme-dark .form textarea,
+.theme-dark .gallery__chips button,
+.theme-dark .viewer,
+.theme-dark .viewer__modes,
+.theme-dark .cf__arrow:hover,
+.theme-dark .cf-pick[aria-selected="true"],
+.theme-dark .finder__form label span,
+.theme-dark .finder__result,
+.theme-dark .finder-dialog,
+.theme-dark .finder-dialog__close,
+.theme-dark .finder-dialog .opt > span,
+.theme-dark .also__list li,
+.theme-dark .extras,
+.theme-dark .extras__grid li,
+.theme-dark .filter,
+.theme-dark .moodcard,
+.theme-dark .incl li,
+.theme-dark .tier,
+.theme-dark .guarantee,
+.theme-dark .moods__card,
+.theme-dark .compare__row,
+.theme-dark .rowx__btn,
+.theme-dark .cf__nav .cf__arrow,
+.theme-dark .news__row input,
+.theme-dark .sform input:not([type="radio"]):not([type="checkbox"]),
+.theme-dark .splan > span,
+.theme-dark .sbilling span,
+.theme-dark .ssum,
+.theme-dark .saddr__list,
+.theme-dark .subtabs button[aria-selected="true"],
+.theme-dark .contact__next,
+.theme-dark .welcome__placeholder,
+.theme-dark .welcome__embed,
+.theme-dark .mobile__points li,
+.theme-dark main p.assure,
+.theme-dark .quickcheck__row input,
+.theme-dark .hoods span,
+.theme-dark .hoods a,
+.theme-dark .fhero__jump a,
+.theme-dark .feat,
+.theme-dark .ftabs a,
+.theme-dark .blog-search input,
+.theme-dark .ref-chip:hover,
+.theme-dark .ref-preview,
+.theme-dark .paymethods li,
+.theme-dark .level,
+.theme-dark .fsec--tint .level,
+.theme-subway.theme-dark .fsec--tint .lede-note,
+.theme-dark .callpanel__cal,
+.theme-dark .callpanel__soon,
+.theme-dark .tabs.tabs--light button[aria-pressed="true"],
+.theme-dark .callcard,
+.theme-subway.theme-dark .borough,
+.theme-subway.theme-dark .promises p,
+.theme-subway.theme-dark .steps li,
+.theme-subway.theme-dark .extras,
+.theme-subway.theme-dark .features li,
+.theme-subway.theme-dark .cc { background: var(--card); color: var(--ink); border-color: var(--line); }
+
+/* the wordmark turns white on the dark nav */
+.theme-dark .brand img, .theme-dark .drawer__brand img { content: url(../images/logo-light.svg); }
+/* nav and hero */
+.theme-dark .nav { background: rgba(18, 18, 18, .88); border-bottom-color: var(--line); }
+.theme-subway.theme-dark .hero { background: radial-gradient(700px 420px at 88% 20%, rgba(11, 92, 214, .28), transparent 70%), radial-gradient(520px 360px at 50% 110%, rgba(252, 204, 10, .12), transparent 70%), var(--paper); }
+.theme-subway.theme-dark .blog-hero { background: radial-gradient(700px 380px at 85% 0%, rgba(11, 92, 214, .25), transparent 70%), var(--paper); }
+.theme-dark .section--ink { background: #0a0a0a; }
+
+/* the page's rhythm: near-black bands that alternate, with colour bands for pop */
+.theme-subway.theme-dark #work, .theme-subway.theme-dark #how, .theme-subway.theme-dark #features,
+.theme-subway.theme-dark #promises, .theme-subway.theme-dark #blog { background: var(--paper); }
+.theme-subway.theme-dark #examples, .theme-subway.theme-dark #compare, .theme-subway.theme-dark #local,
+.theme-subway.theme-dark #faq { background: #1a1a1a; --cf-fade: #1a1a1a; }
+.theme-dark .footer { background: #0a0a0a; }
+.theme-subway.theme-dark .tv-sec { background: #0b5cd6; }
+.theme-subway.theme-dark .tv-sec .tryon__cue, .theme-subway.theme-dark .tv-sec .tryon__cue p { color: #fccc0a; }
+.theme-subway.theme-dark #about { background: #00933c; --ink: #fff; --ink-soft: rgba(255,255,255,.82); color: var(--ink); }
+/* Pricing is a bright yellow band; inside it the page is light again */
+.theme-subway.theme-dark #pricing, .theme-subway.theme-dark .pricing-page #pricing {
+  background: #fccc0a; color-scheme: light;
+  --paper: #fff; --card: #fff; --ink: #111; --ink-soft: #3a3a3a; --line: #e3cf6a; --tint: #f2f2ef; --violet: #0b5cd6; --violet-deep: #0847a8;
+  color: var(--ink);
+}
+.theme-subway.theme-dark .section--violet { background: #a336b0; }
+
+/* device mockups (a client's site, a phone, search results) keep their normal light look */
+.theme-dark :is(.browser, .phone, .report, .serp, .rank, .cf-card__frame, .viewer__frame, .bubble, .gbp, .fx-bot, .fx-gbp, .fx-cal, .fx-stats) {
+  --ink: #111; --ink-soft: #4d4d4d; --line: #dcdcd7; --paper: #fff; --card: #fff; --tint: #f2f2ef; --violet: #0b5cd6;
+  color: var(--ink); color-scheme: light;
+}
+
+.theme-subway.theme-dark .hl { color: var(--ink); }
+.theme-subway.theme-dark .ticks:not(.ticks--dark) li::after { border-color: var(--ink); }
+.theme-subway.theme-dark #about a { color: #fff; }
+.theme-subway.theme-dark .promises p { background: var(--card) !important; }
+
+/* panels that had a pale grey or blue fill */
+.theme-dark :is(.compare .us, .form--note textarea, .finder-dialog .opt input:checked + span, .profile__pane--before, .profile__pane--after, .callout--info, .callout--warn, .must-reads, select, .quickcheck) { background: var(--card-2); color: var(--ink); }
+.theme-subway.theme-dark :is(.callout--info, .callout--warn, .must-reads, .quickcheck, .finder-dialog .opt input:checked + span) { background: var(--card-2); color: var(--ink); }
+.theme-subway.theme-dark .pricing-page #faq { background: #1a1a1a; }
+.theme-subway.theme-dark :is(.vs-table thead th:last-child, .vs-table td:last-child) { background: #16243d; }
+.theme-subway.theme-dark .boroughs em { color: #8fb6ff; }
+
+/* blocks that used the text colour as a dark fill stay dark (black), with light text */
+.theme-dark :is(.edits-banner, .spot, .tryon__toast) { background: #000; color: #f2f2ee; box-shadow: inset 0 0 0 1px var(--line); }
+.theme-subway.theme-dark :is(.edits-banner, .spot, .quickcheck) { background: #000; }
+/* small "selected" pills that used the text colour turn light, so their text goes dark */
+.theme-dark :is(.gallery__chips button[aria-selected="true"], .viewer__modes button[aria-checked="true"], .cf-pick span, .finder__form input:checked + span, .filter[aria-pressed="true"], .swipe-hint i.is-on, .ftabs a[aria-current], .paysample__plans button[aria-pressed="true"], .level--focus .level__plan, .plan__info, .plan__tip, .psteps li::before) { color: #111; }
+/* the payment sample card on Pricing */
+.theme-dark :is(.paysample, .paysample__card, .paysample__row) { background: var(--card); color: var(--ink); }
+.theme-subway.theme-dark :is(.filter[aria-pressed="true"], .ftabs a[aria-current]) { background: #f2f2ee; color: #111; }

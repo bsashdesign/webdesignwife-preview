@@ -19,6 +19,8 @@ MOODS = [
     {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright, bouncy and a little loud.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
     {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, quiet and easy on the eyes.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
     {"key": "transit", "cls": "theme-subway", "label": "Transit", "note": "Bold and direct, inspired by New York subway signs.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
+    # Transit Dark: everything Transit has, on a dark page. On trial; if it wins, it becomes the main Transit.
+    {"key": "transitdark", "cls": "theme-subway theme-dark", "label": "Transit Dark", "note": "The subway look, after dark.", "sw": ["#111111", "#fccc0a", "#ff6319"]},
     {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
 DEFAULT = "tangy"
@@ -40,7 +42,7 @@ FONTS = (
     '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700'
     '&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">'
 )
-THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n in ("subway", "blocks", "wedding"))
+THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n in ("subway", "subway-dark", "blocks", "wedding"))
 
 # Copy that changes with a mood: (mood class, current text, mood text)
 ALT_COPY = [
@@ -92,7 +94,7 @@ def mood_boot():
     table = ",".join(f'"{m["key"]}":"{m["cls"]}"' for m in MOODS)
     return (f'<script>(function(){{var M={{{table}}},k=new URLSearchParams(location.search).get("mood");'
             f'try{{if(!M[k])k=localStorage.getItem("wdw-mood")}}catch(e){{}}if(!M[k])k="{DEFAULT}";'
-            f'document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k}})();'
+            f'M[k].split(" ").forEach(function(c){{document.documentElement.classList.add(c)}});document.documentElement.dataset.mood=k}})();'
             f'window.WDW_FOUNDING={json.dumps(FOUNDING if FOUNDING["on"] else None)};window.WDW_CAL={json.dumps(CAL)};</script>')
 
 
@@ -143,7 +145,7 @@ def work_visual():
 
 def bust(html):
     # Version asset links so browsers pick up new styles after each publish.
-    html = re.sub(r'(href="(?:\.\./)?(?:styles|themes/[a-z]+)\.css)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
+    html = re.sub(r'(href="(?:\.\./)?(?:styles|themes/[a-z-]+)\.css)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
     return re.sub(r'(src="(?:\.\./)?(?:script|start)\.js)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
 
 

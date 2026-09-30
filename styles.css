@@ -3932,3 +3932,12 @@ span.plan-ring:empty { display: none; }
 /* Transit: the back is a blue card, so it shows on the black band */
 .theme-subway .tv-yours__back { background: #0b5cd6; color: #fff; }
 .theme-subway .tv-yours__close { background: rgba(255,255,255,.18); }
+
+/* Transit Dark's key: the Transit face on a round black key */
+.moodicon--transitdark { background: #1c1c1c; color: #fff; }
+.moodicon--transitdark .mi { width: 82%; height: 82%; background-image: url(images/moods/transit.svg); }
+#mood .mood__opt .moodicon--transitdark { --cap-edge: #000; width: 46px; border-radius: 50%; background: #1c1c1c; }
+#mood .mood__opt[data-mood="transitdark"] .key-well { border-radius: 50%; margin: 0 5px; }
+#mood .mood__opt[data-mood="transitdark"] strong { font-family: "Inter Tight", sans-serif; font-weight: 800; }
+#mood .mood__btn .moodicon--transitdark { --cap-edge: #555; width: 48px; height: 48px; border-radius: 50%; background: #1c1c1c; }
+.moods__card .moodicon--transitdark { border-radius: 50%; }
