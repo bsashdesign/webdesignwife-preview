@@ -104,7 +104,7 @@ def founding(html):
     banner = ('<div class="founding">'
               '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Founding</span><b>5</b></div>'
               '<div class="founding__body">'
-              '<h2 class="founding__title">The Founding 5</h2>'
+              '<h2 class="founding__title">The Founding <span class="founding__num">5</span></h2>'
               '<p class="founding__text">The managed service is new, so I\'m opening it to five businesses first. '
               'Your setup is <strong>$1</strong> instead of $199 to $599, and your plan is the normal price. '
               'When the five spots are gone, so is the offer.</p>'
