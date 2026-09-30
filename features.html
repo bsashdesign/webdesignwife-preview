@@ -12,10 +12,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790737926">
-  <link rel="stylesheet" href="themes/subway.css?v=1790737926">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790737926">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790737926">
+  <link rel="stylesheet" href="styles.css?v=1790738227">
+  <link rel="stylesheet" href="themes/subway.css?v=1790738227">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790738227">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790738227">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};</script>
 </head>
 <body>
@@ -155,7 +155,7 @@
             <li><strong>Unlimited minor edits.</strong> Message me a change and it's done within one business day.</li>
             <li><strong>Your domain stays yours.</strong> Registered in your name from day one.</li>
           </ul>
-          <p class="fsec__note">Same on every plan. Full Suite edits jump to the front of the line.</p>
+          <p class="lede-note fsec__note">Same on every plan. Full Suite edits jump to the front of the line.</p>
         </div>
         <figure class="fx fx-chat" aria-hidden="true">
           <p class="fx-chat__msg fx-chat__msg--them">Hi Ben! Can we change Saturday hours to 10–4 and add the new cinnamon loaf? 🍞<small>9:12 am</small></p>
@@ -174,7 +174,7 @@
           <h2>I Run Your Google Maps Profile</h2>
           <p>For many local businesses, customers see your Google listing before they ever visit your website. Behind that listing is your Google Business Profile, and I don't just add a map to your site: I set up, complete and manage the profile itself, so it's accurate, complete and active.</p>
           <p>That makes your business easier for customers to understand, easier for Google to understand, and better at turning the people who find you into calls and visits.</p>
-          <p class="fsec__note">Google Business Profile itself is free from Google. You're paying me to set it up, optimize it and manage it for you.</p>
+          <p class="lede-note fsec__note">Google Business Profile itself is free from Google. You're paying me to set it up, optimize it and manage it for you.</p>
           <p class="fsec__read"><a class="ref-chip" href="blog/google-maps-profile.html" data-slug="google-maps-profile"><i class="pi pi--lines" aria-hidden="true"></i><span>Why your Google Maps profile matters</span></a> <a class="ref-chip" href="blog/get-more-google-reviews.html" data-slug="get-more-google-reviews"><i class="pi pi--lines" aria-hidden="true"></i><span>How to get more Google reviews</span></a></p>
           <!-- TODO(blog): "How to fully optimize a Google Business Profile" and "How Google Business Profile services and categories work" → add ref-chips once written -->
         </div>
@@ -219,7 +219,7 @@
           <p class="fchap__kicker">SEO &amp; search visibility</p>
           <h2>What "SEO Included" Actually Means</h2>
           <p>Some of it is the groundwork every site should have. Some of it is ongoing work that builds up over time. Here's what each plan gets.</p>
-          <p class="fsec__note">I improve the things we control. No one can honestly guarantee where Google will rank a business.</p>
+          <p class="lede-note fsec__note">I improve the things we control. No one can honestly guarantee where Google will rank a business.</p>
           <!-- TODO(blog): "What 'SEO included' should actually mean" → add a ref-chip here once written -->
         </div>
         <figure class="fx fx-serp" aria-hidden="true">
@@ -275,7 +275,7 @@
           <p class="fchap__kicker">Content &amp; growth</p>
           <h2>A Site That Keeps Growing, Without the Work</h2>
           <p>Business keeps your reputation working for you. Full Suite goes further: every month there's something new, so your site and profile never go quiet.</p>
-          <p class="fsec__note">You never have to write a blog post. Each month you answer a short questionnaire, by typing or sending a voice memo, and I turn it into a post. Nothing goes live until you approve it.</p>
+          <p class="lede-note fsec__note">You never have to write a blog post. Each month you answer a short questionnaire, by typing or sending a voice memo, and I turn it into a post. Nothing goes live until you approve it.</p>
           <!-- TODO(blog): "Does a local business really need a blog?" → add a ref-chip here once written -->
         </div>
         <figure class="fx fx-cal" aria-hidden="true">
@@ -446,35 +446,41 @@
         </div></div>
   </dialog>
 
-  <script src="script.js?v=1790737926"></script>
+  <script src="script.js?v=1790738227"></script>
   <script>
-    // Sticky section tabs: the tab for the section you're reading lights up; tapping one jumps straight there.
+    // Sticky section tabs: the tab for the section you're reading lights up; tapping one glides there.
     (function () {
       const tabs = [...document.querySelectorAll("[data-tab-for]")];
       const secs = tabs.map((t) => document.getElementById(t.dataset.tabFor));
+      const nav = document.querySelector(".nav");
+      const bar = document.querySelector(".ftabs");
+      const strip = bar.querySelector(".ftabs__inner");
+      const navH = () => (nav ? nav.getBoundingClientRect().height : 69);
+      // Everything stuck to the top of the screen: the site header plus this tab bar.
+      const stuck = () => navH() + bar.getBoundingClientRect().height;
       const mark = () => {
-        const y = 220;
+        const y = stuck() + 40;
         let cur = secs[0];
         secs.forEach((s) => { if (s.getBoundingClientRect().top <= y) cur = s; });
         tabs.forEach((t) => {
           const on = t.dataset.tabFor === cur.id;
-          if (on && !t.hasAttribute("aria-current")) t.scrollIntoView({ block: "nearest", inline: "nearest" });
+          // Keep the lit tab visible in the strip. Only the strip scrolls sideways; the page is never touched.
+          if (on && !t.hasAttribute("aria-current")) strip.scrollTo({ left: t.offsetLeft - strip.clientWidth / 2 + t.offsetWidth / 2, behavior: "smooth" });
           t.toggleAttribute("aria-current", on);
         });
       };
-      const nav = document.querySelector(".nav");
-      const fit = () => document.documentElement.style.setProperty("--nav-h", (nav ? nav.getBoundingClientRect().height : 69) + "px");
+      const fit = () => document.documentElement.style.setProperty("--nav-h", navH() + "px");
       // Tabs glide to their section (this page only; the rest of the site jumps).
       tabs.forEach((t) => t.addEventListener("click", (e) => {
         e.preventDefault();
         const target = document.getElementById(t.dataset.tabFor);
-        const top = target.getBoundingClientRect().top + scrollY - (nav ? nav.getBoundingClientRect().height : 69) - 56;
+        const top = target.getBoundingClientRect().top + scrollY - stuck() + 1;
         scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
         history.replaceState(null, "", "#" + target.id);
       }));
-      addEventListener("scroll", () => { mark(); fit(); }, { passive: true });
+      addEventListener("scroll", () => { fit(); mark(); }, { passive: true });
       addEventListener("resize", fit);
-      mark(); fit();
+      fit(); mark();
     })();
   </script>
 </body>

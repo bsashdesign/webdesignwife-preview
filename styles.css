@@ -2939,7 +2939,8 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .ftabs__inner::-webkit-scrollbar { display: none; }
 .ftabs a { white-space: nowrap; flex: 0 0 auto; }
 @media (max-width: 1000px) { .ftabs__inner { justify-content: flex-start; } }
-.features-page .fsec { padding: 72px 0; scroll-margin-top: 120px; }
+.features-page .fsec { padding: 56px 0; }
+@media (max-width: 700px) { .features-page .fsec { padding: 40px 0; } .features-page .fsec__grid { gap: 24px; } }
 .fsec--tint { background: var(--tint); }
 .fsec__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px 64px; align-items: center; }
 .fsec__grid--flip > .fx { order: -1; }
@@ -2948,13 +2949,13 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .fsec__list { margin: 18px 0 0; }
 .fsec__list li { padding-top: 5px; padding-bottom: 5px; color: var(--ink-soft); }
 .fsec__list strong { color: var(--ink); }
-.fsec__note { margin-top: 16px; padding-left: 14px; border-left: 3px solid var(--accent-ink, var(--violet)); font-size: .95rem !important; }
+.fsec__copy > .fsec__note { margin-top: 18px; font-size: 1rem; color: var(--ink); }
 .fsec__read { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
 .fsec__read .ref-chip { max-width: none; }
 @media (max-width: 900px) { .fsec__grid { grid-template-columns: minmax(0, 1fr); } .fsec__grid--flip > .fx { order: 0; } }
 
 /* Levels: how a capability deepens by plan. Reusable; one to three columns. */
-.levels { display: grid; gap: 16px; margin-top: 40px; align-items: start; }
+.levels { display: grid; gap: 16px; margin-top: 32px; align-items: start; }
 .levels--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .levels--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .level { padding: 22px 22px 18px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--line); }
@@ -3048,3 +3049,23 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .levels--wide-mid .level--focus .ticks li { break-inside: avoid; }
 @media (max-width: 1100px) { .levels--wide-mid .level--focus .ticks { columns: 1; } }
 @media (max-width: 900px) { .levels--wide-mid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Features: callouts use the article "short answer" look; on tinted bands they sit on white */
+.theme-refined .fsec--tint .lede-note, .theme-subway .fsec--tint .lede-note, .theme-wedding .fsec--tint .lede-note { background: #fff; }
+/* Tangy: every band gets its own color from the palette, and the tab bar is lime with ink pills */
+.theme-blocks #design { background: #fff; }
+.theme-blocks #care { background: var(--sky); }
+.theme-blocks #google { background: var(--lime); }
+.theme-blocks #seo { background: var(--rose); }
+.theme-blocks #ai-search { background: #fff; }
+.theme-blocks #content { background: var(--mint); }
+.theme-blocks #tools { background: var(--sun); }
+.theme-blocks #refresh { background: #fff; }
+.theme-blocks .fsec + .fsec { border-top: 2px solid var(--ink); }
+.theme-blocks #google .fx-list li, .theme-blocks .fsec .lede-note { background: #fff; }
+.theme-blocks #google .lede-note { background: var(--sun); }
+.theme-blocks .ftabs { background: var(--lime); backdrop-filter: none; border-bottom: 2px solid var(--ink); }
+.theme-blocks .ftabs__inner { gap: 6px; padding-top: 8px; padding-bottom: 8px; }
+.theme-blocks .ftabs a, .theme-blocks .ftabs a[aria-current] { padding: 7px 14px; border: 0; border-radius: 999px; color: var(--ink); }
+.theme-blocks .ftabs a:hover { background: rgba(255,255,255,.6); }
+.theme-blocks .ftabs a[aria-current] { background: var(--ink); color: var(--lime); border-bottom-width: 0; }
