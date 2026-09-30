@@ -98,7 +98,7 @@
 .theme-subway.theme-dark .steps li,
 .theme-subway.theme-dark .extras,
 .theme-subway.theme-dark .features li,
-.theme-subway.theme-dark .cc { background: var(--card); color: var(--ink); border-color: var(--line); }
+.theme-subway.theme-dark .cc { background: var(--card); color: var(--ink); }
 
 /* the wordmark turns white on the dark nav */
 .theme-dark .brand img, .theme-dark .drawer__brand img { content: url(../images/logo-light.svg); }
@@ -109,29 +109,24 @@
 .theme-dark .section--ink { background: #0a0a0a; }
 
 /* the page's rhythm: near-black bands that alternate, with colour bands for pop */
-.theme-subway.theme-dark #work, .theme-subway.theme-dark #how, .theme-subway.theme-dark #features,
+.theme-subway.theme-dark #work, .theme-subway.theme-dark #features,
 .theme-subway.theme-dark #promises, .theme-subway.theme-dark #blog { background: var(--paper); }
-.theme-subway.theme-dark #examples, .theme-subway.theme-dark #compare, .theme-subway.theme-dark #local,
+.theme-subway.theme-dark #examples, .theme-subway.theme-dark #local,
 .theme-subway.theme-dark #faq { background: #1a1a1a; --cf-fade: #1a1a1a; }
 .theme-dark .footer { background: #0a0a0a; }
-.theme-subway.theme-dark .tv-sec { background: #0b5cd6; }
+.theme-subway.theme-dark .tv-sec { background: #000; }
 .theme-subway.theme-dark .tv-sec .tryon__cue, .theme-subway.theme-dark .tv-sec .tryon__cue p { color: #fccc0a; }
-.theme-subway.theme-dark #about { background: #00933c; --ink: #fff; --ink-soft: rgba(255,255,255,.82); color: var(--ink); }
+.theme-subway.theme-dark #about { background: #a336b0; --ink: #fff; --ink-soft: rgba(255,255,255,.82); color: var(--ink); }
 /* Pricing is a bright yellow band; inside it the page is light again */
 .theme-subway.theme-dark #pricing, .theme-subway.theme-dark .pricing-page #pricing {
   background: #fccc0a; color-scheme: light;
   --paper: #fff; --card: #fff; --ink: #111; --ink-soft: #3a3a3a; --line: #e3cf6a; --tint: #f2f2ef; --violet: #0b5cd6; --violet-deep: #0847a8;
   color: var(--ink);
 }
-.theme-subway.theme-dark .section--violet { background: #a336b0; }
+.theme-subway.theme-dark .section--violet { background: #c8261c; }
 
-/* device mockups (a client's site, a phone, search results) keep their normal light look */
-.theme-dark :is(.browser, .phone, .report, .serp, .rank, .cf-card__frame, .viewer__frame, .bubble, .gbp, .fx-bot, .fx-gbp, .fx-cal, .fx-stats) {
-  --ink: #111; --ink-soft: #4d4d4d; --line: #dcdcd7; --paper: #fff; --card: #fff; --tint: #f2f2ef; --violet: #0b5cd6;
-  color: var(--ink); color-scheme: light;
-}
 
-.theme-subway.theme-dark .hl { color: var(--ink); }
+
 .theme-subway.theme-dark .ticks:not(.ticks--dark) li::after { border-color: var(--ink); }
 .theme-subway.theme-dark #about a { color: #fff; }
 .theme-subway.theme-dark .promises p { background: var(--card) !important; }
@@ -151,3 +146,44 @@
 /* the payment sample card on Pricing */
 .theme-dark :is(.paysample, .paysample__card, .paysample__row) { background: var(--card); color: var(--ink); }
 .theme-subway.theme-dark :is(.filter[aria-pressed="true"], .ftabs a[aria-current]) { background: #f2f2ee; color: #111; }
+
+/* Change the Channel is black, so its neighbours are colour bands: blue before it, green after it */
+.theme-subway.theme-dark #compare { background: #0b5cd6; --ink-soft: rgba(255,255,255,.82); }
+.theme-subway.theme-dark #how { background: #00933c; --ink-soft: rgba(255,255,255,.85); }
+.theme-subway.theme-dark :is(#compare, #how, #about) :is(h2, .eyebrow) { color: #fff; }
+.theme-subway.theme-dark :is(#compare, #how) .section-cta__alt, .theme-subway.theme-dark :is(#compare, #how, #about) p a:not(.btn) { color: #fff; }
+
+/* keep each card's own coloured bar (top or side), only the plain edges go dark */
+.theme-dark :is(.cc, .steps li, .features li, .plan, .post-card, .level, .extras, .guarantee, .tier, .incl li) { border-color: var(--line); }
+.theme-subway.theme-dark .steps li { border-top-color: var(--c, #fff); }
+/* the headline price is set in Transit yellow, so it reads on the dark hero */
+.theme-subway.theme-dark .hl { background: none; color: #fccc0a; }
+/* the menu drawer is dark too, with its subway stripe */
+.theme-subway.theme-dark .drawer__head { background: linear-gradient(90deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0) bottom / 100% 6px no-repeat, var(--paper); }
+.theme-dark .drawer__close { background: var(--card-2); }
+/* the count inside a selected filter pill */
+.theme-subway.theme-dark .filter[aria-pressed="true"] * { color: #555; }
+.theme-subway.theme-dark .filter[aria-pressed="true"] { color: #111; }
+
+/* The mockups go dark too: the browser, phone and chat, search results, rankings and the Features panels */
+.theme-dark :is(.browser, .phone, .report, .viewer, .serp, .rank, .gbp, .fx-chat, .fx-bot, .fx-gbp, .fx-serp, .fx-cal, .fx-stats) { background: var(--card); color: var(--ink); border-color: var(--line); }
+.theme-dark :is(.browser__url, .viewer__modes, .serp__screen, .rank__screen, .rank__q, .gmap__chip, .fx-gbp__chips span, .fx-gbp__post) { background: var(--card-2); color: var(--ink); border-color: var(--line); }
+.theme-dark :is(.m--them .bubble, .m--typing .bubble), .theme-subway.theme-dark .m--them .bubble { background: #2a2a2a; color: var(--ink); }
+.theme-subway.theme-dark :is(.serp__list li.is-you) { background: #16243d; }
+.theme-subway.theme-dark .phone { border-color: #3a3a3a; }
+
+/* Pricing stays a yellow band, but its plan cards are dark so the gems' white cut lines show */
+.theme-subway.theme-dark #pricing .plan { --card: #1c1c1c; --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #2f2f2f; --violet: #4d8dff; background: var(--card); color: var(--ink); color-scheme: dark; border-color: #000; }
+/* primary buttons use the deeper Transit blue, so white labels read */
+.theme-subway.theme-dark .btn--primary { background: #0b5cd6; border-color: #0b5cd6; color: #fff; }
+/* text inside the mockups, lightened for the dark screens */
+.theme-dark .site__h { color: #dbe8ff; }
+.theme-dark .site__nav strong { color: #8fb6ff; }
+.theme-dark .site__banner p { color: #111; }
+.theme-dark .live { background: #10301f; }
+.theme-dark :is(.fx-serp__q, .fx-gbp__name) { color: #e8eaed; }
+.theme-dark [class*="fx-"] :is(small, span):not(.fx-tag):not([class*="__chips"] span):not([class*="__btns"] span) { color: #bdc1c6; }
+.theme-dark [class*="fx-"] strong { color: #8ab4f8; }
+.theme-dark .fx-gbp__name { color: #e8eaed !important; }
+.theme-dark .fx-phone__screen { background: #1c1c1c; }
+.theme-dark .fx-tag { color: #111; }

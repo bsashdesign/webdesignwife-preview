@@ -180,3 +180,19 @@
 .theme-blocks .lede-note { background: var(--sun); border: var(--edge); border-left-width: 8px; border-left-color: var(--violet); border-radius: 0 var(--r) var(--r) 0; box-shadow: var(--shadow); }
 /* Comparison: the Web Design Wife card is lime, with no extra inner stripe */
 .theme-blocks #compare .compare-cards .cc--us { box-shadow: none; }
+
+/* Section rhythm, calmer: white bands between a few colour bands, never two alike in a row.
+   hero lime tint · Four Years yellow · Three Ways white · Change the Channel sky · First Call white ·
+   Pricing lime tint · Get Found pink · About lime tint · Vows white · FAQ lilac · Blog white · Audit cobalt */
+.theme-blocks #work { background: var(--sun); }
+.theme-blocks #compare { background: #fff; color: var(--ink); }
+.theme-blocks #compare h2 { color: var(--ink); }
+.theme-blocks #compare .eyebrow { color: var(--ink); }
+.theme-blocks #how { background: #fff; }
+.theme-blocks #maps { background: var(--rose); color: var(--ink); }
+.theme-blocks #maps h2 { color: var(--ink); }
+.theme-blocks #maps .maps__included { background: #fff; border: var(--edge); color: var(--ink); }
+.theme-blocks #maps .maps__included strong { color: var(--ink); }
+.theme-blocks #about { background: #eaf3d2; }
+.theme-blocks #promises { background: #fff; }
+.theme-blocks #work a:not(.btn), .theme-blocks #about a:not(.btn) { color: var(--ink); }

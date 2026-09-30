@@ -1346,7 +1346,10 @@ function wdwCalInline(selector, calLink, config) {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let playing = null;
 
+  const eyebrow = sec.querySelector("[data-tv-eyebrow]");
   const play = (key) => {
+    // the label above the title names whatever's on
+    if (eyebrow) eyebrow.textContent = key === "transitdark" ? "Transit Dark" : NAMES[key] || eyebrow.textContent;
     if (key === "transitdark") key = "transit"; // the TV plays the Transit channel for Transit Dark too
     if (key === playing || !NAMES[key]) return;
     playing = key;
@@ -1388,7 +1391,7 @@ function wdwCalInline(selector, calLink, config) {
 // drawn on a <canvas class="plan-ring" data-plan="…">. The color comes from CSS, so it follows the mood.
 // ---------------------------------------------------------------
 (function () {
-  const canvases = document.querySelectorAll("canvas.plan-ring[data-plan]");
+  const canvases = document.querySelectorAll("canvas.plan-ring[data-plan]:not(.plan-gem)");
   if (!canvases.length) return;
   // Rather than a full turn (which shows the ring face-on, like an "O"), each ring rocks through a 44 degree arc
   // between a three-quarter view and near-profile, easing out at each end.
@@ -1484,3 +1487,218 @@ document.addEventListener("click", (e) => {
   t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   history.pushState(null, "", a.getAttribute("href"));
 });
+
+// ---------------------------------------------------------------
+// Plan gems (plan cards): Essentials a simple point stone, Business a square cut, Full Suite a round brilliant.
+// Real 3D shapes turning on a tilted axis, drawn in flat tones of the plan's colour, each mood in its own way.
+// Light to run: only gems on screen are drawn, about 30 frames a second, and still with reduced motion.
+// ---------------------------------------------------------------
+(function () {
+  const gems = [...document.querySelectorAll("canvas.plan-gem[data-plan]")];
+  if (!gems.length) return;
+  const circle = (n, r, y, off = 0) => Array.from({ length: n }, (_, i) => { const a = (i + off) / n * 2 * Math.PI; return [r * Math.cos(a), y, r * Math.sin(a)]; });
+  // an emerald cut's outline: a rectangle with its corners cut, lying flat (table up), at height y
+  const octRect = (s, y, W = 1, D = .74, c = .3) => [[-W + c, D], [W - c, D], [W, D - c], [W, -D + c], [W - c, -D], [-W + c, -D], [-W, -D + c], [-W, D - c]].map(([x, z]) => [x * s, y, z * s]);
+  // Whole faces (not triangles), so the edge lines only fall on the gem's real edges
+  function loft(rings) {
+    const faces = [];
+    for (let k = 0; k < rings.length - 1; k++) {
+      const A = rings[k], B = rings[k + 1];
+      if (A.length === 1 || B.length === 1) {
+        const tip = A.length === 1 ? A[0] : B[0], R = A.length === 1 ? B : A;
+        R.forEach((p, i) => { const f = [tip, p, R[(i + 1) % R.length]]; f.alt = i % 2; faces.push(f); });
+      } else if (B.length === 2 * A.length) {
+        // star facets: each table edge fans out to three points of the finer ring below it
+        A.forEach((p, i) => {
+          const j = (i + 1) % A.length, b0 = B[2 * i], b1 = B[2 * i + 1], b2 = B[(2 * i + 2) % B.length];
+          const star = [p, b1, A[j]]; star.alt = 0;
+          const l = [p, b0, b1]; l.alt = 1; const r = [A[j], b1, b2]; r.alt = 1;
+          faces.push(star, l, r);
+        });
+      } else {
+        A.forEach((p, i) => { const j = (i + 1) % A.length, f = [p, B[i], B[j], A[j]]; f.alt = i % 2; faces.push(f); });
+      }
+    }
+    [rings[0], rings[rings.length - 1]].forEach((R) => { if (R.length > 2) faces.push(R.slice()); });
+    return faces;
+  }
+  // Three different stones, each clearly finer than the last, with its own outline:
+  // Essentials a simple point stone, Business a square step cut, Full Suite a round brilliant.
+  const sq = (scale, y) => octRect(scale, y, 1, 1, .32);
+  const MODELS = {
+    // a simple stone: a very short top above a tall point, almost an upside-down pyramid
+    essentials: () => loft([circle(4, .64, .34), circle(4, .8, .18), [[0, -.72, 0]]]),
+    // a square cut with bevelled corners: the table, one level of sides, and a point
+    business: () => loft([sq(.56, .52), sq(.95, .12), [[0, -1.02, 0]]]),
+    // a round brilliant: an eight-sided table ringed by star facets, a sixteen-sided girdle,
+    // and a pavilion cut down to the point
+    full: () => loft([circle(8, .52, .58), circle(16, .82, .36), circle(16, 1, .14), circle(16, 1, .05), circle(16, .5, -.55), [[0, -1.12, 0]]]),
+  };
+  // how big each one sits in its space: the gems grow with the plan
+  const SIZE = { essentials: .8, business: .86, full: 1 };
+  const cache = {};
+  const model = (plan) => cache[plan] || (cache[plan] = (() => {
+    const polys = MODELS[plan](), pts = polys.flat();
+    const c = [0, 1, 2].map((k) => pts.reduce((sum, p) => sum + p[k], 0) / pts.length);
+    // each face's outward normal (Newell's method); the shapes are convex, so back faces are simply skipped
+    const faces = polys.map((poly) => {
+      const q = poly.map((p) => p.map((v, k) => v - c[k]));
+      let n = [0, 0, 0];
+      q.forEach((p, i) => { const r = q[(i + 1) % q.length]; n[0] += (p[1] - r[1]) * (p[2] + r[2]); n[1] += (p[2] - r[2]) * (p[0] + r[0]); n[2] += (p[0] - r[0]) * (p[1] + r[1]); });
+      const mid = [0, 1, 2].map((k) => q.reduce((sum, p) => sum + p[k], 0) / q.length);
+      const out = n[0] * mid[0] + n[1] * mid[1] + n[2] * mid[2] >= 0, len = Math.hypot(...n) || 1;
+      return { pts: q, n: n.map((v) => (out ? v : -v) / len), alt: poly.alt || 0 };
+    });
+    const radius = Math.max(...pts.map((p) => Math.hypot(p[0] - c[0], p[1] - c[1], p[2] - c[2])));
+    return { faces, radius };
+  })());
+  const DEG = Math.PI / 180, TILT = 26 * DEG, TIP = 20 * DEG, TURN = 9000;
+  // light for the sides: from the upper left, the way the stone leans
+  const SIDE = (() => { const l = [-.75, .5, .45], d = Math.hypot(...l); return l.map((v) => v / d); })();
+  const LIGHT = (() => { const l = [-.45, .75, .55], d = Math.hypot(...l); return l.map((v) => v / d); })();
+  // reading a colour from CSS is slow, so each canvas remembers its colour and checks again only once a second
+  const rgbOf = (cv, now) => {
+    if (!cv._rgb || now - cv._rgbAt > 1000) { cv._rgb = (getComputedStyle(cv).color.match(/\d+(\.\d+)?/g) || [0, 0, 0]).slice(0, 3).map(Number); cv._rgbAt = now; }
+    return cv._rgb;
+  };
+  function draw(cv, t) {
+    const dpr = Math.min(devicePixelRatio || 1, 2), W = cv.clientWidth, H = cv.clientHeight;
+    if (!W) return;
+    if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    const m = model(cv.dataset.plan), base = rgbOf(cv, t);
+    const a = t / TURN * 2 * Math.PI, ca = Math.cos(a), sa = Math.sin(a), ci = Math.cos(TIP), si = Math.sin(TIP), ct = Math.cos(TILT), st = Math.sin(TILT);
+    // spin around the gem's own axis, tip it toward the viewer, then lean the axis
+    const rot = ([x, y, z]) => { const x1 = x * ca + z * sa, z1 = -x * sa + z * ca; const y2 = y * ci - z1 * si, z2 = y * si + z1 * ci; return [x1 * ct - y2 * st, x1 * st + y2 * ct, z2]; };
+    const f = 8, scale = Math.min(W, H) / 2 / (1.25 * 1.08) * SIZE[cv.dataset.plan];
+    // Each plan has its own finish: Essentials muted, Business in full color, Full Suite rich and glowing.
+    const plan = cv.dataset.plan;
+    const FINISH = {
+      essentials: { sat: 1.25, tone: [.62, .44], alt: .07, lift: 1.3, edge: .85 },
+      business: { sat: 1.3, tone: [.58, .44], alt: .07, lift: 1.5, edge: .9 },
+      full: { sat: 1.4, tone: [.7, .42], alt: .06, lift: 2.4, edge: .8 },
+    }[plan];
+    const grey = base[0] * .3 + base[1] * .59 + base[2] * .11;
+    const col0 = base.map((v) => Math.max(0, Math.min(255, grey + (v - grey) * FINISH.sat)));
+    const small = W < 48;
+    ctx.lineJoin = "round"; ctx.lineWidth = small ? .5 : Math.min(1.2, W / 100);
+    // thin edges, a shade of the gem's own color (softer on the muted Essentials)
+    const dark = .22;
+    ctx.strokeStyle = `rgba(${col0.map((v) => Math.round(v * dark))}, ${small ? .55 : FINISH.edge})`;
+    const shown = [];
+    for (const face of m.faces) {
+      // a face is visible when it faces the viewer's actual position (the view has perspective), not just "forward"
+      const n = rot(face.n), q = face.pts.map(rot), c = q[0];
+      if (n[0] * -c[0] + n[1] * -c[1] + n[2] * (f - c[2]) <= 0) continue;
+      shown.push({ face, n, p: q.map(([x, y, z]) => { const k = f / (f - z); return [W / 2 + x * k * scale, H / 2 - y * k * scale, z]; }) });
+    }
+    const path = (p) => { ctx.beginPath(); p.forEach((pt, i) => (i ? ctx.lineTo(pt[0], pt[1]) : ctx.moveTo(pt[0], pt[1]))); ctx.closePath(); };
+    // Full Suite: each face's tone is set by how much it faces up, so it glows evenly all the way round.
+    // Essentials and Business: the sides go from light to dark across the stone as it turns; the top face
+    // always points the same way, so its tone stays put.
+    // Each mood draws the stone its own way:
+    //   Calm: shaded faces in the mood colour, thin darker edges
+    //   Tangy: the same, with thick ink edges and a hard ink shadow offset down and right
+    //   Transit (a dark theme): the coloured stone with its cut drawn in white
+    //   Sophisticated: no fill at all, just the cut drawn as a fine gold outline
+    const mood = document.documentElement.dataset.mood;
+    const style = { tangy: "tangy", transit: "transit", transitdark: "transit", sophisticated: "sophisticated" }[mood] || "calm";
+    if (style === "tangy") {
+      // A heavy ink outline on the stone's outer silhouette only, even all the way round, with sharp
+      // (mitred) corners. The stone is convex, so its silhouette is the hull of the visible corners.
+      const pts = shown.flatMap(({ p }) => p).map((q) => [q[0], q[1]]).sort((p1, p2) => p1[0] - p2[0] || p1[1] - p2[1]);
+      const cross = (o, a1, b1) => (a1[0] - o[0]) * (b1[1] - o[1]) - (a1[1] - o[1]) * (b1[0] - o[0]);
+      const lower = [], upper = [];
+      for (const q of pts) { while (lower.length > 1 && cross(lower[lower.length - 2], lower[lower.length - 1], q) <= 0) lower.pop(); lower.push(q); }
+      for (let i = pts.length - 1; i >= 0; i--) { const q = pts[i]; while (upper.length > 1 && cross(upper[upper.length - 2], upper[upper.length - 1], q) <= 0) upper.pop(); upper.push(q); }
+      const hull = lower.slice(0, -1).concat(upper.slice(0, -1));
+      ctx.save(); ctx.lineJoin = "miter"; ctx.miterLimit = 8; ctx.strokeStyle = "#111";
+      ctx.lineWidth = 2 * (small ? 2 : Math.max(4, W * .08)); path(hull); ctx.stroke(); ctx.restore();
+      ctx.strokeStyle = "#111"; ctx.lineWidth = small ? .8 : Math.max(1.2, W / 60);
+    } else if (style === "transit") {
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = small ? (plan === "full" ? .6 : .8) : Math.max(1, W / (plan === "full" ? 95 : 65));
+    } else if (style === "sophisticated") {
+      ctx.strokeStyle = `rgb(${base.map(Math.round)})`; ctx.lineWidth = small ? .7 : Math.max(1, W / 90);
+    }
+    for (const { face, p, n } of shown) {
+      const up = (face.n[1] + 1) / 2, alt = face.alt ? FINISH.alt : -FINISH.alt;
+      let tone, lift;
+      if (plan === "full") { tone = FINISH.tone[0] + FINISH.tone[1] * up + alt; lift = Math.max(0, up - .55) * FINISH.lift; }
+      else {
+        const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
+        tone = .58 + .6 * side + alt; lift = Math.max(0, side - .45) * FINISH.lift;
+        // the table catches more light
+        if (face.n[1] > .99) { tone += .2; lift += .35; }
+        // Essentials is brightened a touch overall
+        if (plan === "essentials") { tone += .08; lift += .12; }
+      }
+      if (style === "sophisticated") { path(p); ctx.stroke(); continue; }
+      {
+        ctx.fillStyle = `rgb(${col0.map((v) => Math.round(Math.min(255, v * tone + (255 - v * tone) * Math.min(1, lift))))})`;
+      }
+      path(p); ctx.fill(); ctx.stroke();
+    }
+    // a sparkle in the same spot on the crown, twinkling every few seconds
+    if (plan === "full" && !small) {
+      const PERIOD = 3200, phase = (t % PERIOD) / PERIOD;
+      const tw = phase < .3 ? Math.sin(phase / .3 * Math.PI) ** 2 : 0;
+      if (tw > .02) {
+        const r = W * .14 * tw, x = W * .66, y = H * .42;
+        ctx.fillStyle = "#fff";
+        ctx.beginPath(); ctx.moveTo(x, y - r); ctx.lineTo(x + r * .22, y - r * .22); ctx.lineTo(x + r, y); ctx.lineTo(x + r * .22, y + r * .22);
+        ctx.lineTo(x, y + r); ctx.lineTo(x - r * .22, y + r * .22); ctx.lineTo(x - r, y); ctx.lineTo(x - r * .22, y - r * .22); ctx.closePath(); ctx.fill();
+      }
+    }
+  }
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const live = new Set();
+  const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
+  gems.forEach((cv) => { io.observe(cv); draw(cv, 1500); });
+  let last = 0;
+  const loop = (now) => { if (now - last >= 33) { last = now; live.forEach((cv) => draw(cv, now)); } requestAnimationFrame(loop); };
+  if (!reduce) requestAnimationFrame(loop);
+  // redraw when the mood changes (the colour and the drawing style follow it)
+  new MutationObserver(() => gems.forEach((cv) => { cv._rgb = null; draw(cv, reduce ? 1500 : performance.now()); }))
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-mood"] });
+})();
+
+// An open FAQ closes when you click its answer too, not just the question (links in the answer still work).
+document.addEventListener("click", (e) => {
+  const d = e.target.closest(".faq__list details[open], details.faq[open]");
+  if (!d || e.target.closest("summary, a, button, input, select, textarea, label")) return;
+  if (String(window.getSelection && window.getSelection()).trim()) return; // selecting text shouldn't close it
+  d.open = false;
+});
+
+// A satisfying click when a key goes down (the "Change the Channel" board and the mood pop-up).
+// Made on the fly with Web Audio, so there's no sound file to load: a crisp tick on top of a soft, low thump.
+(function () {
+  let ac = null;
+  const click = () => {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === "suspended") ac.resume();
+      const t = ac.currentTime, out = ac.createGain();
+      out.gain.value = .5; out.connect(ac.destination);
+      // the tick: a very short burst of filtered noise
+      const len = Math.floor(ac.sampleRate * .03), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 6);
+      const noise = ac.createBufferSource(); noise.buffer = buf;
+      const hp = ac.createBiquadFilter(); hp.type = "bandpass"; hp.frequency.value = 3200; hp.Q.value = .9;
+      const ng = ac.createGain(); ng.gain.setValueAtTime(.9, t); ng.gain.exponentialRampToValueAtTime(.001, t + .03);
+      noise.connect(hp).connect(ng).connect(out); noise.start(t);
+      // the thump: a quick low tone that drops in pitch
+      const osc = ac.createOscillator(), og = ac.createGain();
+      osc.type = "sine"; osc.frequency.setValueAtTime(190, t); osc.frequency.exponentialRampToValueAtTime(70, t + .07);
+      og.gain.setValueAtTime(.55, t); og.gain.exponentialRampToValueAtTime(.001, t + .08);
+      osc.connect(og).connect(out); osc.start(t); osc.stop(t + .09);
+    } catch (e) {}
+  };
+  document.addEventListener("pointerdown", (e) => {
+    if (e.button === 0 && e.target.closest("[data-tv-key], .mood__opt")) click();
+  });
+  // keyboard presses of the same keys click too
+  document.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.closest("[data-tv-key], .mood__opt")) click();
+  });
+})();

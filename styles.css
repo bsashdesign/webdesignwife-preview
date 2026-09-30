@@ -3941,3 +3941,54 @@ span.plan-ring:empty { display: none; }
 #mood .mood__opt[data-mood="transitdark"] strong { font-family: "Inter Tight", sans-serif; font-weight: 800; }
 #mood .mood__btn .moodicon--transitdark { --cap-edge: #555; width: 48px; height: 48px; border-radius: 50%; background: #1c1c1c; }
 .moods__card .moodicon--transitdark { border-radius: 50%; }
+
+/* "Yours?" is a sheet of paper: solid white, a plain thin edge, a soft shadow that follows the turned corner */
+.tv-yours { filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .18)) drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
+.tv-yours__front, .theme-subway .tv-sec .tv-yours__front { border: 1px solid rgba(0, 0, 0, .12); background: #fff; color: #1b1530; }
+.theme-subway .tv-sec .tv-yours__front small { color: #666; }
+.theme-subway .tv-sec .tv-yours__go { color: #0b5cd6; }
+.tv-yours__front:hover { border-color: rgba(0, 0, 0, .2); }
+.theme-blocks .tv-yours__front { border: 2px solid var(--ink); }
+
+/* Keys stand up out of their sockets: the key's top sits well above the socket's top edge, so no socket
+   shows above a key until it's pressed. Hovering lifts a key a little; pressing sinks it in. */
+#moods-tv .tv-key .tv-key__cap { margin-top: -9px; }
+#moods-tv .tv-key .key-well { margin-top: 9px; }
+#moods-tv .tv-key:not(.tv-key--tangy):hover .tv-key__cap { transform: translateY(-2px); box-shadow: 0 11px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy:hover .tv-key__cap { transform: translateY(-2px); box-shadow: 0 11px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key:not(.tv-key--tangy)[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:not(.tv-key--tangy):active .tv-key__cap { transform: translateY(8px); box-shadow: 0 1px 0 var(--cap-edge, #999), inset 0 3px 6px rgba(0,0,0,.28); }
+#moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translateY(8px); box-shadow: 0 1px 0 #111, inset 0 3px 6px rgba(0,0,0,.28); }
+/* the same in the pop-up */
+#mood .mood__opt .key-well { margin-top: 6px; }
+#mood .mood__opt .key-well .moodicon { margin-top: -6px; }
+#mood .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(-1px); box-shadow: 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+.faq__list details[open] > :not(summary) { cursor: pointer; }
+
+/* the plan gems stand on their own, no tint shape behind them */
+.plans .plan .plan-ring-tile:has(.plan-gem)::before { display: none; }
+
+/* the key names on the board all share the "Now playing" type, so the row reads as one set */
+#moods-tv .tv-key .tv-key__name { font: 500 .78rem "DM Mono", ui-monospace, monospace; font-style: normal; letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 600px) { #moods-tv .tv-key .tv-key__name { font-size: .56rem; letter-spacing: .04em; } }
+
+/* Keys and sockets, final: the socket has an even 3px rim. A raised key stands 12px above it (its side shows);
+   hovering lifts it 2px more; fully pressed, it sinks the whole 12px and sits exactly in the socket,
+   with the same thin rim showing all the way round. */
+#moods-tv .tv-key .key-well { padding: 3px; margin-top: 12px; }
+#moods-tv .tv-key .tv-key__cap { margin: -12px 0 12px; }
+#moods-tv .tv-key:not(.tv-key--tangy) .tv-key__cap { box-shadow: 0 12px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy .tv-key__cap { box-shadow: 0 12px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key:not(.tv-key--tangy):hover .tv-key__cap { transform: translateY(-2px); box-shadow: 0 14px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy:hover .tv-key__cap { transform: translateY(-2px); box-shadow: 0 14px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:active .tv-key__cap,
+#moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translateY(12px); box-shadow: inset 0 3px 6px rgba(0,0,0,.28); }
+/* the same in the pop-up, at half the travel */
+#mood .mood__opt .key-well, #mood .mood__opt[data-mood] .key-well { padding: 3px; margin-top: 6px; }
+#mood .mood__opt .key-well .moodicon { margin: -6px 0 6px; }
+#mood .mood__opt .key-well .moodicon:not(.moodicon--tangy) { box-shadow: 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(-1px); box-shadow: 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt[aria-pressed="true"] .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(6px); box-shadow: inset 0 2px 5px rgba(0,0,0,.25); }
+#moods-tv .tv-key.tv-key .key-well { padding: 3px; }
+#moods-tv .tv-key:not(.tv-key--tangy)[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:not(.tv-key--tangy):active .tv-key__cap,
+#moods-tv .tv-key.tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key.tv-key--tangy:active .tv-key__cap { transform: translateY(12px); box-shadow: inset 0 3px 6px rgba(0,0,0,.28); }
+#moods-tv .tv-key.tv-key:not(.x) .tv-key__cap { margin: -12px 0 12px; }
