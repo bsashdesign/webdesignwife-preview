@@ -3069,3 +3069,14 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-blocks .ftabs a, .theme-blocks .ftabs a[aria-current] { padding: 7px 14px; border: 0; border-radius: 999px; color: var(--ink); }
 .theme-blocks .ftabs a:hover { background: rgba(255,255,255,.6); }
 .theme-blocks .ftabs a[aria-current] { background: var(--ink); color: var(--lime); border-bottom-width: 0; }
+/* Transit: each Features tab underlines in its own subway line color, in rainbow order */
+.theme-subway .ftabs a:nth-child(1) { --c: var(--red); }
+.theme-subway .ftabs a:nth-child(2) { --c: var(--orange); }
+.theme-subway .ftabs a:nth-child(3) { --c: var(--yellow); }
+.theme-subway .ftabs a:nth-child(4) { --c: var(--green); }
+.theme-subway .ftabs a:nth-child(5) { --c: var(--blue); }
+.theme-subway .ftabs a:nth-child(6) { --c: var(--purple); }
+.theme-subway .ftabs a:nth-child(7) { --c: #996633; }
+.theme-subway .ftabs a:nth-child(8) { --c: #6cbe45; }
+.theme-subway .ftabs a[aria-current] { border-bottom-color: var(--c); }
+.theme-subway .ftabs a:not([aria-current]):hover { border-bottom-color: color-mix(in srgb, var(--c) 40%, transparent); }
