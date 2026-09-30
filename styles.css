@@ -3344,7 +3344,7 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .cadence__plan { display: flex; align-items: center; gap: 10px; padding-right: 10px; }
 .cadence__plan strong { display: block; color: #fff; font-size: 1rem; }
 .cadence__plan small { display: block; color: rgba(255,255,255,.72); font-size: .8rem; }
-.plan-ring:empty { display: none; }
+span.plan-ring:empty { display: none; }
 .cadence__track { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center; justify-items: center; height: 28px; background: linear-gradient(rgba(255,255,255,.22), rgba(255,255,255,.22)) center / calc(100% - 100% / 6) 2px no-repeat; }
 .cadence__track i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.3); }
 .cadence__track i.on { width: 24px; height: 24px; background: var(--marigold); box-shadow: 0 0 0 5px color-mix(in srgb, var(--marigold) 25%, transparent); }
@@ -3462,7 +3462,7 @@ main > section.is-joined.is-joined { padding-top: 0; }
   .tv__show { padding: 18px 20px 46px; gap: 8px 14px; } .tv__face { width: 72px; height: 72px; border-radius: 18px; }
   .tv-nook { padding: 16px; border-radius: 22px; }
   .vcr { margin: 12px 0 0; gap: 10px; padding: 0 12px; } .vcr__slot { width: 60px; }
-  .tv-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tape--yours { grid-column: 1 / -1; }
+  .tv-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 /* the set follows each mood's personality */
 .theme-blocks .tv-nook { background: #fff; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
@@ -3533,3 +3533,24 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .tv__screen.is-on .tv__show, .tv__screen.is-on .tv__yours { animation: tv-on .75s steps(1, end) both, tv-warm .75s ease-out both; }
 @keyframes tv-on { 0% { opacity: 0; } 12% { opacity: .75; } 22% { opacity: .1; } 34% { opacity: .9; } 44% { opacity: .35; } 58% { opacity: 1; } 100% { opacity: 1; } }
 @keyframes tv-warm { from { filter: brightness(1.8) saturate(.4); } to { filter: none; } }
+
+/* Plan rings: one hue per mood, muted on Essentials and most vivid on Full Suite */
+.plan-ring { display: block; width: 58px; height: 58px; margin: -6px 0 4px -6px; color: var(--ring, #8670f0); }
+.plan-ring[data-plan="essentials"] { --ring: #b4abe6; } .plan-ring[data-plan="business"] { --ring: #8670f0; } .plan-ring[data-plan="full"] { --ring: #4424db; }
+.theme-blocks .plan-ring[data-plan="essentials"] { --ring: #a9c98a; } .theme-blocks .plan-ring[data-plan="business"] { --ring: #86c232; } .theme-blocks .plan-ring[data-plan="full"] { --ring: #4fb000; }
+.theme-subway .plan-ring[data-plan="essentials"] { --ring: #bfc1c3; } .theme-subway .plan-ring[data-plan="business"] { --ring: #8a8c8d; } .theme-subway .plan-ring[data-plan="full"] { --ring: #3a3c3e; }
+.theme-wedding .plan-ring[data-plan="essentials"] { --ring: #d8c9a8; } .theme-wedding .plan-ring[data-plan="business"] { --ring: #c4a36a; } .theme-wedding .plan-ring[data-plan="full"] { --ring: #a2741f; }
+/* The VCR: one tape door (you can see the loaded tape's label through it) and a small display */
+.vcr__panel { flex: none; display: grid; justify-items: end; gap: 6px; }
+.vcr__display { padding: 3px 7px; border-radius: 3px; background: #0c1a12; color: #57f28b; font: 600 .7rem var(--mono); letter-spacing: .08em; box-shadow: inset 0 0 6px rgba(0,0,0,.7); text-shadow: 0 0 6px rgba(87,242,139,.6); }
+.tv-stage .vcr { flex-direction: column; }
+.tv-stage .vcr__window { height: 58px; border-top: 3px solid #0a0a0a; box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), inset 0 14px 18px rgba(0,0,0,.65); }
+.tv-stage .vcr__panel { align-self: stretch; grid-auto-flow: column; justify-content: space-between; align-items: center; }
+@media (max-width: 760px) { .tv-stage .vcr { flex-direction: row; } .tv-stage .vcr__panel { grid-auto-flow: row; } }
+/* "Yours?" is a real tape too: the same black cassette, with a blank label waiting to be written on */
+.tv-sec .tape--yours { background: linear-gradient(#262626, #121212); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 8px 16px -10px rgba(0,0,0,.6); }
+.tv-sec .tape--yours .tape__label { background: #fff; border: 0; transform: rotate(-1.2deg); box-shadow: inset 0 -1px 0 rgba(0,0,0,.08); background-image: repeating-linear-gradient(transparent 0 11px, #dbe4f0 11px 12px); }
+.tv-sec .tape--yours .tape__text strong { font-family: "Caveat", "Bradley Hand", "Segoe Print", cursive; font-size: 1.15rem; font-weight: 700; }
+.tv-sec .tape--yours .tape__window { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.tv-sec .tape--yours .tape__window i { background: radial-gradient(circle, #111 0 3px, #d8d1c4 3px 5px, #3b3b3b 5px 7px, #6d6d6d 7px); }
+.theme-blocks .tv-sec .tape--yours { border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }

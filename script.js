@@ -1345,75 +1345,158 @@ function wdwCalInline(selector, calLink, config) {
     screen.classList.toggle("is-yours", key === "yours");
     nameEl.textContent = NAMES[key];
   };
-  const slot = sec.querySelector(".vcr__slot");
+  const door = sec.querySelector(".vcr__window");
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  let busy = false;
+  let busy = false, queued = null;
 
   // A floating copy of a shelf tape, so it can travel across the page to the VCR.
-  const ghost = (tape) => {
-    const r = tape.getBoundingClientRect();
+  const ghost = (tape, r) => {
     const g = tape.cloneNode(true);
     g.hidden = false;
     g.removeAttribute("data-tape");
     g.classList.add("tape--ghost");
     Object.assign(g.style, { position: "fixed", left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px",
-      margin: "0", zIndex: "90", pointerEvents: "none", visibility: "visible", transformOrigin: "50% 100%", viewTransitionName: "none" });
+      margin: "0", zIndex: "90", pointerEvents: "none", visibility: "visible", transformOrigin: "50% 50%" });
     document.body.appendChild(g);
-    return { g, r };
+    return g;
   };
-  // The path into the slot: fly over it, scaled to the slot's width, then sink in (the part below the slot is clipped away).
-  const slotPath = (r) => {
-    const s = slot.getBoundingClientRect();
-    const k = s.width / r.width;
-    const dx = s.left + s.width / 2 - (r.left + r.width / 2);
-    const dy = s.top + s.height / 2 - r.bottom;
+  // The path into the VCR's tape door: fly over and line up with the door, then push in (it shrinks back into the dark and is gone).
+  const doorPath = (r) => {
+    const d = door.getBoundingClientRect();
+    const k = Math.min((d.width * 0.92) / r.width, 1);
+    const dx = d.left + d.width / 2 - (r.left + r.width / 2);
+    const dy = d.top + d.height / 2 - (r.top + r.height / 2);
     return [
-      { transform: "none", clipPath: "inset(0 0 0 0)" },
-      { transform: `translate(${dx}px, ${dy}px) scale(${k})`, clipPath: "inset(0 0 0 0)", offset: 0.62 },
-      { transform: `translate(${dx}px, ${dy + r.height * k}px) scale(${k})`, clipPath: "inset(0 0 100% 0)" },
+      { transform: "none", opacity: 1, filter: "brightness(1)" },
+      { transform: `translate(${dx}px, ${dy}px) scale(${k})`, opacity: 1, filter: "brightness(1)", offset: 0.6 },
+      { transform: `translate(${dx}px, ${dy}px) scale(${k * 0.72})`, opacity: 0, filter: "brightness(.25)" },
     ];
   };
   const fly = (g, frames, ms) => g.animate(frames, { duration: ms, easing: "cubic-bezier(.45, 0, .25, 1)", fill: "forwards" }).finished;
 
-  const insert = async (key) => {
-    if (key === playing || busy) return;
-    const change = () => { render(key); if (key !== "yours" && window.wdwSetMood) window.wdwSetMood(key); };
+  // Swap tapes: the one you picked goes into the VCR, and the one that was playing pops out into the spot you took it from.
+  // `apply` is false when the mood was already changed somewhere else (the floating switcher or the other section).
+  const insert = async (key, apply = true) => {
+    if (key === playing) return;
+    if (busy) { queued = key; return; }
+    const change = () => { render(key); if (apply && key !== "yours" && window.wdwSetMood) window.wdwSetMood(key); };
     if (reduce) return change();
     busy = true;
     const old = playing && sec.querySelector(`.tape[data-tape="${playing}"]`);
     const next = sec.querySelector(`.tape[data-tape="${key}"]`);
+    const spot = next.getBoundingClientRect();
     // 1. The screen switches off.
     screen.classList.remove("is-on");
     screen.classList.add("is-off");
-    await wait(260);
-    // 2. The old tape comes up out of the slot and goes back to its own place on the shelf.
-    deck.innerHTML = "";
-    if (old) {
-      old.style.visibility = "hidden";
-      old.hidden = false;
-      const { g, r } = ghost(old);
-      await fly(g, slotPath(r).reverse(), 700);
-      g.remove();
-      old.style.visibility = "";
-    }
-    // 3. The new tape flies over and slides into the slot; the shelf closes the gap it leaves.
-    const { g, r } = ghost(next);
+    await wait(220);
+    // 2. The picked tape heads for the door; the old one takes its place on the shelf (still invisible).
+    const gin = ghost(next, spot);
+    if (old) { old.style.visibility = "hidden"; next.before(old); old.hidden = false; }
     next.hidden = true;
-    await fly(g, slotPath(r), 900);
+    const goingIn = fly(gin, doorPath(spot), 950);
+    // 3. Meanwhile the old tape ejects out of the door and lands in that spot.
+    let comingOut = Promise.resolve();
+    if (old) {
+      await wait(120);
+      deck.innerHTML = "";
+      const gout = ghost(old, old.getBoundingClientRect());
+      comingOut = fly(gout, doorPath(old.getBoundingClientRect()).reverse(), 820).then(() => { gout.remove(); old.style.visibility = ""; });
+    }
+    await Promise.all([goingIn, comingOut]);
     // 4. It plays: the page takes on the new look, and the screen flickers back on.
     change();
-    g.remove();
+    gin.remove();
     screen.classList.remove("is-off");
     void screen.offsetWidth;
     screen.classList.add("is-on");
     busy = false;
+    if (queued && queued !== playing) { const q = queued; queued = null; insert(q, false); } else queued = null;
   };
 
   sec.addEventListener("click", (e) => { const t = e.target.closest(".tape"); if (t) insert(t.dataset.tape); });
   // Back ejects "Yours?" and the mood that's on the page goes back in.
   if (yours) yours.querySelector(".tv__yours-back").addEventListener("click", () => insert(root.dataset.mood));
-  // Keep the deck in step when the mood changes elsewhere (the other section, or the floating switcher).
-  new MutationObserver(() => { if (root.dataset.mood !== playing) render(root.dataset.mood); })
+  // A mood picked anywhere else plays the same swap here (the page has already changed, so it's only the tapes that move).
+  new MutationObserver(() => { if (root.dataset.mood !== playing) insert(root.dataset.mood, false); })
     .observe(root, { attributes: true, attributeFilter: ["data-mood"] });
   render(root.dataset.mood || "tangy");
+})();
+
+// ---------------------------------------------------------------
+// Plan rings: Essentials a thin plain band, Business a band with a pearl, Full Suite a band with a diamond.
+// Each is a small 3D model turned on an axis tipped 30 degrees and filled in one solid color (its silhouette),
+// drawn on a <canvas class="plan-ring" data-plan="…">. The color comes from CSS, so it follows the mood.
+// ---------------------------------------------------------------
+(function () {
+  const canvases = document.querySelectorAll("canvas.plan-ring[data-plan]");
+  if (!canvases.length) return;
+  const TILT = -30 * Math.PI / 180, TURN = 10000;
+  const quad = (out, a, b, c, d) => out.push([a, b, c], [a, c, d]);
+  // A ring in the x-y plane (seen face-on): outer radius 1, thickness t, width w. `rise` swells the top into a cradle.
+  function band({ w, t, rise = 0, sharp = 4, n = 96 }) {
+    const tris = [], outer = (a) => 1 + rise * Math.pow(Math.max(0, Math.sin(a)), sharp);
+    const P = (a, r, z) => [r * Math.cos(a), r * Math.sin(a), z];
+    for (let i = 0; i < n; i++) {
+      const a0 = (i / n) * 2 * Math.PI, a1 = ((i + 1) / n) * 2 * Math.PI;
+      const pr = (a) => [[outer(a), -w / 2], [outer(a), w / 2], [1 - t, w / 2], [1 - t, -w / 2]];
+      const p0 = pr(a0), p1 = pr(a1);
+      for (let k = 0; k < 4; k++) { const j = (k + 1) % 4; quad(tris, P(a0, ...p0[k]), P(a1, ...p1[k]), P(a1, ...p1[j]), P(a0, ...p0[j])); }
+    }
+    return tris;
+  }
+  function pearl(r, cy, n = 18) {
+    const tris = [], P = (u, v) => [r * Math.sin(v) * Math.cos(u), cy + r * Math.cos(v), r * Math.sin(v) * Math.sin(u)];
+    for (let i = 0; i < n; i++) for (let j = 0; j < n / 2; j++) {
+      const u0 = (i / n) * 2 * Math.PI, u1 = ((i + 1) / n) * 2 * Math.PI, v0 = (j / (n / 2)) * Math.PI, v1 = ((j + 1) / (n / 2)) * Math.PI;
+      quad(tris, P(u0, v0), P(u1, v0), P(u1, v1), P(u0, v1));
+    }
+    return tris;
+  }
+  // A brilliant-cut diamond with 8 facets, its point resting on top of the band.
+  function diamond(s, base, n = 8) {
+    const prof = [[0, 1.02], [0.52, 1.02], [1, 0.72], [1, 0.62], [0.28, 0.14], [0, 0]];
+    const tris = [], P = (a, [r, h]) => [s * r * Math.cos(a), base + s * h, s * r * Math.sin(a)];
+    for (let i = 0; i < n; i++) {
+      const a0 = (i / n) * 2 * Math.PI + Math.PI / n, a1 = ((i + 1) / n) * 2 * Math.PI + Math.PI / n;
+      for (let k = 0; k < prof.length - 1; k++) quad(tris, P(a0, prof[k]), P(a1, prof[k]), P(a1, prof[k + 1]), P(a0, prof[k + 1]));
+    }
+    return tris;
+  }
+  const MODELS = {
+    essentials: () => band({ w: 0.2, t: 0.09 }),
+    business: () => band({ w: 0.28, t: 0.13, rise: 0.16, sharp: 6 }).concat(pearl(0.24, 1.26)),
+    full: () => band({ w: 0.36, t: 0.17 }).concat(diamond(0.6, 1.02)),
+  };
+  const cache = {};
+  const model = (plan) => cache[plan] || (cache[plan] = MODELS[plan]());
+  function draw(cv, t) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2), W = cv.clientWidth, H = cv.clientHeight;
+    if (!W) return;
+    if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    const ctx = cv.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = ctx.strokeStyle = getComputedStyle(cv).color;
+    ctx.lineWidth = 0.6; ctx.lineJoin = "round";
+    const a = (t / TURN) * 2 * Math.PI, ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(TILT), st = Math.sin(TILT);
+    const scale = H / 3.5, cx = W / 2, cy = H * 0.6, f = 7;
+    const project = ([x, y, z]) => {
+      const x1 = x * ca + z * sa, z1 = -x * sa + z * ca, x2 = x1 * ct - y * st, y2 = x1 * st + y * ct, k = f / (f - z1);
+      return [cx + x2 * k * scale, cy - y2 * k * scale];
+    };
+    for (const tri of model(cv.dataset.plan)) {
+      const [p, q, r] = tri.map(project);
+      ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.lineTo(r[0], r[1]); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+    }
+  }
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const live = new Set();
+  const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
+  canvases.forEach((cv) => { io.observe(cv); draw(cv, 1200); });
+  // Each ring starts at a different point in its turn, so the three don't move in lockstep.
+  const offset = { essentials: 0, business: 1600, full: 3200 };
+  const loop = (now) => { live.forEach((cv) => draw(cv, reduce ? 1200 : now + offset[cv.dataset.plan])); if (!reduce) requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+  if (reduce) new MutationObserver(() => canvases.forEach((cv) => draw(cv, 1200))).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 })();

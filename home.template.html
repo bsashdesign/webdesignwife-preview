@@ -376,9 +376,8 @@
         <div class="tv-stage">
         <div class="tv-nook">
           <div class="vcr" aria-hidden="true">
-            <span class="vcr__slot"></span>
             <span class="vcr__window"><span class="vcr__tape" data-vcr-tape><span class="tape__label"><span class="tape__face"></span><span class="tape__text"><strong>Tangy</strong></span></span></span></span>
-            <span class="vcr__led">Play</span>
+            <span class="vcr__panel"><span class="vcr__display">▶ 0:00</span><span class="vcr__led">Play</span></span>
           </div>
           <div class="tv">
             <div class="tv__screen">
@@ -483,6 +482,7 @@
         <div class="plans">
           <article class="plan" id="plan-simple" data-price="99" data-setup="199">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-simple">i</button><span class="plan__tip" role="tooltip" id="rec-tip-simple">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
+            <canvas class="plan-ring" data-plan="essentials" aria-hidden="true"></canvas>
             <h3>Essentials</h3>
             <p class="plan__for">A polished one-page site</p>
             <p class="plan__price"><span>$99</span>/month</p>
@@ -502,6 +502,7 @@
           <article class="plan plan--best" id="plan-business" data-price="149" data-setup="399">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-business">i</button><span class="plan__tip" role="tooltip" id="rec-tip-business">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
             <span class="plan__badge">Most popular</span>
+            <canvas class="plan-ring" data-plan="business" aria-hidden="true"></canvas>
             <h3>Business</h3>
             <p class="plan__for">A full site that gets you found</p>
             <p class="plan__price"><span>$149</span>/month</p>
@@ -521,6 +522,7 @@
 
           <article class="plan" id="plan-full" data-price="249" data-setup="599">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-full">i</button><span class="plan__tip" role="tooltip" id="rec-tip-full">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
+            <canvas class="plan-ring" data-plan="full" aria-hidden="true"></canvas>
             <h3>Full Suite</h3>
             <p class="plan__for">Everything, plus growth tools</p>
             <p class="plan__price"><span>$249</span>/month</p>
