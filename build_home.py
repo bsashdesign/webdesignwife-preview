@@ -102,12 +102,14 @@ def founding(html):
     html = re.sub(r"<!-- FOUNDING:START -->(.*?)<!-- FOUNDING:END -->", (lambda m: m.group(1)) if on else "", html, flags=re.S)
     left = FOUNDING["left"]
     banner = ('<div class="founding">'
-              '<p class="founding__tag">The Founding 5</p>'
+              '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-simple"></i><span>Founding</span><b>5</b></div>'
+              '<div class="founding__body">'
+              '<h2 class="founding__title">The Founding 5</h2>'
               '<p class="founding__text">The managed service is new, so I\'m opening it to five businesses first. '
               'Your setup is <strong>$1</strong> instead of $199 to $599, and your plan is the normal price. '
               'When the five spots are gone, so is the offer.</p>'
               + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
-              + "</div>") if on else ""
+              + "</div></div>") if on else ""
     return (html.replace("{{FOUNDING_BANNER}}", banner)
                 .replace("{{HERO_LABEL}}", "Now open: five founding spots · Brooklyn, NY" if on else "Based in Brooklyn, New York"))
 

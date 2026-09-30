@@ -220,7 +220,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       // Founding 5: the setup fee shows struck through, with the $1 founding setup next to it.
       const F = window.WDW_FOUNDING;
       const setupLine = F
-        ? `+ <s>${money(setup)}</s> <strong>${money(F.setup)} setup</strong> <span class="plan__founding">Founding 5</span>`
+        ? `+ <s>${money(setup)}</s> <strong>${money(F.setup)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-simple" aria-hidden="true"></i>Founder</span>`
         : `+ ${money(setup)} one-time setup`;
       terms.innerHTML = mode === "yearly"
         ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>${setupLine}`
@@ -1254,3 +1254,20 @@ document.querySelectorAll(".ba").forEach((ba) => {
   const range = ba.querySelector(".ba__range");
   if (range) range.addEventListener("input", () => ba.style.setProperty("--pos", range.value + "%"));
 });
+
+// Section rhythm: when two neighbouring bands end up with the same background (it depends on the mood),
+// the second one drops its top padding so the gap between them is one band, not two. See styles.css.
+(function () {
+  const look = (el) => { const c = getComputedStyle(el); return [c.backgroundColor, c.backgroundImage, c.borderTopWidth].join("|"); };
+  const join = () => document.querySelectorAll("main > section").forEach((s) => {
+    const prev = s.previousElementSibling;
+    // Only join after a full band: a thin strip (like the "who we build for" row) keeps the next band's full padding.
+    const full = prev && parseFloat(getComputedStyle(prev).paddingBottom) >= 40;
+    const same = full && prev.tagName === "SECTION" && getComputedStyle(s).borderTopWidth === "0px" && look(prev).split("|").slice(0, 2).join() === look(s).split("|").slice(0, 2).join();
+    s.classList.toggle("is-joined", !!same);
+  });
+  join();
+  addEventListener("load", join);
+  // Moods switch in place; re-check once their colors have settled.
+  new MutationObserver(() => setTimeout(join, 450)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+})();

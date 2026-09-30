@@ -122,7 +122,6 @@
 
 .theme-blocks .plan__rec { border: 2px solid var(--ink); }
 .theme-blocks .extras__grid li { border: 2px solid var(--ink); }
-.theme-blocks .section + .section { padding-top: 104px; }
 @media (max-width: 640px) { .theme-blocks .section + .section { padding-top: 56px; } }
 /* Extras rows take their colors from their badges */
 

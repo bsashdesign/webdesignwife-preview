@@ -195,7 +195,6 @@
 .theme-subway #about { background: #eef6f1; }
 .theme-subway #faq { background: #fff; }
 .theme-subway #blog { background: #f2f2ef; }
-.theme-subway .section + .section { padding-top: 104px; }
 @media (max-width: 640px) { .theme-subway .section + .section { padding-top: 56px; } }
 .theme-subway .extras, .theme-subway .features li, .theme-subway .cc { background: #fff; }
 /* Extras rows take their colors from their line dots */
