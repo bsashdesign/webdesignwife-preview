@@ -2363,13 +2363,13 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 #compare .compare-cards .cc h3 { font-size: 1.25rem; margin-bottom: 12px; }
 #compare .compare-cards .cc ul { display: grid; gap: 6px; font-size: 1rem; }
 #compare .compare-cards .cc--us { box-shadow: inset 0 5px 0 var(--us-edge, var(--violet)); }
-@media (max-width: 860px) {
+@media (max-width: 640px) {
   #compare .compare-cards { grid-template-columns: minmax(0, 1fr); margin-top: 28px; }
   #compare .compare-cards .cc + .cc { border-left: 0; border-top: 1px solid var(--line); }
   #compare .compare-cards .cc--us { box-shadow: inset 5px 0 0 var(--us-edge, var(--violet)); }
 }
 .theme-blocks #compare .compare-cards .cc + .cc { border-left: 2px solid var(--ink); }
-@media (max-width: 860px) { .theme-blocks #compare .compare-cards .cc + .cc { border-left: 0; border-top: 2px solid var(--ink); } }
+@media (max-width: 640px) { .theme-blocks #compare .compare-cards .cc + .cc { border-left: 0; border-top: 2px solid var(--ink); } }
 
 /* ================================================================
    Try on a look: four live styles, then your site
@@ -2723,17 +2723,17 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-blocks #compare .compare-cards .cc { border: 0; box-shadow: none; border-radius: 0; }
 .theme-blocks #compare .compare-cards .cc + .cc { border-left: 2px solid var(--ink); }
 .theme-blocks #compare .compare-cards { overflow: hidden; }
-@media (max-width: 860px) { .theme-blocks #compare .compare-cards .cc + .cc { border-left: 0; border-top: 2px solid var(--ink); } }
+@media (max-width: 640px) { .theme-blocks #compare .compare-cards .cc + .cc { border-left: 0; border-top: 2px solid var(--ink); } }
 /* Calm: an outline around the whole card instead of a top line */
 .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 2px var(--violet); border-radius: 0 var(--r-lg) var(--r-lg) 0; }
-@media (max-width: 860px) { .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 2px var(--violet); border-radius: 0 0 var(--r-lg) var(--r-lg); } }
+@media (max-width: 640px) { .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 2px var(--violet); border-radius: 0 0 var(--r-lg) var(--r-lg); } }
 /* Transit: black with a yellow line on top, like a subway sign */
 .theme-subway #compare .compare-cards .cc--us { background: #111; box-shadow: inset 0 6px 0 var(--yellow); }
 .theme-subway #compare .cc--us h3, .theme-subway #compare .cc--us ul { color: #fff; }
 .theme-subway #compare .cc--us .cc__ico { box-shadow: 0 0 0 2px #fff; }
-@media (max-width: 860px) { .theme-subway #compare .compare-cards .cc--us { box-shadow: inset 6px 0 0 var(--yellow); } }
+@media (max-width: 640px) { .theme-subway #compare .compare-cards .cc--us { box-shadow: inset 6px 0 0 var(--yellow); } }
 .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); }
-@media (max-width: 860px) { .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); } }
+@media (max-width: 640px) { .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); } }
 /* Sophisticated: the Web Design Wife comparison card in golden brown */
 .theme-wedding #compare .compare-cards .cc--us { background: var(--gold-ink); }
 .theme-wedding #compare .cc--us .cc__ico--us { box-shadow: 0 0 0 1px #d9c49a; }
@@ -3152,3 +3152,6 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-wedding .work-founding__crown { background: var(--ink); color: #e9d9b4; border-radius: 2px; }
 .work-feature__live { display: flex; justify-content: flex-end; max-width: none; margin: 12px 0 0; font-size: .92rem; font-weight: 600; }
 .work-feature__shot:hover { transform: none; }
+
+/* Three ways to get a website: three columns down to 640px; tighter cards between 640 and 860 */
+@media (min-width: 641px) and (max-width: 860px) { #compare .compare-cards .cc { padding: 22px 18px 24px; } #compare .compare-cards .cc ul { font-size: .92rem; } }
