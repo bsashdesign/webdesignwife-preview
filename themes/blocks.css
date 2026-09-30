@@ -196,3 +196,7 @@
 .theme-blocks #about { background: #eaf3d2; }
 .theme-blocks #promises { background: #fff; }
 .theme-blocks #work a:not(.btn), .theme-blocks #about a:not(.btn) { color: var(--ink); }
+
+/* Tangy's hard shadow on the Maps before/after card and the photo frame */
+.theme-blocks .rank, .theme-blocks .profile { border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .about__photo { box-shadow: var(--shadow); }
