@@ -226,3 +226,4 @@
 .theme-blocks #compare .cc__ico { background: #fff; }
 .theme-blocks .for__row li, .theme-blocks .for__label { color: var(--ink); }
 .theme-blocks #compare .compare-cards .cc.cc--us { background: var(--lime); border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .for { border-bottom: var(--edge); }
