@@ -4186,3 +4186,7 @@ span.plan-ring:empty { display: none; }
 .plans .plan .plan-gem.is-paused { animation: gem-float 1.4s ease-in-out infinite alternate; }
 @keyframes gem-float { from { transform: translateY(-2px); } to { transform: translateY(-8px); } }
 @media (prefers-reduced-motion: reduce) { .plans .plan .plan-gem.is-paused { animation: none; } }
+/* pressing a plan gem pushes it down; letting go it rises smoothly back */
+.plans .plan .plan-gem.is-paused { animation: none; }
+.plans .plan .plan-gem { transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+.plans .plan .plan-ring-tile .plan-gem.is-held { transform: translateY(3px); transition-duration: .12s; }

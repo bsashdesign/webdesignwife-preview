@@ -1674,7 +1674,7 @@ document.addEventListener("click", (e) => {
   const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
   gems.forEach((cv) => { io.observe(cv); draw(cv, 1500); });
   // Hovering a gem spins it faster; letting go eases it back down so it lands in step with the others.
-  // Holding a gem slows it to a gentle turn and it floats, and a click does the same for a second; then it
+  // Pressing a gem pushes it down, and holding it slows it to a gentle turn; let go and it rises back up and
   // catches back up with the others.
   // Each gem keeps an extra angle on top of the shared one: it grows while hovered, shrinks to hold the gem
   // still while paused, and afterwards glides to the nearest whole turn ahead, so the gems line up again.
@@ -1683,16 +1683,15 @@ document.addEventListener("click", (e) => {
   gems.forEach((cv) => {
     const hit = cv.closest(".plan-ring-tile") || cv;
     hit.addEventListener("pointerenter", () => { cv._hover = true; cv._target = null; });
-    hit.addEventListener("pointerleave", () => { cv._hover = false; if (cv._held) { cv._held = false; cv._pausedUntil = performance.now() + 1000; } aimAhead(cv); });
-    hit.addEventListener("pointerdown", () => { cv._held = true; });
-    const release = () => { if (!cv._held) return; cv._held = false; cv._pausedUntil = performance.now() + 1000; };
+    hit.addEventListener("pointerleave", () => { cv._hover = false; cv._held = false; cv.classList.remove("is-held"); aimAhead(cv); });
+    hit.addEventListener("pointerdown", () => { cv._held = true; cv.classList.add("is-held"); });
+    const release = () => { cv._held = false; cv.classList.remove("is-held"); };
     hit.addEventListener("pointerup", release); hit.addEventListener("pointercancel", release);
   });
   const step = (cv, dt, now) => {
     let x = cv._extra || 0, v = cv._vel || 0;
-    const paused = cv._held || now < (cv._pausedUntil || 0);
-    if (paused !== !!cv._bob) { cv._bob = paused; cv.classList.toggle("is-paused", paused); } // it floats while it's still
-    // paused: it keeps turning, slowly (a quarter of its normal speed), easing down into it
+    const paused = cv._held;
+    // held: it keeps turning, slowly (a quarter of its normal speed), easing down into it
     if (paused) { v += (-.75 * BASE - v) * Math.min(1, dt / 200); cv._wasPaused = true; }
     else {
       if (cv._wasPaused) { cv._wasPaused = false; v = 0; if (!cv._hover) aimAhead(cv); }
