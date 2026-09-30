@@ -2985,8 +2985,9 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 
 /* Visuals */
 .fx { margin: 0; }
-.fx-phone { justify-self: center; width: 280px; padding: 12px; border-radius: 38px; background: var(--ink); box-shadow: 0 40px 70px -40px rgba(0,0,0,.5); }
-.fx-phone__screen { display: grid; gap: 12px; padding: 16px 14px 20px; border-radius: 28px; background: #fff; min-height: 460px; align-content: start; }
+/* The phone reuses the homepage .phone frame (each mood styles it); here it sits in the flow. */
+.features-page .phone.fx-phone { position: relative; inset: auto; justify-self: center; width: 280px; height: auto; }
+.fx-phone__screen { display: grid; gap: 12px; padding: 10px 14px 22px; min-height: 420px; align-content: start; }
 .fx-phone__bar { display: flex; align-items: center; gap: 8px; font-size: .85rem; } .fx-phone__bar i { width: 22px; height: 22px; border-radius: 6px; background: var(--accent-ink, var(--violet)); }
 .fx-phone__hero { display: grid; gap: 6px; padding: 18px 14px; border-radius: 16px; background: var(--tint); }
 .fx-phone__hero strong { font: 800 1.25rem/1.15 var(--display); }
@@ -3034,8 +3035,6 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .fx-stats__row { display: flex; justify-content: space-between; margin: 0; padding: 6px 0; border-top: 1px solid var(--line); font-size: .88rem; }
 /* visuals per mood */
 .theme-blocks :is(.fx-chat, .fx-bot, .fx-gbp, .fx-serp, .fx-cal, .fx-stats) { border: var(--edge); box-shadow: var(--shadow); }
-.theme-blocks .fx-phone { box-shadow: 8px 8px 0 var(--lime), 8px 8px 0 2px var(--ink); }
-.theme-blocks .fx-phone__hero { background: var(--sun); } .theme-blocks .fx-phone__btns span:first-child { background: var(--orange, #ff6a1a); color: var(--ink); }
 .theme-blocks .fx-chat__msg--them { background: var(--sky); } .theme-blocks .fx-list li { background: #fff; border: 2px solid var(--ink); border-left-width: 6px; }
 .theme-blocks .fx-cal li { background: #fff; border: 1.5px solid var(--ink); } .theme-blocks .fx-stats__bars i { background: var(--cobalt); opacity: 1; }
 .theme-subway .fx-phone__btns span:first-child, .theme-subway .fx-stats__bars i { background: var(--blue); }
@@ -3064,7 +3063,8 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-blocks .fsec + .fsec { border-top: 2px solid var(--ink); }
 .theme-blocks #google .fx-list li, .theme-blocks .fsec .lede-note { background: #fff; }
 .theme-blocks #google .lede-note { background: var(--sun); }
-.theme-blocks .ftabs { background: var(--lime); backdrop-filter: none; border-bottom: 2px solid var(--ink); }
+/* Its top border tucks under the header's bottom border once it sticks, so the line never doubles. */
+.theme-blocks .ftabs { top: calc(var(--nav-h, 69px) - 2px); background: var(--lime); backdrop-filter: none; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
 .theme-blocks .ftabs__inner { gap: 6px; padding-top: 8px; padding-bottom: 8px; }
 .theme-blocks .ftabs a, .theme-blocks .ftabs a[aria-current] { padding: 7px 14px; border: 0; border-radius: 999px; color: var(--ink); }
 .theme-blocks .ftabs a:hover { background: rgba(255,255,255,.6); }
