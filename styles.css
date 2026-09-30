@@ -2698,3 +2698,12 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-wedding .callout--info::before { background: var(--gold-ink); }
 /* Highlighted plan feature: just bold, like "Up to 10 pages" (no box) */
 .plan__star, .theme-wedding .plan__star, .theme-blocks .plan__star, .theme-subway .plan__star { margin: 0; padding: 0; background: none; box-shadow: none; border-radius: 0; }
+/* Blog index: must-read guides on their own tinted band, then all articles */
+.must-reads { padding: 56px 0 64px; background: var(--tint); }
+.theme-subway .must-reads { background: #f2f2ef; }
+.theme-blocks .must-reads { background: var(--sun); border-top: var(--edge); border-bottom: var(--edge); }
+.theme-wedding .must-reads { background: var(--tint); }
+.must-reads__h, .blog-list__h { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; }
+.blog-list { padding-top: 56px; }
+.blog-list__h { margin-bottom: 18px; }
+.blog-hero { padding-bottom: 48px; }

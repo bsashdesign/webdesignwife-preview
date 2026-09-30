@@ -920,7 +920,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   const cards = [...document.querySelectorAll(".posts--index > .post-card")];
   const search = document.querySelector("[data-blog-search]");
   const empty = document.querySelector(".blog-search__empty");
-  const must = document.querySelector(".must-reads");
   let filter = "all";
   const text = (c) => c.textContent.toLowerCase().replace(/\s+/g, " ");
   const apply = () => {
@@ -931,7 +930,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       c.hidden = !ok; if (ok) shown++;
     });
     if (empty) empty.hidden = shown > 0;
-    if (must) must.hidden = words.length > 0 || filter !== "all";
+
   };
   bar.addEventListener("click", (e) => {
     const b = e.target.closest(".filter"); if (!b) return;

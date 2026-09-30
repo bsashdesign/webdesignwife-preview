@@ -427,13 +427,14 @@ index += """    <section class="blog-hero">
     </section>
     <section class="must-reads">
       <div class="wrap">
-        <div class="carousel-head"><h2 class="must-reads__h">Start here: must reads</h2><div data-nav-slot></div></div>
+        <div class="carousel-head"><h2 class="must-reads__h">Must-read guides</h2><div data-nav-slot></div></div>
         <div class="posts must-reads__list">
 """ + "".join(card(next(x for x in ALL if x["slug"] == slug), n) for n, slug in enumerate(["diy-website-guide", "local-business-website-checklist", "google-maps-profile", "business-photos-guide", "get-more-google-reviews"])) + """        </div>
       </div>
     </section>
     <section class="blog-list">
       <div class="wrap">
+        <h2 class="blog-list__h">All articles</h2>
         <div class="blog-tools">
         <div class="filters" role="toolbar" aria-label="Filter articles">
           <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(len(ALL)) + """</span></button>
