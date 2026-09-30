@@ -3793,3 +3793,5 @@ span.plan-ring:empty { display: none; }
 .theme-subway .level--business .plan-ring--inline { color: var(--blue); }
 .theme-subway .level--full .plan-ring--inline { color: var(--red); }
 .theme-wedding .level__tag .plan-ring--inline { color: var(--gold-ink); }
+/* the floating button stays flat (just a soft float shadow); only Tangy keeps its hard 3D shadow */
+#mood .mood__btn .moodicon:not(.moodicon--tangy) { margin-bottom: 0; box-shadow: 0 8px 18px -10px rgba(0,0,0,.45); }
