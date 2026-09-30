@@ -4245,3 +4245,14 @@ span.plan-ring:empty { display: none; }
 .theme-subway .ftabs a:nth-child(7n+5) { --c: var(--blue); }
 .theme-subway .ftabs a:nth-child(7n+6) { --c: var(--purple); }
 .theme-subway .ftabs a:nth-child(7n+7) { --c: var(--gray); }
+
+/* Plan names take their gem's colour: in Tangy as a marker highlight, in After Dark as a tinted name */
+.theme-blocks :is(.level--essentials .level__name, .plan:has([data-plan="essentials"]) h3) { --hi: var(--lime); }
+.theme-blocks :is(.level--business .level__name, .plan:has([data-plan="business"]) h3) { --hi: var(--sky); }
+.theme-blocks :is(.level--full .level__name, .plan:has([data-plan="full"]) h3) { --hi: var(--rose); }
+.theme-blocks :is(.level__name, .plans .plan h3) { display: inline; background: linear-gradient(transparent 55%, var(--hi) 55% 95%, transparent 95%); padding: 0 2px; }
+.theme-subway.theme-dark :is(.level--essentials .level__name, .plan:has([data-plan="essentials"]) h3) { color: #3fd07a; }
+.theme-subway.theme-dark :is(.level--business .level__name, .plan:has([data-plan="business"]) h3) { color: #6ea8ff; }
+.theme-subway.theme-dark :is(.level--full .level__name, .plan:has([data-plan="full"]) h3) { color: #d27be0; }
+/* After Dark: Full Suite's gem is purple on Features too, like on Pricing */
+.theme-subway .level--full .plan-ring--inline { color: var(--purple); }
