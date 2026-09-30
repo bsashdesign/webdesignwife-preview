@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790753468">
-  <link rel="stylesheet" href="themes/subway.css?v=1790753468">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790753468">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790753468">
+  <link rel="stylesheet" href="styles.css?v=1790753697">
+  <link rel="stylesheet" href="themes/subway.css?v=1790753697">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790753697">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790753697">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
   <script type="application/ld+json">
 {
@@ -384,9 +384,39 @@
           <div class="tv">
             <div class="tv__screen">
               <div class="tv__show" data-tv-show="tangy" aria-hidden="true">
-                <span class="tv__face"></span>
-                <span class="tv__aa">Aa</span>
-                <span class="tv__bars"><i></i><i></i><i></i></span>
+                <div class="tv-ch tv-ch--tangy">
+                  <i class="tch-burst"></i><i class="tch-shadow"></i><span class="tch-face"></span>
+                  <b class="tch-word">Aa!</b><span class="tch-sticker">Wow!</span>
+                  <i class="tch-bit" style="--x:-30cqw;--y:-26cqh;--r:200deg;--c:#ff4fa6;--d:0s"></i>
+                  <i class="tch-bit tch-bit--sq" style="--x:28cqw;--y:-30cqh;--r:-160deg;--c:#3355ff;--d:.3s"></i>
+                  <i class="tch-bit tch-bit--tri" style="--x:-38cqw;--y:4cqh;--r:260deg;--c:#ff6a1a;--d:.6s"></i>
+                  <i class="tch-bit" style="--x:36cqw;--y:6cqh;--r:-220deg;--c:#fff;--d:.9s"></i>
+                  <i class="tch-bit tch-bit--sq" style="--x:-12cqw;--y:-38cqh;--r:180deg;--c:#ffd000;--d:1.2s"></i>
+                  <i class="tch-bit tch-bit--tri" style="--x:14cqw;--y:-36cqh;--r:-240deg;--c:#ff4fa6;--d:1.5s"></i>
+                </div>
+                <div class="tv-ch tv-ch--calm">
+                  <i class="cch-blob" style="--c:#cbbcff;left:-10cqw;top:-20cqh;--dx:14cqw;--dy:10cqh"></i>
+                  <i class="cch-blob" style="--c:#ffd6ec;right:-12cqw;top:10cqh;--dx:-12cqw;--dy:-8cqh;animation-delay:-5s"></i>
+                  <i class="cch-blob" style="--c:#c8ecff;left:20cqw;bottom:-30cqh;--dx:10cqw;--dy:-12cqh;animation-delay:-9s"></i>
+                  <i class="cch-ring"></i><i class="cch-ring cch-ring--2"></i><span class="cch-face"></span>
+                  <span class="cch-say"><span>Breathe in</span><span>Breathe out</span></span>
+                  <i class="cch-twinkle" style="left:22cqw;top:18cqh"></i><i class="cch-twinkle" style="right:20cqw;top:26cqh;animation-delay:-1.3s"></i><i class="cch-twinkle" style="left:30cqw;top:54cqh;animation-delay:-2.4s"></i>
+                </div>
+                <div class="tv-ch tv-ch--transit">
+                  <p class="xch-board"><span>Next stop</span><b>Your site</b><em>2 min</em></p>
+                  <span class="xch-face"></span>
+                  <span class="xch-bullets"><i>W</i><i>D</i><i>W</i></span>
+                  <i class="xch-rail"></i>
+                  <span class="xch-train"><i class="xch-car"></i><i class="xch-car"></i><i class="xch-car"></i></span>
+                </div>
+                <div class="tv-ch tv-ch--sophisticated">
+                  <svg class="sch-frame" viewBox="0 0 100 75" preserveAspectRatio="none"><rect x="5" y="4" width="90" height="59" pathLength="1"/><rect x="7" y="6" width="86" height="55" pathLength="1"/></svg>
+                  <p class="sch-invite">You're cordially invited</p>
+                  <span class="sch-face"></span>
+                  <p class="sch-line">to a website, beautifully made</p>
+                  <i class="sch-petal" style="left:12cqw;--dur:8s;animation-delay:-1s"></i><i class="sch-petal" style="left:30cqw;--dur:10s;animation-delay:-6s"></i><i class="sch-petal" style="left:58cqw;--dur:9s;animation-delay:-3s"></i><i class="sch-petal" style="left:76cqw;--dur:11s;animation-delay:-8s"></i><i class="sch-petal" style="left:90cqw;--dur:8.5s;animation-delay:-4.5s"></i>
+                  <i class="sch-glint"></i>
+                </div>
               </div>
               <p class="tv__caption" aria-live="polite">Now playing: <b data-tv-name>Tangy</b></p>
             </div>
@@ -866,6 +896,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790753468"></script>
+  <script src="script.js?v=1790753697"></script>
 </body>
 </html>

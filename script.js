@@ -1421,7 +1421,7 @@ function wdwCalInline(selector, calLink, config) {
     return tris;
   }
   const MODELS = {
-    essentials: () => band({ w: 0.2, t: 0.09 }),
+    essentials: () => band({ w: 0.16, t: 0.065 }),
     business: () => band({ w: 0.28, t: 0.13, rise: 0.16, sharp: 6 }).concat(pearl(0.24, 1.26)),
     full: () => band({ w: 0.36, t: 0.17 }).concat(diamond(0.6, 1.02)),
   };
