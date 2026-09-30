@@ -3156,3 +3156,9 @@ main > section.is-joined.is-joined { padding-top: 0; }
 
 /* Three ways to get a website: three columns down to 640px; tighter cards between 640 and 860 */
 @media (min-width: 641px) and (max-width: 860px) { #compare .compare-cards .cc { padding: 22px 18px 24px; } #compare .compare-cards .cc ul { font-size: .92rem; } }
+/* Links with no resting underline (footer, menu extras, top nav): on hover a plain underline appears under the words.
+   No redraw animation, and it never stretches across a full-width link. */
+.footer__col a, .drawer__more a, .footer__bottom a, .nav__links a:not([aria-current]) { background: none !important; padding-bottom: 0; }
+.footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover {
+  animation: none !important; text-decoration: underline !important; text-decoration-thickness: 1.5px !important; text-underline-offset: 4px;
+}
