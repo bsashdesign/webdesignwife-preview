@@ -4080,3 +4080,20 @@ span.plan-ring:empty { display: none; }
 /* Tangy: all three plan cards have the hard 3D shadow again (the most popular one a little deeper) */
 .theme-blocks .plans .plan.plan { box-shadow: 6px 6px 0 var(--ink); }
 .theme-blocks .plans .plan.plan--best { box-shadow: 8px 8px 0 var(--ink); }
+
+/* Tangy: the "Built for" strip is white */
+.theme-blocks .for { background: #fff; border-color: var(--ink); }
+.theme-blocks .for__row li { color: var(--ink); }
+.theme-blocks .for__label { color: var(--ink); }
+/* Tangy: the Founding 5 note in the Four Years section is a white card */
+.theme-blocks .work-founding { background: #fff; }
+/* phones: the New Age Pharmacy picture comes first, above "Client since 2022" */
+@media (max-width: 1100px) { .work-feature > :not(.work-feature__copy) { order: -1; } }
+/* phones: the TV keeps its knobs and grille down the side */
+@media (max-width: 900px) {
+  .tv, .tv.tv { grid-template-columns: minmax(0, 1fr) 34px; gap: 8px; }
+  .tv__side, .tv .tv__side { display: grid; gap: 8px; padding-top: 4px; }
+  .tv__knob { width: 22px; height: 22px; } .tv__knob--sm { width: 17px; height: 17px; }
+  .tv__knob::after { top: 3px; height: 7px; width: 2px; margin-left: -1px; }
+  .tv__grille { width: 24px; height: 48px; border-radius: 6px; }
+}

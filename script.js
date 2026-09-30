@@ -909,20 +909,22 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   // Moods change the height of sections, so the page would jump. Keep what you were looking at in the same place:
   // the button you pressed, or (for the floating switcher) whatever is in the middle of the screen.
   function keepInView(anchor, change) {
-    // Picked from the floating switcher: just change, and leave the scroll alone.
-    if (anchor && anchor.closest(".mood")) { change(); return; }
+    // Keep what you were looking at in the same place: the key you pressed, or (for the pop-up) whatever
+    // is in the middle of the screen. One correction now and one once the new fonts arrive, never a hold that
+    // fights your scrolling, and it stops the moment you scroll or touch the page yourself.
     const inFlow = anchor && anchor.isConnected && !anchor.closest(".mood");
     const a = inFlow ? anchor : document.elementFromPoint(innerWidth / 2, innerHeight / 2);
     const top = a ? a.getBoundingClientRect().top : 0;
+    root.style.overflowAnchor = "none"; // the browser's own scroll anchoring would fight this and bounce the page
     change();
-    if (!a) return;
-    const settle = () => { const d = a.getBoundingClientRect().top - top; if (Math.abs(d) > 1) window.scrollBy(0, d); };
-    // keep it pinned for a moment, while the new mood's fonts arrive and sizes settle
-    const until = performance.now() + 1200;
-    const hold = () => { settle(); if (performance.now() < until) requestAnimationFrame(hold); };
-    hold();
-    [250, 500, 900, 1400].forEach((ms) => setTimeout(settle, ms));
-    if (document.fonts) { document.fonts.ready.then(settle); document.fonts.addEventListener("loadingdone", settle, { once: true }); }
+    if (!a) { root.style.overflowAnchor = ""; return; }
+    let user = false;
+    const stop = () => { user = true; };
+    ["wheel", "touchstart", "keydown"].forEach((ev) => addEventListener(ev, stop, { once: true, passive: true }));
+    const settle = () => { if (user) return; const d = a.getBoundingClientRect().top - top; if (Math.abs(d) > 1) window.scrollBy(0, d); };
+    settle();
+    if (document.fonts) document.fonts.ready.then(settle);
+    setTimeout(() => { settle(); root.style.overflowAnchor = ""; ["wheel", "touchstart", "keydown"].forEach((ev) => removeEventListener(ev, stop)); }, 400);
   }
   function switchTo(key, anchor) { if (key !== root.dataset.mood) keepInView(anchor, () => apply(key, true)); }
   // The "Now playing" TV section switches moods through this too.
@@ -1384,13 +1386,11 @@ function wdwCalInline(selector, calLink, config) {
       if (window.wdwTvOn) window.wdwTvOn();
     }, 300);
   };
-  // Buttons act the moment they're pressed down (like a real button), not when you let go.
-  // Keyboard presses arrive as a click with no pointer, so those still work.
   const press = (k) => {
     play(k.dataset.tvKey, true); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
   };
-  sec.addEventListener("pointerdown", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.button === 0) press(k); });
-  sec.addEventListener("click", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.detail === 0) press(k); });
+  // A key looks pressed while it's held; the channel changes when it's let go (a click, which keyboards send too).
+  sec.addEventListener("click", (e) => { const k = e.target.closest("[data-tv-key]"); if (k) press(k); });
   // A mood picked anywhere else presses its button here too.
   let lastMood = root.dataset.mood;
   new MutationObserver(() => { if (root.dataset.mood === lastMood) return; lastMood = root.dataset.mood; play(lastMood); })
@@ -1644,7 +1644,13 @@ document.addEventListener("click", (e) => {
     // to the right in ink, so the right side reads as a thick edge
     const T = small ? 2 : Math.max(4, W * .08), thin = T * .42;
     ctx.save(); ctx.lineJoin = "miter"; ctx.miterLimit = 8; ctx.strokeStyle = ctx.fillStyle = "#111"; ctx.lineWidth = 2 * thin;
-    ctx.save(); ctx.translate(T * .22, T * 1.0); path(hull); ctx.fill(); ctx.stroke(); ctx.restore();
+    // the heavy part is the stone swept a little downward: one convex shape, so its sides join cleanly
+      const dx = T * .22, dy = T * 1.0, both = hull.concat(hull.map(([x, y]) => [x + dx, y + dy])).sort((p1, p2) => p1[0] - p2[0] || p1[1] - p2[1]);
+      const lo = [], up = [];
+      for (const q of both) { while (lo.length > 1 && cross(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+      for (let i = both.length - 1; i >= 0; i--) { const q = both[i]; while (up.length > 1 && cross(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
+      const swept = lo.slice(0, -1).concat(up.slice(0, -1));
+      path(swept); ctx.fill(); ctx.stroke();
     path(hull); ctx.stroke(); ctx.restore();
       ctx.strokeStyle = "#111"; ctx.lineWidth = small ? .8 : Math.max(1.2, W / 60);
     } else if (style === "transit") {
