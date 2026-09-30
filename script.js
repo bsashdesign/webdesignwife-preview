@@ -1674,7 +1674,8 @@ document.addEventListener("click", (e) => {
   const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
   gems.forEach((cv) => { io.observe(cv); draw(cv, 1500); });
   // Hovering a gem spins it faster; letting go eases it back down so it lands in step with the others.
-  // Holding a gem freezes it, and a click freezes it for a second; then it catches back up with the others.
+  // Holding a gem slows it to a gentle turn and it floats, and a click does the same for a second; then it
+  // catches back up with the others.
   // Each gem keeps an extra angle on top of the shared one: it grows while hovered, shrinks to hold the gem
   // still while paused, and afterwards glides to the nearest whole turn ahead, so the gems line up again.
   const BASE = 2 * Math.PI / TURN, BOOST = 4 * BASE, EASE = .003, TURN_R = 2 * Math.PI;
@@ -1691,7 +1692,8 @@ document.addEventListener("click", (e) => {
     let x = cv._extra || 0, v = cv._vel || 0;
     const paused = cv._held || now < (cv._pausedUntil || 0);
     if (paused !== !!cv._bob) { cv._bob = paused; cv.classList.toggle("is-paused", paused); } // it floats while it's still
-    if (paused) { v = -BASE; cv._wasPaused = true; }
+    // paused: it keeps turning, slowly (a quarter of its normal speed), easing down into it
+    if (paused) { v += (-.75 * BASE - v) * Math.min(1, dt / 200); cv._wasPaused = true; }
     else {
       if (cv._wasPaused) { cv._wasPaused = false; v = 0; if (!cv._hover) aimAhead(cv); }
       if (cv._hover) v += (BOOST - v) * Math.min(1, dt / 250);
