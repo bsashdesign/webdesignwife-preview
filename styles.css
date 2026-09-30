@@ -2662,3 +2662,5 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .blog-search__empty { text-align: left; margin: 0 0 24px; }
 @media (max-width: 760px) { .blog-tools .blog-search { flex: 1 1 100%; order: -1; } }
 .blog-hero h1 { margin-bottom: 14px; } .blog-list { padding-top: 32px; }
+/* Blog cards everywhere: titles and descriptions stop after three lines */
+.post-card h3, .post-card__body p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; }
