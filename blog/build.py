@@ -521,7 +521,8 @@ for a in ALL:
 import json
 (HERE / "posts.json").write_text(json.dumps([
     {"slug": a["slug"], "title": a["title"], "summary": a["summary"], "group": a["group"],
-     "kicker": a["kicker"], "minutes": a["minutes"], "cover": cover(a)}
-    for a in ALL
+     "kicker": a["kicker"], "minutes": a["minutes"], "cover": cover(a),
+     "tone": TONES[n % len(TONES)], "bg": COVERS[n % len(COVERS)][0], "bgDark": COVERS[n % len(COVERS)][1]}
+    for n, a in enumerate(ALL)
 ], ensure_ascii=False))
 print("built", len(ALL), "articles")

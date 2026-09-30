@@ -2905,3 +2905,26 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-wedding .paysample__plans button[aria-pressed="true"] { background: var(--gold-ink); }
 .theme-refined .psteps li::before, .theme-refined .paysample__plans button[aria-pressed="true"] { background: var(--violet); }
 @media (max-width: 640px) { .guarantee--big { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } }
+
+/* Blog card covers per mood. Every card carries a data-tone (blue, green, yellow, red, purple, teal). */
+/* Tangy: the loud palette, with the chunky ink line under the cover */
+.theme-blocks .post-card--article { --tangy: var(--sky); }
+.theme-blocks .post-card--article[data-tone="green"] { --tangy: var(--mint); }
+.theme-blocks .post-card--article[data-tone="yellow"] { --tangy: var(--sun); }
+.theme-blocks .post-card--article[data-tone="red"] { --tangy: var(--rose); }
+.theme-blocks .post-card--article[data-tone="purple"] { --tangy: var(--lime); }
+.theme-blocks .post-card--article[data-tone="teal"] { --tangy: #ffb27a; }
+.theme-blocks .post-card--article .post-card__cover { background: var(--tangy); border-bottom: 2px solid var(--ink); }
+.theme-blocks .post-card--article .post-card__cover::after { display: none; }
+.theme-blocks .related__card .post-card__cover { border-bottom: 0; border-right: 2px solid var(--ink); }
+@media (max-width: 640px) { .theme-blocks .related__card .post-card__cover { border-right: 2px solid var(--ink); } }
+/* Transit: no top bar; the whole cover is the line color, with a white icon (black on yellow) */
+.theme-subway .post-card.post-card--article { border-top: 0; }
+.theme-subway .post-card--article .post-card__cover { background: var(--c, var(--blue)); }
+.theme-subway .post-card--article .post-card__cover::after { display: none; }
+.theme-subway .post-card--article .post-card__cover .pi { color: #fff; }
+.theme-subway .post-card--article[data-tone="yellow"] .post-card__cover .pi { color: #111; }
+.theme-subway .post-card--article .post-card__cover--art { background: var(--c, var(--blue)); }
+.theme-subway .post-card--article .post-card__cover .vs-x { color: #fff; }
+.theme-subway .post-card--article[data-tone="yellow"] .post-card__cover .vs-x { color: #111; }
+.theme-subway .post-card--article[data-tone="teal"] { --c: var(--orange); }

@@ -977,7 +977,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       .slice(0, 3)
       .map(({ p }) => p);
     box.querySelector(".related__list").innerHTML = picks.map((p) => `
-      <a class="post-card post-card--article related__card" href="${p.slug}.html">
+      <a class="post-card post-card--article related__card" href="${p.slug}.html" data-tone="${p.tone}" style="--cover:${p.bg};--cover-dark:${p.bgDark}">
         ${p.cover}
         <span class="post-card__body">
           <span class="post-card__kicker">${p.kicker}</span>
@@ -1195,6 +1195,9 @@ function openSheet(d) {
     }
     close();
     card.href = p.slug + ".html";
+    card.dataset.tone = p.tone;
+    card.style.setProperty("--cover", p.bg);
+    card.style.setProperty("--cover-dark", p.bgDark);
     card.setAttribute("aria-label", "Read: " + p.title);
     card.innerHTML = `${p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span><span class="ref-preview__go">Read the article →</span></span>`;
     openChip = chip;
