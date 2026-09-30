@@ -18,9 +18,9 @@ TEMPLATE = (HERE / "home.template.html").read_text()
 MOODS = [
     {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright, bouncy and a little loud.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
     {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, quiet and easy on the eyes.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
-    # After Dark: the subway-sign look on a dark page (it replaced the original light Transit). Its key stays
+    # Midnight: the subway-sign look on a dark page (it replaced the original light Transit). Its key stays
     # "transit" so old links and saved choices still work; "transitdark" is kept as an alias below.
-    {"key": "transit", "cls": "theme-subway theme-dark", "label": "After Dark", "note": "Bold and direct, inspired by New York subway signs, after dark.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
+    {"key": "transit", "cls": "theme-subway theme-dark", "label": "Midnight", "note": "Bold and direct, inspired by New York subway signs, at night.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
     {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
 DEFAULT = "tangy"
