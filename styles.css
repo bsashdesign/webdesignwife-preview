@@ -3219,3 +3219,5 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-blocks .finder-dialog .opt input:checked + span { background: var(--lime); color: var(--ink); border-color: var(--ink); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
 .theme-blocks .finder-dialog .opt input:checked + span small { color: var(--ink); opacity: .75; }
 .theme-blocks .finder-dialog .opt input:focus-visible + span { outline: 2px dashed var(--ink); outline-offset: 4px; }
+.work-feature__live a, .theme-subway .work-feature__live a, .theme-refined .work-feature__live a, .theme-blocks .work-feature__live a, .theme-wedding .work-feature__live a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+.work-feature__live .i-arrow { width: 14px; height: 14px; margin: 0; vertical-align: 0; flex: none; }

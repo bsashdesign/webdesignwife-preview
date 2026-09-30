@@ -126,7 +126,7 @@ def work_visual():
     before = HERE / "images" / "new-age-before.jpg"
     # A quiet text link under the preview; the preview itself isn't a link.
     live = ('<p class="work-feature__live"><a href="https://newagepharm.com/" target="_blank" rel="noopener">'
-            'Visit the live site ↗</a></p>')
+            'Visit the live site <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M6 4.5h5.5V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>')
     if not before.exists():
         return f'<div class="work-feature__visual"><div class="work-feature__shot">{after}</div>{live}</div>'
     return ('<div class="work-feature__visual"><figure class="ba" style="--pos:50%">'

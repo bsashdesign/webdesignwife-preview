@@ -49,4 +49,13 @@ def apply(html):
     html = re.sub(r"(<button\b[^>]*>)(.*?)(</button>)", lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
     # Anything else marked class="tc" (titles set as a link or paragraph) gets Title Case too.
     html = re.sub(r'(<(a|p|span)\b[^>]*class="(?:[^"]*\s)?tc(?:\s[^"]*)?"[^>]*>)(.*?)(</\2>)', lambda m: m.group(1) + _inner(m.group(3)) + m.group(4), html, flags=re.S)
-    return html
+    return arrows(html)
+
+
+# A text arrow ending a link or label ("… →") becomes the same drawn arrow the buttons use, so it looks right in every font.
+ARROW = ('<svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" '
+         'stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
+def arrows(html):
+    return re.sub(r"\s*→\s*</(a|span)>", lambda m: ARROW + "</" + m.group(1) + ">", html)

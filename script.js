@@ -1201,7 +1201,7 @@ function openSheet(d) {
     card.style.setProperty("--cover", p.bg);
     card.style.setProperty("--cover-dark", p.bgDark);
     card.setAttribute("aria-label", "Read: " + p.title);
-    card.innerHTML = `${base ? p.cover.replaceAll('src="../', `src="${base}../`) : p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="${base}../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span><span class="ref-preview__go">Read the article →</span></span>`;
+    card.innerHTML = `${base ? p.cover.replaceAll('src="../', `src="${base}../`) : p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="${base}../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span><span class="ref-preview__go">Read the article <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>`;
     openChip = chip;
     chip.setAttribute("aria-expanded", "true");
     place();
