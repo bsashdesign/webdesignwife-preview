@@ -116,7 +116,7 @@
 .theme-dark .footer { background: #0a0a0a; }
 .theme-subway.theme-dark .tv-sec { background: #000; }
 .theme-subway.theme-dark .tv-sec .tryon__cue, .theme-subway.theme-dark .tv-sec .tryon__cue p { color: #fccc0a; }
-.theme-subway.theme-dark #about { background: #a336b0; --ink: #fff; --ink-soft: rgba(255,255,255,.82); color: var(--ink); }
+.theme-subway.theme-dark #about { background: #00933c; --ink: #fff; --ink-soft: rgba(255,255,255,.82); color: var(--ink); }
 /* Pricing is a bright yellow band; inside it the page is light again */
 .theme-subway.theme-dark #pricing, .theme-subway.theme-dark .pricing-page #pricing {
   background: #fccc0a; color-scheme: light;
@@ -149,7 +149,7 @@
 
 /* Change the Channel is black, so its neighbours are colour bands: blue before it, green after it */
 .theme-subway.theme-dark #compare { background: #0b5cd6; --ink-soft: rgba(255,255,255,.82); }
-.theme-subway.theme-dark #how { background: #00933c; --ink-soft: rgba(255,255,255,.85); }
+.theme-subway.theme-dark #how { background: #a336b0; --ink-soft: rgba(255,255,255,.85); }
 .theme-subway.theme-dark :is(#compare, #how, #about) :is(h2, .eyebrow) { color: #fff; }
 .theme-subway.theme-dark :is(#compare, #how) .section-cta__alt, .theme-subway.theme-dark :is(#compare, #how, #about) p a:not(.btn) { color: #fff; }
 
