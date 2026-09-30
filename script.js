@@ -1642,11 +1642,12 @@ document.addEventListener("click", (e) => {
       const up = (face.n[1] + 1) / 2, alt = face.alt ? FINISH.alt : -FINISH.alt;
       let tone, lift;
       // every stone is lit from the upper left: faces brighten as they turn toward it and darken as they turn
-      // away. Full Suite is lit brighter than the others, so it still reads as the most brilliant.
+      // away. Full Suite's richer colour sets it apart.
       if (plan === "full") {
         const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
-        tone = .5 + .72 * side + alt; lift = Math.max(0, side - .4) * FINISH.lift;
-        if (face.n[1] > .99) { tone += .15; lift += .45; }
+        // the same light as Business (Full Suite's richer colour still sets it apart)
+        tone = .58 + .6 * side + alt; lift = Math.max(0, side - .45) * 1.5;
+        if (face.n[1] > .99) { tone += .2; lift += .35; }
       }
       else {
         const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
