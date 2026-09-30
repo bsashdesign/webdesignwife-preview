@@ -1621,9 +1621,8 @@ document.addEventListener("click", (e) => {
       shown.push({ face, n, p: q.map(([x, y, z]) => { const k = f / (f - z); return [W / 2 + x * k * scale, H / 2 - y * k * scale, z]; }) });
     }
     const path = (p) => { ctx.beginPath(); p.forEach((pt, i) => (i ? ctx.lineTo(pt[0], pt[1]) : ctx.moveTo(pt[0], pt[1]))); ctx.closePath(); };
-    // Full Suite: each face's tone is set by how much it faces up, so it glows evenly all the way round.
-    // Essentials and Business: the sides go from light to dark across the stone as it turns; the top face
-    // always points the same way, so its tone stays put.
+    // The sides go from light to dark across the stone as it turns; the top face always points the same way,
+    // so its tone stays put.
     // Each mood draws the stone its own way:
     //   Calm: shaded faces in the mood colour, thin darker edges
     //   Tangy: the same, with thick ink edges and a hard ink shadow offset down and right
@@ -1642,7 +1641,13 @@ document.addEventListener("click", (e) => {
     for (const { face, p, n } of shown) {
       const up = (face.n[1] + 1) / 2, alt = face.alt ? FINISH.alt : -FINISH.alt;
       let tone, lift;
-      if (plan === "full") { tone = FINISH.tone[0] + FINISH.tone[1] * up + alt; lift = Math.max(0, up - .55) * FINISH.lift; }
+      // every stone is lit from the upper left: faces brighten as they turn toward it and darken as they turn
+      // away. Full Suite is lit brighter than the others, so it still reads as the most brilliant.
+      if (plan === "full") {
+        const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
+        tone = .5 + .72 * side + alt; lift = Math.max(0, side - .4) * FINISH.lift;
+        if (face.n[1] > .99) { tone += .15; lift += .45; }
+      }
       else {
         const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
         tone = .58 + .6 * side + alt; lift = Math.max(0, side - .45) * FINISH.lift;
