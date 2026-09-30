@@ -4066,3 +4066,8 @@ span.plan-ring:empty { display: none; }
 .minitv__screen::before { content: ""; position: absolute; inset: 0; background: var(--mscreen, #f3efff); }
 .minitv__screen.is-flicker::before { animation: crt-on 1s cubic-bezier(.2, .7, .2, 1) both; }
 @media (prefers-reduced-motion: reduce) { .tv__screen.is-powering .tv__show, .tv__screen.is-powering .tv__caption, .minitv__screen.is-flicker::before { animation: none; } }
+/* the mini TV: smaller, no antennas, just the set with its knobs */
+.minitv { width: 56px; height: 42px; }
+.minitv__ant { display: none; }
+.minitv__set { height: 42px; padding: 4px; gap: 3px; border-radius: 9px; }
+.minitv__knob { width: 7px; background: radial-gradient(circle at 50% 7px, #e9dcc2 0 2.2px, transparent 2.8px), radial-gradient(circle at 50% 15px, #c9b894 0 1.8px, transparent 2.3px), repeating-linear-gradient(#2a1d14 0 2px, #5b4230 2px 4px) 0 21px / 100% 9px no-repeat; }
