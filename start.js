@@ -39,11 +39,12 @@
     const p = PLANS[form.elements.plan.value] || PLANS.business;
     const isYearly = billing() === "yearly";
     sum("plan").textContent = p.name;
-    sum("today").textContent = money(p.setup);
+    const F = window.WDW_FOUNDING;
+    if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(F.setup)}`; else sum("today").textContent = money(p.setup);
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;
     sum("then-note").textContent = isYearly
-      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts 14 days after our first call, when your site goes live.`
-      : "Your plan starts 14 days after our first call, when your site goes live.";
+      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts the day your site goes live, once you've approved it.`
+      : "Your plan starts the day your site goes live, once you've approved it.";
     document.querySelectorAll("[data-price]").forEach((el) => {
       const q = PLANS[el.dataset.price];
       el.textContent = isYearly ? `${money(Math.round(q.price * 0.8))}/month, billed yearly` : `${money(q.price)}/month`;

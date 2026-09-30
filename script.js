@@ -217,9 +217,14 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       plan.querySelector(".plan__price").innerHTML = mode === "yearly"
         ? `<s class="plan__was">$${price}</s><b class="plan__now"><span>$${perMonth}</span>/month</b>`
         : `<b class="plan__now"><span>$${price}</span>/month</b>`;
-      terms.innerHTML = mode === "yearly"
-        ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>+ ${money(setup)} one-time setup`
+      // Founding 5: the setup fee shows struck through, with the $1 founding setup next to it.
+      const F = window.WDW_FOUNDING;
+      const setupLine = F
+        ? `+ <s>${money(setup)}</s> <strong>${money(F.setup)} setup</strong> <span class="plan__founding">Founding 5</span>`
         : `+ ${money(setup)} one-time setup`;
+      terms.innerHTML = mode === "yearly"
+        ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>${setupLine}`
+        : setupLine;
       const cta = plan.querySelector(".plan__cta");
       if (cta) cta.textContent = mode === "yearly" ? "Say “I Do”" : "Get Started";
       if (cta) { const u = new URL(cta.getAttribute("href"), location.href); u.searchParams.set("billing", mode); cta.setAttribute("href", "start.html" + u.search); }
@@ -794,7 +799,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
 // Swipeable rows: a pair of arrows sits above the row, on the right
 (function () {
-  document.querySelectorAll("#blog .posts, .steps, .boroughs, .must-reads__list").forEach((row) => {
+  document.querySelectorAll("#blog .posts:not(.posts--compact), .steps, .boroughs, .must-reads__list").forEach((row) => {
     const box = document.createElement("div");
     box.className = "rowx rowx--" + (row.classList.contains("boroughs") ? "boroughs" : row.classList.contains("steps") ? "steps" : "posts");
     row.before(box);
@@ -1212,3 +1217,35 @@ function openSheet(d) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && openChip) { const c = openChip; close(); c.focus(); } });
   addEventListener("resize", place);
 })();
+
+// Pricing page: an example of what's charged today and when the site goes live, for the chosen plan and billing.
+(function () {
+  const box = document.querySelector("[data-paysample]");
+  if (!box) return;
+  const PLANS = { essentials: [99, 199], business: [149, 399], full: [249, 599] };
+  const money = (n) => "$" + n.toLocaleString("en-US");
+  const set = (k, v) => { box.querySelector(`[data-ps="${k}"]`).innerHTML = v; };
+  let plan = "business";
+  const render = () => {
+    const yearly = document.querySelector(".billing__switch")?.getAttribute("aria-checked") === "true";
+    const [price, setup] = PLANS[plan];
+    const F = window.WDW_FOUNDING;
+    const year = Math.round(price * 12 * 0.8);
+    set("today", F ? `<s>${money(setup)}</s> ${money(F.setup)}` : money(setup));
+    set("today-note", F ? "One-time setup, with the Founding 5 offer" : "One-time setup fee");
+    set("then", yearly ? `${money(year)}/year` : `${money(price)}/month`);
+    set("then-note", yearly ? `Your plan starts: a year at 20% off, saving ${money(price * 12 - year)}` : "Your plan starts");
+    set("after", yearly ? `${money(year)} every year` : `${money(price)} every month`);
+    set("after-note", "Cancel anytime");
+    box.querySelectorAll("[data-sample]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.sample === plan)));
+  };
+  box.addEventListener("click", (e) => { const b = e.target.closest("[data-sample]"); if (b) { plan = b.dataset.sample; render(); } });
+  document.addEventListener("click", (e) => { if (e.target.closest("[data-billing], .billing__switch")) setTimeout(render); });
+  render();
+})();
+
+// New Age before/after slider
+document.querySelectorAll(".ba").forEach((ba) => {
+  const range = ba.querySelector(".ba__range");
+  if (range) range.addEventListener("input", () => ba.style.setProperty("--pos", range.value + "%"));
+});

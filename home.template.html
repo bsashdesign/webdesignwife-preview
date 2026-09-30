@@ -206,7 +206,7 @@
     <section class="hero">
       <div class="wrap hero__grid">
         <div class="hero__copy">
-          <p class="eyebrow">Based in Brooklyn, New York</p>
+          <p class="eyebrow">{{HERO_LABEL}}</p>
           <h1><span class="hero__line">Your website, handled.</span> <span class="hl">From&nbsp;$99/month.</span></h1>
           <p class="lede">I design it, host it and keep it up to date. Need a change? Send me a quick message and it's live by tomorrow. You get back to running your business.</p>
           <div class="hero__ctas">
@@ -265,25 +265,25 @@
       </div>
     </section>
 
-    <!-- REAL WORK -->
+    <!-- REAL WORK: where the model started -->
     <section class="section" id="work">
       <div class="wrap work-feature">
         <div class="work-feature__copy">
-          <p class="eyebrow">Featured success story</p>
+          <p class="eyebrow">Where the model started</p>
           <h2>New Age Pharmacy</h2>
-          <p class="muted">A neighborhood pharmacy with personal service at its heart. I redesigned the site around what customers came for: quick answers, real reviews up front and an easy way to get help.</p>
+          <p class="work-feature__meta">Real client · Brooklyn · Client since 2022</p>
+          <p class="muted">I've been designing websites for more than eight years. Since 2022, I've also looked after New Age Pharmacy here in Brooklyn: I built their site, I keep it updated, and I'm still around whenever they need something. That's how I think web design should work, so I'm turning it into a real service.</p>
           <ul class="ticks ticks--plain">
-            <li>Customer reviews featured right in the hero</li>
-            <li>A brighter, friendlier look with a distinctive pill-shaped motif</li>
-            <li>An easy-to-use contact pop-up</li>
+            <li>New Age's own name and look, not a pharmacy-network template</li>
+            <li>Refills, transfers and prescriptions easy to find</li>
+            <li>Real customer reviews right up front</li>
+            <li>The hours, contact details and answers customers actually need</li>
           </ul>
-          <!-- TODO: add the client testimonial here once approved:
+          <!-- TODO: add the owner's testimonial here once they've written and approved it. Never invent one.
           <blockquote class="work-feature__quote"><p>“…”</p><footer>Name, Role, New Age Pharmacy</footer></blockquote> -->
           <a class="btn btn--primary" href="https://newagepharm.com/" target="_blank" rel="noopener">Visit the live site <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M6 4.5h5.5V10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <a class="work-feature__shot" href="https://newagepharm.com/" target="_blank" rel="noopener" aria-label="Open the New Age Pharmacy website">
-          <img src="images/New-Age-Pharmacy-image.jpg" alt="The New Age Pharmacy homepage" width="1809" height="1031" loading="lazy">
-        </a>
+        {{WORK_VISUAL}}
       </div>
     </section>
 
@@ -418,6 +418,7 @@
           </div>
         </div>
 
+        {{FOUNDING_BANNER}}
         <div class="plans">
           <article class="plan" id="plan-simple" data-price="99" data-setup="199">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-simple">i</button><span class="plan__tip" role="tooltip" id="rec-tip-simple">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
@@ -476,36 +477,9 @@
           </article>
         </div>
 
-        <p class="pricing__more"><a href="features.html">See every feature, plan by plan →</a></p>
-        <ul class="assure"><li>Your domain is always yours</li><li>Cancel anytime</li><li>Own your site after 6 years</li></ul>
+        <ul class="assure"><li>100% money-back guarantee</li><li>Your domain is always yours</li><li>Cancel anytime</li><li>Own your site after 6 years</li></ul>
+        <!-- PRICING-MORE:START --><p class="pricing__more"><a href="pricing.html">Full pricing, guarantee and billing details →</a><a href="features.html">What every plan includes →</a></p><!-- PRICING-MORE:END -->
 
-        <div class="guarantee">
-          <div class="guarantee__seal"><svg class="seal" viewBox="0 0 128 128" aria-hidden="true">
-              <polygon points="124.0,64.0 118.7,70.2 122.5,77.4 115.9,82.2 118.1,90.0 110.6,93.3 110.9,101.4 102.9,102.9 101.4,110.9 93.3,110.6 90.0,118.1 82.2,115.9 77.4,122.5 70.2,118.7 64.0,124.0 57.8,118.7 50.6,122.5 45.8,115.9 38.0,118.1 34.7,110.6 26.6,110.9 25.1,102.9 17.1,101.4 17.4,93.3 9.9,90.0 12.1,82.2 5.5,77.4 9.3,70.2 4.0,64.0 9.3,57.8 5.5,50.6 12.1,45.8 9.9,38.0 17.4,34.7 17.1,26.6 25.1,25.1 26.6,17.1 34.7,17.4 38.0,9.9 45.8,12.1 50.6,5.5 57.8,9.3 64.0,4.0 70.2,9.3 77.4,5.5 82.2,12.1 90.0,9.9 93.3,17.4 101.4,17.1 102.9,25.1 110.9,26.6 110.6,34.7 118.1,38.0 115.9,45.8 122.5,50.6 118.7,57.8" class="seal__edge"/>
-              <circle cx="64" cy="64" r="48" class="seal__ring"/>
-              <circle cx="64" cy="64" r="43" class="seal__inner"/>
-              <defs><path id="sealTop" d="M 30 64 A 34 34 0 0 1 98 64"/><path id="sealBottom" d="M 26 64 A 38 38 0 0 0 102 64"/></defs>
-              <text class="seal__arc"><textPath href="#sealTop" startOffset="50%" text-anchor="middle">MONEY-BACK</textPath></text>
-              <text x="64" y="72" text-anchor="middle" class="seal__num">100%</text>
-              <text class="seal__arc"><textPath href="#sealBottom" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
-            </svg></div>
-          <div>
-            <h3>100% money-back guarantee</h3>
-            <p>If your site isn't live within 14 days of our first call, or you don't love the design, you may cancel to get back 100% of what you paid, setup fee included. Once your site is live, payments are non-refundable, but you can cancel anytime.</p>
-          </div>
-        </div>
-
-        <div class="edits-banner">
-          <div>
-            <p class="edits-banner__kicker">On every plan</p>
-            <h3>Unlimited minor edits, done within one business day.</h3>
-            <p>Just send me a message. No hourly bills, no tickets, no waiting weeks.</p>
-          </div>
-          <ul class="edits-banner__list" aria-label="Examples of minor edits">
-            <li>New hours</li><li>Price changes</li><li>Fresh photos</li><li>Staff updates</li><li>New services</li><li>Promo banners</li><li>Menu updates</li><li>Holiday closures</li><li aria-hidden="true" class="dup">New hours</li><li aria-hidden="true" class="dup">Price changes</li><li aria-hidden="true" class="dup">Fresh photos</li><li aria-hidden="true" class="dup">Staff updates</li><li aria-hidden="true" class="dup">New services</li><li aria-hidden="true" class="dup">Promo banners</li><li aria-hidden="true" class="dup">Menu updates</li><li aria-hidden="true" class="dup">Holiday closures</li>
-          </ul>
-        </div>
-        <p class="scope-note"><strong>Good to know:</strong> your site is built once, the way you approve it. A full redesign or rebuilt pages later is a new project with its own setup fee, always quoted upfront. Full Suite includes an annual design refresh.</p>
       </div>
     </section>
 
@@ -553,43 +527,37 @@
       </div>
     </section>
 
-    <!-- NYC -->
-    <section class="section" id="local">
-      <div class="wrap nyc">
-        <p class="eyebrow">Local first</p>
-        <h2>Based in Brooklyn. Built for New York businesses.</h2>
-        <p class="nyc__lede">I work with businesses across <a href="blog/websites-manhattan.html">Manhattan</a>, <a href="blog/websites-brooklyn.html">Brooklyn</a>, <a href="blog/websites-queens.html">Queens</a>, <a href="blog/websites-bronx.html">the Bronx</a> and <a href="blog/websites-staten-island.html">Staten Island</a>.</p>
-      </div>
-    </section>
-
-    <!-- PROMISES -->
-    <section class="section section--tint" id="promises">
-      <div class="wrap">
-        <p class="eyebrow">What you can count on</p>
-        <h2>My vows to you</h2>
-        <div class="promises">
-          <p><strong>Real people, real answers.</strong> No call centers or ticket queues. And you can always reach me directly.</p>
-          <p><strong>Fast replies.</strong> I get back to you within one business day, usually much sooner.</p>
-          <p><strong>Your web address is yours.</strong> Your domain name, like <em>yourbusiness.com</em>, is registered in your name. If you ever leave, it goes with you.</p>
-          <p><strong>Amicable, always.</strong> If we ever part ways, you keep your domain and content, and you can buy your site early. After six years, it's yours.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
+    <!-- ABOUT + LOCAL -->
     <section class="section" id="about">
+      <span id="local" class="anchor" aria-hidden="true"></span>
       <div class="wrap about">
         <!-- TODO: replace with a real photo of Ben -->
         <div class="about__visual"><div class="about__photo" role="img" aria-label="Photo of Ben Sash">Your photo here</div><div class="hearts" aria-hidden="true"><i style="--x:12%;--d:0s;--s:0.8"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:30%;--d:2.2s;--s:1.1"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:48%;--d:0.9s;--s:0.7"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:66%;--d:3.1s;--s:1"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:82%;--d:1.6s;--s:0.85"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:22%;--d:4.2s;--s:0.6"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:58%;--d:5s;--s:0.9"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i><i style="--x:90%;--d:3.8s;--s:0.7"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> </svg></i></div></div>
         <div>
-          <p class="eyebrow">Love is in the air</p>
-          <h2>Hi, I'm Ben.</h2>
+          <p class="eyebrow">Hi, I'm Ben</p>
+          <h2>Based in Brooklyn. Built for New York businesses.</h2>
           <p class="about__lead">Sorry, I can't be your actual wife, but I can be your web design wife ;)</p>
-          <p>The name is about commitment. Most web designers build your site and disappear. I stick around for the long haul and handle everything website-related, so you can focus on your business.</p>
-          <p>I've spent 8+ years designing and building websites in New York, from neighborhood shops to large e-commerce platforms. Web Design Wife exists to give local businesses a partner they can count on, and I still speak with every new client personally.</p>
+          <p>I've spent 8+ years designing and building websites in New York, from neighborhood shops to large e-commerce platforms. Most web designers build your site and disappear. I'd rather stick around, and that's exactly what I've done for New Age Pharmacy since 2022.</p>
+          <p>Web Design Wife turns that into a real service. It's new, and I speak with every client personally.<!-- FOUNDING:START --> I'm opening it to five founding businesses first.<!-- FOUNDING:END --></p>
+          <p class="about__local">I work with businesses across <a href="blog/websites-manhattan.html">Manhattan</a>, <a href="blog/websites-brooklyn.html">Brooklyn</a>, <a href="blog/websites-queens.html">Queens</a>, <a href="blog/websites-bronx.html">the Bronx</a> and <a href="blog/websites-staten-island.html">Staten Island</a>.</p>
         </div>
       </div>
     </section>
+
+    <!-- PROMISES -->
+    <section class="section section--tint section--compact" id="promises">
+      <div class="wrap">
+        <p class="eyebrow">What you can count on</p>
+        <h2>My vows to you</h2>
+        <div class="promises promises--compact">
+          <p><strong>Real people, real answers.</strong> No call centers. You always reach me.</p>
+          <p><strong>Fast replies.</strong> Within one business day, usually sooner.</p>
+          <p><strong>Your web address is yours.</strong> Registered in your name, always.</p>
+          <p><strong>Amicable, always.</strong> Leave anytime with your domain and content.</p>
+        </div>
+      </div>
+    </section>
+
 
     <!-- FAQ -->
     <section class="section section--tint" id="faq">
@@ -601,57 +569,18 @@
         </div>
         <div class="faq__list">
           <details>
-            <summary>Who owns the website?</summary>
-            <p>There are two parts. Your <strong>web address</strong> (the domain name, like yourbusiness.com) is always registered in your name, and it's yours to keep. The <strong>website itself</strong>, meaning the design and code, is owned and maintained by me. That's what lets me keep it fast, secure and up to date for a monthly price instead of a big upfront bill. Your text, photos and logo are always yours too.</p>
-          </details>
-          <details>
             <summary>What if I don't like the design?</summary>
-            <p>You'll see your design before anything goes live. If you don't love it and decide not to move forward, you get back 100% of what you paid, setup fee included. Once you approve it and the site goes live, payments are non-refundable, but you can cancel anytime.</p>
+            <p>You'll see your design before anything goes live, and nothing goes live until you approve it. If you don't love it and decide not to move forward, you get back 100% of what you paid, setup fee included.</p>
           </details>
           <details>
-            <summary>What if I want to cancel?</summary>
-            <p>Cancel anytime. Change plans as your needs change. Buy the site early if you want to leave with it. Your buyout gets cheaper every year. After six years, you own it. If you do cancel, no hard feelings: you keep your web address, and I'll send you all your text and photos. The website goes offline when your plan ends, unless you buy it early or you've been with me six years, in which case it's already yours.</p>
+            <summary>Can I cancel?</summary>
+            <p>Yes, anytime. You keep your web address, and I'll send you all your text and photos. The website goes offline when your plan ends, unless you buy it early or you've been with me six years, in which case it's already yours.</p>
           </details>
           <details>
-            <summary>When do I own my website?</summary>
-            <p>After six years with me, ownership of your custom website transfers to you. Keep your subscription for hosting, updates and support, or take your site with you for a simple transfer fee.</p>
-            <p>Want to leave with it sooner? You can buy it early, and the price drops every year:</p>
-            <ul class="buyout">
-              <li><span>During year 1</span><strong>24 months of your plan</strong></li>
-              <li><span>During year 2</span><strong>20 months</strong></li>
-              <li><span>During year 3</span><strong>16 months</strong></li>
-              <li><span>During year 4</span><strong>12 months</strong></li>
-              <li><span>During year 5</span><strong>8 months</strong></li>
-              <li><span>During year 6</span><strong>4 months</strong></li>
-              <li><span>After 6 years</span><strong>It's yours</strong></li>
-            </ul>
-            <p>This applies to every plan, monthly or yearly. Any transfer, early or after six years, has a one-time $299 transfer fee, and that fee is locked in when you sign up: if it goes up later, it only changes for new clients. I hand the site over to you or your new developer, including a full export of the code and content.</p>
-            <p class="buyout__note">AI assistants, hosted forms, analytics, third-party feeds and other managed integrations may depend on Web Design Wife or third-party accounts, so they aren't automatically included in a transfer. I'll tell you exactly what moves and what you'd need to set up again.</p>
+            <summary>Who owns the site?</summary>
+            <p>Your <strong>web address</strong> (like yourbusiness.com) is always registered in your name. During your subscription, until you buy it early or ownership transfers after six years, the website design and code are owned and maintained by Web Design Wife. Your text, photos and logo are always yours.</p>
           </details>
-          <details>
-            <summary>What counts as a minor edit?</summary>
-            <p>Small updates to existing content that take under 30 minutes each: text, prices, hours, photos, staff, services or a promo banner. New features, new sections or redesigning pages count as a new project.</p>
-          </details>
-          <details>
-            <summary>Can I switch plans later?</summary>
-            <p>Yes. Move up whenever you need more pages or features. Moving to a bigger plan may include a small setup fee for the new pages.</p>
-          </details>
-          <details>
-            <summary>Do I have to write blog posts on Full Suite?</summary>
-            <p>No. Each month you answer a short questionnaire, by typing or sending a voice memo. I turn your answers into a post, and nothing goes live until you approve it. Skip a month whenever you're busy.</p>
-          </details>
-          <details>
-            <summary>What's the annual design refresh on Full Suite?</summary>
-            <p>So your site never looks four years old, whether you pay monthly or yearly. Once a year we review it together and I refresh its look and content: updated sections, new photos, styling tweaks and sharper calls to action. It's a refresh, not a from-scratch redesign, but it keeps the site current year after year.</p>
-          </details>
-          <details>
-            <summary>Can you get me to the top of Google?</summary>
-            <p>No one can honestly promise a ranking. What I can promise is that your site and Google Maps profile will be set up the right way to be found, and I'll keep them that way.</p>
-          </details>
-          <details id="custom">
-            <summary>Need something different, like a custom package, an online store or a booking system?</summary>
-            <p>These plans are for informational websites. I can link to booking tools you already use, like Square, Vagaro or Calendly. For e-commerce, custom features or a package that fits your business better, I take on custom projects. <a href="contact.html?type=callback">Ask about a custom package</a> and let's talk it through.</p>
-          </details>
+          <p class="faq__more"><a href="pricing.html#faq">See all pricing &amp; FAQs →</a></p>
         </div>
       </div>
     </section>
@@ -664,9 +593,8 @@
             <p class="eyebrow">From the blog</p>
             <h2>Practical advice for local business websites</h2>
           </div>
-          <div data-nav-slot></div>
         </div>
-        <div class="posts">
+        <div class="posts posts--compact">
           <a class="post-card post-card--article" href="blog/local-business-website-checklist.html" style="--cover:#dfeaff;--cover-dark:#a9c4f2" data-tone="blue">
             <span class="post-card__cover"><i class="pi pi--clipboard-text" aria-hidden="true"></i></span>
             <span class="post-card__body">
@@ -695,7 +623,7 @@
             </span>
           </a>
         </div>
-        <p class="blog__more"><a class="btn btn--ghost" href="blog/index.html">All articles</a></p>
+        <p class="blog__more"><a class="btn btn--ghost" href="blog/index.html">Explore the blog</a></p>
       </div>
     </section>
 
@@ -749,9 +677,8 @@
         <a href="#work">My work</a>
         <a href="#how">How it works</a>
         <a href="#maps">Google Maps</a>
-        <a href="#local">Local to New York</a>
         <a href="#about">About me</a>
-        <a href="#faq">FAQ</a>
+        <a href="pricing.html#faq">Pricing &amp; FAQ</a>
       </nav>
       <nav class="footer__col" aria-label="Resources">
         <h4>Resources</h4>

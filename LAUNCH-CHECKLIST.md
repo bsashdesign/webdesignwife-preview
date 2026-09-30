@@ -35,6 +35,12 @@ best website builders for small businesses, and Brooklyn/NYC web design pages.
 Fewer, genuinely useful pages beat many thin ones.
 
 ## 6. Payments and scheduling (before accepting money)
-- Stripe Checkout: setup fee today + subscription starting 14 days after the first call.
+- Stripe Checkout (subscription mode), no backend needed:
+  - Line items: the plan's recurring price (monthly, or yearly at 20% off) plus a one-time setup price ($199 / $399 / $599, or a $1 "Founding 5" price while that offer runs).
+  - `subscription_data.trial_period_days` set long (e.g. 60). The one-time setup is charged immediately; the recurring price isn't charged during the trial.
+  - When the client approves the site and it goes live: in the Stripe Dashboard, open the subscription and choose "End trial now". The first monthly or yearly charge happens then.
+  - If a launch runs past the trial, extend the trial end date in the Dashboard before it expires.
+  - Payment methods: cards, Apple Pay / Google Pay, and US bank account (ACH Direct Debit, which supports recurring subscriptions).
+  - Founding 5: turn it off in build_home.py (`FOUNDING["on"] = False`) and remove the "Founding 5 Offer" paragraph from terms.html once five clients have signed up.
 - Cal.com: set `CAL_LINK` in `welcome.template.html`.
 - Have a lawyer review `terms.html` and `privacy.html` (drafts, updated to match the offer).

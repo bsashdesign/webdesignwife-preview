@@ -2,6 +2,7 @@
 #   python3 build_home.py
 # Every mood's styles ship with the page; script.js switches moods in place
 # (saved per visitor, or forced with ?mood=calm|transit|tangy|sophisticated).
+import json
 import pathlib
 import re
 import time
@@ -21,6 +22,13 @@ MOODS = [
     {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
 DEFAULT = "tangy"
+
+# Founding 5 launch offer: the first five new clients pay $1 setup instead of $199/$399/$599.
+# The plan price itself is never discounted.
+#   left: None shows no count; a number shows "N of 5 spots left". Only ever set it to the real number.
+#   on:   set to False once all five spots are taken. Every mention disappears from the built pages
+#         (also remove the "Founding 5" paragraph in terms.html by hand).
+FOUNDING = {"on": True, "left": None, "setup": 1}
 
 FONTS = (
     '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700'
@@ -78,13 +86,49 @@ def mood_boot():
     table = ",".join(f'"{m["key"]}":"{m["cls"]}"' for m in MOODS)
     return (f'<script>(function(){{var M={{{table}}},k=new URLSearchParams(location.search).get("mood");'
             f'try{{if(!M[k])k=localStorage.getItem("wdw-mood")}}catch(e){{}}if(!M[k])k="{DEFAULT}";'
-            f'document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k}})();</script>')
+            f'document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k}})();'
+            f'window.WDW_FOUNDING={json.dumps(FOUNDING if FOUNDING["on"] else None)};</script>')
 
 
 def add_alt_copy(html):
     for cls, old, new in ALT_COPY:
         html = html.replace(f">{old}<", f'><span data-alt-{cls}="{titlecase.title(new)}">{old}</span><', 1)
     return html
+
+
+def founding(html):
+    """Fill in (or remove) every Founding 5 mention."""
+    on = FOUNDING["on"]
+    html = re.sub(r"<!-- FOUNDING:START -->(.*?)<!-- FOUNDING:END -->", (lambda m: m.group(1)) if on else "", html, flags=re.S)
+    left = FOUNDING["left"]
+    banner = ('<div class="founding">'
+              '<p class="founding__tag">The Founding 5</p>'
+              '<p class="founding__text">The managed service is new, so I\'m opening it to five businesses first. '
+              'Your setup is <strong>$1</strong> instead of $199 to $599, and your plan is the normal price. '
+              'When the five spots are gone, so is the offer.</p>'
+              + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
+              + "</div>") if on else ""
+    return (html.replace("{{FOUNDING_BANNER}}", banner)
+                .replace("{{HERO_LABEL}}", "Now open: five founding spots · Brooklyn, NY" if on else "Based in Brooklyn, New York"))
+
+
+def work_visual():
+    """New Age before/after slider once the old-site screenshot is in images/, else the current site alone."""
+    after = '<img src="images/New-Age-Pharmacy-image.jpg" alt="The New Age Pharmacy website I designed" width="1809" height="1031" loading="lazy">'
+    before = HERE / "images" / "new-age-before.jpg"
+    if not before.exists():
+        return ('<a class="work-feature__shot" href="https://newagepharm.com/" target="_blank" rel="noopener" '
+                f'aria-label="Open the New Age Pharmacy website">{after}</a>')
+    return ('<figure class="ba" style="--pos:50%">'
+            '<div class="ba__frame">'
+            f'{after.replace("<img ", "<img class=\"ba__after\" ")}'
+            '<img class="ba__before" src="images/new-age-before.jpg" alt="The old New Age page, built on a pharmacy-network template" loading="lazy">'
+            '<span class="ba__tag ba__tag--before">Before</span><span class="ba__tag ba__tag--after">After</span>'
+            '<span class="ba__handle" aria-hidden="true"></span>'
+            '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Slide to compare the old and new New Age Pharmacy websites">'
+            '</div>'
+            '<figcaption>Before: a generic pharmacy-network page. After: built around New Age and its customers.</figcaption>'
+            '</figure>')
 
 
 def bust(html):
@@ -98,6 +142,7 @@ page = (TEMPLATE
         .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
         .replace(' class="{{BODY_CLASS}}"', "")
         .replace("{{SWITCHER}}", switcher())
+        .replace("{{WORK_VISUAL}}", work_visual())
         .replace("{{MOODS}}", footer_moods())
         .replace("{{NEWSLETTER}}", newsletter())
         .replace("{{HOME}}", "index.html"))
@@ -110,6 +155,7 @@ def faq_schema(html):
             "mainEntity": [{"@type": "Question", "name": clean(q), "acceptedAnswer": {"@type": "Answer", "text": clean(a)}} for q, a in items]}
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
+page = founding(page)
 page = page.replace("{{FAQ_SCHEMA}}", faq_schema(page))
 (HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(page))))
 
@@ -118,7 +164,7 @@ start = ((HERE / "start.template.html").read_text()
          .replace("{{FONTS}}", FONTS)
          .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
          .replace("{{SWITCHER}}", switcher()))
-(HERE / "start.html").write_text(bust(titlecase.apply(start)))
+(HERE / "start.html").write_text(bust(titlecase.apply(founding(start))))
 welcome = ((HERE / "welcome.template.html").read_text()
            .replace("{{FONTS}}", FONTS)
            .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
@@ -165,9 +211,14 @@ def full_page(template):
 contact = full_page((HERE / "contact.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
 (HERE / "contact.html").write_text(bust(titlecase.apply(add_alt_copy(contact))))
 
-# Pricing page: the plans, what's included, the FAQ and the free audit.
-PRICING_MAIN = "\n".join(block(page, f'<section class="{c}" id="{i}">') for c, i in (("section", "pricing"), ("section section--tint", "faq")))
-pricing = full_page((HERE / "pricing.template.html").read_text()).replace("{{MAIN}}", PRICING_MAIN + "\n" + AUDIT_SECTION).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG)
+# Pricing page: the money page. It shares only the plans with the homepage (as the page's h1);
+# setup, billing, the guarantee, edits, ownership and the full FAQ live in pricing.template.html.
+PLANS_SECTION = block(page, '<section class="section" id="pricing">')
+PLANS_SECTION = re.sub(r"<!-- PRICING-MORE:START -->.*?<!-- PRICING-MORE:END -->", "", PLANS_SECTION, flags=re.S)
+PLANS_SECTION = re.sub(r"<h2>(.*?)</h2>", r"<h1>\1</h1>", PLANS_SECTION, count=1)
+pricing = full_page((HERE / "pricing.template.html").read_text())
+pricing = founding(pricing.replace("{{PLANS_SECTION}}", PLANS_SECTION).replace("{{AUDIT_SECTION}}", AUDIT_SECTION).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG))
+pricing = pricing.replace("{{FAQ_SCHEMA}}", faq_schema(pricing))
 (HERE / "pricing.html").write_text(bust(titlecase.apply(add_alt_copy(pricing))))
 features = full_page((HERE / "features.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
 (HERE / "features.html").write_text(bust(titlecase.apply(add_alt_copy(features))))
