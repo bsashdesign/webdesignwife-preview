@@ -3763,3 +3763,7 @@ span.plan-ring:empty { display: none; }
 .theme-refined .cadence__track i.on { --chk: var(--violet, #5b3df5); }
 .theme-subway .cadence__row .cadence__track i.on { background: var(--blue); --chk: #fff; }
 .theme-wedding .cadence__track i.on { --chk: #1f2336; }
+
+/* An inline plan ring beside a plan name: no tile, just the ring, in the text's own color */
+.plan-ring.plan-ring--inline { display: inline-block; flex: none; width: 2em; height: 2em; margin: -.55em .3em -.55em -.3em; color: inherit; vertical-align: middle; }
+.level__plan:has(.plan-ring--inline) { display: inline-flex; align-items: center; }
