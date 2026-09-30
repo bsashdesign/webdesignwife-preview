@@ -3135,3 +3135,5 @@ main > section.is-joined.is-joined { padding-top: 0; }
   outline: none; border-color: var(--ink) !important; background-color: #fffbe0; transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink);
 }
 @media (prefers-reduced-motion: reduce) { .theme-blocks :is(input, select, textarea):focus { transform: none; } }
+/* Tangy: fields are rounded rectangles (like the audit form), never pills, including the hero phone's message box */
+.theme-blocks .news__row input, .theme-blocks .quickcheck__row input, .theme-blocks .blog-search input, .theme-blocks .phone__compose { border-radius: 10px; }
