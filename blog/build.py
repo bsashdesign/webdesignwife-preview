@@ -459,7 +459,7 @@ SHORT = {x["slug"]: (x["title"].split(": ")[0].replace("Web Design Wife ", "") i
 
 def chip(slug):
     return (f'<a class="ref-chip" href="{slug}.html" data-slug="{slug}" aria-label="Article: {html.escape(TITLES[slug])}">'
-            f'<i class="pi pi--article" aria-hidden="true"></i><span>{html.escape(SHORT[slug])}</span></a>')
+            f'<i class="pi pi--lines" aria-hidden="true"></i><span>{html.escape(SHORT[slug])}</span></a>')
 
 def references(body):
     link = re.compile(r'<a (?:class="tc" )?href="([a-z0-9-]+)\.html">(.*?)</a>', re.S)

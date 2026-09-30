@@ -1157,39 +1157,56 @@ function openSheet(d) {
   if (h) try { sessionStorage.setItem("wdw-title:" + location.pathname, h.textContent.trim()); } catch (e) {}
 })();
 
-// Reference chips in articles: hovering (or focusing) one shows a preview card of that article.
+// Reference chips in articles: clicking one opens a preview card of that article; clicking the card reads it.
 (function () {
   const chips = document.querySelectorAll(".ref-chip[data-slug]");
-  if (!chips.length || !window.matchMedia("(hover: hover)").matches) return;
-  let posts = null, card = null, hideT;
+  if (!chips.length) return;
+  let posts = null, card = null, openChip = null;
   const load = () => posts || (posts = fetch("posts.json").then((r) => r.json()).catch(() => []));
-  const hide = () => { hideT = setTimeout(() => card && card.classList.remove("is-on"), 120); };
-  const show = async (chip) => {
-    clearTimeout(hideT);
+  const close = () => {
+    if (!card || !openChip) return;
+    card.classList.remove("is-on");
+    openChip.setAttribute("aria-expanded", "false");
+    openChip = null;
+  };
+  const place = () => {
+    if (!openChip) return;
+    const r = openChip.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight;
+    const left = Math.min(Math.max(12, r.left + r.width / 2 - w / 2), innerWidth - w - 12);
+    const below = r.bottom + 10 + h < innerHeight || r.top - 10 - h < 0;
+    card.style.left = left + scrollX + "px";
+    card.style.top = (below ? r.bottom + 10 : r.top - 10 - h) + scrollY + "px";
+  };
+  const open = async (chip) => {
     const list = await load();
     const p = list.find((x) => x.slug === chip.dataset.slug);
-    if (!p) return;
+    if (!p) { location.href = chip.href; return; }
     if (!card) {
       card = document.createElement("a");
       card.className = "ref-preview post-card post-card--article";
-      card.addEventListener("mouseenter", () => clearTimeout(hideT));
-      card.addEventListener("mouseleave", hide);
       document.body.appendChild(card);
     }
+    close();
     card.href = p.slug + ".html";
-    card.innerHTML = `${p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span></span>`;
-    const r = chip.getBoundingClientRect(), w = 320;
-    const left = Math.min(Math.max(12, r.left + r.width / 2 - w / 2), innerWidth - w - 12);
-    const below = r.bottom + 360 < innerHeight;
-    card.style.left = left + scrollX + "px";
-    card.style.top = (below ? r.bottom + 8 : r.top - 8) + scrollY + "px";
-    card.classList.toggle("is-above", !below);
+    card.setAttribute("aria-label", "Read: " + p.title);
+    card.innerHTML = `${p.cover}<span class="post-card__body"><span class="post-card__kicker">${p.kicker}</span><h3>${p.title}</h3><p>${p.summary}</p><span class="post-card__meta"><img src="../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span><span class="ref-preview__go">Read the article →</span></span>`;
+    openChip = chip;
+    chip.setAttribute("aria-expanded", "true");
+    place();
+    void card.offsetWidth; // start the fade from the new spot, not the old one
     card.classList.add("is-on");
   };
   chips.forEach((c) => {
-    c.addEventListener("mouseenter", () => show(c));
-    c.addEventListener("mouseleave", hide);
-    c.addEventListener("focus", () => show(c));
-    c.addEventListener("blur", hide);
+    c.setAttribute("aria-expanded", "false");
+    c.addEventListener("click", (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return; // let new-tab clicks through
+      e.preventDefault();
+      openChip === c ? close() : open(c);
+    });
   });
+  document.addEventListener("click", (e) => {
+    if (openChip && !e.target.closest(".ref-preview, .ref-chip")) close();
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && openChip) { const c = openChip; close(); c.focus(); } });
+  addEventListener("resize", place);
 })();

@@ -15,7 +15,7 @@ NAMES = [
     # Google Maps plan levels
     "seal-check", "trend-up",
     # article callouts
-    "info", "warning", "article",
+    "info", "warning",
 ]
 # Calm: regular · Transit and Tangy: bold · Sophisticated: thin
 # (Filled icons were tried for Tangy but broke apart on shapes like the phone and envelope.)

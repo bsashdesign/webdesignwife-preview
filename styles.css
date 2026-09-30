@@ -1574,7 +1574,6 @@ h2 { text-wrap: balance; }
 .pi--trend-up { -webkit-mask-image: url(images/ph/regular/trend-up.svg); mask-image: url(images/ph/regular/trend-up.svg); }
 .pi--info { -webkit-mask-image: url(images/ph/regular/info.svg); mask-image: url(images/ph/regular/info.svg); }
 .pi--warning { -webkit-mask-image: url(images/ph/regular/warning.svg); mask-image: url(images/ph/regular/warning.svg); }
-.pi--article { -webkit-mask-image: url(images/ph/regular/article.svg); mask-image: url(images/ph/regular/article.svg); }
 .theme-subway .pi--palette, .theme-blocks .pi--palette { -webkit-mask-image: url(images/ph/bold/palette.svg); mask-image: url(images/ph/bold/palette.svg); }
 .theme-subway .pi--device-mobile, .theme-blocks .pi--device-mobile { -webkit-mask-image: url(images/ph/bold/device-mobile.svg); mask-image: url(images/ph/bold/device-mobile.svg); }
 .theme-subway .pi--envelope-simple, .theme-blocks .pi--envelope-simple { -webkit-mask-image: url(images/ph/bold/envelope-simple.svg); mask-image: url(images/ph/bold/envelope-simple.svg); }
@@ -1602,7 +1601,6 @@ h2 { text-wrap: balance; }
 .theme-subway .pi--trend-up, .theme-blocks .pi--trend-up { -webkit-mask-image: url(images/ph/bold/trend-up.svg); mask-image: url(images/ph/bold/trend-up.svg); }
 .theme-subway .pi--info, .theme-blocks .pi--info { -webkit-mask-image: url(images/ph/bold/info.svg); mask-image: url(images/ph/bold/info.svg); }
 .theme-subway .pi--warning, .theme-blocks .pi--warning { -webkit-mask-image: url(images/ph/bold/warning.svg); mask-image: url(images/ph/bold/warning.svg); }
-.theme-subway .pi--article, .theme-blocks .pi--article { -webkit-mask-image: url(images/ph/bold/article.svg); mask-image: url(images/ph/bold/article.svg); }
 .theme-wedding .pi--palette { -webkit-mask-image: url(images/ph/thin/palette.svg); mask-image: url(images/ph/thin/palette.svg); }
 .theme-wedding .pi--device-mobile { -webkit-mask-image: url(images/ph/thin/device-mobile.svg); mask-image: url(images/ph/thin/device-mobile.svg); }
 .theme-wedding .pi--envelope-simple { -webkit-mask-image: url(images/ph/thin/envelope-simple.svg); mask-image: url(images/ph/thin/envelope-simple.svg); }
@@ -1630,7 +1628,6 @@ h2 { text-wrap: balance; }
 .theme-wedding .pi--trend-up { -webkit-mask-image: url(images/ph/thin/trend-up.svg); mask-image: url(images/ph/thin/trend-up.svg); }
 .theme-wedding .pi--info { -webkit-mask-image: url(images/ph/thin/info.svg); mask-image: url(images/ph/thin/info.svg); }
 .theme-wedding .pi--warning { -webkit-mask-image: url(images/ph/thin/warning.svg); mask-image: url(images/ph/thin/warning.svg); }
-.theme-wedding .pi--article { -webkit-mask-image: url(images/ph/thin/article.svg); mask-image: url(images/ph/thin/article.svg); }
 /* ICONS:END */
 
 /* ================================================================
@@ -2769,18 +2766,24 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 }
 @keyframes link-redraw { 0% { background-size: 0 1.5px; } 100% { background-size: 100% 1.5px; } }
 @media (prefers-reduced-motion: reduce) { a:hover, .linkbtn:hover { animation: none !important; background-size: 100% 1.5px; } }
-/* Reference chips: quieter, with an article icon; hover shows a preview card */
-.ref-chip { background: transparent; border-color: var(--line); color: var(--ink-soft) !important; font-weight: 500; }
-.ref-chip .pi { color: var(--ink-soft); font-size: 14px; }
-.ref-chip:hover { background: var(--tint); color: var(--ink) !important; border-color: var(--ink-soft); }
-.theme-blocks .ref-chip { background: transparent; border: 1.5px solid rgba(14,14,14,.35); }
-.theme-blocks .ref-chip:hover { background: #fff; border-color: var(--ink); }
-.ref-preview { position: absolute; z-index: 90; width: 320px; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s ease, transform .22s var(--ease-out), visibility .18s; box-shadow: 0 24px 50px -24px rgba(0,0,0,.45); background: #fff; text-decoration: none; color: var(--ink); }
-.ref-preview.is-above { transform: translate(0, calc(-100% + 6px)); }
-.ref-preview.is-on { opacity: 1; visibility: visible; transform: none; }
-.ref-preview.is-above.is-on { transform: translateY(-100%); }
+/* Reference chips: quiet outline with a three-line article icon; clicking opens a preview card */
+.ref-chip { background: transparent; border-color: var(--line); color: var(--ink-soft) !important; font-weight: 500; cursor: pointer; }
+.ref-chip .pi { color: var(--ink-soft); font-size: 13px; }
+.ref-chip:hover, .ref-chip[aria-expanded="true"] { background: var(--tint); color: var(--ink) !important; border-color: var(--ink-soft); }
+.theme-blocks .ref-chip { background: #fff; border: 1.5px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); color: var(--ink) !important; transition: transform .15s ease, box-shadow .15s ease; }
+.theme-blocks .ref-chip .pi { color: var(--ink); }
+.theme-blocks .ref-chip:hover, .theme-blocks .ref-chip[aria-expanded="true"] { background: #fff; transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink); }
+.pi--lines { -webkit-mask-image: url(images/icons/lines-regular.svg); mask-image: url(images/icons/lines-regular.svg); }
+.theme-blocks .pi--lines, .theme-subway .pi--lines { -webkit-mask-image: url(images/icons/lines-bold.svg); mask-image: url(images/icons/lines-bold.svg); }
+.theme-wedding .pi--lines { -webkit-mask-image: url(images/icons/lines-thin.svg); mask-image: url(images/icons/lines-thin.svg); }
+.ref-preview { position: absolute; z-index: 90; width: 320px; max-width: calc(100vw - 24px); display: flex; flex-direction: column; padding: 0; overflow: hidden; opacity: 0; visibility: hidden; transform: scale(.97); transform-origin: top center; transition: opacity .16s ease, transform .16s ease, visibility 0s .16s; box-shadow: 0 24px 50px -24px rgba(0,0,0,.45); background: #fff; text-decoration: none; color: var(--ink); }
+.ref-preview.is-on { opacity: 1; visibility: visible; transform: none; transition: opacity .16s ease, transform .16s ease; }
+.ref-preview:hover { transform: none; }
+.theme-blocks .ref-preview { box-shadow: 5px 5px 0 var(--ink); }
 .ref-preview .post-card__cover { aspect-ratio: 16 / 7; }
 .ref-preview .post-card__cover .pi { font-size: 40px; }
 .ref-preview .post-card__body { padding: 14px 16px 16px; }
 .ref-preview h3 { font-size: 1rem; margin: 4px 0 6px; }
 .ref-preview p { font-size: .88rem; }
+.ref-preview__go { display: block; margin-top: 12px; font-weight: 600; font-size: .88rem; color: var(--accent-ink, var(--violet)); }
+.ref-preview:hover .ref-preview__go { text-decoration: underline; text-underline-offset: 3px; }
