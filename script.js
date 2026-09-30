@@ -1760,7 +1760,7 @@ document.addEventListener("click", (e) => {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       if (ac.state === "suspended") ac.resume();
       const t = ac.currentTime, out = ac.createGain();
-      out.gain.value = .5; out.connect(ac.destination);
+      out.gain.value = .2; out.connect(ac.destination);
       // the tube's "sweee": a high tone that rises as the set warms up, then fades
       [[1, .06], [2, .015]].forEach(([mult, vol]) => {
         const o = ac.createOscillator(), g = ac.createGain();

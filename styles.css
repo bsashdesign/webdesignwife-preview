@@ -4214,3 +4214,16 @@ span.plan-ring:empty { display: none; }
 .theme-wedding #mood .mood__panel { background: #fffdf8; border-radius: 4px; box-shadow: inset 0 0 0 7px #fffdf8, inset 0 0 0 8px var(--gold), 0 30px 60px -30px rgba(31, 35, 54, .45), 0 0 0 1px rgba(184, 149, 90, .35); }
 .theme-wedding #mood .mood__opt[data-mood] strong { font-weight: 600; font-size: 1.15rem; }
 .theme-wedding #mood .mood__close { border-radius: 2px; }
+
+/* ================================================================
+   The key board takes each mood's own style too (the keys keep theirs)
+   ================================================================ */
+.theme-refined #moods-tv .tv-keys { background: #fff; box-shadow: inset 0 0 0 1px var(--line), 0 10px 0 #e4defa, 0 12px 0 #d6cdf5, 0 30px 50px -24px rgba(91, 61, 245, .35); border-radius: 22px; }
+.theme-blocks #moods-tv .tv-keys { background: #fff; border-radius: 18px; box-shadow: 0 0 0 2.5px var(--ink), 6px 6px 0 2.5px var(--ink); }
+.theme-subway #moods-tv .tv-keys { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #161616; border-radius: 12px; box-shadow: inset 0 0 0 1px #2f2f2f, 0 10px 0 #050505, 0 30px 50px -24px rgba(0, 0, 0, .8); }
+.theme-wedding #moods-tv .tv-keys { background: #fffdf8; border-radius: 4px; box-shadow: inset 0 0 0 7px #fffdf8, inset 0 0 0 8px var(--gold), 0 8px 0 #d9c8a4, 0 30px 50px -26px rgba(31, 35, 54, .4); }
+/* labels, lights and "Now playing" on the light boards */
+:is(.theme-refined, .theme-blocks, .theme-wedding) #moods-tv .tv-key { color: var(--ink); }
+:is(.theme-refined, .theme-blocks, .theme-wedding) #moods-tv .tv-key__led { background: color-mix(in srgb, var(--ink) 18%, #fff); box-shadow: inset 0 1px 1px rgba(0,0,0,.25); }
+:is(.theme-refined, .theme-blocks, .theme-wedding) #moods-tv .tv-key__now { color: #e8392e; }
+#moods-tv .tv-key[aria-pressed="true"] .tv-key__led { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
