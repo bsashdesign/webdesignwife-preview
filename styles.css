@@ -3119,3 +3119,6 @@ main > section.is-joined.is-joined { padding-top: 0; }
 /* Sophisticated: the emblem's 5 is a Roman numeral (the emblem is decorative; the title still says 5) */
 .theme-wedding .founding__emblem b { font-size: 0; }
 .theme-wedding .founding__emblem b::after { content: "V"; font: 500 2.2rem/1 var(--display); font-style: normal; letter-spacing: .02em; }
+/* A filled crown for the small "Founder" tag (outline crowns vanish at this size); same shape in every mood */
+.pi--crown-fill, .theme-blocks .pi--crown-fill, .theme-subway .pi--crown-fill, .theme-wedding .pi--crown-fill { -webkit-mask-image: url(images/icons/crown-fill.svg); mask-image: url(images/icons/crown-fill.svg); }
+.plan__founding .pi { font-size: 12px; }

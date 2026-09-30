@@ -220,7 +220,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       // Founding 5: the setup fee shows struck through, with the $1 founding setup next to it.
       const F = window.WDW_FOUNDING;
       const setupLine = F
-        ? `+ <s>${money(setup)}</s> <strong>${money(F.setup)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-simple" aria-hidden="true"></i>Founder</span>`
+        ? `+ <s>${money(setup)}</s> <strong>${money(F.setup)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>Founder</span>`
         : `+ ${money(setup)} one-time setup`;
       terms.innerHTML = mode === "yearly"
         ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>${setupLine}`
