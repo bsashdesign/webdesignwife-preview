@@ -1360,7 +1360,12 @@ function wdwCalInline(selector, calLink, config) {
   };
   // Buttons act the moment they're pressed down (like a real button), not when you let go.
   // Keyboard presses arrive as a click with no pointer, so those still work.
-  const press = (k) => { play(k.dataset.tvKey); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k); };
+  const press = (k) => {
+    const changing = k.dataset.tvKey !== playing;
+    play(k.dataset.tvKey); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
+    // the set powering on, just after the key's click (only when the channel actually changes)
+    if (changing && window.wdwTvOn) setTimeout(window.wdwTvOn, 60);
+  };
   sec.addEventListener("pointerdown", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.button === 0) press(k); });
   sec.addEventListener("click", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.detail === 0) press(k); });
   // A mood picked anywhere else presses its button here too.
@@ -1692,6 +1697,34 @@ document.addEventListener("click", (e) => {
       osc.type = "sine"; osc.frequency.setValueAtTime(190, t); osc.frequency.exponentialRampToValueAtTime(70, t + .07);
       og.gain.setValueAtTime(.55, t); og.gain.exponentialRampToValueAtTime(.001, t + .08);
       osc.connect(og).connect(out); osc.start(t); osc.stop(t + .09);
+    } catch (e) {}
+  };
+  // An old TV switching on: a low thunk and hum as it powers up, a crackle of static that fades as the
+  // picture settles, and the faint high whine of the picture tube.
+  window.wdwTvOn = () => {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === "suspended") ac.resume();
+      const t = ac.currentTime, out = ac.createGain();
+      out.gain.value = .45; out.connect(ac.destination);
+      // thunk + hum
+      const hum = ac.createOscillator(), hf = ac.createBiquadFilter(), hg = ac.createGain();
+      hum.type = "square"; hum.frequency.setValueAtTime(90, t); hum.frequency.exponentialRampToValueAtTime(58, t + .12);
+      hf.type = "lowpass"; hf.frequency.value = 260;
+      hg.gain.setValueAtTime(.0001, t); hg.gain.exponentialRampToValueAtTime(.5, t + .015); hg.gain.exponentialRampToValueAtTime(.001, t + .45);
+      hum.connect(hf).connect(hg).connect(out); hum.start(t); hum.stop(t + .5);
+      // static that crackles in and settles down
+      const len = Math.floor(ac.sampleRate * .7), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (Math.random() < .08 ? 1 : .35);
+      const st = ac.createBufferSource(), sf = ac.createBiquadFilter(), sg = ac.createGain();
+      st.buffer = buf; sf.type = "bandpass"; sf.frequency.value = 2400; sf.Q.value = .6;
+      sg.gain.setValueAtTime(.0001, t); sg.gain.exponentialRampToValueAtTime(.35, t + .04); sg.gain.exponentialRampToValueAtTime(.001, t + .65);
+      st.connect(sf).connect(sg).connect(out); st.start(t);
+      // the tube's whine
+      const wh = ac.createOscillator(), wg = ac.createGain();
+      wh.type = "sine"; wh.frequency.value = 7800;
+      wg.gain.setValueAtTime(.0001, t); wg.gain.exponentialRampToValueAtTime(.025, t + .12); wg.gain.exponentialRampToValueAtTime(.0001, t + .9);
+      wh.connect(wg).connect(out); wh.start(t); wh.stop(t + .95);
     } catch (e) {}
   };
   document.addEventListener("pointerdown", (e) => {
