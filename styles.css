@@ -3213,3 +3213,9 @@ main > section.is-joined.is-joined { padding-top: 0; }
 @keyframes typing-dot { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
 .theme-blocks .fx-typing--them { background: var(--sky); }
 .theme-wedding .fx-typing--me { background: var(--gold-ink); }
+/* Tangy plan finder options: lime and lifted when chosen (readable text), a small lift on hover */
+.theme-blocks .finder-dialog .opt > span { border: 2px solid var(--ink); border-radius: 14px; transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease; }
+.theme-blocks .finder-dialog .opt:hover > span { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.theme-blocks .finder-dialog .opt input:checked + span { background: var(--lime); color: var(--ink); border-color: var(--ink); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.theme-blocks .finder-dialog .opt input:checked + span small { color: var(--ink); opacity: .75; }
+.theme-blocks .finder-dialog .opt input:focus-visible + span { outline: 2px dashed var(--ink); outline-offset: 4px; }
