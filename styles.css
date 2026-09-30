@@ -4180,5 +4180,5 @@ span.plan-ring:empty { display: none; }
 .theme-blocks .plan-ring-tile:has([data-plan="full"]) { --ring: var(--rose); }
 /* hovering a plan gem lifts it a little while it spins faster */
 .plans .plan .plan-gem { transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
-.plans .plan .plan-ring-tile:hover .plan-gem { transform: translateY(-7px); }
+.plans .plan .plan-ring-tile:hover .plan-gem { transform: translateY(-3px); }
 @media (prefers-reduced-motion: reduce) { .plans .plan .plan-ring-tile:hover .plan-gem { transform: none; } }
