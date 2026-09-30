@@ -2674,3 +2674,25 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 /* Callout icons: info (circle "i") and warning (triangle), set with matching specificity so they apply */
 .article__body .callout--info::before { -webkit-mask-image: url(images/ph/bold/info.svg); mask-image: url(images/ph/bold/info.svg); }
 .article__body .callout--warn::before { -webkit-mask-image: url(images/ph/bold/warning.svg); mask-image: url(images/ph/bold/warning.svg); }
+
+/* Articles: external links get a ↗; links to other articles become reference chips */
+.article__body a[href^="http"]::after { content: "↗"; display: inline-block; margin-left: 2px; font-size: .8em; text-decoration: none; }
+.ref-chip { display: inline-flex; align-items: center; gap: 5px; max-width: 26ch; margin: 0 2px; padding: 2px 9px 2px 7px; border-radius: 999px; background: var(--tint); border: 1px solid var(--line); color: var(--ink) !important; font: 600 .78rem/1.5 var(--body); text-decoration: none !important; vertical-align: 2px; white-space: nowrap; transition: background-color .2s ease, border-color .2s ease; }
+.ref-chip span { overflow: hidden; text-overflow: ellipsis; }
+.ref-chip .pi { font-size: 13px; flex-shrink: 0; color: var(--accent-ink, var(--violet)); }
+.ref-chip:hover { border-color: var(--ink); background: #fff; }
+.theme-wedding .ref-chip { border-radius: 2px; }
+.theme-wedding .ref-chip .pi { color: var(--gold-ink); }
+.theme-blocks .ref-chip { border: 2px solid var(--ink); background: var(--lime); }
+.theme-subway .ref-chip { border-radius: 6px; }
+/* Callouts in each mood's palette */
+.theme-refined .callout--info { background: #f1edff; color: #3b2f8f; }
+.theme-refined .callout--warn { background: #fff7e0; color: #6b4b00; }
+.theme-subway .article__body .callout { border-radius: 8px; border-left: 6px solid var(--c); }
+.theme-subway .callout--info { --c: var(--blue); background: #eef4ff; color: #0b2e66; }
+.theme-subway .callout--warn { --c: var(--yellow); background: #fff4c2; color: #111; }
+.theme-blocks .callout--info { background: var(--sky); color: var(--ink); }
+.theme-blocks .callout--warn { background: var(--rose); color: var(--ink); }
+.theme-wedding .callout--info { background: #f5f1e9; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(184,149,90,.35); }
+.theme-wedding .callout--warn { background: #f7ede6; color: #6e3419; box-shadow: inset 0 0 0 1px rgba(160,90,60,.3); }
+.theme-wedding .callout--info::before { background: var(--gold-ink); }

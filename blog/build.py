@@ -451,6 +451,39 @@ index += "".join(card(a, n) for n, a in enumerate(order))
 index += "        </div>\n      </div>\n    </section>\n" + FOOT
 (HERE / "index.html").write_text(finish(index))
 
+# Links to other articles become reference chips (like source chips): the linked words stay as plain
+# text, and a small chip naming the article is added at the end of the sentence or bullet.
+TITLES = {x["slug"]: x["title"] for x in ALL}
+SHORT = {x["slug"]: (x["title"].split(": ")[0].replace("Web Design Wife ", "") if x["group"] == "compare" else x["title"].split(": ")[0]) for x in ALL}
+
+def chip(slug):
+    return (f'<a class="ref-chip" href="{slug}.html" title="{html.escape(TITLES[slug])}">'
+            f'<i class="pi pi--note-pencil" aria-hidden="true"></i><span>{html.escape(SHORT[slug])}</span></a>')
+
+def references(body):
+    link = re.compile(r'<a (?:class="tc" )?href="([a-z0-9-]+)\.html">(.*?)</a>', re.S)
+    def block(m):
+        open_tag, inner, close_tag = m.group(1), m.group(2), m.group(3)
+        chips = []
+        def swap(l):
+            slug, text = l.group(1), l.group(2)
+            if slug not in TITLES:
+                return l.group(0)
+            plain = re.sub(r"<[^>]+>", "", text).strip()
+            if plain.lower() == TITLES[slug].lower() or plain.lower() == re.sub(r"<[^>]+>", "", inner).strip().lower():
+                return chip(slug)            # the link is the title (or the whole item): the chip replaces it
+            if slug not in chips:
+                chips.append(slug)
+            return text
+        inner = link.sub(swap, inner)
+        if chips:
+            inner = re.sub(r"\s*$", "", inner) + " " + "".join(chip(c) for c in chips)
+        return open_tag + inner + close_tag
+    return re.sub(r"(<(?:p|li)(?: [^>]*)?>)(.*?)(</(?:p|li)>)", block, body, flags=re.S)
+
+for a in ALL:
+    a["body"] = references(a["body"])
+
 for a in ALL:
     page = HEAD.format(title=f"{html.escape(a['title'])} — Web Design Wife", description=html.escape(a["summary"]))
     page += f"""    <article class="article">
