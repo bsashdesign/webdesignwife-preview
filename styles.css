@@ -3162,3 +3162,27 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover {
   animation: none !important; text-decoration: underline !important; text-decoration-thickness: 1.5px !important; text-underline-offset: 4px;
 }
+
+/* ================================================================
+   Request a callback: the scheduled-call panel, the quiet "talk first" links, and the blog end module
+   ================================================================ */
+.talk-first { margin: 16px 0 0; text-align: center; font-size: .92rem; color: var(--ink-soft); }
+.talk-first a { font-weight: 600; color: var(--ink); }
+.talk-first--start { margin-top: 12px; font-size: .88rem; }
+.callpanel__cal { min-height: 420px; border-radius: 12px; overflow: hidden; background: #fff; }
+.callpanel__note { margin: 0; padding: 12px 14px; border-radius: 10px; background: rgba(255,255,255,.14); font-size: .88rem; line-height: 1.5; }
+.callpanel__soon { display: grid; gap: 6px; padding: 22px 20px; border-radius: 12px; background: #fff; color: var(--ink); }
+.callpanel__soon p { margin: 0; color: var(--ink-soft); font-size: .92rem; }
+.callpanel__soon a { color: var(--ink); font-weight: 600; }
+.theme-blocks .callpanel__soon, .theme-blocks .callpanel__cal { border: 2px solid var(--ink); }
+.theme-blocks .callpanel__note { background: #fff; border: 2px solid var(--ink); color: var(--ink); }
+.theme-wedding .callpanel__soon, .theme-wedding .callpanel__cal, .theme-wedding .callpanel__note { border-radius: 2px; }
+.endcta { margin: 48px 0 8px; padding: 28px; border-radius: var(--r-lg); background: var(--tint); text-align: center; }
+.endcta .endcta__title { margin: 0 0 8px; font: 800 clamp(1.4rem, 3vw, 1.8rem)/1.15 var(--display); max-width: none; }
+.endcta__sub { margin: 0 auto 18px; max-width: 52ch; color: var(--ink-soft); }
+.endcta__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+@media (max-width: 480px) { .endcta { padding: 22px 18px; } .endcta__btns .btn { width: 100%; } }
+.theme-blocks .endcta { background: var(--sun); border: var(--edge); box-shadow: var(--shadow); }
+.theme-subway .endcta { border-radius: 12px; box-shadow: inset 0 6px 0 var(--yellow); }
+.theme-wedding .endcta { border-radius: 4px; box-shadow: inset 0 0 0 6px var(--tint), inset 0 0 0 7px rgba(184,149,90,.35); }
+.theme-wedding .endcta .endcta__title { font-family: var(--display); font-weight: 500; }

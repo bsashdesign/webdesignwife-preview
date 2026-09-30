@@ -42,5 +42,9 @@ Fewer, genuinely useful pages beat many thin ones.
   - If a launch runs past the trial, extend the trial end date in the Dashboard before it expires.
   - Payment methods: cards, Apple Pay / Google Pay, and US bank account (ACH Direct Debit, which supports recurring subscriptions).
   - Founding 5: turn it off in build_home.py (`FOUNDING["on"] = False`) and remove the "Founding 5 Offer" paragraph from terms.html once five clients have signed up.
-- Cal.com: set `CAL_LINK` in `welcome.template.html`.
+- Cal.com: two separate event types, both set in `CAL` at the top of `build_home.py` (then rebuild):
+  - `call`: "Request a callback", 15 minutes, for prospects. Location: "Attendee phone number" (label it "Phone call: Ben will call you"), so no video link is created.
+    Booking questions: name, email, phone (required, from the location), business name (required), website (optional), "What would you like to talk about?" (optional).
+    Set availability (e.g. afternoons/evenings only), buffer time between calls, minimum notice and "Limit booking frequency" (calls per day) in Cal.com; the site never hard-codes times.
+  - `onboarding`: the new-client kickoff call booked on welcome.html after checkout. Keep it separate from `call`.
 - Have a lawyer review `terms.html` and `privacy.html` (drafts, updated to match the offer).

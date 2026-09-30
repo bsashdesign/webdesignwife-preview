@@ -12,11 +12,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790740439">
-  <link rel="stylesheet" href="themes/subway.css?v=1790740439">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790740439">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790740439">
-  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};</script>
+  <link rel="stylesheet" href="styles.css?v=1790740726">
+  <link rel="stylesheet" href="themes/subway.css?v=1790740726">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790740726">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790740726">
+  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -38,7 +38,7 @@
     <div class="wrap">
       <p class="eyebrow">You're in</p>
       <h1 class="start__title">It's Official<span data-welcome-name></span>!</h1>
-      <p class="start__intro">Thank you for choosing Web Design Wife. One last step: pick a time for our first call. It's about 15 minutes, and it's where I learn about your business, your customers and what you want your site to do.</p>
+      <p class="start__intro">Thank you for choosing Web Design Wife. One last step: pick a time for our kickoff call. It's about 15 minutes, and it's where I learn about your business, your customers and what you want your site to do.</p>
 
       <div class="start__grid">
         <section class="welcome__cal" aria-label="Book our first call">
@@ -69,10 +69,10 @@
     </div>
   </footer>
 
-  <script src="script.js?v=1790740439"></script>
+  <script src="script.js?v=1790740726"></script>
   <script>
-    // Your Cal.com event, e.g. "ben/first-call". Leave empty to show the placeholder.
-    const CAL_LINK = "";
+    // The new-client kickoff call (set CAL["onboarding"] in build_home.py). Separate from the prospect phone call.
+    const CAL_LINK = (window.WDW_CAL && WDW_CAL.onboarding) || "";
 
     let details = {};
     try { details = JSON.parse(localStorage.getItem("wdw-start") || "{}"); } catch (e) {}
@@ -82,14 +82,7 @@
 
     // Cal.com inline booking calendar, with their name, email and business filled in.
     if (CAL_LINK) {
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", { origin: "https://cal.com" });
-      Cal("inline", {
-        elementOrSelector: "#cal-inline",
-        calLink: CAL_LINK,
-        config: { name: details.name || "", email: details.email || "", notes: details.business ? `Business: ${details.business}${details.address ? ", " + details.address : ""}` : "" },
-      });
-      Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+      wdwCalInline("#cal-inline", CAL_LINK, { name: details.name || "", email: details.email || "", notes: details.business ? `Business: ${details.business}${details.address ? ", " + details.address : ""}` : "" });
       document.getElementById("cal-inline").hidden = false;
       document.getElementById("cal-placeholder").hidden = true;
     }

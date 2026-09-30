@@ -30,6 +30,12 @@ DEFAULT = "tangy"
 #         (also remove the "Founding 5" paragraph in terms.html by hand).
 FOUNDING = {"on": True, "left": None, "setup": 1}
 
+# Cal.com scheduling. Two separate event types; availability, buffers and daily limits live in Cal.com.
+#   call:       the 15-minute scheduled callback for prospects ("Request a callback"); location: Ben calls the attendee's phone.
+#   onboarding: the kickoff call new clients book on welcome.html after they sign up.
+# Use the event's path, e.g. "webdesignwife/phone-call". Empty shows a placeholder instead of the calendar.
+CAL = {"call": "", "onboarding": ""}
+
 FONTS = (
     '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700'
     '&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">'
@@ -87,7 +93,7 @@ def mood_boot():
     return (f'<script>(function(){{var M={{{table}}},k=new URLSearchParams(location.search).get("mood");'
             f'try{{if(!M[k])k=localStorage.getItem("wdw-mood")}}catch(e){{}}if(!M[k])k="{DEFAULT}";'
             f'document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k}})();'
-            f'window.WDW_FOUNDING={json.dumps(FOUNDING if FOUNDING["on"] else None)};</script>')
+            f'window.WDW_FOUNDING={json.dumps(FOUNDING if FOUNDING["on"] else None)};window.WDW_CAL={json.dumps(CAL)};</script>')
 
 
 def add_alt_copy(html):

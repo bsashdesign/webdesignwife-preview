@@ -6,17 +6,17 @@
   <meta name="robots" content="noindex">
   <script>document.documentElement.classList.add("js");</script>
   <title>Contact — Web Design Wife</title>
-  <meta name="description" content="Get in touch with Ben at Web Design Wife: write a note or request a callback.">
+  <meta name="description" content="Get in touch with Ben at Web Design Wife: write a note, or request a callback at a time that suits you.">
   <link rel="icon" href="images/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790740439">
-  <link rel="stylesheet" href="themes/subway.css?v=1790740439">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790740439">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790740439">
-  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};</script>
+  <link rel="stylesheet" href="styles.css?v=1790740726">
+  <link rel="stylesheet" href="themes/subway.css?v=1790740726">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790740726">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790740726">
+  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -82,24 +82,18 @@
           <div class="formcard">
             <div class="tabs" role="tablist" aria-label="How would you like to talk?">
               <button type="button" role="tab" id="tab-note" aria-selected="true" aria-controls="form-note">Write Me a Note ♥</button>
-              <button type="button" role="tab" id="tab-callback" aria-selected="false" aria-controls="form-callback" tabindex="-1">Request a Callback</button>
+              <button type="button" role="tab" id="tab-call" aria-selected="false" aria-controls="panel-call" tabindex="-1">Request a Callback</button>
             </div>
             <!-- TODO: connect these forms to a form backend (Formspree, etc.) -->
-            <form class="form" id="form-callback" role="tabpanel" aria-labelledby="tab-callback" novalidate hidden data-success="Thanks! I'll call you back within one business day.">
-            <p class="form__desc">Leave your number and a good time, and I'll call you back within one business day.</p>
-            <label>Your name<input name="name" required autocomplete="name"></label>
-            <label>Phone number<input name="phone" type="tel" required autocomplete="tel"></label>
-            <label>Best time to call
-              <select name="time">
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
-            </label>
-            <label><span>What would you like to talk about? <span class="opt">(optional)</span></span><textarea name="topic" rows="3"></textarea></label>
-            <button class="btn btn--light btn--block" type="submit">Request a Call</button>
-            <p class="form__msg" role="status" aria-live="polite"></p>
-          </form>
+            <div class="form callpanel" id="panel-call" role="tabpanel" aria-labelledby="tab-call" hidden>
+              <p class="form__desc">Choose a 15-minute time that works for you. I'll call the number you provide at that time.</p>
+              <div class="callpanel__cal" id="cal-call" hidden></div>
+              <div class="callpanel__soon" id="cal-call-soon">
+                <strong>Booking opens soon</strong>
+                <p>Until then, <a href="mailto:ben@webdesignwife.com?subject=Callback">email me</a> a couple of times that work and your number, and I'll call you.</p>
+              </div>
+              <p class="callpanel__note">You're booking a scheduled callback. Please be available at the time you pick: I'll call you directly. No Zoom or Google Meet needed.</p>
+            </div>
           <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate data-success="Sealed and sent ♥ I'll write back within one business day.">
             <p class="form__desc note__intro">Not ready for a call? Send me a note with any question. It stays between us, no pressure.</p>
             <label>Your name<input name="name" required autocomplete="name"></label>
@@ -202,10 +196,16 @@
         </div></div>
   </dialog>
 
-  <script src="script.js?v=1790740439"></script>
+  <script src="script.js?v=1790740726"></script>
   <script>
-    // Open the callback form when linked with ?type=callback
-    if (new URLSearchParams(location.search).get("type") === "callback") document.getElementById("tab-callback").click();
+    // Open the callback tab when linked with ?type=callback
+    if (["call", "callback"].includes(new URLSearchParams(location.search).get("type"))) document.getElementById("tab-call").click();
+    // The scheduled callback: a Cal.com calendar showing Ben's real availability (set in Cal.com, not here).
+    if (window.WDW_CAL && WDW_CAL.call) {
+      wdwCalInline("#cal-call", WDW_CAL.call, {});
+      document.getElementById("cal-call").hidden = false;
+      document.getElementById("cal-call-soon").hidden = true;
+    }
   </script>
 </body>
 </html>

@@ -380,7 +380,14 @@ def quickcheck(title, sub):
 """
 
 MID_CHECK = quickcheck("Want my honest take on your website?", "Enter your web address and I'll look it over personally. Free, with no obligation.")
-END_CHECK = quickcheck("Want a second opinion on your site?", "Tell me your web address and I'll send you a short, honest review of what to fix first.")
+# End of every article: the audit first, Get started second, and a quiet callback option under them.
+END_CHECK = """        <aside class="endcta" aria-label="Next steps">
+          <h2 class="endcta__title">Want help with your website?</h2>
+          <p class="endcta__sub">I'll personally review your site and Google Maps listing and send you the fixes that matter most. Free, no pressure.</p>
+          <div class="endcta__btns"><a class="btn btn--primary" href="../index.html#audit">Get a free website audit</a><a class="btn btn--ghost" href="../start.html">Get started</a></div>
+          """ + '<p class="talk-first">Want to talk first? <a href="../contact.html?type=callback">Request a callback →</a></p>' + """
+        </aside>
+"""
 
 ICONS = {"Borough guide": "map-pin", "Checklist": "clipboard-text", "Google Maps": "map-trifold", "Buying guide": "scales", "Reviews": "star", "Guide": "hammer", "Comparison": "scales"}
 COVERS = [("#dfeaff", "#a9c4f2"), ("#dcf2e3", "#9fd7b2"), ("#fff4c2", "#f0d86b"), ("#ffe1dc", "#f3aa9d"), ("#efe6ff", "#c4acf2"), ("#e0f4f7", "#97d4de")]

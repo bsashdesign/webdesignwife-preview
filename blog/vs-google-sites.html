@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=1790740439">
+  <link rel="stylesheet" href="../styles.css?v=1790740726">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../themes/subway.css?v=1790740439">
-  <link rel="stylesheet" href="../themes/blocks.css?v=1790740439">
-  <link rel="stylesheet" href="../themes/wedding.css?v=1790740439">
-  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};</script>
+  <link rel="stylesheet" href="../themes/subway.css?v=1790740726">
+  <link rel="stylesheet" href="../themes/blocks.css?v=1790740726">
+  <link rel="stylesheet" href="../themes/wedding.css?v=1790740726">
+  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
   <div class="mood" id="mood">
@@ -121,30 +121,12 @@
 <h2>Still Not Sure?</h2>
 <p>That's normal. Send me your current website, or tell me what you're considering, and I'll give you an honest recommendation, even if it isn't me.</p>
 </div>
-
-<form class="quickcheck" novalidate>
-  <div class="quickcheck__step" data-step="url">
-    <p class="quickcheck__title tc">Want a Second Opinion on Your Site?</p>
-    <p class="quickcheck__sub">Tell me your web address and I'll send you a short, honest review of what to fix first.</p>
-    <div class="quickcheck__row">
-      <input name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" aria-label="Your website address">
-      <button class="btn btn--primary" type="submit">Get My Take</button>
-    </div>
-  </div>
-  <div class="quickcheck__step" data-step="email" hidden>
-    <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> <span class="qc-url"></span> is in my review queue</p>
-    <p class="quickcheck__sub">Where should I send your notes? I review every site personally and reply within one business day.</p>
-    <div class="quickcheck__row">
-      <input name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" aria-label="Your email">
-      <button class="btn btn--primary" type="submit">Send My Notes</button>
-    </div>
-  </div>
-  <div class="quickcheck__step" data-step="done" hidden>
-    <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> You're all set</p>
-    <p class="quickcheck__sub">I'll email my notes on <span class="qc-url"></span> within one business day.</p>
-  </div>
-  <p class="quickcheck__msg" role="status" aria-live="polite"></p>
-</form>
+        <aside class="endcta" aria-label="Next steps">
+          <h2 class="endcta__title">Want Help with Your Website?</h2>
+          <p class="endcta__sub">I'll personally review your site and Google Maps listing and send you the fixes that matter most. Free, no pressure.</p>
+          <div class="endcta__btns"><a class="btn btn--primary" href="../index.html#audit">Get a Free Website Audit</a><a class="btn btn--ghost" href="../start.html">Get Started</a></div>
+          <p class="talk-first">Want to talk first? <a href="../contact.html?type=callback">Request a callback →</a></p>
+        </aside>
         <section class="related" data-slug="vs-google-sites" data-group="compare" aria-label="Related articles" hidden>
           <h2 class="related__h">Keep Reading</h2>
           <div class="related__list"></div>
@@ -199,6 +181,6 @@
     </div>
   </footer>
   <a class="mobilebar" href="../index.html#audit">Get a free website audit</a>
-  <script src="../script.js?v=1790740439"></script>
+  <script src="../script.js?v=1790740726"></script>
 </body>
 </html>
