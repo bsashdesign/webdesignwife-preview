@@ -3554,3 +3554,70 @@ span.plan-ring:empty { display: none; }
 .tv-sec .tape--yours .tape__window { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
 .tv-sec .tape--yours .tape__window i { background: radial-gradient(circle, #111 0 3px, #d8d1c4 3px 5px, #3b3b3b 5px 7px, #6d6d6d 7px); }
 .theme-blocks .tv-sec .tape--yours { border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+
+/* ================================================================
+   Now playing, v3: forward-view cassettes, a one-tape door, and the "Yours?" takeover
+   ================================================================ */
+.tv-sec { --tw: 156px; }
+/* A cassette seen from the front and a little above: the top (reel window) and the front spine (label, colored stripes). */
+.tv-sec .tv-shelf .tape { display: block; width: var(--tw); aspect-ratio: auto; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; filter: drop-shadow(0 10px 10px rgba(0,0,0,.28)); }
+.tv-sec .tv-shelf .tape:hover { transform: translateY(-4px); box-shadow: none; }
+.tv-sec .tape__top { display: grid; place-items: center; height: 38px; background: linear-gradient(#3b3b3b, #242424); clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%); border-radius: 4px 4px 0 0; }
+.tv-sec .tape__top .tape__window { width: 56%; height: 20px; margin: 0; border-radius: 3px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); display: flex; justify-content: space-around; align-items: center; transform: scaleY(.8); }
+.tv-sec .tape__top .tape__window i { width: 14px; height: 14px; }
+.tv-sec .tape__front { display: flex; align-items: center; gap: 6px; height: 44px; padding: 6px 7px; border-radius: 0 0 5px 5px; background: linear-gradient(#1c1c1c, #0f0f0f); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.tv-sec .tape__front .tape__label { flex: 1; min-width: 0; height: 100%; padding: 4px 7px; border-radius: 2px; }
+.tv-sec .tape__front .tape__face, .tv-sec .tape__front .tape__q { width: 20px; height: 20px; }
+.tv-sec .tape__front .tape__text strong { font-size: .88rem; white-space: nowrap; }
+.tape__stripes { display: grid; gap: 3px; flex: none; }
+.tape__stripes i { display: block; width: 14px; height: 4px; border-radius: 2px; background: #555; }
+.tape--tangy .tape__stripes i:nth-child(1) { background: #d4ff4f; } .tape--tangy .tape__stripes i:nth-child(2) { background: #ff6a1a; } .tape--tangy .tape__stripes i:nth-child(3) { background: #3355ff; }
+.tape--calm .tape__stripes i { background: #c9bdfc; } .tape--calm .tape__stripes i:nth-child(2) { background: #5b3df5; }
+.tape--transit .tape__stripes i:nth-child(1) { background: #e8392e; } .tape--transit .tape__stripes i:nth-child(2) { background: #fccc0a; } .tape--transit .tape__stripes i:nth-child(3) { background: #00933c; }
+.tape--sophisticated .tape__stripes i { background: #b8955a; height: 2px; }
+.tape--yours .tape__stripes i { background: #fff; opacity: .5; }
+.tv-sec .tv-shelf .tape--yours { background: none; box-shadow: none; border: 0; }
+.tv-sec .tape--yours .tape__label { transform: none; }
+.theme-blocks .tv-sec .tv-shelf .tape, .theme-blocks .tv-sec .tv-shelf .tape--yours { border: 0; box-shadow: none; filter: drop-shadow(4px 4px 0 var(--ink)); }
+/* The VCR is exactly as wide as its tape door, and the door fits exactly one tape */
+.tv-sec .vcr { width: max-content; max-width: 100%; justify-self: center; }
+.tv-sec .vcr__window, .tv-stage .vcr__window { flex: none; width: calc(var(--tw) + 12px); height: 54px; display: grid; place-items: center; }
+.tv-sec .vcr__tape, .tv-stage .vcr__tape { width: var(--tw); opacity: 1; }
+.tv-sec .vcr__tape .tape__front { border-radius: 3px; }
+.tv-stage .tv-nook { grid-template-columns: max-content minmax(0, 1fr); }
+/* The shelf: all four in one row, or two by two; never three and one */
+.tv-sec .tv-shelf, .tv-stage .tv-shelf { display: grid; grid-template-columns: repeat(2, var(--tw)); justify-content: center; gap: 16px 14px; }
+.tv-stage { grid-template-columns: minmax(0, 1fr) calc(var(--tw) * 2 + 14px); }
+@media (max-width: 1100px) { .tv-stage { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 720px) and (max-width: 1100px) { .tv-sec .tv-shelf, .tv-stage .tv-shelf { grid-template-columns: repeat(4, var(--tw)); } }
+@media (max-width: 760px) { .tv-stage .tv-nook { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 370px) { .tv-sec { --tw: 140px; } }
+
+/* "Yours?" takes over: the rest of the page goes white and stops scrolling */
+html.is-yours-on { overflow: hidden; }
+html.is-yours-on body::after { content: ""; position: fixed; inset: 0; z-index: 60; background: #fff; animation: yours-blank .5s ease both; }
+html.is-yours-on #moods-tv { position: relative; z-index: 61; }
+html.is-yours-on .mood, html.is-yours-on .mobilebar { visibility: hidden; }
+@keyframes yours-blank { 0% { opacity: 0; } 30% { opacity: 1; background: #111; } 100% { opacity: 1; background: #fff; } }
+/* ...and the TV plays it in old VCR on-screen style */
+.tv__yours { background: #1d3fd8; color: #fff; font-family: "VT323", ui-monospace, monospace; text-transform: uppercase; letter-spacing: .04em; gap: 8px; }
+.tv__yours .tv__yours-title { font: 400 clamp(1.4rem, 3.2vw, 2.1rem)/1 "VT323", ui-monospace, monospace; color: #fff; max-width: 22ch; text-shadow: 2px 2px 0 rgba(0,0,0,.35); }
+.tv__yours p { color: #e8ecff; font-size: clamp(1rem, 2vw, 1.2rem); max-width: 30ch; }
+.tv__osd-top { position: absolute; top: 14px; left: 18px; right: 18px; display: flex; justify-content: space-between; margin: 0; font-size: 1rem !important; color: #fff !important; }
+.tv__osd-btn { display: inline-flex; align-items: center; padding: 3px 10px; border: 2px solid #fff; border-radius: 0; background: transparent; color: #fff; font: 400 1.05rem/1.1 "VT323", ui-monospace, monospace; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+.tv__osd-btn:hover, .tv__osd-btn:focus-visible { background: #fff; color: #1d3fd8; outline: none; }
+.tv__osd-btn--quiet { border-color: transparent; }
+.tv__yours .tv__yours-btns { gap: 10px; }
+.tv__screen.is-yours .tv__caption { display: none; }
+
+/* Plan rings: top-right corner of each plan card */
+.plan { position: relative; }
+.plan .plan-ring { position: absolute; top: 16px; right: 16px; width: 56px; height: 56px; margin: 0; }
+.theme-subway .plan-ring[data-plan="essentials"] { --ring: #00933c; } .theme-subway .plan-ring[data-plan="business"] { --ring: #0b5cd6; } .theme-subway .plan-ring[data-plan="full"] { --ring: #a336b0; }
+.theme-blocks .plan-ring[data-plan="essentials"] { --ring: #5cc21a; } .theme-blocks .plan-ring[data-plan="business"] { --ring: #3355ff; } .theme-blocks .plan-ring[data-plan="full"] { --ring: #ff4fa6; }
+.tv-sec .tv-shelf .tape[hidden] { display: none; }
+/* give the TV the room: the stage uses the full width, the TV's side panel slims down */
+.tv-stage { max-width: none; }
+.tv-stage .tv-nook { padding: 20px; gap: 16px; }
+.tv-stage .tv { grid-template-columns: minmax(0, 1fr) 64px; gap: 12px; padding: 16px; }
+.tv-stage .tv__knob { width: 38px; height: 38px; } .tv-stage .tv__knob--sm { width: 28px; height: 28px; } .tv-stage .tv__grille { width: 46px; height: 90px; }

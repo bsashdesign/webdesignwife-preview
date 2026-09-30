@@ -1329,15 +1329,13 @@ function wdwCalInline(selector, calLink, config) {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let playing = null;
 
+  const shelf = sec.querySelector(".tv-shelf");
+  const tapeOf = (k) => sec.querySelector(`.tape[data-tape="${k}"]`);
+
   const render = (key) => {
     playing = key;
-    tapes.forEach((t) => {
-      const on = t.dataset.tape === key;
-      t.setAttribute("aria-pressed", String(on));
-      // The tape in the deck leaves the shelf; the rest close up, and it slots back into its own place when ejected.
-      t.hidden = on;
-    });
-    const src = sec.querySelector(`.tape[data-tape="${key}"] .tape__label`);
+    tapes.forEach((t) => { const on = t.dataset.tape === key; t.setAttribute("aria-pressed", String(on)); t.hidden = on; });
+    const src = tapeOf(key).querySelector(".tape__front");
     deck.className = "vcr__tape tape--" + key;
     deck.innerHTML = src ? src.outerHTML : "";
     show.dataset.tvShow = key;
@@ -1345,6 +1343,14 @@ function wdwCalInline(selector, calLink, config) {
     screen.classList.toggle("is-yours", key === "yours");
     nameEl.textContent = NAMES[key];
   };
+
+  // "Yours?" takes over the page: everything else goes white and the page stops scrolling,
+  // leaving just the TV, the VCR and the tapes. Back, or any other tape, brings the page back.
+  const takeover = (on) => {
+    if (on) sec.scrollIntoView({ block: "center" });
+    root.classList.toggle("is-yours-on", on);
+  };
+
   const door = sec.querySelector(".vcr__window");
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   let busy = false, queued = null;
@@ -1356,56 +1362,74 @@ function wdwCalInline(selector, calLink, config) {
     g.removeAttribute("data-tape");
     g.classList.add("tape--ghost");
     Object.assign(g.style, { position: "fixed", left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px",
-      margin: "0", zIndex: "90", pointerEvents: "none", visibility: "visible", transformOrigin: "50% 50%" });
-    document.body.appendChild(g);
+      margin: "0", zIndex: "95", pointerEvents: "none", visibility: "visible" });
+    shelf.appendChild(g);   // inside the shelf so it keeps the cassette styling; being fixed, it doesn't take a place in the grid
     return g;
   };
-  // The path into the VCR's tape door: fly over and line up with the door, then push in (it shrinks back into the dark and is gone).
-  const doorPath = (r) => {
-    const d = door.getBoundingClientRect();
-    const k = Math.min((d.width * 0.92) / r.width, 1);
+  // Into the tape door: the cassette flies over with its spine lined up in the door (same size: the door fits one tape),
+  // then pushes in: the top slides under the door's lip and the spine sinks back into the dark.
+  const doorPath = (tape, r) => {
+    const d = door.getBoundingClientRect(), front = tape.querySelector(".tape__front");
+    const fh = front ? front.offsetHeight : r.height, top = r.height - fh;
     const dx = d.left + d.width / 2 - (r.left + r.width / 2);
-    const dy = d.top + d.height / 2 - (r.top + r.height / 2);
+    const dy = d.top + d.height / 2 - (r.bottom - fh / 2);
     return [
-      { transform: "none", opacity: 1, filter: "brightness(1)" },
-      { transform: `translate(${dx}px, ${dy}px) scale(${k})`, opacity: 1, filter: "brightness(1)", offset: 0.6 },
-      { transform: `translate(${dx}px, ${dy}px) scale(${k * 0.72})`, opacity: 0, filter: "brightness(.25)" },
+      { transform: "none", clipPath: "inset(0 0 0 0)", filter: "brightness(1)", opacity: 1 },
+      { transform: `translate(${dx}px, ${dy}px)`, clipPath: "inset(0 0 0 0)", filter: "brightness(1)", opacity: 1, offset: 0.6 },
+      { transform: `translate(${dx}px, ${dy}px)`, clipPath: `inset(${top}px 0 0 0)`, filter: "brightness(1)", opacity: 1, offset: 0.8 },
+      { transform: `translate(${dx}px, ${dy}px) scale(.94)`, clipPath: `inset(${top}px 0 0 0)`, filter: "brightness(.2)", opacity: 0 },
     ];
   };
   const fly = (g, frames, ms) => g.animate(frames, { duration: ms, easing: "cubic-bezier(.45, 0, .25, 1)", fill: "forwards" }).finished;
+  // The same path played backward (for ejecting), with its keyframe offsets mirrored.
+  const backward = (frames) => frames.slice().reverse().map((f) => (f.offset == null ? f : { ...f, offset: 1 - f.offset }));
 
-  // Swap tapes: the one you picked goes into the VCR, and the one that was playing pops out into the spot you took it from.
-  // `apply` is false when the mood was already changed somewhere else (the floating switcher or the other section).
+  // Swap tapes: the one you pick goes into the VCR; the one that was playing pops out into the spot you took it from.
+  // "Yours?" always lives in the last spot. `apply` is false when the mood already changed elsewhere (the floating switcher).
   const insert = async (key, apply = true) => {
     if (key === playing) return;
     if (busy) { queued = key; return; }
-    const change = () => { render(key); if (apply && key !== "yours" && window.wdwSetMood) window.wdwSetMood(key); };
-    if (reduce) return change();
+    const leavingYours = playing === "yours", enteringYours = key === "yours";
+    const change = () => { render(key); if (apply && !enteringYours && window.wdwSetMood) window.wdwSetMood(key); };
+    const old = playing && tapeOf(playing), next = tapeOf(key);
+    // The new shelf order: swap the two tapes, then make sure "Yours?" is last.
+    const L = [...shelf.children];
+    if (old) { const a = L.indexOf(old), b = L.indexOf(next); L[a] = next; L[b] = old; }
+    const y = tapeOf("yours");
+    if (!enteringYours && L[L.length - 1] !== y) { const k = L.indexOf(y), z = L.length - 1; [L[k], L[z]] = [L[z], L[k]]; }
+    if (reduce) { L.forEach((t) => shelf.appendChild(t)); if (leavingYours) takeover(false); change(); if (enteringYours) takeover(true); return; }
     busy = true;
-    const old = playing && sec.querySelector(`.tape[data-tape="${playing}"]`);
-    const next = sec.querySelector(`.tape[data-tape="${key}"]`);
+    if (leavingYours) takeover(false);
     const spot = next.getBoundingClientRect();
+    const was = new Map([...shelf.children].filter((t) => !t.hidden).map((t) => [t, t.getBoundingClientRect()]));
     // 1. The screen switches off.
     screen.classList.remove("is-on");
     screen.classList.add("is-off");
     await wait(220);
-    // 2. The picked tape heads for the door; the old one takes its place on the shelf (still invisible).
+    // 2. Rearrange the shelf (the tape coming out is invisible until it lands); anything that moves glides there.
     const gin = ghost(next, spot);
-    if (old) { old.style.visibility = "hidden"; next.before(old); old.hidden = false; }
     next.hidden = true;
-    const goingIn = fly(gin, doorPath(spot), 950);
-    // 3. Meanwhile the old tape ejects out of the door and lands in that spot.
+    if (old) { old.hidden = false; old.style.visibility = "hidden"; }
+    L.forEach((t) => shelf.appendChild(t));
+    was.forEach((r0, t) => {
+      if (t === next || t === old || t.hidden) return;
+      const r1 = t.getBoundingClientRect(), dx = r0.left - r1.left, dy = r0.top - r1.top;
+      if (dx || dy) t.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }], { duration: 600, easing: "cubic-bezier(.3, 0, .2, 1)" });
+    });
+    const goingIn = fly(gin, doorPath(next, spot), 950);
+    // 3. Meanwhile the old tape ejects out of the door and lands in its new spot.
     let comingOut = Promise.resolve();
     if (old) {
-      await wait(120);
+      await wait(140);
       deck.innerHTML = "";
-      const gout = ghost(old, old.getBoundingClientRect());
-      comingOut = fly(gout, doorPath(old.getBoundingClientRect()).reverse(), 820).then(() => { gout.remove(); old.style.visibility = ""; });
+      const r = old.getBoundingClientRect(), gout = ghost(old, r);
+      comingOut = fly(gout, backward(doorPath(old, r)), 820).then(() => { gout.remove(); old.style.visibility = ""; });
     }
     await Promise.all([goingIn, comingOut]);
-    // 4. It plays: the page takes on the new look, and the screen flickers back on.
+    // 4. It plays: the page takes on the new look (or goes blank for "Yours?"), and the screen flickers back on.
     change();
     gin.remove();
+    if (enteringYours) takeover(true);
     screen.classList.remove("is-off");
     void screen.offsetWidth;
     screen.classList.add("is-on");
@@ -1414,9 +1438,10 @@ function wdwCalInline(selector, calLink, config) {
   };
 
   sec.addEventListener("click", (e) => { const t = e.target.closest(".tape"); if (t) insert(t.dataset.tape); });
-  // Back ejects "Yours?" and the mood that's on the page goes back in.
+  // Back takes "Yours?" out and puts the mood that's on the page back in.
   if (yours) yours.querySelector(".tv__yours-back").addEventListener("click", () => insert(root.dataset.mood));
-  // A mood picked anywhere else plays the same swap here (the page has already changed, so it's only the tapes that move).
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && playing === "yours") insert(root.dataset.mood); });
+  // A mood picked anywhere else plays the same swap here (the page has already changed, so only the tapes move).
   new MutationObserver(() => { if (root.dataset.mood !== playing) insert(root.dataset.mood, false); })
     .observe(root, { attributes: true, attributeFilter: ["data-mood"] });
   render(root.dataset.mood || "tangy");
