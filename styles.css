@@ -4150,3 +4150,24 @@ span.plan-ring:empty { display: none; }
 .theme-blocks .tv-yours__front .i-heart { color: var(--violet); }
 .theme-subway .tv-yours__front .i-heart { color: var(--red); }
 .theme-wedding .tv-yours__front .i-heart { color: var(--gold-ink); }
+
+/* ================================================================
+   Three Ways, reworked: the two alternatives are plain and quiet; Web Design Wife is wider, raised a step
+   above them and given more room, so it's clearly the premium choice. (Every mood; each styles its own.)
+   ================================================================ */
+#compare .compare-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr); align-items: stretch; overflow: visible; padding: 18px 0 8px; }
+#compare .compare-cards .cc:not(.cc--us) h3 { color: var(--ink-soft); }
+#compare .compare-cards .cc:not(.cc--us) ul { color: var(--ink-soft); }
+#compare .compare-cards .cc.cc--us { transform: translateY(-14px); padding: 34px 34px 36px; }
+#compare .compare-cards .cc--us h3 { font-size: 1.5rem; }
+#compare .compare-cards .cc--us ul { font-size: 1.04rem; }
+#compare .compare-cards .cc--us .cc__ico { width: 60px; height: 60px; border-radius: 16px; }
+@media (max-width: 760px) {
+  #compare .compare-cards { grid-template-columns: minmax(0, 1fr); padding-top: 0; }
+  #compare .compare-cards .cc.cc--us { transform: none; order: -1; }
+}
+/* Calm: the alternatives sit flat; ours is lifted with a soft violet glow */
+#compare .compare-cards .cc.cc--us { box-shadow: 0 30px 50px -28px rgba(91, 61, 245, .45); }
+/* the heart sits inline at the end of the note's sentence, in the text's own colour */
+.tv-yours__front .tv-yours__go { display: inline; }
+.tv-yours__front .i-heart, .theme-blocks .tv-yours__front .i-heart, .theme-subway .tv-yours__front .i-heart, .theme-wedding .tv-yours__front .i-heart { color: inherit; display: inline-block; vertical-align: -0.1em; }

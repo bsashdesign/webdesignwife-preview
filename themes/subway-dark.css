@@ -200,3 +200,9 @@
 .theme-subway.theme-dark #compare .compare-cards .cc:nth-child(1) { border-top-color: var(--gray); }
 .theme-subway.theme-dark #compare .compare-cards .cc:nth-child(2) { border-top-color: var(--purple); }
 .theme-subway.theme-dark #compare .compare-cards .cc.cc--us { border-top-color: #fccc0a; }
+.theme-subway.theme-dark #compare .compare-cards .cc.cc--us { background: #000; border-color: #000; border-top: 6px solid #fccc0a; }
+
+/* Three Ways on the blue band: no fill behind the cards, a yellow button, and quiet grey bars on the alternatives */
+.theme-subway.theme-dark #compare .compare-cards { background: none; border: 0; box-shadow: none; }
+.theme-subway.theme-dark #compare .btn--primary { background: #fccc0a; border-color: #fccc0a; color: #111; }
+.theme-subway.theme-dark #compare .compare-cards .cc:nth-child(1), .theme-subway.theme-dark #compare .compare-cards .cc:nth-child(2) { border-top-color: #4a4a4a; }

@@ -227,3 +227,12 @@
 .theme-blocks .for__row li, .theme-blocks .for__label { color: var(--ink); }
 .theme-blocks #compare .compare-cards .cc.cc--us { background: var(--lime); border: var(--edge); box-shadow: var(--shadow); }
 .theme-blocks .for { border-bottom: var(--edge); }
+
+/* Tangy Three Ways: no clipping; the alternatives are white with a thin outline and coloured icon tiles;
+   Web Design Wife is lime with a deeper hard shadow */
+.theme-blocks #compare .compare-cards { overflow: visible; }
+.theme-blocks #compare .compare-cards .cc:nth-child(n), .theme-blocks #compare .compare-cards .cc + .cc { background: #fff; border: 2px solid var(--ink); box-shadow: none; }
+.theme-blocks #compare .compare-cards .cc:nth-child(1) .cc__ico { background: var(--rose); }
+.theme-blocks #compare .compare-cards .cc:nth-child(2) .cc__ico { background: var(--sun); }
+.theme-blocks #compare .compare-cards .cc.cc--us { background: var(--lime); border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
+.theme-blocks #compare .compare-cards .cc--us .cc__ico { background: #fff; }

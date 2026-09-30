@@ -64,4 +64,4 @@ HEART = ('<svg class="i-heart" viewBox="0 0 16 16" aria-hidden="true"><path d="M
 def arrows(html):
     html = re.sub(r"\s*→\s*</(a|span)>", lambda m: ARROW + "</" + m.group(1) + ">", html)
     # A heart ending a button or tab label is drawn too (the text glyph turns into an emoji in some fonts).
-    return re.sub(r"\s*♥\s*</button>", " " + HEART + "</button>", html)
+    return re.sub(r"\s*♥\s*</(button|span)>", lambda m: " " + HEART + "</" + m.group(1) + ">", html)

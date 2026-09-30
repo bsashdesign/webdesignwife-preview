@@ -263,3 +263,10 @@
 .theme-subway .profile__pane--after li[data-tier="biz"]::before { background: var(--blue); }
 /* Section rhythm after removing Examples */
 .theme-subway #compare { background: #f2f2ef; }
+/* Transit Three Ways: the alternatives take a grey bar; ours the blue bar and a lift */
+.theme-subway #compare .compare-cards .cc:nth-child(2) { --c: var(--gray); }
+.theme-subway #compare .compare-cards .cc.cc--us { box-shadow: 0 26px 44px -26px rgba(0, 0, 0, .45); }
+/* ours is the black card with the yellow bar and white text */
+.theme-subway #compare .compare-cards .cc.cc--us { background: #111; border: 1px solid #111; border-top: 6px solid var(--yellow); }
+/* the alternatives' bars are quiet grey in regular Transit too */
+.theme-subway #compare .compare-cards .cc:nth-child(1), .theme-subway #compare .compare-cards .cc:nth-child(2) { border-top-color: #c9c9c4; }
