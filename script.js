@@ -1313,8 +1313,8 @@ function wdwCalInline(selector, calLink, config) {
 })();
 
 // "Now playing" (moods, version B): the tape in the VCR is the mood on the page.
-// Inserting a tape glides it into the deck (View Transitions, where supported), ejects the old one to the shelf,
-// and switches the whole page. The "Yours?" tape plays a white screen with the invitation; Back ejects it.
+// Picking a tape switches the screen off, ejects the old tape back to its place on the shelf, slides the new one
+// into the VCR's slot, and switches the whole page as the screen flickers back on. The "Yours?" tape plays a white screen with the invitation; Back ejects it.
 (function () {
   const sec = document.getElementById("moods-tv");
   if (!sec) return;
@@ -1336,28 +1336,77 @@ function wdwCalInline(selector, calLink, config) {
       t.setAttribute("aria-pressed", String(on));
       // The tape in the deck leaves the shelf; the rest close up, and it slots back into its own place when ejected.
       t.hidden = on;
-      // Only one element may carry a transition name: the tape in the deck takes over its shelf twin's.
-      t.style.viewTransitionName = on ? "none" : "tape-" + t.dataset.tape;
     });
     const src = sec.querySelector(`.tape[data-tape="${key}"] .tape__label`);
     deck.className = "vcr__tape tape--" + key;
     deck.innerHTML = src ? src.outerHTML : "";
-    deck.style.viewTransitionName = "tape-" + key;
     show.dataset.tvShow = key;
     if (yours) yours.hidden = key !== "yours";
     screen.classList.toggle("is-yours", key === "yours");
     nameEl.textContent = NAMES[key];
   };
-  const tuneIn = () => { if (reduce) return; screen.classList.remove("is-tuning"); void screen.offsetWidth; screen.classList.add("is-tuning"); };
+  const slot = sec.querySelector(".vcr__slot");
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  let busy = false;
 
-  const insert = (key) => {
-    if (key === playing) return;
-    const change = () => {
-      render(key);
-      if (key !== "yours" && window.wdwSetMood) window.wdwSetMood(key);
-    };
-    if (document.startViewTransition && !reduce) document.startViewTransition(change).finished.then(tuneIn);
-    else { change(); tuneIn(); }
+  // A floating copy of a shelf tape, so it can travel across the page to the VCR.
+  const ghost = (tape) => {
+    const r = tape.getBoundingClientRect();
+    const g = tape.cloneNode(true);
+    g.hidden = false;
+    g.removeAttribute("data-tape");
+    g.classList.add("tape--ghost");
+    Object.assign(g.style, { position: "fixed", left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px",
+      margin: "0", zIndex: "90", pointerEvents: "none", visibility: "visible", transformOrigin: "50% 100%", viewTransitionName: "none" });
+    document.body.appendChild(g);
+    return { g, r };
+  };
+  // The path into the slot: fly over it, scaled to the slot's width, then sink in (the part below the slot is clipped away).
+  const slotPath = (r) => {
+    const s = slot.getBoundingClientRect();
+    const k = s.width / r.width;
+    const dx = s.left + s.width / 2 - (r.left + r.width / 2);
+    const dy = s.top + s.height / 2 - r.bottom;
+    return [
+      { transform: "none", clipPath: "inset(0 0 0 0)" },
+      { transform: `translate(${dx}px, ${dy}px) scale(${k})`, clipPath: "inset(0 0 0 0)", offset: 0.62 },
+      { transform: `translate(${dx}px, ${dy + r.height * k}px) scale(${k})`, clipPath: "inset(0 0 100% 0)" },
+    ];
+  };
+  const fly = (g, frames, ms) => g.animate(frames, { duration: ms, easing: "cubic-bezier(.45, 0, .25, 1)", fill: "forwards" }).finished;
+
+  const insert = async (key) => {
+    if (key === playing || busy) return;
+    const change = () => { render(key); if (key !== "yours" && window.wdwSetMood) window.wdwSetMood(key); };
+    if (reduce) return change();
+    busy = true;
+    const old = playing && sec.querySelector(`.tape[data-tape="${playing}"]`);
+    const next = sec.querySelector(`.tape[data-tape="${key}"]`);
+    // 1. The screen switches off.
+    screen.classList.remove("is-on");
+    screen.classList.add("is-off");
+    await wait(260);
+    // 2. The old tape comes up out of the slot and goes back to its own place on the shelf.
+    deck.innerHTML = "";
+    if (old) {
+      old.style.visibility = "hidden";
+      old.hidden = false;
+      const { g, r } = ghost(old);
+      await fly(g, slotPath(r).reverse(), 700);
+      g.remove();
+      old.style.visibility = "";
+    }
+    // 3. The new tape flies over and slides into the slot; the shelf closes the gap it leaves.
+    const { g, r } = ghost(next);
+    next.hidden = true;
+    await fly(g, slotPath(r), 900);
+    // 4. It plays: the page takes on the new look, and the screen flickers back on.
+    change();
+    g.remove();
+    screen.classList.remove("is-off");
+    void screen.offsetWidth;
+    screen.classList.add("is-on");
+    busy = false;
   };
 
   sec.addEventListener("click", (e) => { const t = e.target.closest(".tape"); if (t) insert(t.dataset.tape); });

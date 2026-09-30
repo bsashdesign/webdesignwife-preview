@@ -3515,3 +3515,21 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .tv__screen.is-yours .tv__caption { color: rgba(20,20,20,.55); text-shadow: none; }
 .tv__screen.is-yours .tv__caption b { color: #111; }
 @media (max-width: 560px) { .tv__screen.is-yours { aspect-ratio: auto; min-height: 290px; } .tv__yours { padding: 18px 16px 38px; } }
+/* Tapes keep real VHS proportions: a label across the top, the reel window below */
+.tv-sec .tape { width: 176px; aspect-ratio: 1.75; grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-items: stretch; gap: 0; padding: 8px 9px 9px; }
+.tv-sec .tape__label { padding: 5px 7px; }
+.tv-sec .tape__text small { display: none; }
+.tv-sec .tape__face, .tv-sec .tape__q { width: 22px; height: 22px; }
+.tv-sec .tape__window { align-self: end; justify-self: center; width: 64%; height: 30px; margin: 0; }
+.tv-sec .tape__window i { width: 18px; height: 18px; }
+.tv-stage .tv-shelf, .tv-sec .tv-shelf { display: grid; grid-template-columns: repeat(auto-fill, 176px); justify-content: center; gap: 12px; }
+.tv-shelf-wrap .tv-shelf__label { text-align: center; }
+.tape--ghost { box-sizing: border-box; }
+/* The screen switches off while tapes change, then flickers back on */
+.tv__screen.is-off .tv__show, .tv__screen.is-off .tv__yours { animation: tv-off .26s ease-in forwards; }
+.tv__screen.is-off .tv__caption { opacity: 0; transition: opacity .15s; }
+.tv__screen.is-off { background: #0b0b0b; }
+@keyframes tv-off { 0% { opacity: 1; filter: none; transform: none; } 60% { opacity: 1; filter: brightness(2.2); transform: scaleY(.02); } 100% { opacity: 0; transform: scale(0, .02); } }
+.tv__screen.is-on .tv__show, .tv__screen.is-on .tv__yours { animation: tv-on .75s steps(1, end) both, tv-warm .75s ease-out both; }
+@keyframes tv-on { 0% { opacity: 0; } 12% { opacity: .75; } 22% { opacity: .1; } 34% { opacity: .9; } 44% { opacity: .35; } 58% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes tv-warm { from { filter: brightness(1.8) saturate(.4); } to { filter: none; } }
