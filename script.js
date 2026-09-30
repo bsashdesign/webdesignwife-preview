@@ -1690,6 +1690,7 @@ document.addEventListener("click", (e) => {
   const step = (cv, dt, now) => {
     let x = cv._extra || 0, v = cv._vel || 0;
     const paused = cv._held || now < (cv._pausedUntil || 0);
+    if (paused !== !!cv._bob) { cv._bob = paused; cv.classList.toggle("is-paused", paused); } // it floats while it's still
     if (paused) { v = -BASE; cv._wasPaused = true; }
     else {
       if (cv._wasPaused) { cv._wasPaused = false; v = 0; if (!cv._hover) aimAhead(cv); }

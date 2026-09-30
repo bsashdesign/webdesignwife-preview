@@ -4182,3 +4182,7 @@ span.plan-ring:empty { display: none; }
 .plans .plan .plan-gem { transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
 .plans .plan .plan-ring-tile:hover .plan-gem { transform: translateY(-3px); }
 @media (prefers-reduced-motion: reduce) { .plans .plan .plan-ring-tile:hover .plan-gem { transform: none; } }
+/* a paused gem floats gently up and down */
+.plans .plan .plan-gem.is-paused { animation: gem-float 1.4s ease-in-out infinite alternate; }
+@keyframes gem-float { from { transform: translateY(-2px); } to { transform: translateY(-8px); } }
+@media (prefers-reduced-motion: reduce) { .plans .plan .plan-gem.is-paused { animation: none; } }
