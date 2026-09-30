@@ -1640,8 +1640,12 @@ document.addEventListener("click", (e) => {
       for (const q of pts) { while (lower.length > 1 && cross(lower[lower.length - 2], lower[lower.length - 1], q) <= 0) lower.pop(); lower.push(q); }
       for (let i = pts.length - 1; i >= 0; i--) { const q = pts[i]; while (upper.length > 1 && cross(upper[upper.length - 2], upper[upper.length - 1], q) <= 0) upper.pop(); upper.push(q); }
       const hull = lower.slice(0, -1).concat(upper.slice(0, -1));
-      ctx.save(); ctx.lineJoin = "miter"; ctx.miterLimit = 8; ctx.strokeStyle = "#111";
-      ctx.lineWidth = 2 * (small ? 2 : Math.max(4, W * .08)); path(hull); ctx.stroke(); ctx.restore();
+      // thin on the left edges, heavy on the right: a slim outline all round, plus the silhouette cast a little
+    // to the right in ink, so the right side reads as a thick edge
+    const T = small ? 2 : Math.max(4, W * .08), thin = T * .42;
+    ctx.save(); ctx.lineJoin = "miter"; ctx.miterLimit = 8; ctx.strokeStyle = ctx.fillStyle = "#111"; ctx.lineWidth = 2 * thin;
+    ctx.save(); ctx.translate(T * .22, T * 1.0); path(hull); ctx.fill(); ctx.stroke(); ctx.restore();
+    path(hull); ctx.stroke(); ctx.restore();
       ctx.strokeStyle = "#111"; ctx.lineWidth = small ? .8 : Math.max(1.2, W / 60);
     } else if (style === "transit") {
       ctx.strokeStyle = "#fff"; ctx.lineWidth = small ? (plan === "full" ? .6 : .8) : Math.max(1, W / (plan === "full" ? 95 : 65));

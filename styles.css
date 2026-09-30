@@ -4071,3 +4071,12 @@ span.plan-ring:empty { display: none; }
 .minitv__ant { display: none; }
 .minitv__set { height: 42px; padding: 4px; gap: 3px; border-radius: 9px; }
 .minitv__knob { width: 7px; background: radial-gradient(circle at 50% 7px, #e9dcc2 0 2.2px, transparent 2.8px), radial-gradient(circle at 50% 15px, #c9b894 0 1.8px, transparent 2.3px), repeating-linear-gradient(#2a1d14 0 2px, #5b4230 2px 4px) 0 21px / 100% 9px no-repeat; }
+
+/* Tangy's key in the pop-up matches the board: lime cap, ink outline, a black front edge, in its socket */
+#mood .mood__opt[data-mood="tangy"] .key-well { background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); padding: 3px; margin: 6px 2px 0; border-radius: 12px; }
+#mood .mood__opt .key-well .moodicon--tangy { scale: none; margin: -6px 0 6px; border: 2.5px solid #111; box-shadow: 0 6px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt:hover .key-well .moodicon--tangy { transform: translateY(-1px); box-shadow: 0 7px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translateY(6px); box-shadow: inset 0 2px 5px rgba(0,0,0,.25); }
+/* Tangy: all three plan cards have the hard 3D shadow again (the most popular one a little deeper) */
+.theme-blocks .plans .plan.plan { box-shadow: 6px 6px 0 var(--ink); }
+.theme-blocks .plans .plan.plan--best { box-shadow: 8px 8px 0 var(--ink); }
