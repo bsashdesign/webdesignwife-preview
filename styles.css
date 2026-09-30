@@ -4233,3 +4233,7 @@ span.plan-ring:empty { display: none; }
 .theme-blocks .level--business .plan-gem { color: var(--sky); }
 .theme-blocks .level--full .plan-gem { color: var(--rose); }
 .theme-refined .level__tag .plan-gem { color: #5b3df5; }
+/* each gem is a different size inside the same box, so trim the empty space around the smaller ones */
+.level--essentials .level__tag .plan-gem { margin-left: -10px; margin-right: -9px; }
+.level--business .level__tag .plan-gem { margin-left: -7px; margin-right: -5px; }
+.level--full .level__tag .plan-gem { margin-left: -5px; margin-right: -3px; }
