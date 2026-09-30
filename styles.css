@@ -4277,3 +4277,11 @@ span.plan-ring:empty { display: none; }
 }
 /* Tangy: the note casts the hard black shadow (it follows the turned corner too) */
 .theme-blocks .tv-yours { filter: drop-shadow(5px 5px 0 var(--ink)); }
+/* Transit: the note is dark graph paper */
+.theme-subway .tv-sec .tv-yours__front, .theme-subway .tv-yours__front {
+  background: linear-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px) 0 0 / 18px 18px, linear-gradient(90deg, rgba(255, 255, 255, .07) 1px, transparent 1px) 0 0 / 18px 18px, #1d1d1d;
+  border-color: rgba(255, 255, 255, .16); color: #f2f2ee;
+}
+.theme-subway .tv-yours__front .tv-yours__go { color: inherit; }
+.theme-subway .tv-yours__front::after { background: linear-gradient(to top left, transparent 50%, #3a3a3a 50%, #2a2a2a); box-shadow: -2px -2px 5px rgba(0, 0, 0, .5); }
+.theme-subway .tv-yours { filter: drop-shadow(0 10px 16px rgba(0, 0, 0, .55)); }
