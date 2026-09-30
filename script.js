@@ -1351,12 +1351,11 @@ function wdwCalInline(selector, calLink, config) {
     nameEl.textContent = NAMES[key];
     if (!reduce) { screen.classList.remove("is-on"); void screen.offsetWidth; screen.classList.add("is-on"); }
   };
-  sec.addEventListener("click", (e) => {
-    const k = e.target.closest("[data-tv-key]");
-    if (!k) return;
-    play(k.dataset.tvKey);
-    if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
-  });
+  // Buttons act the moment they're pressed down (like a real button), not when you let go.
+  // Keyboard presses arrive as a click with no pointer, so those still work.
+  const press = (k) => { play(k.dataset.tvKey); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k); };
+  sec.addEventListener("pointerdown", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.button === 0) press(k); });
+  sec.addEventListener("click", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.detail === 0) press(k); });
   // A mood picked anywhere else presses its button here too.
   let lastMood = root.dataset.mood;
   new MutationObserver(() => { if (root.dataset.mood === lastMood) return; lastMood = root.dataset.mood; play(lastMood); })
