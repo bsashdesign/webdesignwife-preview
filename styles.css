@@ -2747,3 +2747,7 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .tryon__head { max-width: 860px; }
 .tryon__head p:not(.eyebrow) { max-width: 820px; text-wrap: balance; }
 main p.scope-note { max-width: 860px; text-wrap: balance; }
+/* Clamped card titles: enough line height that descenders (g, y, p) aren't clipped */
+.post-card h3 { line-height: 1.25; }
+.theme-wedding .post-card h3 { line-height: 1.22; }
+.theme-wedding .post-card h3 { line-height: 1.32; }
