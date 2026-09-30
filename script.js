@@ -1632,28 +1632,9 @@ document.addEventListener("click", (e) => {
     const mood = document.documentElement.dataset.mood;
     const style = { tangy: "tangy", transit: "transit", transitdark: "transit", sophisticated: "sophisticated" }[mood] || "calm";
     if (style === "tangy") {
-      // A heavy ink outline on the stone's outer silhouette only, even all the way round, with sharp
-      // (mitred) corners. The stone is convex, so its silhouette is the hull of the visible corners.
-      const pts = shown.flatMap(({ p }) => p).map((q) => [q[0], q[1]]).sort((p1, p2) => p1[0] - p2[0] || p1[1] - p2[1]);
-      const cross = (o, a1, b1) => (a1[0] - o[0]) * (b1[1] - o[1]) - (a1[1] - o[1]) * (b1[0] - o[0]);
-      const lower = [], upper = [];
-      for (const q of pts) { while (lower.length > 1 && cross(lower[lower.length - 2], lower[lower.length - 1], q) <= 0) lower.pop(); lower.push(q); }
-      for (let i = pts.length - 1; i >= 0; i--) { const q = pts[i]; while (upper.length > 1 && cross(upper[upper.length - 2], upper[upper.length - 1], q) <= 0) upper.pop(); upper.push(q); }
-      const hull = lower.slice(0, -1).concat(upper.slice(0, -1));
-      // thin on the left edges, heavy on the right: a slim outline all round, plus the silhouette cast a little
-    // to the right in ink, so the right side reads as a thick edge
-    const T = small ? 2 : Math.max(4, W * .08), thin = T * .42;
-    ctx.save(); ctx.lineJoin = "miter"; ctx.miterLimit = 8; ctx.strokeStyle = ctx.fillStyle = "#111"; ctx.lineWidth = 2 * thin;
-    // the heavy part is the stone swept a little downward: one convex shape, so its sides join cleanly
-      const dx = T * .22, dy = T * 1.0, both = hull.concat(hull.map(([x, y]) => [x + dx, y + dy])).sort((p1, p2) => p1[0] - p2[0] || p1[1] - p2[1]);
-      const lo = [], up = [];
-      for (const q of both) { while (lo.length > 1 && cross(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
-      for (let i = both.length - 1; i >= 0; i--) { const q = both[i]; while (up.length > 1 && cross(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
-      const swept = lo.slice(0, -1).concat(up.slice(0, -1));
-      path(swept); ctx.fill(); ctx.stroke();
-    path(hull); ctx.stroke(); ctx.restore();
-      ctx.strokeStyle = "#111"; ctx.lineWidth = small ? .8 : Math.max(1.2, W / 60);
-    } else if (style === "transit") {
+    // one ink line for every edge, outer and inner alike, a little heavier than the other moods
+    ctx.strokeStyle = "#111"; ctx.lineJoin = "round"; ctx.lineWidth = small ? 1.2 : Math.max(2, W / 34);
+  } else if (style === "transit") {
       ctx.strokeStyle = "#fff"; ctx.lineWidth = small ? (plan === "full" ? .6 : .8) : Math.max(1, W / (plan === "full" ? 95 : 65));
     } else if (style === "sophisticated") {
       ctx.strokeStyle = `rgb(${base.map(Math.round)})`; ctx.lineWidth = small ? .7 : Math.max(1, W / 90);
