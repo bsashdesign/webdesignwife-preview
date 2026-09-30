@@ -207,3 +207,22 @@
 .theme-blocks #compare { background: var(--violet); color: var(--ink); }
 .theme-blocks #compare .btn--primary { background: var(--lime); color: var(--ink); }
 .theme-blocks #compare .section-cta__alt { color: var(--ink); }
+/* Built for strip white; Four Years in the soft sun colour with a white "Now it's your turn" card */
+.theme-blocks .for { background: #fff; }
+.theme-blocks #work { background: var(--sun); }
+.theme-blocks .work-founding.work-founding { background: #fff; }
+
+/* Tangy is white here now */
+.theme-blocks #compare { background: #fff; color: var(--ink); }
+.theme-blocks #compare .btn--primary { background: var(--violet); color: var(--ink); }
+
+/* Tangy: ink outline and the hard shadow, each card its own colour, icons on white tiles */
+.theme-blocks #compare .compare-cards .cc, .theme-blocks #compare .compare-cards .cc + .cc { border: var(--edge); box-shadow: var(--shadow); border-radius: var(--r-lg); }
+.theme-blocks #compare .compare-cards { border: 0; box-shadow: none; }
+.theme-blocks #compare .compare-cards .cc:nth-child(1) { background: var(--sky); }
+.theme-blocks #compare .compare-cards .cc:nth-child(2) { background: var(--rose); }
+.theme-blocks #compare .compare-cards .cc--us { background: var(--lime); }
+.theme-blocks #compare .cc ul { color: var(--ink); }
+.theme-blocks #compare .cc__ico { background: #fff; }
+.theme-blocks .for__row li, .theme-blocks .for__label { color: var(--ink); }
+.theme-blocks #compare .compare-cards .cc.cc--us { background: var(--lime); border: var(--edge); box-shadow: var(--shadow); }

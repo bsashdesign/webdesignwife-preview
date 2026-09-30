@@ -4107,3 +4107,39 @@ span.plan-ring:empty { display: none; }
 .theme-blocks .plan-ring-tile:has([data-plan="essentials"]) { --ring: var(--lime); }
 .theme-blocks .plan-ring-tile:has([data-plan="business"]) { --ring: var(--cobalt); }
 .theme-blocks .plan-ring-tile:has([data-plan="full"]) { --ring: var(--violet); }
+
+/* ================================================================
+   Three Ways to Get a Website: three separate cards (every mood), styled like each mood's other card rows
+   ================================================================ */
+#compare .compare-cards { gap: 20px; background: none; border: 0; border-radius: 0; overflow: visible; }
+#compare .compare-cards .cc, #compare .compare-cards .cc + .cc { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: none; }
+#compare .compare-cards .cc--us { background: var(--us-bg, #f1edff); border: 2px solid var(--us-edge, var(--violet)); }
+@media (max-width: 760px) { #compare .compare-cards { gap: 16px; } }
+/* Transit: a coloured bar across the top, like its step cards */
+.theme-subway #compare .compare-cards .cc, .theme-subway #compare .compare-cards .cc + .cc { border-radius: 10px; border-top: 6px solid var(--c, var(--gray)); }
+.theme-subway #compare .compare-cards .cc:nth-child(1) { --c: var(--gray); }
+.theme-subway #compare .compare-cards .cc:nth-child(2) { --c: var(--purple); }
+.theme-subway #compare .compare-cards .cc--us { --c: var(--blue); border-width: 1px; border-top-width: 6px; border-color: var(--line); border-top-color: var(--blue); }
+/* Sophisticated: a white card with a fine inset gold frame; its own card is the dark one */
+.theme-wedding #compare .compare-cards .cc, .theme-wedding #compare .compare-cards .cc + .cc { border-radius: 4px; box-shadow: inset 0 0 0 6px #fff, inset 0 0 0 7px rgba(184, 149, 90, .28); }
+.theme-wedding #compare .compare-cards .cc--us { background: var(--ink); border-color: var(--ink); box-shadow: inset 0 0 0 6px var(--ink), inset 0 0 0 7px rgba(217, 196, 154, .5); }
+
+/* ================================================================
+   How it works: the step numbers in each mood's own shape
+   ================================================================ */
+/* Calm: very rounded squares */
+.steps li::before { border-radius: 14px; }
+/* Tangy: each card filled with its number's colour; the numbers are white rounded tiles with the hard shadow */
+.theme-blocks .steps li:nth-child(1) { background: var(--mint); }
+.theme-blocks .steps li:nth-child(2) { background: var(--sky); }
+.theme-blocks .steps li:nth-child(3) { background: var(--sun); }
+.theme-blocks .steps li p { color: var(--ink); }
+.theme-blocks .steps li::before, .theme-blocks .steps li:nth-child(n)::before { background: #fff; color: var(--ink); border: var(--edge); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+/* Transit: circles, at the normal size */
+.theme-subway ol.steps li::before { border-radius: 50%; width: 40px; height: 40px; font-size: 1.1rem; }
+/* Sophisticated: Roman numerals in square frames */
+.theme-wedding .steps li::before { content: counter(step, upper-roman); border-radius: 2px; }
+#compare .compare-cards .cc.cc--us { background: var(--us-bg, #f1edff); border: 2px solid var(--us-edge, var(--violet)); }
+.theme-subway #compare .compare-cards .cc.cc--us { background: #fff; border: 1px solid var(--line); border-top: 6px solid var(--blue); }
+.theme-wedding #compare .compare-cards .cc.cc--us { background: var(--ink); border-color: var(--ink); }
+.theme-blocks #compare .compare-cards .cc.cc--us { border: var(--edge); }

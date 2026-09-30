@@ -196,3 +196,7 @@
 .theme-subway.theme-dark .psteps li { border-top-color: var(--c, var(--yellow)); }
 .theme-subway.theme-dark :is(.promises p, #promises .promises p, .article__body .callout) { border-left-color: var(--c); }
 .theme-subway.theme-dark :is(.lede-note, .fx-list li) { border-left-color: var(--yellow); }
+.theme-subway.theme-dark #compare .compare-cards .cc, .theme-subway.theme-dark #compare .compare-cards .cc.cc--us { background: var(--card); color: var(--ink); border-color: var(--line); }
+.theme-subway.theme-dark #compare .compare-cards .cc:nth-child(1) { border-top-color: var(--gray); }
+.theme-subway.theme-dark #compare .compare-cards .cc:nth-child(2) { border-top-color: var(--purple); }
+.theme-subway.theme-dark #compare .compare-cards .cc.cc--us { border-top-color: #fccc0a; }
