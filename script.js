@@ -926,7 +926,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const words = (search ? search.value : "").toLowerCase().trim().split(/\s+/).filter(Boolean);
     let shown = 0;
     cards.forEach((c) => {
-      const ok = (filter === "all" || c.dataset.group === filter) && words.every((w) => text(c).includes(w));
+      const match = words.every((w) => text(c).includes(w));
+      // Borough guides have their own carousel, so the grid shows them only for a search.
+      const ok = "searchOnly" in c.dataset ? filter === "all" && words.length > 0 && match : (filter === "all" || c.dataset.group === filter) && match;
       c.hidden = !ok; if (ok) shown++;
     });
     if (empty) empty.hidden = shown > 0;

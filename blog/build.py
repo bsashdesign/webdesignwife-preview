@@ -405,8 +405,9 @@ def cover(a):
     icon = ICONS.get(a["kicker"], "note-pencil")
     return f"""<span class="post-card__cover"><i class="pi pi--{icon}" aria-hidden="true"></i></span>"""
 
-def card(a, n=0):
-    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" data-group="{a['group']}" data-tone="{TONES[n % len(TONES)]}" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
+def card(a, n=0, search_only=False):
+    extra = " data-search-only hidden" if search_only else ""
+    return f"""        <a class="post-card post-card--article" href="{a['slug']}.html" data-group="{a['group']}"{extra} data-tone="{TONES[n % len(TONES)]}" style="--cover:{COVERS[n % len(COVERS)][0]};--cover-dark:{COVERS[n % len(COVERS)][1]}">
           {cover(a)}
           <span class="post-card__body">
             <span class="post-card__kicker">{a['kicker']}</span>
@@ -447,12 +448,11 @@ index += """    <section class="blog-hero">
     </section>
     <section class="blog-list">
       <div class="wrap">
-        <h2 class="blog-list__h">All articles</h2>
+        <h2 class="blog-list__h">Explore the blog</h2>
         <div class="blog-tools">
         <div class="filters" role="toolbar" aria-label="Filter articles">
-          <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(len(ALL)) + """</span></button>
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(sum(a["group"] != "local" for a in ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="compare" aria-pressed="false">Comparisons <span>""" + str(sum(a["group"] == "compare" for a in ALL)) + """</span></button>
-          <button type="button" class="filter" data-filter="local" aria-pressed="false">NYC boroughs <span>""" + str(sum(a["group"] == "local" for a in ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="guides" aria-pressed="false">Tips &amp; how-tos <span>""" + str(sum(a["group"] == "guides" for a in ALL)) + """</span></button>
         </div>
         <label class="blog-search"><span class="blog-search__label">Search articles</span><input type="search" placeholder="Search, like Wix or Brooklyn" data-blog-search autocomplete="off"></label>
@@ -461,7 +461,8 @@ index += """    <section class="blog-hero">
         <div class="posts posts--index">
 """
 order = [a for a in ALL if a["group"] == "guides"][:2] + [a for a in ALL if a["group"] == "compare"] + [a for a in ALL if a["group"] == "local"] + [a for a in ALL if a["group"] == "guides"][2:]
-index += "".join(card(a, n) for n, a in enumerate(order))
+# Borough guides live in the "Around New York" carousel; in the grid they only appear for a matching search.
+index += "".join(card(a, n, a["group"] == "local") for n, a in enumerate(order))
 index += "        </div>\n      </div>\n    </section>\n" + FOOT
 (HERE / "index.html").write_text(finish(index))
 
