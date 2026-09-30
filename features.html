@@ -6,16 +6,16 @@
   <meta name="robots" content="noindex">
   <script>document.documentElement.classList.add("js");</script>
   <title>Features — Web Design Wife</title>
-  <meta name="description" content="What Web Design Wife actually does: custom design, hosting and ongoing care, a fully managed Google Maps profile, SEO, content and an annual design refresh, with what each plan includes.">
+  <meta name="description" content="What Web Design Wife actually does: custom design, hosting and ongoing care, a fully managed Google Maps profile, SEO, content and a periodic design refresh, with what each plan includes.">
   <link rel="icon" href="images/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790748388">
-  <link rel="stylesheet" href="themes/subway.css?v=1790748388">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790748388">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790748388">
+  <link rel="stylesheet" href="styles.css?v=1790748634">
+  <link rel="stylesheet" href="themes/subway.css?v=1790748634">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790748634">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790748634">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
@@ -129,12 +129,12 @@
             <div class="level level--business">
               <p class="level__plan">Business</p>
               <h4>Up to 5 pages</h4>
-              <ul class="ticks ticks--dark"><li>Room for services, about, reviews, a gallery and contact</li></ul>
+              <ul class="ticks ticks--dark"><li>Room for services, about, reviews, a gallery and contact</li><li>A <a href="#refresh">design refresh</a> every 3 years</li></ul>
             </div>
             <div class="level level--full">
               <p class="level__plan">Full Suite</p>
               <h4>Up to 10 pages</h4>
-              <ul class="ticks ticks--dark"><li>Space for every service, location or menu, without cramming</li></ul>
+              <ul class="ticks ticks--dark"><li>Space for every service, location or menu, without cramming</li><li>A <a href="#refresh">design refresh</a> every 2 years</li></ul>
             </div>
         </div>
       </div>
@@ -346,21 +346,44 @@
       </div>
     </section>
 
-    <!-- 8. ANNUAL DESIGN REFRESH -->
+    <!-- 8. DESIGN REFRESH: included every 3 years on Business, every 2 on Full Suite; available separately on Essentials -->
     <section class="fsec" id="refresh">
       <div class="wrap">
-        <div class="spot">
+        <div class="spot spot--refresh">
           <div class="spot__copy">
-            <p class="spot__badge"><i class="pi pi--star" aria-hidden="true"></i>Full Suite exclusive</p>
-            <p class="spot__label">Annual design refresh</p>
-            <h2 class="spot__title">Six Years in, Your Site Won't Look Six Years Old</h2>
-            <p>Once a year, we review your site together and I refresh whatever feels dated. Only on Full Suite, monthly or yearly.</p>
+            <p class="spot__label">Design refresh</p>
+            <h2 class="spot__title">Your Site Can Change as Your Business Does</h2>
+            <p>Your website shouldn't age in place. On Business and Full Suite, a design refresh is included in your plan, and you choose when to use it.</p>
           </div>
-          <ol class="spot__steps">
-            <li><strong>Review together</strong><span>What's working and what's changed.</span></li>
-            <li><strong>Refresh</strong><span>New photos, sections and styling.</span></li>
-            <li><strong>Relaunch</strong><span>Looks current again. No setup fee.</span></li>
-          </ol>
+          <!-- Each plan row has a ring slot (.plan-ring) for the plan icons once they ship. -->
+          <div class="cadence">
+            <div class="cadence__years" aria-hidden="true"><span></span><span>Yr 1</span><span>Yr 2</span><span>Yr 3</span><span>Yr 4</span><span>Yr 5</span><span>Yr 6</span></div>
+            <ul class="cadence__rows">
+              <li class="cadence__row cadence__row--full">
+                <span class="cadence__plan"><span class="plan-ring" data-plan="full" aria-hidden="true"></span><span><strong>Full Suite</strong><small>Included every 2 years</small></span></span>
+                <span class="cadence__track" aria-hidden="true"><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i></span>
+              </li>
+              <li class="cadence__row cadence__row--business">
+                <span class="cadence__plan"><span class="plan-ring" data-plan="business" aria-hidden="true"></span><span><strong>Business</strong><small>Included every 3 years</small></span></span>
+                <span class="cadence__track" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i></span>
+              </li>
+              <li class="cadence__row cadence__row--essentials">
+                <span class="cadence__plan"><span class="plan-ring" data-plan="essentials" aria-hidden="true"></span><span><strong>Essentials</strong><small>Available separately</small></span></span>
+                <span class="cadence__track cadence__track--quiet" aria-hidden="true"><em>Whenever you're ready</em></span>
+              </li>
+            </ul>
+          </div>
+          <div class="spot__foot">
+            <div class="refresh-covers">
+              <p class="spot__label">What a refresh covers</p>
+              <ul class="refresh-covers__list"><li>Imagery</li><li>Typography</li><li>Colors &amp; styling</li><li>Key sections</li><li>Calls to action</li><li>Overall feel</li></ul>
+            </div>
+            <ol class="spot__steps spot__steps--row">
+              <li><strong>You pick the moment</strong><span>When your site starts to feel dated.</span></li>
+              <li><strong>Review together</strong><span>What's working and what's changed.</span></li>
+              <li><strong>Refresh and relaunch</strong><span>The same site, looking current again.</span></li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
@@ -446,7 +469,7 @@
         </div></div>
   </dialog>
 
-  <script src="script.js?v=1790748388"></script>
+  <script src="script.js?v=1790748634"></script>
   <script>
     // Sticky section tabs: the tab for the section you're reading lights up; tapping one glides there.
     (function () {

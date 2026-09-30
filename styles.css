@@ -3311,3 +3311,69 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .vs-th__logo svg { width: 18px; height: 18px; }
 .vs-th__logo--us img { width: 100%; height: 100%; object-fit: cover; }
 .theme-blocks .vs-th__logo { box-shadow: 0 0 0 2px var(--ink); }
+
+/* Pricing: the buyout price shrinking year by year */
+.own { margin: 18px 0 16px; }
+.own__chart { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); align-items: end; gap: 10px; height: 230px; margin: 0; padding: 0; list-style: none; }
+.own__chart li { display: grid; grid-template-rows: 1fr auto auto; height: 100%; text-align: center; }
+.own__bar { align-self: end; display: grid; place-items: start center; height: var(--h, 100%); min-height: 34px; padding-top: 8px; border-radius: 10px 10px 4px 4px; background: color-mix(in srgb, var(--violet) 22%, #fff); color: var(--ink); font-size: .82rem; }
+.own__done .own__bar { height: 34px; background: var(--violet); color: #fff; }
+.own__yr { margin-top: 8px; font-weight: 700; font-size: .85rem; color: var(--ink); }
+.own__eg { font-size: .8rem; color: var(--ink-soft); }
+.own__done .own__eg { font-weight: 700; color: var(--ink); }
+.own figcaption { margin-top: 10px; font-size: .82rem; color: var(--ink-soft); }
+@media (max-width: 560px) { .own__chart { gap: 5px; height: 190px; } .own__bar { font-size: .7rem; } .own__eg { font-size: .66rem; } .own__yr { font-size: .72rem; } }
+.theme-blocks .own__bar { background: var(--sky); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.theme-blocks .own__done .own__bar { background: var(--lime); color: var(--ink); }
+.theme-subway .own__chart li:nth-child(1) .own__bar { background: var(--red); } .theme-subway .own__chart li:nth-child(2) .own__bar { background: var(--orange); }
+.theme-subway .own__chart li:nth-child(3) .own__bar { background: var(--yellow); } .theme-subway .own__chart li:nth-child(4) .own__bar { background: var(--green); }
+.theme-subway .own__chart li:nth-child(5) .own__bar { background: var(--blue); } .theme-subway .own__chart li:nth-child(6) .own__bar { background: var(--purple); }
+.theme-subway .own__bar { color: #fff; border-radius: 6px 6px 2px 2px; } .theme-subway .own__chart li:nth-child(3) .own__bar { color: #111; }
+.theme-subway .own__done .own__bar { background: #111; color: var(--yellow); }
+.theme-wedding .own__bar { background: #efe4cc; border-radius: 2px; } .theme-wedding .own__done .own__bar { background: var(--gold-ink); color: #fff; }
+
+/* ================================================================
+   Features: Design refresh (every 2 years on Full Suite, every 3 on Business, separately on Essentials)
+   ================================================================ */
+.spot--refresh { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; }
+.cadence { padding: 18px 20px 8px; border-radius: 14px; background: rgba(255,255,255,.07); }
+.cadence__years, .cadence__row { display: grid; grid-template-columns: 170px repeat(6, minmax(0, 1fr)); align-items: center; }
+.cadence__years span { font: 600 .68rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.55); text-align: center; }
+.cadence__rows { display: grid; margin: 6px 0 0; padding: 0; list-style: none; }
+.cadence__row { padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.cadence__plan { display: flex; align-items: center; gap: 10px; padding-right: 10px; }
+.cadence__plan strong { display: block; color: #fff; font-size: 1rem; }
+.cadence__plan small { display: block; color: rgba(255,255,255,.72); font-size: .8rem; }
+.plan-ring:empty { display: none; }
+.cadence__track { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center; justify-items: center; height: 28px; background: linear-gradient(rgba(255,255,255,.22), rgba(255,255,255,.22)) center / calc(100% - 100% / 6) 2px no-repeat; }
+.cadence__track i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.3); }
+.cadence__track i.on { width: 24px; height: 24px; background: var(--marigold); box-shadow: 0 0 0 5px color-mix(in srgb, var(--marigold) 25%, transparent); }
+.cadence__track--quiet { display: flex; justify-content: center; background: none; }
+.cadence__track--quiet em { font-size: .88rem; color: rgba(255,255,255,.65); }
+.spot__foot { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px 56px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.14); }
+.refresh-covers__list { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; padding: 0; list-style: none; }
+.refresh-covers__list li { padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.1); color: #fff; font-size: .88rem; font-weight: 600; }
+.spot__steps--row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.spot__steps--row li { grid-template-columns: 1fr; padding: 14px 16px; }
+.spot__steps--row li::before { grid-row: auto; margin-bottom: 8px; width: 30px; height: 30px; font-size: .9rem; }
+@media (max-width: 960px) { .spot--refresh, .spot__foot { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .cadence { padding: 14px 12px 4px; } .cadence__years, .cadence__row { grid-template-columns: 112px repeat(6, minmax(0, 1fr)); } .cadence__plan strong { font-size: .9rem; } .cadence__plan small { font-size: .72rem; } .cadence__years span { font-size: .58rem; } .cadence__track i.on { width: 18px; height: 18px; } .spot__steps--row { grid-template-columns: minmax(0, 1fr); } }
+/* moods */
+.theme-refined .cadence__track i.on { background: #fff; box-shadow: 0 0 0 5px rgba(255,255,255,.25); }
+.theme-blocks .cadence { background: #fff; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.theme-blocks .cadence__years span, .theme-blocks .cadence__plan small, .theme-blocks .cadence__track--quiet em { color: var(--ink-soft); }
+.theme-blocks .cadence__plan strong { color: var(--ink); }
+.theme-blocks .cadence__row { border-top-color: rgba(14,14,14,.15); }
+.theme-blocks .cadence__track { background-image: linear-gradient(var(--ink), var(--ink)); }
+.theme-blocks .cadence__track i { background: var(--ink); }
+.theme-blocks .cadence__track i.on { background: var(--lime); box-shadow: none; border: 2px solid var(--ink); }
+.theme-blocks .cadence__row--business .cadence__track i.on { background: var(--sun); }
+.theme-blocks .refresh-covers__list li { background: #fff; color: var(--ink); border: 2px solid var(--ink); }
+.theme-subway .cadence { border-radius: 10px; }
+.theme-subway .cadence__row--full .cadence__track i.on { background: var(--red); box-shadow: none; }
+.theme-subway .cadence__row--business .cadence__track i.on { background: var(--blue); box-shadow: none; }
+.theme-subway .refresh-covers__list li { border-radius: 6px; }
+.theme-wedding .cadence { border-radius: 2px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(217,196,154,.3); }
+.theme-wedding .cadence__track i.on { background: #d9c49a; box-shadow: 0 0 0 5px rgba(217,196,154,.2); }
+.theme-wedding .refresh-covers__list li { border-radius: 2px; background: none; box-shadow: inset 0 0 0 1px rgba(217,196,154,.45); color: #efe6d2; font-weight: 500; }
+.cadence .cadence__track--quiet, .theme-blocks .cadence .cadence__track--quiet { background: none; }
