@@ -4097,3 +4097,13 @@ span.plan-ring:empty { display: none; }
   .tv__knob::after { top: 3px; height: 7px; width: 2px; margin-left: -1px; }
   .tv__grille { width: 24px; height: 48px; border-radius: 6px; }
 }
+
+/* Tangy plan cards: the standard Tangy 3D shadow on every card (none deeper), and more room between them */
+.theme-blocks .plans .plan.plan, .theme-blocks .plans .plan.plan--best { box-shadow: var(--shadow); }
+.theme-blocks .plans { gap: 28px; }
+@media (max-width: 1100px) { .theme-blocks .plans { gap: 24px; } }
+@media (max-width: 860px) { .theme-blocks .plans { gap: 32px; } }
+/* Tangy gems in Tangy's own colours: lime, cobalt, orange */
+.theme-blocks .plan-ring-tile:has([data-plan="essentials"]) { --ring: var(--lime); }
+.theme-blocks .plan-ring-tile:has([data-plan="business"]) { --ring: var(--cobalt); }
+.theme-blocks .plan-ring-tile:has([data-plan="full"]) { --ring: var(--violet); }
