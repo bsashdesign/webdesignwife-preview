@@ -3474,33 +3474,44 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-wedding .tv__knob { background: radial-gradient(circle at 35% 30%, #fff3cf, #d9b56a 45%, #8a6424); }
 .theme-wedding .tv-nook { border-radius: 6px; }
 
-/* ================================================================
-   Draft mode ("Yours?"): the finished styling falls away to an unfinished, custom-to-be page.
-   One layer on top of whatever mood is set; never saved.
-   ================================================================ */
-html.is-draft body { background: #fff linear-gradient(#eef3fb 1px, transparent 1px) 0 0 / 100% 24px; }
-html.is-draft main > section:not(#moods-tv), html.is-draft .footer { background: transparent !important; border-color: #d6dbe2 !important; }
-/* Everything goes gray and flat; only outlines that were really there show, now dashed */
-html.is-draft main > section:not(#moods-tv), html.is-draft .footer { filter: grayscale(1) contrast(.55) brightness(1.18); }
-html.is-draft main > section:not(#moods-tv) :is(*, *::before, *::after), html.is-draft .footer :is(*, *::before, *::after) {
-  background-color: transparent !important; background-image: none !important; box-shadow: none !important; text-shadow: none !important; }
-/* the page's real boxes turn into dashed placeholders */
-html.is-draft main > section:not(#moods-tv) :is(.plan, .cc, .compare-cards, .step, .steps li, .promises p, .post-card, .formcard, .founding, .callcard, .work-founding, .mplan, .rank, .work-feature__shot, .ba__frame, .about__photo, .chip, .yours, .btn, .assure li, .billing, .faq__list details, input, textarea) {
-  border: 1.5px dashed #b9c1cc !important; }
-html.is-draft main > section:not(#moods-tv) > .wrap { outline: 1.5px dashed #c9d0d9; outline-offset: 14px; border-radius: 8px; }
-html.is-draft main > section:not(#moods-tv) :is(img, video, iframe) { opacity: .2; }
-html.is-draft .nav { background: #fff !important; }
-.draftcard { position: fixed; left: 50%; bottom: 20px; z-index: 80; width: min(520px, calc(100vw - 32px)); transform: translateX(-50%); padding: 20px 22px; border-radius: 16px; background: #fff; border: 1.5px dashed #9aa4b2; box-shadow: 0 24px 50px -20px rgba(20,30,50,.35); color: #1b2230; animation: draft-in .45s cubic-bezier(.2, 1.2, .3, 1) both; }
-.draftcard[hidden] { display: none; }
-.draftcard .draftcard__title { margin: 0 0 6px; font: 800 1.35rem/1.15 var(--display); max-width: none; color: #1b2230; }
-.draftcard p { margin: 0 0 14px; color: #5c6573; font-size: .95rem; }
-.draftcard__btns { display: flex; flex-wrap: wrap; gap: 8px; }
-.draftcard__back { margin-top: 12px; font-size: .88rem; color: #5c6573; }
-@keyframes draft-in { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
 /* the mood faces are full drawings: no tile behind them */
 .tv__face, .tape__face, .theme-blocks .tv__face { background-color: transparent !important; background-size: contain; border-radius: 0; }
-/* the tape that's in the deck leaves an empty slot on the shelf */
-.tape.is-in { visibility: visible; background: transparent; box-shadow: none; outline: 2px dashed color-mix(in srgb, var(--ink) 22%, transparent); outline-offset: -2px; transform: none; cursor: default; }
-.tape.is-in > * { visibility: hidden; }
-.theme-blocks .tape.is-in { border-color: transparent; box-shadow: none; }
 .tape--tangy .tape__text small { font-family: var(--body); }
+
+/* "Now playing", compact layout: the VCR to the left of the TV, the tapes in a column on the right */
+.tv-stage { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 28px; align-items: center; max-width: 1060px; margin: 32px auto 0; }
+.tv-stage .tv-nook { display: grid; grid-template-columns: 170px minmax(0, 1fr); align-items: center; gap: 18px; max-width: none; margin: 0; }
+.tv-stage .vcr { flex-direction: column; justify-content: center; align-items: stretch; gap: 12px; height: auto; margin: 0; padding: 18px 14px 14px; }
+.tv-stage .vcr__slot { width: 100%; }
+.tv-stage .vcr__window { flex: none; height: 52px; }
+.tv-stage .vcr__tape { width: 124px; }
+.tv-stage .vcr__led { justify-content: flex-end; }
+.tv-shelf-wrap .tv-shelf__label { margin: 0 0 10px; text-align: left; }
+.tv-stage .tv-shelf { grid-template-columns: minmax(0, 1fr); gap: 10px; max-width: none; margin: 0; }
+.tv-stage .tape { grid-template-columns: minmax(0, 1fr) 52px; align-items: center; gap: 8px; padding: 7px 8px; }
+.tv-stage .tape__window { height: 24px; margin: 0; }
+.tv-stage .tape__window i { width: 16px; height: 16px; }
+.tv-stage .tape__label { padding: 6px 8px; }
+.tv-stage .tape__face, .tv-stage .tape__q { width: 24px; height: 24px; }
+.tape[hidden] { display: none; }
+@media (max-width: 1000px) {
+  .tv-stage { grid-template-columns: minmax(0, 1fr); }
+  .tv-shelf-wrap .tv-shelf__label { text-align: center; }
+  .tv-stage .tv-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .tv-stage .tv-nook { grid-template-columns: minmax(0, 1fr); }
+  .tv-stage .vcr { order: 2; flex-direction: row; align-items: center; padding: 12px; }
+  .tv-stage .vcr__slot { width: 50px; }
+  .tv-stage .vcr__window { flex: 1; }
+}
+/* "Yours?": the screen goes white and plays the invitation */
+.tv__yours { position: absolute; inset: 0; z-index: 1; display: grid; place-content: center; justify-items: center; gap: 10px; padding: 22px 26px 40px; text-align: center; background: #fff; color: #1b2230; }
+.tv__yours[hidden] { display: none; }
+.tv__yours .tv__yours-title { margin: 0; max-width: 20ch; font: 800 clamp(1.05rem, 2.2vw, 1.45rem)/1.15 var(--display); color: #1b2230; text-wrap: balance; }
+.tv__yours p { margin: 0; max-width: 34ch; font-size: .9rem; color: #5c6573; }
+.tv__yours-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 4px; }
+.tv__yours-back { font-size: .85rem; color: #5c6573; }
+.tv__screen.is-yours .tv__caption { color: rgba(20,20,20,.55); text-shadow: none; }
+.tv__screen.is-yours .tv__caption b { color: #111; }
+@media (max-width: 560px) { .tv__screen.is-yours { aspect-ratio: auto; min-height: 290px; } .tv__yours { padding: 18px 16px 38px; } }

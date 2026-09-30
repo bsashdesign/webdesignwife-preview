@@ -1314,7 +1314,7 @@ function wdwCalInline(selector, calLink, config) {
 
 // "Now playing" (moods, version B): the tape in the VCR is the mood on the page.
 // Inserting a tape glides it into the deck (View Transitions, where supported), ejects the old one to the shelf,
-// and switches the whole page. The "Yours?" tape turns the page into an unfinished draft instead (never saved).
+// and switches the whole page. The "Yours?" tape plays a white screen with the invitation; Back ejects it.
 (function () {
   const sec = document.getElementById("moods-tv");
   if (!sec) return;
@@ -1323,9 +1323,9 @@ function wdwCalInline(selector, calLink, config) {
   const tapes = [...sec.querySelectorAll(".tape")];
   const deck = sec.querySelector("[data-vcr-tape]");
   const show = sec.querySelector("[data-tv-show]");
+  const yours = sec.querySelector(".tv__yours");
   const nameEl = sec.querySelector("[data-tv-name]");
   const screen = sec.querySelector(".tv__screen");
-  const card = document.querySelector(".draftcard");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let playing = null;
 
@@ -1334,7 +1334,8 @@ function wdwCalInline(selector, calLink, config) {
     tapes.forEach((t) => {
       const on = t.dataset.tape === key;
       t.setAttribute("aria-pressed", String(on));
-      t.classList.toggle("is-in", on);
+      // The tape in the deck leaves the shelf; the rest close up, and it slots back into its own place when ejected.
+      t.hidden = on;
       // Only one element may carry a transition name: the tape in the deck takes over its shelf twin's.
       t.style.viewTransitionName = on ? "none" : "tape-" + t.dataset.tape;
     });
@@ -1343,11 +1344,9 @@ function wdwCalInline(selector, calLink, config) {
     deck.innerHTML = src ? src.outerHTML : "";
     deck.style.viewTransitionName = "tape-" + key;
     show.dataset.tvShow = key;
+    if (yours) yours.hidden = key !== "yours";
+    screen.classList.toggle("is-yours", key === "yours");
     nameEl.textContent = NAMES[key];
-  };
-  const setDraft = (on) => {
-    root.classList.toggle("is-draft", on);
-    if (card) card.hidden = !on;
   };
   const tuneIn = () => { if (reduce) return; screen.classList.remove("is-tuning"); void screen.offsetWidth; screen.classList.add("is-tuning"); };
 
@@ -1355,21 +1354,17 @@ function wdwCalInline(selector, calLink, config) {
     if (key === playing) return;
     const change = () => {
       render(key);
-      if (key === "yours") setDraft(true);
-      else { setDraft(false); if (window.wdwSetMood) window.wdwSetMood(key); }
+      if (key !== "yours" && window.wdwSetMood) window.wdwSetMood(key);
     };
     if (document.startViewTransition && !reduce) document.startViewTransition(change).finished.then(tuneIn);
     else { change(); tuneIn(); }
   };
 
   sec.addEventListener("click", (e) => { const t = e.target.closest(".tape"); if (t) insert(t.dataset.tape); });
-  if (card) card.querySelector(".draftcard__back").addEventListener("click", () => insert(root.dataset.mood));
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && root.classList.contains("is-draft")) insert(root.dataset.mood); });
+  // Back ejects "Yours?" and the mood that's on the page goes back in.
+  if (yours) yours.querySelector(".tv__yours-back").addEventListener("click", () => insert(root.dataset.mood));
   // Keep the deck in step when the mood changes elsewhere (the other section, or the floating switcher).
-  new MutationObserver((recs) => {
-    // Picking a mood anywhere else also ends draft mode.
-    if (playing === "yours" && recs.some((r) => r.attributeName === "data-mood")) setDraft(false);
-    if (!root.classList.contains("is-draft") && root.dataset.mood !== playing) render(root.dataset.mood);
-  }).observe(root, { attributes: true, attributeFilter: ["data-mood", "class"] });
+  new MutationObserver(() => { if (root.dataset.mood !== playing) render(root.dataset.mood); })
+    .observe(root, { attributes: true, attributeFilter: ["data-mood"] });
   render(root.dataset.mood || "tangy");
 })();

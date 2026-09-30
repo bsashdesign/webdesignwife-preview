@@ -373,25 +373,33 @@
           <h2 id="tv-title">Try on a look</h2>
           <p>Four tapes, four personalities, one website. Put one in and watch this whole page change.</p>
         </div>
+        <div class="tv-stage">
         <div class="tv-nook">
+          <div class="vcr" aria-hidden="true">
+            <span class="vcr__slot"></span>
+            <span class="vcr__window"><span class="vcr__tape" data-vcr-tape style="view-transition-name: tape-tangy"><span class="tape__label"><span class="tape__face"></span><span class="tape__text"><strong>Tangy</strong></span></span></span></span>
+            <span class="vcr__led">Play</span>
+          </div>
           <div class="tv">
             <div class="tv__screen">
               <div class="tv__show" data-tv-show="tangy" aria-hidden="true">
                 <span class="tv__face"></span>
                 <span class="tv__aa">Aa</span>
                 <span class="tv__bars"><i></i><i></i><i></i></span>
-                <span class="tv__sketch"><i></i><i></i><i></i><i></i></span>
+              </div>
+              <!-- "Yours?" plays a blank white screen with the invitation -->
+              <div class="tv__yours" hidden>
+                <h2 class="tv__yours-title">Yours is the one I haven't made yet</h2>
+                <p>You've seen the range. Now let's make yours: completely custom.</p>
+                <div class="tv__yours-btns"><a class="btn btn--primary btn--sm" href="start.html">Get started</a><a class="btn btn--ghost btn--sm" href="contact.html?type=callback">Request a callback</a></div>
+                <button type="button" class="linkbtn tv__yours-back">← Back</button>
               </div>
               <p class="tv__caption" aria-live="polite">Now playing: <b data-tv-name>Tangy</b></p>
             </div>
             <div class="tv__side" aria-hidden="true"><i class="tv__knob"></i><i class="tv__knob tv__knob--sm"></i><span class="tv__grille"></span></div>
           </div>
-          <div class="vcr" aria-hidden="true">
-            <span class="vcr__slot"></span>
-            <span class="vcr__window"><span class="vcr__tape" data-vcr-tape style="view-transition-name: tape-tangy"><span class="tape__label"><span class="tape__face"></span><span class="tape__text"><strong>Tangy</strong></span></span></span></span>
-            <span class="vcr__led">Play</span>
-          </div>
         </div>
+        <div class="tv-shelf-wrap">
         <p class="tv-shelf__label">Choose a new one</p>
         <div class="tv-shelf" role="group" aria-label="Choose a look">
               <button type="button" class="tape tape--tangy" data-tape="tangy" aria-pressed="false" style="view-transition-name: tape-tangy">
@@ -415,16 +423,10 @@
                 <span class="tape__window" aria-hidden="true"><i></i><i></i></span>
               </button>
         </div>
+        </div>
+        </div>
       </div>
     </section>
-
-    <!-- Draft mode card: shown while "Your site" is in the deck -->
-    <div class="draftcard" role="dialog" aria-labelledby="draft-title" hidden>
-      <h2 class="draftcard__title" id="draft-title">Yours is the one I haven't made yet</h2>
-      <p>You've seen the range. Now let's make yours: a completely custom design, built around your business.</p>
-      <div class="draftcard__btns"><a class="btn btn--primary" href="start.html">Get started</a><a class="btn btn--ghost" href="contact.html?type=callback">Request a callback</a></div>
-      <button type="button" class="linkbtn draftcard__back">← Back to a finished look</button>
-    </div>
 
     <!-- HOW IT WORKS -->
     <section class="section" id="how">
