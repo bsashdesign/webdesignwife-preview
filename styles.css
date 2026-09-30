@@ -2738,3 +2738,5 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-subway #compare .cc--us h3, .theme-subway #compare .cc--us ul { color: #fff; }
 .theme-subway #compare .cc--us .cc__ico { box-shadow: 0 0 0 2px #fff; }
 @media (max-width: 860px) { .theme-subway #compare .compare-cards .cc--us { box-shadow: inset 6px 0 0 var(--yellow); } }
+.theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); }
+@media (max-width: 860px) { .theme-refined #compare .compare-cards .cc--us { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 70%, transparent); } }
