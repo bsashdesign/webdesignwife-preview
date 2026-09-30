@@ -1674,31 +1674,37 @@ document.addEventListener("click", (e) => {
   const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
   gems.forEach((cv) => { io.observe(cv); draw(cv, 1500); });
   // Hovering a gem spins it faster; letting go eases it back down so it lands in step with the others.
-  // Each gem keeps an extra angle on top of the shared one: it grows while hovered, and afterwards glides to
-  // the next whole turn (so the gems line up again), slowing smoothly on the way.
-  const BASE = 2 * Math.PI / TURN, BOOST = 4 * BASE, EASE = .003;
+  // Holding a gem freezes it, and a click freezes it for a second; then it catches back up with the others.
+  // Each gem keeps an extra angle on top of the shared one: it grows while hovered, shrinks to hold the gem
+  // still while paused, and afterwards glides to the nearest whole turn ahead, so the gems line up again.
+  const BASE = 2 * Math.PI / TURN, BOOST = 4 * BASE, EASE = .003, TURN_R = 2 * Math.PI;
+  const aimAhead = (cv) => { const ahead = (cv._extra || 0) + Math.max(0, cv._vel || 0) / EASE; cv._target = Math.ceil(ahead / TURN_R - 1e-6) * TURN_R; };
   gems.forEach((cv) => {
     const hit = cv.closest(".plan-ring-tile") || cv;
     hit.addEventListener("pointerenter", () => { cv._hover = true; cv._target = null; });
-    hit.addEventListener("pointerleave", () => {
-      cv._hover = false;
-      const turn = 2 * Math.PI, ahead = (cv._extra || 0) + (cv._vel || 0) / EASE;
-      cv._target = Math.ceil(ahead / turn) * turn;
-    });
+    hit.addEventListener("pointerleave", () => { cv._hover = false; if (cv._held) { cv._held = false; cv._pausedUntil = performance.now() + 1000; } aimAhead(cv); });
+    hit.addEventListener("pointerdown", () => { cv._held = true; });
+    const release = () => { if (!cv._held) return; cv._held = false; cv._pausedUntil = performance.now() + 1000; };
+    hit.addEventListener("pointerup", release); hit.addEventListener("pointercancel", release);
   });
-  const step = (cv, dt) => {
+  const step = (cv, dt, now) => {
     let x = cv._extra || 0, v = cv._vel || 0;
-    if (cv._hover) v += (BOOST - v) * Math.min(1, dt / 250);
-    else if (cv._target != null) {
-      const left = cv._target - x;
-      v = Math.min(v, left * EASE);
-      if (left < .0005) { x = cv._target; v = 0; cv._target = null; }
-    } else v = 0;
+    const paused = cv._held || now < (cv._pausedUntil || 0);
+    if (paused) { v = -BASE; cv._wasPaused = true; }
+    else {
+      if (cv._wasPaused) { cv._wasPaused = false; v = 0; if (!cv._hover) aimAhead(cv); }
+      if (cv._hover) v += (BOOST - v) * Math.min(1, dt / 250);
+      else if (cv._target != null) {
+        const left = cv._target - x, want = left * EASE;
+        v = v < want ? v + (want - v) * Math.min(1, dt / 300) : want;
+        if (left < .0005) { x = cv._target; v = 0; cv._target = null; }
+      } else v = 0;
+    }
     cv._vel = v; cv._extra = x + v * dt;
   };
   let last = 0;
   const loop = (now) => {
-    if (now - last >= 33) { const dt = Math.min(100, now - (last || now)); last = now; live.forEach((cv) => { step(cv, dt); draw(cv, now); }); }
+    if (now - last >= 33) { const dt = Math.min(100, now - (last || now)); last = now; live.forEach((cv) => { step(cv, dt, now); draw(cv, now); }); }
     requestAnimationFrame(loop);
   };
   if (!reduce) requestAnimationFrame(loop);
