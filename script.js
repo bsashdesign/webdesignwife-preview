@@ -1279,3 +1279,32 @@ function wdwCalInline(selector, calLink, config) {
   Cal("inline", { elementOrSelector: selector, calLink, config: config || {} });
   Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
 }
+
+// Features chats: play the conversation once, one message at a time, when it scrolls into view.
+(function () {
+  const chats = document.querySelectorAll("[data-chat]");
+  if (!chats.length) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const play = async (chat) => {
+    const msgs = [...chat.querySelectorAll(".fx-chat__msg")];
+    if (reduce) return;
+    for (const m of msgs) {
+      const me = m.classList.contains("fx-chat__msg--me");
+      const dots = document.createElement("span");
+      dots.className = "fx-typing fx-typing--" + (me ? "me" : "them");
+      dots.innerHTML = "<i></i><i></i><i></i>";
+      m.before(dots);
+      await wait(me ? 900 : 700);
+      dots.remove();
+      m.classList.add("is-in");
+      await wait(450);
+    }
+  };
+  // Keep each chat at its finished height so the page doesn't shift while messages arrive.
+  if (!reduce) chats.forEach((c) => { c.style.minHeight = c.offsetHeight + "px"; c.classList.add("is-waiting"); });
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { io.unobserve(e.target); play(e.target); }
+  }), { threshold: 0.35 });
+  chats.forEach((c) => io.observe(c));
+})();
