@@ -3833,3 +3833,15 @@ span.plan-ring:empty { display: none; }
 #mood .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 5px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
 #mood .mood__opt:hover .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
 #mood .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(4px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
+/* thinner sockets: a sliver of dark around each key */
+.key-well { padding: 2px 2px 6px; border-radius: 14px; background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); }
+.tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well, #mood .mood__opt[data-mood="tangy"] .key-well { padding: 2px 6px 6px 2px; border-radius: 13px; }
+.tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well, #mood .mood__opt[data-mood="transit"] .key-well { padding: 2px 2px 5px; border-radius: 50%; }
+.tv-key--sophisticated .key-well, .mood__opt[data-mood="sophisticated"] .key-well, #mood .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 4px; }
+#mood .mood__opt .key-well { padding: 2px 2px 5px; border-radius: 12px; }
+#moods-tv .tv-key__cap { box-shadow: 0 4px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key:hover .tv-key__cap { transform: translateY(1px); box-shadow: 0 3px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:active .tv-key__cap { transform: translateY(3px); box-shadow: 0 1px 0 var(--cap-edge, #999), inset 0 2px 5px rgba(0,0,0,.25); }
+#mood .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt:hover .moodicon:not(.moodicon--tangy) { transform: translateY(1px); box-shadow: 0 2px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(2px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
