@@ -4171,3 +4171,7 @@ span.plan-ring:empty { display: none; }
 /* the heart sits inline at the end of the note's sentence, in the text's own colour */
 .tv-yours__front .tv-yours__go { display: inline; }
 .tv-yours__front .i-heart, .theme-blocks .tv-yours__front .i-heart, .theme-subway .tv-yours__front .i-heart, .theme-wedding .tv-yours__front .i-heart { color: inherit; display: inline-block; vertical-align: -0.1em; }
+/* Web Design Wife reaches past the other two at both the top and the bottom (not shifted up) */
+#compare .compare-cards { padding: 22px 0; }
+#compare .compare-cards .cc.cc--us { transform: none; margin: -18px 0; }
+@media (max-width: 760px) { #compare .compare-cards { padding: 0; } #compare .compare-cards .cc.cc--us { margin: 0; } }

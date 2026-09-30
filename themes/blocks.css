@@ -236,3 +236,5 @@
 .theme-blocks #compare .compare-cards .cc:nth-child(2) .cc__ico { background: var(--sun); }
 .theme-blocks #compare .compare-cards .cc.cc--us { background: var(--lime); border: var(--edge); box-shadow: 8px 8px 0 var(--ink); }
 .theme-blocks #compare .compare-cards .cc--us .cc__ico { background: #fff; }
+/* all three Three Ways cards have Tangy's standard 3D shadow and outline */
+.theme-blocks #compare .compare-cards .cc:nth-child(n), .theme-blocks #compare .compare-cards .cc + .cc, .theme-blocks #compare .compare-cards .cc.cc--us { border: var(--edge); box-shadow: var(--shadow); }
