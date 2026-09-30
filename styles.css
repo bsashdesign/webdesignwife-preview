@@ -3377,3 +3377,130 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-wedding .cadence__track i.on { background: #d9c49a; box-shadow: 0 0 0 5px rgba(217,196,154,.2); }
 .theme-wedding .refresh-covers__list li { border-radius: 2px; background: none; box-shadow: inset 0 0 0 1px rgba(217,196,154,.45); color: #efe6d2; font-weight: 500; }
 .cadence .cadence__track--quiet, .theme-blocks .cadence .cadence__track--quiet { background: none; }
+
+/* ================================================================
+   "Now playing": moods on a vintage TV and VCR (version B, below the original)
+   ================================================================ */
+.tv-sec { background: var(--tint); }
+/* A nook cut into the page: the set sits recessed, like it's built into the wall */
+.tv-nook { max-width: 760px; margin: 36px auto 0; padding: 26px 26px 22px; border-radius: 30px; background: color-mix(in srgb, var(--ink) 5%, transparent); box-shadow: inset 0 14px 30px -12px rgba(0,0,0,.28), inset 0 -1px 0 rgba(255,255,255,.7); }
+.tv { display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 18px; padding: 20px; border-radius: 26px; background: linear-gradient(160deg, #6b4a33, #4a3222 55%, #3b271a); box-shadow: inset 0 2px 0 rgba(255,255,255,.18), inset 0 -3px 0 rgba(0,0,0,.35), 0 18px 30px -18px rgba(0,0,0,.55); }
+.tv__screen { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 26px / 30px; background: #111; box-shadow: 0 0 0 10px #1b1410, 0 0 0 12px rgba(255,255,255,.08), inset 0 0 50px rgba(0,0,0,.55); }
+/* glass: a soft glare and faint scanlines, on top of whatever is playing */
+.tv__screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(120% 70% at 20% 0%, rgba(255,255,255,.22), transparent 45%), repeating-linear-gradient(rgba(0,0,0,.05) 0 1px, transparent 1px 3px); }
+.tv__screen.is-tuning .tv__show { animation: tv-tune .7s ease-out both; }
+@keyframes tv-tune { 0% { filter: brightness(2.2) saturate(.2); transform: scaleY(.04); } 35% { filter: brightness(1.6); transform: scaleY(1); } 100% { filter: none; transform: none; } }
+.tv__show { position: absolute; inset: 0; display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto; align-items: center; gap: 10px 22px; padding: 28px 32px 56px; }
+.tv__face { grid-row: 1 / 3; width: 108px; height: 108px; border-radius: 26px; background: center / 70% no-repeat; }
+.tv__aa { font-size: clamp(3rem, 8vw, 4.6rem); line-height: 1; }
+.tv__bars { display: flex; gap: 8px; } .tv__bars i { width: 46px; height: 12px; border-radius: 6px; }
+.tv__sketch { display: none; }
+.tv__caption { position: absolute; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; font: 600 .8rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+.tv__caption b { color: #fff; }
+/* what's playing, in each mood's own colors and type */
+[data-tv-show="tangy"] { background: #d4ff4f; } [data-tv-show="tangy"] .tv__face { background-color: #0e0e0e; background-image: url(images/moods/tangy.svg); }
+[data-tv-show="tangy"] .tv__aa { font-family: "Unbounded", sans-serif; font-weight: 800; color: #ff6a1a; } [data-tv-show="tangy"] .tv__bars i { background: #3355ff; }
+[data-tv-show="calm"] { background: #f3efff; } [data-tv-show="calm"] .tv__face { background-color: #5b3df5; background-image: url(images/moods/calm.svg); }
+[data-tv-show="calm"] .tv__aa { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; color: #5b3df5; } [data-tv-show="calm"] .tv__bars i { background: #c9bdfc; }
+[data-tv-show="transit"] { background: #111; } [data-tv-show="transit"] .tv__face { background-color: #fccc0a; background-image: url(images/moods/transit.svg); }
+[data-tv-show="transit"] .tv__aa { font-family: "Inter Tight", sans-serif; font-weight: 800; color: #fff; }
+[data-tv-show="transit"] .tv__bars i:nth-child(1) { background: #e8392e; } [data-tv-show="transit"] .tv__bars i:nth-child(2) { background: #fccc0a; } [data-tv-show="transit"] .tv__bars i:nth-child(3) { background: #00933c; }
+[data-tv-show="sophisticated"] { background: #f4ecdb; } [data-tv-show="sophisticated"] .tv__face { background-color: #1f2336; background-image: url(images/moods/sophisticated.svg); }
+[data-tv-show="sophisticated"] .tv__aa { font-family: "Cormorant Garamond", serif; font-weight: 500; font-style: italic; color: #1f2336; } [data-tv-show="sophisticated"] .tv__bars i { background: #b8955a; height: 3px; }
+[data-tv-show="tangy"] ~ .tv__caption, [data-tv-show="calm"] ~ .tv__caption, [data-tv-show="sophisticated"] ~ .tv__caption, [data-tv-show="yours"] ~ .tv__caption { color: rgba(20,20,20,.6); text-shadow: none; }
+[data-tv-show="tangy"] ~ .tv__caption b, [data-tv-show="calm"] ~ .tv__caption b, [data-tv-show="sophisticated"] ~ .tv__caption b, [data-tv-show="yours"] ~ .tv__caption b { color: #111; }
+/* "Yours?": a pencil wireframe waiting to be designed */
+[data-tv-show="yours"] { background: #fff linear-gradient(#eef3fb 1px, transparent 1px) 0 0 / 100% 18px; grid-template-columns: 1fr; }
+[data-tv-show="yours"] .tv__face, [data-tv-show="yours"] .tv__aa, [data-tv-show="yours"] .tv__bars { display: none; }
+[data-tv-show="yours"] .tv__sketch { display: grid; gap: 12px; align-self: center; }
+.tv__sketch i { display: block; height: 14px; border: 1.5px dashed #9aa4b2; border-radius: 4px; }
+.tv__sketch i:nth-child(1) { width: 70%; height: 30px; } .tv__sketch i:nth-child(2) { width: 90%; } .tv__sketch i:nth-child(3) { width: 55%; } .tv__sketch i:nth-child(4) { width: 34%; height: 26px; border-radius: 999px; }
+.tv__side { display: grid; align-content: start; justify-items: center; gap: 16px; padding-top: 10px; }
+.tv__knob { width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #efe6d6, #b9a98f 45%, #6e5f4b); box-shadow: 0 3px 6px rgba(0,0,0,.45), inset 0 -2px 3px rgba(0,0,0,.3); position: relative; }
+.tv__knob::after { content: ""; position: absolute; left: 50%; top: 6px; width: 3px; height: 12px; margin-left: -1.5px; border-radius: 2px; background: #4a3b2a; }
+.tv__knob--sm { width: 34px; height: 34px; } .tv__knob--sm::after { transform: rotate(40deg); transform-origin: 50% 11px; }
+.tv__grille { width: 62px; height: 110px; border-radius: 10px; background: repeating-linear-gradient(#2a1d14 0 3px, #5b4230 3px 7px); box-shadow: inset 0 2px 4px rgba(0,0,0,.5); }
+/* the VCR, with a smoked window showing the tape inside */
+.vcr { position: relative; display: flex; align-items: center; gap: 16px; height: 70px; margin: 14px 12px 0; padding: 0 18px; border-radius: 10px; background: linear-gradient(#303030, #1b1b1b); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 10px 18px -10px rgba(0,0,0,.6); }
+.vcr__slot { flex: none; width: 150px; height: 10px; border-radius: 3px; background: #050505; box-shadow: inset 0 2px 3px rgba(0,0,0,.9), 0 1px 0 rgba(255,255,255,.08); }
+.vcr__window { flex: 1; display: grid; place-items: center; height: 46px; border-radius: 6px; background: rgba(8,8,8,.75); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), inset 0 10px 18px rgba(0,0,0,.6); overflow: hidden; }
+.vcr__tape { display: block; width: 150px; opacity: .92; }
+.vcr__tape .tape__label { padding: 4px 8px; font-size: .7rem; }
+.vcr__tape .tape__face { width: 18px; height: 18px; border-radius: 5px; }
+.vcr__tape small { display: none; }
+.vcr__led { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 600 .66rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #bdbdbd; }
+.vcr__led::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
+/* the tapes on the shelf */
+.tv-shelf__label { margin: 30px 0 12px; text-align: center; font: 600 .78rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.tv-shelf { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; max-width: 960px; margin: 0 auto; }
+.tape { position: relative; display: grid; gap: 8px; padding: 10px 10px 12px; border: 0; border-radius: 8px; background: linear-gradient(#262626, #121212); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 8px 16px -10px rgba(0,0,0,.6); cursor: pointer; text-align: left; transition: transform .2s ease, box-shadow .2s ease; }
+.tape:hover { transform: translateY(-4px); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 14px 22px -12px rgba(0,0,0,.6); }
+.tape:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
+.tape.is-in { visibility: hidden; }
+.tape__label { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 4px; background: #fdfbf5; color: #1b1530; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+.tape__face { flex: none; width: 30px; height: 30px; border-radius: 8px; background: center / 72% no-repeat; }
+.tape__text { display: grid; min-width: 0; line-height: 1.2; }
+.tape__text strong { font-size: .95rem; }
+.tape__text small { font-size: .72rem; opacity: .7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tape__window { display: flex; justify-content: space-around; align-items: center; height: 30px; margin: 0 12%; border-radius: 4px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+.tape__window i { width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle, #111 0 3px, #d8d1c4 3px 5px, #3b3b3b 5px 7px, #6d6d6d 7px); }
+.tape--tangy .tape__label { background: #d4ff4f; font-family: "Unbounded", sans-serif; } .tape--tangy .tape__face { background-color: #0e0e0e; background-image: url(images/moods/tangy.svg); }
+.tape--calm .tape__label { background: #f3efff; } .tape--calm .tape__face { background-color: #5b3df5; background-image: url(images/moods/calm.svg); }
+.tape--transit .tape__label { background: #fff; box-shadow: inset 0 4px 0 #fccc0a; font-family: "Inter Tight", sans-serif; } .tape--transit .tape__face { background-color: #111; background-image: url(images/moods/transit.svg); border-radius: 50%; }
+.tape--sophisticated .tape__label { background: #f4ecdb; font-family: "Cormorant Garamond", serif; } .tape--sophisticated .tape__text strong { font-size: 1.1rem; font-weight: 600; } .tape--sophisticated .tape__face { background-color: #1f2336; background-image: url(images/moods/sophisticated.svg); border-radius: 2px; }
+.tape--yours { background: #fff; box-shadow: inset 0 0 0 2px #b9c1cc; }
+.tape--yours .tape__label { background: #fff; border: 1.5px dashed #9aa4b2; transform: rotate(-1.5deg); }
+.tape--yours .tape__window { background: #f1f4f8; box-shadow: inset 0 0 0 1.5px dashed #b9c1cc; }
+.tape--yours .tape__window i { background: radial-gradient(circle, #fff 0 3px, #cfd6df 3px 5px, #fff 5px); }
+.tape__q { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 8px; border: 1.5px dashed #9aa4b2; font-weight: 800; color: #7b8594; }
+/* smooth, native morph between the shelf and the deck */
+::view-transition-group(*) { animation-duration: .65s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .45s; }
+@media (max-width: 760px) {
+  .tv { grid-template-columns: minmax(0, 1fr); padding: 14px; } .tv__side { display: none; }
+  .tv__show { padding: 18px 20px 46px; gap: 8px 14px; } .tv__face { width: 72px; height: 72px; border-radius: 18px; }
+  .tv-nook { padding: 16px; border-radius: 22px; }
+  .vcr { margin: 12px 0 0; gap: 10px; padding: 0 12px; } .vcr__slot { width: 60px; }
+  .tv-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tape--yours { grid-column: 1 / -1; }
+}
+/* the set follows each mood's personality */
+.theme-blocks .tv-nook { background: #fff; border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.theme-blocks .tv { background: linear-gradient(160deg, #ff8a3d, #ff6a1a); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.theme-blocks .tape { box-shadow: 4px 4px 0 var(--ink); border: 2px solid var(--ink); }
+.theme-subway .tv { background: linear-gradient(160deg, #3a3a3a, #1b1b1b); }
+.theme-subway .tv-nook { border-radius: 14px; }
+.theme-wedding .tv { background: linear-gradient(160deg, #6f4a2c, #4b2f1a 60%, #3a2413); box-shadow: inset 0 0 0 2px #c8a45e, inset 0 2px 0 rgba(255,255,255,.18), 0 18px 30px -18px rgba(0,0,0,.55); }
+.theme-wedding .tv__knob { background: radial-gradient(circle at 35% 30%, #fff3cf, #d9b56a 45%, #8a6424); }
+.theme-wedding .tv-nook { border-radius: 6px; }
+
+/* ================================================================
+   Draft mode ("Yours?"): the finished styling falls away to an unfinished, custom-to-be page.
+   One layer on top of whatever mood is set; never saved.
+   ================================================================ */
+html.is-draft body { background: #fff linear-gradient(#eef3fb 1px, transparent 1px) 0 0 / 100% 24px; }
+html.is-draft main > section:not(#moods-tv), html.is-draft .footer { background: transparent !important; border-color: #d6dbe2 !important; }
+/* Everything goes gray and flat; only outlines that were really there show, now dashed */
+html.is-draft main > section:not(#moods-tv), html.is-draft .footer { filter: grayscale(1) contrast(.55) brightness(1.18); }
+html.is-draft main > section:not(#moods-tv) :is(*, *::before, *::after), html.is-draft .footer :is(*, *::before, *::after) {
+  background-color: transparent !important; background-image: none !important; box-shadow: none !important; text-shadow: none !important; }
+/* the page's real boxes turn into dashed placeholders */
+html.is-draft main > section:not(#moods-tv) :is(.plan, .cc, .compare-cards, .step, .steps li, .promises p, .post-card, .formcard, .founding, .callcard, .work-founding, .mplan, .rank, .work-feature__shot, .ba__frame, .about__photo, .chip, .yours, .btn, .assure li, .billing, .faq__list details, input, textarea) {
+  border: 1.5px dashed #b9c1cc !important; }
+html.is-draft main > section:not(#moods-tv) > .wrap { outline: 1.5px dashed #c9d0d9; outline-offset: 14px; border-radius: 8px; }
+html.is-draft main > section:not(#moods-tv) :is(img, video, iframe) { opacity: .2; }
+html.is-draft .nav { background: #fff !important; }
+.draftcard { position: fixed; left: 50%; bottom: 20px; z-index: 80; width: min(520px, calc(100vw - 32px)); transform: translateX(-50%); padding: 20px 22px; border-radius: 16px; background: #fff; border: 1.5px dashed #9aa4b2; box-shadow: 0 24px 50px -20px rgba(20,30,50,.35); color: #1b2230; animation: draft-in .45s cubic-bezier(.2, 1.2, .3, 1) both; }
+.draftcard[hidden] { display: none; }
+.draftcard .draftcard__title { margin: 0 0 6px; font: 800 1.35rem/1.15 var(--display); max-width: none; color: #1b2230; }
+.draftcard p { margin: 0 0 14px; color: #5c6573; font-size: .95rem; }
+.draftcard__btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.draftcard__back { margin-top: 12px; font-size: .88rem; color: #5c6573; }
+@keyframes draft-in { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+/* the mood faces are full drawings: no tile behind them */
+.tv__face, .tape__face, .theme-blocks .tv__face { background-color: transparent !important; background-size: contain; border-radius: 0; }
+/* the tape that's in the deck leaves an empty slot on the shelf */
+.tape.is-in { visibility: visible; background: transparent; box-shadow: none; outline: 2px dashed color-mix(in srgb, var(--ink) 22%, transparent); outline-offset: -2px; transform: none; cursor: default; }
+.tape.is-in > * { visibility: hidden; }
+.theme-blocks .tape.is-in { border-color: transparent; box-shadow: none; }
+.tape--tangy .tape__text small { font-family: var(--body); }
