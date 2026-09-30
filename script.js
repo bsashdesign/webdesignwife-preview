@@ -1684,13 +1684,14 @@ document.addEventListener("click", (e) => {
     const hit = cv.closest(".plan-ring-tile") || cv;
     hit.addEventListener("pointerenter", () => { cv._hover = true; cv._target = null; });
     hit.addEventListener("pointerleave", () => { cv._hover = false; cv._held = false; cv.classList.remove("is-held"); aimAhead(cv); });
-    hit.addEventListener("pointerdown", () => { cv._held = true; cv.classList.add("is-held"); });
+    hit.addEventListener("pointerdown", () => { cv._held = true; cv._heldAt = performance.now(); cv.classList.add("is-held"); });
     const release = () => { cv._held = false; cv.classList.remove("is-held"); };
     hit.addEventListener("pointerup", release); hit.addEventListener("pointercancel", release);
   });
   const step = (cv, dt, now) => {
     let x = cv._extra || 0, v = cv._vel || 0;
-    const paused = cv._held;
+    // it only slows once you've held it a moment, so a quick click doesn't slow it
+    const paused = cv._held && now - (cv._heldAt || 0) > 250;
     // held: it keeps turning, slowly (a quarter of its normal speed), easing down into it
     if (paused) { v += (-.75 * BASE - v) * Math.min(1, dt / 200); cv._wasPaused = true; }
     else {
