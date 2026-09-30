@@ -3121,3 +3121,11 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .plan__founding .pi { font-size: 12px; }
 .theme-wedding .founding__num { font-size: 0; }
 .theme-wedding .founding__num::after { content: "V"; font-size: 1.6rem; }
+/* Tangy Pricing page: each band its own palette color, with the ink line between them (like Features) */
+.theme-blocks .pricing-page #setup { background: var(--sky); }
+.theme-blocks .pricing-page #when { background: #fff; }
+.theme-blocks .pricing-page #guarantee { background: var(--sun); }
+.theme-blocks .pricing-page #edits { background: #fff; }
+.theme-blocks .pricing-page #own { background: var(--mint); }
+.theme-blocks .pricing-page main > section + section { border-top: 2px solid var(--ink); }
+.theme-blocks .pricing-page #own .buyout { background: #fff; }
