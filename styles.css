@@ -3129,3 +3129,9 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-blocks .pricing-page #own { background: var(--mint); }
 .theme-blocks .pricing-page main > section + section { border-top: 2px solid var(--ink); }
 .theme-blocks .pricing-page #own .buyout { background: #fff; }
+/* Tangy form fields: the selected field lifts off the page with the ink 3D shadow and a warm fill */
+.theme-blocks :is(input:not([type="radio"]):not([type="checkbox"]):not([type="range"]), select, textarea) { transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease; }
+.theme-blocks :is(input:not([type="radio"]):not([type="checkbox"]):not([type="range"]), select, textarea):focus {
+  outline: none; border-color: var(--ink) !important; background-color: #fffbe0; transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink);
+}
+@media (prefers-reduced-motion: reduce) { .theme-blocks :is(input, select, textarea):focus { transform: none; } }
