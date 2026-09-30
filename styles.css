@@ -2798,3 +2798,9 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-wedding .gbp__label { color: var(--gold-ink); }
 @media (max-width: 760px) { .gbp { padding: 28px 22px; } .gbp__cols { grid-template-columns: minmax(0, 1fr); } }
 .mplan__more { display: inline-block; margin-top: 10px; font-weight: 600; color: inherit; }
+/* Home: compact local band · Blog: the borough carousel */
+.nyc__lede { margin: 14px 0 0; max-width: 72ch; text-wrap: balance; font-size: 1.1rem; color: var(--ink-soft); }
+.blog-boroughs { padding: 56px 0 24px; }
+.blog-boroughs .wrap { position: relative; }
+.blog-boroughs__lede { margin: 8px 0 0; }
+.blog-boroughs .boroughs { margin-top: 20px; }

@@ -432,6 +432,19 @@ index += """    <section class="blog-hero">
 """ + "".join(card(next(x for x in ALL if x["slug"] == slug), n) for n, slug in enumerate(["diy-website-guide", "local-business-website-checklist", "google-maps-profile", "business-photos-guide", "get-more-google-reviews"])) + """        </div>
       </div>
     </section>
+    <section class="blog-boroughs" id="boroughs">
+      <div class="wrap">
+        <div class="carousel-head"><h2 class="must-reads__h">Around New York</h2><div data-nav-slot></div></div>
+        <p class="muted blog-boroughs__lede">Each borough searches a little differently. Here's how I build for the neighborhoods your customers live in.</p>
+        <div class="boroughs">
+          <a class="borough" href="websites-manhattan.html"><strong>Manhattan</strong><span>Midtown · UWS · Harlem · Chelsea <b class="borough__more">+ 17 more</b></span><em>How I build for Manhattan <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>
+          <a class="borough" href="websites-brooklyn.html"><strong>Brooklyn</strong><span>Park Slope · Williamsburg · Flatbush · Bay Ridge <b class="borough__more">+ 27 more</b></span><em>How I build for Brooklyn <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>
+          <a class="borough" href="websites-queens.html"><strong>Queens</strong><span>Astoria · Flushing · Forest Hills <b class="borough__more">+ 19 more</b></span><em>How I build for Queens <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>
+          <a class="borough" href="websites-bronx.html"><strong>The Bronx</strong><span>Belmont · Riverdale · Fordham <b class="borough__more">+ 14 more</b></span><em>How I build for the Bronx <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>
+          <a class="borough" href="websites-staten-island.html"><strong>Staten Island</strong><span>St. George · Great Kills · Tottenville <b class="borough__more">+ 10 more</b></span><em>How I build for Staten Island <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>
+        </div>
+      </div>
+    </section>
     <section class="blog-list">
       <div class="wrap">
         <h2 class="blog-list__h">All articles</h2>
