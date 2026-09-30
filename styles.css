@@ -3885,3 +3885,50 @@ span.plan-ring:empty { display: none; }
 #mood .mood__opt .key-well .moodicon--tangy { scale: 1.08; }
 /* the floating button: a soft outline in its own tone (Tangy keeps its ink outline) */
 #mood .mood__btn .moodicon:not(.moodicon--tangy) { box-shadow: 0 0 0 1px color-mix(in srgb, var(--cap-edge) 75%, transparent), 0 8px 18px -10px rgba(0,0,0,.45); }
+/* room for the slabs' thick bottom edge */
+#moods-tv .tv-keys { margin-bottom: 12px; }
+#mood .mood__panel { bottom: calc(100% + 24px); }
+
+/* Level cards: a plan's ring and its name, no badge */
+.level__tag { gap: 8px; font: 700 1rem/1.2 var(--body); letter-spacing: 0; text-transform: none; color: var(--ink); }
+.level__tag .plan-ring--inline { width: 28px; height: 28px; margin: -6px -2px -6px -4px; }
+.theme-wedding .level__tag { font: italic 600 1.15rem/1.2 var(--display); color: var(--gold-ink); }
+.theme-subway .level__tag { font-family: "Inter Tight", var(--body); }
+.theme-blocks .level__tag { font-family: "Unbounded", var(--body); font-size: .9rem; font-weight: 700; }
+
+/* ================================================================
+   Change the Channel: a colored band on Tangy and Sophisticated too
+   ================================================================ */
+.theme-blocks .tv-sec { background: var(--sky, #9fd6ff); }
+.theme-wedding .tv-sec { background: #ebdfc4; }
+/* each key's name in its own mood's type */
+.tv-key--tangy .tv-key__name, .mood__opt[data-mood="tangy"] strong { font-family: "Unbounded", sans-serif; font-weight: 700; letter-spacing: -.01em; }
+.tv-key--calm .tv-key__name, .mood__opt[data-mood="calm"] strong { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; }
+.tv-key--transit .tv-key__name, .mood__opt[data-mood="transit"] strong { font-family: "Inter Tight", sans-serif; font-weight: 800; }
+.tv-key--sophisticated .tv-key__name, .mood__opt[data-mood="sophisticated"] strong { font-family: "Cormorant Garamond", serif; font-weight: 600; font-style: italic; font-size: 1.12em; }
+.tv-key--tangy .tv-key__name { font-size: .92em; }
+
+/* Keys stand up out of their sockets: no socket shows above a key until it's pressed */
+.key-well, #mood .mood__opt .key-well, .tv-key--transit .key-well, #mood .mood__opt[data-mood="transit"] .key-well { padding: 0 3px 3px; }
+/* Tangy's board key: like the others (a forward edge, same size, same corners), with a solid black edge */
+#moods-tv .tv-key--tangy .key-well { padding: 0 3px 3px; background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); border-radius: 17px; }
+#moods-tv .tv-key--tangy .tv-key__cap { scale: none; margin: 0 0 9px; border: 2.5px solid #111; box-shadow: 0 9px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy:hover .tv-key__cap { transform: translateY(2px); box-shadow: 0 7px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translateY(8px); box-shadow: 0 1px 0 #111, inset 0 3px 6px rgba(0,0,0,.28); }
+#moods-tv .tv-key .tv-key__cap { border-radius: 14px; }
+#moods-tv .tv-key .key-well { border-radius: 17px; }
+#moods-tv .tv-key--transit .tv-key__cap, #moods-tv .tv-key--transit .key-well { border-radius: 50%; }
+#moods-tv .tv-key--sophisticated .tv-key__cap { border-radius: 3px; }
+#moods-tv .tv-key--sophisticated .key-well { border-radius: 5px; }
+@media (max-width: 600px) { #moods-tv .tv-key:not(.tv-key--transit):not(.tv-key--sophisticated) .tv-key__cap { border-radius: 10px; } #moods-tv .tv-key:not(.tv-key--transit):not(.tv-key--sophisticated) .key-well { border-radius: 13px; } }
+
+/* the floating button is square (Transit's is round) */
+#mood .mood__btn .moodicon { width: 48px; height: 48px; }
+
+/* "Yours?" is a sheet with its corner turned up; once flipped, the back lies flat */
+.tv-yours__front { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 26px), calc(100% - 26px) 100%, 0 100%); }
+.tv-yours__front::after { content: ""; position: absolute; right: 0; bottom: 0; width: 26px; height: 26px; background: linear-gradient(to top left, transparent 50%, #e6dfd2 50%, #f7f3ec); border-top-left-radius: 6px; box-shadow: -2px -2px 5px rgba(0,0,0,.14); }
+.theme-blocks .tv-yours__front::after { background: linear-gradient(to top left, transparent 50%, #111 50%, #111 calc(50% + 2px), #f1f1f1 calc(50% + 2px)); box-shadow: none; }
+/* Transit: the back is a blue card, so it shows on the black band */
+.theme-subway .tv-yours__back { background: #0b5cd6; color: #fff; }
+.theme-subway .tv-yours__close { background: rgba(255,255,255,.18); }

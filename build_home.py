@@ -65,8 +65,8 @@ def switcher():
         for m in MOODS
     )
     return f'''<div class="mood" id="mood">
-    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Choose your mood">{dots(MOODS[0])}</button>
-    <div class="mood__panel" id="mood-panel" role="group" aria-label="Choose your mood"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Choose your mood</p><p class="mood__intro">See this website in four different styles. Same content, a different feel.</p>{opts}</div>
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel">{dots(MOODS[0])}</button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Change the channel"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Change the Channel</p><p class="mood__intro">Same website, four completely different directions. Press a button and watch the whole page change.</p>{opts}</div>
   </div>'''
 
 
@@ -117,7 +117,7 @@ def founding(html):
               + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
               + "</div></div>") if on else ""
     return (html.replace("{{FOUNDING_BANNER}}", banner)
-                .replace("{{HERO_LABEL}}", "Now open: five founding spots · Brooklyn, NY" if on else "Based in Brooklyn, New York"))
+                .replace("{{HERO_LABEL}}", "Limited time: <s>$199</s> $1 setup" if on else "Based in Brooklyn, New York"))
 
 
 def work_visual():

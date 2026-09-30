@@ -893,6 +893,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   // Moods change the height of sections, so the page would jump. Keep what you were looking at in the same place:
   // the button you pressed, or (for the floating switcher) whatever is in the middle of the screen.
   function keepInView(anchor, change) {
+    // Picked from the floating switcher: just change, and leave the scroll alone.
+    if (anchor && anchor.closest(".mood")) { change(); return; }
     const inFlow = anchor && anchor.isConnected && !anchor.closest(".mood");
     const a = inFlow ? anchor : document.elementFromPoint(innerWidth / 2, innerHeight / 2);
     const top = a ? a.getBoundingClientRect().top : 0;
@@ -1444,7 +1446,9 @@ function wdwCalInline(selector, calLink, config) {
     ctx.clearRect(0, 0, W, H);
     const color = getComputedStyle(cv).color;
     const m = model(cv.dataset.plan);
-    const a = MID + SWING * Math.sin((t / PERIOD) * 2 * Math.PI), ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(TILT), st = Math.sin(TILT);
+    // small inline rings barely rock, and slowly, so they don't distract from the text beside them
+    const small = cv.classList.contains("plan-ring--inline");
+    const a = MID + (small ? 8 * DEG : SWING) * Math.sin((t / (small ? 11000 : PERIOD)) * 2 * Math.PI), ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(TILT), st = Math.sin(TILT);
     const scale = (Math.min(W, H) / (m.size * 1.18)) * (SIZE[cv.dataset.plan] || 1), f = 7;
     // put the model's middle (leaned like the ring) in the middle of the canvas
     const cx = W / 2 - (m.mx * ct - m.my * st) * scale, cy = H / 2 + (m.mx * st + m.my * ct) * scale;
@@ -1467,3 +1471,14 @@ function wdwCalInline(selector, calLink, config) {
   requestAnimationFrame(loop);
   if (reduce) new MutationObserver(() => canvases.forEach((cv) => draw(cv, 1200))).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 })();
+
+// Links to a spot on the same page glide there instead of jumping.
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || e.defaultPrevented || a.getAttribute("href").length < 2) return;
+  const t = document.getElementById(decodeURIComponent(a.getAttribute("href").slice(1)));
+  if (!t) return;
+  e.preventDefault();
+  t.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  history.pushState(null, "", a.getAttribute("href"));
+});
