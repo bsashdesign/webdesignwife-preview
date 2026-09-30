@@ -1095,7 +1095,16 @@ function openSheet(d) {
   const yours = sec.querySelector("[data-yours]");
   if (yours) {
     const front = yours.querySelector(".yours__front"), back = yours.querySelector(".yours__back");
-    const flip = (open) => { yours.classList.toggle("is-open", open); back.hidden = !open; front.setAttribute("aria-expanded", String(open)); };
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const flip = (open) => {
+      front.setAttribute("aria-expanded", String(open));
+      if (open) { yours.classList.add("is-open"); back.hidden = false; front.classList.remove("is-back"); return; }
+      // Flip back: turn the back away, then bring the front around.
+      const done = () => { back.classList.remove("is-leaving"); back.hidden = true; yours.classList.remove("is-open"); front.classList.add("is-back"); };
+      if (reduced) return done();
+      back.classList.add("is-leaving");
+      back.addEventListener("animationend", done, { once: true });
+    };
     front.addEventListener("click", () => flip(true));
     yours.querySelector(".yours__close").addEventListener("click", () => { flip(false); front.focus(); });
   }

@@ -2644,3 +2644,7 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .yours__close { display: inline-flex; align-items: center; gap: 6px; }
 .yours__close svg { width: 16px; height: 16px; }
 .article { padding-bottom: 48px; } @media (max-width: 640px) { .article { padding-bottom: 32px; } }
+/* "Your site" flips back the way it flipped open */
+.yours__back.is-leaving { animation: yours-out .25s ease-in forwards; }
+@keyframes yours-out { to { opacity: 0; transform: rotateY(-70deg); } }
+.yours__front.is-back { animation: yours-in .45s var(--spring); }
