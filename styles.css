@@ -2747,14 +2747,14 @@ main p.scope-note { max-width: 860px; text-wrap: balance; }
 .theme-wedding .post-card h3 { line-height: 1.32; }
 
 /* Text link hover: the underline redraws itself from left to right. No fading, nothing moves. */
-a:not([class]), .section-cta__alt, .pricing__link, .pricing__more a, .article__back, .start__back, .linkbtn, .audit__alt a {
+a:not([class]), .section-cta__alt, .pricing__link, .pricing__more a, .article__back, .start__back, .linkbtn, .audit__alt a, .mplan__more {
   text-decoration: none !important; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat; padding-bottom: 1px;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 .footer__col a, .drawer__more a, .footer__bottom a, .nav__links a:not([aria-current]) {
   text-decoration: none !important; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; padding-bottom: 1px;
 }
-a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .start__back:hover, .linkbtn:hover, .audit__alt a:hover,
+a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .start__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover {
   opacity: 1; text-decoration: none !important; animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both;
 }
