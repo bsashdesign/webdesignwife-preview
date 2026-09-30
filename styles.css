@@ -4266,15 +4266,6 @@ span.plan-ring:empty { display: none; }
 .level--business .level__name { margin-left: 2px; }
 .level--full .level__name { margin-left: 4px; }
 
-/* The key board sits centred under the TV, with the "For you" note beside it on the right.
-   Without room for both side by side, the board stays centred and the note drops below it. */
-.tvset { container-type: inline-size; }
-@container (min-width: 960px) {
-  .tv-panel { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 22px; row-gap: 16px; align-items: stretch; }
-  .tv-panel .tryon__cue { grid-column: 1 / -1; }
-  .tv-panel .tv-keys { grid-column: 2; }
-  .tv-panel .tv-yours { grid-column: 3; justify-self: start; width: 200px; flex: none; }
-}
 /* Tangy: the note casts the hard black shadow (it follows the turned corner too) */
 .theme-blocks .tv-yours { filter: drop-shadow(5px 5px 0 var(--ink)); }
 /* Transit: the note is dark graph paper */
@@ -4285,3 +4276,18 @@ span.plan-ring:empty { display: none; }
 .theme-subway .tv-yours__front .tv-yours__go { color: inherit; }
 .theme-subway .tv-yours__front::after { background: linear-gradient(to top left, transparent 50%, #3a3a3a 50%, #2a2a2a); box-shadow: -2px -2px 5px rgba(0, 0, 0, .5); }
 .theme-subway .tv-yours { filter: drop-shadow(0 10px 16px rgba(0, 0, 0, .55)); }
+
+/* The "For you" note always sits centred below the key board, as a wide, short bar */
+.tv-panel .tv-yours { flex: 0 0 100%; width: 100%; max-width: 620px; }
+.tv-yours__inner, .tv-yours.is-flipped .tv-yours__inner { min-height: 104px; }
+.tv-yours__front { grid-auto-flow: column; justify-content: center; align-items: center; padding: 14px 20px; }
+/* its back: the words on the left, the buttons on the right */
+.tv-yours .tv-yours__back { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; place-content: center stretch; align-items: center; column-gap: 24px; row-gap: 2px; padding: 16px 58px 16px 26px; text-align: left; justify-items: start; }
+#moods-tv .tv-yours .tv-yours__back .tv-yours__title { grid-column: 1; grid-row: 1; margin: 0; }
+.tv-yours .tv-yours__back > p { grid-column: 1; grid-row: 2; margin: 0; }
+.tv-yours .tv-yours__actions { grid-column: 2; grid-row: 1 / 3; justify-items: center; margin: 0; }
+@container (max-width: 520px) {
+  .tv-yours__inner, .tv-yours.is-flipped .tv-yours__inner { min-height: 150px; }
+  .tv-yours .tv-yours__back { grid-template-columns: minmax(0, 1fr); text-align: center; justify-items: center; padding: 18px 44px; }
+  .tv-yours .tv-yours__actions { grid-column: 1; grid-row: 3; margin-top: 8px; }
+}
