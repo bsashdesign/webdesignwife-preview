@@ -178,3 +178,5 @@
 .theme-blocks .contact__card .tabs { background: #fff; }
 .theme-blocks .quickcheck { background: var(--sun); border: var(--edge); box-shadow: var(--shadow); }
 .theme-blocks .quickcheck__row input { border: 2px solid var(--ink); }
+/* Article callout: a yellow sticker-style card (Tangy's page tint is plain white) */
+.theme-blocks .lede-note { background: var(--sun); border: var(--edge); border-left-width: 8px; border-left-color: var(--violet); border-radius: 0 var(--r) var(--r) 0; box-shadow: var(--shadow); }

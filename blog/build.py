@@ -281,6 +281,8 @@ FOOT = """  </main>
         <a href="diy-website-guide.html">Build-it-yourself guide</a>
         <a href="google-maps-profile.html">Google Maps guide</a>
         <a href="../pricing.html#custom">Custom projects</a>
+        <a href="../privacy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
         <span>Based in Brooklyn, NY</span>
       </nav>
     </div>
