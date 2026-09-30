@@ -883,7 +883,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     // Let size-dependent pieces (carousel, nav) re-measure for the new fonts.
     setTimeout(() => window.dispatchEvent(new Event("resize")), 60);
   }
-  apply(root.dataset.mood || "transit", false);
+  apply(root.dataset.mood || "tangy", false);
 
   function switchTo(key) { if (key !== root.dataset.mood) apply(key, true); }
   document.addEventListener("click", (e) => {

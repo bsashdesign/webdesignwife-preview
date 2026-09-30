@@ -180,3 +180,5 @@
 .theme-blocks .quickcheck__row input { border: 2px solid var(--ink); }
 /* Article callout: a yellow sticker-style card (Tangy's page tint is plain white) */
 .theme-blocks .lede-note { background: var(--sun); border: var(--edge); border-left-width: 8px; border-left-color: var(--violet); border-radius: 0 var(--r) var(--r) 0; box-shadow: var(--shadow); }
+/* Comparison: the Web Design Wife card is lime, with no extra inner stripe */
+.theme-blocks #compare .compare-cards .cc--us { box-shadow: none; }
