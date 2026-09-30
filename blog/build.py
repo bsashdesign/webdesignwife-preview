@@ -401,6 +401,16 @@ def brand_svg(name, color):
     s = re.sub(r"<title>.*?</title>", "", s)
     return s.replace("<svg ", f'<svg aria-hidden="true" fill="{color}" ', 1)
 
+def vs_head(body, slug):
+    """Comparison tables: the builder's logo beside its name, and my face beside mine."""
+    if slug not in BRANDS:
+        return body
+    name, color = BRANDS[slug]
+    return re.sub(r"<thead><tr><th></th><th>(.*?)</th><th>Web Design Wife</th></tr></thead>",
+                  lambda m: f'<thead><tr><th></th><th><span class="vs-th"><span class="vs-th__logo">{brand_svg(name, color)}</span>{m.group(1)}</span></th>'
+                            '<th><span class="vs-th"><span class="vs-th__logo vs-th__logo--us"><img src="../images/favicon.jpg" alt=""></span>Web Design Wife</span></th></tr></thead>',
+                  body, count=1)
+
 def cover(a):
     if a["slug"] in BRANDS:
         name, color = BRANDS[a["slug"]]
@@ -513,7 +523,7 @@ for a in ALL:
         <a class="article__back" href="index.html"><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> All articles</a>
         <h1>{html.escape(a['title'])}</h1>
         <p class="article__meta">By Ben Sash · {a['minutes']} min read</p>
-        <div class="article__body">{a['body'].replace("{{CHECK}}", MID_CHECK if len(re.sub(r"<[^>]+>", " ", a["body"]).split()) > 900 else "")}</div>
+        <div class="article__body">{vs_head(a['body'], a['slug']).replace("{{CHECK}}", MID_CHECK if len(re.sub(r"<[^>]+>", " ", a["body"]).split()) > 900 else "")}</div>
 {END_CHECK}        <section class="related" data-slug="{a['slug']}" data-group="{a['group']}" aria-label="Related articles" hidden>
           <h2 class="related__h">Keep reading</h2>
           <div class="related__list"></div>

@@ -57,5 +57,11 @@ ARROW = ('<svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M
          'stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
+HEART = ('<svg class="i-heart" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.6S1.8 9.9 1.8 5.8A3.2 3.2 0 0 1 8 4.6a3.2 3.2 0 0 1 6.2 1.2C14.2 9.9 8 13.6 8 13.6Z" '
+         'fill="currentColor"/></svg>')
+
+
 def arrows(html):
-    return re.sub(r"\s*→\s*</(a|span)>", lambda m: ARROW + "</" + m.group(1) + ">", html)
+    html = re.sub(r"\s*→\s*</(a|span)>", lambda m: ARROW + "</" + m.group(1) + ">", html)
+    # A heart ending a button or tab label is drawn too (the text glyph turns into an emoji in some fonts).
+    return re.sub(r"\s*♥\s*</button>", " " + HEART + "</button>", html)

@@ -1574,6 +1574,9 @@ h2 { text-wrap: balance; }
 .pi--trend-up { -webkit-mask-image: url(images/ph/regular/trend-up.svg); mask-image: url(images/ph/regular/trend-up.svg); }
 .pi--info { -webkit-mask-image: url(images/ph/regular/info.svg); mask-image: url(images/ph/regular/info.svg); }
 .pi--warning { -webkit-mask-image: url(images/ph/regular/warning.svg); mask-image: url(images/ph/regular/warning.svg); }
+.pi--credit-card { -webkit-mask-image: url(images/ph/regular/credit-card.svg); mask-image: url(images/ph/regular/credit-card.svg); }
+.pi--bank { -webkit-mask-image: url(images/ph/regular/bank.svg); mask-image: url(images/ph/regular/bank.svg); }
+.pi--phone { -webkit-mask-image: url(images/ph/regular/phone.svg); mask-image: url(images/ph/regular/phone.svg); }
 .theme-subway .pi--palette, .theme-blocks .pi--palette { -webkit-mask-image: url(images/ph/bold/palette.svg); mask-image: url(images/ph/bold/palette.svg); }
 .theme-subway .pi--device-mobile, .theme-blocks .pi--device-mobile { -webkit-mask-image: url(images/ph/bold/device-mobile.svg); mask-image: url(images/ph/bold/device-mobile.svg); }
 .theme-subway .pi--envelope-simple, .theme-blocks .pi--envelope-simple { -webkit-mask-image: url(images/ph/bold/envelope-simple.svg); mask-image: url(images/ph/bold/envelope-simple.svg); }
@@ -1601,6 +1604,9 @@ h2 { text-wrap: balance; }
 .theme-subway .pi--trend-up, .theme-blocks .pi--trend-up { -webkit-mask-image: url(images/ph/bold/trend-up.svg); mask-image: url(images/ph/bold/trend-up.svg); }
 .theme-subway .pi--info, .theme-blocks .pi--info { -webkit-mask-image: url(images/ph/bold/info.svg); mask-image: url(images/ph/bold/info.svg); }
 .theme-subway .pi--warning, .theme-blocks .pi--warning { -webkit-mask-image: url(images/ph/bold/warning.svg); mask-image: url(images/ph/bold/warning.svg); }
+.theme-subway .pi--credit-card, .theme-blocks .pi--credit-card { -webkit-mask-image: url(images/ph/bold/credit-card.svg); mask-image: url(images/ph/bold/credit-card.svg); }
+.theme-subway .pi--bank, .theme-blocks .pi--bank { -webkit-mask-image: url(images/ph/bold/bank.svg); mask-image: url(images/ph/bold/bank.svg); }
+.theme-subway .pi--phone, .theme-blocks .pi--phone { -webkit-mask-image: url(images/ph/bold/phone.svg); mask-image: url(images/ph/bold/phone.svg); }
 .theme-wedding .pi--palette { -webkit-mask-image: url(images/ph/thin/palette.svg); mask-image: url(images/ph/thin/palette.svg); }
 .theme-wedding .pi--device-mobile { -webkit-mask-image: url(images/ph/thin/device-mobile.svg); mask-image: url(images/ph/thin/device-mobile.svg); }
 .theme-wedding .pi--envelope-simple { -webkit-mask-image: url(images/ph/thin/envelope-simple.svg); mask-image: url(images/ph/thin/envelope-simple.svg); }
@@ -1628,6 +1634,9 @@ h2 { text-wrap: balance; }
 .theme-wedding .pi--trend-up { -webkit-mask-image: url(images/ph/thin/trend-up.svg); mask-image: url(images/ph/thin/trend-up.svg); }
 .theme-wedding .pi--info { -webkit-mask-image: url(images/ph/thin/info.svg); mask-image: url(images/ph/thin/info.svg); }
 .theme-wedding .pi--warning { -webkit-mask-image: url(images/ph/thin/warning.svg); mask-image: url(images/ph/thin/warning.svg); }
+.theme-wedding .pi--credit-card { -webkit-mask-image: url(images/ph/thin/credit-card.svg); mask-image: url(images/ph/thin/credit-card.svg); }
+.theme-wedding .pi--bank { -webkit-mask-image: url(images/ph/thin/bank.svg); mask-image: url(images/ph/thin/bank.svg); }
+.theme-wedding .pi--phone { -webkit-mask-image: url(images/ph/thin/phone.svg); mask-image: url(images/ph/thin/phone.svg); }
 /* ICONS:END */
 
 /* ================================================================
@@ -3221,3 +3230,84 @@ main > section.is-joined.is-joined { padding-top: 0; }
 .theme-blocks .finder-dialog .opt input:focus-visible + span { outline: 2px dashed var(--ink); outline-offset: 4px; }
 .work-feature__live a, .theme-subway .work-feature__live a, .theme-refined .work-feature__live a, .theme-blocks .work-feature__live a, .theme-wedding .work-feature__live a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
 .work-feature__live .i-arrow { width: 14px; height: 14px; margin: 0; vertical-align: 0; flex: none; }
+
+/* ================================================================
+   Polish batch
+   ================================================================ */
+/* Transit: the setup steps ride different subway lines */
+.theme-subway .psteps li:nth-child(1) { --c: var(--red); } .theme-subway .psteps li:nth-child(2) { --c: var(--orange); }
+.theme-subway .psteps li:nth-child(3) { --c: var(--yellow); } .theme-subway .psteps li:nth-child(4) { --c: var(--green); }
+.theme-subway .psteps li:nth-child(5) { --c: var(--blue); }
+.theme-subway .psteps li { border-top-color: var(--c); }
+.theme-subway .psteps li::before { background: var(--c); color: #fff; }
+.theme-subway .psteps li:nth-child(3)::before { color: #111; }
+
+/* Tabs on a light card (the Pricing plan example): same shapes as the Contact tabs, with a visible track */
+.tabs.tabs--light { margin: 0; background: color-mix(in srgb, var(--violet) 12%, #fff); }
+.tabs.tabs--light button { color: var(--ink-soft); }
+.tabs.tabs--light button[aria-pressed="true"] { background: #fff; color: var(--violet-deep, var(--violet)); box-shadow: 0 2px 8px rgba(27,21,48,.12); }
+.theme-blocks .tabs.tabs--light { background: #fff; border: 2px solid var(--ink); }
+.theme-blocks .tabs.tabs--light button { color: var(--ink); }
+.theme-blocks .tabs.tabs--light button[aria-pressed="true"] { background: var(--ink); color: var(--lime); box-shadow: none; }
+.theme-subway .tabs.tabs--light { background: #1f1f1f; border-radius: 8px; }
+.theme-subway .tabs.tabs--light button { color: #e9e9e4; border-radius: 6px; }
+.theme-subway .tabs.tabs--light button[aria-pressed="true"] { background: var(--yellow); color: #111; box-shadow: none; }
+.theme-wedding .tabs.tabs--light { background: #efe7d6; border-radius: 4px; }
+.theme-wedding .tabs.tabs--light button { color: var(--ink-soft); border-radius: 2px; }
+.theme-wedding .tabs.tabs--light button[aria-pressed="true"] { background: var(--ink); color: #f4ecdb; box-shadow: none; }
+.paysample__plans.tabs--light button { flex: 1; }
+
+/* Contact tabs: a track you can actually see in Transit and Sophisticated */
+.theme-subway .contact__card .tabs, .theme-subway .audit-dialog .tabs, .theme-subway #audit .tabs { background: #2b2b2b; box-shadow: inset 0 0 0 1px #3d3d3d; }
+.theme-wedding .contact__card .tabs, .theme-wedding .audit-dialog .tabs, .theme-wedding #audit .tabs { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 1px rgba(217,196,154,.35); }
+.theme-wedding .contact__card .tabs button, .theme-wedding #audit .tabs button { color: #efe6d2; }
+.theme-wedding .contact__card .tabs button[aria-selected="true"], .theme-wedding #audit .tabs button[aria-selected="true"] { background: #f4ecdb; color: var(--ink); }
+
+/* Drawn heart in labels */
+.i-heart { width: .85em; height: .85em; vertical-align: -0.08em; margin-left: .15em; }
+
+/* How you pay: icons */
+.paymethods li { display: inline-flex; align-items: center; gap: 8px; }
+.paymethods .pi { font-size: 18px; }
+.paymethods__logos { display: inline-flex; gap: 4px; }
+.paymethods__logos svg { width: 30px; height: 18px; fill: currentColor; }
+
+/* Callback card under the plans */
+.callcard { display: flex; align-items: center; gap: 16px; max-width: 560px; margin: 28px auto 0; padding: 16px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--line); text-align: left; }
+.callcard__ico { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 12px; background: var(--tint); color: var(--violet); }
+.callcard__ico .pi { font-size: 22px; }
+.callcard__text { flex: 1; min-width: 0; }
+.callcard .callcard__title { margin: 0 0 2px; font: 700 1.05rem/1.2 var(--display); max-width: none; text-align: left; }
+.callcard__text p { margin: 0; font-size: .9rem; color: var(--ink-soft); }
+.callcard .btn { flex: none; }
+@media (max-width: 560px) { .callcard { flex-wrap: wrap; } .callcard .btn { width: 100%; } }
+.theme-blocks .callcard { border: var(--edge); box-shadow: var(--shadow); }
+.theme-blocks .callcard__ico { background: var(--lime); color: var(--ink); border: 2px solid var(--ink); }
+.theme-subway .callcard { border-radius: 10px; box-shadow: inset 6px 0 0 var(--blue), 0 0 0 1px var(--line); border: 0; }
+.theme-subway .callcard__ico { background: var(--blue); color: #fff; border-radius: 50%; }
+.theme-wedding .callcard { border-radius: 2px; box-shadow: inset 0 0 0 4px #fff, inset 0 0 0 5px rgba(184,149,90,.35); }
+.theme-wedding .callcard__ico { background: var(--ink); color: #e9d9b4; border-radius: 2px; }
+.theme-wedding .callcard .callcard__title { font-weight: 600; font-size: 1.25rem; }
+
+/* Features chats: a springier arrival */
+.js [data-chat] .fx-chat__msg.is-in { animation: chat-in .6s cubic-bezier(.2, 1.3, .35, 1) both; }
+@keyframes chat-in { 0% { opacity: 0; transform: translateY(18px) scale(.94); } 60% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+.fx-chat__msg--them.is-in { transform-origin: bottom left; } .fx-chat__msg--me.is-in { transform-origin: bottom right; }
+
+/* Tangy AI search list: the standard 3D card, in palette colors */
+.theme-blocks .fx-list li { background: #fff; border: 2px solid var(--ink); border-left-width: 2px; box-shadow: var(--shadow); border-radius: 14px; }
+.theme-blocks .fx-list li:nth-child(1) { background: var(--sky); } .theme-blocks .fx-list li:nth-child(2) { background: var(--mint); }
+.theme-blocks .fx-list li:nth-child(3) { background: var(--sun); } .theme-blocks .fx-list li:nth-child(4) { background: var(--rose); }
+.theme-blocks .fx-list li:nth-child(5) { background: var(--lime); }
+.theme-blocks .fx-list span { color: var(--ink); opacity: .75; }
+
+/* Blog comparison tables: our column in the mood's own highlight, with logos in the header */
+.vs-table thead th:last-child, .vs-table td:last-child { background: var(--us-bg, #f3f0ff); }
+.theme-blocks .vs-table thead th:last-child, .theme-blocks .vs-table td:last-child { background: color-mix(in srgb, var(--lime) 45%, #fff); }
+.theme-subway .vs-table thead th:last-child, .theme-subway .vs-table td:last-child { background: #eef4ff; }
+.theme-wedding .vs-table thead th:last-child, .theme-wedding .vs-table td:last-child { background: #f6f1e6; }
+.vs-th { display: inline-flex; align-items: center; gap: 10px; }
+.vs-th__logo { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 8px; background: #fff; box-shadow: 0 0 0 1px var(--line); overflow: hidden; }
+.vs-th__logo svg { width: 18px; height: 18px; }
+.vs-th__logo--us img { width: 100%; height: 100%; object-fit: cover; }
+.theme-blocks .vs-th__logo { box-shadow: 0 0 0 2px var(--ink); }

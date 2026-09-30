@@ -1289,22 +1289,23 @@ function wdwCalInline(selector, calLink, config) {
   const play = async (chat) => {
     const msgs = [...chat.querySelectorAll(".fx-chat__msg")];
     if (reduce) return;
+    await wait(250);
     for (const m of msgs) {
       const me = m.classList.contains("fx-chat__msg--me");
       const dots = document.createElement("span");
       dots.className = "fx-typing fx-typing--" + (me ? "me" : "them");
       dots.innerHTML = "<i></i><i></i><i></i>";
       m.before(dots);
-      await wait(me ? 900 : 700);
+      await wait(me ? 650 : 480);
       dots.remove();
       m.classList.add("is-in");
-      await wait(450);
+      await wait(380);
     }
   };
   // Keep each chat at its finished height so the page doesn't shift while messages arrive.
   if (!reduce) chats.forEach((c) => { c.style.minHeight = c.offsetHeight + "px"; c.classList.add("is-waiting"); });
   const io = new IntersectionObserver((entries) => entries.forEach((e) => {
     if (e.isIntersecting) { io.unobserve(e.target); play(e.target); }
-  }), { threshold: 0.35 });
+  }), { threshold: 0.15 });
   chats.forEach((c) => io.observe(c));
 })();
