@@ -1812,7 +1812,7 @@ h2 { text-wrap: balance; }
    Newsletter sign-up at the top of the footer
    ================================================================ */
 .news { display: grid; grid-template-columns: 1fr minmax(0, 440px); align-items: center; gap: 18px 40px; margin-bottom: 56px; padding: 28px 32px; border-radius: var(--r-lg); background: var(--tint); }
-.news h4 { margin: 0 0 6px; font: 700 1.3rem/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.news .news__title { margin: 0 0 6px; max-width: none; font: 700 1.3rem/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); }
 .news p { margin: 0; max-width: 52ch; font-size: .92rem; }
 .news__row { display: flex; gap: 8px; }
 .news__row input { flex: 1; min-width: 0; padding: 12px 18px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font: inherit; }
@@ -1820,7 +1820,8 @@ h2 { text-wrap: balance; }
 .news__row input[aria-invalid="true"] { border-color: #d33a5f; }
 .news__form .form__msg { margin: 8px 6px 0; font-size: .86rem; color: var(--ink); }
 .news__form .form__msg:empty { display: none; }
-@media (max-width: 760px) { .news { grid-template-columns: 1fr; padding: 22px 18px; } }
+@media (max-width: 960px) { .news { grid-template-columns: minmax(0, 1fr); } .news p { max-width: 60ch; } }
+@media (max-width: 760px) { .news { padding: 22px 18px; } }
 @media (max-width: 640px) { .news { margin-bottom: 32px; } }
 @media (max-width: 420px) { .news__row { flex-direction: column; } .news__row .btn { width: 100%; } }
 

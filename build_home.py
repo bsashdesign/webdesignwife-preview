@@ -67,7 +67,7 @@ def switcher():
 def newsletter():
     # TODO: connect to an email service (Mailchimp, ConvertKit, Buttondown...). Front-end only for now.
     return ('<div class="wrap"><div class="news">'
-            '<div class="news__copy"><h4>Get tips, news and deals by email</h4>'
+            '<div class="news__copy"><h2 class="news__title">Get tips, news and deals by email</h2>'
             '<p>About once a month: practical tips for your website and Google Maps, New York small business news, and deals on my plans. Unsubscribe anytime.</p></div>'
             '<form class="news__form" novalidate data-error="Enter a valid email address." data-success="You\'re subscribed! Watch your inbox.">'
             '<div class="news__row"><input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">'
