@@ -893,7 +893,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     miniTimer = setTimeout(() => { screen.classList.remove("is-showing"); setTimeout(() => (stage.innerHTML = ""), 400); }, 2600);
   }
   function apply(key, save) {
-    if (key === "transitdark") key = "transit"; // an old name for Midnight
+    if (key === "transitdark") key = "transit"; // an old name for Transit (dark)
     if (!MOODS[key]) return;
     // a mood can be more than one class (Transit Dark is Transit plus the dark layer)
     Object.values(MOODS).forEach((c) => root.classList.remove(...c.split(" ")));
@@ -1159,7 +1159,7 @@ function openSheet(d) {
     const b = e.target.closest(".chip[data-mood], [data-shuffle-mood]");
     if (!b || !toast) return;
     setTimeout(() => {
-      const name = { calm: "Calm", transit: "Midnight", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
+      const name = { calm: "Calm", transit: "Transit", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
       toast.textContent = `✨ You're viewing ${name}. Keep scrolling.`;
       toast.classList.add("is-on");
       clearTimeout(t);
@@ -1356,7 +1356,7 @@ function wdwCalInline(selector, calLink, config) {
   const sec = document.getElementById("moods-tv");
   if (!sec) return;
   const root = document.documentElement;
-  const NAMES = { tangy: "Tangy", calm: "Calm", transit: "Midnight", sophisticated: "Sophisticated" };
+  const NAMES = { tangy: "Tangy", calm: "Calm", transit: "Transit", sophisticated: "Sophisticated" };
   const keys = [...sec.querySelectorAll("[data-tv-key]")];
   const show = sec.querySelector("[data-tv-show]");
   const nameEl = sec.querySelector("[data-tv-name]");
