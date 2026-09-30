@@ -187,3 +187,12 @@
 .theme-dark .fx-gbp__name { color: #e8eaed !important; }
 .theme-dark .fx-phone__screen { background: #1c1c1c; }
 .theme-dark .fx-tag { color: #111; }
+
+/* Every card that has a coloured top or side in Transit keeps it in Transit Dark (only the plain edges go dark) */
+.theme-subway.theme-dark .plan, .theme-subway.theme-dark #pricing .plan { border-top-color: var(--c, var(--gray)); }
+.theme-subway.theme-dark :is(.borough, .steps li, .feat, .post-card) { border-top-color: var(--c, var(--blue)); }
+.theme-subway.theme-dark .post-card.post-card--article { border-top-color: var(--c); }
+.theme-subway.theme-dark :is(.edits-banner, .quickcheck, .news) { border-top-color: var(--yellow); }
+.theme-subway.theme-dark .psteps li { border-top-color: var(--c, var(--yellow)); }
+.theme-subway.theme-dark :is(.promises p, #promises .promises p, .article__body .callout) { border-left-color: var(--c); }
+.theme-subway.theme-dark :is(.lede-note, .fx-list li) { border-left-color: var(--yellow); }
