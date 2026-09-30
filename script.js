@@ -1410,9 +1410,9 @@ function wdwCalInline(selector, calLink, config) {
     }
     return tris;
   }
-  // A brilliant-cut diamond with 8 facets, its point resting on top of the band.
-  function diamond(s, base, n = 8) {
-    const prof = [[0, 1.02], [0.52, 1.02], [1, 0.72], [1, 0.62], [0.28, 0.14], [0, 0]];
+  // A simple cut diamond with 6 facets (flat table, sloped crown, pointed base), its point resting on top of the band.
+  function diamond(s, base, n = 6) {
+    const prof = [[0, 1], [0.55, 1], [1, 0.68], [0, 0]];
     const tris = [], P = (a, [r, h]) => [s * r * Math.cos(a), base + s * h, s * r * Math.sin(a)];
     for (let i = 0; i < n; i++) {
       const a0 = (i / n) * 2 * Math.PI + Math.PI / n, a1 = ((i + 1) / n) * 2 * Math.PI + Math.PI / n;
