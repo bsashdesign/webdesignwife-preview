@@ -1386,9 +1386,9 @@ function wdwCalInline(selector, calLink, config) {
 (function () {
   const canvases = document.querySelectorAll("canvas.plan-ring[data-plan]");
   if (!canvases.length) return;
-  // Rather than a full turn (which shows the ring face-on, like an "O"), each ring rocks through a 30 degree arc
+  // Rather than a full turn (which shows the ring face-on, like an "O"), each ring rocks through a 44 degree arc
   // between a three-quarter view and near-profile, easing out at each end.
-  const TILT = -30 * Math.PI / 180, DEG = Math.PI / 180, MID = 60 * DEG, SWING = 15 * DEG, PERIOD = 5000;
+  const TILT = -30 * Math.PI / 180, DEG = Math.PI / 180, MID = 60 * DEG, SWING = 22 * DEG, PERIOD = 5000;
   const quad = (out, a, b, c, d) => out.push([a, b, c], [a, c, d]);
   // A ring in the x-y plane (seen face-on): outer radius 1, thickness t, width w. `rise` swells the top into a cradle.
   function band({ w, t, rise = 0, sharp = 4, n = 96 }) {
@@ -1463,9 +1463,7 @@ function wdwCalInline(selector, calLink, config) {
   const live = new Set();
   const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
   canvases.forEach((cv) => { io.observe(cv); draw(cv, 1200); });
-  // Each ring starts at a different point in its swing, so the three don't move in lockstep.
-  const offset = { essentials: 0, business: 900, full: 1800 };
-  const loop = (now) => { live.forEach((cv) => draw(cv, reduce ? 1200 : now + offset[cv.dataset.plan])); if (!reduce) requestAnimationFrame(loop); };
+  const loop = (now) => { live.forEach((cv) => draw(cv, reduce ? 1200 : now)); if (!reduce) requestAnimationFrame(loop); };
   requestAnimationFrame(loop);
   if (reduce) new MutationObserver(() => canvases.forEach((cv) => draw(cv, 1200))).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 })();
