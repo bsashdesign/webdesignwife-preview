@@ -4143,3 +4143,10 @@ span.plan-ring:empty { display: none; }
 .theme-subway #compare .compare-cards .cc.cc--us { background: #fff; border: 1px solid var(--line); border-top: 6px solid var(--blue); }
 .theme-wedding #compare .compare-cards .cc.cc--us { background: var(--ink); border-color: var(--ink); }
 .theme-blocks #compare .compare-cards .cc.cc--us { border: var(--edge); }
+/* the note's front: one line, "Flip over for your custom design" with a heart */
+.tv-yours__front { grid-auto-flow: column; align-items: center; justify-content: center; gap: 6px; font: 600 1rem var(--body); text-align: center; }
+.tv-yours__front .tv-yours__go { margin: 0; font-size: 1rem; color: inherit; }
+.tv-yours__front .i-heart { color: #e8577a; width: 1em; height: 1em; }
+.theme-blocks .tv-yours__front .i-heart { color: var(--violet); }
+.theme-subway .tv-yours__front .i-heart { color: var(--red); }
+.theme-wedding .tv-yours__front .i-heart { color: var(--gold-ink); }
