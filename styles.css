@@ -2781,3 +2781,20 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .ref-preview p { font-size: .88rem; }
 .ref-preview__go { display: block; margin-top: 12px; font-weight: 600; font-size: .88rem; color: var(--accent-ink, var(--violet)); }
 .ref-preview:hover .ref-preview__go { text-decoration: underline; text-underline-offset: 3px; }
+/* Features: the Google Maps checklist in the Business chapter */
+.gbp { margin: 0 0 20px; padding: 40px 44px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--line); scroll-margin-top: 140px; }
+.gbp__label { margin: 0 0 8px; font: 600 .78rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink, var(--violet)); }
+.gbp h3 { margin: 0 0 12px; font: 800 clamp(1.6rem, 3.2vw, 2.3rem)/1.08 var(--display); letter-spacing: -0.02em; }
+.gbp__head p:not(.gbp__label) { margin: 0; max-width: 62ch; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.6; }
+.gbp__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 48px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+.gbp h4 { margin: 0; font: 700 1rem var(--body); }
+.gbp h4 + .ticks { margin-top: 8px; }
+.gbp .ticks + h4 { margin-top: 20px; }
+.gbp .ticks li { padding: 4px 0 4px 28px; }
+.theme-blocks .gbp { border: var(--edge); box-shadow: var(--shadow); }
+.theme-subway .gbp { border-radius: 12px; box-shadow: inset 8px 0 0 var(--green); }
+.theme-wedding .gbp { border-radius: 4px; }
+.theme-wedding .gbp h3 { font-weight: 500; }
+.theme-wedding .gbp__label { color: var(--gold-ink); }
+@media (max-width: 760px) { .gbp { padding: 28px 22px; } .gbp__cols { grid-template-columns: minmax(0, 1fr); } }
+.mplan__more { display: inline-block; margin-top: 10px; font-weight: 600; color: inherit; }
