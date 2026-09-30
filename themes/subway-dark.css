@@ -211,7 +211,8 @@
 .theme-subway.theme-dark .ftabs { background: rgba(18, 18, 18, .92); border-bottom-color: var(--line); }
 .theme-subway.theme-dark .ftabs a, .theme-subway.theme-dark .ftabs a[aria-current] { background: none; color: var(--ink-soft); border-color: transparent; }
 .theme-subway.theme-dark .ftabs a:hover { color: #fff; }
-.theme-subway.theme-dark .ftabs a[aria-current] { color: #fff; border-bottom-color: #fccc0a; }
+.theme-subway.theme-dark .ftabs a[aria-current] { color: #fff; border-bottom-color: var(--c); }
+.theme-subway.theme-dark .ftabs a:not([aria-current]):hover { border-bottom-color: color-mix(in srgb, var(--c) 45%, transparent); }
 /* the chat: my messages are Transit blue, theirs dark grey */
 .theme-subway.theme-dark .fx-chat__msg--them { background: #2a2a2a; color: var(--ink); }
 .theme-subway.theme-dark .fx-chat__msg--me { background: #0b5cd6; color: #fff; }

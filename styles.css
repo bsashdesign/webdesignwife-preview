@@ -4227,3 +4227,9 @@ span.plan-ring:empty { display: none; }
 :is(.theme-refined, .theme-blocks, .theme-wedding) #moods-tv .tv-key__led { background: color-mix(in srgb, var(--ink) 18%, #fff); box-shadow: inset 0 1px 1px rgba(0,0,0,.25); }
 :is(.theme-refined, .theme-blocks, .theme-wedding) #moods-tv .tv-key__now { color: #e8392e; }
 #moods-tv .tv-key[aria-pressed="true"] .tv-key__led { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
+/* the gems beside the plan names on Features (first card row): a little larger than the rings were */
+.level__tag .plan-gem { width: 36px; height: 36px; margin: -9px -4px -9px -6px; }
+.theme-blocks .level--essentials .plan-gem { color: var(--lime); }
+.theme-blocks .level--business .plan-gem { color: var(--sky); }
+.theme-blocks .level--full .plan-gem { color: var(--rose); }
+.theme-refined .level__tag .plan-gem { color: #5b3df5; }
