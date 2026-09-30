@@ -1595,7 +1595,7 @@ document.addEventListener("click", (e) => {
     if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
     const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
     const m = model(cv.dataset.plan), base = rgbOf(cv, t);
-    const a = t / TURN * 2 * Math.PI, ca = Math.cos(a), sa = Math.sin(a), ci = Math.cos(TIP), si = Math.sin(TIP), ct = Math.cos(TILT), st = Math.sin(TILT);
+    const a = t / TURN * 2 * Math.PI + (cv._extra || 0), ca = Math.cos(a), sa = Math.sin(a), ci = Math.cos(TIP), si = Math.sin(TIP), ct = Math.cos(TILT), st = Math.sin(TILT);
     // spin around the gem's own axis, tip it toward the viewer, then lean the axis
     const rot = ([x, y, z]) => { const x1 = x * ca + z * sa, z1 = -x * sa + z * ca; const y2 = y * ci - z1 * si, z2 = y * si + z1 * ci; return [x1 * ct - y2 * st, x1 * st + y2 * ct, z2]; };
     const f = 8, scale = Math.min(W, H) / 2 / (1.25 * 1.08) * SIZE[cv.dataset.plan];
@@ -1673,8 +1673,34 @@ document.addEventListener("click", (e) => {
   const live = new Set();
   const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
   gems.forEach((cv) => { io.observe(cv); draw(cv, 1500); });
+  // Hovering a gem spins it faster; letting go eases it back down so it lands in step with the others.
+  // Each gem keeps an extra angle on top of the shared one: it grows while hovered, and afterwards glides to
+  // the next whole turn (so the gems line up again), slowing smoothly on the way.
+  const BASE = 2 * Math.PI / TURN, BOOST = 4 * BASE, EASE = .003;
+  gems.forEach((cv) => {
+    const hit = cv.closest(".plan-ring-tile") || cv;
+    hit.addEventListener("pointerenter", () => { cv._hover = true; cv._target = null; });
+    hit.addEventListener("pointerleave", () => {
+      cv._hover = false;
+      const turn = 2 * Math.PI, ahead = (cv._extra || 0) + (cv._vel || 0) / EASE;
+      cv._target = Math.ceil(ahead / turn) * turn;
+    });
+  });
+  const step = (cv, dt) => {
+    let x = cv._extra || 0, v = cv._vel || 0;
+    if (cv._hover) v += (BOOST - v) * Math.min(1, dt / 250);
+    else if (cv._target != null) {
+      const left = cv._target - x;
+      v = Math.min(v, left * EASE);
+      if (left < .0005) { x = cv._target; v = 0; cv._target = null; }
+    } else v = 0;
+    cv._vel = v; cv._extra = x + v * dt;
+  };
   let last = 0;
-  const loop = (now) => { if (now - last >= 33) { last = now; live.forEach((cv) => draw(cv, now)); } requestAnimationFrame(loop); };
+  const loop = (now) => {
+    if (now - last >= 33) { const dt = Math.min(100, now - (last || now)); last = now; live.forEach((cv) => { step(cv, dt); draw(cv, now); }); }
+    requestAnimationFrame(loop);
+  };
   if (!reduce) requestAnimationFrame(loop);
   // redraw when the mood changes (the colour and the drawing style follow it)
   new MutationObserver(() => gems.forEach((cv) => { cv._rgb = null; draw(cv, reduce ? 1500 : performance.now()); }))
