@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790750924">
-  <link rel="stylesheet" href="themes/subway.css?v=1790750924">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790750924">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790750924">
+  <link rel="stylesheet" href="styles.css?v=1790751754">
+  <link rel="stylesheet" href="themes/subway.css?v=1790751754">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790751754">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790751754">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway","sophisticated":"theme-wedding"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";document.documentElement.classList.add(M[k]);document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
   <script type="application/ld+json">
 {
@@ -371,20 +371,16 @@
       <div class="tryon__toast" role="status" aria-live="polite"></div>
     </section>
 
-    <!-- MOODS, VERSION B: a vintage TV and VCR. The tapes are the moods; the one in the deck is on the page. -->
+    <!-- MOODS, VERSION B: a vintage TV and a control panel. The pressed button is the mood on the page; "Yours?" is a paper card that flips over. -->
     <section class="section tv-sec" id="moods-tv" aria-labelledby="tv-title">
       <div class="wrap">
         <div class="tryon__head">
           <p class="eyebrow">Now playing</p>
           <h2 id="tv-title">Try on a Look</h2>
-          <p>Four tapes, four personalities, one website. Put one in and watch this whole page change.</p>
+          <p>Four looks, one website. Press a button and watch this whole page change.</p>
         </div>
-        <div class="tv-stage">
+        <div class="tvset">
         <div class="tv-nook">
-          <div class="vcr" aria-hidden="true">
-            <span class="vcr__window"><span class="vcr__tape" data-vcr-tape><span class="tape__label"><span class="tape__face"></span><span class="tape__text"><strong>Tangy</strong></span></span></span></span>
-            <span class="vcr__panel"><span class="vcr__display">▶ 0:00</span><span class="vcr__led">Play</span></span>
-          </div>
           <div class="tv">
             <div class="tv__screen">
               <div class="tv__show" data-tv-show="tangy" aria-hidden="true">
@@ -392,43 +388,56 @@
                 <span class="tv__aa">Aa</span>
                 <span class="tv__bars"><i></i><i></i><i></i></span>
               </div>
-              <!-- "Yours?" plays a blank white screen with the invitation -->
-              <div class="tv__yours" hidden>
-                <p class="tv__osd-top" aria-hidden="true"><span>▶ PLAY</span><span>SP 0:00:01</span></p>
-                <h2 class="tv__yours-title">Yours Is the One I Haven't Made Yet</h2>
-                <p>You've seen the range. Now let's make yours: completely custom.</p>
-                <div class="tv__yours-btns"><a class="tv__osd-btn" href="start.html">▶ Get Started</a><a class="tv__osd-btn" href="contact.html?type=callback">☎ Request a Callback</a></div>
-                <button type="button" class="tv__osd-btn tv__osd-btn--quiet tv__yours-back">◀◀ Back</button>
-              </div>
               <p class="tv__caption" aria-live="polite">Now playing: <b data-tv-name>Tangy</b></p>
             </div>
             <div class="tv__side" aria-hidden="true"><i class="tv__knob"></i><i class="tv__knob tv__knob--sm"></i><span class="tv__grille"></span></div>
           </div>
         </div>
-        <div class="tv-shelf-wrap">
-        <p class="tv-shelf__label">Choose a new one</p>
-        <div class="tv-shelf" role="group" aria-label="Choose a look">
-              <button type="button" class="tape tape--tangy" data-tape="tangy" aria-pressed="false">
-                <span class="tape__top" aria-hidden="true"><span class="tape__window"><i></i><i></i></span></span>
-                <span class="tape__front"><span class="tape__label"><span class="tape__face" aria-hidden="true"></span><span class="tape__text"><strong>Tangy</strong><small>Bright and bouncy</small></span></span><span class="tape__stripes" aria-hidden="true"><i></i><i></i><i></i></span></span>
+        <div class="tv-panel">
+          <div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Pick one. Seriously, press one. <span>↓</span></p></div>
+          <div class="tv-keys" role="group" aria-label="Choose a look">
+            <button type="button" class="tv-key tv-key--tangy" data-tv-key="tangy" aria-pressed="false">
+              <span class="tv-key__led" aria-hidden="true"></span>
+              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="tv-key__name">Tangy</span>
+              <span class="tv-key__now" aria-hidden="true">Now Playing</span>
+            </button>
+            <button type="button" class="tv-key tv-key--calm" data-tv-key="calm" aria-pressed="false">
+              <span class="tv-key__led" aria-hidden="true"></span>
+              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="tv-key__name">Calm</span>
+              <span class="tv-key__now" aria-hidden="true">Now Playing</span>
+            </button>
+            <button type="button" class="tv-key tv-key--transit" data-tv-key="transit" aria-pressed="false">
+              <span class="tv-key__led" aria-hidden="true"></span>
+              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="tv-key__name">Transit</span>
+              <span class="tv-key__now" aria-hidden="true">Now Playing</span>
+            </button>
+            <button type="button" class="tv-key tv-key--sophisticated" data-tv-key="sophisticated" aria-pressed="false">
+              <span class="tv-key__led" aria-hidden="true"></span>
+              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="tv-key__name">Sophisticated</span>
+              <span class="tv-key__now" aria-hidden="true">Now Playing</span>
+            </button>
+          </div>
+          <div class="tv-yours" data-tv-yours>
+            <div class="tv-yours__inner">
+              <button type="button" class="tv-yours__front" aria-expanded="false" aria-controls="tv-yours-back">
+                <span class="tv-yours__q" aria-hidden="true">?</span>
+                <span class="tv-yours__name">Yours?</span>
+                <small>The one I haven't made yet.</small>
+                <small class="tv-yours__go">See what's possible →</small>
               </button>
-              <button type="button" class="tape tape--calm" data-tape="calm" aria-pressed="false">
-                <span class="tape__top" aria-hidden="true"><span class="tape__window"><i></i><i></i></span></span>
-                <span class="tape__front"><span class="tape__label"><span class="tape__face" aria-hidden="true"></span><span class="tape__text"><strong>Calm</strong><small>Soft and quiet</small></span></span><span class="tape__stripes" aria-hidden="true"><i></i><i></i><i></i></span></span>
-              </button>
-              <button type="button" class="tape tape--transit" data-tape="transit" aria-pressed="false">
-                <span class="tape__top" aria-hidden="true"><span class="tape__window"><i></i><i></i></span></span>
-                <span class="tape__front"><span class="tape__label"><span class="tape__face" aria-hidden="true"></span><span class="tape__text"><strong>Transit</strong><small>Bold, like a subway sign</small></span></span><span class="tape__stripes" aria-hidden="true"><i></i><i></i><i></i></span></span>
-              </button>
-              <button type="button" class="tape tape--sophisticated" data-tape="sophisticated" aria-pressed="false">
-                <span class="tape__top" aria-hidden="true"><span class="tape__window"><i></i><i></i></span></span>
-                <span class="tape__front"><span class="tape__label"><span class="tape__face" aria-hidden="true"></span><span class="tape__text"><strong>Sophisticated</strong><small>Refined, like stationery</small></span></span><span class="tape__stripes" aria-hidden="true"><i></i><i></i><i></i></span></span>
-              </button>
-              <button type="button" class="tape tape--yours" data-tape="yours" aria-pressed="false">
-                <span class="tape__top" aria-hidden="true"><span class="tape__window"><i></i><i></i></span></span>
-                <span class="tape__front"><span class="tape__label"><span class="tape__q" aria-hidden="true">?</span><span class="tape__text"><strong>Yours?</strong><small>The one I haven't made yet</small></span></span><span class="tape__stripes" aria-hidden="true"><i></i><i></i><i></i></span></span>
-              </button>
-        </div>
+              <div class="tv-yours__back" id="tv-yours-back" hidden>
+                <h2 class="tv-yours__title">Yours Is the One I Haven't Made Yet</h2>
+                <p>You've seen the range. Now let's make yours: completely custom.</p>
+                <a class="btn btn--primary btn--sm" href="start.html">Get Started</a>
+                <a class="tv-yours__link" href="contact.html?type=callback">Request a callback</a>
+                <button type="button" class="linkbtn tv-yours__close">← Back</button>
+              </div>
+            </div>
+          </div>
         </div>
         </div>
       </div>
@@ -489,9 +498,11 @@
         <div class="plans">
           <article class="plan" id="plan-simple" data-price="99" data-setup="199">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-simple">I</button><span class="plan__tip" role="tooltip" id="rec-tip-simple">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change Answers</button></span></span>
-            <canvas class="plan-ring" data-plan="essentials" aria-hidden="true"></canvas>
-            <h3>Essentials</h3>
-            <p class="plan__for">A polished one-page site</p>
+            <div class="plan__head">
+              <span class="plan-ring-tile" aria-hidden="true"><canvas class="plan-ring" data-plan="essentials"></canvas></span>
+              <h3>Essentials</h3>
+              <p class="plan__for">A polished one-page site</p>
+            </div>
             <p class="plan__price"><span>$99</span>/month</p>
             <p class="plan__terms"></p>
             <ul class="ticks ticks--dark">
@@ -509,9 +520,11 @@
           <article class="plan plan--best" id="plan-business" data-price="149" data-setup="399">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-business">I</button><span class="plan__tip" role="tooltip" id="rec-tip-business">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change Answers</button></span></span>
             <span class="plan__badge">Most popular</span>
-            <canvas class="plan-ring" data-plan="business" aria-hidden="true"></canvas>
-            <h3>Business</h3>
-            <p class="plan__for">A full site that gets you found</p>
+            <div class="plan__head">
+              <span class="plan-ring-tile" aria-hidden="true"><canvas class="plan-ring" data-plan="business"></canvas></span>
+              <h3>Business</h3>
+              <p class="plan__for">A full site that gets you found</p>
+            </div>
             <p class="plan__price"><span>$149</span>/month</p>
             <p class="plan__terms"></p>
             <ul class="ticks ticks--dark">
@@ -529,9 +542,11 @@
 
           <article class="plan" id="plan-full" data-price="249" data-setup="599">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-full">I</button><span class="plan__tip" role="tooltip" id="rec-tip-full">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change Answers</button></span></span>
-            <canvas class="plan-ring" data-plan="full" aria-hidden="true"></canvas>
-            <h3>Full Suite</h3>
-            <p class="plan__for">Everything, plus growth tools</p>
+            <div class="plan__head">
+              <span class="plan-ring-tile" aria-hidden="true"><canvas class="plan-ring" data-plan="full"></canvas></span>
+              <h3>Full Suite</h3>
+              <p class="plan__for">Everything, plus growth tools</p>
+            </div>
             <p class="plan__price"><span>$249</span>/month</p>
             <p class="plan__terms"></p>
             <ul class="ticks ticks--dark">
@@ -853,6 +868,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790750924"></script>
+  <script src="script.js?v=1790751754"></script>
 </body>
 </html>
