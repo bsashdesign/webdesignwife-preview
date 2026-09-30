@@ -61,7 +61,7 @@ def dots(m):
 
 def switcher():
     opts = "".join(
-        f'<button type="button" class="mood__opt" data-mood="{m["key"]}" aria-pressed="false">{dots(m)}<span><strong>{m["label"]}</strong><small>{m["note"]}</small></span></button>'
+        f'<button type="button" class="mood__opt" data-mood="{m["key"]}" aria-pressed="false"><span class="key-well">{dots(m)}</span><span><strong>{m["label"]}</strong><small>{m["note"]}</small></span></button>'
         for m in MOODS
     )
     return f'''<div class="mood" id="mood">

@@ -299,73 +299,7 @@
       </div>
     </section>
 
-    <!-- MOODS: a live demo of four looks, then "your site" -->
-    <section class="section section--play" id="moods" aria-labelledby="moods-title">
-      <div class="wrap">
-        <div class="tryon__head">
-          <p class="eyebrow">How are you feeling?</p>
-          <h2 id="moods-title">Try on a look</h2>
-          <p>Same website, four completely different personalities. These aren't templates, just a taste of my range. Click one and watch this whole page transform.</p>
-        </div>
-        <div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Pick one. Seriously, click it. <span>↓</span></p></div>
-        <div class="tryon">
-          <div class="play__chips" role="group" aria-label="Try a style on this page">
-              <button type="button" class="chip chip--tangy" data-mood="tangy" aria-pressed="false" style="--i:0">
-                <span class="chip__face" aria-hidden="true"></span>
-                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="chip__name">Tangy</span>
-                <small class="chip__desc">Bright and bouncy</small>
-                <small class="chip__try" aria-hidden="true"><span class="chip__try-go">Try this look →</span><span class="chip__try-on">Currently showing</span></small>
-                <span class="chip__on" aria-hidden="true">Showing now</span>
-              </button>
-              <button type="button" class="chip chip--calm" data-mood="calm" aria-pressed="false" style="--i:1">
-                <span class="chip__face" aria-hidden="true"></span>
-                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="chip__name">Calm</span>
-                <small class="chip__desc">Soft and quiet</small>
-                <small class="chip__try" aria-hidden="true"><span class="chip__try-go">Try this look →</span><span class="chip__try-on">Currently showing</span></small>
-                <span class="chip__on" aria-hidden="true">Showing now</span>
-              </button>
-              <button type="button" class="chip chip--transit" data-mood="transit" aria-pressed="false" style="--i:2">
-                <span class="chip__face" aria-hidden="true"></span>
-                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="chip__name">Transit</span>
-                <small class="chip__desc">Bold, like a subway sign</small>
-                <small class="chip__try" aria-hidden="true"><span class="chip__try-go">Try this look →</span><span class="chip__try-on">Currently showing</span></small>
-                <span class="chip__on" aria-hidden="true">Showing now</span>
-              </button>
-              <button type="button" class="chip chip--sophisticated" data-mood="sophisticated" aria-pressed="false" style="--i:3">
-                <span class="chip__face" aria-hidden="true"></span>
-                <span class="chip__swatch" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="chip__name">Sophisticated</span>
-                <small class="chip__desc">Refined, like stationery</small>
-                <small class="chip__try" aria-hidden="true"><span class="chip__try-go">Try this look →</span><span class="chip__try-on">Currently showing</span></small>
-                <span class="chip__on" aria-hidden="true">Showing now</span>
-              </button>
-          </div>
-          <span class="tryon__divider" aria-hidden="true"></span>
-          <div class="yours" data-yours>
-            <button type="button" class="yours__front" aria-expanded="false" aria-controls="yours-back">
-              <span class="yours__sketch" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-              <span class="yours__q" aria-hidden="true">?</span>
-              <span class="yours__name">Your site</span>
-              <small class="yours__desc">The one I haven't made yet.</small>
-              <small class="chip__try">See what's possible →</small>
-            </button>
-            <div class="yours__back" id="yours-back" hidden>
-              <p class="yours__title tc">Custom for you</p>
-              <p>When you hire me, you get a completely custom design, built around your business. It can look like anything you want.</p>
-              <a class="btn btn--primary" href="start.html">Get started →</a>
-              <button type="button" class="linkbtn yours__close" aria-label="Back"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="tryon__toast" role="status" aria-live="polite"></div>
-    </section>
-
-    <!-- MOODS, VERSION B: a vintage TV and a control panel. The pressed button is the mood on the page; "Yours?" is a paper card that flips over. -->
+    <!-- MOODS ("Try on a look"): a vintage TV and a control panel. The pressed button is the mood on the page; "Yours?" is a paper card that flips over. -->
     <section class="section tv-sec" id="moods-tv" aria-labelledby="tv-title">
       <div class="wrap">
         <div class="tryon__head">
@@ -422,25 +356,25 @@
           <div class="tv-keys" role="group" aria-label="Choose a look">
             <button type="button" class="tv-key tv-key--tangy" data-tv-key="tangy" aria-pressed="false">
               <span class="tv-key__led" aria-hidden="true"></span>
-              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="key-well"><span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span></span>
               <span class="tv-key__name">Tangy</span>
               <span class="tv-key__now" aria-hidden="true">Now playing</span>
             </button>
             <button type="button" class="tv-key tv-key--calm" data-tv-key="calm" aria-pressed="false">
               <span class="tv-key__led" aria-hidden="true"></span>
-              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="key-well"><span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span></span>
               <span class="tv-key__name">Calm</span>
               <span class="tv-key__now" aria-hidden="true">Now playing</span>
             </button>
             <button type="button" class="tv-key tv-key--transit" data-tv-key="transit" aria-pressed="false">
               <span class="tv-key__led" aria-hidden="true"></span>
-              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="key-well"><span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span></span>
               <span class="tv-key__name">Transit</span>
               <span class="tv-key__now" aria-hidden="true">Now playing</span>
             </button>
             <button type="button" class="tv-key tv-key--sophisticated" data-tv-key="sophisticated" aria-pressed="false">
               <span class="tv-key__led" aria-hidden="true"></span>
-              <span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span>
+              <span class="key-well"><span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span></span>
               <span class="tv-key__name">Sophisticated</span>
               <span class="tv-key__now" aria-hidden="true">Now playing</span>
             </button>

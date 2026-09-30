@@ -3670,7 +3670,7 @@ span.plan-ring:empty { display: none; }
 @keyframes cch-drift { to { translate: var(--dx) var(--dy); } }
 .cch-ring { position: absolute; left: 50%; top: 38%; width: 46cqh; aspect-ratio: 1; margin: -23cqh 0 0 -23cqh; border-radius: 50%; border: .5cqh solid rgba(91,61,245,.3); background: rgba(255,255,255,.45); animation: cch-breathe 8s ease-in-out infinite; }
 .cch-ring--2 { background: none; border-color: rgba(91,61,245,.16); animation-delay: -.6s; width: 58cqh; margin: -29cqh 0 0 -29cqh; }
-@keyframes cch-breathe { 0%, 100% { transform: scale(.76); } 50% { transform: scale(1.1); } }
+@keyframes cch-breathe { 0%, 100% { transform: scale(1.1); } 50% { transform: scale(.76); } }
 .cch-face { position: absolute; left: 50%; top: 38%; width: 28cqh; height: 28cqh; margin: -14cqh 0 0 -14cqh; background: url(images/moods/calm.svg) center / contain no-repeat; animation: cch-float 8s ease-in-out infinite; }
 @keyframes cch-float { 50% { transform: translateY(-2cqh) scale(1.04); } }
 .cch-say { position: absolute; left: 0; right: 0; top: 70cqh; height: 8cqh; font: 700 6cqh/1 "Bricolage Grotesque", sans-serif; color: #5b3df5; text-align: center; }
@@ -3795,3 +3795,41 @@ span.plan-ring:empty { display: none; }
 .theme-wedding .level__tag .plan-ring--inline { color: var(--gold-ink); }
 /* the floating button stays flat (just a soft float shadow); only Tangy keeps its hard 3D shadow */
 #mood .mood__btn .moodicon:not(.moodicon--tangy) { margin-bottom: 0; box-shadow: 0 8px 18px -10px rgba(0,0,0,.45); }
+
+/* "Try on a look" backgrounds: white on Calm (the band above is violet), black on Transit */
+.theme-refined .tv-sec { background: #fff; }
+.theme-subway .tv-sec { background: #111; color: #fff; }
+.theme-subway .tv-sec .tryon__head h2 { color: #fff; }
+.theme-subway .tv-sec .tryon__head p:not(.eyebrow) { color: rgba(255,255,255,.72); }
+.theme-subway .tv-sec .eyebrow { background: #fff; color: #111; }
+.theme-subway .tv-sec .tryon__cue, .theme-subway .tv-sec .tryon__cue p { color: #fccc0a; }
+.theme-subway .tv-sec .tv-yours__front { border-color: rgba(255,255,255,.45); background: rgba(255,255,255,.06); color: #fff; }
+.theme-subway .tv-sec .tv-yours__front small { color: rgba(255,255,255,.7); }
+.theme-subway .tv-sec .tv-yours__go { color: #fccc0a; }
+.theme-subway .tv-sec .tv { box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 18px 30px -18px rgba(0,0,0,.8); }
+/* the key board is a raised slab, like the pop-up mood board */
+#moods-tv .tv-keys { box-shadow: inset 0 1px 0 rgba(255,255,255,.28), inset 0 -2px 0 rgba(0,0,0,.18), 0 10px 0 #3d3833, 0 12px 0 #2c2824, 0 34px 50px -18px rgba(0,0,0,.6); }
+.theme-subway #moods-tv .tv-keys { box-shadow: inset 0 1px 0 rgba(255,255,255,.28), inset 0 -2px 0 rgba(0,0,0,.18), 0 10px 0 #3d3833, 0 12px 0 #2c2824, 0 0 0 1px rgba(255,255,255,.06); }
+
+/* Each key sits in a dark socket cut into the board, so it reads as a real button pressed in, not a floating tile */
+.key-well { display: grid; place-items: center; flex: none; padding: 5px 5px 13px; border-radius: 17px; background: #1c1815; box-shadow: inset 0 3px 7px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,255,255,.05), 0 1px 0 rgba(255,255,255,.2); }
+.tv-key .key-well { width: 100%; box-sizing: border-box; }
+.tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well { padding: 5px 10px 10px 5px; border-radius: 16px; }
+.tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well { border-radius: 50%; padding: 5px 5px 11px; }
+.tv-key--sophisticated .key-well, .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 6px; }
+/* the picker's smaller keys */
+#mood .mood__opt .key-well { padding: 4px 4px 10px; border-radius: 14px; }
+#mood .mood__opt[data-mood="tangy"] .key-well { padding: 4px 9px 9px 4px; border-radius: 14px; }
+#mood .mood__opt[data-mood="transit"] .key-well { padding: 4px 4px 9px; border-radius: 50%; }
+#mood .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 5px; }
+#mood .mood__opt .key-well .moodicon { margin: 0; }
+/* a key's travel is taken up inside the socket */
+#moods-tv .tv-key__cap { box-shadow: 0 7px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key:hover .tv-key__cap { box-shadow: 0 5px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:active .tv-key__cap { transform: translateY(6px); box-shadow: 0 1px 0 var(--cap-edge, #999), inset 0 2px 5px rgba(0,0,0,.25); }
+#moods-tv .tv-key--tangy .tv-key__cap { box-shadow: 4px 4px 0 #111; }
+#moods-tv .tv-key--tangy:hover .tv-key__cap { box-shadow: 3px 3px 0 #111; }
+#moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translate(4px, 4px); box-shadow: 0 0 0 #111; }
+#mood .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 5px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt:hover .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(4px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
