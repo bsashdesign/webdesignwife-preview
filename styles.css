@@ -2655,3 +2655,10 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .must-reads .carousel-head { margin-bottom: 16px; }
 .must-reads__h { margin: 0; }
 .must-reads .rowx { margin-top: 0; }
+/* Blog index: everything left-aligned; filters and search share one row */
+.blog-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-bottom: 24px; }
+.blog-tools .filters { margin: 0; justify-content: flex-start; }
+.blog-tools .blog-search { margin: 0; flex: 0 1 320px; max-width: none; }
+.blog-search__empty { text-align: left; margin: 0 0 24px; }
+@media (max-width: 760px) { .blog-tools .blog-search { flex: 1 1 100%; order: -1; } }
+.blog-hero h1 { margin-bottom: 14px; } .blog-list { padding-top: 32px; }

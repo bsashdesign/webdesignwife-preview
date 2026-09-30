@@ -418,7 +418,7 @@ def card(a, n=0):
 """
 
 index = HEAD.format(title="Blog — Web Design Wife", description="Practical advice for local business websites, Google Maps profiles and reviews.")
-index += """    <section class="blog-hero blog-hero--center">
+index += """    <section class="blog-hero">
       <div class="wrap">
         <p class="eyebrow">Blog</p>
         <h1>Practical advice for local business websites</h1>
@@ -434,14 +434,16 @@ index += """    <section class="blog-hero blog-hero--center">
     </section>
     <section class="blog-list">
       <div class="wrap">
-        <label class="blog-search"><span class="blog-search__label">Search articles</span><input type="search" placeholder="Search articles, like Wix, reviews or Brooklyn" data-blog-search autocomplete="off"></label>
-        <p class="blog-search__empty" hidden>No articles match that. Try a different word, or <a href="../contact.html">ask me directly</a>.</p>
+        <div class="blog-tools">
         <div class="filters" role="toolbar" aria-label="Filter articles">
           <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(len(ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="compare" aria-pressed="false">Comparisons <span>""" + str(sum(a["group"] == "compare" for a in ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="local" aria-pressed="false">NYC boroughs <span>""" + str(sum(a["group"] == "local" for a in ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="guides" aria-pressed="false">Tips &amp; how-tos <span>""" + str(sum(a["group"] == "guides" for a in ALL)) + """</span></button>
         </div>
+        <label class="blog-search"><span class="blog-search__label">Search articles</span><input type="search" placeholder="Search, like Wix or Brooklyn" data-blog-search autocomplete="off"></label>
+        </div>
+        <p class="blog-search__empty" hidden>No articles match that. Try a different word, or <a href="../contact.html">ask me directly</a>.</p>
         <div class="posts posts--index">
 """
 order = [a for a in ALL if a["group"] == "guides"][:2] + [a for a in ALL if a["group"] == "compare"] + [a for a in ALL if a["group"] == "local"] + [a for a in ALL if a["group"] == "guides"][2:]
