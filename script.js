@@ -1350,7 +1350,7 @@ function wdwCalInline(selector, calLink, config) {
 
 // "Now playing" (moods, version B): a TV and a control panel of push buttons. The pressed button is the mood
 // on the page; pressing another switches the page instantly and the TV flickers to it.
-// "For you?" is a paper card beside the panel that flips over to the invitation.
+// "For you" is a paper card beside the panel that flips over to the invitation.
 (function () {
   const sec = document.getElementById("moods-tv");
   if (!sec) return;
@@ -1397,7 +1397,7 @@ function wdwCalInline(selector, calLink, config) {
     .observe(root, { attributes: true, attributeFilter: ["data-mood"] });
   play(root.dataset.mood || "tangy");
 
-  // The "For you?" card turns over like a sheet of paper.
+  // The "For you" card turns over like a sheet of paper.
   const card = sec.querySelector("[data-tv-yours]");
   if (card) {
     const front = card.querySelector(".tv-yours__front"), back = card.querySelector(".tv-yours__back");

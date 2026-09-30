@@ -200,3 +200,10 @@
 /* Tangy's hard shadow on the Maps before/after card and the photo frame */
 .theme-blocks .rank, .theme-blocks .profile { border: var(--edge); box-shadow: var(--shadow); }
 .theme-blocks .about__photo { box-shadow: var(--shadow); }
+
+/* Four Years is white with a sun-yellow Founding 5 card; Three Ways is Tangy orange */
+.theme-blocks #work { background: #fff; }
+.theme-blocks .work-founding.work-founding { background: var(--sun); }
+.theme-blocks #compare { background: var(--violet); color: var(--ink); }
+.theme-blocks #compare .btn--primary { background: var(--lime); color: var(--ink); }
+.theme-blocks #compare .section-cta__alt { color: var(--ink); }
