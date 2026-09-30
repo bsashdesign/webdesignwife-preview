@@ -148,6 +148,55 @@ ARTICLES = [
 <p>A steady stream of new reviews is better than a burst once a year. Build the ask into your routine after every job, and your review count will grow on its own.</p>
 """,
   },
+  {
+    "slug": "business-photos-guide",
+    "kicker": "Guide",
+    "title": "Photos for your business website: what to shoot, and how to use AI honestly",
+    "summary": "Real photos build trust. Here's what to shoot with your phone, what to do if you'd rather not be pictured, and how to clean photos up with AI without misleading anyone.",
+    "minutes": 6,
+    "body": """
+<p class="lede-note"><strong>The short answer:</strong> real photos of your team, your space and your work build more trust than any stock photo, and a recent phone camera is plenty. Good light and a clean background matter far more than equipment.</p>
+
+<h2>What to photograph</h2>
+<ul>
+  <li><strong>Your storefront</strong>, so people recognize it when they arrive.</li>
+  <li><strong>People doing the work.</strong> A barber mid-cut beats an empty chair.</li>
+  <li><strong>Your space</strong>: the counter, the chairs, the kitchen, the van.</li>
+  <li><strong>Your best work</strong>: finished jobs, plated dishes, a before and after if your work allows it.</li>
+  <li><strong>You or your team</strong>, for your About section. People want to know who they'll be dealing with.</li>
+</ul>
+
+<h2>How to take a good photo with your phone</h2>
+<ul>
+  <li><strong>Use natural light.</strong> Shoot near a window or outside in open shade. Turn off the flash.</li>
+  <li><strong>Clear the background.</strong> Move clutter, cords and trash out of the frame.</li>
+  <li><strong>Wipe the lens.</strong> A smudged lens is the most common reason phone photos look soft.</li>
+  <li><strong>Shoot landscape (sideways)</strong> for the top of your site. Vertical photos get cropped awkwardly.</li>
+  <li><strong>Take a lot.</strong> Take twenty and keep the best three.</li>
+</ul>
+
+<h2>If you'd rather not be in the photos</h2>
+<p>That's completely fine. You can still make your site feel personal:</p>
+<ul>
+  <li>Show your <strong>hands at work</strong>: tools, ingredients, scissors, a keyboard.</li>
+  <li>Show your <strong>team</strong> instead, with their permission.</li>
+  <li>Show <strong>your space and your work</strong>, and write your About section in your own voice.</li>
+  <li>A friendly <strong>illustrated portrait</strong> can work too, as long as it's clearly an illustration.</li>
+</ul>
+
+<h2>Cleaning up photos with AI, honestly</h2>
+<p>AI tools like ChatGPT can fix lighting and color in a phone photo in seconds. The rule: improve the photo, never change what it shows. A customer should walk in and see exactly what was on your website. Upload your photo and use a prompt like this:</p>
+<blockquote class="prompt"><p>Improve the lighting, color and sharpness of this photo so it looks professionally shot, with soft, even, natural-looking light. Do not change, add or remove anything in the image: keep every person's face, body and expression exactly as they are, and keep the space, products, food and work exactly as they are. Do not add or remove objects, text or people. Only correct exposure, white balance, color, sharpness and noise, and gently straighten the horizon if it's tilted.</p></blockquote>
+<div class="callout callout--warn"><strong>Always compare with the original.</strong> If anything changed, like a different face, extra objects, or food that looks better than what you actually serve, use the original instead. Misleading photos cost you trust the moment a customer walks in.</div>
+
+<h2>Before you upload</h2>
+<ul>
+  <li><strong>Shrink large photos</strong> so your site stays fast. Most builders do this for you; if not, a free tool like <a href="https://squoosh.app/" target="_blank" rel="noopener">Squoosh</a> works well.</li>
+  <li><strong>Get permission</strong> from anyone recognizable in your photos, including staff and customers.</li>
+  <li><strong>Add a short description</strong> (alt text) to each photo in your builder, like "Barber giving a fade haircut." It helps people using screen readers, and it helps Google.</li>
+</ul>
+""",
+  },
 ]
 
 for a in ARTICLES:
@@ -229,7 +278,7 @@ HEAD = """<!DOCTYPE html>
         <a href="../index.html#maps">Google Maps management</a>
         <a href="../pricing.html#faq">FAQ</a>
         <a href="index.html#compare">Compare website builders</a>
-        <a href="diy-website-guide.html">Build-it-yourself guide</a>
+        <a href="diy-website-guide.html">Do-it-yourself guide</a>
       </div>
       <p class="drawer__where">Based in Brooklyn, NY</p>
     </aside>
@@ -246,6 +295,8 @@ def fill(page):
 
 
 def finish(page):
+    # Article subheadings (h3) are titles too, so they get Title Case as well.
+    page = re.sub(r"(<h3[^>]*>)(.*?)(</h3>)", lambda m: m.group(1) + titlecase._inner(m.group(2)) + m.group(3), page, flags=re.S)
     return titlecase.apply(fill(page))
 
 FOOT = """  </main>
@@ -278,7 +329,7 @@ FOOT = """  </main>
       <nav class="footer__col" aria-label="Resources">
         <h4>Resources</h4>
         <a href="index.html#compare">Compare website builders</a>
-        <a href="diy-website-guide.html">Build-it-yourself guide</a>
+        <a href="diy-website-guide.html">Do-it-yourself guide</a>
         <a href="google-maps-profile.html">Google Maps guide</a>
         <a href="../pricing.html#custom">Custom projects</a>
         <a href="../privacy.html">Privacy policy</a>
@@ -374,8 +425,17 @@ index += """    <section class="blog-hero blog-hero--center">
         <p class="intro muted">Plain-English guides to getting found online and turning visitors into customers.</p>
       </div>
     </section>
+    <section class="must-reads">
+      <div class="wrap">
+        <h2 class="must-reads__h">Start here: must reads</h2>
+        <div class="posts must-reads__list">
+""" + "".join(card(next(x for x in ALL if x["slug"] == slug), n) for n, slug in enumerate(["diy-website-guide", "local-business-website-checklist", "google-maps-profile"])) + """        </div>
+      </div>
+    </section>
     <section class="blog-list">
       <div class="wrap">
+        <label class="blog-search"><span class="blog-search__label">Search articles</span><input type="search" placeholder="Search articles, like Wix, reviews or Brooklyn" data-blog-search autocomplete="off"></label>
+        <p class="blog-search__empty" hidden>No articles match that. Try a different word, or <a href="../contact.html">ask me directly</a>.</p>
         <div class="filters" role="toolbar" aria-label="Filter articles">
           <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>""" + str(len(ALL)) + """</span></button>
           <button type="button" class="filter" data-filter="compare" aria-pressed="false">Comparisons <span>""" + str(sum(a["group"] == "compare" for a in ALL)) + """</span></button>

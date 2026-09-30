@@ -913,17 +913,33 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   document.addEventListener("click", (e) => { if (!m.contains(e.target)) { m.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); } });
 })();
 
-// Blog filters
+// Blog filters and search: a card shows when it matches the chosen category and every search word.
 (function () {
   const bar = document.querySelector(".filters");
   if (!bar) return;
   const cards = [...document.querySelectorAll(".posts--index > .post-card")];
+  const search = document.querySelector("[data-blog-search]");
+  const empty = document.querySelector(".blog-search__empty");
+  const must = document.querySelector(".must-reads");
+  let filter = "all";
+  const text = (c) => c.textContent.toLowerCase().replace(/\s+/g, " ");
+  const apply = () => {
+    const words = (search ? search.value : "").toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach((c) => {
+      const ok = (filter === "all" || c.dataset.group === filter) && words.every((w) => text(c).includes(w));
+      c.hidden = !ok; if (ok) shown++;
+    });
+    if (empty) empty.hidden = shown > 0;
+    if (must) must.hidden = words.length > 0 || filter !== "all";
+  };
   bar.addEventListener("click", (e) => {
     const b = e.target.closest(".filter"); if (!b) return;
     bar.querySelectorAll(".filter").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-    const f = b.dataset.filter;
-    cards.forEach((c) => { c.hidden = !(f === "all" || c.dataset.group === f); });
+    filter = b.dataset.filter;
+    apply();
   });
+  if (search) search.addEventListener("input", apply);
   const hash = location.hash.replace("#", "");
   const pre = bar.querySelector(`[data-filter="${hash}"]`);
   if (pre) pre.click();
@@ -960,7 +976,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         <span class="post-card__body">
           <span class="post-card__kicker">${p.kicker}</span>
           <h3>${p.title}</h3>
-          <span class="post-card__meta">${p.minutes} min read</span>
+          <p>${p.summary}</p>
+          <span class="post-card__meta"><img src="../images/favicon.jpg" alt="" width="22" height="22">Ben Sash · ${p.minutes} min read</span>
         </span>
       </a>`).join("");
     box.hidden = false;

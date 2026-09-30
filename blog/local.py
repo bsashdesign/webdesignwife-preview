@@ -117,7 +117,7 @@ def hood_tiles(b):
     tiles = []
     for name in hood_names(b):
         slug = HOOD_ARTICLES.get(name)
-        tiles.append(f'<li><a href="{slug}.html">{name}</a></li>' if slug else f"<li><span>{name}</span></li>")
+        tiles.append(f'<li><a href="{slug}.html">{name}</a></li>' if slug else f"<li>{name}</li>")
     return "".join(tiles)
 
 

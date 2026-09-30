@@ -2546,3 +2546,101 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-wedding .nav__links a[aria-current="page"] { font-weight: 600; text-decoration-thickness: 1px; text-decoration-color: var(--gold-ink); }
 .theme-blocks .nav__links a[aria-current="page"] { text-decoration-color: var(--ink); text-decoration-thickness: 3px; }
 .drawer__big[aria-current="page"] span { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; text-decoration-color: var(--accent-ink, var(--violet)); }
+
+/* ================================================================
+   Articles, round 3
+   ================================================================ */
+.article .article__body { font-size: 1.12rem; }
+.article .article__body h3 { font-size: 1.28rem; }
+.article__body blockquote.prompt { font: italic 400 1rem/1.65 var(--body); }
+/* Info and warning callouts */
+.article__body .callout { margin: 1.2em 0; padding: 14px 18px 14px 50px; border-radius: var(--r); position: relative; font-size: 1rem; line-height: 1.55; }
+.article__body .callout::before { content: ""; position: absolute; left: 16px; top: 15px; width: 20px; height: 20px; background: currentColor; -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
+.callout--info { background: #eaf2ff; color: #173c6e; }
+.callout--info::before { -webkit-mask-image: url(images/ph/bold/seal-check.svg); mask-image: url(images/ph/bold/seal-check.svg); }
+.callout--warn { background: #fff1e6; color: #7a3a0a; }
+.callout--warn::before { -webkit-mask-image: url(images/ph/bold/shield-check.svg); mask-image: url(images/ph/bold/shield-check.svg); }
+.article__body .callout strong { color: inherit; }
+.theme-wedding .article__body .callout { border-radius: 0; }
+.theme-blocks .article__body .callout { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+/* Neighborhood list: plain text, links only where a guide exists */
+.article__body ul.hoods { display: block; columns: 3 160px; column-gap: 24px; list-style: none; padding: 0; }
+.article__body ul.hoods li { margin: 0 0 6px; break-inside: avoid; }
+.hoods span, .hoods li { padding: 0; border: 0; background: none; }
+.hoods a { padding: 0; border: 0; background: none; font-weight: 600; text-decoration: underline; }
+/* Keep reading: real blog cards on wide screens, side layout on phones */
+.related { padding-bottom: 8px; }
+.related__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.related__card.post-card { display: flex; flex-direction: column; }
+.related__card .post-card__cover { aspect-ratio: 16 / 9; height: auto; }
+.related__card .post-card__cover .pi { font-size: 48px; }
+.related__card .post-card__body { padding: 16px 18px 18px; }
+.related__card .post-card__body p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: .9rem; }
+.related__card .post-card__meta { display: flex; }
+.related__card h3, .theme-wedding .related__card h3 { font-size: 1.05rem; line-height: 1.3; margin: 4px 0 6px; }
+.theme-wedding .related__card h3 { font-size: 1.25rem; }
+@media (max-width: 760px) {
+  .related__list { grid-template-columns: minmax(0, 1fr); }
+  .related__card.post-card { display: grid; grid-template-columns: 104px 1fr; }
+  .related__card .post-card__cover { aspect-ratio: auto; height: 100%; }
+  .related__card .post-card__cover .pi { font-size: 36px; }
+  .related__card .post-card__body p { display: none; }
+}
+/* Blog index: must reads and search */
+.must-reads { padding: 8px 0 24px; }
+.must-reads__h { font-size: 1.5rem; margin: 0 0 16px; }
+.must-reads__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .must-reads__list { grid-template-columns: minmax(0, 1fr); } }
+.blog-search { display: block; max-width: 520px; margin: 0 auto 18px; }
+.blog-search__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.blog-search input { width: 100%; padding: 13px 18px 13px 44px; border: 1px solid var(--line); border-radius: 999px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='9' cy='9' r='6' fill='none' stroke='%23777' stroke-width='1.8'/%3E%3Cpath d='M13.5 13.5 17 17' stroke='%23777' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") 16px center / 18px no-repeat; font: 400 1rem var(--body); color: var(--ink); }
+.blog-search input:focus { outline: none; border-color: var(--ink); }
+.blog-search__empty { text-align: center; color: var(--ink-soft); margin: 0 auto 24px; }
+.theme-wedding .blog-search input { border-radius: 0; }
+.theme-blocks .blog-search input { border: 2px solid var(--ink); }
+
+/* Sophisticated: square callout with a fine gold rule */
+.theme-wedding .lede-note { border-radius: 0; border-left: 2px solid var(--gold); }
+
+/* Calm: a softer, dustier violet for the dark sections and form cards */
+.theme-refined .section--violet, .theme-refined .audit-dialog, .theme-refined .contact__card { background: #4b4588; }
+.theme-refined .yours__back { background: #4b4588; }
+
+/* Menu: the current page gets a small "You're here" note instead of an underline */
+.drawer__big[aria-current="page"] span { text-decoration: none; }
+.drawer__big[aria-current="page"] small::before { content: "You're here · "; font-weight: 700; color: var(--accent-ink, var(--violet)); }
+.theme-wedding .drawer__big[aria-current="page"] small::before { color: var(--gold-ink); }
+.theme-subway .drawer__big[aria-current="page"] small::before { color: var(--blue); }
+
+/* Sophisticated comparison: Web Design Wife in navy so it stands out */
+.theme-wedding #compare .compare-cards .cc--us { background: var(--ink); box-shadow: none; }
+.theme-wedding #compare .cc--us h3, .theme-wedding #compare .cc--us ul { color: #fff; }
+
+/* ================================================================
+   Try on a look, round 3
+   ================================================================ */
+/* "Currently showing": the same drawn check in every mood and on every device */
+.chip__try-on::before { content: ""; display: inline-block; width: .95em; height: .95em; margin-right: 6px; vertical-align: -1px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+/* Divider between the four looks and "Your site": vertical side by side, horizontal when stacked */
+.tryon__arrow { display: none; }
+.tryon { column-gap: 32px; }
+.tryon__divider { align-self: stretch; width: 1px; margin: 10px 0; background: var(--line); }
+.theme-subway #moods .tryon__divider { background: #333; }
+@media (max-width: 1080px) {
+  .tryon__divider { width: auto; height: 1px; margin: 14px 0 6px; }
+  .yours { margin-top: 0; }
+  .yours__front { min-height: 0; padding: 16px 18px; grid-template-rows: auto; }
+  .yours__front > :not(.yours__q):not(.yours__sketch) { padding-right: 34%; }
+  .yours__sketch { top: 50%; transform: translateY(-50%); width: 28%; }
+  .yours__q { width: 56px; height: 56px; font-size: 1.7rem; }
+}
+@media (max-width: 520px) { .yours__sketch { display: none; } .yours__front > :not(.yours__q) { padding-right: 0; } }
+/* On phones the chosen card stays tilted and barely lifts, so it doesn't pile onto its neighbor */
+@media (max-width: 640px) {
+  .chip[aria-pressed="true"] { transform: rotate(calc((var(--i) - 1.5) * 3deg)) translateY(-4px); }
+  .chip:hover { transform: rotate(calc((var(--i) - 1.5) * 3deg)) translateY(-4px); }
+}
+/* Back link on the flip side */
+.yours__close { display: inline-flex; align-items: center; gap: 6px; }
+.yours__close svg { width: 16px; height: 16px; }
+.article { padding-bottom: 48px; } @media (max-width: 640px) { .article { padding-bottom: 32px; } }

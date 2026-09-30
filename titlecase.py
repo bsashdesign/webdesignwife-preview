@@ -5,6 +5,8 @@ SMALL = {"a", "an", "and", "as", "at", "but", "by", "for", "in", "of", "on", "or
 
 
 def _word(w, first, last):
+    if re.match(r"^\.[a-z]", w):  # domain endings like .com or .nyc stay lowercase
+        return w
     core = re.sub(r"^[^\w$]+|[^\w%]+$", "", w)
     if not core or re.search(r"[\d$]", core) or (core.isupper() and len(core) > 1):
         return w
