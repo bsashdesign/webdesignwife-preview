@@ -3631,3 +3631,9 @@ span.plan-ring:empty { display: none; }
 /* Sophisticated: a crisp corner and a fine gold rule inside */
 #moods-tv .tv-key--sophisticated .tv-key__cap { border-radius: 3px; }
 #moods-tv .tv-key--sophisticated .tv-key__cap::after { content: ""; position: absolute; inset: 5px; border: 1px solid #b8955a; border-radius: 1px; pointer-events: none; }
+/* a lighter board, so every key's edge and shadow reads against it */
+#moods-tv .tv-keys { background: linear-gradient(#6e675f, #5a544d); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 -2px 0 rgba(0,0,0,.25), 0 14px 26px -16px rgba(0,0,0,.5); }
+#moods-tv .tv-key { color: #f6f2ec; }
+#moods-tv .tv-key__led { background: #3e3731; }
+#moods-tv .tv-key__now { color: #ffd3cf; }
+#moods-tv .tv-key[aria-pressed="true"] .tv-key__led { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
