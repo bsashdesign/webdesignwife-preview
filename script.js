@@ -1386,7 +1386,9 @@ function wdwCalInline(selector, calLink, config) {
 (function () {
   const canvases = document.querySelectorAll("canvas.plan-ring[data-plan]");
   if (!canvases.length) return;
-  const TILT = -30 * Math.PI / 180, TURN = 10000;
+  // Rather than a full turn (which shows the ring face-on, like an "O"), each ring rocks through a 30 degree arc
+  // between a three-quarter view and near-profile, easing out at each end.
+  const TILT = -30 * Math.PI / 180, DEG = Math.PI / 180, MID = 60 * DEG, SWING = 15 * DEG, PERIOD = 5000;
   const quad = (out, a, b, c, d) => out.push([a, b, c], [a, c, d]);
   // A ring in the x-y plane (seen face-on): outer radius 1, thickness t, width w. `rise` swells the top into a cradle.
   function band({ w, t, rise = 0, sharp = 4, n = 96 }) {
@@ -1423,6 +1425,8 @@ function wdwCalInline(selector, calLink, config) {
     business: () => band({ w: 0.28, t: 0.13, rise: 0.16, sharp: 6 }).concat(pearl(0.24, 1.26)),
     full: () => band({ w: 0.36, t: 0.17 }).concat(diamond(0.6, 1.02)),
   };
+  // How much of the tile each ring fills, so the rings step up in size with the plan.
+  const SIZE = { essentials: 0.7, business: 0.9, full: 1 };
   const cache = {};
   // Each model with its size and middle, so every ring is centered and fills its tile the same way.
   const model = (plan) => cache[plan] || (cache[plan] = (() => {
@@ -1440,8 +1444,8 @@ function wdwCalInline(selector, calLink, config) {
     ctx.clearRect(0, 0, W, H);
     const color = getComputedStyle(cv).color;
     const m = model(cv.dataset.plan);
-    const a = (t / TURN) * 2 * Math.PI, ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(TILT), st = Math.sin(TILT);
-    const scale = Math.min(W, H) / (m.size * 1.18), f = 7;
+    const a = MID + SWING * Math.sin((t / PERIOD) * 2 * Math.PI), ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(TILT), st = Math.sin(TILT);
+    const scale = (Math.min(W, H) / (m.size * 1.18)) * (SIZE[cv.dataset.plan] || 1), f = 7;
     // put the model's middle (leaned like the ring) in the middle of the canvas
     const cx = W / 2 - (m.mx * ct - m.my * st) * scale, cy = H / 2 + (m.mx * st + m.my * ct) * scale;
     const project = ([x, y, z]) => {
@@ -1459,8 +1463,8 @@ function wdwCalInline(selector, calLink, config) {
   const live = new Set();
   const io = new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? live.add(e.target) : live.delete(e.target))));
   canvases.forEach((cv) => { io.observe(cv); draw(cv, 1200); });
-  // Each ring starts at a different point in its turn, so the three don't move in lockstep.
-  const offset = { essentials: 0, business: 1600, full: 3200 };
+  // Each ring starts at a different point in its swing, so the three don't move in lockstep.
+  const offset = { essentials: 0, business: 900, full: 1800 };
   const loop = (now) => { live.forEach((cv) => draw(cv, reduce ? 1200 : now + offset[cv.dataset.plan])); if (!reduce) requestAnimationFrame(loop); };
   requestAnimationFrame(loop);
   if (reduce) new MutationObserver(() => canvases.forEach((cv) => draw(cv, 1200))).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
