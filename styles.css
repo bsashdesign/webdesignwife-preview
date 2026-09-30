@@ -3880,3 +3880,8 @@ span.plan-ring:empty { display: none; }
 #mood .mood__opt .key-well .moodicon--tangy { margin: 0 5px 5px 0; box-shadow: 5px 5px 0 #111; }
 #mood .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translate(5px, 5px); box-shadow: 0 0 0 #111; }
 #mood .mood__opt[data-mood="tangy"] .key-well { padding: 3px; margin: 0 -1px 0 0; }
+/* Tangy's key is a touch bigger, so it reads the same size as the keys sitting in sockets */
+#moods-tv .tv-key--tangy .tv-key__cap { scale: 1.07; }
+#mood .mood__opt .key-well .moodicon--tangy { scale: 1.08; }
+/* the floating button: a soft outline in its own tone (Tangy keeps its ink outline) */
+#mood .mood__btn .moodicon:not(.moodicon--tangy) { box-shadow: 0 0 0 1px color-mix(in srgb, var(--cap-edge) 75%, transparent), 0 8px 18px -10px rgba(0,0,0,.45); }
