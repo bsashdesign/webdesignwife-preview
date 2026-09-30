@@ -1141,3 +1141,19 @@ function openSheet(d) {
     if (match) a.setAttribute("aria-current", "page");
   });
 })();
+
+// Articles: if you arrived from another article, the back link returns you there instead of the article list.
+(function () {
+  const back = document.querySelector(".article__back");
+  if (!back || !document.referrer) return;
+  let from;
+  try { from = new URL(document.referrer); } catch (e) { return; }
+  if (from.origin !== location.origin || !/\/blog\/(?!index\.html)[^/]+\.html$/.test(from.pathname) || from.pathname === location.pathname) return;
+  const title = sessionStorage.getItem("wdw-title:" + from.pathname);
+  back.lastChild.textContent = " Back to " + (title || "the previous article");
+  back.addEventListener("click", (e) => { e.preventDefault(); history.back(); });
+})();
+(function () {
+  const h = document.querySelector(".article h1");
+  if (h) try { sessionStorage.setItem("wdw-title:" + location.pathname, h.textContent.trim()); } catch (e) {}
+})();

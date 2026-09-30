@@ -14,6 +14,8 @@ NAMES = [
     "map-pin", "clipboard-text", "map-trifold", "scales", "star", "note-pencil", "buildings",
     # Google Maps plan levels
     "seal-check", "trend-up",
+    # article callouts
+    "info", "warning",
 ]
 # Calm: regular · Transit and Tangy: bold · Sophisticated: thin
 # (Filled icons were tried for Tangy but broke apart on shapes like the phone and envelope.)
