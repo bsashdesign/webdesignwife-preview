@@ -1363,8 +1363,8 @@ function wdwCalInline(selector, calLink, config) {
   const press = (k) => {
     const changing = k.dataset.tvKey !== playing;
     play(k.dataset.tvKey); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
-    // the set powering on, just after the key's click (only when the channel actually changes)
-    if (changing && window.wdwTvOn) setTimeout(window.wdwTvOn, 60);
+    // the set powering on, half a second after the key's click (only when the channel actually changes)
+    if (changing && window.wdwTvOn) setTimeout(window.wdwTvOn, 500);
   };
   sec.addEventListener("pointerdown", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.button === 0) press(k); });
   sec.addEventListener("click", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.detail === 0) press(k); });
@@ -1676,7 +1676,7 @@ document.addEventListener("click", (e) => {
 });
 
 // A satisfying click when a key goes down (the "Change the Channel" board and the mood pop-up).
-// Made on the fly with Web Audio, so there's no sound file to load: a crisp tick on top of a soft, low thump.
+// Made on the fly with Web Audio, so there's no sound file to load: a sharp, bright tick.
 (function () {
   let ac = null;
   const click = () => {
@@ -1685,46 +1685,42 @@ document.addEventListener("click", (e) => {
       if (ac.state === "suspended") ac.resume();
       const t = ac.currentTime, out = ac.createGain();
       out.gain.value = .5; out.connect(ac.destination);
-      // the tick: a very short burst of filtered noise
-      const len = Math.floor(ac.sampleRate * .03), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
-      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 6);
-      const noise = ac.createBufferSource(); noise.buffer = buf;
-      const hp = ac.createBiquadFilter(); hp.type = "bandpass"; hp.frequency.value = 3200; hp.Q.value = .9;
-      const ng = ac.createGain(); ng.gain.setValueAtTime(.9, t); ng.gain.exponentialRampToValueAtTime(.001, t + .03);
+      // a sharp, bright tick: a very short burst of high noise...
+      const len = Math.floor(ac.sampleRate * .012), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 8);
+      const noise = ac.createBufferSource(), hp = ac.createBiquadFilter(), ng = ac.createGain();
+      noise.buffer = buf; hp.type = "highpass"; hp.frequency.value = 3500; ng.gain.value = 1;
       noise.connect(hp).connect(ng).connect(out); noise.start(t);
-      // the thump: a quick low tone that drops in pitch
-      const osc = ac.createOscillator(), og = ac.createGain();
-      osc.type = "sine"; osc.frequency.setValueAtTime(190, t); osc.frequency.exponentialRampToValueAtTime(70, t + .07);
-      og.gain.setValueAtTime(.55, t); og.gain.exponentialRampToValueAtTime(.001, t + .08);
-      osc.connect(og).connect(out); osc.start(t); osc.stop(t + .09);
+      // ...with a tiny resonant snap, like a switch's spring
+      const ping = ac.createOscillator(), pg = ac.createGain();
+      ping.type = "triangle"; ping.frequency.setValueAtTime(2600, t); ping.frequency.exponentialRampToValueAtTime(1900, t + .02);
+      pg.gain.setValueAtTime(.35, t); pg.gain.exponentialRampToValueAtTime(.001, t + .025);
+      ping.connect(pg).connect(out); ping.start(t); ping.stop(t + .03);
     } catch (e) {}
   };
-  // An old TV switching on: a low thunk and hum as it powers up, a crackle of static that fades as the
-  // picture settles, and the faint high whine of the picture tube.
+  // An old TV switching on: the rising high "sweee" of the picture tube, with a little static.
   window.wdwTvOn = () => {
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       if (ac.state === "suspended") ac.resume();
       const t = ac.currentTime, out = ac.createGain();
-      out.gain.value = .45; out.connect(ac.destination);
-      // thunk + hum
-      const hum = ac.createOscillator(), hf = ac.createBiquadFilter(), hg = ac.createGain();
-      hum.type = "square"; hum.frequency.setValueAtTime(90, t); hum.frequency.exponentialRampToValueAtTime(58, t + .12);
-      hf.type = "lowpass"; hf.frequency.value = 260;
-      hg.gain.setValueAtTime(.0001, t); hg.gain.exponentialRampToValueAtTime(.5, t + .015); hg.gain.exponentialRampToValueAtTime(.001, t + .45);
-      hum.connect(hf).connect(hg).connect(out); hum.start(t); hum.stop(t + .5);
-      // static that crackles in and settles down
-      const len = Math.floor(ac.sampleRate * .7), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
-      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (Math.random() < .08 ? 1 : .35);
+      out.gain.value = .5; out.connect(ac.destination);
+      // the tube's "sweee": a high tone that rises as the set warms up, then fades
+      [[1, .06], [2, .015]].forEach(([mult, vol]) => {
+        const o = ac.createOscillator(), g = ac.createGain();
+        o.type = "sine";
+        o.frequency.setValueAtTime(3200 * mult, t); o.frequency.exponentialRampToValueAtTime(9500 * mult, t + .45);
+        g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .08);
+        g.gain.setValueAtTime(vol, t + .5); g.gain.exponentialRampToValueAtTime(.0001, t + 1.2);
+        o.connect(g).connect(out); o.start(t); o.stop(t + 1.25);
+      });
+      // a light touch of static underneath
+      const len = Math.floor(ac.sampleRate * .5), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (Math.random() < .06 ? 1 : .3);
       const st = ac.createBufferSource(), sf = ac.createBiquadFilter(), sg = ac.createGain();
-      st.buffer = buf; sf.type = "bandpass"; sf.frequency.value = 2400; sf.Q.value = .6;
-      sg.gain.setValueAtTime(.0001, t); sg.gain.exponentialRampToValueAtTime(.35, t + .04); sg.gain.exponentialRampToValueAtTime(.001, t + .65);
+      st.buffer = buf; sf.type = "highpass"; sf.frequency.value = 2500;
+      sg.gain.setValueAtTime(.0001, t); sg.gain.exponentialRampToValueAtTime(.08, t + .03); sg.gain.exponentialRampToValueAtTime(.0001, t + .45);
       st.connect(sf).connect(sg).connect(out); st.start(t);
-      // the tube's whine
-      const wh = ac.createOscillator(), wg = ac.createGain();
-      wh.type = "sine"; wh.frequency.value = 7800;
-      wg.gain.setValueAtTime(.0001, t); wg.gain.exponentialRampToValueAtTime(.025, t + .12); wg.gain.exponentialRampToValueAtTime(.0001, t + .9);
-      wh.connect(wg).connect(out); wh.start(t); wh.stop(t + .95);
     } catch (e) {}
   };
   document.addEventListener("pointerdown", (e) => {
