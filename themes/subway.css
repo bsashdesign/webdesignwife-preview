@@ -235,7 +235,7 @@
 /* .post-card in the selector so the cover's own color beats the nth-child line colors above */
 .theme-subway .post-card[data-tone="blue"] { --c: var(--blue); } .theme-subway .post-card[data-tone="green"] { --c: var(--green); }
 .theme-subway .post-card[data-tone="yellow"] { --c: var(--yellow); } .theme-subway .post-card[data-tone="red"] { --c: var(--red); }
-.theme-subway .post-card[data-tone="purple"] { --c: var(--purple); } .theme-subway .post-card[data-tone="teal"] { --c: var(--gray); }
+.theme-subway .post-card[data-tone="purple"] { --c: var(--purple); } .theme-subway .post-card[data-tone="teal"] { --c: var(--orange); }
 .theme-subway #moods .play p:not(.eyebrow) { color: #c9c9c4; }
 .theme-subway #moods .chip--transit { box-shadow: inset 0 0 0 1px #444; }
 

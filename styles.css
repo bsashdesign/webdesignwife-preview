@@ -2927,7 +2927,6 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-subway .post-card--article .post-card__cover--art { background: var(--c, var(--blue)); }
 .theme-subway .post-card--article .post-card__cover .vs-x { color: #fff; }
 .theme-subway .post-card--article[data-tone="yellow"] .post-card__cover .vs-x { color: #111; }
-.theme-subway .post-card--article[data-tone="teal"] { --c: var(--orange); }
 
 /* ================================================================
    Features page: organized by capability
