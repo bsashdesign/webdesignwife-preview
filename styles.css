@@ -3992,3 +3992,15 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key:not(.tv-key--tangy)[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:not(.tv-key--tangy):active .tv-key__cap,
 #moods-tv .tv-key.tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key.tv-key--tangy:active .tv-key__cap { transform: translateY(12px); box-shadow: inset 0 3px 6px rgba(0,0,0,.28); }
 #moods-tv .tv-key.tv-key:not(.x) .tv-key__cap { margin: -12px 0 12px; }
+
+/* The set powering on: dark for a moment after the press, then it flickers on in stutters (with the tube's
+   "sweee") and settles, bright at first and warming to normal. */
+.tv__screen.is-off .tv__show, .tv__screen.is-off .tv__caption { opacity: 0; }
+.tv__screen.is-powering .tv__show { animation: tv-power .9s linear both, tv-warm-slow .9s ease-out both; }
+.tv__screen.is-powering .tv__caption { animation: tv-power .9s linear both; }
+@keyframes tv-power {
+  0% { opacity: 0; } 6% { opacity: .85; } 11% { opacity: .1; } 17% { opacity: .7; } 22% { opacity: 0; }
+  30% { opacity: .9; } 36% { opacity: .35; } 44% { opacity: 1; } 52% { opacity: .6; } 60%, 100% { opacity: 1; }
+}
+@keyframes tv-warm-slow { from { filter: brightness(1.9) saturate(.3) contrast(1.2); } to { filter: none; } }
+@media (prefers-reduced-motion: reduce) { .tv__screen.is-off .tv__show, .tv__screen.is-off .tv__caption { opacity: 1; } }

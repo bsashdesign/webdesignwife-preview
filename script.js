@@ -1347,7 +1347,9 @@ function wdwCalInline(selector, calLink, config) {
   let playing = null;
 
   const eyebrow = sec.querySelector("[data-tv-eyebrow]");
-  const play = (key) => {
+  let powerTimer = 0;
+  // power: the set goes dark on the press, then half a second later flickers on with the tube's "sweee"
+  const play = (key, power) => {
     // the label above the title names whatever's on
     if (eyebrow) eyebrow.textContent = key === "transitdark" ? "Transit Dark" : NAMES[key] || eyebrow.textContent;
     if (key === "transitdark") key = "transit"; // the TV plays the Transit channel for Transit Dark too
@@ -1356,15 +1358,21 @@ function wdwCalInline(selector, calLink, config) {
     keys.forEach((k) => k.setAttribute("aria-pressed", String(k.dataset.tvKey === key)));
     show.dataset.tvShow = key;
     nameEl.textContent = NAMES[key];
-    if (!reduce) { screen.classList.remove("is-on"); void screen.offsetWidth; screen.classList.add("is-on"); }
+    if (reduce) return;
+    clearTimeout(powerTimer);
+    screen.classList.remove("is-on", "is-powering", "is-off");
+    void screen.offsetWidth;
+    if (!power) { screen.classList.add("is-on"); return; }
+    screen.classList.add("is-off");
+    powerTimer = setTimeout(() => {
+      screen.classList.remove("is-off"); void screen.offsetWidth; screen.classList.add("is-powering");
+      if (window.wdwTvOn) window.wdwTvOn();
+    }, 500);
   };
   // Buttons act the moment they're pressed down (like a real button), not when you let go.
   // Keyboard presses arrive as a click with no pointer, so those still work.
   const press = (k) => {
-    const changing = k.dataset.tvKey !== playing;
-    play(k.dataset.tvKey); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
-    // the set powering on, half a second after the key's click (only when the channel actually changes)
-    if (changing && window.wdwTvOn) setTimeout(window.wdwTvOn, 500);
+    play(k.dataset.tvKey, true); if (window.wdwSetMood) window.wdwSetMood(k.dataset.tvKey, k);
   };
   sec.addEventListener("pointerdown", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.button === 0) press(k); });
   sec.addEventListener("click", (e) => { const k = e.target.closest("[data-tv-key]"); if (k && e.detail === 0) press(k); });
@@ -1709,7 +1717,7 @@ document.addEventListener("click", (e) => {
       [[1, .06], [2, .015]].forEach(([mult, vol]) => {
         const o = ac.createOscillator(), g = ac.createGain();
         o.type = "sine";
-        o.frequency.setValueAtTime(3200 * mult, t); o.frequency.exponentialRampToValueAtTime(9500 * mult, t + .45);
+        o.frequency.setValueAtTime(1700 * mult, t); o.frequency.exponentialRampToValueAtTime(4600 * mult, t + .45);
         g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .08);
         g.gain.setValueAtTime(vol, t + .5); g.gain.exponentialRampToValueAtTime(.0001, t + 1.2);
         o.connect(g).connect(out); o.start(t); o.stop(t + 1.25);
