@@ -303,17 +303,20 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       // ?slowmo=8 plays the handover in slow motion (for checking it frame by frame)
       const SLOW = +new URLSearchParams(location.search).get("slowmo") || 1;
       if (fromRow) fromRow.classList.remove("is-in");
+      // the frame fades in and the phone is already on its way: one quick, smooth swoop that swings out to the left
+      // first, then curves back right and down into its spot, shrinking as it goes
       demo.classList.remove("is-bare");
-      await tick(380 * SLOW);
       const { dx, dy, K } = big;
-      // an arc, not a straight diagonal: it drops first, then glides across, shrinking as it goes
-      const ease = (u) => (u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const ease = (u) => 1 - Math.pow(1 - u, 3);
+      const swing = Math.min(150, Math.max(90, Math.abs(dx) * .85));
       const frames = [];
-      for (let n = 0; n <= 40; n++) {
-        const e = ease(n / 40), down = 1 - Math.pow(1 - e, 2.2), across = Math.pow(e, 1.8);
-        frames.push({ transform: `translate(${dx * (1 - across)}px, ${dy * (1 - down)}px) scale(${K + (1 - K) * e})` });
+      for (let n = 0; n <= 48; n++) {
+        const u = n / 48, e = ease(u);
+        const x = dx * (1 - e) - swing * Math.sin(Math.PI * e) * (1 - e * .4);
+        const y = dy * (1 - e);
+        frames.push({ transform: `translate(${x}px, ${y}px) scale(${K + (1 - K) * e})` });
       }
-      const sweep = phone.animate(frames, { duration: 1150 * SLOW, easing: "linear" });
+      const sweep = phone.animate(frames, { duration: 900 * SLOW, easing: "linear" });
       phone.style.transform = "";
       demo.classList.remove("is-intro");
       await sweep.finished.catch(() => {});
