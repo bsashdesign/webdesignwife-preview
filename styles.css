@@ -6880,8 +6880,16 @@ html.theme-subway .nav.nav--autohide:not(.is-scrolled):not(#z) { transform: tran
   .plans-dialog .hplans__founding { font-size: .82rem; margin-bottom: 12px; }
   .plans-dialog .hplans { gap: 12px; }
   .plans-dialog .hplans .hplan.hplan { padding: 14px 14px 14px; gap: 8px 12px; }
-  .plans-dialog .hplans .hplan__feats { display: none; }
-  .plans-dialog .hplans .hplan .hplan__money { padding-top: 8px; display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: end; column-gap: 12px; }
-  .plans-dialog .hplans .hplan .hplan__money > * { grid-column: auto; }
-  .plans-dialog .hplans .hplan__status { grid-column: 1 / -1; }
 }
+/* Phones: the plan rows (on the page and in the pop-up) are pared right back — no checklists — and the price block is
+   two columns: the monthly price with "billed yearly" on the left, the setup price with its launch-offer note on the
+   right */
+@media (max-width: 760px) {
+  .hplans .hplan .hplan__feats:not(#z) { display: none; }
+  .hplans .hplan .hplan__money:not(#z):not(#y) { display: grid; grid-template-columns: 1fr auto; column-gap: 14px; row-gap: 2px; align-items: end; text-align: left; justify-items: start; }
+  .hplans .hplan .hplan__status:not(#z) { grid-column: 1 / -1; grid-row: 1; }
+  .hplans .hplan .hplan__price:not(#z):not(#y) { grid-column: 1; grid-row: 2; text-align: left; justify-self: start; }
+  .hplans .hplan .hplan__billed:not(#z) { grid-column: 1; grid-row: 3; }
+  .hplans .hplan .hplan__setup:not(#z):not(#y) { grid-column: 2; grid-row: 2 / 4; justify-items: end; text-align: right; justify-self: end; margin: 0; padding: 0; border: 0; }
+}
+.plans-dialog h2:not(#z) { padding-right: 48px; }
