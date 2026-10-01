@@ -6525,4 +6525,9 @@ html.theme-blocks .smode__ico { border-radius: 10px; background: var(--lime); co
 html.theme-blocks .smode__ico:has(.pi) { background: var(--sky); }
 html.theme-subway .smode__ico { border-radius: 50%; background: #00933c; color: #fff; }
 html.theme-subway .smode__ico:has(.pi) { background: #fccc0a; color: #111; }
-html.theme-wedding .smode__ico { border-radius: 2px; background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); }
+html.theme-wedding .smode__ico { width: auto; height: auto; border-radius: 0; background: none; color: var(--gold-ink); box-shadow: none; }
+html.theme-wedding .smode__ico svg { width: 30px; height: 30px; }
+html.theme-wedding .smode__ico svg path { stroke-width: 1.4; }
+html.theme-wedding .smode__ico .pi { font-size: 28px; width: 28px; height: 28px; }
+/* Tangy: the note's icon tile takes the selected plan's colour (lime, sky, pink) */
+html.theme-blocks .start[data-plan="full"] .smode__ico:has(.pi) { background: var(--rose); }
