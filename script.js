@@ -2085,7 +2085,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const VERBS = ["Built", "Designed", "Developed", "Crafted", "Launched", "Managed", "Made", "Polished"];
   const TYPES = ["Plumbers", "Salons", "Barbers", "Dentists", "Restaurants", "Contractors", "Cleaners", "Gyms", "Accountants", "Bakeries", "Florists", "Pharmacies", "Law offices", "Auto shops"];
-  const HOODS = ["Bushwick", "Park Slope", "Astoria", "Harlem", "Flushing", "Williamsburg", "Jackson Heights", "Bay Ridge", "the Bronx", "Chelsea", "Fort Greene", "St. George", "Crown Heights", "Long Island City"];
+  const HOODS = ["Bushwick", "Park Slope", "Astoria", "Harlem", "Flushing", "Williamsburg", "Jackson Heights", "Bay Ridge", "The Bronx", "Chelsea", "Fort Greene", "St. George", "Crown Heights", "Long Island City"];
   const STAR = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4.5l4.7 9.7 10.6 1.3-7.8 7.4 2 10.5L20 28.2l-9.5 5.2 2-10.5-7.8-7.4 10.6-1.3z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/></svg>';
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
   const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li>${t}</li>`).join("")).join("");
@@ -2122,7 +2122,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     r.reel.style.width = Math.ceil(w) + 2 + "px"; show(r, 0);
   });
   const row = (r) => r.ul.firstElementChild.getBoundingClientRect().height;
-  const show = (r, ms, ease) => { r.ul.style.transition = ms ? `transform ${ms}ms ${ease}` : "none"; r.ul.style.transform = `translateY(${-(r.pos - .75) * row(r)}px)`; };
+  const show = (r, ms, ease) => { r.ul.style.transition = ms ? `transform ${ms}ms ${ease}, filter .45s ease-out` : "filter .45s ease-out"; r.ul.style.transform = `translateY(${-(r.pos - .75) * row(r)}px)`; };
   const idx = (r) => ((Math.round(r.pos) % r.n) + r.n) % r.n;
   const recentre = (r) => { r.pos = r.n * 6 + idx(r); };
   // keep the sentence centred unless it would run into the Sound switch
@@ -2193,7 +2193,8 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
       r.pos = at(1); show(r, 0); void r.ul.offsetWidth;
       const ms = reduce ? 0 : 1300 + k * 350;
       r.reel.classList.add("is-spinning"); r.pos = at(win ? symAt : toAt); show(r, ms, "cubic-bezier(.15,.85,.25,1.06)");
-      setTimeout(() => r.reel.classList.remove("is-spinning"), ms);
+      // the blur eases off while the reel is still slowing, so the last few rows are crisp as it settles
+      setTimeout(() => r.reel.classList.remove("is-spinning"), ms * .45);
       plans.push({ r, to, toAt: at(toAt) });
     });
     const land = reduce ? 0 : 1300 + 2 * 350 + 40;

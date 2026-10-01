@@ -5583,6 +5583,7 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
 .for--spin .treel__list li.bf-ico svg { height: 86%; width: auto; aspect-ratio: 1; display: block; flex: none; }
 .for--spin .treel.is-win li.bf-ico svg { animation: bf-starpop .7s cubic-bezier(.3,1.8,.5,1); }
 @keyframes bf-starpop { 0% { transform: scale(.6) rotate(-30deg); } 100% { transform: scale(1) rotate(0); } }
+.for--spin .treel__list { transition: filter .45s ease-out; }
 .for--spin .treel.is-spinning .treel__list { filter: blur(1.4px); }
 .for--spin .drift__btn { flex: none; width: 54px; height: 54px; border-radius: 50%; border: 2px solid var(--ink); background: var(--violet); color: #fff; font: 800 .7rem var(--display); text-transform: uppercase; letter-spacing: .04em; cursor: pointer; transition: transform .1s, box-shadow .1s; }
 .for--spin .drift__btn.is-down, .for--spin .drift__btn:active { transform: translateY(2px); }
@@ -5644,6 +5645,7 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
 .bf-wrap.is-tight .bf-sound:not(#z) { position: static; translate: none; flex: none; }
 @media (max-width: 600px) { .bf-wrap .bf-sound:not(#z) { display: none; } }
 .theme-wedding .for--spin .treel__list li.bf-ico svg { height: 58%; }
-/* Soirée: Spin is set like one of the reel frames (cream, fine double gold rule, italic serif), the same height as them */
-html.theme-wedding .for--spin .drift__btn:not(#z) { width: auto; height: var(--row); padding: 0 .8em; border: 0; border-radius: 2px; background: #fffdf8; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(184,149,90,.75), inset 0 0 0 4px #fffdf8, inset 0 0 0 5px rgba(184,149,90,.35); font: italic 600 1em/1 var(--display); letter-spacing: .01em; text-transform: none; transition: background-color .15s, color .15s, transform .1s; }
-@media (hover: hover) { html.theme-wedding .for--spin .drift__btn:not(#z):hover { background: var(--gold-ink); color: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold-ink), inset 0 0 0 4px var(--gold-ink), inset 0 0 0 5px rgba(255,253,248,.5); } }
+/* Soirée: Spin is a small round navy medallion with a fine gold ring and an italic serif word, like a wax seal on an
+   invitation: clearly a button, not another reel */
+html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%; background: var(--ink); color: #e9d9b4; box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 4px rgba(217,196,154,.75), 0 6px 14px -8px rgba(31,35,54,.6); font: italic 600 1.05rem/1 var(--display); letter-spacing: .01em; text-transform: none; transition: background-color .15s, color .15s, transform .1s; }
+@media (hover: hover) { html.theme-wedding .for--spin .drift__btn:not(#z):hover { background: var(--gold-ink); color: #fffdf8; box-shadow: inset 0 0 0 3px var(--gold-ink), inset 0 0 0 4px rgba(255,253,248,.7), 0 6px 14px -8px rgba(31,35,54,.6); } }
