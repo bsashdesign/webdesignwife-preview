@@ -2289,12 +2289,24 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
 
   // the hand (only where the round Spin button is showing)
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-  // what the hand presses: the Spin button, or on phones (no button) the middle reel
+  // what the hand presses: on desktop the Spin button, reaching in from the right edge; on phones (no button)
+  // the middle reel, rising from the band's bottom line
   const target = () => (btn.offsetParent ? btn : slot.querySelector(".treel--biz .treel__frame"));
   const aim = () => {
-    const b = band.getBoundingClientRect(), r = target().getBoundingClientRect();
-    hand.style.setProperty("--hx", (r.left - b.left + r.width / 2 + 60) + "px");
-    hand.style.setProperty("--hy", (r.bottom - b.bottom - r.height * .22 + 99) + "px");
+    const b = band.getBoundingClientRect(), r = target().getBoundingClientRect(), side = !!btn.offsetParent;
+    hand.classList.toggle("from-right", side);
+    if (side) {
+      // turned to point left, the fingertip sits 126px left of the sleeve's end (which is 22px in, 130px down)
+      const tipX = r.right - b.left - 6, tipY = r.top - b.top + r.height / 2;
+      hand.style.setProperty("--hx", (tipX + 126 - 22) + "px");
+      hand.style.setProperty("--hy", (tipY - 130) + "px");
+      hand.style.setProperty("--hxo", (b.width + 150) + "px");
+    } else {
+      // the fingertip, at the end of the press, lands on the middle of the frame (k: the hand is smaller on phones)
+      const k = hand.offsetHeight / 130, cx = r.left - b.left + r.width / 2, cy = r.top - b.top + r.height * .55;
+      hand.style.setProperty("--hx", (cx + 58 * k + 4) + "px");
+      hand.style.setProperty("--hy", (cy - b.height + 102 * k + 6) + "px");
+    }
   };
   async function poke() {
     if (reduce || document.hidden || !drifting) return;

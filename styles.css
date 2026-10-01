@@ -5695,3 +5695,16 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
    with no fading or dimming at all */
 .for--spin .tick:not(#z) { --peek: 1; }
 .for--spin .treel__win:not(#z) { -webkit-mask-image: none; mask-image: none; }
+/* desktop: the hand reaches in from the right edge, pointing left at Spin */
+.for--spin .pokehand.from-right { top: 0; bottom: auto; transform: translate(var(--hxo, 2000px), var(--hy, 0px)) rotate(-90deg); }
+.for--spin .pokehand.from-right.is-up { transform: translate(var(--hx, 0px), var(--hy, 0px)) rotate(-90deg); }
+.for--spin .pokehand.from-right.is-hover { transform: translate(calc(var(--hx, 0px) + 14px), calc(var(--hy, 0px) - 2px)) rotate(-90deg); }
+.for--spin .pokehand.from-right.is-press { transform: translate(calc(var(--hx, 0px) - 5px), var(--hy, 0px)) rotate(-90deg); }
+@media (max-width: 600px) { .for--spin .pokehand:not(#z) { width: 22px; height: 65px; } }
+/* Built-for band: the reels run edge to edge between the band's two lines (words scroll in straight from the
+   line, no gap), and the rows sit further apart; the frame keeps its own height (--fh) inside the taller row */
+.for.for--spin:not(#z) { padding-top: 0; padding-bottom: 0; }
+.for--spin .tick:not(#z) { --fh: 1.9em; --row: 2.3em; }
+.theme-wedding .for--spin .tick:not(#z) { --fh: 1.65em; --row: 2.05em; }
+.for--spin .treel__frame:not(#z) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--fh)) / 2); height: var(--fh); }
+:is(.theme-blocks, .theme-wedding) .for--spin .treel__frame:not(#z):not(#y) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--fh)) / 2 - .16em); height: calc(var(--fh) + .32em); }
