@@ -5182,3 +5182,6 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
   #moods-tv .tvset .tv-panel { grid-column: 1; grid-row: 1; }
   #moods-tv .tvset .tv-nook { grid-column: 2; grid-row: 1; }
 }
+/* Transit (dark): eyebrow badges always have white text on their dark-grey box */
+.theme-subway.theme-dark .eyebrow:not(.eyebrow--light):not(#z), .theme-subway.theme-dark .eyebrow:not(.eyebrow--light):not(#z) * { color: #fff; }
+.theme-subway.theme-dark #moods-tv .eyebrow:not(#z) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; color: #fff; }
