@@ -4879,3 +4879,20 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 .theme-subway.theme-dark .hplans .hplan__more a.hplan__plus:hover { background: #2f2f2f; }
 .theme-wedding .hplans .hplan__more a.hplan__plus { border-radius: 3px; }
 .theme-wedding .hplans .hplan__more a.hplan__plus:hover { background: rgba(184,149,90,.18); }
+/* The mini TV dances while a sound plays, with sound waves coming off its right side (no waves when muted) */
+#mood .mood__btn { position: relative; overflow: visible; }
+.minitv__waves { position: absolute; left: 100%; top: 50%; width: 26px; height: 30px; margin-left: 2px; translate: 0 -50%; pointer-events: none; }
+.minitv__waves i { position: absolute; left: 0; top: 50%; width: 10px; height: 10px; border: 2.5px solid var(--ink); border-color: transparent var(--ink) transparent transparent; border-radius: 50%; translate: 0 -50%; opacity: 0; }
+.mood__btn.is-sounding .minitv__waves i { animation: tv-wave 0.9s ease-out infinite; }
+.mood__btn.is-sounding .minitv__waves i:nth-child(2) { animation-delay: .3s; }
+.mood__btn.is-sounding .minitv__waves i:nth-child(3) { animation-delay: .6s; }
+@keyframes tv-wave { 0% { opacity: 0; width: 8px; height: 8px; left: -2px; } 25% { opacity: 1; } 100% { opacity: 0; width: 30px; height: 30px; left: 6px; } }
+.mood__btn.is-dancing .minitv { animation: tv-dance .5s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes tv-dance { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-7deg) translateY(-3px); } 50% { transform: rotate(0) translateY(0); } 75% { transform: rotate(7deg) translateY(-3px); } }
+.theme-subway.theme-dark .minitv__waves i { border-right-color: #fccc0a; }
+.theme-wedding .minitv__waves i { border-right-color: var(--gold-ink); border-width: 1.5px; }
+.theme-refined .minitv__waves i { border-right-color: var(--violet); }
+@media (prefers-reduced-motion: reduce) { .mood__btn.is-dancing .minitv, .mood__btn.is-sounding .minitv__waves i { animation: none; } }
+/* hovering the mini TV: it lifts a touch and tips clockwise */
+#mood .mood__btn:hover { transform: translateY(-3px); }
+#mood .mood__btn:hover .minitv { transform: rotate(6deg); }

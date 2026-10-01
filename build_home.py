@@ -71,7 +71,7 @@ def switcher():
         for m in MOODS
     )
     return f'''<div class="mood" id="mood">
-    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel"><span class="minitv" aria-hidden="true"><i class="minitv__ant"></i><span class="minitv__set"><span class="minitv__screen"><span class="minitv__show"></span><span class="minitv__face"></span></span><i class="minitv__knob"></i></span></span></button>
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel"><span class="minitv__waves" aria-hidden="true"><i></i><i></i><i></i></span><span class="minitv" aria-hidden="true"><i class="minitv__ant"></i><span class="minitv__set"><span class="minitv__screen"><span class="minitv__show"></span><span class="minitv__face"></span></span><i class="minitv__knob"></i></span></span></button>
     <div class="mood__panel" id="mood-panel" role="group" aria-label="Change the channel"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Change the Channel</p><p class="mood__intro">Same website, four completely different directions. Press a button and watch the whole page change.</p>{opts}<div class="mood__sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div></div>
   </div>'''
 
