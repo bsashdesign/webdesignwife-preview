@@ -293,7 +293,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       phone.style.transform = "";
       const P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
       // big on desktop; on phones a more modest size, so it doesn't take over the screen
-      const K = Math.min(innerWidth <= 760 ? 1.75 : 2.2, (D.width * .98) / P.width);
+      // the hidden frame and the conversation's inner padding may hang past the edges, so the messages themselves
+      // line up with the page's text (on phones)
+      const T = thread.getBoundingClientRect(), inset = (P.width - T.width) / 2 + 4;
+      const K = innerWidth <= 760 ? Math.min(2.6, D.width / (P.width - 2 * inset)) : Math.min(2.2, (D.width * .98) / P.width);
       const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
@@ -332,7 +335,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     big = fitBig();
     let lastW = innerWidth;
     addEventListener("resize", () => { if (innerWidth !== lastW && demo.classList.contains("is-intro")) { lastW = innerWidth; big = fitBig(); } });
-    fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span>Message from <strong>Web Design Wife</strong></span></span>');
+    fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span><strong>Web Design Wife</strong></span></span>');
     checkIn().then(() => { offer(TREE); busy = false; });
   }
   run();

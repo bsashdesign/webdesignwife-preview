@@ -6714,3 +6714,6 @@ html .demo .phone .chat-choice:not(#z):not(#y):not(#x), html .demo .phone .m--th
 html .demo .phone .chat-pick:not(#z):not(#y) { width: 100%; }
 /* the website mock's headline runs the full width, behind the phone (on desktop as on phones) */
 .demo .site > .site__h:not(#z) { max-width: none; }
+/* the "Choose a reply" cue is a quiet hint, about half the size of the messages */
+html .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .4rem; }
+html.theme-wedding .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .48rem; }
