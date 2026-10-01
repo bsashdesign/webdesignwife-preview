@@ -5354,7 +5354,7 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
   #moods-tv .tv-keys .tv-key:not(#z) { width: 88px; }
 }
 /* Transit key (button board and pop-up): the round red-orange key, its face in a cap */
-#moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg?v=4); }
+#moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg?v=6); }
 /* the "Seriously, press one." part drops whenever it would push Sound effects onto its own line (set by script.js) */
 #moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }
 /* Tangy's "Press one" note in its bold body font, not monospace */
@@ -5418,3 +5418,14 @@ html:is(.theme-refined, .theme-wedding) #promises .promises > *:not(#z) { backgr
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { border-radius: 50%; aspect-ratio: 1; width: auto; height: 62px; }
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well.key-well:not(#z) { border-radius: 50%; }
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z):not(#y) { border-radius: 50%; width: 46px; height: 46px; margin-inline: 3px; }
+/* Homepage plan cards: the whole card stays a link while hovered. Moving the arrow button with a transform made it the
+   anchor for the card-wide click area (its ::after), shrinking that to the button, so only the arrow inside moves now */
+.hplans .hplan:hover .hplan__go:not(#z), .hplans .hplan .hplan__go:is(:hover, :active):not(#z) { transform: none; translate: none; }
+.hplans .hplan .hplan__go svg { transition: transform .15s ease; }
+.hplans .hplan:hover .hplan__go svg { transform: translateX(3px); }
+html.theme-blocks .hplans .hplan:hover .hplan__go:not(#z) { margin: -1px 1px 1px -1px; }
+/* Transit (dark): the "Want to talk first?" card is a dark card like the rest of the dark mood */
+html.theme-subway.theme-dark .callcard:not(#z) { background: #1c1c1c; color: #f2f2ee; box-shadow: inset 6px 0 0 var(--blue), 0 0 0 1px #333; }
+html.theme-subway.theme-dark .callcard:not(#z) :is(strong, h3, p, span:not(.callcard__ico)) { color: inherit; }
+html.theme-subway.theme-dark .callcard:not(#z) p { color: #c9c9c4; }
+html.theme-subway.theme-dark .callcard .btn:not(#z) { background: transparent; color: #fff; border-color: #fff; }
