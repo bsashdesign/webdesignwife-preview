@@ -4465,3 +4465,7 @@ span.plan-ring:empty { display: none; }
 .theme-subway.theme-dark #plan-simple .hplan__name { color: #3fd07a; }
 .theme-subway.theme-dark #plan-business .hplan__name { color: #6ea8ff; }
 .theme-subway.theme-dark #plan-full .hplan__name { color: #d27be0; }
+/* Pricing page: the monthly / yearly toggle sits under the Founding 5 banner, with no room left for the old ring box */
+.billing-row { display: flex; justify-content: center; margin: 28px 0 0; }
+.billing-row .billing, .billing-row .billing.is-yearly { margin: 0; transition: none; }
+.billing-row + .plans { margin-top: 28px; }
