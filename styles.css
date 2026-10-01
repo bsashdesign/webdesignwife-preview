@@ -6610,3 +6610,34 @@ html .phone__compose.is-choices .chat-choices__tip:not(#z):not(#y) { align-self:
 .demo .phone .m--stamp { transition: opacity .45s ease; }
 .demo.is-bare .phone .m--stamp { opacity: 0; }
 @media (max-width: 640px) { .demo.is-intro { min-height: 430px; } }
+/* Chat bubbles read as speech bubbles in every mood: each mood keeps its own roundness, but the corner nearest the
+   sender is sharper (bottom-left for my messages, bottom-right for yours and for the replies you can pick) */
+html .m--us .bubble:not(#z) { border-bottom-left-radius: 5px; }
+html .m--them .bubble:not(#z) { border-bottom-right-radius: 5px; }
+html.theme-refined .bubble:not(#z) { border-radius: 18px; }
+html.theme-refined .m--us .bubble:not(#z) { border-bottom-left-radius: 4px; }
+html.theme-refined .m--them .bubble:not(#z) { border-bottom-right-radius: 4px; }
+html.theme-subway .bubble:not(#z) { border-radius: 12px; }
+html.theme-subway .m--us .bubble:not(#z) { border-bottom-left-radius: 0; }
+html.theme-subway .m--them .bubble:not(#z) { border-bottom-right-radius: 0; }
+html.theme-wedding .bubble:not(#z) { border-radius: 10px; }
+html.theme-wedding .m--us .bubble:not(#z) { border-bottom-left-radius: 1px; }
+html.theme-wedding .m--them .bubble:not(#z) { border-bottom-right-radius: 1px; }
+html.theme-subway .chat-pick .chat-choice:not(#z):not(#y):not(#x) { border-radius: 12px 12px 0 12px; }
+html.theme-wedding .chat-pick .chat-choice:not(#z):not(#y):not(#x) { border-radius: 10px 10px 1px 10px; }
+html.theme-refined .chat-pick .chat-choice:not(#z):not(#y):not(#x) { border-radius: 18px 18px 4px 18px; }
+@media (max-width: 760px) {
+  html .m--us .bubble:not(#z) { border-radius: 12px 12px 12px 4px; }
+  html .m--them .bubble:not(#z) { border-radius: 12px 12px 4px 12px; }
+  html.theme-subway .m--us .bubble:not(#z) { border-radius: 9px 9px 9px 0; }
+  html.theme-subway .m--them .bubble:not(#z) { border-radius: 9px 9px 0 9px; }
+  html.theme-wedding .m--us .bubble:not(#z) { border-radius: 8px 8px 8px 1px; }
+  html.theme-wedding .m--them .bubble:not(#z) { border-radius: 8px 8px 1px 8px; }
+}
+/* hovering a reply never looks like Web Design Wife's own (left) message: Calm turns it a soft lilac, Soirée a soft gold */
+@media (hover: hover) {
+  html.theme-refined .chat-choice:not(#z):not(#y):not(#x):hover { background: #efeaff; color: var(--violet); border-color: var(--violet); }
+  html.theme-wedding .chat-choice:not(#z):not(#y):not(#x):hover { background: rgba(184, 149, 90, .16); color: var(--ink); border-color: var(--gold-ink); }
+}
+/* Soirée: replies to pick have a fine dashed outline */
+html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-style: dashed; border-width: 1px; }
