@@ -5048,3 +5048,19 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .tv-deck__top .tryon__cue { margin: 0; flex: 0 1 auto; }
 .tv-deck__top .tryon__cue p { margin: 0; }
 section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
+/* Change the Channel: no "Press one" line; the Sound effects switch sits at the panel's right */
+.tv-deck__top { justify-content: flex-end; }
+/* the small dial is the TV's sound knob: labelled, pointing at OFF or ON, its pointer turning around the dial's true centre */
+.tv__dial { display: grid; justify-items: center; gap: 3px; }
+.tv__dial-label, .tv__dial-marks b { font: 700 .5rem/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: currentColor; opacity: .85; }
+.tv__dial-marks { display: flex; justify-content: space-between; width: 44px; }
+.tv__dial-marks b { font-weight: 700; opacity: .5; transition: opacity .2s ease; }
+.tv__dial:has([aria-checked="true"]) .tv__dial-marks b:last-child, .tv__dial:has([aria-checked="false"]) .tv__dial-marks b:first-child { opacity: 1; }
+.tv__side .tv__knob--sm::after { transform: none; transform-origin: 50% 50%; top: 3px; height: 38%; }
+.tv__side .tv__knob--sm[data-tv-knob="sound"] { transform: rotate(-50deg); }
+.tv__side .tv__knob--sm[data-tv-knob="sound"][aria-checked="true"] { transform: rotate(50deg); }
+#moods-tv .tv { color: #f6f2ec; }
+.theme-blocks #moods-tv .tv, .theme-refined #moods-tv .tv { color: var(--ink); }
+.theme-subway.theme-dark #moods-tv .tv { color: #f2f2ee; }
+.theme-wedding #moods-tv .tv { color: #e8d7b0; }
+@media (max-width: 1100px) { .tv__dial-label, .tv__dial-marks { display: none; } }

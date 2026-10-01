@@ -1980,8 +1980,9 @@ document.addEventListener("click", (e) => {
       if (k.dataset.tvKnob === "spin") {
         k.classList.remove("is-spinning"); void k.offsetWidth; k.classList.add("is-spinning");
         knobSpin();
-      } else {
-        const turn = (Number(k.dataset.turn) || 0) + 20; k.dataset.turn = turn; k.style.setProperty("--turn", turn + "deg");
+      } else if (k.dataset.tvKnob === "sound") {
+        // the sound dial is the same setting as the Sound effects switches (flipped by the handler above);
+        // turning it on gives a tick so you hear that sound is back
         knobTick();
       }
       return;
