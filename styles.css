@@ -6208,3 +6208,18 @@ html.theme-subway .blist li:nth-child(1) { --bc: #ee352e; --bi: #fff; } html.the
 html.theme-subway .blist__name:not(#z):not(#y) { margin: 0; padding: 0; background: none; transition: color .2s, transform .25s var(--ease-out); }
 @media (hover: hover) { html.theme-subway .blist a:not(#z):hover .blist__name:not(#z):not(#y) { color: var(--bt, #fccc0a); background: none; } html.theme-subway .blist a:not(#z):hover .blist__go { color: var(--bt, #fccc0a); } }
 html.theme-subway .blist li:nth-child(1) { --bt: #ff5a52; } html.theme-subway .blist li:nth-child(2) { --bt: #6ea8ff; } html.theme-subway .blist li:nth-child(3) { --bt: #fccc0a; } html.theme-subway .blist li:nth-child(4) { --bt: #3fd07a; } html.theme-subway .blist li:nth-child(5) { --bt: #ff7a3d; } html.theme-subway .blist li:nth-child(6) { --bt: #d27be0; } html.theme-subway .blist li:nth-child(7) { --bt: #6ea8ff; } html.theme-subway .blist li:nth-child(8) { --bt: #fccc0a; } html.theme-subway .blist li:nth-child(9) { --bt: #ff5a52; } html.theme-subway .blist li:nth-child(10) { --bt: #d27be0; } html.theme-subway .blist li:nth-child(11) { --bt: #3fd07a; } html.theme-subway .blist li:nth-child(12) { --bt: #ff7a3d; } html.theme-subway .blist li:nth-child(13) { --bt: #fccc0a; } html.theme-subway .blist li:nth-child(14) { --bt: #6ea8ff; }
+/* Business list (pop-up and list page): on wide screens the types run down the columns, six to a column */
+@media (min-width: 901px) { .blist:not(#z) { grid-auto-flow: column; grid-template-rows: repeat(6, auto); } }
+/* Transit: each column runs the rainbow top to bottom (red, orange, yellow, green, blue, purple); the badges stay
+   dark until hovered, then light up in their route colour along with the name */
+html.theme-subway .blist li:nth-child(6n+1):not(#z) { --bc: #ee352e; --bi: #fff; --bt: #ff5a52; }
+html.theme-subway .blist li:nth-child(6n+2):not(#z) { --bc: #ff6319; --bi: #fff; --bt: #ff7a3d; }
+html.theme-subway .blist li:nth-child(6n+3):not(#z) { --bc: #fccc0a; --bi: #111; --bt: #fccc0a; }
+html.theme-subway .blist li:nth-child(6n+4):not(#z) { --bc: #00933c; --bi: #fff; --bt: #3fd07a; }
+html.theme-subway .blist li:nth-child(6n+5):not(#z) { --bc: #0039a6; --bi: #fff; --bt: #6ea8ff; }
+html.theme-subway .blist li:nth-child(6n):not(#z) { --bc: #b933ad; --bi: #fff; --bt: #d27be0; }
+html.theme-subway .blist li .blist__ic:not(#z) { background: #2e2e2e; color: #d9d9d4; box-shadow: inset 0 0 0 1px #3d3d3d; transition: background-color .2s, color .2s, box-shadow .2s, transform .25s var(--ease-out); }
+@media (hover: hover) { html.theme-subway .blist li a:hover .blist__ic:not(#z) { background: var(--bc); color: var(--bi); box-shadow: none; } }
+html.theme-subway .blist li a:focus-visible .blist__ic:not(#z) { background: var(--bc); color: var(--bi); }
+/* Transit: the subway rainbow along the top of the pop-up */
+html.theme-subway #btype-dialog .finder-dialog__inner::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: linear-gradient(90deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0); }

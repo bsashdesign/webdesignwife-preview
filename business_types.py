@@ -189,6 +189,58 @@ TYPES = [
     ],
     "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
   },
+  {
+    "slug": "real-estate", "blurb": "Listings, neighborhoods and lead forms", "label": "Real estate", "title": "Websites for real estate agents",
+    "intro": "People want an agent who knows the neighborhood and answers fast. Here's what I'd do for you.",
+    "points": [
+      "Show your current listings, linked to the listing service you already use",
+      "Write a page for each neighborhood you work, so you show up when people search for it",
+      "Make it easy to book a showing or ask for a free home valuation",
+      "Introduce yourself with a real photo, your story and the homes you've sold",
+      "Set up your Google Maps profile with your office, hours and reviews",
+      "Keep listings, open houses and sold homes up to date",
+    ],
+    "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
+  },
+  {
+    "slug": "med-spas", "blurb": "Treatments, booking and providers", "label": "Med spas", "title": "Websites for med spas",
+    "intro": "People research a med spa carefully before they book. Here's what I'd do for yours.",
+    "points": [
+      "Give each treatment its own clear page, so you show up for those searches",
+      "Put online booking front and center, linked to the system you already use",
+      "Introduce your providers and their credentials, with before-and-after photos where you have permission",
+      "List prices or starting prices, plus any packages or memberships",
+      "Set up your Google Maps profile with treatments, hours and photos",
+      "Update treatments, specials and providers whenever they change",
+    ],
+    "guides": ["business-photos-guide", "google-maps-profile", "get-more-google-reviews"],
+  },
+  {
+    "slug": "electricians", "blurb": "Emergency calls, services and licensing", "label": "Electricians", "title": "Websites for electricians",
+    "intro": "When the power's out or something sparks, people call whoever looks reliable first. Here's what I'd do for you.",
+    "points": [
+      "Put your phone number and a big Call Now button at the top of every page",
+      "Give each service its own page, like rewiring, panel upgrades, lighting and EV chargers",
+      "Make your license and insurance easy to see, because people check",
+      "List the neighborhoods you cover, so Google knows to show you nearby",
+      "Set up your Google Maps profile with your hours, services and photos of real jobs",
+      "Keep your services, hours and prices up to date",
+    ],
+    "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
+  },
+  {
+    "slug": "hvac", "blurb": "Repairs, installs and service plans", "label": "HVAC", "title": "Websites for HVAC companies",
+    "intro": "When the heat or the AC quits, people need someone fast. Here's what I'd do for yours.",
+    "points": [
+      "Put your phone number and a big Call Now button at the top of every page",
+      "Give heating, cooling and installs their own pages, so you show up for those searches",
+      "Explain your maintenance plans and seasonal tune-ups clearly",
+      "List the neighborhoods you cover, so Google knows to show you nearby",
+      "Set up your Google Maps profile with your hours, services and photos of real jobs",
+      "Update seasonal offers, hours and services whenever they change",
+    ],
+    "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
+  },
 ]
 
 # A small line icon for each type (24×24, drawn with the current colour), shown before the name in the lists
@@ -207,4 +259,8 @@ ICONS = {
   "pharmacies": '<path d="M10.6 3.9a5 5 0 0 1 7.1 7.1l-6.7 6.7a5 5 0 0 1-7.1-7.1zM7.6 7.6l7 7"/>',
   "law-offices": '<path d="M12 4v16M8 20h8M5 7h14M5 7l-2.5 6a2.5 2.2 0 0 0 5 0zM19 7l-2.5 6a2.5 2.2 0 0 0 5 0z"/>',
   "auto-repair-shops": '<path d="M3.5 15.5v-3.2l2.2-4.6h12.6l2.2 4.6v3.2zM6 12.3h12"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/>',
+  "real-estate": '<path d="M3.5 11 12 4l8.5 7M5.5 9.5V20h13V9.5M10 20v-5h4v5"/>',
+  "med-spas": '<path d="M12 3.5c-3 4-5.5 6.8-5.5 10a5.5 5.5 0 0 0 11 0c0-3.2-2.5-6-5.5-10z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/>',
+  "electricians": '<path d="M13 3 5.5 13.5H11L10 21l8-11h-5.5z"/>',
+  "hvac": '<circle cx="12" cy="12" r="1.8"/><path d="M12 10.2C11 7 11.5 4 14 4c2 0 2.2 3.2-2 6.2zM13.8 12c3.2-1 6.2-.5 6.2 2 0 2-3.2 2.2-6.2-2zM12 13.8c1 3.2.5 6.2-2 6.2-2 0-2.2-3.2 2-6.2zM10.2 12C7 13 4 12.5 4 10c0-2 3.2-2.2 6.2 2z"/>',
 }
