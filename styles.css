@@ -4957,8 +4957,8 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 @media (hover: hover) {
   html.theme-blocks :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #fffbe0; }
 }
-/* Tangy: the line across the Design Refresh card is the dashed ink line, not a faint white one */
-.theme-blocks .spot--refresh .spot__foot { border-top: 2px dashed var(--ink); }
+/* Tangy: the line across the Design Refresh card is a solid ink line, not a faint white one */
+.theme-blocks .spot--refresh .spot__foot { border-top: 2px solid var(--ink); }
 /* Footer channel block: Sound effects on the right of the title, the light right after each name, smaller keys */
 .footer__moods:has(#footer-channel) > div:first-child { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; align-items: center; }
 .footer__moods:has(#footer-channel) > div:first-child > :is(h4, p) { grid-column: 1; }
@@ -5353,7 +5353,7 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
   #moods-tv > .wrap:not(#z) { grid-template-columns: 460px minmax(0, 1fr); column-gap: 40px; }
   #moods-tv .tv-keys .tv-key:not(#z) { width: 88px; }
 }
-/* Transit key (button board and pop-up): back to the red-orange key, with an outline face drawn in black */
+/* Transit key (button board and pop-up): charcoal, with an outline face drawn in subway red */
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg); }
 /* the "Seriously, press one." part drops whenever it would push Sound effects onto its own line (set by script.js) */
 #moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }
@@ -5373,3 +5373,15 @@ html.theme-blocks #compare .compare-cards .cc:nth-child(1) .cc__ico:not(#z) { ba
 /* Transit: on the purple How it works section, Get started is subway yellow (blue got lost on the purple), like the Three ways button */
 html.theme-subway.theme-dark #how .btn--primary:not(#z) { background: #fccc0a; border-color: #fccc0a; color: #111; }
 html.theme-subway.theme-dark #how .btn--primary:not(#z):hover { background: #ffd83a; border-color: #ffd83a; }
+.tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #262626; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #262626; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 12px 0 var(--cap-edge), inset 0 2px 0 transparent; }
+:is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 transparent; }
+#moods-tv .tv-key--transit:is([aria-pressed="true"], :active) .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 3px 6px rgba(0,0,0,.35); }
+:is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.35); }
+/* pop-up keys: each key's corners follow its socket (socket radius minus the 3px gap), so a pressed key sits flush */
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon:not(#z) { border-radius: 9px; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon--sophisticated:not(#z) { border-radius: 1px; }
+/* Tangy Google Maps: the Every plan half is mint (not two blues in a row); the icons sit on plain white */
+html.theme-blocks .mplans .mplan:not(.mplan--grow):not(#z) { background: var(--mint); }
+html.theme-blocks .mplans .mplan__ico:not(#z) { background: #fff; }
