@@ -6783,3 +6783,6 @@ html.theme-wedding .phone .chat-pick__or:not(#z):not(#y) { font: italic 500 .7re
 html .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .6rem; }
 html.theme-wedding .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .7rem; }
 @media (max-width: 640px) { html .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .54rem; } }
+/* the "Web Design Wife" label in the opening view fades away as the phone appears (while its row folds away) */
+.thread .m--from { transition: grid-template-rows .5s var(--ease-out), opacity .28s ease; }
+.thread .m--from:not(.is-in) { opacity: 0; }
