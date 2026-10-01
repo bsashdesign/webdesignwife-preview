@@ -6740,3 +6740,6 @@ html.theme-blocks .m--typing .bubble i:not(#z) { background: var(--ink); }
 html.theme-subway .m--typing .bubble:not(#z):not(#y) { background: var(--blue); border-radius: 12px 12px 12px 0; }
 html.theme-wedding .m--typing .bubble:not(#z):not(#y) { background: var(--ink); border-radius: 10px 10px 10px 1px; }
 html.theme-wedding .m--typing .bubble i:not(#z) { background: #e9d9b4; }
+/* "You" is a sender label, set like "Web Design Wife" over my message (plain body font, never script); "or" keeps
+   each mood's own style, so the two never look alike */
+html .chat-you:not(#z):not(#y) { font-family: var(--body); font-style: normal; font-weight: 700; font-size: .6rem; letter-spacing: normal; text-transform: none; color: var(--ink); }
