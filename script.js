@@ -2162,15 +2162,14 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
 
 // "Built for" band: three slot reels (verb, business, neighborhood) that tick one step at a time, taking turns.
 // Spin whirls them through words and stars; your spins land on "Web Design Wife", then roll on to a new sentence.
-// Now and then a gloved hand pops up from the band's bottom line, hovers, and presses Spin itself (its spins
-// skip the stars and go straight to a new sentence).
+// Until you've spun it yourself, now and then a gloved hand reaches in and presses Spin (its spins skip the name
+// and go straight to a new sentence).
 document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   const band = slot.closest(".for--spin"), btn = slot.querySelector(".drift__btn"), msg = slot.querySelector(".jackpot"), hand = band.querySelector(".pokehand");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const VERBS = ["Built", "Designed", "Developed", "Crafted", "Launched", "Managed", "Made", "Polished"];
   const TYPES = ["Plumbers", "Salons", "Barbers", "Dentists", "Restaurants", "Contractors", "Cleaners", "Gyms", "Accountants", "Bakeries", "Florists", "Pharmacies", "Law offices", "Auto shops"];
   const HOODS = ["Bushwick", "Park Slope", "Astoria", "Harlem", "Flushing", "Williamsburg", "Jackson Heights", "Bay Ridge", "The Bronx", "Chelsea", "Fort Greene", "St. George", "Crown Heights", "Long Island City"];
-  const STAR = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4.5l4.7 9.7 10.6 1.3-7.8 7.4 2 10.5L20 28.2l-9.5 5.2 2-10.5-7.8-7.4 10.6-1.3z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/></svg>';
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
   const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li><span>${t}</span></li>`).join("")).join("");
 
@@ -2192,12 +2191,14 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     reels.forEach((r, k) => {
       r.reel.style.width = horiz() ? "" : widths[k] + 2 + "px";
       r.reel.style.setProperty("--fw", (horiz() ? same : widths[k]) + 4 + "px");
-      show(r, 0);
+      // never snap a reel that's mid-glide or mid-spin (that was the jolt); its next move lines it up anyway
+      if (!(performance.now() < r.until)) show(r, 0);
     });
   };
   horizMQ.addEventListener("change", () => setTimeout(() => { size(); fit(); }, 30));
   const row = (r) => r.ul.firstElementChild.getBoundingClientRect()[horiz() ? "width" : "height"];
   const show = (r, ms, ease) => {
+    r.until = ms ? performance.now() + ms : 0;
     r.ul.style.transition = ms ? `transform ${ms}ms ${ease}, filter .45s ease-out` : "filter .45s ease-out";
     r.ul.style.transform = horiz()
       ? `translateX(${-r.pos * row(r) + (r.reel.clientWidth - row(r)) / 2}px)`
@@ -2239,15 +2240,16 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (need > room) { slot.style.fontSize = (parseFloat(getComputedStyle(slot).fontSize) * room / need) + "px"; }
   };
   const sizeAll = () => { shrink(); size(); fit(); };
-  addEventListener("resize", () => { shrink(); size(); });
+  let lastW = innerWidth;
+  const widthChanged = () => { if (innerWidth === lastW) return false; lastW = innerWidth; return true; };
+  addEventListener("resize", () => { if (widthChanged()) { shrink(); size(); } });
   sizeAll();
   if (document.fonts) document.fonts.ready.then(sizeAll);
   addEventListener("resize", fit);
   new MutationObserver(() => setTimeout(fit, 80)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-  addEventListener("resize", size);
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
-  let drifting = true, spins = 0;
+  let drifting = true, spins = 0, youSpun = false;
   // Your spins land on "Web Design Wife": "for" and "in" slide away (each in its neighbouring reel's direction)
   // so the name reads cleanly, then slide back in with that reel's next step, coming from the other side.
   // "for" travels with the first reel, "in" with the second.
@@ -2273,11 +2275,24 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       if (r.k < 2) linkBack(r.k);
       setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
       const gen = spins;
-      setTimeout(() => { if (gen !== spins) return; r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }, GLIDE + 40);
+      // swap in the ordinary looping list, but keep the name word in the row it's just left (still in view), so
+      // nothing visibly changes; it turns back into an ordinary word once it's out of sight, after the next step
+      setTimeout(() => {
+        if (gen !== spins) return;
+        const brand = r.ul.children[r.dir > 0 ? toAt - 1 : toAt + 1]?.outerHTML;
+        r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0);
+        const at = r.pos - r.dir, li = r.ul.children[at];
+        if (brand && li) { li.outerHTML = brand; r.keep = at; }
+      }, GLIDE + 40);
       return;
     }
     recentre(r); show(r, 0); void r.ul.offsetWidth;
     r.pos += r.dir; show(r, GLIDE, CLICK);
+    // the name word left over from a win scrolls out of view with this step: then it goes back to its ordinary word
+    if (r.keep != null) {
+      const at = r.keep, gen = spins; r.keep = null;
+      setTimeout(() => { const li = r.ul.children[at]; if (gen === spins && li) li.outerHTML = `<li><span>${r.items[((at % r.n) + r.n) % r.n]}</span></li>`; }, GLIDE + 40);
+    }
     setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
   };
   reels.forEach((r, k) => setTimeout(() => { step(r); setInterval(() => step(r), STEP); }, 900 + k * STEP / 3));
@@ -2301,20 +2316,21 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   btn.addEventListener("click", () => {
     const gen = ++spins; drifting = false; msg.classList.remove("is-on");
     const win = btn.dataset.byHand !== "1"; // your spins land on "Web Design Wife"; the hand's never do
+    if (win) youSpun = true; // after that, the hand stays away
     if (win) { linkAway(0); linkAway(1); }
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {
-      const n = r.n; r.after = null; r.reel.classList.remove("is-win");
+      const n = r.n; r.after = null; r.keep = null; r.reel.classList.remove("is-win");
       // where the reel is right now, even mid-glide: the row showing in the frame, and the one it came from
       const R = row(r), ty = new DOMMatrixReadOnly(getComputedStyle(r.ul).transform).m42;
       const now = -ty / R + peek(), at0 = Math.max(1, Math.min(r.ul.children.length - 2, Math.round(now))), frac = now - at0;
       const cur = r.ul.children[at0].outerHTML, prev = r.ul.children[at0 - r.dir].outerHTML;
       let to; do { to = Math.floor(Math.random() * n); } while (n > 1 && r.ul.children[at0].textContent === r.items[to]);
-      const word = (i) => `<li><span>${r.items[((i % n) + n) % n]}</span></li>`, star = () => `<li class="bf-ico">${STAR}</li>`;
-      // current word → a whirl of words and stars → (your spins: a star) → the new word with its real neighbours
+      const word = (i) => `<li><span>${r.items[((i % n) + n) % n]}</span></li>`;
+      // current word → a whirl of words → (your spins: Web / Design / Wife) → the new word with its real neighbours
       const seq = [prev, cur];
-      for (let i = 0; i < LEN; i++) seq.push(i % 2 ? word(Math.floor(Math.random() * n)) : star());
-      // your spins stop on a star with the new word right after it; the hand's go straight to the new word
+      for (let i = 0; i < LEN; i++) seq.push(word(Math.floor(Math.random() * n)));
+      // your spins stop on the name with the new word right after it; the hand's go straight to the new word
       const symAt = seq.length; if (win) seq.push(`<li class="bf-brand"><span>${BRAND[k]}</span></li>`); else seq.push(word(to - r.dir));
       const toAt = seq.length; seq.push(word(to), word(to + r.dir), word(to + 2 * r.dir));
       const L = seq.length, items = r.dir > 0 ? seq : seq.slice().reverse(), at = (i) => (r.dir > 0 ? i : L - 1 - i);
@@ -2381,7 +2397,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     }
   };
   async function poke() {
-    if (reduce || document.hidden || !drifting) return;
+    if (reduce || document.hidden || !drifting || youSpun) return;
     aim(); hand.classList.remove("is-leave"); hand.classList.add("is-up", "is-hover"); await wait(380);
     await wait(900 + Math.random() * 700);
     hand.classList.remove("is-hover"); hand.classList.add("is-press"); btn.classList.add("is-down");
@@ -2392,7 +2408,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     hand.classList.add("is-leave"); hand.classList.remove("is-up"); await wait(240);
     hand.classList.remove("is-leave");
   }
-  const next = () => setTimeout(async () => { await poke(); next(); }, 8000 + Math.random() * 8000);
+  const next = () => setTimeout(async () => { if (youSpun) return; await poke(); next(); }, 8000 + Math.random() * 8000);
   const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(async () => { await poke(); next(); }, 3000); } }, { threshold: .6 });
   io.observe(band);
 });
