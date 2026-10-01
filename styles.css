@@ -6317,3 +6317,17 @@ html.theme-wedding .chat-pick__or { font: italic 500 .8rem var(--display); lette
 }
 /* Spin is switched off while the jackpot plays */
 .bf-spin:disabled { opacity: .55; cursor: default; pointer-events: none; }
+/* the replies: no panel and no radio circles; each option is an outlined message bubble (right-aligned, with the
+   message tail), "or" between them; the "Choose a reply" line is centred with a bobbing arrow on each side */
+.chat-pick:not(#z), html.theme-blocks .chat-pick:not(#z), html.theme-subway.theme-dark .chat-pick:not(#z), html.theme-wedding .chat-pick:not(#z) { justify-items: end; gap: 3px; padding: 0; background: none; box-shadow: none; border-radius: 0; }
+html .chat-pick .chat-choice:not(#z):not(#y) { display: block; width: auto; max-width: 92%; text-align: left; border-radius: 15px 15px 5px 15px; }
+html.theme-blocks .chat-pick .chat-choice:not(#z):not(#y) { box-shadow: 2px 2px 0 var(--ink); border-radius: 14px 14px 4px 14px; }
+html.theme-subway.theme-dark .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 6px 6px 0 6px; }
+html.theme-wedding .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 4px; }
+.chat-pick__or:not(#z) { justify-self: end; margin-right: 14px; }
+.chat-choices__tip:not(#z):not(#y) { align-self: stretch; text-align: center; }
+.chat-choices__tip b { margin: 0 3px; }
+@media (max-width: 760px) { html .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 10px 10px 4px 10px; } .chat-pick__or:not(#z) { margin-right: 10px; } }
+.chat-choices__tip:not(#z):not(#y) { white-space: nowrap; }
+html.theme-blocks .chat-choices__tip:not(#z):not(#y) { font-size: .66rem; letter-spacing: -.01em; }
+@media (max-width: 760px) { html.theme-blocks .chat-choices__tip:not(#z):not(#y) { font-size: .5rem; } }

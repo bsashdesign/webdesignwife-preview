@@ -45,7 +45,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     thread.append(m);
     // Drop messages that have scrolled far out of view.
     while (thread.children.length > 12) thread.firstElementChild.remove();
-    nextFrame().then(() => m.classList.add("is-in"));
+    // slide in on the next frame (with a timer as a fallback, so a message never stays hidden)
+    const show = () => m.classList.add("is-in");
+    nextFrame().then(show); setTimeout(show, 120);
     return m;
   }
   async function removeMessage(m) {
@@ -176,19 +178,19 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     let busy = false;
     // the first time the choices show, a cue (like the Change the Channel one) nudges you to reply
     let cued = false;
-    // The replies are shown as a choice, not as messages: a small panel with "Choose a reply", the two options
-    // (each with an empty circle, like a radio button) and an "or" between them
+    // The replies: "Choose a reply" with a bobbing arrow either side, then the two options as message-shaped
+    // bubbles (outlined, not yet sent) with an "or" between them
     const pickPanel = (opts, first) => {
       const tip = document.createElement("span");
       tip.className = "chat-choices__tip"; tip.setAttribute("aria-hidden", "true");
-      tip.innerHTML = first ? 'Choose a reply, <em>really.</em> <b>↓</b>' : "Choose a reply <b>↓</b>";
+      tip.innerHTML = first ? '<b>↓</b> Choose a reply, <em>really.</em> <b>↓</b>' : "<b>↓</b> Choose a reply <b>↓</b>";
       const panel = document.createElement("div");
       panel.className = "chat-pick"; panel.setAttribute("role", "group"); panel.setAttribute("aria-label", "Choose a reply");
       opts.forEach((o, i) => {
         if (i) { const or = document.createElement("span"); or.className = "chat-pick__or"; or.textContent = "or"; panel.append(or); }
         const b = document.createElement("button");
         b.type = "button"; b.className = "chat-choice";
-        b.innerHTML = '<span class="chat-choice__dot" aria-hidden="true"></span><span class="chat-choice__text"></span>';
+        b.innerHTML = '<span class="chat-choice__text"></span>';
         b.querySelector(".chat-choice__text").textContent = o.label;
         b.addEventListener("click", () => pick(o));
         panel.append(b);
@@ -2316,7 +2318,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
 
   // The Spin button's labels: a new one with each of your spins, getting sillier; the tenth is the jackpot.
   // Every label sits stacked in the same spot inside the button, so it's always as wide as the longest one.
-  const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "No More", "If You Insist"];
+  const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "You Won!", "Go Again"];
   // What your spins reveal: a friendly three-word benefit each time ("for" and "in" tucked away), picked from this
   // pool without repeats; the tenth spin, the jackpot, always lands on Web Design Wife
   const PERKS = [
@@ -2348,11 +2350,11 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     btn.classList.remove("is-new"); void btn.offsetWidth; btn.classList.add("is-new");
   };
   setLabel(0);
-  // counts your spins (1 = first): after spin n the button shows label n; the tenth (the jackpot) reads "No More",
-  // then "If You Insist", and the count starts over
+  // counts your spins (1 = first): after spin n the button shows label n; the tenth (the jackpot) reads "You Won!",
+  // then "Go Again", and the count starts over
   const bumpLabel = () => {
     level = level >= 10 ? 1 : level + 1;
-    setLabel(level); // the tenth spin, the jackpot, reads "No More" while it plays
+    setLabel(level); // the tenth spin, the jackpot, reads "You Won!" while it plays
     return level;
   };
   // the jackpot: confetti pours down the whole screen and the band does a little happy shake
@@ -2424,8 +2426,8 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       if (jackpot) megaParty();
     }, land);
     if (jackpot) {
-      // the jackpot plays out in full: Spin says "No More" and is switched off until it's done, then gives in
-      // with "If You Insist" (and the count starts over)
+      // the jackpot plays out in full: Spin says "You Won!" and is switched off until it's done, then offers
+      // "Go Again" (and the count starts over)
       btn.disabled = true;
       later(() => { btn.disabled = false; setLabel(11); }, land + 3600 + GLIDE + 200);
     }
