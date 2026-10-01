@@ -5708,3 +5708,5 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 .theme-wedding .for--spin .tick:not(#z) { --fh: 1.65em; --row: 2.05em; }
 .for--spin .treel__frame:not(#z) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--fh)) / 2); height: var(--fh); }
 :is(.theme-blocks, .theme-wedding) .for--spin .treel__frame:not(#z):not(#y) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--fh)) / 2 - .16em); height: calc(var(--fh) + .32em); }
+/* Built-for band: the words above and below the frames sit at half strength (flat, no fade), the framed row full */
+.for--spin .treel__win:not(#z):not(#y) { -webkit-mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32.5%, #000 34%, #000 66%, rgba(0,0,0,.5) 67.5%, rgba(0,0,0,.5) 100%); mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32.5%, #000 34%, #000 66%, rgba(0,0,0,.5) 67.5%, rgba(0,0,0,.5) 100%); }
