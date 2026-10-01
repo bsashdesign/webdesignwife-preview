@@ -4523,3 +4523,6 @@ html, html * { font-variant-numeric: lining-nums; }
 /* Calm: Essentials' stone in a clearer, more saturated violet (still the lightest of the three) instead of washed-out lavender */
 .plan-ring-tile:has([data-plan="essentials"]) { --ring: #9883f7; }
 .hplan [data-plan="essentials"] { color: #9883f7; }
+/* Calm: every gem in the same violet as Business (the shapes tell the plans apart) */
+html.theme-refined canvas.plan-gem.plan-gem { color: #8670f0; }
+html.theme-refined .plan-ring-tile:has(.plan-gem) { --ring: #8670f0; }
