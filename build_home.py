@@ -88,11 +88,12 @@ def newsletter():
 
 
 def footer_moods():
-    # the same 3D channel keys as the pop-up and the homepage board, each with its name underneath
-    return '<div class="moods moods--keys" role="group" aria-label="Change the channel">' + "".join(
-        f'<button type="button" class="moods__key" data-mood="{m["key"]}" aria-pressed="false"><span class="key-well">{dots(m)}</span><span class="moods__name">{m["label"]}</span></button>'
+    # exactly the pop-up's channel options (key, name, note, light), so the two never drift apart
+    opts = "".join(
+        f'<button type="button" class="mood__opt" data-mood="{m["key"]}" aria-pressed="false"><span class="key-well">{dots(m)}</span><span><strong>{m["label"]}</strong><small>{m["note"]}</small></span></button>'
         for m in MOODS
-    ) + "</div>"
+    )
+    return f'<div class="moods moods--popup" id="footer-channel" role="group" aria-label="Change the channel">{opts}</div>'
 
 
 def mood_boot():

@@ -3737,25 +3737,25 @@ span.plan-ring:empty { display: none; }
 #mood .mood__intro { color: rgba(246,242,236,.75); }
 #mood .mood__close { background: rgba(255,255,255,.14); color: #fff; }
 #mood .mood__close:hover { background: rgba(255,255,255,.26); }
-#mood .mood__opt, #mood .mood__opt:hover, #mood .mood__opt[aria-pressed="true"], #mood .mood__opt[aria-pressed="true"]:hover { gap: 16px; padding: 10px 40px 12px 10px; border: 0; background: none; color: #fff; }
-#mood .mood__opt:hover { background: rgba(255,255,255,.07); }
-#mood .mood__opt small, #mood .mood__opt[aria-pressed="true"] small { color: rgba(246,242,236,.72); }
+:is(#mood, #footer-channel) .mood__opt, :is(#mood, #footer-channel) .mood__opt:hover, :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"], :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"]:hover { gap: 16px; padding: 10px 40px 12px 10px; border: 0; background: none; color: #fff; }
+:is(#mood, #footer-channel) .mood__opt:hover { background: rgba(255,255,255,.07); }
+:is(#mood, #footer-channel) .mood__opt small, :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] small { color: rgba(246,242,236,.72); }
 /* the light */
-#mood .mood__opt::after, #mood .mood__opt[aria-pressed="true"]::after { right: 16px; width: 9px; height: 9px; margin-top: -4.5px; background: #3e3731; box-shadow: inset 0 1px 1px rgba(0,0,0,.6); }
-#mood .mood__opt[aria-pressed="true"]::after { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
+:is(#mood, #footer-channel) .mood__opt::after, :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"]::after { right: 16px; width: 9px; height: 9px; margin-top: -4.5px; background: #3e3731; box-shadow: inset 0 1px 1px rgba(0,0,0,.6); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"]::after { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
 /* the keys: raised, and pressed down when they're on */
-#mood .mood__opt .moodicon { width: 52px; height: 46px; margin-bottom: 6px; border: 0; border-radius: 11px; box-shadow: 0 6px 0 var(--cap-edge), 0 9px 10px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.55); transition: transform .09s ease, box-shadow .09s ease; }
-#mood .mood__opt:hover .moodicon { transform: translateY(2px); box-shadow: 0 4px 0 var(--cap-edge), 0 6px 8px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .moodicon { transform: translateY(5px); box-shadow: 0 1px 0 var(--cap-edge), 0 2px 4px rgba(0,0,0,.4), inset 0 2px 5px rgba(0,0,0,.2); }
-#mood .mood__opt .moodicon .mi { width: 64%; height: 64%; }
-#mood .mood__opt .moodicon--calm { --cap-edge: #a996ff; background: #efeaff; }
-#mood .mood__opt .moodicon--transit { --cap-edge: #b38f00; width: 46px; margin-inline: 3px; border-radius: 50%; background: #fccc0a; }
-#mood .mood__opt .moodicon--sophisticated { --cap-edge: #b8955a; position: relative; border-radius: 3px; background: #f4ecdb; }
-#mood .mood__opt .moodicon--sophisticated::after { content: ""; position: absolute; inset: 4px; border: 1px solid #b8955a; border-radius: 1px; }
-#mood .mood__opt .moodicon--tangy { background: #d4ff4f; border: 2.5px solid #111; box-shadow: 4px 4px 0 #111; }
-#mood .mood__opt:hover .moodicon--tangy { transform: translate(1px, 1px); box-shadow: 3px 3px 0 #111; }
-#mood .mood__opt[aria-pressed="true"] .moodicon--tangy { transform: translate(4px, 4px); box-shadow: 0 0 0 #111; }
-#mood .mood__opt:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+:is(#mood, #footer-channel) .mood__opt .moodicon { width: 52px; height: 46px; margin-bottom: 6px; border: 0; border-radius: 11px; box-shadow: 0 6px 0 var(--cap-edge), 0 9px 10px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.55); transition: transform .09s ease, box-shadow .09s ease; }
+:is(#mood, #footer-channel) .mood__opt:hover .moodicon { transform: translateY(2px); box-shadow: 0 4px 0 var(--cap-edge), 0 6px 8px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .moodicon { transform: translateY(5px); box-shadow: 0 1px 0 var(--cap-edge), 0 2px 4px rgba(0,0,0,.4), inset 0 2px 5px rgba(0,0,0,.2); }
+:is(#mood, #footer-channel) .mood__opt .moodicon .mi { width: 64%; height: 64%; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--calm { --cap-edge: #a996ff; background: #efeaff; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--transit { --cap-edge: #b38f00; width: 46px; margin-inline: 3px; border-radius: 50%; background: #fccc0a; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--sophisticated { --cap-edge: #b8955a; position: relative; border-radius: 3px; background: #f4ecdb; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--sophisticated::after { content: ""; position: absolute; inset: 4px; border: 1px solid #b8955a; border-radius: 1px; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--tangy { background: #d4ff4f; border: 2.5px solid #111; box-shadow: 4px 4px 0 #111; }
+:is(#mood, #footer-channel) .mood__opt:hover .moodicon--tangy { transform: translate(1px, 1px); box-shadow: 3px 3px 0 #111; }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .moodicon--tangy { transform: translate(4px, 4px); box-shadow: 0 0 0 #111; }
+:is(#mood, #footer-channel) .mood__opt:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 /* Design Refresh timeline: each included refresh has a check; Transit's are all blue */
 .cadence__track i.on { position: relative; display: grid; place-items: center; }
@@ -3770,7 +3770,7 @@ span.plan-ring:empty { display: none; }
 
 /* Transit's key is orange everywhere: on the board, in the picker and on the floating button */
 .tv-key--transit { --cap: #ff6319; --cap-edge: #b8440f; }
-#mood .mood__opt .moodicon--transit { --cap-edge: #b8440f; background: #ff6319; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--transit { --cap-edge: #b8440f; background: #ff6319; }
 /* The floating mood button is the same push key as on the board, in the current mood's style */
 #mood .mood__btn .moodicon { width: 50px; height: 44px; margin-bottom: 6px; border: 0; border-radius: 11px; box-shadow: 0 6px 0 var(--cap-edge), 0 10px 14px rgba(0,0,0,.3), inset 0 2px 0 rgba(255,255,255,.55); }
 #mood .mood__btn .moodicon .mi { width: 64%; height: 64%; }
@@ -3818,11 +3818,11 @@ span.plan-ring:empty { display: none; }
 .tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well { border-radius: 50%; padding: 5px 5px 11px; }
 .tv-key--sophisticated .key-well, .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 6px; }
 /* the picker's smaller keys */
-#mood .mood__opt .key-well { padding: 4px 4px 10px; border-radius: 14px; }
-#mood .mood__opt[data-mood="tangy"] .key-well { padding: 4px 9px 9px 4px; border-radius: 14px; }
-#mood .mood__opt[data-mood="transit"] .key-well { padding: 4px 4px 9px; border-radius: 50%; }
-#mood .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 5px; }
-#mood .mood__opt .key-well .moodicon { margin: 0; }
+:is(#mood, #footer-channel) .mood__opt .key-well { padding: 4px 4px 10px; border-radius: 14px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { padding: 4px 9px 9px 4px; border-radius: 14px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well { padding: 4px 4px 9px; border-radius: 50%; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 5px; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon { margin: 0; }
 /* a key's travel is taken up inside the socket */
 #moods-tv .tv-key__cap { box-shadow: 0 7px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key:hover .tv-key__cap { box-shadow: 0 5px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
@@ -3830,42 +3830,42 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key--tangy .tv-key__cap { box-shadow: 4px 4px 0 #111; }
 #moods-tv .tv-key--tangy:hover .tv-key__cap { box-shadow: 3px 3px 0 #111; }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translate(4px, 4px); box-shadow: 0 0 0 #111; }
-#mood .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 5px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(4px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
+:is(#mood, #footer-channel) .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 5px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(4px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
 /* thinner sockets: a sliver of dark around each key */
 .key-well { padding: 2px 2px 6px; border-radius: 14px; background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); }
-.tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well, #mood .mood__opt[data-mood="tangy"] .key-well { padding: 2px 6px 6px 2px; border-radius: 13px; }
-.tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well, #mood .mood__opt[data-mood="transit"] .key-well { padding: 2px 2px 5px; border-radius: 50%; }
-.tv-key--sophisticated .key-well, .mood__opt[data-mood="sophisticated"] .key-well, #mood .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 4px; }
-#mood .mood__opt .key-well { padding: 2px 2px 5px; border-radius: 12px; }
+.tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { padding: 2px 6px 6px 2px; border-radius: 13px; }
+.tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well { padding: 2px 2px 5px; border-radius: 50%; }
+.tv-key--sophisticated .key-well, .mood__opt[data-mood="sophisticated"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="sophisticated"] .key-well { border-radius: 4px; }
+:is(#mood, #footer-channel) .mood__opt .key-well { padding: 2px 2px 5px; border-radius: 12px; }
 #moods-tv .tv-key__cap { box-shadow: 0 4px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key:hover .tv-key__cap { transform: translateY(1px); box-shadow: 0 3px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:active .tv-key__cap { transform: translateY(3px); box-shadow: 0 1px 0 var(--cap-edge, #999), inset 0 2px 5px rgba(0,0,0,.25); }
-#mood .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .moodicon:not(.moodicon--tangy) { transform: translateY(1px); box-shadow: 0 2px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(2px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
+:is(#mood, #footer-channel) .mood__opt .moodicon:not(.moodicon--tangy) { box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .moodicon:not(.moodicon--tangy) { transform: translateY(1px); box-shadow: 0 2px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(2px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
 /* each socket hugs its key (it doesn't stretch to the column) */
 .tv-key .key-well { width: auto; }
 @media (max-width: 600px) { .tv-key:not(.tv-key--transit) .key-well { width: min(100%, 64px); } }
 /* an even rim all the way round; the key's edge fits inside it */
-.key-well, #mood .mood__opt .key-well, .tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well, #mood .mood__opt[data-mood="transit"] .key-well { padding: 3px; }
-.tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well, #mood .mood__opt[data-mood="tangy"] .key-well { padding: 3px 6px 6px 3px; }
+.key-well, :is(#mood, #footer-channel) .mood__opt .key-well, .tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well { padding: 3px; }
+.tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { padding: 3px 6px 6px 3px; }
 #moods-tv .tv-key:not(.tv-key--tangy) .tv-key__cap { box-shadow: 0 3px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key:not(.tv-key--tangy):hover .tv-key__cap { transform: translateY(1px); box-shadow: 0 2px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key:not(.tv-key--tangy)[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:not(.tv-key--tangy):active .tv-key__cap { transform: translateY(2px); box-shadow: 0 1px 0 var(--cap-edge, #999), inset 0 2px 5px rgba(0,0,0,.25); }
 #moods-tv .tv-key .tv-key__cap { margin-bottom: 3px; }
 #moods-tv .tv-key--tangy .tv-key__cap { margin: 0; box-shadow: 3px 3px 0 #111; }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translate(3px, 3px); box-shadow: 0 0 0 #111; }
-#mood .mood__opt .key-well .moodicon:not(.moodicon--tangy) { margin-bottom: 3px; box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt .key-well .moodicon--tangy { box-shadow: 3px 3px 0 #111; }
-#mood .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translate(3px, 3px); box-shadow: 0 0 0 #111; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon:not(.moodicon--tangy) { margin-bottom: 3px; box-shadow: 0 3px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon--tangy { box-shadow: 3px 3px 0 #111; }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translate(3px, 3px); box-shadow: 0 0 0 #111; }
 /* the picker's names line up, whatever the key's shape */
-#mood .mood__opt .key-well { margin: 0 2px; }
-#mood .mood__opt[data-mood="tangy"] .key-well { margin: 0 1px 0 0; }
-#mood .mood__opt[data-mood="transit"] .key-well { margin: 0 5px; }
+:is(#mood, #footer-channel) .mood__opt .key-well { margin: 0 2px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { margin: 0 1px 0 0; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well { margin: 0 5px; }
 /* Tangy has no socket: its own hard shadow is its 3D */
-.tv-key--tangy .key-well, #mood .mood__opt[data-mood="tangy"] .key-well { background: none; box-shadow: none; }
+.tv-key--tangy .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { background: none; box-shadow: none; }
 /* thick keys: a tall side edge that disappears into the socket when pressed */
 #moods-tv .tv-key:not(.tv-key--tangy) .tv-key__cap { margin-bottom: 9px; box-shadow: 0 9px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key:not(.tv-key--tangy):hover .tv-key__cap { transform: translateY(2px); box-shadow: 0 7px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
@@ -3874,15 +3874,15 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key--tangy:hover .tv-key__cap { transform: translate(2px, 2px); box-shadow: 5px 5px 0 #111; }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translate(7px, 7px); box-shadow: 0 0 0 #111; }
 .tv-key--tangy .key-well { padding: 3px; }
-#mood .mood__opt .key-well .moodicon:not(.moodicon--tangy) { margin-bottom: 6px; box-shadow: 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(1px); box-shadow: 0 5px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(5px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
-#mood .mood__opt .key-well .moodicon--tangy { margin: 0 5px 5px 0; box-shadow: 5px 5px 0 #111; }
-#mood .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translate(5px, 5px); box-shadow: 0 0 0 #111; }
-#mood .mood__opt[data-mood="tangy"] .key-well { padding: 3px; margin: 0 -1px 0 0; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon:not(.moodicon--tangy) { margin-bottom: 6px; box-shadow: 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(1px); box-shadow: 0 5px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(5px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon--tangy { margin: 0 5px 5px 0; box-shadow: 5px 5px 0 #111; }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translate(5px, 5px); box-shadow: 0 0 0 #111; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { padding: 3px; margin: 0 -1px 0 0; }
 /* Tangy's key is a touch bigger, so it reads the same size as the keys sitting in sockets */
 #moods-tv .tv-key--tangy .tv-key__cap { scale: 1.07; }
-#mood .mood__opt .key-well .moodicon--tangy { scale: 1.08; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon--tangy { scale: 1.08; }
 /* the floating button: a soft outline in its own tone (Tangy keeps its ink outline) */
 #mood .mood__btn .moodicon:not(.moodicon--tangy) { box-shadow: 0 0 0 1px color-mix(in srgb, var(--cap-edge) 75%, transparent), 0 8px 18px -10px rgba(0,0,0,.45); }
 /* room for the slabs' thick bottom edge */
@@ -3909,7 +3909,7 @@ span.plan-ring:empty { display: none; }
 .tv-key--tangy .tv-key__name { font-size: .92em; }
 
 /* Keys stand up out of their sockets: no socket shows above a key until it's pressed */
-.key-well, #mood .mood__opt .key-well, .tv-key--transit .key-well, #mood .mood__opt[data-mood="transit"] .key-well { padding: 0 3px 3px; }
+.key-well, :is(#mood, #footer-channel) .mood__opt .key-well, .tv-key--transit .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well { padding: 0 3px 3px; }
 /* Tangy's board key: like the others (a forward edge, same size, same corners), with a solid black edge */
 #moods-tv .tv-key--tangy .key-well { padding: 0 3px 3px; background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); border-radius: 17px; }
 #moods-tv .tv-key--tangy .tv-key__cap { scale: none; margin: 0 0 9px; border: 2.5px solid #111; box-shadow: 0 9px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
@@ -3936,9 +3936,9 @@ span.plan-ring:empty { display: none; }
 /* Transit Dark's key: the Transit face on a round black key */
 .moodicon--transitdark { background: #1c1c1c; color: #fff; }
 .moodicon--transitdark .mi { width: 82%; height: 82%; background-image: url(images/moods/transit.svg); }
-#mood .mood__opt .moodicon--transitdark { --cap-edge: #000; width: 46px; border-radius: 50%; background: #1c1c1c; }
-#mood .mood__opt[data-mood="transitdark"] .key-well { border-radius: 50%; margin: 0 5px; }
-#mood .mood__opt[data-mood="transitdark"] strong { font-family: "Inter Tight", sans-serif; font-weight: 800; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--transitdark { --cap-edge: #000; width: 46px; border-radius: 50%; background: #1c1c1c; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transitdark"] .key-well { border-radius: 50%; margin: 0 5px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transitdark"] strong { font-family: "Inter Tight", sans-serif; font-weight: 800; }
 #mood .mood__btn .moodicon--transitdark { --cap-edge: #555; width: 48px; height: 48px; border-radius: 50%; background: #1c1c1c; }
 .moods__card .moodicon--transitdark { border-radius: 50%; }
 
@@ -3959,9 +3959,9 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key:not(.tv-key--tangy)[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:not(.tv-key--tangy):active .tv-key__cap { transform: translateY(8px); box-shadow: 0 1px 0 var(--cap-edge, #999), inset 0 3px 6px rgba(0,0,0,.28); }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translateY(8px); box-shadow: 0 1px 0 #111, inset 0 3px 6px rgba(0,0,0,.28); }
 /* the same in the pop-up */
-#mood .mood__opt .key-well { margin-top: 6px; }
-#mood .mood__opt .key-well .moodicon { margin-top: -6px; }
-#mood .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(-1px); box-shadow: 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt .key-well { margin-top: 6px; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon { margin-top: -6px; }
+:is(#mood, #footer-channel) .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(-1px); box-shadow: 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
 .faq__list details[open] > :not(summary) { cursor: pointer; }
 
 /* the plan gems stand on their own, no tint shape behind them */
@@ -3983,11 +3983,11 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:active .tv-key__cap,
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translateY(12px); box-shadow: inset 0 3px 6px rgba(0,0,0,.28); }
 /* the same in the pop-up, at half the travel */
-#mood .mood__opt .key-well, #mood .mood__opt[data-mood] .key-well { padding: 3px; margin-top: 6px; }
-#mood .mood__opt .key-well .moodicon { margin: -6px 0 6px; }
-#mood .mood__opt .key-well .moodicon:not(.moodicon--tangy) { box-shadow: 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(-1px); box-shadow: 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(6px); box-shadow: inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood] .key-well { padding: 3px; margin-top: 6px; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon { margin: -6px 0 6px; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon:not(.moodicon--tangy) { box-shadow: 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(-1px); box-shadow: 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well .moodicon:not(.moodicon--tangy) { transform: translateY(6px); box-shadow: inset 0 2px 5px rgba(0,0,0,.25); }
 #moods-tv .tv-key.tv-key .key-well { padding: 3px; }
 #moods-tv .tv-key:not(.tv-key--tangy)[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key:not(.tv-key--tangy):active .tv-key__cap,
 #moods-tv .tv-key.tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key.tv-key--tangy:active .tv-key__cap { transform: translateY(12px); box-shadow: inset 0 3px 6px rgba(0,0,0,.28); }
@@ -4073,10 +4073,10 @@ span.plan-ring:empty { display: none; }
 .minitv__knob { width: 7px; background: radial-gradient(circle at 50% 7px, #e9dcc2 0 2.2px, transparent 2.8px), radial-gradient(circle at 50% 15px, #c9b894 0 1.8px, transparent 2.3px), repeating-linear-gradient(#2a1d14 0 2px, #5b4230 2px 4px) 0 21px / 100% 9px no-repeat; }
 
 /* Tangy's key in the pop-up matches the board: lime cap, ink outline, a black front edge, in its socket */
-#mood .mood__opt[data-mood="tangy"] .key-well { background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); padding: 3px; margin: 6px 2px 0; border-radius: 12px; }
-#mood .mood__opt .key-well .moodicon--tangy { scale: none; margin: -6px 0 6px; border: 2.5px solid #111; box-shadow: 0 6px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .key-well .moodicon--tangy { transform: translateY(-1px); box-shadow: 0 7px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translateY(6px); box-shadow: inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); padding: 3px; margin: 6px 2px 0; border-radius: 12px; }
+:is(#mood, #footer-channel) .mood__opt .key-well .moodicon--tangy { scale: none; margin: -6px 0 6px; border: 2.5px solid #111; box-shadow: 0 6px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .key-well .moodicon--tangy { transform: translateY(-1px); box-shadow: 0 7px 0 #111, inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well .moodicon--tangy { transform: translateY(6px); box-shadow: inset 0 2px 5px rgba(0,0,0,.25); }
 /* Tangy: all three plan cards have the hard 3D shadow again (the most popular one a little deeper) */
 .theme-blocks .plans .plan.plan { box-shadow: 6px 6px 0 var(--ink); }
 .theme-blocks .plans .plan.plan--best { box-shadow: 8px 8px 0 var(--ink); }
@@ -4199,11 +4199,11 @@ span.plan-ring:empty { display: none; }
 #mood .mood__intro { color: var(--ink-soft); font-family: var(--body); }
 #mood .mood__close { background: var(--tint, #f1f1ee); color: var(--ink); }
 #mood .mood__close:hover { background: color-mix(in srgb, var(--ink) 10%, transparent); }
-#mood .mood__opt, #mood .mood__opt:hover, #mood .mood__opt[aria-pressed="true"], #mood .mood__opt[aria-pressed="true"]:hover { color: var(--ink); }
-#mood .mood__opt:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); }
-#mood .mood__opt[data-mood] strong { font-family: var(--display); font-style: normal; font-weight: 700; font-size: 1rem; letter-spacing: 0; }
-#mood .mood__opt small, #mood .mood__opt[aria-pressed="true"] small { color: var(--ink-soft); font-family: var(--body); }
-#mood .mood__opt::after { background: color-mix(in srgb, var(--ink) 18%, transparent); box-shadow: none; }
+:is(#mood, #footer-channel) .mood__opt, :is(#mood, #footer-channel) .mood__opt:hover, :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"], :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"]:hover { color: var(--ink); }
+:is(#mood, #footer-channel) .mood__opt:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+:is(#mood, #footer-channel) .mood__opt[data-mood] strong { font-family: var(--display); font-style: normal; font-weight: 700; font-size: 1rem; letter-spacing: 0; }
+:is(#mood, #footer-channel) .mood__opt small, :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] small { color: var(--ink-soft); font-family: var(--body); }
+:is(#mood, #footer-channel) .mood__opt::after { background: color-mix(in srgb, var(--ink) 18%, transparent); box-shadow: none; }
 /* Tangy: ink outline and hard shadow */
 .theme-blocks #mood .mood__panel { border-radius: 18px; box-shadow: 6px 6px 0 var(--ink), 0 0 0 2.5px var(--ink); }
 .theme-blocks #mood .mood__close { background: #fff; box-shadow: inset 0 0 0 2px var(--ink); }
@@ -4212,7 +4212,7 @@ span.plan-ring:empty { display: none; }
 .theme-subway #mood .mood__close { background: #242424; color: #fff; }
 /* Sophisticated: cream stationery with a fine gold frame */
 .theme-wedding #mood .mood__panel { background: #fffdf8; border-radius: 4px; box-shadow: inset 0 0 0 7px #fffdf8, inset 0 0 0 8px var(--gold), 0 30px 60px -30px rgba(31, 35, 54, .45), 0 0 0 1px rgba(184, 149, 90, .35); }
-.theme-wedding #mood .mood__opt[data-mood] strong { font-weight: 600; font-size: 1.15rem; }
+.theme-wedding :is(#mood, #footer-channel) .mood__opt[data-mood] strong { font-weight: 600; font-size: 1.15rem; }
 .theme-wedding #mood .mood__close { border-radius: 2px; }
 
 /* ================================================================
@@ -4315,12 +4315,12 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key--tangy .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 3px #111, 0 12px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key--tangy:hover .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 3px #111, 0 14px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .key-well.key-well .tv-key__cap, #moods-tv .tv-key--tangy:active .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 3px 6px rgba(0,0,0,.28); }
-#mood .mood__opt .key-well.key-well .moodicon { border: 0; box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .key-well.key-well .moodicon { box-shadow: 0 0 0 0 transparent, 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .key-well.key-well .moodicon { transform: translateY(6px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
-#mood .mood__opt .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 6px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt:hover .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 7px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
-#mood .mood__opt[aria-pressed="true"] .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon { border: 0; box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .key-well.key-well .moodicon { box-shadow: 0 0 0 0 transparent, 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well.key-well .moodicon { transform: translateY(6px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 6px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt:hover .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 7px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+:is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 2px 5px rgba(0,0,0,.25); }
 /* TV knobs and speaker grille follow the mood too */
 .theme-blocks .tv__knob { background: #fff; border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
 .theme-blocks .tv__knob--sm { background: #d6ff3a; }
@@ -4783,8 +4783,8 @@ html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[
 /* Channel keys sink the moment they're pressed (before release), on the board and in the pop-up */
 #moods-tv .tv-key:active .key-well.key-well .tv-key__cap:not(#z) { transform: translateY(12px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge, #999), inset 0 3px 6px rgba(0,0,0,.28); }
 #moods-tv .tv-key--tangy:active .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 3px 6px rgba(0,0,0,.28); }
-#mood .mood__opt:active .key-well.key-well .moodicon:not(#z) { transform: translateY(6px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
-#mood .mood__opt:active .key-well.key-well .moodicon--tangy:not(#z) { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt:active .key-well.key-well .moodicon:not(#z) { transform: translateY(6px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
+:is(#mood, #footer-channel) .mood__opt:active .key-well.key-well .moodicon--tangy:not(#z) { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 2px 5px rgba(0,0,0,.25); }
 /* the two header buttons sit closer together: half the usual gap */
 .nav__inner .nav__start + .nav__cta { margin-left: -14px; }
 @media (max-width: 1180px) { .nav__inner .nav__start + .nav__cta { margin-left: -10px; } }
@@ -4898,3 +4898,12 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 #mood .mood__btn:hover .minitv { transform: rotate(6deg); }
 /* Google Maps card: the "after" items arrive a little quicker, one after another */
 .rank.profile.is-played .profile__pane--after li { transition-delay: calc(.1s + var(--k) * 90ms); }
+/* Footer "Change the Channel": the pop-up's options, two to a row */
+#footer-channel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 20px; flex: 1 1 460px; max-width: 620px; }
+#footer-channel .mood__opt { text-align: left; }
+@media (max-width: 640px) { #footer-channel { grid-template-columns: minmax(0, 1fr); } }
+/* footer channel block: title, intro and sound switch on top, the four options in a row underneath */
+.footer__moods:has(#footer-channel) { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 18px; }
+#footer-channel { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; flex: none; gap: 4px 16px; }
+@media (max-width: 960px) { #footer-channel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { #footer-channel { grid-template-columns: minmax(0, 1fr); } }
