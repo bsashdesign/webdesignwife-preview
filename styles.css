@@ -5744,3 +5744,8 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y) { border-radius: 3px; 
 html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wedding .for--spin .drift__btn.is-down:not(#z):not(#y) { background: #4f361f; box-shadow: inset 0 0 0 3px #4f361f, inset 0 0 0 4px rgba(217,186,124,.85), 0 3px 8px -6px rgba(31,35,54,.6); }
 /* the long sleeve lines up exactly with the sleeve drawn on the hand (same edges, same outline), so it reads as one piece */
 .for--spin .pokehand::after { top: calc(100% - 4px); left: 17.6%; width: 64.8%; }
+/* phones: the hand reaches in from the bottom right on a long diagonal arm, pointing up and left at the middle reel */
+.for--spin .pokehand.from-corner { transform: translate(calc(var(--hx, 0px) + 230px), calc(var(--hy, 0px) + 133px)) rotate(-60deg); }
+.for--spin .pokehand.from-corner.is-up { transform: translate(calc(var(--hx, 0px) + 9px), calc(var(--hy, 0px) + 5px)) rotate(-60deg); }
+.for--spin .pokehand.from-corner.is-hover { transform: translate(calc(var(--hx, 0px) + 9px), calc(var(--hy, 0px) + 5px)) rotate(-60deg); }
+.for--spin .pokehand.from-corner.is-press { transform: translate(calc(var(--hx, 0px) - 1px), calc(var(--hy, 0px) - 1px)) rotate(-60deg); }

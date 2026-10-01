@@ -2087,8 +2087,8 @@ document.addEventListener("click", (e) => {
   document.addEventListener("pointerdown", (e) => {
     const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt, .moods__key");
     if (key) sound(key);
-    // the built-for band's Spin button makes the same click (on phones, where a tap anywhere on the band spins it, so does that)
-    else if (e.button === 0 && (e.target.closest(".for--spin .drift__btn") || (matchMedia("(max-width: 600px)").matches && e.target.closest(".for--spin")))) click(false);
+    // the built-for band's Spin button makes the same click (desktop only: phones have no Spin button, and stay quiet)
+    else if (e.button === 0 && e.target.closest(".for--spin .drift__btn")) click(false);
   });
   // keyboard presses of the same keys make the same sounds
   document.addEventListener("keydown", (e) => {
@@ -2391,7 +2391,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   const target = () => (btn.offsetParent ? btn : slot.querySelector(".treel--biz .treel__frame"));
   const aim = () => {
     const b = band.getBoundingClientRect(), r = target().getBoundingClientRect(), side = !!btn.offsetParent;
-    hand.classList.toggle("from-right", side);
+    hand.classList.toggle("from-right", side); hand.classList.remove("from-corner");
     if (side) {
       // turned to point left, the fingertip sits 126px left of the sleeve's end (which is 22px in, 130px down)
       const tipX = r.right - b.left - 6, tipY = r.top - b.top + r.height / 2;
@@ -2399,15 +2399,21 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       hand.style.setProperty("--hy", (tipY - 130) + "px");
       hand.style.setProperty("--hxo", (b.width + 150) + "px");
     } else {
-      // the fingertip, at the end of the press, lands on the middle of the frame (k: the hand is smaller on phones)
-      const k = hand.offsetHeight / 130, cx = r.left - b.left + r.width / 2, cy = r.top - b.top + r.height * .55;
-      hand.style.setProperty("--hx", (cx + 58 * k + 4) + "px");
-      hand.style.setProperty("--hy", (cy - b.height + 102 * k + 6) + "px");
+      // phones: tilted to point up and left (60°), the arm running off to the bottom right. The fingertip sits
+      // .87 × the hand's height left of, and half its height above, the sleeve's end; it lands just right of and
+      // below the middle of the frame
+      hand.classList.add("from-corner");
+      const H = hand.offsetHeight, w = hand.offsetWidth;
+      const cx = r.left - b.left + r.width * .62, cy = r.top - b.top + r.height * .62;
+      hand.style.setProperty("--hx", (cx - w / 2 + .866 * H) + "px");
+      hand.style.setProperty("--hy", (cy - b.height + .5 * H) + "px");
     }
   };
   async function poke() {
     if (reduce || document.hidden || !drifting || youSpun) return;
-    aim(); hand.classList.remove("is-leave"); hand.classList.add("is-up", "is-hover"); await wait(380);
+    // settle into the starting spot (off the band) without animating there, then reach in
+    hand.style.transition = "none"; aim(); void hand.offsetWidth; hand.style.transition = "";
+    hand.classList.remove("is-leave"); hand.classList.add("is-up", "is-hover"); await wait(380);
     await wait(900 + Math.random() * 700);
     hand.classList.remove("is-hover"); hand.classList.add("is-press"); btn.classList.add("is-down");
     const tapped = btn.offsetParent ? null : slot.querySelector(".treel--biz");
