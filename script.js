@@ -1813,11 +1813,34 @@ document.addEventListener("click", (e) => {
       src.connect(bp).connect(g).connect(ac.destination); src.start(t); src.stop(t + dur);
     } catch (e) {}
   };
+  // Pressing a key that's already down: a dull, low clunk, like a button that can't go any further.
+  const clunk = () => {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === "suspended") ac.resume();
+      const t = ac.currentTime, out = ac.createGain();
+      out.gain.value = .55; out.connect(ac.destination);
+      // a short low thump that drops in pitch...
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.type = "sine"; o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(70, t + .09);
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.6, t + .005); g.gain.exponentialRampToValueAtTime(.0001, t + .14);
+      o.connect(g).connect(out); o.start(t); o.stop(t + .16);
+      // ...with a muffled knock of plastic on top
+      const len = Math.floor(ac.sampleRate * .03), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 4);
+      const n = ac.createBufferSource(), lp = ac.createBiquadFilter(), ng = ac.createGain();
+      n.buffer = buf; lp.type = "lowpass"; lp.frequency.value = 900; ng.gain.value = .5;
+      n.connect(lp).connect(ng).connect(out); n.start(t);
+    } catch (e) {}
+  };
+  const sound = (key) => (key.getAttribute("aria-pressed") === "true" ? clunk() : click());
   document.addEventListener("pointerdown", (e) => {
-    if (e.button === 0 && e.target.closest("[data-tv-key], .mood__opt")) click();
+    const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt");
+    if (key) sound(key);
   });
-  // keyboard presses of the same keys click too
+  // keyboard presses of the same keys make the same sounds
   document.addEventListener("keydown", (e) => {
-    if ((e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.closest("[data-tv-key], .mood__opt")) click();
+    const key = (e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.closest("[data-tv-key], .mood__opt");
+    if (key) sound(key);
   });
 })();
