@@ -24,23 +24,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   const EASE_OUT = "cubic-bezier(.22, 1, .36, 1)";
   const CHECK = '<span class="bubble__check"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4l2.3 2.3 4.7-5" fill="none" stroke="#5b3df5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 
-  const steps = [
-    {
-      ask: "Hi! Can you add Saturday hours, 9 to 2?",
-      reply: "Done. It's live on your site.",
-      apply: () => swapValue(rows.hours, "Mon–Fri 8–5 · Sat 9–2"),
-    },
-    {
-      ask: "We install tankless water heaters now",
-      reply: "Added to your services.",
-      apply: () => swapValue(rows.services, "Drains · Leak repair · Water heaters"),
-    },
-    {
-      ask: "Can we run 10% off heater installs in July?",
-      reply: "Your promo banner is up.",
-      apply: () => banner.classList.add("is-open"),
-    },
-  ];
 
   // ---- Timing: waits only count down while the demo is on screen and the tab is visible.
   let onScreen = true;
@@ -139,55 +122,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     await wait(900);
   }
 
-  // ---- Reduced motion: show the finished conversation, no animation.
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const last = steps[steps.length - 1];
-    steps.forEach((s) => s.apply());
-    [
-      ["stamp", '<span class="stamp">Today 9:41 AM</span>'],
-      ["them", `<div class="bubble">${last.ask}</div>`],
-      ["us", `<div class="bubble">${CHECK}${last.reply}</div>`],
-    ].forEach(([k, h]) => addMessage(k, h).classList.add("is-in"));
-    enableChat();
-    return;
-  }
-
-  // ---- The conversation plays through once, and the finished site stays as it is
-  async function run() {
-    await wait(700);
-    {
-      addMessage("stamp", '<span class="stamp">Today 9:41 AM</span>');
-      await wait(500);
-
-      for (const step of steps) {
-        await typeIntoCompose(step.ask);
-        clearCompose();
-        hideOldReceipts();
-        const sent = addMessage("them", `<div class="bubble">${step.ask}</div><div class="receipt"><span>Delivered</span></div>`);
-        const receipt = sent.querySelector(".receipt span");
-
-        await wait(900);
-        receipt.classList.add("is-hidden");
-        await wait(220);
-        receipt.textContent = "Read";
-        receipt.classList.remove("is-hidden");
-
-        await wait(500);
-        const typing = addMessage("typing", '<div class="bubble"><i></i><i></i><i></i></div>');
-        await wait(1500);
-        await removeMessage(typing);
-        addMessage("us", `<div class="bubble">${CHECK}${step.reply}</div>`);
-
-        await wait(450);
-        step.apply();
-        setLive("Updated just now", true);
-        await wait(2000);
-        setLive("Live", false);
-        await wait(900);
-      }
-
-    }
-    await wait(1200);
+  // ---- The phone starts with Web Design Wife checking in, then offers replies to pick from (no pre-played demo)
+  function run() {
+    addMessage("stamp", '<span class="stamp">Today 9:41 AM</span>');
     enableChat();
   }
 
@@ -196,25 +133,27 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   const T = (label, reply, apply, next) => ({ label, reply, apply, next });
   const hours = (t) => () => swapValue(rows.hours, t);
   const promo = (t) => () => setBanner(t);
+  const services = (t) => () => swapValue(rows.services, t);
+  // every request here is a minor edit (hours, services, prices, a promo banner), the kind that's included in a plan
   const TREE = [
-    T("Can we do 24/7 for emergencies?", "Done! You're now the 2 a.m. hero.", hours("Mon–Fri 8–5 · 24/7 emergencies"), [
-      T("Wait, who answers at 2 a.m.?", "You do 😅 Want a big Call Now button so they reach you fast?", null, [
-        T("Yes! Big red button", "Big red Call Now button, live. Very hard to miss.", promo("Burst pipe? Call now, day or night"), null),
-        T("Hmm, make it 7am to 11pm", "Changed. Your sleep schedule thanks me.", hours("Every day 7am–11pm"), null),
+    T("Can you add Saturday hours?", "Done! Saturdays 9 to 2 are live.", hours("Mon–Fri 8–5 · Sat 9–2"), [
+      T("Actually, make it 10 to 3", "No problem. Saturdays are 10 to 3 now.", hours("Mon–Fri 8–5 · Sat 10–3"), [
+        T("Perfect, thank you!", "Anytime. Text me whenever something changes.", null, null),
+        T("And we're closed July 4th", "Added a holiday note to your banner.", promo("Closed Friday, July 4th. Happy Fourth!"), null),
       ]),
-      T("Can Google show that too?", "Already did. Your Google Maps hours match your site.", null, [
-        T("Wow, that was fast", "Edits are done within one business day. Today it took four minutes.", null, null),
-        T("Can you fix my reviews?", "I can't change reviews, but I can help you get more good ones. It's easier than it sounds.", null, null),
+      T("Will Google show it too?", "Yep, I updated your Google Maps hours as well.", null, [
+        T("Wow, that was fast", "Edits go live within one business day. This one took four minutes.", null, null),
+        T("Can we add a promo too?", "Sure. Your banner is up: 10% off drain cleaning this month.", promo("This month: 10% off drain cleaning"), null),
       ]),
     ]),
-    T("Can we add a Meet the Team bit?", "Love it. Who's on the team?", null, [
-      T("Me and my brother Sal", "Two Riveras, one family business. Got a photo of you both?", null, [
-        T("We look goofy in it", "Goofy is good. People trust real faces. It's going up.", promo("Family-run: meet the Rivera brothers"), null),
-        T("Use the dog instead", "Done. Biscuit is now Head of Customer Relations 🐶", promo("Meet Biscuit, Head of Customer Relations"), null),
+    T("We do water heaters now", "Added to your services.", services("Drains · Leak repair · Water heaters"), [
+      T("Can we run a deal on them?", "Your banner is up: $50 off water heater installs.", promo("$50 off water heater installs this month"), [
+        T("Make it $75 off", "Updated. $75 off it is.", promo("$75 off water heater installs this month"), null),
+        T("Love it, thanks!", "Happy to help. Text me when the deal ends and I'll take it down.", null, null),
       ]),
-      T("Just me, it's a one-man show", "Then you're the star. I'll write a short bio that sounds like you.", null, [
-        T("Make me sound cool", "\"Fixes leaks. Leaves no mess. Probably wears sunglasses.\" Too much?", null, null),
-        T("Keep it simple", "Simple it is: licensed, local, on time. It's live.", promo("Licensed, local and always on time"), null),
+      T("And take off leak repair?", "Done. Leak repair is off your services.", services("Drains · Water heaters"), [
+        T("Oops, put it back", "No worries, it's back.", services("Drains · Leak repair · Water heaters"), null),
+        T("Perfect, thanks!", "Anytime. That's what I'm here for.", null, null),
       ]),
     ]),
   ];
@@ -231,7 +170,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
   function enableChat() {
     const phone = demo.querySelector(".phone");
-    const start = { hours: rows.hours.querySelector(".val").textContent, banner: banner.querySelector("p").textContent };
+    const start = { services: rows.services.querySelector(".val").textContent, hours: rows.hours.querySelector(".val").textContent, banner: banner.querySelector("p").textContent, open: banner.classList.contains("is-open") };
     compose.classList.add("is-choices");
     phone.removeAttribute("aria-hidden");
     let busy = false;
@@ -240,7 +179,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const offer = (opts) => {
       const tip = document.createElement("span");
       tip.className = "chat-choices__tip"; tip.setAttribute("aria-hidden", "true");
-      tip.innerHTML = 'Go on, reply. <em>Really.</em> <b>↓</b>';
+      tip.innerHTML = 'Choose a reply, <em>really.</em> <b>↓</b>';
       const lead = cued ? [] : [tip]; cued = true;
       compose.replaceChildren(...lead, ...opts.map((o) => {
         const b = document.createElement("button");
@@ -270,7 +209,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       thread.classList.remove("is-fading");
       cued = false;
       if (rows.hours.querySelector(".val").textContent !== start.hours) swapValue(rows.hours, start.hours, false);
+      if (rows.services.querySelector(".val").textContent !== start.services) swapValue(rows.services, start.services, false);
       if (banner.querySelector("p").textContent !== start.banner) setBanner(start.banner);
+      if (!start.open) banner.classList.remove("is-open");
     }
     async function pick(o) {
       if (busy) return; busy = true;
@@ -297,7 +238,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const typing = addMessage("typing", '<div class="bubble"><i></i><i></i><i></i></div>');
       await tick(1100);
       await removeMessage(typing);
-      addMessage("us", '<div class="bubble">Hey! Just checking in. Need anything changed on your site?</div>');
+      addMessage("us", '<div class="bubble">Hey, just checking in :)</div>');
       await tick(800);
     }
     busy = true;

@@ -6280,3 +6280,8 @@ html.theme-blocks .blist li:nth-child(n+13):not(#z):not(#y) { --bc: #ff9a52; }
 .bf-rain { position: fixed; top: -20px; z-index: 9999; width: 10px; height: 14px; border: 1.5px solid #111; border-radius: 2px; pointer-events: none; animation: bf-rain var(--fall, 2.4s) cubic-bezier(.3, .2, .6, 1) var(--delay, 0s) forwards; }
 @keyframes bf-rain { to { transform: translate(var(--drift, 0), 110vh) rotate(var(--spin, 540deg)); } }
 @media (prefers-reduced-motion: reduce) { .bf-spin.is-new .bf-spin__l.is-on, .for--spin.is-jackpot .slot { animation: none; } }
+/* Transit (dark) hero phone: the replies are dark buttons with light lettering and a thin edge (they were white
+   blocks), filling blue on hover; the nudge above them is a soft grey */
+html.theme-subway.theme-dark .chat-choice:not(#z) { background: #262626; color: #f2f2ee; border: 1px solid #3d3d3d; border-radius: 6px 6px 0 6px; }
+@media (hover: hover) { html.theme-subway.theme-dark .chat-choice:not(#z):hover { background: #0b5cd6; border-color: #0b5cd6; color: #fff; } }
+html.theme-subway.theme-dark .chat-choices__tip:not(#z):not(#y) { color: #8f8f8a; }
