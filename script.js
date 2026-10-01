@@ -2103,7 +2103,7 @@ document.addEventListener("click", (e) => {
     const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt, .moods__key");
     if (key) sound(key);
     // the built-for band's Spin button makes the same click (desktop only: phones have no Spin button, and stay quiet)
-    else if (e.button === 0 && e.target.closest(".for--spin .drift__btn")) click(false);
+    else if (e.button === 0 && e.target.closest(".for--spin .drift__btn, .for--spin .bf-spin")) click(false);
   });
   // keyboard presses of the same keys make the same sounds
   document.addEventListener("keydown", (e) => {
@@ -2182,7 +2182,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
 // Until you've spun it yourself, now and then a gloved hand reaches in and presses Spin (its spins skip the name
 // and go straight to a new sentence).
 document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
-  const band = slot.closest(".for--spin"), btn = slot.querySelector(".drift__btn"), msg = slot.querySelector(".jackpot"), hand = band.querySelector(".pokehand");
+  const band = slot.closest(".for--spin"), btn = slot.querySelector(".drift__btn") || band.querySelector(".bf-spin"), msg = slot.querySelector(".jackpot"), hand = band.querySelector(".pokehand");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const VERBS = ["Built", "Designed", "Developed", "Crafted", "Launched", "Managed", "Made", "Polished"];
   const TYPES = ["Plumbers", "Salons", "Barbers", "Dentists", "Restaurants", "Contractors", "Cleaners", "Gyms", "Accountants", "Bakeries", "Florists", "Pharmacies", "Law offices", "Auto shops"];
@@ -2381,7 +2381,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   });
 
   // phones: no Spin button; a tap anywhere on the sentence spins it
-  band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn, a")) btn.click(); });
+  if (!band.classList.contains("for--b")) band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn, a")) btn.click(); });
 
   // phones: a lever on the right edge; drag the red ball down (or tap it) to spin
   const lever = band.querySelector(".bf-lever");
