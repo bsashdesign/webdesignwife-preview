@@ -4451,3 +4451,17 @@ span.plan-ring:empty { display: none; }
 .billing .billing__opt[aria-pressed="true"] { opacity: 1; font-weight: 700; color: var(--ink); }
 .billing .billing__opt[aria-pressed="false"]:hover { opacity: .7; }
 @media (max-width: 760px) { .hplan__gem { align-self: start; } }
+.hplans__founding { display: block; max-width: none; margin: 20px auto 0; text-align: center; text-wrap: balance; font-weight: 600; font-size: .95rem; }
+.hplans__founding .pi { display: inline-block; vertical-align: -2px; margin-right: 6px; color: var(--violet); }
+.theme-blocks .hplans__founding .pi, .theme-subway .hplans__founding .pi { color: var(--ink); }
+.theme-wedding .hplans__founding .pi { color: var(--gold-ink); }
+/* the Founding 5 line sits above the plan cards */
+.hplans__founding { margin: 0 auto 20px; }
+/* homepage plan cards: plan names coloured like the Features page */
+.theme-blocks #plan-simple .hplan__name { --hi: var(--lime); }
+.theme-blocks #plan-business .hplan__name { --hi: var(--sky); }
+.theme-blocks #plan-full .hplan__name { --hi: var(--rose); }
+.theme-blocks .hplan__name { background: linear-gradient(transparent 55%, var(--hi) 55% 95%, transparent 95%); padding: 0 2px; }
+.theme-subway.theme-dark #plan-simple .hplan__name { color: #3fd07a; }
+.theme-subway.theme-dark #plan-business .hplan__name { color: #6ea8ff; }
+.theme-subway.theme-dark #plan-full .hplan__name { color: #d27be0; }
