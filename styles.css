@@ -5553,3 +5553,8 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
 .theme-wedding .gmcard__name { font: italic 600 1.5rem/1.1 var(--display); color: var(--gold-ink); }
 .theme-wedding .gmcard__btn { border-radius: 0; border-color: var(--gold); color: var(--ink); }
 .theme-wedding .gmcard__btn--go { background: var(--ink); border-color: var(--ink); color: #e9d9b4; }
+/* When the nav links fold into the menu, the audit button and menu sit together at the right (a later tweak pulled the button left) */
+@media (max-width: 960px) { header.nav .nav__inner > .nav__cta:not(#z) { margin-left: auto; } }
+.nav--compact .nav__inner > .nav__cta:not(#z) { margin-left: auto; }
+/* Tangy phones: the boxed "From $99/month." fits inside the screen edge */
+@media (max-width: 420px) { html.theme-blocks .hero h1 .hl:not(#z) { font-size: .9em; } }
