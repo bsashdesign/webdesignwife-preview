@@ -5321,9 +5321,6 @@ html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
 html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
 /* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
-/* on the button board and in the Change the Channel pop-up, Transit's key is charcoal with a darker charcoal edge */
-.tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #262626; }
-#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #262626; }
 /* Tangy: the Brooklyn-neighbor section is white, its "Now it's your turn" card in the light yellow-orange the section used to be */
 html.theme-blocks #work:not(#z) { background: #fff; }
 html.theme-blocks #work .work-founding.work-founding:not(#z) { background: var(--sun); color: var(--ink); }
@@ -5346,27 +5343,15 @@ html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff;
 }
 /* Soirée: the shared card drops the inner frame so it reads as one card */
 html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow: none; }
-/* Transit key: a thin ring of the subway line colours around the top face (painted as background, so the pressed shading falls over it too) */
-#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) {
-  box-sizing: border-box; border: 0; padding: 2.5px;
-  background: linear-gradient(#3a3a3a, #3a3a3a) content-box, conic-gradient(from -30deg, #e8392e 0 60deg, #ff6319 0 120deg, #fccc0a 0 180deg, #00933c 0 240deg, #1f6ff0 0 300deg, #a336b0 0) border-box;
-}
 
 /* Change the Channel, 960–1239px: still side by side (buttons left, TV right), with a narrower left column and gap */
 @media (min-width: 960px) and (max-width: 1239px) {
   #moods-tv > .wrap:not(#z) { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); column-gap: 48px; }
 }
-/* Transit key: no light highlight along the top inside the rainbow ring (it read as a grey line on the charcoal) */
-#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 12px 0 var(--cap-edge), inset 0 2px 0 transparent; }
-#moods-tv .tv-key--transit:hover .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 14px 0 var(--cap-edge), inset 0 2px 0 transparent; }
-:is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 transparent; }
 /* Change the Channel, 960–1239px: the left column is just as wide as the button board, with slightly narrower keys */
 @media (min-width: 960px) and (max-width: 1239px) {
   #moods-tv > .wrap:not(#z) { grid-template-columns: 460px minmax(0, 1fr); column-gap: 40px; }
   #moods-tv .tv-keys .tv-key:not(#z) { width: 88px; }
 }
-/* (the pressed state has to come after the hover rule above, or hovering a pressed Transit key brings its edge back) */
-#moods-tv .tv-key--transit:is([aria-pressed="true"], :active) .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 3px 6px rgba(0,0,0,.35); }
-:is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.35); }
-/* Transit key: the face is a solid subway-red circle (no hair band) */
+/* Transit key (button board and pop-up): back to the red-orange key, with an outline face drawn in black */
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg); }
