@@ -4864,3 +4864,9 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
   .hplans .hplan .hplan__money { grid-column: 1 / 3; }
   .hplans .hplan .hplan__go { grid-column: 3; grid-row: 2; align-self: end; }
 }
+/* homepage plans: features sit closer together */
+.hplans .hplan__feats { column-gap: 12px; }
+/* Sophisticated: a plain gold arrow, no box */
+.theme-wedding .hplans .hplan__go { width: 32px; height: 32px; background: none; color: var(--gold-ink); border-radius: 0; }
+.theme-wedding .hplans .hplan__go svg { width: 22px; height: 22px; }
+.theme-wedding .hplans .hplan:hover .hplan__go { background: none; color: var(--ink); }
