@@ -3,11 +3,12 @@
 # Each type is written around what that business's customers actually need, not the same page with the name
 # swapped. It's about what I'd do, never a claim about past clients.
 #   label:  how it reads in the list (and on the homepage spinner)
+#   blurb:  a few words under the label on the list (shown in some moods)
 #   guides: related blog posts (their slugs in blog/posts.json)
 
 TYPES = [
   {
-    "slug": "plumbers", "label": "Plumbers", "title": "Websites for plumbers",
+    "slug": "plumbers", "blurb": "Emergency calls, service areas, licensing", "label": "Plumbers", "title": "Websites for plumbers",
     "intro": "When a pipe bursts, people call whoever they find first and trust fastest. Here's what I'd do for yours.",
     "points": [
       "Put your phone number and a big Call Now button at the top of every page, so an emergency is one tap away",
@@ -20,7 +21,7 @@ TYPES = [
     "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
   },
   {
-    "slug": "salons", "label": "Salons", "title": "Websites for salons",
+    "slug": "salons", "blurb": "Booking, galleries, stylists and prices", "label": "Salons", "title": "Websites for salons",
     "intro": "People pick a salon with their eyes. Here's what I'd do for yours.",
     "points": [
       "Show off your work with a gallery that's easy to keep fresh",
@@ -33,7 +34,7 @@ TYPES = [
     "guides": ["business-photos-guide", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "barbershops", "label": "Barbers", "title": "Websites for barbershops",
+    "slug": "barbershops", "blurb": "Walk-ins, cuts, prices and reviews", "label": "Barbers", "title": "Websites for barbershops",
     "intro": "Most people find a barber nearby on their phone and decide in seconds. Here's what I'd do for yours.",
     "points": [
       "Make booking or walking in the first thing anyone sees, with today's hours right there",
@@ -46,7 +47,7 @@ TYPES = [
     "guides": ["google-maps-profile", "get-more-google-reviews", "business-photos-guide"],
   },
   {
-    "slug": "dentists", "label": "Dentists", "title": "Websites for dentists",
+    "slug": "dentists", "blurb": "Insurance, treatments, booking and team", "label": "Dentists", "title": "Websites for dentists",
     "intro": "Choosing a dentist is a trust decision. Here's what I'd do for your practice.",
     "points": [
       "Make booking and calling easy from every page",
@@ -59,7 +60,7 @@ TYPES = [
     "guides": ["local-business-website-checklist", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "restaurants", "label": "Restaurants", "title": "Websites for restaurants",
+    "slug": "restaurants", "blurb": "Menus, reservations, ordering and photos", "label": "Restaurants", "title": "Websites for restaurants",
     "intro": "People decide where to eat in about a minute. Here's what I'd do for yours.",
     "points": [
       "Put your menu right on the site, quick to load and easy to read on a phone, not a PDF",
@@ -72,7 +73,7 @@ TYPES = [
     "guides": ["business-photos-guide", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "contractors", "label": "Contractors", "title": "Websites for contractors",
+    "slug": "contractors", "blurb": "Project galleries, quotes and licensing", "label": "Contractors", "title": "Websites for contractors",
     "intro": "People hire a contractor based on the work they can see. Here's what I'd do for yours.",
     "points": [
       "Build a project gallery with before-and-after photos",
@@ -85,7 +86,7 @@ TYPES = [
     "guides": ["business-photos-guide", "google-maps-profile", "local-business-website-checklist"],
   },
   {
-    "slug": "cleaning-services", "label": "Cleaners", "title": "Websites for cleaning services",
+    "slug": "cleaning-services", "blurb": "What's included, pricing and booking", "label": "Cleaners", "title": "Websites for cleaning services",
     "intro": "People want to know what's included, what it costs and when you can come. Here's what I'd do for yours.",
     "points": [
       "Explain each service, like home, office, move-out and deep cleans, and what's included",
@@ -98,7 +99,7 @@ TYPES = [
     "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
   },
   {
-    "slug": "gyms", "label": "Gyms", "title": "Websites for gyms",
+    "slug": "gyms", "blurb": "Class schedules, memberships and trainers", "label": "Gyms", "title": "Websites for gyms",
     "intro": "People want to see the space, the schedule and the price before they come in. Here's what I'd do for yours.",
     "points": [
       "Put the class schedule on the site, easy to read on a phone",
@@ -111,7 +112,7 @@ TYPES = [
     "guides": ["business-photos-guide", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "accountants", "label": "Accountants", "title": "Websites for accountants",
+    "slug": "accountants", "blurb": "Services, consultations and tax season", "label": "Accountants", "title": "Websites for accountants",
     "intro": "People look for an accountant who gets their situation and seems easy to work with. Here's what I'd do for your firm.",
     "points": [
       "Explain who you help, like individuals, small businesses and freelancers, and how",
@@ -124,7 +125,7 @@ TYPES = [
     "guides": ["local-business-website-checklist", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "bakeries", "label": "Bakeries", "title": "Websites for bakeries",
+    "slug": "bakeries", "blurb": "Daily menu, custom orders and pickup", "label": "Bakeries", "title": "Websites for bakeries",
     "intro": "People come for what's fresh today. Here's what I'd do for yours.",
     "points": [
       "Show your menu and what's baked daily, with mouthwatering photos",
@@ -137,7 +138,7 @@ TYPES = [
     "guides": ["business-photos-guide", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "florists", "label": "Florists", "title": "Websites for florists",
+    "slug": "florists", "blurb": "Arrangements, delivery and events", "label": "Florists", "title": "Websites for florists",
     "intro": "Flowers are often last-minute and for a special day. Here's what I'd do for your shop.",
     "points": [
       "Show your arrangements beautifully, with prices or price ranges",
@@ -150,7 +151,7 @@ TYPES = [
     "guides": ["business-photos-guide", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "pharmacies", "label": "Pharmacies", "title": "Websites for pharmacies",
+    "slug": "pharmacies", "blurb": "Refills, hours, services and insurance", "label": "Pharmacies", "title": "Websites for pharmacies",
     "intro": "People want to know you're open, you have what they need and you can fill it fast. Here's what I'd do for yours.",
     "points": [
       "Make refills easy, with a refill request form or a link to the system you already use",
@@ -163,7 +164,7 @@ TYPES = [
     "guides": ["google-maps-profile", "get-more-google-reviews", "local-business-website-checklist"],
   },
   {
-    "slug": "law-offices", "label": "Law offices", "title": "Websites for law offices",
+    "slug": "law-offices", "blurb": "Practice areas, attorneys and consultations", "label": "Law offices", "title": "Websites for law offices",
     "intro": "People choose a lawyer they trust with something serious. Here's what I'd do for your office.",
     "points": [
       "Give each practice area its own clear page, so you show up for those searches",
@@ -176,7 +177,7 @@ TYPES = [
     "guides": ["local-business-website-checklist", "google-maps-profile", "get-more-google-reviews"],
   },
   {
-    "slug": "auto-repair-shops", "label": "Auto shops", "title": "Websites for auto repair shops",
+    "slug": "auto-repair-shops", "blurb": "Services, appointments and warranties", "label": "Auto shops", "title": "Websites for auto repair shops",
     "intro": "When the car breaks, people want someone nearby they can trust. Here's what I'd do for your shop.",
     "points": [
       "List your services, like brakes, oil changes, inspections and diagnostics, with a page for each",
