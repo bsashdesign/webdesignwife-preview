@@ -4960,3 +4960,5 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 @media (hover: hover) {
   html.theme-blocks :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #fffbe0; }
 }
+/* Tangy: the line across the Design Refresh card is the dashed ink line, not a faint white one */
+.theme-blocks .spot--refresh .spot__foot { border-top: 2px dashed var(--ink); }
