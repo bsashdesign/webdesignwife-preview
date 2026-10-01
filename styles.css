@@ -5355,3 +5355,5 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
 }
 /* Transit key (button board and pop-up): back to the red-orange key, with an outline face drawn in black */
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg); }
+/* the "Seriously, press one." part drops whenever it would push Sound effects onto its own line (set by script.js) */
+#moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }

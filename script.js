@@ -2008,3 +2008,20 @@ document.addEventListener("click", (e) => {
     if (key) sound(key);
   });
 })();
+
+// Change the Channel: if "Press one. Seriously, press one." and the Sound effects switch can't share a line,
+// drop the "Seriously, press one." part so they do.
+(() => {
+  const top = document.querySelector("#moods-tv .tv-deck__top");
+  const cue = top && top.querySelector(".tv-deck__cue");
+  const sound = top && top.querySelector(".sound-toggle");
+  if (!cue || !sound) return;
+  const fit = () => {
+    top.classList.remove("is-tight");
+    if (sound.offsetTop > cue.offsetTop + cue.offsetHeight / 2 || cue.getClientRects().length > 1 || cue.offsetHeight > sound.offsetHeight * 1.8) top.classList.add("is-tight");
+  };
+  let w = 0;
+  new ResizeObserver(() => { if (top.parentElement.clientWidth !== w) { w = top.parentElement.clientWidth; fit(); } }).observe(top.parentElement);
+  new MutationObserver(fit).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  if (document.fonts) document.fonts.ready.then(fit);
+})();
