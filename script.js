@@ -786,10 +786,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const limit = window.innerHeight * 0.9;
     pending.forEach((el) => {
       const r = (partner.get(el) || el).getBoundingClientRect();
-      // Anything in view, or already scrolled past, is revealed. Labels already on screen
-      // when the page opens just appear; the pop is for ones you scroll to.
+      // Anything in view, or already scrolled past, is revealed; labels on screen when the
+      // page opens rise in too, as part of the page loading.
       if (r.top < limit) {
-        if (first && el.classList.contains("eyebrow")) el.classList.add("m-instant");
         el.classList.add("m-in");
         pending.delete(el);
       }
