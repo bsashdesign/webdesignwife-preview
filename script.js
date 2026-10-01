@@ -287,11 +287,14 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       // big on desktop; on phones the hidden frame and the conversation's inner padding may hang past the edges,
       // so the messages themselves line up with the page's text
       const T = thread.getBoundingClientRect(), inset = (P.width - T.width) / 2 + 4;
-      const K = innerWidth <= 760 ? Math.min(2.6, D.width / (P.width - 2 * inset)) : Math.min(2.2, (D.width * .98) / P.width);
+      // on phones the messages are about the size of a button's text (~15px), no bigger
+      const K = innerWidth <= 760 ? Math.min(1.5, D.width / (P.width - 2 * inset)) : Math.min(2.2, (D.width * .98) / P.width);
       // on phones the space grows with the scale first, so the whole opening conversation fits under the nav
-      demo.style.minHeight = innerWidth <= 760 ? Math.round(166 * K + 20 + extra) + "px" : "";
+      demo.style.minHeight = innerWidth <= 760 ? Math.round(156 * K + 30 + extra) + "px" : "";
       P = phone.getBoundingClientRect(); D = demo.getBoundingClientRect();
-      const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
+      // the phone's hidden bottom padding (below the replies) may hang below the space too
+      const below = innerWidth <= 760 ? (P.bottom - compose.getBoundingClientRect().bottom) * K : 6;
+      const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - (innerWidth <= 760 ? 16 - below : 6) - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
       return { dx, dy, K };
