@@ -5318,3 +5318,5 @@ html.theme-subway .drawer__big[aria-current="page"] small::before { color: var(-
 html.theme-subway { --btn-blue: #0b5cd6; }
 html.theme-subway #moods .yours__back .btn { background: var(--btn-blue); border-color: var(--btn-blue); }
 html.theme-subway .billing__switch { --switch-on: var(--btn-blue); }
+/* menu close button: just the cross, no tile behind it (Calm keeps its soft tile) */
+html:not(.theme-refined) .drawer__close.drawer__close { background: transparent; box-shadow: none; }
