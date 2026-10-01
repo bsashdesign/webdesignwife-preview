@@ -6976,7 +6976,9 @@ html.theme-blocks .plans-dialog:not(#z) { background: #eaf3d2; }
   .pcards:not(#z) { grid-template-rows: repeat(5, auto); row-gap: 0; }
   .pcard:not(#z) { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 10px; }
   .pcard__pill:not(#z) { position: absolute; top: 0; left: 18px; translate: 0 -50%; }
-  .pcard__money:not(:has(.pcard__status))::before { content: "\00a0"; display: block; margin: 0 0 4px; font: 700 .62rem/1.4 var(--body); }
+  .pcard__money:not(:has(.pcard__status))::before { content: ""; display: block; height: calc(.62rem * 1.4); margin: 0 0 4px; }
   .pcard__money:not(#z) { margin-top: 0; align-self: start; }
   .pcard__cta:not(#z) { align-self: end; }
 }
+/* Transit: "Most popular" is the yellow pill wherever the Business plan appears (homepage rows, pop-up, Pricing cards) */
+html.theme-subway .plan__badge:not(#z) { background: #fccc0a; color: #111; border-radius: 4px; }
