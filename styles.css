@@ -5297,3 +5297,18 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
   .hplans .hplan .hplan__chip { position: absolute; top: 0; left: 16px; translate: 0 -50%; z-index: 2; }
   .hplans .hplan--best.hplan { margin-top: 8px; }
 }
+/* phones: the savings tag keeps one width ("Save 20%" and "You Are Saving 20%" share a slot) so nothing shifts when billing changes */
+@media (max-width: 760px) {
+  .sbill .billing__save:not(#z) { display: inline-grid; justify-items: center; }
+  .sbill .billing__save:not(#z) > span { grid-area: 1 / 1; display: inline; visibility: hidden; }
+  .sbill .billing__save:not(#z) .billing__save-m:not(.x), .sbill .billing__save.is-on:not(#z) .billing__save-y { visibility: visible; }
+  .sbill .billing__save.is-on:not(#z) .billing__save-m { visibility: hidden; }
+}
+/* Get started on phones: "Yearly billing" and the switch sit on the "Your plan" line at the right, the savings tag centred above them */
+@media (max-width: 560px) {
+  .sform .billing.sbill:not(#z) { position: absolute; right: 0; top: auto; bottom: calc(100% + 10px); display: grid; grid-template-columns: auto auto; grid-template-areas: "save save" "opt sw"; align-items: center; justify-items: center; column-gap: 10px; row-gap: 6px; }
+  .sform .sbill .billing__save { grid-area: save; }
+  .sform .sbill .billing__opt { grid-area: opt; }
+  .sform .sbill .billing__switch { grid-area: sw; }
+}
+@media (max-width: 560px) { .sform__group:has(.sbill) { margin-top: 44px; } }
