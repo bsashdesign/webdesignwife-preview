@@ -230,6 +230,17 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const first = !cued; cued = true;
       morph(() => compose.replaceChildren(...pickPanel(opts, first)));
       compose.querySelectorAll(".chat-you, .chat-choice, .chat-pick__or, .chat-choices__tip").forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, delay: i * 70, easing: "ease-out", fill: "backwards" }));
+      // then the replies do a little dance, one after the other, so it's clear they're there to be tapped
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        compose.querySelectorAll(".chat-choice").forEach((b, i) => b.animate([
+          { transform: "none" },
+          { transform: "translateY(-5px) rotate(-3deg)", offset: .2 },
+          { transform: "translateY(0) rotate(2.5deg)", offset: .42 },
+          { transform: "translateY(-3px) rotate(-1.5deg)", offset: .62 },
+          { transform: "translateY(0) rotate(.8deg)", offset: .8 },
+          { transform: "none" },
+        ], { duration: 700, delay: 650 + i * 620, easing: "ease-in-out" }));
+      }
     };
     const again = () => {
       const b = document.createElement("button");
