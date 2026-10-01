@@ -5959,3 +5959,28 @@ html.theme-refined .btypes__blurb { font: 500 .95rem/1.4 var(--body); letter-spa
 /* the link under the built-for spinner sits centred under the sentence, with room above and below */
 .bf-more:not(#z) { max-width: none; margin: 6px auto 0; padding-bottom: 18px; text-align: center; }
 @media (max-width: 600px) { .bf-more:not(#z) { margin-top: 2px; padding-bottom: 12px; } }
+/* Built-for band, evened out: the reels run line to line again (same space above and below), and the link sits
+   on the band's bottom line as a small tab, half in the band and half below it */
+.for.for--spin:not(#z) { z-index: 3; }
+.bf-more:not(#z):not(#y) { position: absolute; left: 50%; bottom: 0; translate: -50% 50%; z-index: 6; margin: 0; padding: 0; white-space: nowrap; }
+.bf-more a:not(#z) { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper, #fff); color: var(--ink); font: 600 .88rem/1.1 var(--body); text-decoration: none; background-image: none; box-shadow: 0 6px 16px -10px rgba(27,21,48,.45); transition: background-color .15s, color .15s, transform .15s, box-shadow .15s; }
+.bf-more a .i-arrow { width: 14px; height: 14px; }
+@media (hover: hover) { .bf-more a:not(#z):hover { transform: translateY(-1px); box-shadow: 0 10px 20px -10px rgba(27,21,48,.5); } }
+html.theme-blocks .bf-more a:not(#z) { border: 2.5px solid var(--ink); background: #fff; box-shadow: 3px 3px 0 var(--ink); }
+@media (hover: hover) { html.theme-blocks .bf-more a:not(#z):hover { background: var(--lime); color: var(--ink); transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); } }
+html.theme-refined .bf-more a:not(#z) { border-color: #e3defa; color: var(--violet); }
+@media (hover: hover) { html.theme-refined .bf-more a:not(#z):hover { background: var(--violet); color: #fff; border-color: var(--violet); } }
+html.theme-subway .bf-more a:not(#z) { border-radius: 6px; border-color: #333; background: #1c1c1c; color: #fccc0a; box-shadow: none; }
+@media (hover: hover) { html.theme-subway .bf-more a:not(#z):hover { background: #fccc0a; color: #111; border-color: #fccc0a; } }
+html.theme-wedding .bf-more a:not(#z) { border-radius: 2px; border: 1px solid rgba(184,149,90,.6); background: #fffdf8; color: var(--gold-ink); font: italic 600 1.02rem/1.1 var(--display); box-shadow: inset 0 0 0 3px #fffdf8, inset 0 0 0 4px rgba(184,149,90,.25); }
+@media (hover: hover) { html.theme-wedding .bf-more a:not(#z):hover { background: var(--ink); color: #e9d9b4; border-color: var(--ink); box-shadow: none; } }
+@media (max-width: 600px) { .bf-more a:not(#z) { padding: 6px 13px; font-size: .78rem; } html.theme-wedding .bf-more a:not(#z) { font-size: .92rem; } }
+/* ...the tab hangs just below the band's bottom line instead (so it never covers the reels' words): no top
+   edge, rounded at the bottom, like a tab pulled down from the band */
+.bf-more:not(#z):not(#y) { top: 100%; bottom: auto; translate: -50% 0; }
+.bf-more a:not(#z):not(#y) { border-top: 0; border-radius: 0 0 14px 14px; padding: 7px 16px 9px; }
+html.theme-subway .bf-more a:not(#z):not(#y) { border-radius: 0 0 8px 8px; }
+html.theme-wedding .bf-more a:not(#z):not(#y) { border-radius: 0 0 3px 3px; box-shadow: none; }
+@media (hover: hover) { .bf-more a:not(#z):not(#y):hover, html.theme-blocks .bf-more a:not(#z):not(#y):hover { transform: translateY(1px); } }
+/* room for the hanging tab before the next section's content */
+.for--spin + section:not(#z) { padding-top: calc(var(--band) + 18px); }
