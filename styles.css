@@ -4760,3 +4760,23 @@ html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[
   html.theme-wedding :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #2d3350; }
 }
 @media (hover: hover) { html.theme-blocks .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea):hover:not(:focus) { border-color: var(--ink); } }
+/* Hover previews what a click will do: an off switch shows a light wash of its "on" colour, an unselected plan a
+   lighter take on the selected look */
+@media (hover: hover) {
+  /* Calm: violet */
+  html .splan:hover input:not(:checked) + span { border-color: #b9adf5; background: #fff; }
+  html :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #c9bff8; }
+  html :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #7a63f2; }
+  /* Tangy: the beige of a chosen plan, and orange for a switch about to turn on */
+  html.theme-blocks .splans .splan:hover input:not(:checked) + span { background: #fffdf0; border-color: var(--ink); }
+  html.theme-blocks :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #ffc7a3; }
+  html.theme-blocks :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #ff8a4d; }
+  /* Transit: subway blue */
+  html.theme-subway.theme-dark .splans .splan:hover input:not(:checked) + span { background: #1f1f1f; border-color: #2b5aa8; }
+  html.theme-subway.theme-dark :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #20406f; }
+  html.theme-subway :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #2a74e6; }
+  /* Sophisticated: navy */
+  html.theme-wedding .splans .splan:hover input:not(:checked) + span { background: #fff; border-color: rgba(31,35,54,.45); }
+  html.theme-wedding :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: rgba(31,35,54,.22); }
+  html.theme-wedding :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #343a58; }
+}
