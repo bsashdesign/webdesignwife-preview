@@ -4996,3 +4996,6 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .spot__vs > div { padding-left: 12px; border-left-width: 2px; }
 .spot__vs dt { font-size: .92rem; margin-bottom: 1px; }
 .spot__vs dd { line-height: 1.45; }
+/* 4px more room before Get Started */
+.nav__inner .nav__start { margin-left: -6px; }
+@media (max-width: 1180px) { .nav__inner .nav__start { margin-left: -2px; } }
