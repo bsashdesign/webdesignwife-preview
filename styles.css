@@ -4469,3 +4469,9 @@ span.plan-ring:empty { display: none; }
 .billing-row { display: flex; justify-content: center; margin: 28px 0 0; }
 .billing-row .billing, .billing-row .billing.is-yearly { margin: 0; transition: none; }
 .billing-row + .plans { margin-top: 28px; }
+/* Pricing page cards: the gem sits to the left of the plan name and line */
+.plans .plan .plan__head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; align-items: center; }
+.plans .plan .plan__head .plan-ring-tile { float: none; grid-row: 1 / span 2; margin: -14px 0 -14px -14px; }
+.plans .plan .plan__head h3 { justify-self: start; align-self: end; margin: 0; }
+.plans .plan .plan__head .plan__for { grid-column: 2; align-self: start; margin-top: 2px; }
+@media (max-width: 1100px) { .plans .plan .plan__head .plan-ring-tile { margin: -8px 0 -8px -10px; } }
