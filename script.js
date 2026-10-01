@@ -1778,7 +1778,6 @@ document.addEventListener("click", (e) => {
     if (!e.target.closest("[data-mute]")) return;
     muted = !muted;
     try { localStorage.setItem("wdw-muted", muted ? "1" : "0"); } catch (err) {}
-    if (muted && window.wdwGemSound) window.wdwGemSound.stop();
     syncMute();
   });
   const click = () => {
@@ -1890,9 +1889,9 @@ document.addEventListener("click", (e) => {
   const SCALE = [1318.5, 1480, 1661.2, 1975.5, 2217.5, 2637, 2960];
   let twinkleTimer = null, twinkleRate = 1, twinkleStep = 0;
   const twinkle = () => {
+    // the TV dances for as long as you hover, even muted; the bells only ring with sound on
     dance(Math.round(700 / Math.max(twinkleRate, .3)));
-    if (muted) { twinkleTimer = null; return; }
-    try {
+    if (!muted) try {
       // wander up and down the scale a step or two at a time
       twinkleStep = Math.max(0, Math.min(SCALE.length - 1, twinkleStep + [-1, 1, 1, 2, -2][Math.floor(Math.random() * 5)]));
       bell(SCALE[twinkleStep] * (twinkleRate < 1 ? .5 : 1), ac.currentTime, .022, twinkleRate < 1 ? 1.6 : .9);
@@ -1901,8 +1900,7 @@ document.addEventListener("click", (e) => {
   };
   window.wdwGemSound = {
     start() {
-      if (muted) { dance(600); return; }
-      try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) { return; }
+      if (!muted) { try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) {} }
       if (twinkleTimer) return;
       twinkleRate = 1; twinkleStep = 2; twinkle();
     },
