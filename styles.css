@@ -4304,3 +4304,5 @@ span.plan-ring:empty { display: none; }
 .tv-yours .tv-yours__back { align-content: center; row-gap: 0; padding-top: 12px; padding-bottom: 12px; }
 #moods-tv .tv-yours .tv-yours__back .tv-yours__title { line-height: 1.1; }
 .tv-yours .tv-yours__back > p { line-height: 1.35; margin-top: 3px; }
+/* Tangy board: the usual Tangy hard shadow (down and to the right), made deeper so the board feels solid */
+.theme-blocks #moods-tv .tv-keys { box-shadow: 0 0 0 2.5px var(--ink), 10px 12px 0 2.5px var(--ink); }
