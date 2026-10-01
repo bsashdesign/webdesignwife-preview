@@ -243,8 +243,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       P = phone.getBoundingClientRect();
       const below = innerWidth <= 760 && !small() ? (P.bottom - compose.getBoundingClientRect().bottom) * K : 0;
       const dx = D.left + D.width / 2 - (P.left + P.width / 2);
-      const dy = small() ? D.bottom + 3 - P.bottom : D.bottom - (innerWidth <= 760 ? 16 - below : 6) - P.bottom;
-      phone.style.transformOrigin = "50% 100%";
+      // the phone scales about its centre the whole time (so nothing hops when it lands): its bottom edge goes to the
+      // bottom of the space
+      const cy = P.top + P.height / 2, target = small() ? D.bottom + 3 : D.bottom - (innerWidth <= 760 ? 16 - below : 6);
+      const dy = target - (cy + (P.height / 2) * K);
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
       return { dx, dy, K, norm };
     };
@@ -281,7 +283,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const h1 = demo.offsetHeight;
       if (h1 !== h0) demo.animate([{ height: h0 + "px" }, { height: h1 + "px" }], { duration: 820 * SLOW, easing: "cubic-bezier(.65, 0, .25, 1)" });
       await move.finished.catch(() => {});
-      phone.style.transformOrigin = "";
       if (fromRow) { fromRow.remove(); fromRow = null; }
     }
     // Start Over goes back to the very beginning: the hero fades out, the conversation resets, and it fades back in

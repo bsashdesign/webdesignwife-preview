@@ -6820,3 +6820,15 @@ html.theme-refined .lpv:not(#z) { border-radius: 18px 18px 18px 4px; }
 html.theme-blocks .lpv:not(#z) { border-radius: 17px 17px 17px 5px; }
 html.theme-subway .lpv:not(#z) { border-radius: 12px 12px 12px 0; }
 html.theme-wedding .lpv:not(#z) { border-radius: 10px 10px 10px 1px; }
+/* the link preview is my second message in a row: my message's colours, and its top-left corner tucks in under the
+   message above (so the two read as one run); the changed part is highlighted in a way that works on that colour */
+html .lpv:not(#z):not(#y) { background: var(--violet); color: #fff; box-shadow: none; border-top-left-radius: 5px; }
+html .lpv:not(#z):not(#y) .lpv__site { color: rgba(255, 255, 255, .72); }
+html .lpv:not(#z):not(#y) mark { background: rgba(255, 255, 255, .24); color: inherit; }
+html.theme-refined .lpv:not(#z):not(#y) { border-top-left-radius: 4px; }
+html.theme-blocks .lpv:not(#z):not(#y) { background: #9fd8ff; color: var(--ink); border: 2px solid var(--ink); box-shadow: none; border-top-left-radius: 5px; }
+html.theme-blocks .lpv:not(#z):not(#y) .lpv__site { color: rgba(14, 14, 14, .62); }
+html.theme-blocks .lpv:not(#z):not(#y) mark { background: #fff; }
+html.theme-subway .lpv:not(#z):not(#y) { background: var(--blue); color: #fff; border-top-left-radius: 0; }
+html.theme-wedding .lpv:not(#z):not(#y) { background: var(--ink); color: #fff; border-top-left-radius: 1px; }
+html.theme-wedding .lpv:not(#z):not(#y) mark { background: rgba(217, 196, 154, .3); }
