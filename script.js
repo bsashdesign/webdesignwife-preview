@@ -282,7 +282,52 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       await tick(800);
     }
     busy = true;
-    checkIn().then(() => { offer(TREE); busy = false; });
+    // First, a close-up: no phone and no website, just Web Design Wife's message and the replies, large, with a
+    // cue under them. Picking one brings in the phone and the website, and the conversation carries on in the phone.
+    intro().then((o) => { busy = false; cued = true; if (o) pick(o); else { checkIn().then(() => { offer(TREE); busy = false; }); } });
+  }
+
+  async function intro() {
+    const box = document.createElement("div");
+    box.className = "hintro";
+    box.innerHTML = '<p class="hintro__from"><img src="images/favicon.jpg" alt=""><span>Message from <strong>Web Design Wife</strong></span></p>'
+      + '<div class="hintro__msg"></div><div class="hintro__pick" role="group" aria-label="Choose a reply"></div>'
+      + '<p class="hintro__cue" aria-hidden="true"><b>↑</b> Choose a reply, <em>really.</em></p>';
+    demo.classList.add("is-intro");
+    demo.append(box);
+    const msg = box.querySelector(".hintro__msg"), pickBox = box.querySelector(".hintro__pick");
+    const show = (el, delay = 0) => el.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }], { duration: 520, delay, easing: EASE_OUT, fill: "backwards" });
+    show(box.querySelector(".hintro__from"));
+    // typing, then the message
+    const typing = document.createElement("div");
+    typing.className = "m m--typing is-in"; typing.innerHTML = '<div class="m__in"><div class="bubble"><i></i><i></i><i></i></div></div>';
+    msg.append(typing); show(typing, 150);
+    await tick(1300);
+    typing.remove();
+    const hey = document.createElement("div");
+    hey.className = "m m--us is-in"; hey.innerHTML = '<div class="m__in"><div class="bubble">Hey, just checking in :)</div></div>';
+    msg.append(hey); show(hey);
+    // the same message is already in the phone behind, so the conversation picks up from it
+    addMessage("us", '<div class="bubble">Hey, just checking in :)</div>');
+    await tick(650);
+    return new Promise((resolve) => {
+      TREE.forEach((o, i) => {
+        if (i) { const or = document.createElement("span"); or.className = "chat-pick__or"; or.textContent = "or"; pickBox.append(or); show(or, 120 + i * 90); }
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chat-choice"; b.textContent = o.label;
+        b.addEventListener("click", async () => {
+          if (box.classList.contains("is-out")) return;
+          box.classList.add("is-out");
+          await tick(380);
+          box.remove();
+          demo.classList.remove("is-intro");
+          await tick(650);
+          resolve(o);
+        });
+        pickBox.append(b); show(b, 120 + i * 90);
+      });
+      show(box.querySelector(".hintro__cue"), 500);
+    });
   }
   run();
 })();
