@@ -2104,9 +2104,9 @@ document.addEventListener("click", (e) => {
   if (document.fonts) document.fonts.ready.then(fit);
 })();
 
-// Homepage plan cards: a click anywhere on a card (outside its own links) goes where its arrow goes.
+// Homepage plan cards: a click anywhere on a card (outside its own links) goes where its button goes.
 document.querySelectorAll(".hplans .hplan").forEach((card) => {
-  const go = card.querySelector(".hplan__go");
+  const go = card.querySelector(".hplan__cta");
   if (!go) return;
   card.addEventListener("click", (e) => {
     if (e.target.closest("a, button") || String(getSelection()).trim()) return;
@@ -2334,13 +2334,15 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   // Every label sits stacked in the same spot inside the button, so it's always as wide as the longest one.
   const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "You Won!", "Go Again"];
   // What your spins reveal: a friendly three-word benefit each time ("for" and "in" tucked away), picked from this
-  // pool without repeats; the tenth spin, the jackpot, always lands on Web Design Wife
+  // pool without repeats; the tenth spin, the jackpot, always lands on Web Design Wife. Each must be literally true
+  // under the terms (minor edits within one business day, hosting included, domain in their name): no security
+  // advice, no absolutes, nothing promised beyond the plan
   const PERKS = [
-    ["No", "Logins", "Needed"], ["Forget", "Your", "Passwords"], ["Change", "Hours", "Anytime"], ["New", "Hire?", "Added"],
+    ["No", "Logins", "Needed"], ["No", "Dashboards", "To Learn"], ["Change", "Hours", "Anytime"], ["New", "Hire?", "Added"],
     ["New", "Number?", "Updated"], ["Holiday", "Hours?", "Done"], ["Menu", "Changed?", "Handled"], ["Prices", "Updated", "Quickly"],
-    ["Fresh", "Photos", "Anytime"], ["Just", "Text", "Me"], ["Live", "By", "Tomorrow"], ["Google", "Maps", "Handled"],
-    ["A Real", "Person", "Replies"], ["Edits", "Always", "Included"], ["Hosting", "Fully", "Included"], ["Your", "Domain,", "Yours"],
-    ["Looks", "Great", "On Phones"], ["Zero", "Plugins", "Ever"], ["More", "Time", "For You"], ["Your", "Site,", "Handled"],
+    ["New", "Photos?", "Swapped"], ["Just", "Text", "Me"], ["Edits", "In One", "Business Day"], ["Google", "Maps", "Handled"],
+    ["A Real", "Person", "Replies"], ["Minor", "Edits", "Included"], ["Hosting", "Fully", "Included"], ["Your", "Domain,", "Yours"],
+    ["Looks", "Great", "On Phones"], ["No", "Plugins", "To Update"], ["More", "Time", "For You"], ["Your", "Site,", "Handled"],
   ];
   const FINALE = ["Web", "Design", "Wife"];
   let perkBag = [];
