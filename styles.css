@@ -6531,3 +6531,10 @@ html.theme-wedding .smode__ico svg path { stroke-width: 1.4; }
 html.theme-wedding .smode__ico .pi { font-size: 28px; width: 28px; height: 28px; }
 /* Tangy: the note's icon tile takes the selected plan's colour (lime, sky, pink) */
 html.theme-blocks .start[data-plan="full"] .smode__ico:has(.pi) { background: var(--rose); }
+/* Get Started summary: the small seal carries a shield instead of tiny words, in the seal's text colour per mood */
+.ssum__seal { position: relative; }
+.ssum__shield { position: absolute; left: 50%; top: 50%; translate: -50% -50%; font-size: 28px; width: 28px; height: 28px; color: #fff; }
+html.theme-blocks .ssum__shield { color: var(--ink); }
+html.theme-subway .ssum__shield { color: var(--yellow); }
+html.theme-subway.theme-dark .ssum__shield { color: #111; }
+html.theme-wedding .ssum__shield { color: var(--gold-ink); }
