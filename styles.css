@@ -5229,19 +5229,6 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 /* Tangy: homepage plan cards turn the pale beige of a selected field on hover */
 .theme-blocks .hplans .hplan { transition: background-color .15s ease, box-shadow .15s ease, transform .25s cubic-bezier(.2, .8, .2, 1); }
 .theme-blocks .hplans .hplan:hover { background: #fffbe0; }
-/* Change the Channel: above phone width the button panel is vertical, like a remote:
-   each row is the key, its name (with "Now playing" under it) and its light. Phones keep the row of keys. */
-@media (min-width: 601px) {
-  #moods-tv .tv-keys.tv-keys { display: flex; flex-direction: column; align-items: stretch; gap: 10px; width: 100%; padding: 16px 22px 18px; }
-  #moods-tv .tv-keys .tv-key.tv-key { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "well name led" "well now led"; align-items: center; column-gap: 18px; row-gap: 2px; width: 100%; padding: 4px 4px 4px 0; text-align: left; }
-  #moods-tv .tv-keys .tv-key .key-well { grid-area: well; zoom: .72; margin-top: 12px; }
-  #moods-tv .tv-keys .tv-key .tv-key__name { grid-area: name; align-self: end; margin: 0; }
-  #moods-tv .tv-keys .tv-key .tv-key__now { grid-area: now; align-self: start; margin: 0; }
-  #moods-tv .tv-keys .tv-key:not([aria-pressed="true"]) .tv-key__now { display: none; }
-  #moods-tv .tv-keys .tv-key:not([aria-pressed="true"]) .tv-key__name { align-self: center; grid-row: 1 / span 2; }
-  #moods-tv .tv-keys .tv-key .tv-key__led { grid-area: led; margin: 0; }
-  #moods-tv .tv-deck { width: min(100%, 520px); }
-}
 @media (min-width: 1240px) { #moods-tv .tv-deck { width: 100%; } }
 @media (min-width: 1100px) and (max-width: 1239px) { #moods-tv .tv-panel { justify-content: center; } }
 /* phones: the "Press one" note and Sound effects share one line */
@@ -5252,7 +5239,6 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
   #moods-tv .tv-deck__top .sound-toggle { font-size: .74rem; gap: 6px; white-space: nowrap; flex: none; }
 }
 .tv-deck__cue .tv-deck__more { font-style: inherit; }
-@media (min-width: 601px) { #moods-tv .tv-keys .tv-key .tv-key__name, #moods-tv .tv-keys .tv-key .tv-key__now { justify-self: start; text-align: left; } }
 /* phones: everything fits the screen width, and the note is just "Press one." */
 @media (max-width: 600px) {
   #moods-tv .tv-deck { width: 100%; min-width: 0; }
