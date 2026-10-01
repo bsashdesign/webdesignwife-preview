@@ -5260,3 +5260,26 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
 #moods-tv .tv-yours__front, #moods-tv .tv-yours__back { position: relative; inset: auto; grid-area: 1 / 1; }
 #moods-tv .tv-yours .tv-yours__back { padding: 18px 24px; }
 @media (min-width: 601px) and (max-width: 1239px) { #moods-tv .tv-panel .tv-yours { max-width: 540px; } }
+/* Homepage plan cards on phones: compact.
+   Top line: gem, name (and tag), price. Then the features as one wrapping line. Then the setup and the arrow. */
+@media (max-width: 760px) {
+  .hplans .hplan.hplan { grid-template-columns: 40px minmax(0, 1fr) auto; grid-template-areas: "gem top price" "feats feats feats" "setup setup go"; align-items: center; gap: 10px 12px; padding: 16px 16px 14px; }
+  .hplans .hplan .hplan__body, .hplans .hplan .hplan__money { display: contents; }
+  .hplans .hplan .hplan__gem { grid-area: gem; width: 40px; height: 40px; align-self: center; }
+  .hplans .hplan .hplan__top { grid-area: top; gap: 4px 8px; }
+  .hplans .hplan .hplan__name { font-size: 1.12rem; }
+  .theme-wedding .hplans .hplan .hplan__name { font-size: 1.35rem; }
+  .hplans .hplan .hplan__chip { font-size: .6rem; padding: 2px 7px; }
+  .hplans .hplan .hplan__price { grid-area: price; justify-self: end; text-align: right; white-space: nowrap; }
+  .hplans .hplan .hplan__price b { font-size: 1.5rem; }
+  .hplans .hplan .hplan__feats { grid-area: feats; flex-direction: row; flex-wrap: wrap; gap: 4px 14px; font-size: .84rem; }
+  .hplans .hplan .hplan__feats li { padding-left: 17px; }
+  .hplans .hplan .hplan__feats li::before { width: 11px; height: 11px; top: .32em; }
+  .hplans .hplan .hplan__feats li.hplan__more { padding-left: 0; }
+  .hplans .hplan .hplan__setup { grid-area: setup; justify-self: start; padding-top: 10px; border-top: 1px solid var(--line); width: 100%; }
+  .theme-blocks .hplans .hplan .hplan__setup { border-top: 2px dashed var(--ink); }
+  .hplans .hplan .hplan__go { grid-area: go; grid-column: 3; grid-row: 3; width: 38px; height: 38px; align-self: end; }
+  .hplans .hplan .hplan__go svg { width: 18px; height: 18px; }
+  .hplans .hplan .hplan__rec:not([hidden]) { right: 14px; }
+}
+@media (max-width: 760px) { .hplans .hplan .hplan__go { justify-self: end; } }
