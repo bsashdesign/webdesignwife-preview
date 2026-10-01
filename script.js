@@ -291,8 +291,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const box = document.createElement("div");
     box.className = "hintro";
     box.innerHTML = '<p class="hintro__from"><img src="images/favicon.jpg" alt=""><span>Message from <strong>Web Design Wife</strong></span></p>'
-      + '<div class="hintro__msg"></div><p class="hintro__you" aria-hidden="true">You</p><div class="hintro__pick" role="group" aria-label="Choose a reply"></div>'
-      + '<p class="hintro__cue" aria-hidden="true"><b>↑</b> Choose a reply, <em>really.</em></p>';
+      + '<div class="hintro__msg"></div><p class="hintro__you" aria-hidden="true" style="opacity:0">You</p><div class="hintro__pick" role="group" aria-label="Choose a reply"></div>'
+      + '<p class="hintro__cue" aria-hidden="true" style="opacity:0"><b>↑</b> Choose a reply, <em>really.</em></p>';
     demo.classList.add("is-intro");
     demo.append(box);
     const msg = box.querySelector(".hintro__msg"), pickBox = box.querySelector(".hintro__pick");
@@ -338,8 +338,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         });
         pickBox.append(b); show(b, 120 + i * 90);
       });
-      show(box.querySelector(".hintro__you"), 60);
-      show(box.querySelector(".hintro__cue"), 500);
+      // "You" and the cue only appear once the replies are there to pick
+      const you = box.querySelector(".hintro__you"), cue = box.querySelector(".hintro__cue");
+      you.style.opacity = cue.style.opacity = "";
+      show(you, 60); show(cue, 500);
     });
   }
   run();
