@@ -6904,3 +6904,62 @@ html.theme-subway.theme-dark #work .work-founding:not(#z) { background: rgba(255
 /* Transit: the free audit pop-up is black (not red); its fields sit a shade lighter so they stand out */
 html.theme-subway.theme-dark .audit-dialog:not(#z):not(#y) { background: #0b0b0b; box-shadow: 0 0 0 1px #2f2f2f, 0 30px 60px -20px rgba(0, 0, 0, .8); }
 html.theme-subway.theme-dark .audit-dialog :is(input, textarea, select):not(#z):not(#y) { background: #1f1f1f; border-color: #3a3a3a; }
+/* ---- "Choose Your Plan" pop-up: three plan cards side by side (stacked and condensed on phones) */
+.plans-dialog__offer:not(#z) { margin: 0 0 18px; text-align: left; font-size: .9rem; }
+.pcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.pcard { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 20px 20px 18px; border-radius: 18px; background: var(--card, #fff); box-shadow: 0 0 0 1px var(--line); color: var(--ink); }
+.pcard__top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pcard__gem { display: block; width: 46px; height: 46px; flex-shrink: 0; }
+.pcard__gem .plan-gem { display: block; width: 100%; height: 100%; }
+.pcard__name:not(#z) { margin: 0; font-size: 1.25rem; line-height: 1.15; }
+.pcard__pill { padding: 2px 9px; border-radius: 999px; font: 700 .62rem/1.5 var(--body); letter-spacing: .06em; text-transform: uppercase; background: color-mix(in srgb, var(--violet) 12%, #fff); color: var(--violet); }
+.pcard__lead { margin: 0; font-size: .92rem; line-height: 1.45; }
+.pcard__feats { display: grid; gap: 5px; margin: 0; padding: 0; list-style: none; font-size: .86rem; color: var(--ink-soft); }
+.pcard__feats li { position: relative; padding-left: 20px; }
+.pcard__feats li::before { content: ""; position: absolute; left: 0; top: .32em; width: 13px; height: 13px; background: var(--done, #19a463); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.pcard__money { display: grid; gap: 1px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
+.pcard__status { margin: 0 0 4px; font: 700 .62rem/1.4 var(--body); letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft); }
+.pcard__price { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+.pcard__price b { font: 700 1.9rem/1 var(--display); color: var(--ink); letter-spacing: -.02em; }
+.pcard__billed { margin: 0; font-size: .8rem; color: var(--ink-soft); }
+.pcard__setup { display: grid; margin: 8px 0 0; font-size: .86rem; }
+.pcard__setup small { font-size: .74rem; color: var(--ink-soft); }
+.pcard__cta { margin-top: 12px; justify-content: center; }
+.pcard--best { box-shadow: 0 0 0 2px var(--violet), 0 18px 36px -24px rgba(27, 21, 48, .45); }
+/* moods */
+html.theme-blocks .pcard { background: #fff; border: 2.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); border-radius: 16px; }
+html.theme-blocks .pcard__money { border-top: 2px dashed var(--ink); }
+html.theme-blocks .pcard__feats { color: var(--ink); }
+html.theme-blocks .pcard__feats li::before { background: var(--ink); }
+html.theme-blocks .pcard__pill { background: var(--sky); color: var(--ink); border: 2px solid var(--ink); }
+html.theme-blocks .pcard__name { width: fit-content; padding: 0 2px; background: linear-gradient(transparent 55%, var(--hi, var(--lime)) 55% 95%, transparent 95%); }
+html.theme-blocks .pcard--business .pcard__name { --hi: var(--sky); } html.theme-blocks .pcard--full .pcard__name { --hi: var(--rose); }
+html.theme-subway.theme-dark .pcard { background: #1f1f1f; box-shadow: none; border-radius: 10px; border-top: 5px solid var(--c, #00933c); --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #333; }
+html.theme-subway .pcard--business { --c: #0b5cd6; } html.theme-subway .pcard--full { --c: #a336b0; }
+html.theme-subway.theme-dark .pcard__name { color: #3fd07a; } html.theme-subway.theme-dark .pcard--business .pcard__name { color: #6ea8ff; } html.theme-subway.theme-dark .pcard--full .pcard__name { color: #d27be0; }
+html.theme-subway .pcard__pill { background: #fccc0a; color: #111; border-radius: 4px; }
+html.theme-subway .pcard__status { color: #fccc0a; }
+html.theme-subway .pcard__feats li::before { background: #3fd07a; }
+html.theme-wedding .pcard { background: #fffdf8; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184, 149, 90, .4); }
+html.theme-wedding .pcard--best { background: #fffaf0; box-shadow: inset 0 0 0 1px var(--gold-ink), inset 0 0 0 5px #fffaf0, inset 0 0 0 6px var(--gold), 0 18px 34px -24px rgba(31, 35, 54, .4); }
+html.theme-wedding .pcard__name { font-family: var(--display); font-style: italic; font-weight: 600; color: var(--gold-ink); font-size: 1.5rem; }
+html.theme-wedding .pcard__pill { background: var(--gold-ink); color: #fff; border-radius: 3px; }
+html.theme-wedding .pcard__status { color: var(--gold-ink); letter-spacing: .1em; font-weight: 600; }
+html.theme-wedding .pcard__feats li::before { background: var(--gold-ink); }
+html.theme-refined .pcard__feats li::before { background: var(--violet); }
+/* phones: stacked and condensed — no checklists, the price block in two columns */
+@media (max-width: 760px) {
+  .pcards { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .pcard { padding: 14px; gap: 8px; }
+  .pcard__gem { width: 38px; height: 38px; }
+  .pcard__feats { display: none; }
+  .pcard__money { grid-template-columns: 1fr auto; column-gap: 14px; align-items: end; padding-top: 8px; }
+  .pcard__status { grid-column: 1 / -1; }
+  .pcard__price { grid-column: 1; }
+  .pcard__billed { grid-column: 1; }
+  .pcard__setup { grid-column: 2; grid-row: 2 / 4; margin: 0; text-align: right; justify-items: end; }
+  .pcard__money:has(.pcard__status) .pcard__setup { grid-row: 2 / 4; }
+  .pcard__money:not(:has(.pcard__status)) .pcard__setup { grid-row: 1 / 3; }
+  .pcard__cta { margin-top: 8px; }
+}
+.pcard__billed:not(#z) { white-space: nowrap; }

@@ -861,7 +861,30 @@
     <div class="finder-dialog__inner">
       <button type="button" class="finder-dialog__close" data-close-plans aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
       <h2 id="plans-dialog-title">Choose your plan</h2>
-      <div data-plans-slot></div>
+      <!-- FOUNDING:START --><p class="hplans__founding plans-dialog__offer"><i class="pi pi--crown-fill" aria-hidden="true"></i><strong>50% Launch Offer:</strong> First five businesses accepted get 50% off setup. The subscription is the regular plan price.</p><!-- FOUNDING:END -->
+      <div class="pcards">
+        <article class="pcard pcard--essentials">
+          <div class="pcard__top"><span class="pcard__gem"><canvas class="plan-ring plan-gem" data-plan="essentials" aria-hidden="true"></canvas></span><h3 class="pcard__name">Essentials</h3></div>
+          <p class="pcard__lead">A brand-new custom site and Google Maps, handled remotely.</p>
+          <ul class="pcard__feats"><li>Remote kickoff</li><li>1 page</li><li>Google Maps kept current</li></ul>
+          <div class="pcard__money"><p class="pcard__price"><b>{{$essentials.yearmo}}</b>/mo</p><p class="pcard__billed">{{$essentials.year}} billed yearly</p><!-- FOUNDING:START --><p class="pcard__setup"><b>{{$essentials.found}} setup</b><small>50% Launch Offer, normally {{$essentials.setup}}</small></p><!-- FOUNDING:END --></div>
+          <a class="btn btn--ghost btn--block pcard__cta" href="start.html?plan=essentials">Start</a>
+        </article>
+        <article class="pcard pcard--business pcard--best">
+          <div class="pcard__top"><span class="pcard__gem"><canvas class="plan-ring plan-gem" data-plan="business" aria-hidden="true"></canvas></span><h3 class="pcard__name">Business</h3><span class="pcard__pill">Most popular</span></div>
+          <p class="pcard__lead">I come to your business and build the site around the real thing.</p>
+          <ul class="pcard__feats"><li>In-person kickoff + photos</li><li>Up to 5 pages</li><li>Google Maps + review growth</li></ul>
+          <div class="pcard__money"><p class="pcard__status">Application Required</p><p class="pcard__price"><b>{{$business.yearmo}}</b>/mo</p><p class="pcard__billed">{{$business.year}} billed yearly</p><!-- FOUNDING:START --><p class="pcard__setup"><b>{{$business.found}} setup</b><small>50% Launch Offer, normally {{$business.setup}}</small></p><!-- FOUNDING:END --></div>
+          <a class="btn btn--primary btn--block pcard__cta" href="start.html?plan=business">Apply</a>
+        </article>
+        <article class="pcard pcard--full">
+          <div class="pcard__top"><span class="pcard__gem"><canvas class="plan-ring plan-gem" data-plan="full" aria-hidden="true"></canvas></span><h3 class="pcard__name">Full Suite</h3></div>
+          <p class="pcard__lead">Everything in Business, plus ongoing content and growth.</p>
+          <ul class="pcard__feats"><li>Up to 10 pages</li><li>Ongoing content &amp; SEO</li><li>AI assistant</li></ul>
+          <div class="pcard__money"><p class="pcard__status">Application Required</p><p class="pcard__price"><b>{{$full.yearmo}}</b>/mo</p><p class="pcard__billed">{{$full.year}} billed yearly</p><!-- FOUNDING:START --><p class="pcard__setup"><b>{{$full.found}} setup</b><small>50% Launch Offer, normally {{$full.setup}}</small></p><!-- FOUNDING:END --></div>
+          <a class="btn btn--ghost btn--block pcard__cta" href="start.html?plan=full">Apply</a>
+        </article>
+      </div>
       <p class="plans-dialog__more"><a href="pricing.html">Compare the plans in detail →</a></p>
     </div>
   </dialog>

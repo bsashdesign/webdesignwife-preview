@@ -2552,20 +2552,15 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
 });
 
 // "See what I'd do for you" opens the "Choose your business" pop-up; each type there goes to its own page.
-// Homepage: "Get Started" opens a pop-up with the plan rows (the same short layout as the Pricing section), so you
-// pick a plan first; each row's Start / Apply goes on to Get Started. (Without the pop-up it's a plain link.)
+// Homepage: "Get Started" opens a pop-up with the three plans as cards, so you pick a plan first; each card's Start /
+// Apply goes on to Get Started. (Without the pop-up it's a plain link.)
 (() => {
-  const dialog = document.getElementById("plans-dialog"), rows = document.querySelector("#pricing .hplans");
-  if (!dialog || !dialog.show || !rows) return;
-  const slot = dialog.querySelector("[data-plans-slot]");
-  // the real rows move into the pop-up while it's open (so their gems keep drawing) and go back when it closes
-  const founding = document.querySelector("#pricing .hplans__founding"), home = rows.parentNode, after = rows.nextSibling;
-  const fill = () => { if (founding) slot.append(founding); slot.append(rows); };
-  dialog.addEventListener("close", () => { home.insertBefore(rows, after); if (founding) home.insertBefore(founding, rows); });
+  const dialog = document.getElementById("plans-dialog");
+  if (!dialog || !dialog.show) return;
   document.addEventListener("click", (e) => {
     const a = e.target.closest('a[href="start.html"]');
     if (!a || dialog.contains(a) || e.metaKey || e.ctrlKey) return;
-    e.preventDefault(); fill(); openSheet(dialog);
+    e.preventDefault(); openSheet(dialog);
   });
   dialog.querySelector("[data-close-plans]").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
