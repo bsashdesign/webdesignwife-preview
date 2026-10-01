@@ -2336,13 +2336,21 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   // The Spin button's labels: a new one with each of your spins, getting sillier; the tenth is the jackpot.
   // Every label sits stacked in the same spot inside the button, so it's always as wide as the longest one.
   const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "Again? 😄"];
-  // what each of your spins reveals (three words, with "for" and "in" tucked away); the tenth, the jackpot, keeps
-  // them and reads "Built for You in New York"
-  const MESSAGES = [
-    ["Web", "Design", "Wife"], ["Your", "Site", "Handled"], ["Live", "By", "Tomorrow"], ["Zero", "Tech", "Headaches"],
-    ["Customers", "Find", "You"], ["Made", "In", "Brooklyn"], ["Wow,", "You're", "Persistent"], ["Okay,", "Now", "Hire Me"],
-    ["Last", "Spin,", "Promise"], ["Built", "You", "New York"],
+  // What your spins reveal: a friendly three-word benefit each time ("for" and "in" tucked away), picked from this
+  // pool without repeats; the tenth spin, the jackpot, always lands on Web Design Wife
+  const PERKS = [
+    ["No", "Logins", "Needed"], ["Forget", "Your", "Passwords"], ["Change", "Hours", "Anytime"], ["New", "Hire?", "Added"],
+    ["New", "Number?", "Updated"], ["Holiday", "Hours?", "Done"], ["Menu", "Changed?", "Handled"], ["Prices", "Updated", "Quickly"],
+    ["Fresh", "Photos", "Anytime"], ["Just", "Text", "Me"], ["Live", "By", "Tomorrow"], ["Google", "Maps", "Handled"],
+    ["A Real", "Person", "Replies"], ["Edits", "Always", "Included"], ["Hosting", "Fully", "Included"], ["Your", "Domain,", "Yours"],
+    ["Looks", "Great", "On Phones"], ["Zero", "Plugins", "Ever"], ["More", "Time", "For You"], ["Your", "Site,", "Handled"],
   ];
+  const FINALE = ["Web", "Design", "Wife"];
+  let perkBag = [];
+  const nextPerk = () => {
+    if (!perkBag.length) perkBag = PERKS.slice().sort(() => Math.random() - .5);
+    return perkBag.pop();
+  };
   let level = 0;
   if (btn.classList.contains("bf-spin")) {
     btn.innerHTML = LABELS.map((t, i) => `<span class="bf-spin__l" data-l="${i}"${i ? ' aria-hidden="true"' : ""}>${t}</span>`).join("");
@@ -2389,8 +2397,8 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (win) youSpun = true; // after that, the hand stays away
     // each of your spins gives the button a new, progressively sillier label; the tenth spin is the jackpot
     const tier = win ? bumpLabel() : 0, jackpot = tier === 10;
-    if (win && !jackpot) { linkAway(0); linkAway(1); }
-    const brandNow = win ? MESSAGES[tier - 1] : BRAND;
+    if (win) { linkAway(0); linkAway(1); }
+    const brandNow = !win ? BRAND : jackpot ? FINALE : nextPerk();
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {
       const n = r.n; r.keep = null; r.reel.classList.remove("is-win");
