@@ -1591,8 +1591,6 @@ document.addEventListener("click", (e) => {
   // light for the sides: from the upper left, the way the stone leans
   const SIDE = (() => { const l = [-.75, .5, .45], d = Math.hypot(...l); return l.map((v) => v / d); })();
   const LIGHT = (() => { const l = [-.45, .75, .55], d = Math.hypot(...l); return l.map((v) => v / d); })();
-  // a softer bounce light from the lower right, so the facets underneath shift in shade as the stone turns
-  const RIM = (() => { const l = [.7, -.55, .45], d = Math.hypot(...l); return l.map((v) => v / d); })();
   // reading a colour from CSS is slow, so each canvas remembers its colour and checks again only once a second
   const rgbOf = (cv, now) => {
     if (!cv._rgb || now - cv._rgbAt > 1000) { cv._rgb = (getComputedStyle(cv).color.match(/\d+(\.\d+)?/g) || [0, 0, 0]).slice(0, 3).map(Number); cv._rgbAt = now; }
@@ -1666,8 +1664,13 @@ document.addEventListener("click", (e) => {
         // Essentials is brightened a touch overall
         if (plan === "essentials") { tone += .08; lift += .12; }
       }
-      // faces turned down catch the bounce light from below, each at a different moment as the stone spins
-      if (face.n[1] < -.05) tone += .42 * Math.max(0, n[0] * RIM[0] + n[1] * RIM[1] + n[2] * RIM[2]);
+      // The facets underneath shade in one smooth sweep around the stone, like the top: lightest where they face the
+      // front left, darkest at the back right, with no light/dark alternation from facet to facet.
+      if (face.n[1] < -.05) {
+        const h = Math.hypot(n[0], n[2]) || 1, around = (n[0] * -.8 + n[2] * .6) / h;
+        tone = .42 + .5 * (around + 1) / 2; lift = Math.max(0, around - .55) * .5;
+        if (plan === "essentials") { tone += .06; lift += .08; }
+      }
       tone = Math.max(.26, tone);
       if (style === "sophisticated") { path(p); ctx.stroke(); continue; }
       {
