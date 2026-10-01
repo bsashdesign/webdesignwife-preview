@@ -207,8 +207,12 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.billing === mode)));
     if (sw) sw.setAttribute("aria-checked", String(mode === "yearly"));
     if (billing) billing.classList.toggle("is-yearly", mode === "yearly");
-    // the tag says what you get: "Save 20%" before, "You Are Saving 20%" once yearly is on
-    document.querySelectorAll(".billing__save").forEach((t) => { t.textContent = mode === "yearly" ? "You Are Saving 20%" : "Save 20%"; });
+    // the tag says what you get: "Save 20%" before, "You Are Saving 20%" once yearly is on.
+    // Both wordings sit in the same spot, so the tag keeps the longer one's width and the toggle never moves.
+    document.querySelectorAll(".billing__save").forEach((t) => {
+      if (!t.querySelector(".billing__save-m")) t.innerHTML = '<span class="billing__save-m">Save 20%</span><span class="billing__save-y">You Are Saving 20%</span>';
+      t.classList.toggle("is-on", mode === "yearly");
+    });
     plans.forEach((plan) => {
       const price = Number(plan.dataset.price);
       const setup = Number(plan.dataset.setup);

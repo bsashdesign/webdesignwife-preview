@@ -4502,3 +4502,14 @@ span.plan-ring:empty { display: none; }
 /* dim only the words, so the "Save 20%" tag stays bright either way */
 .billing .billing__opt[aria-pressed="false"], .billing .billing__opt[aria-pressed="false"]:hover { opacity: 1; color: color-mix(in srgb, var(--ink) 40%, transparent); }
 .billing .billing__opt[aria-pressed="false"]:hover { color: color-mix(in srgb, var(--ink) 65%, transparent); }
+/* the two wordings share one spot; the tag is always as wide as the longer one */
+.billing__save { display: inline-grid; justify-items: center; }
+.billing__save > span { grid-area: 1 / 1; }
+.billing__save .billing__save-y, .billing__save.is-on .billing__save-m { visibility: hidden; }
+.billing__save.is-on .billing__save-y { visibility: visible; }
+/* keep one weight on both billing words, so switching never nudges the toggle */
+.billing .billing__opt[aria-pressed] { font-weight: 600; }
+/* Transit: the Founding 5 emblem is a black seal with a gold frame, gold crown and a gold number, instead of yellow on yellow */
+.theme-subway .founding .founding__emblem { background: radial-gradient(circle at 30% 20%, #262626, #0a0a0a 70%); color: #e8c766; border-radius: 10px; box-shadow: inset 0 0 0 2px #d6ad45, inset 0 0 0 6px #0b0b0b, inset 0 0 0 7px rgba(214,173,69,.55), 0 10px 24px -12px rgba(0,0,0,.8); }
+.theme-subway .founding .founding__emblem span { color: #e8c766; opacity: 1; }
+.theme-subway .founding .founding__emblem b { background: linear-gradient(180deg, #fbe7a1 0%, #e2b84e 55%, #b8862a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
