@@ -5354,7 +5354,7 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
   #moods-tv .tv-keys .tv-key:not(#z) { width: 88px; }
 }
 /* Transit key (button board and pop-up): charcoal, with a yellow outline face (no fill) */
-#moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg); }
+#moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg?v=3); }
 /* the "Seriously, press one." part drops whenever it would push Sound effects onto its own line (set by script.js) */
 #moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }
 /* Tangy's "Press one" note in its bold body font, not monospace */
@@ -5413,3 +5413,4 @@ html.theme-wedding { --page-title: clamp(2.8rem, 6vw, 5rem); }
 /* the big TV's sound waves come straight off the speaker grille, not from the TV's far edge */
 #moods-tv .tv__grille { position: relative; }
 #moods-tv .tv__grille .tv__waves:not(#z) { left: 100%; top: 50%; margin-left: 2px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z):not(#y) { border-radius: 9px; }
