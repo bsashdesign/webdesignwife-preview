@@ -4569,3 +4569,6 @@ html.theme-wedding .plan-ring-tile:has(.plan-gem) { --ring: #a2741f; }
 .theme-wedding .sound-toggle[aria-checked="true"] .sound-toggle__switch { background: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .theme-wedding .sound-toggle[aria-checked="true"] .sound-toggle__switch i { background: #d9c49a; transform: translateX(16px); }
 .theme-wedding .mood__sound { border-top-color: rgba(184,149,90,.4); }
+/* less room under the Sound switch at the bottom of the Change the Channel section */
+section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
+@media (max-width: 640px) { section.tv-sec:has(.tv-sound) { padding-bottom: 32px; } }
