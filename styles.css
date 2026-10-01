@@ -4729,3 +4729,34 @@ html.theme-blocks :is(.billing__switch:not([aria-checked="true"]), .sound-toggle
 .sform__group:has(.sbill) > .splans { margin-top: 10px; }
 /* Tangy switches: flat in both states, just the ink outline */
 html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { box-shadow: inset 0 0 0 2px var(--ink); }
+/* Hover states: plans, fields and switches respond to the pointer, in each mood's own colours */
+.splan > span, .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea), .billing__switch, .sound-toggle__switch {
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease, color .15s ease;
+}
+@media (hover: hover) {
+  /* Calm: soft violet */
+  .splan:hover input:not(:checked) + span { border-color: #b9adf5; background: #faf8ff; }
+  .splan:hover input:not(:checked) + span::after { border-color: var(--violet); }
+  .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea):hover:not(:focus) { border-color: #b9adf5; }
+  .billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch { background: color-mix(in srgb, var(--ink) 32%, transparent); }
+  .billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch { background: var(--violet-deep, #4424db); }
+  /* Tangy: a pale sky tint, the ink outline stays */
+  html.theme-blocks .splans .splan:hover input:not(:checked) + span { background: #eef8ff; border-color: var(--ink); }
+  html.theme-blocks .splan:hover input:not(:checked) + span::after { background-color: #fff; border-color: var(--ink); }
+  html.theme-blocks .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea):hover:not(:focus) { background-color: #fffdf3; }
+  html.theme-blocks :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #eef8ff; }
+  html.theme-blocks :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #ff8240; }
+  /* Transit: a lighter grey card and a brighter blue */
+  html.theme-subway.theme-dark .splan:hover input:not(:checked) + span { background: #232323; border-color: #4a4a4a; }
+  html.theme-subway .splan:hover input:not(:checked) + span::after { border-color: #4d8dff; }
+  html.theme-subway.theme-dark .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea):hover:not(:focus) { border-color: #4a4a4a; }
+  html.theme-subway.theme-dark :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #4a4a4a; }
+  html.theme-subway :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #2a74e6; }
+  /* Sophisticated: a warm ivory with a gold edge */
+  html.theme-wedding .splan:hover input:not(:checked) + span { background: #fffcf5; border-color: var(--gold); }
+  html.theme-wedding .splan:hover input:not(:checked) + span::after { border-color: var(--gold-ink); }
+  html.theme-wedding .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea):hover:not(:focus) { border-color: var(--gold); }
+  html.theme-wedding :is(.billing__switch:hover:not([aria-checked="true"]), .sound-toggle:hover:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: rgba(184,149,90,.26); }
+  html.theme-wedding :is(.billing__switch[aria-checked="true"]:hover, .sound-toggle[aria-checked="true"]:hover .sound-toggle__switch):not(#z) { background: #2d3350; }
+}
+@media (hover: hover) { html.theme-blocks .sform :is(input:not([type="radio"]):not([type="checkbox"]), select, textarea):hover:not(:focus) { border-color: var(--ink); } }
