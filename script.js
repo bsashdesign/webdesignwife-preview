@@ -139,22 +139,22 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   // every request here is a minor edit (hours, services, prices, a promo banner), the kind that's included in a plan
   const TREE = [
     T("Can you add Saturday hours?", "Done!", hours("Mon–Fri 8–5 · Sat 9–2"), [
-      T("Actually, make it 10 to 3", "Done!", hours("Mon–Fri 8–5 · Sat 10–3"), [
+      T("Actually, make it 10 to 3", "No problem!", hours("Mon–Fri 8–5 · Sat 10–3"), [
         T("Perfect, thank you!", "Anytime!", null, null),
-        T("And we're closed July 4th", "Done!", promo("Closed Friday, July 4th. Happy Fourth!"), null),
+        T("And we're closed July 4th", "Got it!", promo("Closed Friday, July 4th. Happy Fourth!"), null),
       ]),
       T("Will Google show it too?", "Yep, Google too.", null, [
         T("Wow, that was fast", "Took four minutes.", null, null),
-        T("Can we add a promo too?", "Done!", promo("This month: 10% off drain cleaning"), null),
+        T("Can we add a promo too?", "Got it!", promo("This month: 10% off drain cleaning"), null),
       ]),
     ]),
     T("We do water heaters now", "Done!", services("Drains · Leak repair · Water heaters"), [
-      T("Can we run a deal on them?", "Done!", promo("$50 off water heater installs this month"), [
-        T("Make it $75 off", "Done!", promo("$75 off water heater installs this month"), null),
+      T("Can we run a deal on them?", "Got it!", promo("$50 off water heater installs this month"), [
+        T("Make it $75 off", "No problem!", promo("$75 off water heater installs this month"), null),
         T("Love it, thanks!", "Anytime!", null, null),
       ]),
       T("And take off leak repair?", "Done!", services("Drains · Water heaters"), [
-        T("Oops, put it back", "Done!", services("Drains · Leak repair · Water heaters"), null),
+        T("Oops, put it back", "No problem!", services("Drains · Leak repair · Water heaters"), null),
         T("Perfect, thanks!", "Anytime!", null, null),
       ]),
     ]),
