@@ -5442,5 +5442,5 @@ html.theme-subway.theme-dark #mood .mood__sound:not(#z) { border-top-color: #3d3
   :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"]:hover:not(#z) { background: color-mix(in srgb, var(--ink) 5%, transparent); }
   html.theme-subway.theme-dark #footer-channel .mood__opt[aria-pressed="true"]:hover:not(#z) { background: #242424; }
 }
-/* Tangy TV screen says "Boing!" (a longer word than "Aa!", so a touch smaller) */
-.tch-word { font-size: 17cqh; right: 7cqw; }
+/* Tangy TV screen says "Boing!": big and on a diagonal across the lower right, clear of the face and the Wow! sticker */
+.tch-word { font-size: 21cqh; top: auto; right: 5cqw; bottom: 24cqh; transform: rotate(-12deg); transform-origin: 50% 50%; z-index: 3; }
