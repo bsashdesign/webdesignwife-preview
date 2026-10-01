@@ -6337,3 +6337,7 @@ html.theme-blocks .chat-pick__or:not(#z) { margin-top: 4px; margin-bottom: 1px; 
 @media (max-width: 760px) { html.theme-wedding .chat-pick__or:not(#z) { font-size: .78rem; } html.theme-blocks .chat-pick__or:not(#z) { margin-top: 3px; } }
 /* Tangy hero phone: the messages you send are the light beige of a selected field, not lime */
 html.theme-blocks .m--them .bubble:not(#z) { background: #fffbe0; }
+/* Tangy hero phone: Web Design Wife's messages are sky blue instead of orange */
+html.theme-blocks .m--us .bubble:not(#z) { background: #9fd8ff; color: var(--ink); }
+html.theme-blocks .m--us .bubble__check:not(#z) { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); }
+html.theme-blocks .m--us .bubble__check path { stroke: var(--ink); }
