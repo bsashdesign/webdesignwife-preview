@@ -66,10 +66,7 @@ THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n i
 # Copy that changes with a mood: (mood class, current text, mood text)
 ALT_COPY = [
     ("theme-wedding", "Get in touch", "RSVP"),
-    ("theme-wedding", "Designed in 14 days, launched when you love it", "The proposal in 14 days, the wedding when you're ready"),
     ("theme-wedding", "We get to know your business", "A first date"),
-    ("theme-wedding", "A design you approve", "The proposal"),
-    ("theme-wedding", "A live site I look after", "Happily ever after"),
 ]
 
 SPARKLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.5 4.6 2.4 6.5 7 7-4.6.5-6.5 2.4-7 7-.5-4.6-2.4-6.5-7-7 '
