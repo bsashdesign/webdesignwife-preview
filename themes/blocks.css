@@ -47,7 +47,8 @@
 /* Eyebrows as stickers */
 .theme-blocks .eyebrow { display: inline-block; background: #fff; color: var(--ink); border: var(--edge); border-radius: 999px; padding: 6px 12px; transform: rotate(-2deg); font-weight: 500; }
 .theme-blocks .eyebrow--light, .theme-blocks #compare .eyebrow { background: var(--lime); color: var(--ink); }
-.theme-blocks .hl { background: #fff; border: var(--edge); border-radius: 12px; padding: 0 .15em; box-shadow: var(--shadow); display: inline-block; margin-top: 8px; }
+/* the hero price gets a highlighter stroke behind it (no box), drawn on like the other highlights */
+.theme-blocks .hl { background: linear-gradient(transparent 52%, #ff9a5c 52% 92%, transparent 92%) no-repeat; padding: 0 .08em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
 /* Outlined, hard-shadow components */
 .theme-blocks .btn { border: var(--edge); box-shadow: 4px 4px 0 var(--ink); transition: transform .15s ease, box-shadow .15s ease, background-color .2s ease; }
