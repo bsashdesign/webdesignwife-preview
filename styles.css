@@ -6858,3 +6858,7 @@ html.theme-blocks .mplans .mplan__ico:not(#z) { box-shadow: inset 0 0 0 2px var(
 .cc__cta:not(#z) { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; max-width: none; margin: auto 0 0; padding-top: 22px; }
 .cc__alt { font-size: .92rem; font-weight: 600; color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 html.theme-wedding #compare .cc--us .cc__alt, html.theme-wedding #compare .cc--us .cc__read { color: #f4ecdb; }
+/* Homepage: the nav is hidden at the very top and slides down once you scroll */
+.nav.nav--autohide:not(#z) { position: fixed; left: 0; right: 0; transform: translateY(-105%); transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .2s ease; }
+.nav.nav--autohide.is-scrolled:not(#z) { transform: none; }
+.drawer-open .nav.nav--autohide:not(#z), .nav.nav--autohide:focus-within:not(#z) { transform: none; }

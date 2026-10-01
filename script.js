@@ -909,6 +909,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 (function () {
   const nav = document.querySelector(".nav");
   if (!nav) return;
+  // homepage only: the nav stays out of the way until you scroll, then slides down
+  if (document.querySelector(".hero #demo")) nav.classList.add("nav--autohide");
   const update = () => nav.classList.toggle("is-scrolled", window.scrollY > 24);
   window.addEventListener("scroll", update, { passive: true });
   update();
