@@ -5868,3 +5868,7 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 @media (hover: hover) { .theme-wedding .btypes a:not(#z):hover > span { color: var(--gold); } }
 @media (max-width: 760px) { .btypes a:not(#z) { padding: 7px 0; } .btypes:not(#z) { text-align: center; } }
 .btypes a:not(#z):not(#y) { background: none; }
+/* Tangy: on hover each business type gets its own colour highlighter behind the word */
+html.theme-blocks .btypes a:not(#z) > span { background: linear-gradient(var(--hl), var(--hl)) 0 90% / 0 .5em no-repeat; transition: background-size .3s var(--ease-out); }
+@media (hover: hover) { html.theme-blocks .btypes a:not(#z):hover > span { color: var(--ink); background-size: 100% .5em; } }
+html.theme-blocks .btypes a:not(#z):focus-visible > span { background-size: 100% .5em; }
