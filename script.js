@@ -1774,14 +1774,16 @@ document.addEventListener("click", (e) => {
   try { muted = localStorage.getItem("wdw-muted") === "1"; } catch (e) {}
   // Whenever a sound plays, the mini TV in the corner does a little dance; with sound on, waves come out of it too
   // (muted, it still dances, just without the waves).
-  let danceT = null;
-  const dance = (ms) => {
-    const btn = document.querySelector(".mood__btn");
-    if (!btn) return;
-    btn.classList.add("is-dancing");
-    btn.classList.toggle("is-sounding", !muted);
-    clearTimeout(danceT);
-    danceT = setTimeout(() => btn.classList.remove("is-dancing", "is-sounding"), ms);
+  // Sounds made on the big "Change the Channel" TV (its keys, knobs and speaker) make the big TV dance instead.
+  const danceT = new Map();
+  // (the big TV only dances to its tune; its other sounds just send out waves)
+  const dance = (ms, big, moves = !big) => {
+    const el = big ? document.querySelector("#moods-tv .tv") : document.querySelector(".mood__btn");
+    if (!el) return;
+    el.classList.toggle("is-dancing", moves);
+    el.classList.toggle("is-sounding", !muted);
+    clearTimeout(danceT.get(el));
+    danceT.set(el, setTimeout(() => el.classList.remove("is-dancing", "is-sounding"), ms));
   };
   // the switches read "on" when sound is playing
   const syncMute = () => document.querySelectorAll("[data-mute]").forEach((b) => b.setAttribute("aria-checked", String(!muted)));
@@ -1792,8 +1794,8 @@ document.addEventListener("click", (e) => {
     try { localStorage.setItem("wdw-muted", muted ? "1" : "0"); } catch (err) {}
     syncMute();
   });
-  const click = () => {
-    dance(1320);
+  const click = (big) => {
+    dance(1320, big);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1815,7 +1817,7 @@ document.addEventListener("click", (e) => {
   };
   // An old TV switching on: a soft, warm rise as the tube warms up, a low hum and a little static.
   window.wdwTvOn = () => {
-    dance(2100);
+    dance(2100, true);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1847,7 +1849,7 @@ document.addEventListener("click", (e) => {
   };
   // A sheet of paper turning over: a short, soft swoosh of air (filtered noise that sweeps up and fades).
   window.wdwSwoosh = () => {
-    dance(1450);
+    dance(1450, true);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1863,8 +1865,8 @@ document.addEventListener("click", (e) => {
     } catch (e) {}
   };
   // Pressing a key that's already down: a dull, low clunk, like a button that can't go any further.
-  const clunk = () => {
-    dance(1380);
+  const clunk = (big) => {
+    dance(1380, big);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1936,7 +1938,57 @@ document.addEventListener("click", (e) => {
       } catch (e) {}
     },
   };
-  const sound = (key) => (key.getAttribute("aria-pressed") === "true" ? clunk() : click());
+  // The big TV's dials and speaker: the top dial spins with a clack, the small one ticks round 20° with a ratchet,
+  // and the speaker plays a little jingle.
+  const tone = (f, t, dur, vol, type = "triangle") => {
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(ac.destination); o.start(t); o.stop(t + dur + .05);
+  };
+  const noiseTick = (t, freq, vol, len = .012) => {
+    const n = Math.floor(ac.sampleRate * len), buf = ac.createBuffer(1, n, ac.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 6);
+    const src = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+    src.buffer = buf; f.type = "bandpass"; f.frequency.value = freq; f.Q.value = 1.2; g.gain.value = vol;
+    src.connect(f).connect(g).connect(ac.destination); src.start(t);
+  };
+  const audio = () => { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); return ac; };
+  const knobSpin = () => {
+    dance(1400, true);
+    if (muted) return;
+    try { const t = audio().currentTime; noiseTick(t, 900, .9, .03); tone(180, t, .12, .25, "sine"); for (let k = 1; k < 6; k++) noiseTick(t + k * .07, 2400, .25 - k * .03); } catch (e) {}
+  };
+  const knobTick = () => {
+    dance(1200, true);
+    if (muted) return;
+    try { const t = audio().currentTime; noiseTick(t, 3200, .7); noiseTick(t + .045, 2600, .45); } catch (e) {}
+  };
+  const tune = () => {
+    // a short, bright TV jingle (about two seconds)
+    const notes = [[784, 0], [988, .16], [1175, .32], [1568, .48], [1319, .72], [1568, .88], [1760, 1.04], [1568, 1.36]];
+    dance(3300, true, true);
+    if (muted) return;
+    try {
+      const t = audio().currentTime + .02;
+      notes.forEach(([f, at], i) => { tone(f, t + at, i === notes.length - 1 ? .7 : .22, .09); tone(f / 2, t + at, .18, .035, "sine"); });
+    } catch (e) {}
+  };
+  document.addEventListener("click", (e) => {
+    const k = e.target.closest("[data-tv-knob]");
+    if (k) {
+      if (k.dataset.tvKnob === "spin") {
+        k.classList.remove("is-spinning"); void k.offsetWidth; k.classList.add("is-spinning");
+        knobSpin();
+      } else {
+        const turn = (Number(k.dataset.turn) || 0) + 20; k.dataset.turn = turn; k.style.setProperty("--turn", turn + "deg");
+        knobTick();
+      }
+      return;
+    }
+    if (e.target.closest("[data-tv-grille]")) tune();
+  });
+  const sound = (key) => { const big = !!key.closest("#moods-tv"); return key.getAttribute("aria-pressed") === "true" ? clunk(big) : click(big); };
   document.addEventListener("pointerdown", (e) => {
     const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt, .moods__key");
     if (key) sound(key);

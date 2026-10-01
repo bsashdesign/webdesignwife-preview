@@ -5019,3 +5019,32 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-subway.theme-dark .work-founding:not(#z) { background: #1c1c1c; box-shadow: inset 0 0 0 1px #2f2f2f; border-radius: 12px; }
 /* Transit (dark), Three Ways: the alternatives' icon circles are a quiet grey, not green, on the blue band */
 .theme-subway.theme-dark #compare .cc:not(.cc--us) .cc__ico:not(#z) { background: #3a3a3a; color: #fff; box-shadow: none; }
+/* Big TV: dials and speaker you can click */
+.tv__side button { padding: 0; border: 0; font: inherit; cursor: pointer; display: block; }
+.tv__side .tv__knob { transform: rotate(var(--turn, 0deg)); transition: transform .18s cubic-bezier(.3, 1.4, .5, 1), filter .15s ease; }
+.tv__side .tv__knob:hover, .tv__side .tv__grille:hover { filter: brightness(1.08); }
+.tv__side .tv__knob:active { filter: brightness(.95); }
+.tv__side .tv__knob.is-spinning { animation: knob-spin .7s cubic-bezier(.25, .8, .3, 1); }
+@keyframes knob-spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.tv__side .tv__grille:active { transform: scale(.97); }
+.tv__side button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+/* Big TV dances while its own sounds play, with sound waves off its right side (no waves when muted) */
+#moods-tv .tv { position: relative; }
+#moods-tv .tv.is-dancing { animation: bigtv-dance .55s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes bigtv-dance { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-1.4deg) translateY(-4px); } 50% { transform: rotate(0) translateY(0); } 75% { transform: rotate(1.4deg) translateY(-4px); } }
+.tv__waves { position: absolute; left: 100%; top: 50%; width: 46px; height: 60px; margin-left: 4px; translate: 0 -50%; pointer-events: none; }
+.tv__waves i { position: absolute; left: 0; top: 50%; width: 14px; height: 14px; border: 3px solid var(--ink); border-color: transparent var(--ink) transparent transparent; border-radius: 50%; translate: 0 -50%; opacity: 0; }
+#moods-tv .tv.is-sounding .tv__waves i { animation: bigtv-wave 1s ease-out infinite; }
+#moods-tv .tv.is-sounding .tv__waves i:nth-child(2) { animation-delay: .33s; }
+#moods-tv .tv.is-sounding .tv__waves i:nth-child(3) { animation-delay: .66s; }
+@keyframes bigtv-wave { 0% { opacity: 0; width: 10px; height: 10px; left: -2px; } 25% { opacity: 1; } 100% { opacity: 0; width: 56px; height: 56px; left: 10px; } }
+.theme-subway.theme-dark .tv__waves i { border-right-color: #fccc0a; }
+.theme-wedding .tv__waves i { border-right-color: var(--gold-ink); border-width: 2px; }
+.theme-refined .tv__waves i { border-right-color: var(--violet); }
+@media (prefers-reduced-motion: reduce) { #moods-tv .tv.is-dancing, #moods-tv .tv.is-sounding .tv__waves i, .tv__side .tv__knob.is-spinning { animation: none; } }
+/* Change the Channel: the "Press one" cue at the left of the button panel, Sound effects at its right */
+.tv-deck { display: grid; justify-items: stretch; gap: 14px; max-width: 100%; }
+.tv-deck__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.tv-deck__top .tryon__cue { margin: 0; flex: 0 1 auto; }
+.tv-deck__top .tryon__cue p { margin: 0; }
+section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }

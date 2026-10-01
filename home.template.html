@@ -348,12 +348,13 @@
               </div>
               <p class="tv__caption" aria-live="polite">Now playing: <b data-tv-name>Tangy</b></p>
             </div>
-            <div class="tv__side" aria-hidden="true"><i class="tv__knob"></i><i class="tv__knob tv__knob--sm"></i><span class="tv__grille"></span></div>
+            <div class="tv__side"><button type="button" class="tv__knob" data-tv-knob="spin" aria-label="Spin the dial"></button><button type="button" class="tv__knob tv__knob--sm" data-tv-knob="tick" aria-label="Turn the small dial"></button><button type="button" class="tv__grille" data-tv-grille aria-label="Play a little tune"></button><span class="tv__waves" aria-hidden="true"><i></i><i></i><i></i></span></div>
           </div>
         </div>
         <div class="tv-panel">
-          <div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Press one. Seriously, press one. <span>↓</span></p></div>
-          <div class="tv-keys" role="group" aria-label="Choose a look">
+          <div class="tv-deck">
+            <div class="tv-deck__top"><div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Press one. Seriously, press one. <span>↓</span></p></div><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
+            <div class="tv-keys" role="group" aria-label="Choose a look">
             <button type="button" class="tv-key tv-key--tangy" data-tv-key="tangy" aria-pressed="false">
               <span class="tv-key__led" aria-hidden="true"></span>
               <span class="key-well"><span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span></span>
@@ -379,6 +380,7 @@
               <span class="tv-key__now" aria-hidden="true">Now playing</span>
             </button>
           </div>
+          </div>
           <div class="tv-yours" data-tv-yours>
             <div class="tv-yours__inner">
               <button type="button" class="tv-yours__front" aria-expanded="false" aria-controls="tv-yours-back">
@@ -392,7 +394,6 @@
               </div>
             </div>
           </div>
-          <div class="tv-sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
         </div>
         </div>
       </div>

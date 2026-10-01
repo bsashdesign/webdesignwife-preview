@@ -15,11 +15,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&text=0123456789&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790822723">
-  <link rel="stylesheet" href="themes/subway.css?v=1790822723">
-  <link rel="stylesheet" href="themes/subway-dark.css?v=1790822723">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790822723">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790822723">
+  <link rel="stylesheet" href="styles.css?v=1790822985">
+  <link rel="stylesheet" href="themes/subway.css?v=1790822985">
+  <link rel="stylesheet" href="themes/subway-dark.css?v=1790822985">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790822985">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790822985">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
   <script type="application/ld+json">
 {
@@ -356,12 +356,13 @@
               </div>
               <p class="tv__caption" aria-live="polite">Now playing: <b data-tv-name>Tangy</b></p>
             </div>
-            <div class="tv__side" aria-hidden="true"><i class="tv__knob"></i><i class="tv__knob tv__knob--sm"></i><span class="tv__grille"></span></div>
+            <div class="tv__side"><button type="button" class="tv__knob" data-tv-knob="spin" aria-label="Spin the dial"></button><button type="button" class="tv__knob tv__knob--sm" data-tv-knob="tick" aria-label="Turn the small dial"></button><button type="button" class="tv__grille" data-tv-grille aria-label="Play a little tune"></button><span class="tv__waves" aria-hidden="true"><i></i><i></i><i></i></span></div>
           </div>
         </div>
         <div class="tv-panel">
-          <div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Press one. Seriously, press one. <span>↓</span></p></div>
-          <div class="tv-keys" role="group" aria-label="Choose a look">
+          <div class="tv-deck">
+            <div class="tv-deck__top"><div class="tryon__cue"><p aria-hidden="true"><span>↓</span> Press one. Seriously, press one. <span>↓</span></p></div><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
+            <div class="tv-keys" role="group" aria-label="Choose a look">
             <button type="button" class="tv-key tv-key--tangy" data-tv-key="tangy" aria-pressed="false">
               <span class="tv-key__led" aria-hidden="true"></span>
               <span class="key-well"><span class="tv-key__cap"><span class="tv-key__face" aria-hidden="true"></span></span></span>
@@ -387,6 +388,7 @@
               <span class="tv-key__now" aria-hidden="true">Now Playing</span>
             </button>
           </div>
+          </div>
           <div class="tv-yours" data-tv-yours>
             <div class="tv-yours__inner">
               <button type="button" class="tv-yours__front" aria-expanded="false" aria-controls="tv-yours-back">
@@ -400,7 +402,6 @@
               </div>
             </div>
           </div>
-          <div class="tv-sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
         </div>
         </div>
       </div>
@@ -763,6 +764,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790822723"></script>
+  <script src="script.js?v=1790822985"></script>
 </body>
 </html>
