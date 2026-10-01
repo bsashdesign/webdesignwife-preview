@@ -234,27 +234,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const again = () => {
       const b = document.createElement("button");
       b.type = "button"; b.className = "chat-choice chat-choice--again"; b.textContent = "↺ Start Over";
-      b.addEventListener("click", async () => {
-        if (busy) return; busy = true;
-        await clearChoices();
-        await resetChat();
-        await checkIn(); offer(TREE); busy = false;
-      });
+      b.addEventListener("click", restart);
       morph(() => compose.replaceChildren(b));
       b.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, fill: "backwards" });
     };
-    async function resetChat() {
-      thread.classList.add("is-fading");
-      await tick(450);
-      thread.replaceChildren();
-      addMessage("stamp", '<span class="stamp">Today 9:42 AM</span>');
-      thread.classList.remove("is-fading");
-      cued = false;
-      if (rows.hours.querySelector(".val").textContent !== start.hours) swapValue(rows.hours, start.hours, false);
-      if (rows.services.querySelector(".val").textContent !== start.services) swapValue(rows.services, start.services, false);
-      if (banner.querySelector("p").textContent !== start.banner) setBanner(start.banner);
-      if (!start.open) banner.classList.remove("is-open");
-    }
     async function pick(o) {
       if (busy) return; busy = true;
       clearChoices();
@@ -329,6 +312,27 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       await sweep.finished.catch(() => {});
       phone.style.transformOrigin = "";
       if (fromRow) { fromRow.remove(); fromRow = null; }
+    }
+    // Start Over goes back to the very beginning: the hero fades out, everything resets (the site's hours,
+    // services and banner, the conversation), and it fades back in as the big opening view
+    async function restart() {
+      if (busy) return; busy = true;
+      await demo.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 380, easing: "ease-in", fill: "forwards" }).finished.catch(() => {});
+      if (morphing) { morphing.cancel(); morphing = null; }
+      compose.replaceChildren(); compose.style.overflow = "";
+      thread.replaceChildren();
+      addMessage("stamp", '<span class="stamp">Today 9:41 AM</span>');
+      cued = false;
+      if (rows.hours.querySelector(".val").textContent !== start.hours) swapValue(rows.hours, start.hours, false);
+      if (rows.services.querySelector(".val").textContent !== start.services) swapValue(rows.services, start.services, false);
+      banner.querySelector("p").textContent = start.banner;
+      banner.classList.toggle("is-open", start.open);
+      demo.classList.add("is-intro", "is-bare");
+      big = fitBig();
+      fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span><strong>Web Design Wife</strong></span></span>');
+      demo.getAnimations().forEach((x) => { if (x.effect && x.effect.target === demo) x.cancel(); });
+      demo.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, easing: "ease-out" });
+      await checkIn(); offer(TREE); busy = false;
     }
     busy = true;
     demo.classList.add("is-intro", "is-bare");
