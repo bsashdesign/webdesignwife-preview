@@ -138,24 +138,24 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   const services = (t) => () => swapValue(rows.services, t);
   // every request here is a minor edit (hours, services, prices, a promo banner), the kind that's included in a plan
   const TREE = [
-    T("Can you add Saturday hours?", "Done! Saturdays 9 to 2 are live.", hours("Mon–Fri 8–5 · Sat 9–2"), [
-      T("Actually, make it 10 to 3", "No problem. Saturdays are 10 to 3 now.", hours("Mon–Fri 8–5 · Sat 10–3"), [
-        T("Perfect, thank you!", "Anytime. Text me whenever something changes.", null, null),
-        T("And we're closed July 4th", "Added a holiday note to your banner.", promo("Closed Friday, July 4th. Happy Fourth!"), null),
+    T("Can you add Saturday hours?", "Done!", hours("Mon–Fri 8–5 · Sat 9–2"), [
+      T("Actually, make it 10 to 3", "Done!", hours("Mon–Fri 8–5 · Sat 10–3"), [
+        T("Perfect, thank you!", "Anytime!", null, null),
+        T("And we're closed July 4th", "Done!", promo("Closed Friday, July 4th. Happy Fourth!"), null),
       ]),
-      T("Will Google show it too?", "Yep, I updated your Google Maps hours as well.", null, [
-        T("Wow, that was fast", "Edits go live within one business day. This one took four minutes.", null, null),
-        T("Can we add a promo too?", "Sure. Your banner is up: 10% off drain cleaning this month.", promo("This month: 10% off drain cleaning"), null),
+      T("Will Google show it too?", "Yep, Google too.", null, [
+        T("Wow, that was fast", "Took four minutes.", null, null),
+        T("Can we add a promo too?", "Done!", promo("This month: 10% off drain cleaning"), null),
       ]),
     ]),
-    T("We do water heaters now", "Added to your services.", services("Drains · Leak repair · Water heaters"), [
-      T("Can we run a deal on them?", "Your banner is up: $50 off water heater installs.", promo("$50 off water heater installs this month"), [
-        T("Make it $75 off", "Updated. $75 off it is.", promo("$75 off water heater installs this month"), null),
-        T("Love it, thanks!", "Happy to help. Text me when the deal ends and I'll take it down.", null, null),
+    T("We do water heaters now", "Done!", services("Drains · Leak repair · Water heaters"), [
+      T("Can we run a deal on them?", "Done!", promo("$50 off water heater installs this month"), [
+        T("Make it $75 off", "Done!", promo("$75 off water heater installs this month"), null),
+        T("Love it, thanks!", "Anytime!", null, null),
       ]),
-      T("And take off leak repair?", "Done. Leak repair is off your services.", services("Drains · Water heaters"), [
-        T("Oops, put it back", "No worries, it's back.", services("Drains · Leak repair · Water heaters"), null),
-        T("Perfect, thanks!", "Anytime. That's what I'm here for.", null, null),
+      T("And take off leak repair?", "Done!", services("Drains · Water heaters"), [
+        T("Oops, put it back", "Done!", services("Drains · Leak repair · Water heaters"), null),
+        T("Perfect, thanks!", "Anytime!", null, null),
       ]),
     ]),
   ];
