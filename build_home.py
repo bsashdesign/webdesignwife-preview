@@ -52,8 +52,9 @@ def prices(html):
 # Cal.com scheduling. Two separate event types; availability, buffers and daily limits live in Cal.com.
 #   call:       the 15-minute scheduled callback for prospects ("Request a callback"); location: Ben calls the attendee's phone.
 #   onboarding: the kickoff call new clients book on welcome.html after they sign up.
+#   intro:      the 15-minute video call Business and Full Suite applicants book on applied.html right after applying.
 # Use the event's path, e.g. "webdesignwife/phone-call". Empty shows a placeholder instead of the calendar.
-CAL = {"call": "", "onboarding": ""}
+CAL = {"call": "", "onboarding": "", "intro": ""}
 
 FONTS = (
     '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700'
@@ -221,7 +222,8 @@ HOME_PAGE = re.sub(r"\s*<!-- PLANS-FULL:START -->.*?<!-- PLANS-FULL:END -->", ""
 start = ((HERE / "start.template.html").read_text()
          .replace("{{FONTS}}", FONTS)
          .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
-         .replace("{{SWITCHER}}", switcher()))
+         .replace("{{SWITCHER}}", switcher())
+         .replace("{{INDUSTRY_OPTIONS}}", "".join(f"<option>{_html.escape(titlecase.title(t['label']))}</option>" for t in sorted(BTYPES, key=lambda t: t["label"]))))
 (HERE / "start.html").write_text(bust(titlecase.apply(founding(start))))
 welcome = ((HERE / "welcome.template.html").read_text()
            .replace("{{FONTS}}", FONTS)

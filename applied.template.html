@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex">
   <script>document.documentElement.classList.add("js");</script>
   <title>Application received — Web Design Wife</title>
-  <meta name="description" content="Your Business or Full Suite application is in. I review every one personally.">
+  <meta name="description" content="Your application is in. Pick a time for a 15-minute video call.">
   <link rel="icon" href="images/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,23 +32,26 @@
     <div class="wrap">
       <p class="eyebrow">Pending review</p>
       <h1 class="start__title">Application received<span data-welcome-name></span></h1>
-      <p class="start__intro">I review every Business and Full Suite application personally and get back to you within one business day. If it looks like a good fit, we'll schedule a short call before you pay anything.</p>
+      <p class="start__intro">One last step: pick a time for a 15-minute video call. We'll talk about your business and make sure we're a good fit.</p>
 
       <div class="start__grid">
-        <aside class="ssum applied__status" aria-label="Your application">
+        <section class="welcome__cal" aria-label="Book our video call">
+          <div id="cal-inline" class="welcome__embed" hidden></div>
+          <div class="welcome__placeholder" id="cal-placeholder">
+            <strong>Pick a day and time</strong>
+            <p>My booking calendar goes here. It shows the times I'm free and sends you a calendar invite with the video link.</p>
+          </div>
+        </section>
+
+        <aside class="ssum" aria-label="Your application">
           <p class="ssum__kicker">Your application</p>
           <div class="ssum__head"><canvas class="plan-ring plan-gem ssum__gem" data-plan="business" aria-hidden="true"></canvas><h2 class="ssum__plan" data-applied-plan data-plan="business">Business</h2><span class="ssum__tag applied__chip">Pending review</span></div>
-          <p class="applied__note">Nothing has been charged. If you have a question in the meantime, <a href="contact.html">write me a note or request a callback</a>.</p>
-          <p class="applied__back"><a class="btn btn--ghost" href="index.html">Back to the website</a></p>
-        </aside>
-
-        <aside class="ssum" aria-label="What happens next">
-          <p class="ssum__kicker">What happens next</p>
           <ol class="welcome__steps">
-            <li><strong>I review your application</strong><span>Within one business day.</span></li>
-            <li><strong>A short call</strong><span>To make sure we're a good fit, and to plan my visit to your business.</span></li>
-            <li><strong>Your private link</strong><span>You pay the setup, and I come to your business.</span></li>
+            <li><strong>Our video call</strong><span>15 minutes, at the time you pick. Nothing has been charged.</span></li>
+            <li><strong>If we're a good fit</strong><span>I send you a private link to pay the setup.</span></li>
+            <li><strong>I come to your business</strong><span>We pick a day for my visit, and your design is ready within 14 days of it.</span></li>
           </ol>
+          <p class="applied__note">Questions in the meantime? <a href="contact.html">Write me a note</a>.</p>
         </aside>
       </div>
     </div>
@@ -63,6 +66,8 @@
 
   <script src="script.js"></script>
   <script>
+    // The applicant's 15-minute video call (set CAL["intro"] in build_home.py)
+    const CAL_LINK = (window.WDW_CAL && WDW_CAL.intro) || "";
     let details = {};
     try { details = JSON.parse(localStorage.getItem("wdw-start") || "{}"); } catch (e) {}
     // Their first name, and the plan they applied for, from the Get Started form
@@ -73,6 +78,12 @@
       const h = document.querySelector("[data-applied-plan]");
       h.textContent = plan.name; h.dataset.plan = details.plan;
       document.querySelector(".ssum__gem").dataset.plan = details.plan;
+    }
+    // Cal.com inline calendar, with their name, email and business filled in
+    if (CAL_LINK) {
+      wdwCalInline("#cal-inline", CAL_LINK, { name: details.name || "", email: details.email || "", notes: [details.business, details.industry, details.address, details.website, details.maps].filter(Boolean).join(" · ") });
+      document.getElementById("cal-inline").hidden = false;
+      document.getElementById("cal-placeholder").hidden = true;
     }
   </script>
 </body>

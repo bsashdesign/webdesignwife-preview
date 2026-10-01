@@ -34,7 +34,7 @@
       <p class="eyebrow"><span data-mode-only="buy">Get started</span><span data-mode-only="apply">Apply</span></p>
       <h1 class="start__title"><span data-mode-only="buy">Let's make it official</span><span data-plan-only="business">Apply for Business</span><span data-plan-only="full">Apply for Full Suite</span></h1>
       <p class="start__intro" data-mode-only="buy">This is the start of a long-term partnership: I design your brand-new site, host it and look after it from here on. A few quick details and we're off. I'll email you within one business day to set up a short first call.</p>
-      <p class="start__intro" data-mode-only="apply">Business and Full Suite are in-person services, and I take on a limited number. Tell me about your business and what you're looking for. I review every application personally and get back to you within one business day.</p>
+      <p class="start__intro" data-mode-only="apply">Business and Full Suite are in-person services, and I take on a limited number. A few quick details, then you pick a time for a 15-minute video call with me.</p>
 
       <div class="start__grid">
         <!-- TODO: connect "Continue to secure checkout" (Essentials) to Stripe Checkout:
@@ -61,7 +61,7 @@
               <span class="smode__ico" data-mode-only="buy" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <span class="smode__ico" data-mode-only="apply" aria-hidden="true"><i class="pi pi--clipboard-text"></i></span>
               <p data-mode-only="buy"><strong>Ready to start today.</strong> Fill this out and pay the setup, and I'll email you within one business day to set up our first call.</p>
-              <p data-mode-only="apply"><strong>This is an application.</strong> Fill it out and I'll get back to you within one business day. If we're a good fit, we'll have a short call, then pick a time for me to come to your business.</p>
+              <p data-mode-only="apply"><strong>This is an application.</strong> Fill it out, then pick a time for a 15-minute video call. If we're a good fit, I'll send you a private link to pay the setup and we'll pick a day for my visit.</p>
             </div>
           </fieldset>
 
@@ -69,16 +69,9 @@
             <legend>Your business</legend>
             <label>Business name<input name="business" required autocomplete="organization"></label>
             <label>Business address<span class="saddr"><input name="address" required autocomplete="off" data-address placeholder="Start typing your business address"></span></label>
+            <label>Industry<select name="industry" required><option value="">Choose your industry</option>{{INDUSTRY_OPTIONS}}<option>Something else</option></select></label>
             <label><span>Current website <span class="opt">(optional)</span></span><input name="website" type="url" inputmode="url" placeholder="https://"></label>
             <label><span>Google Maps link <span class="opt">(optional)</span></span><input name="maps" type="url" inputmode="url" placeholder="Paste the link to your listing"></label>
-          </fieldset>
-
-          <fieldset class="sform__group" data-mode-only="apply">
-            <legend>About your goals</legend>
-            <label>What are you hoping your new website will help your business do?<textarea name="goals" rows="3" required></textarea></label>
-            <label><span>What isn't working about your website or online presence today? <span class="opt">(optional)</span></span><textarea name="problems" rows="3"></textarea></label>
-            <label>When would you like to get started?<select name="when" required><option value="">Choose one</option><option>As soon as possible</option><option>In the next month</option><option>In 1–3 months</option><option>Just exploring</option></select></label>
-            <label><span>Anything I should know before we talk? <span class="opt">(optional)</span></span><textarea name="notes" rows="2"></textarea></label>
           </fieldset>
 
           <fieldset class="sform__group">
@@ -86,13 +79,15 @@
             <label>Your name<input name="name" required autocomplete="name"></label>
             <label>Email<input name="email" type="email" required autocomplete="email"></label>
             <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
+            <label>Are you the business owner?<select name="owner" required><option value="">Choose one</option><option>Yes, I'm the owner</option><option>I'm a partner or manager</option><option>Other</option></select></label>
+            <label data-mode-only="apply"><span>Would you be open to appearing in short videos for my social media? <span class="opt">(optional, never required)</span></span><select name="video"><option value="">Choose one</option><option>Yes</option><option>Maybe, let's talk about it</option><option>No, thanks</option></select></label>
           </fieldset>
 
           <label class="sform__agree" data-mode-only="buy"><input type="checkbox" name="agree" required><span>I agree to the <a href="terms.html" target="_blank" rel="noopener">terms</a>, including the setup fee today and my subscription starting the day my site goes live, once I approve it.</span></label>
           <p class="sform__free" data-mode-only="apply">Nothing is charged when you apply.</p>
-          <button class="btn btn--primary btn--block" type="submit"><span data-mode-only="buy">Continue to secure checkout</span><span data-mode-only="apply">Submit application</span></button>
+          <button class="btn btn--primary btn--block" type="submit"><span data-mode-only="buy">Continue to secure checkout</span><span data-mode-only="apply">Submit and schedule a call</span></button>
           <p class="talk-first talk-first--start" data-mode-only="buy">After you sign up, we'll start with a short call to plan your kickoff. Your design is ready within 14 days, and it doesn't launch until you love it.</p>
-          <p class="talk-first talk-first--start" data-mode-only="apply">If it looks like a good fit, I'll reach out to schedule a short call. After that, I'll send you a private link to pay the setup and book my visit.</p>
+          <p class="talk-first talk-first--start" data-mode-only="apply">Next, you'll pick a time for our 15-minute video call.</p>
           <p class="sform__msg" role="status" aria-live="polite"></p>
         </form>
 
