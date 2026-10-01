@@ -5987,3 +5987,7 @@ html.theme-blocks #work .work-founding.work-founding:not(#z):not(#y) { backgroun
 /* Spin again: a little narrower than the button beside it */
 .bf-actions .bf-spin:not(#z) { min-width: 0; padding-left: 20px; padding-right: 20px; }
 @media (max-width: 600px) { .bf-actions .bf-spin:not(#z) { padding-left: 14px; padding-right: 14px; } }
+/* the buttons sit close under the reels, so they read as part of the spinner */
+.bf-actions:not(#z) { position: relative; z-index: 2; margin-top: -20px; }
+@media (max-width: 600px) { .bf-actions:not(#z) { margin-top: -8px; } }
+.bf-actions:not(#z):not(#y) { margin-top: -8px; }
