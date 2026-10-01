@@ -2235,7 +2235,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     size();
     const kids = [...slot.children].filter((c) => c.classList.contains("treel") || c.classList.contains("slot__word"));
     // a key's socket (version B) reaches a little past its reel, so measure that instead
-    const need = kids.reduce((w, c) => w + (c.querySelector(".treel__well") || c).getBoundingClientRect().width, 0) + parseFloat(getComputedStyle(slot).columnGap || 0) * (kids.length - 1);
+    const need = kids.reduce((w, c) => w + Math.max(c.getBoundingClientRect().width, c.querySelector(".treel__well")?.getBoundingClientRect().width || 0), 0) + parseFloat(getComputedStyle(slot).columnGap || 0) * (kids.length - 1);
     const room = slot.clientWidth - 8; // a little slack for the frames' shadows
     if (need > room) { slot.style.fontSize = (parseFloat(getComputedStyle(slot).fontSize) * room / need) + "px"; }
   };

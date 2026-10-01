@@ -5710,72 +5710,73 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 :is(.theme-blocks, .theme-wedding) .for--spin .treel__frame:not(#z):not(#y) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--fh)) / 2 - .16em); height: calc(var(--fh) + .32em); }
 /* Built-for band: the words above and below the frames sit at half strength (flat, no fade), the framed row full */
 .for--spin .treel__win:not(#z):not(#y) { -webkit-mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32.5%, #000 34%, #000 66%, rgba(0,0,0,.5) 67.5%, rgba(0,0,0,.5) 100%); mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32.5%, #000 34%, #000 66%, rgba(0,0,0,.5) 67.5%, rgba(0,0,0,.5) 100%); }
-/* ===== Built-for band, version B: the three word frames are keys, each sitting in its own socket (like the
-   Change the Channel keys). Press any one to spin. Same behaviour in every mood, different hardware:
-   Tangy an arcade button that squashes and bounces, Calm a soft keycap that sinks and glows,
-   Transit a steel-ringed push button with a firm click, Soirée a letterpress plaque that stamps in. ===== */
+/* ===== Built-for band, version B: the three word frames are push keys, built like the Change the Channel keys:
+   a dark socket, a solid cap with a lit top edge and a thick coloured side, pressed down into the socket.
+   Tangy's cap has its ink outline and hard shadow; Calm is soft lilac; Transit is black with the words in line
+   colours; Soirée is ivory with a gold hairline. Press any key to spin. ===== */
 .for--keys { border-top: 0; }
-#bf2 { --cap: calc(var(--fh) + .32em); --wt: 5px; --wb: 11px; --wl: 5px; --wr: 5px; --dip: 4px; column-gap: .85em; }
+#bf2 { --cap: calc(var(--fh) + .2em); --pd: 3px; --tr: 6px; --push: 5px; --capr: 12px; column-gap: .9em; }
 #bf2 .drift__btn:not(#z) { display: none; }
 #bf2 .treel { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+/* the cap sits centred on the middle row; the socket wraps it, deeper below to take the key's travel */
 #bf2 .treel__frame:not(#z):not(#y) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2); height: var(--cap); z-index: 1;
-  transition: transform .14s ease-out, box-shadow .14s ease-out; }
-#bf2 .treel__win { z-index: 2; transition: transform .14s ease-out; }
-#bf2 .treel__well { position: absolute; z-index: 0; left: calc(-1 * var(--wl)); right: calc(-1 * var(--wr));
-  top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2 - var(--wt)); height: calc(var(--cap) + var(--wt) + var(--wb));
-  border-radius: 18px; background: #1c1815; box-shadow: inset 0 3px 7px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,255,255,.06), 0 1px 0 rgba(255,255,255,.25); }
-#bf2 .treel.is-press .treel__frame:not(#z) { transition-duration: .06s; }
-#bf2 .treel.is-press .treel__win { transform: translateY(var(--dip)); transition-duration: .06s; }
-#bf2 .treel.is-click .treel__frame:not(#z) { transform: none; }
-
-/* Tangy: an arcade button. Hard ink shadow, squashes flat when pressed, springs back with a bounce */
-html.theme-blocks #bf2 { --wt: 5px; --wb: 11px; --wl: 5px; --wr: 11px; }
-html.theme-blocks #bf2 .treel__well { border-radius: 20px; }
-html.theme-blocks #bf2 .treel__frame:not(#z) { border-width: 2.5px; box-shadow: 0 6px 0 var(--ink), 4px 6px 0 var(--ink); transform-origin: 50% 100%;
-  transition: transform .5s cubic-bezier(.3, 1.9, .45, 1), box-shadow .5s cubic-bezier(.3, 1.9, .45, 1); }
-html.theme-blocks #bf2 .treel__win { transition: transform .5s cubic-bezier(.3, 1.9, .45, 1); }
-@media (hover: hover) { html.theme-blocks #bf2 .treel:hover .treel__frame:not(#z) { transform: translateY(2px); box-shadow: 0 4px 0 var(--ink), 4px 4px 0 var(--ink); } html.theme-blocks #bf2 .treel:hover .treel__win { transform: translateY(2px); } }
-html.theme-blocks #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translateY(6px) scale(1.04, .9); box-shadow: 0 0 0 var(--ink), 0 0 0 var(--ink); transition-duration: .07s; }
-html.theme-blocks #bf2 .treel.is-press .treel__win:not(#z) { transform: translateY(6px); transition-duration: .07s; }
-
-/* Calm: a soft keycap. Sinks gently with a cushioned ease, no bounce, and glows a little while held */
-html.theme-refined #bf2 { --cap: calc(var(--fh) + .2em); --wt: 4px; --wb: 10px; --wl: 4px; --wr: 4px; --dip: 4px; }
-html.theme-refined #bf2 .treel__well { border-radius: 999px; background: #ebe6fb; box-shadow: inset 0 2px 5px rgba(91,61,245,.22), inset 0 -1px 0 rgba(255,255,255,.9); }
-html.theme-refined #bf2 .treel__frame:not(#z) { background: #fff; box-shadow: 0 6px 0 #cbbfff, 0 9px 14px -8px rgba(91,61,245,.5), inset 0 1px 0 #fff;
-  transition: transform .28s cubic-bezier(.25,.8,.35,1), box-shadow .28s cubic-bezier(.25,.8,.35,1); }
-html.theme-refined #bf2 .treel__win { transition: transform .28s cubic-bezier(.25,.8,.35,1); }
-@media (hover: hover) { html.theme-refined #bf2 .treel:hover .treel__frame:not(#z) { transform: translateY(1px); box-shadow: 0 5px 0 #cbbfff, 0 8px 12px -8px rgba(91,61,245,.5); } html.theme-refined #bf2 .treel:hover .treel__win { transform: translateY(1px); } }
-html.theme-refined #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translateY(5px); box-shadow: 0 1px 0 #cbbfff, 0 0 0 4px rgba(91,61,245,.12), 0 0 22px rgba(91,61,245,.35); transition-duration: .2s; }
-html.theme-refined #bf2 .treel.is-press .treel__win:not(#z) { transform: translateY(5px); transition-duration: .2s; }
-
-/* Transit: a push button in a brushed steel ring, lit in its line's colour. A short, firm, mechanical press */
-html.theme-subway #bf2 { --cap: calc(var(--fh) + .24em); --wt: 5px; --wb: 9px; --wl: 5px; --wr: 5px; --dip: 3px; }
-html.theme-subway #bf2 .treel--verb { --lit: #3fd07a; } html.theme-subway #bf2 .treel--biz { --lit: #fccc0a; } html.theme-subway #bf2 .treel--hood { --lit: #4d8dff; }
-html.theme-subway #bf2 .treel__well { border-radius: 13px; background: linear-gradient(180deg, #8a8a86 0%, #4a4a48 45%, #2a2a29 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -2px 3px rgba(0,0,0,.5), 0 3px 8px rgba(0,0,0,.6); }
-html.theme-subway #bf2 .treel__frame:not(#z) { border-radius: 9px; background: linear-gradient(180deg, #262626, #161616); box-shadow: 0 4px 0 #050505, inset 0 0 0 2px color-mix(in srgb, var(--lit) 70%, transparent), 0 0 10px color-mix(in srgb, var(--lit) 25%, transparent);
-  transition: transform .1s ease-out, box-shadow .1s ease-out; }
-html.theme-subway #bf2 .treel__win { transition: transform .1s ease-out; }
-@media (hover: hover) { html.theme-subway #bf2 .treel:hover .treel__frame:not(#z) { box-shadow: 0 4px 0 #050505, inset 0 0 0 2px var(--lit), 0 0 14px color-mix(in srgb, var(--lit) 40%, transparent); } }
-html.theme-subway #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translateY(3px); box-shadow: 0 1px 0 #050505, inset 0 0 0 2px var(--lit), 0 0 22px color-mix(in srgb, var(--lit) 65%, transparent); transition: transform .04s linear, box-shadow .04s linear; }
-html.theme-subway #bf2 .treel.is-press .treel__win:not(#z) { transition: transform .04s linear; }
-
-/* Soirée: a letterpress plaque. Ivory with a gold hairline, set into the paper; it stamps down and leaves an impression */
-html.theme-wedding #bf2 { --cap: calc(var(--fh) + .3em); --wt: 4px; --wb: 8px; --wl: 4px; --wr: 4px; --dip: 3px; }
-html.theme-wedding #bf2 .treel__well { border-radius: 4px; background: #e9dfca; box-shadow: inset 0 2px 4px rgba(31,35,54,.22), inset 0 -1px 0 rgba(255,255,255,.75); }
-html.theme-wedding #bf2 .treel__frame:not(#z) { box-shadow: inset 0 0 0 1px rgba(184,149,90,.6), inset 0 0 0 4px #fffdf8, inset 0 0 0 5px rgba(184,149,90,.3), 0 4px 0 #cdb787, 0 7px 10px -6px rgba(31,35,54,.4);
-  transition: transform .24s ease, box-shadow .24s ease; }
-html.theme-wedding #bf2 .treel__win { transition: transform .24s ease; }
-@media (hover: hover) { html.theme-wedding #bf2 .treel:hover .treel__frame:not(#z) { transform: translateY(1px); box-shadow: inset 0 0 0 1px rgba(184,149,90,.8), inset 0 0 0 4px #fffdf8, inset 0 0 0 5px rgba(184,149,90,.45), 0 3px 0 #cdb787, 0 6px 9px -6px rgba(31,35,54,.4); } html.theme-wedding #bf2 .treel:hover .treel__win { transform: translateY(1px); } }
-html.theme-wedding #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translateY(4px); box-shadow: inset 0 0 0 1px rgba(184,149,90,.9), inset 0 0 0 4px #fffdf8, inset 0 0 0 5px rgba(184,149,90,.5), inset 0 3px 7px rgba(31,35,54,.22), 0 0 0 #cdb787; transition-duration: .12s; }
-html.theme-wedding #bf2 .treel.is-press .treel__win:not(#z) { transform: translateY(4px); transition-duration: .12s; }
-
-/* the self-demo presses a touch slower, so the eye catches it */
+  border: 0; border-radius: var(--capr); background: var(--cap-bg, #efeaff);
+  box-shadow: 0 var(--tr) 0 var(--cap-edge, #a996ff), inset 0 2px 0 rgba(255,255,255,.55);
+  transition: transform .09s ease, box-shadow .09s ease; }
+#bf2 .treel__well { position: absolute; z-index: 0; left: calc(-1 * var(--pd)); right: calc(-1 * var(--pd));
+  top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2 - var(--pd)); height: calc(var(--cap) + var(--tr) + 2 * var(--pd));
+  border-radius: calc(var(--capr) + var(--pd)); background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); }
+#bf2 .treel__win { z-index: 2; transition: transform .09s ease; }
+@media (hover: hover) {
+  #bf2 .treel:hover .treel__frame:not(#z):not(#y) { transform: translateY(1px); box-shadow: 0 calc(var(--tr) - 1px) 0 var(--cap-edge, #a996ff), inset 0 2px 0 rgba(255,255,255,.55); }
+  #bf2 .treel:hover .treel__win { transform: translateY(1px); }
+}
+#bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translateY(var(--push)); box-shadow: 0 1px 0 var(--cap-edge, #a996ff), inset 0 2px 5px rgba(0,0,0,.25); transition-duration: .06s; }
+#bf2 .treel.is-press .treel__win:not(#z) { transform: translateY(var(--push)); transition-duration: .06s; }
+#bf2 .treel.is-click .treel__frame:not(#z):not(#y) { transform: none; }
 #bf2 .treel.is-demo.is-press .treel__frame:not(#z):not(#y), #bf2 .treel.is-demo.is-press .treel__win:not(#z) { transition-duration: .16s; }
-@media (max-width: 600px) { #bf2.slot:not(#z) { column-gap: .7em; } #bf2 { --wt: 3px; --wb: 7px; --wl: 3px; --wr: 3px; } html.theme-blocks #bf2 { --wr: 7px; } #bf2 .treel__well { border-radius: 12px; } }
-/* Tangy's socket: a pale tray with an ink outline, so the button's own ink shadow reads against it */
-html.theme-blocks #bf2 .treel__well { background: #ecebe6; box-shadow: inset 0 0 0 2.5px var(--ink), inset 0 4px 0 rgba(14,14,14,.12); }
-@media (max-width: 600px) { #bf2.tick:not(#z) { --row: 2.6em; } html.theme-blocks #bf2 .treel__well { box-shadow: inset 0 0 0 2px var(--ink), inset 0 3px 0 rgba(14,14,14,.12); } html.theme-blocks #bf2 .treel__frame:not(#z):not(#y) { border-width: 2px; } }
-@media (max-width: 600px) { #bf2.tick:not(#z) { --row: 2.9em; --cap: calc(var(--fh) + .1em); } #bf2.slot:not(#z):not(#y) { column-gap: 1.05em; } }
+
+/* Tangy: the arcade key. Bright cap with an ink outline and a hard ink shadow; it presses flat into the corner,
+   then springs back with a little bounce */
+html.theme-blocks #bf2 { --tr: 5px; --push: 5px; }
+html.theme-blocks #bf2 .treel--verb { --cap-bg: #d4ff4f; } html.theme-blocks #bf2 .treel--biz { --cap-bg: #9fd8ff; } html.theme-blocks #bf2 .treel--hood { --cap-bg: #ffe27a; }
+html.theme-blocks #bf2 .treel__well { right: calc(-1 * (var(--pd) + var(--tr))); }
+html.theme-blocks #bf2 .treel__frame:not(#z):not(#y) { border: 2.5px solid #111; box-shadow: var(--tr) var(--tr) 0 #111; transition: transform .35s cubic-bezier(.3, 1.8, .5, 1), box-shadow .35s cubic-bezier(.3, 1.8, .5, 1); }
+html.theme-blocks #bf2 .treel__win { transition: transform .35s cubic-bezier(.3, 1.8, .5, 1); }
+@media (hover: hover) {
+  html.theme-blocks #bf2 .treel:hover .treel__frame:not(#z):not(#y) { transform: translate(1px, 1px); box-shadow: calc(var(--tr) - 1px) calc(var(--tr) - 1px) 0 #111; }
+  html.theme-blocks #bf2 .treel:hover .treel__win { transform: translate(1px, 1px); }
+}
+html.theme-blocks #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translate(var(--push), var(--push)); box-shadow: 0 0 0 #111; transition-duration: .06s; }
+html.theme-blocks #bf2 .treel.is-press .treel__win:not(#z) { transform: translate(var(--push), var(--push)); transition-duration: .06s; }
+
+/* Calm: the soft lilac keycap, pressed with a cushioned ease */
+html.theme-refined #bf2 { --cap-bg: #efeaff; --cap-edge: #a996ff; }
+html.theme-refined #bf2 .treel__frame:not(#z):not(#y), html.theme-refined #bf2 .treel__win { transition-duration: .2s; transition-timing-function: cubic-bezier(.25, .8, .35, 1); }
+
+/* Transit: a black push button, the words lit in their line colours; a short, firm press */
+html.theme-subway #bf2 { --cap-bg: #1c1c1c; --cap-edge: #000; --capr: 999px; --push: 5px; }
+html.theme-subway #bf2 .treel__frame:not(#z):not(#y) { box-shadow: 0 var(--tr) 0 #000, inset 0 2px 0 rgba(255,255,255,.16); }
+html.theme-subway #bf2 .treel:hover .treel__frame:not(#z):not(#y) { box-shadow: 0 calc(var(--tr) - 1px) 0 #000, inset 0 2px 0 rgba(255,255,255,.16); }
+html.theme-subway #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { box-shadow: 0 1px 0 #000, inset 0 2px 5px rgba(0,0,0,.6); transition-duration: .04s; }
+html.theme-subway #bf2 .treel__well { background: #2b2b2b; box-shadow: inset 0 1px 3px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.1); }
+
+/* Soirée: the ivory key with its gold hairline, a gentle press */
+html.theme-wedding #bf2 { --cap-bg: #f4ecdb; --cap-edge: #b8955a; --capr: 2px; --pd: 3px; }
+html.theme-wedding #bf2 .treel__well { border-radius: 4px; }
+html.theme-wedding #bf2 .treel__frame::after { content: ""; position: absolute; inset: 4px; border: 1px solid #b8955a; border-radius: 1px; }
+html.theme-wedding #bf2 .treel__frame:not(#z):not(#y), html.theme-wedding #bf2 .treel__win { transition-duration: .15s; }
+
+/* phones: shallower keys, a little more room around them */
+@media (max-width: 600px) {
+  #bf2.tick:not(#z) { --row: 2.9em; --cap: calc(var(--fh) + .1em); --pd: 2px; --tr: 4px; --push: 3px; --capr: 9px; }
+  #bf2.slot:not(#z):not(#y) { column-gap: 1.05em; }
+  html.theme-blocks #bf2.tick:not(#z) { --tr: 3px; --push: 3px; }
+  html.theme-blocks #bf2 .treel__frame:not(#z):not(#y) { border-width: 2px; }
+  html.theme-subway #bf2.tick:not(#z) { --capr: 999px; }
+  html.theme-wedding #bf2.tick:not(#z) { --capr: 2px; }
+  html.theme-wedding #bf2 .treel__frame::after { inset: 3px; }
+}
 /* Hero phone, after its demo: two replies to tap instead of a message field */
 .phone__compose.is-choices { flex-direction: column; align-items: flex-end; gap: 5px; min-height: 0; padding: 0; border: 0; border-radius: 0; background: none; }
 .chat-choices__tip { align-self: center; font: 500 .6rem var(--mono); letter-spacing: .04em; color: #9a95ad; }
@@ -5794,3 +5795,5 @@ html.theme-blocks #bf2 .treel__well { background: #ecebe6; box-shadow: inset 0 0
 .theme-wedding .chat-choice { border: 1px solid var(--gold-ink, #b8955a); color: var(--ink); border-radius: 4px; font: italic 600 .86rem/1.2 var(--display); }
 @media (hover: hover) { .theme-wedding .chat-choice:hover { background: var(--ink); color: #e9d9b4; } }
 @media (max-width: 760px) { .theme-wedding .chat-choice { font-size: .7rem; } }
+/* Tangy's key has no socket, like its Change the Channel key: just the outlined cap and its hard shadow */
+html.theme-blocks #bf2 .treel__well { display: none; }
