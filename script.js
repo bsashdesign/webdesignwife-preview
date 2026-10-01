@@ -2206,9 +2206,9 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
   let drifting = true, spins = 0, youSpun = false;
-  // the reels hold still while you're using the homepage hero (pointer over it, or a tap/click in it in the last
-  // few seconds), so they don't pull your eye away from the chat
-  const hero = document.querySelector(".hero");
+  // the reels hold still only while you're using the hero's little phone (pointer over it, or a tap/click in it in
+  // the last few seconds), so they don't pull your eye away from the chat; the rest of the time they run
+  const hero = document.querySelector(".hero .phone");
   let overHero = false, heroTouch = 0;
   if (hero) {
     hero.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") overHero = true; });
