@@ -660,7 +660,7 @@ html.drawer-open { overflow: hidden; }
   animation: rec-in .45s var(--ease-out);
 }
 @keyframes rec-in { from { opacity: 0; transform: translateY(-6px); } }
-.plan__rec[hidden] { display: none; } }
+.plan__rec[hidden] { display: none; }
 .plan__rec[hidden] { display: none; }
 .plan__info { width: 18px; height: 18px; border-radius: 50%; border: 0; background: var(--ink); color: #fff; font: 700 .7rem/1 Georgia, serif; font-style: italic; cursor: pointer; display: grid; place-items: center; padding: 0; }
 .plan__tip {
@@ -6673,4 +6673,33 @@ html.theme-subway .chat-choice:not(#z):not(#y):not(#x) { font-weight: 500; }
   html.theme-wedding .eyebrow:not(#z):not(#y) { letter-spacing: .14em; gap: 8px; white-space: nowrap; font-size: .64rem; }
   html.theme-wedding .eyebrow:not(#z):not(#y)::before, html.theme-wedding .eyebrow:not(#z):not(#y)::after { width: 16px; flex: none; }
 }
+/* Phones: a wider handset, so short messages ("Hey, just checking in :)", each reply) fit on one line; the
+   website's text keeps to the narrower space on its left */
+@media (max-width: 640px) {
+  .demo .phone:not(#z) { width: 56%; }
+  .demo .site > :not(.site__banner):not(#z), .demo .site__info:not(#z) { margin-right: 58%; }
+  .demo .phone .bubble:not(#z), html .demo .phone .chat-choice:not(#z):not(#y):not(#x) { font-size: .62rem; padding: 5px 8px; max-width: 98%; }
+  .demo .phone .thread:not(#z) { padding-left: 6px; padding-right: 6px; }
+}
+/* Phones: the website mock is a small picture, so its text is small too (it's there to show the edits landing) */
+@media (max-width: 640px) {
+  .demo .site:not(#z) { font-size: .66rem; padding-bottom: 12px; }
+  .demo .site__nav:not(#z) { padding: 8px 10px; }
+  .demo .site__nav strong:not(#z) { font-size: .72rem; }
+  .demo .site__h:not(#z) { font-size: .92rem; line-height: 1.15; padding: 2px 10px 0; }
+  .demo .site__btn:not(#z) { margin: 0 10px 10px; padding: 5px 9px; font-size: .62rem; }
+  .demo .site__info:not(#z) { margin-left: 10px; font-size: .62rem; }
+  .demo .site__info .row:not(#z) { padding: 5px 0; }
+  .demo .site__info dt:not(#z) { font-size: .54rem; }
+  .demo .site__banner p:not(#z) { font-size: .6rem; }
+}
+/* Phones: the space always holds the whole handset once it's in place (it sits lower than the website mock) */
+@media (max-width: 640px) { .hero .demo:not(.is-intro):not(#z) { min-height: 372px; } }
+/* Phones: a shorter website mock (no Reviews row) and a shorter handset, so the hero's chat and site take up less
+   of the screen; the space holds the whole handset, and the opening chat has room above it */
+@media (max-width: 640px) {
+  .demo .site__info .row:nth-child(3) { display: none; }
+  .hero .demo .phone:not(#z):not(#y) { top: 58px; height: 290px; }
+  .hero .demo:not(.is-intro):not(#z):not(#y) { min-height: 366px; }
+  .hero .demo.is-intro:not(#z):not(#y) { min-height: 300px; margin-top: 0; }
 }

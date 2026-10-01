@@ -293,7 +293,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       phone.style.transform = "";
       const P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
       // big on desktop; on phones a more modest size, so it doesn't take over the screen
-      const K = Math.min(innerWidth <= 760 ? 1.25 : 2.2, (D.width * .94) / P.width);
+      const K = Math.min(innerWidth <= 760 ? 1.75 : 2.2, (D.width * .98) / P.width);
       const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
