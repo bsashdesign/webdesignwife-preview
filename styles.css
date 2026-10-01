@@ -4727,3 +4727,5 @@ html.theme-blocks :is(.billing__switch:not([aria-checked="true"]), .sound-toggle
 .splans .splan > span::after, .theme-blocks .splans .splan > span::after, .theme-blocks .splans .splan input:checked + span::after { box-shadow: none; transform: none; }
 /* Get started: a little more room between the "Your plan" line (title + toggle) and the three plans */
 .sform__group:has(.sbill) > .splans { margin-top: 10px; }
+/* Tangy switches: flat in both states, just the ink outline */
+html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { box-shadow: inset 0 0 0 2px var(--ink); }
