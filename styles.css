@@ -4816,3 +4816,8 @@ html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[
 .hplans .hplan__body { gap: 4px; }
 /* Sophisticated "Most popular" tag: solid gold with white text, like the Save 20% tag */
 html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #fff; border: 0; box-shadow: none; border-radius: 3px; font: 600 .7rem/1.2 var(--body); letter-spacing: .04em; padding: 4px 10px; }
+/* homepage plans: the "+N more" at the end of each list (the rest are on the Pricing page) */
+.hplan__feats li.hplan__more { padding-left: 0; font-weight: 600; color: var(--ink); }
+.hplan__feats li.hplan__more::before { display: none; }
+.hplan:hover .hplan__more { text-decoration: underline; text-underline-offset: 3px; }
+.hplans__cta { gap: 12px; flex-wrap: wrap; }
