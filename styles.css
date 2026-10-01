@@ -6699,7 +6699,13 @@ html.theme-subway .chat-choice:not(#z):not(#y):not(#x) { font-weight: 500; }
    of the screen; the space holds the whole handset, and the opening chat has room above it */
 @media (max-width: 640px) {
   .demo .site__info .row:nth-child(3) { display: none; }
-  .hero .demo .phone:not(#z):not(#y) { top: 58px; height: 290px; }
-  .hero .demo:not(.is-intro):not(#z):not(#y) { min-height: 366px; }
+  .hero .demo .phone:not(#z):not(#y) { top: 54px; height: 268px; }
+  .hero .demo:not(.is-intro):not(#z):not(#y) { min-height: 340px; }
   .hero .demo.is-intro:not(#z):not(#y) { min-height: 300px; margin-top: 0; }
+}
+/* Phones: the website mock's name, headline and button run full width, behind the phone (only the Hours and
+   Services rows, where the edits land, keep clear of it) */
+@media (max-width: 640px) {
+  .demo .site > .site__nav:not(#z):not(#y), .demo .site > .site__h:not(#z):not(#y), .demo .site > .site__btn:not(#z):not(#y) { margin-right: 0; }
+  .demo .site > .site__h:not(#z):not(#y) { max-width: none; padding-right: 10px; }
 }
