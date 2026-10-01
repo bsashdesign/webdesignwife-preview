@@ -6367,3 +6367,8 @@ html.theme-wedding #btype-dialog .blist__ic:not(#z):not(#y) { background: none; 
 /* Soirée: business type names in the gold-brown; on hover they deepen to the navy ink */
 html.theme-wedding .blist .blist__name:not(#z):not(#y) { color: var(--gold-ink); }
 @media (hover: hover) { html.theme-wedding .blist a:not(#z):hover .blist__name:not(#z):not(#y) { color: var(--ink); } }
+/* Business-type icon badges match the site's other icon tiles: Calm a soft rounded square; Tangy a slightly
+   tighter rounded square with the ink outline and hard 3D shadow (white until hovered) */
+html.theme-refined .blist .blist__ic:not(#z):not(#y) { border-radius: 10px; }
+html.theme-blocks .blist .blist__ic:not(#z):not(#y) { border-radius: 8px; box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); }
+@media (max-width: 600px) { html.theme-refined .blist .blist__ic:not(#z):not(#y) { border-radius: 8px; } html.theme-blocks .blist .blist__ic:not(#z):not(#y) { border-radius: 7px; box-shadow: inset 0 0 0 2px var(--ink), 2px 2px 0 var(--ink); } }
