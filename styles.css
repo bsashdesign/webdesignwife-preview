@@ -5131,3 +5131,7 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 #moods-tv .tv-key--transit:is([aria-pressed="true"], :active) .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 3px 6px rgba(0,0,0,.5); }
 :is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 0 0 0 transparent; }
 :is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.5); }
+/* "Press one" note a touch bigger, with a bolder arrow */
+.tv-deck__cue { font-size: .92rem; }
+.theme-wedding .tv-deck__cue { font-size: 1.12rem; }
+.tv-deck__cue span { font-weight: 900; font-family: system-ui, sans-serif; font-size: 1.05em; -webkit-text-stroke: .6px currentColor; }
