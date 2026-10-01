@@ -191,40 +191,102 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     enableChat();
   }
 
-  // ---- After the demo: the phone becomes a real (pretend) chat. A note invites you to try it; whatever you send
-  // gets a cheerful "I'm on it!" back.
+  // ---- After the demo: the phone offers two replies to pick from. Each answer gets its own reply (sometimes the
+  // site changes too), then two new choices, three levels deep; at the end you can start over.
+  const T = (label, reply, apply, next) => ({ label, reply, apply, next });
+  const hours = (t) => () => swapValue(rows.hours, t);
+  const promo = (t) => () => setBanner(t);
+  const TREE = [
+    T("Can we do 24/7 for emergencies?", "Done! You're now the 2 a.m. hero.", hours("Mon–Fri 8–5 · 24/7 emergencies"), [
+      T("Wait, who answers at 2 a.m.?", "You do 😅 Want a big Call Now button so they reach you fast?", null, [
+        T("Yes! Big red button", "Big red Call Now button, live. Very hard to miss.", promo("Burst pipe? Call now, day or night"), null),
+        T("Hmm, make it 7am to 11pm", "Changed. Your sleep schedule thanks me.", hours("Every day 7am–11pm"), null),
+      ]),
+      T("Can Google show that too?", "Already did. Your Google Maps hours match your site.", null, [
+        T("Wow, that was fast", "Edits are done within one business day. Today it took four minutes.", null, null),
+        T("Can you fix my reviews?", "I can't change reviews, but I can help you get more good ones. It's easier than it sounds.", null, null),
+      ]),
+    ]),
+    T("Can we add a Meet the Team bit?", "Love it. Who's on the team?", null, [
+      T("Me and my brother Sal", "Two Riveras, one family business. Got a photo of you both?", null, [
+        T("We look goofy in it", "Goofy is good. People trust real faces. It's going up.", promo("Family-run: meet the Rivera brothers"), null),
+        T("Use the dog instead", "Done. Biscuit is now Head of Customer Relations 🐶", promo("Meet Biscuit, Head of Customer Relations"), null),
+      ]),
+      T("Just me, it's a one-man show", "Then you're the star. I'll write a short bio that sounds like you.", null, [
+        T("Make me sound cool", "\"Fixes leaks. Leaves no mess. Probably wears sunglasses.\" Too much?", null, null),
+        T("Keep it simple", "Simple it is: licensed, local, on time. It's live.", promo("Licensed, local and always on time"), null),
+      ]),
+    ]),
+  ];
+  let bannerTip = null;
+  function setBanner(text) {
+    const p = banner.querySelector("p");
+    if (bannerTip === null) bannerTip = p.textContent;
+    banner.classList.add("is-open");
+    p.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: "forwards" }).finished.then(() => {
+      p.textContent = text;
+      p.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 380, easing: EASE_OUT, fill: "forwards" });
+    });
+  }
+
   function enableChat() {
     const phone = demo.querySelector(".phone");
+    const start = { hours: rows.hours.querySelector(".val").textContent, banner: banner.querySelector("p").textContent };
+    compose.classList.add("is-choices");
     phone.removeAttribute("aria-hidden");
-    compose.classList.add("is-live");
-    compose.innerHTML = '<form class="compose__form"><input class="compose__input" type="text" maxlength="140" placeholder="Message" aria-label="Send Web Design Wife a message" autocomplete="off" enterkeyhint="send"></form>';
-    const form = compose.querySelector("form"), input = compose.querySelector("input");
-    const nudge = document.createElement("div");
-    nudge.className = "chat-nudge"; nudge.setAttribute("role", "status");
-    nudge.textContent = "Try asking me for something";
-    phone.append(nudge);
-    nextFrame().then(() => nudge.classList.add("is-in"));
-    const hideNudge = () => nudge.classList.remove("is-in");
-    input.addEventListener("focus", hideNudge);
-    compose.addEventListener("click", () => input.focus());
     let busy = false;
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const text = input.value.trim();
-      if (!text || busy) return;
-      busy = true; hideNudge(); input.value = ""; hideOldReceipts();
+    const offer = (opts) => {
+      const tip = document.createElement("span");
+      tip.className = "chat-choices__tip"; tip.textContent = "Tap a reply to send";
+      compose.replaceChildren(tip, ...opts.map((o) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chat-choice"; b.textContent = o.label;
+        b.addEventListener("click", () => pick(o));
+        return b;
+      }));
+      compose.querySelectorAll(".chat-choice, .chat-choices__tip").forEach((b, i) => b.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 380, delay: i * 90, easing: EASE_OUT, fill: "backwards" }));
+    };
+    const again = () => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "chat-choice chat-choice--again"; b.textContent = "↺ Start over";
+      b.addEventListener("click", async () => {
+        if (busy) return; busy = true;
+        compose.replaceChildren();
+        await resetChat();
+        offer(TREE); busy = false;
+      });
+      compose.replaceChildren(b);
+      b.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, fill: "backwards" });
+    };
+    async function resetChat() {
+      thread.classList.add("is-fading");
+      await tick(450);
+      thread.replaceChildren();
+      addMessage("stamp", '<span class="stamp">Today 9:42 AM</span>');
+      thread.classList.remove("is-fading");
+      if (rows.hours.querySelector(".val").textContent !== start.hours) swapValue(rows.hours, start.hours, false);
+      if (banner.querySelector("p").textContent !== start.banner) setBanner(start.banner);
+    }
+    async function pick(o) {
+      if (busy) return; busy = true;
+      compose.replaceChildren();
+      hideOldReceipts();
       const sent = addMessage("them", '<div class="bubble"></div><div class="receipt"><span>Delivered</span></div>');
-      sent.querySelector(".bubble").textContent = text;
+      sent.querySelector(".bubble").textContent = o.label;
       const receipt = sent.querySelector(".receipt span");
-      await tick(800); receipt.classList.add("is-hidden"); await tick(220); receipt.textContent = "Read"; receipt.classList.remove("is-hidden");
-      await tick(400);
+      await tick(700); receipt.classList.add("is-hidden"); await tick(200); receipt.textContent = "Read"; receipt.classList.remove("is-hidden");
+      await tick(350);
       const typing = addMessage("typing", '<div class="bubble"><i></i><i></i><i></i></div>');
-      await tick(1200);
+      await tick(1100);
       await removeMessage(typing);
-      addMessage("us", `<div class="bubble">${CHECK}I'm on it!</div>`);
-      thread.scrollTop = thread.scrollHeight;
+      const r = addMessage("us", `<div class="bubble">${o.apply ? CHECK : ""}</div>`);
+      r.querySelector(".bubble").append(o.reply);
+      if (o.apply) { await tick(350); o.apply(); }
+      await tick(650);
+      if (o.next) offer(o.next); else again();
       busy = false;
-    });
+    }
+    offer(TREE);
   }
   run();
 })();
