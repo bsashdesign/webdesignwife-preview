@@ -2087,6 +2087,8 @@ document.addEventListener("click", (e) => {
   document.addEventListener("pointerdown", (e) => {
     const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt, .moods__key");
     if (key) sound(key);
+    // the built-for band's Spin button makes the same click (on phones, where a tap anywhere on the band spins it, so does that)
+    else if (e.button === 0 && (e.target.closest(".for--spin .drift__btn") || (matchMedia("(max-width: 600px)").matches && e.target.closest(".for--spin")))) click(false);
   });
   // keyboard presses of the same keys make the same sounds
   document.addEventListener("keydown", (e) => {
