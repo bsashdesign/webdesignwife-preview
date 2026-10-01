@@ -16,7 +16,7 @@ TEMPLATE = (HERE / "home.template.html").read_text()
 
 # key: URL value. cls: the theme class the stylesheets are scoped to.
 MOODS = [
-    {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright, playful and full of color.", "sw": ["#d4ff4f", "#ff6a1a", "#3355ff"]},
+    {"key": "tangy", "cls": "theme-blocks", "label": "Tangy", "note": "Bright, playful and full of color.", "sw": ["#d4ff4f", "#ff7d33", "#3355ff"]},
     {"key": "calm", "cls": "theme-refined", "label": "Calm", "note": "Soft, quiet and easy on the eyes.", "sw": ["#ffffff", "#5b3df5", "#ece8ff"]},
     # Transit: the subway-sign look on a dark page (it replaced the original light Transit). Its key stays
     # "transit" so old links and saved choices still work; "transitdark" is kept as an alias below.
