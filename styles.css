@@ -6610,7 +6610,9 @@ html .phone__compose.is-choices .chat-choices__tip:not(#z):not(#y) { align-self:
 .demo .phone .m--stamp { transition: opacity .45s ease; }
 .demo.is-bare .phone .m--stamp { opacity: 0; }
 @media (max-width: 640px) {
-  .demo.is-intro { min-height: 520px; }
+  .demo.is-intro { min-height: 340px; }
+  /* while hidden, the website takes no room, so the chat isn't sitting at the bottom of an empty box */
+  .demo.is-intro .browser { position: absolute; left: 0; right: 0; top: 22px; }
   /* a quiet divider between the hero text and the chat, so the two don't run together */
   .demo { margin-top: 8px; padding-top: 22px; border-top: 1px solid var(--line); }
   html.theme-blocks .demo { border-top: 2px solid var(--ink); }
@@ -6652,14 +6654,23 @@ html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-style: dashed; 
 html .chat-choice:not(#z):not(#y):not(#x) { font-family: var(--body); font-style: normal; font-weight: 400; font-size: .78rem; line-height: 1.35; letter-spacing: normal; padding: 7px 11px; }
 html.theme-subway .chat-choice:not(#z):not(#y):not(#x) { font-weight: 500; }
 @media (max-width: 760px) { html .chat-choice:not(#z):not(#y):not(#x) { font-size: .64rem; padding: 5px 8px; } }
-/* Phones: the headline first, then the chat right under it, then the pitch, buttons and stats */
+/* Phones: the chat comes first, at the very top, then the label, headline, pitch, buttons and stats */
 @media (max-width: 760px) {
   .hero__grid:not(#z) { display: flex; flex-direction: column; gap: 0; }
   .hero__copy:not(#z) { display: contents; }
+  .hero .demo:not(#z) { order: 0; margin: -12px 0 24px; padding: 0 0 18px; border-top: 0; border-bottom: 1px solid var(--line); }
+  html.theme-blocks .hero .demo:not(#z) { border-bottom: 2px solid var(--ink); }
   .hero__copy > .eyebrow { order: 1; align-self: flex-start; }
   .hero__copy > h1 { order: 2; }
-  .hero .demo:not(#z) { order: 3; margin: 22px 0 26px; }
   .hero__copy > .lede { order: 4; }
   .hero__copy > .hero__ctas { order: 5; }
   .hero__copy > .hero__stats { order: 6; margin-top: 22px; }
+  .hero .demo.is-intro:not(#z) { min-height: 270px; }
+  .hero .demo.is-intro .browser:not(#z) { top: 0; }
+}
+/* Soirée on phones: labels stay on one line (tighter spacing, short rules either side) */
+@media (max-width: 760px) {
+  html.theme-wedding .eyebrow:not(#z):not(#y) { letter-spacing: .14em; gap: 8px; white-space: nowrap; font-size: .64rem; }
+  html.theme-wedding .eyebrow:not(#z):not(#y)::before, html.theme-wedding .eyebrow:not(#z):not(#y)::after { width: 16px; flex: none; }
+}
 }

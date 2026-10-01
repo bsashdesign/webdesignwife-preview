@@ -292,8 +292,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const fitBig = () => {
       phone.style.transform = "";
       const P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
-      // as wide as the space allows (on phones, nearly the full width)
-      const K = Math.min(2.2, (D.width * .94) / P.width);
+      // big on desktop; on phones a more modest size, so it doesn't take over the screen
+      const K = Math.min(innerWidth <= 760 ? 1.25 : 2.2, (D.width * .94) / P.width);
       const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
@@ -318,7 +318,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       }
       const sweep = phone.animate(frames, { duration: 900 * SLOW, easing: "linear" });
       phone.style.transform = "";
+      // the website comes back into the layout; the space grows smoothly to make room for it (phones)
+      const h0 = demo.offsetHeight;
       demo.classList.remove("is-intro");
+      const h1 = demo.offsetHeight;
+      if (h1 !== h0) demo.animate([{ height: h0 + "px" }, { height: h1 + "px" }], { duration: 750 * SLOW, easing: EASE_OUT });
       await sweep.finished.catch(() => {});
       phone.style.transformOrigin = "";
       if (fromRow) { fromRow.remove(); fromRow = null; }
