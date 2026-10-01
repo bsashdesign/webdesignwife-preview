@@ -5101,3 +5101,20 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 .theme-subway.theme-dark .tv-deck__cue { color: #c9c9c4; }
 .theme-wedding .tv-deck__cue { font: italic 500 1rem var(--display); color: var(--gold-ink); }
 @media (prefers-reduced-motion: reduce) { .tv-deck__cue span { animation: none; } }
+/* TV dials: only the pointer turns (the dial body and any shadow stay put), around the dial's centre */
+.tv__side .tv__knob, .tv__side .tv__knob.is-spinning { transform: none; animation: none; }
+.tv__side .tv__knob::after {
+  --ptr: #4a3b2a;
+  top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; margin: 0; border-radius: 50%;
+  background: linear-gradient(var(--ptr), var(--ptr)) center 3px / 3px 36% no-repeat !important;
+  transform: rotate(var(--turn, 0deg)) !important; transform-origin: 50% 50% !important;
+  transition: transform .2s cubic-bezier(.3, 1.4, .5, 1);
+}
+.tv__side .tv__knob.is-spinning::after { animation: knob-spin .7s cubic-bezier(.25, .8, .3, 1); }
+.theme-blocks .tv__side .tv__knob::after { --ptr: var(--ink); }
+.theme-refined .tv__side .tv__knob::after { --ptr: #5b3df5; }
+.theme-subway .tv__side .tv__knob::after { --ptr: #ffcc00; }
+.theme-subway .tv__side .tv__knob--sm::after { --ptr: #ff6319; }
+.theme-wedding .tv__side .tv__knob::after { --ptr: #3a2413; }
+@media (prefers-reduced-motion: reduce) { .tv__side .tv__knob.is-spinning::after { animation: none; } }
+.tv__side .tv__knob:not(.tv__knob--sm)::after { transition: transform .75s cubic-bezier(.25, .8, .3, 1); }
