@@ -6850,3 +6850,11 @@ html.theme-blocks .promises p:nth-child(2):not(#z) { background: var(--lilac); }
 .gmcard__pin svg:not(#z) { overflow: visible; }
 /* Tangy: the Google Maps icon boxes get the hard 3D shadow like Tangy's other icon tiles */
 html.theme-blocks .mplans .mplan__ico:not(#z) { box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); }
+/* Three ways: a guide link under the DIY and agency cards; Get Started (and the audit) inside the Web Design Wife card */
+#compare .cc { display: flex; flex-direction: column; }
+#compare .cc ul { margin-bottom: 0; }
+.cc__read { margin-top: 16px; align-self: flex-start; font-size: .9rem; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.cc__read:hover { opacity: .75; }
+.cc__cta:not(#z) { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; max-width: none; margin: auto 0 0; padding-top: 22px; }
+.cc__alt { font-size: .92rem; font-weight: 600; color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+html.theme-wedding #compare .cc--us .cc__alt, html.theme-wedding #compare .cc--us .cc__read { color: #f4ecdb; }
