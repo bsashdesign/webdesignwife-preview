@@ -4299,3 +4299,8 @@ span.plan-ring:empty { display: none; }
 .theme-blocks #moods-tv .tv-keys { box-shadow: 0 0 0 2.5px var(--ink), 0 18px 0 2.5px var(--ink); }
 .theme-subway #moods-tv .tv-keys { box-shadow: inset 0 0 0 1px #2f2f2f, 0 18px 0 #050505, 0 18px 0 1px #262626, 0 21px 6px -2px rgba(0, 0, 0, .7); }
 .theme-wedding #moods-tv .tv-keys { box-shadow: inset 0 0 0 7px #fffdf8, inset 0 0 0 8px var(--gold), 0 16px 0 #e3d4b3, 0 16px 0 1px #cbb68d, 0 19px 5px -2px rgba(31, 35, 54, .2); }
+/* the note's back is compact: tight lines, one button (request a callback) */
+.tv-yours__inner, .tv-yours.is-flipped .tv-yours__inner { min-height: 84px; }
+.tv-yours .tv-yours__back { align-content: center; row-gap: 0; padding-top: 12px; padding-bottom: 12px; }
+#moods-tv .tv-yours .tv-yours__back .tv-yours__title { line-height: 1.1; }
+.tv-yours .tv-yours__back > p { line-height: 1.35; margin-top: 3px; }
