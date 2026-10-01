@@ -4819,5 +4819,48 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 /* homepage plans: the "+N more" at the end of each list (the rest are on the Pricing page) */
 .hplan__feats li.hplan__more { padding-left: 0; font-weight: 600; color: var(--ink); }
 .hplan__feats li.hplan__more::before { display: none; }
-.hplan:hover .hplan__more { text-decoration: underline; text-underline-offset: 3px; }
 .hplans__cta { gap: 12px; flex-wrap: wrap; }
+/* homepage plan cards: "+N more" links to the plan on the Pricing page; the arrow starts sign-up with that plan */
+.hplans .hplan { grid-template-columns: 64px minmax(0, 1fr) auto auto; cursor: default; }
+.hplans .hplan:hover { transform: none; }
+.hplan__inc { font-size: .85rem; color: var(--ink-soft); }
+.hplan__more a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hplan__go { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--violet); color: #fff; transition: transform .15s ease, background-color .15s ease; }
+.hplan__go svg { width: 20px; height: 20px; }
+.hplan__go:hover { transform: translateX(3px); background: var(--violet-deep, #4424db); }
+.theme-blocks .hplan__go { background: #ff6a1a; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.theme-blocks .hplan__go:hover { background: #ff6a1a; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+.theme-blocks .hplan__go:active { transform: translate(2px, 2px); box-shadow: none; }
+.theme-subway .hplan__go { background: #0b5cd6; border-radius: 8px; }
+.theme-subway .hplan__go:hover { background: #2a74e6; }
+.theme-wedding .hplan__go { background: var(--ink); color: #d9c49a; border-radius: 4px; }
+.theme-wedding .hplan__go:hover { background: #343a58; }
+@media (max-width: 760px) {
+  .hplans .hplan { grid-template-columns: 52px minmax(0, 1fr) auto; }
+  .hplans .hplan .hplan__money { grid-column: 1 / 3; }
+  .hplans .hplan .hplan__go { grid-column: 3; grid-row: 2; align-self: end; }
+}
+/* homepage plan cards: the whole card starts sign-up with that plan (the arrow's link covers the card);
+   "+N more" sits on top and opens the plan on the Pricing page */
+.hplans .hplan { grid-template-columns: 64px minmax(0, 1fr) auto auto; cursor: pointer; }
+.hplan__go::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.hplans .hplan:focus-within { outline: 3px solid var(--violet); outline-offset: 3px; }
+.hplan__go:focus-visible { outline: none; }
+.hplan__inc { font-size: .85rem; color: var(--ink-soft); }
+.hplan__more a { position: relative; z-index: 2; color: var(--ink); font-weight: 700; text-decoration: none; }
+.hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hplan__go { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--violet); color: #fff; transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease; }
+.hplan__go svg { width: 20px; height: 20px; }
+.hplan:hover .hplan__go { transform: translateX(3px); background: var(--violet-deep, #4424db); }
+.theme-blocks .hplan__go { background: #ff6a1a; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.theme-blocks .hplan:hover .hplan__go { background: #ff6a1a; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+.theme-subway .hplan__go { background: #0b5cd6; border-radius: 8px; }
+.theme-subway .hplan:hover .hplan__go { background: #2a74e6; }
+.theme-wedding .hplan__go { background: var(--ink); color: #d9c49a; border-radius: 4px; }
+.theme-wedding .hplan:hover .hplan__go { background: #343a58; }
+@media (max-width: 760px) {
+  .hplans .hplan { grid-template-columns: 52px minmax(0, 1fr) auto; }
+  .hplans .hplan .hplan__money { grid-column: 1 / 3; }
+  .hplans .hplan .hplan__go { grid-column: 3; grid-row: 2; align-self: end; }
+}
