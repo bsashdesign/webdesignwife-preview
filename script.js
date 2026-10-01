@@ -1703,10 +1703,16 @@ document.addEventListener("click", (e) => {
   const aimAhead = (cv) => { const ahead = (cv._extra || 0) + Math.max(0, cv._vel || 0) / EASE; cv._target = Math.ceil(ahead / TURN_R - 1e-6) * TURN_R; };
   gems.forEach((cv) => {
     const hit = cv.closest(".plan-ring-tile") || cv;
-    hit.addEventListener("pointerenter", () => { cv._hover = true; cv._target = null; });
-    hit.addEventListener("pointerleave", () => { cv._hover = false; cv._held = false; cv.classList.remove("is-held"); aimAhead(cv); });
-    hit.addEventListener("pointerdown", () => { cv._held = true; cv._heldAt = performance.now(); cv.classList.add("is-held"); });
-    const release = () => { cv._held = false; cv.classList.remove("is-held"); };
+    const S = () => window.wdwGemSound;
+    hit.addEventListener("pointerenter", () => { cv._hover = true; cv._target = null; S() && S().start(); });
+    hit.addEventListener("pointerleave", () => { cv._hover = false; cv._held = false; cv.classList.remove("is-held"); aimAhead(cv); clearTimeout(cv._slowT); S() && S().stop(); });
+    hit.addEventListener("pointerdown", () => {
+      cv._held = true; cv._heldAt = performance.now(); cv.classList.add("is-held");
+      if (S()) { S().clink(); S().start(); }
+      // once the gem has slowed (after a moment's hold), the twinkle slows with it
+      clearTimeout(cv._slowT); cv._slowT = setTimeout(() => { if (cv._held && S()) S().rate(.32); }, 250);
+    });
+    const release = () => { cv._held = false; cv.classList.remove("is-held"); clearTimeout(cv._slowT); S() && S().rate(1); };
     hit.addEventListener("pointerup", release); hit.addEventListener("pointercancel", release);
   });
   const step = (cv, dt, now) => {
@@ -1832,6 +1838,54 @@ document.addEventListener("click", (e) => {
       n.buffer = buf; lp.type = "lowpass"; lp.frequency.value = 900; ng.gain.value = .5;
       n.connect(lp).connect(ng).connect(out); n.start(t);
     } catch (e) {}
+  };
+  // The gems: a soft twinkle of little bells while you hover (it slows down with the gem when you hold it),
+  // and a glassy clink when you press one.
+  const bell = (f, t, vol, decay) => {
+    const g = ac.createGain();
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .006); g.gain.exponentialRampToValueAtTime(.0001, t + decay);
+    g.connect(ac.destination);
+    // a pure tone with a faint bell overtone above it
+    [[1, 1], [2.76, .18]].forEach(([m, v]) => {
+      const o = ac.createOscillator(), og = ac.createGain();
+      o.type = "sine"; o.frequency.value = f * m; og.gain.value = v;
+      o.connect(og).connect(g); o.start(t); o.stop(t + decay + .05);
+    });
+  };
+  // a major pentatonic scale up high, so any run of notes sounds pretty
+  const SCALE = [1318.5, 1480, 1661.2, 1975.5, 2217.5, 2637, 2960];
+  let twinkleTimer = null, twinkleRate = 1, twinkleStep = 0;
+  const twinkle = () => {
+    try {
+      // wander up and down the scale a step or two at a time
+      twinkleStep = Math.max(0, Math.min(SCALE.length - 1, twinkleStep + [-1, 1, 1, 2, -2][Math.floor(Math.random() * 5)]));
+      bell(SCALE[twinkleStep] * (twinkleRate < 1 ? .5 : 1), ac.currentTime, .045, twinkleRate < 1 ? 1.6 : .9);
+    } catch (e) {}
+    twinkleTimer = setTimeout(twinkle, (140 + Math.random() * 90) / twinkleRate);
+  };
+  window.wdwGemSound = {
+    start() {
+      try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) { return; }
+      if (twinkleTimer) return;
+      twinkleRate = 1; twinkleStep = 2; twinkle();
+    },
+    stop() { clearTimeout(twinkleTimer); twinkleTimer = null; },
+    // 1 = normal; lower while the gem is held and turning slowly
+    rate(r) { twinkleRate = r; },
+    clink() {
+      try {
+        ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+        if (ac.state === "suspended") ac.resume();
+        const t = ac.currentTime;
+        // two bright, slightly clashing partials, like a fingernail on crystal
+        bell(3136, t, .12, .5); bell(4699, t, .05, .35);
+        const len = Math.floor(ac.sampleRate * .008), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len);
+        const n = ac.createBufferSource(), hp = ac.createBiquadFilter(), ng = ac.createGain();
+        n.buffer = buf; hp.type = "highpass"; hp.frequency.value = 5000; ng.gain.value = .15;
+        n.connect(hp).connect(ng).connect(ac.destination); n.start(t);
+      } catch (e) {}
+    },
   };
   const sound = (key) => (key.getAttribute("aria-pressed") === "true" ? clunk() : click());
   document.addEventListener("pointerdown", (e) => {
