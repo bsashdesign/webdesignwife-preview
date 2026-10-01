@@ -744,8 +744,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   let done = false;
   function check() {
     if (done) return;
-    const r = fig.getBoundingClientRect();
-    if (r.top < window.innerHeight * 0.7 && r.bottom > 0) {
+    // start as soon as the before/after panes come into view (not once the card is well up the screen)
+    const panes = fig.querySelector(".profile__panes") || fig;
+    const r = panes.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.95 && r.bottom > 0) {
       done = true;
       window.removeEventListener("scroll", onScroll);
       setTimeout(play, 300);

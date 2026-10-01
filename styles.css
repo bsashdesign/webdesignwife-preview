@@ -4896,3 +4896,5 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 /* hovering the mini TV: it lifts a touch and tips clockwise */
 #mood .mood__btn:hover { transform: translateY(-3px); }
 #mood .mood__btn:hover .minitv { transform: rotate(6deg); }
+/* Google Maps card: the "after" items arrive a little quicker, one after another */
+.rank.profile.is-played .profile__pane--after li { transition-delay: calc(.1s + var(--k) * 90ms); }
