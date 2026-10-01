@@ -228,7 +228,8 @@ contact = full_page((HERE / "contact.template.html").read_text()).replace("{{AUD
 # Pricing page: the money page. It shares only the plans with the homepage (as the page's h1);
 # setup, billing, the guarantee, edits, ownership and the full FAQ live in pricing.template.html.
 PLANS_SECTION = block(page, '<section class="section" id="pricing">')
-PLANS_SECTION = re.sub(r"<!-- PRICING-MORE:START -->.*?<!-- PRICING-MORE:END -->", "", PLANS_SECTION, flags=re.S)
+# On the Pricing page, keep only the link to Features (it is already the Pricing page)
+PLANS_SECTION = re.sub(r"<!-- PRICING-MORE:START -->.*?<!-- PRICING-MORE:END -->", '<p class="pricing__more"><a href="features.html">View the Features page →</a></p>', PLANS_SECTION, flags=re.S)
 PLANS_SECTION = re.sub(r"<h2>(.*?)</h2>", r"<h1>\1</h1>", PLANS_SECTION, count=1)
 pricing = full_page((HERE / "pricing.template.html").read_text())
 pricing = founding(pricing.replace("{{PLANS_SECTION}}", PLANS_SECTION).replace("{{AUDIT_SECTION}}", AUDIT_SECTION).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG))
