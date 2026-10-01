@@ -4693,3 +4693,5 @@ html.theme-blocks .sound-toggle .sound-toggle__switch:not(#z) i { top: 5px; left
 .splan input:checked + span::after { box-shadow: none; }
 .theme-blocks .splans .splan > span::after { box-shadow: 2px 2px 0 var(--ink); background-color: #fff; }
 .theme-blocks .splans .splan input:checked + span::after { box-shadow: none; transform: translate(2px, 2px); background-color: var(--ink); }
+/* Tangy switches: a black knob while off, lime once switched on */
+html.theme-blocks :is(.billing__switch:not([aria-checked="true"]), .sound-toggle:not([aria-checked="true"]) .sound-toggle__switch):not(#z) i { background: var(--ink); }
