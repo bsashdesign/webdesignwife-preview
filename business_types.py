@@ -61,7 +61,7 @@ TYPES = [
   },
   {
     "slug": "restaurants", "blurb": "Menus, reservations, ordering and photos", "label": "Restaurants", "title": "Websites for restaurants",
-    "intro": "People decide where to eat in about a minute. Here's what I'd do for yours.",
+    "intro": "People decide where to eat quickly. Your menu, hours, location and photos should make the choice easy. Here's what I'd do for yours.",
     "points": [
       "Put your menu right on the site, quick to load and easy to read on a phone, not a PDF",
       "Link reservations and ordering to the services you already use",

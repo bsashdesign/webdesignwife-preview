@@ -6433,3 +6433,11 @@ html.theme-subway.theme-dark .visit__steps li::before { background: #fccc0a; col
 html.theme-wedding .visit__steps li { background: #fffdf8; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(184,149,90,.45); }
 html.theme-wedding .visit__steps li::before { background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); font: italic 600 1rem var(--display); }
 html.theme-wedding .visit__photo img { border-radius: 2px; }
+/* business pages: the way back is a quiet breadcrumb at the top left (a small chevron and muted text, no box,
+   no underline); it takes the mood's accent on hover */
+.bcrumb:not(#z) { display: inline-flex; align-items: center; gap: 4px; padding: 4px 0; color: var(--ink-soft); font: 600 .9rem var(--body); text-decoration: none; background: none; animation: none; transition: color .15s, gap .2s var(--ease-out); }
+.bcrumb svg { width: 15px; height: 15px; }
+@media (hover: hover) { .bcrumb:not(#z):hover { color: var(--violet); gap: 7px; } html.theme-subway .bcrumb:not(#z):hover { color: #fccc0a; } html.theme-wedding .bcrumb:not(#z):hover { color: var(--gold-ink); } html.theme-blocks .bcrumb:not(#z):hover { color: var(--ink); } }
+html.theme-wedding .bcrumb:not(#z) { font: italic 500 1.02rem var(--display); }
+.bhero__top:not(#z) { margin-bottom: 36px; }
+@media (max-width: 760px) { .bhero__top:not(#z) { margin-bottom: 20px; } }
