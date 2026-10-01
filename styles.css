@@ -5292,3 +5292,8 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
 }
 /* Soirée: the pop-up's "Change the Channel" title sized up for its serif */
 .theme-wedding #mood .mood__title { font-size: 1.45rem; font-weight: 600; line-height: 1.1; }
+/* Homepage plans on phones: "Most popular" sits on the card's top edge as a tab, not under the name */
+@media (max-width: 760px) {
+  .hplans .hplan .hplan__chip { position: absolute; top: 0; left: 16px; translate: 0 -50%; z-index: 2; }
+  .hplans .hplan--best.hplan { margin-top: 8px; }
+}
