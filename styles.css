@@ -4825,7 +4825,7 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 .hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .hplan__go { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--violet); color: #fff; transition: transform .15s ease, background-color .15s ease; }
 .hplan__go svg { width: 20px; height: 20px; }
-.hplan__go:hover { transform: translateX(3px); background: var(--violet-deep, #4424db); }
+.hplan__go:hover { background: var(--violet-deep, #4424db); }
 .theme-blocks .hplan__go { background: #ff7d33; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
 .theme-blocks .hplan__go:hover { background: #ff7d33; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
 .theme-blocks .hplan__go:active { transform: translate(2px, 2px); box-shadow: none; }
@@ -4849,7 +4849,7 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 .hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .hplan__go { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--violet); color: #fff; transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease; }
 .hplan__go svg { width: 20px; height: 20px; }
-.hplan:has(.hplan__go:hover) .hplan__go { transform: translateX(3px); background: var(--violet-deep, #4424db); }
+.hplan:has(.hplan__go:hover) .hplan__go { background: var(--violet-deep, #4424db); }
 .theme-blocks .hplan__go { background: #ff7d33; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
 .theme-blocks .hplan:has(.hplan__go:hover) .hplan__go { background: #ff7d33; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
 .theme-subway .hplan__go { background: #0b5cd6; border-radius: 8px; }
