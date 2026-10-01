@@ -320,8 +320,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   }
   buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.billing)));
   if (sw) sw.addEventListener("click", () => render(sw.getAttribute("aria-checked") === "true" ? "monthly" : "yearly"));
-  // Yearly (about 20% off the subscription) is the default
-  render("yearly");
+  // Yearly (about 20% off the subscription) is the default, unless the page already set the switch off
+  // (Get Started remembers monthly before the switch is drawn)
+  render(sw && sw.getAttribute("aria-checked") === "false" ? "monthly" : "yearly");
 })();
 
 // ---------------------------------------------------------------
