@@ -5321,9 +5321,9 @@ html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
 html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
 /* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
-/* Tangy: the Brooklyn-neighbor section is white, its "Now it's your turn" card in the light yellow-orange the section used to be */
-html.theme-blocks #work:not(#z) { background: #fff; }
-html.theme-blocks #work .work-founding.work-founding:not(#z) { background: var(--sun); color: var(--ink); }
+/* Tangy: the Brooklyn-neighbor section is the light yellow-orange again (the built-for band above it is white), its "Now it's your turn" card white */
+html.theme-blocks #work:not(#z) { background: var(--sun); }
+html.theme-blocks #work .work-founding.work-founding:not(#z) { background: #fff; color: var(--ink); }
 html.theme-blocks #work .work-founding:not(#z) :is(p, strong, a) { color: var(--ink); }
 /* Tangy "Three ways": a pink section with white cards; ours is white too, set apart by its size and deeper shadow */
 html.theme-blocks #compare:not(#z) { background: var(--rose); color: var(--ink); }
