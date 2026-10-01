@@ -2206,6 +2206,17 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
   let drifting = true, spins = 0, youSpun = false;
+  // the reels hold still while you're using the homepage hero (pointer over it, or a tap/click in it in the last
+  // few seconds), so they don't pull your eye away from the chat
+  const hero = document.querySelector(".hero");
+  let overHero = false, heroTouch = 0;
+  if (hero) {
+    hero.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") overHero = true; });
+    hero.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") overHero = false; });
+    hero.addEventListener("pointerdown", () => { heroTouch = performance.now(); });
+    hero.addEventListener("focusin", () => { heroTouch = performance.now(); });
+  }
+  const heroBusy = () => overHero || performance.now() - heroTouch < 8000;
   // Your spins land on "Web Design Wife": "for" and "in" slide away (each in its neighbouring reel's direction)
   // so the name reads cleanly, then slide back in with that reel's next step, coming from the other side.
   // "for" travels with the first reel, "in" with the second.
@@ -2223,7 +2234,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   };
   const STEP = 4500, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
   const step = (r) => {
-    if (!drifting || reduce || document.hidden) return;
+    if (!drifting || reduce || document.hidden || heroBusy()) return;
     recentre(r); show(r, 0); void r.ul.offsetWidth;
     r.pos += r.dir; show(r, GLIDE, CLICK);
     // the name word left over from a win scrolls out of view with this step: then it goes back to its ordinary word
