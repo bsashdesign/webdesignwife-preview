@@ -4515,3 +4515,8 @@ span.plan-ring:empty { display: none; }
 .theme-subway .founding .founding__emblem b { background: linear-gradient(180deg, #fbe7a1 0%, #e2b84e 55%, #b8862a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 /* the stones are drawn a little below the middle of their box, so lift them to sit level with the name and line */
 .plans .plan .plan__head .plan-ring-tile { translate: 0 calc(var(--rs, 88px) * -.14); }
+/* numbers are always full height (lining), never old-style figures that dip below the line, so prices read clearly */
+html, html * { font-variant-numeric: lining-nums; }
+/* Essentials' stone is the smallest, so pull it left to line up with the others and close the gap before its name */
+.plans .plan .plan__head .plan-ring-tile:has([data-plan="essentials"]) { margin-left: calc(-14px - var(--rs, 88px) * .125); margin-right: calc(var(--rs, 88px) * -.136); }
+@media (max-width: 1100px) { .plans .plan .plan__head .plan-ring-tile:has([data-plan="essentials"]) { margin-left: calc(-10px - var(--rs, 72px) * .125); } }
