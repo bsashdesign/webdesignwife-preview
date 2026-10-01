@@ -257,11 +257,12 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     }
     async function pick(o) {
       if (busy) return; busy = true;
-      if (demo.classList.contains("is-intro")) await handoff();
       clearChoices();
       hideOldReceipts();
       const sent = addMessage("them", '<div class="bubble"></div><div class="receipt"><span>Delivered</span></div>');
       sent.querySelector(".bubble").textContent = o.label;
+      // in the opening view, your reply is sent first (still big, no frame), then the phone appears and sweeps into place
+      if (demo.classList.contains("is-intro")) { await tick(650); await handoff(); }
       const receipt = sent.querySelector(".receipt span");
       await tick(700); receipt.classList.add("is-hidden"); await tick(200); receipt.textContent = "Read"; receipt.classList.remove("is-hidden");
       await tick(350);
