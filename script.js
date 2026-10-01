@@ -577,10 +577,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
 
   function choose(planId) {
     dialog.close();
-    document.querySelectorAll(".plan").forEach((card) => {
+    document.querySelectorAll(".plan, .hplan").forEach((card) => {
       const on = card.id === planId;
       card.classList.toggle("is-recommended", on);
-      const badge = card.querySelector(".plan__rec");
+      const badge = card.querySelector(".plan__rec, .hplan__rec");
       if (badge) badge.hidden = !on;
     });
     setTimeout(() => document.getElementById(planId).scrollIntoView({ block: "center" }), 150);

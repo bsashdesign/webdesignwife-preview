@@ -171,7 +171,9 @@ def faq_schema(html):
 
 page = founding(page)
 page = page.replace("{{FAQ_SCHEMA}}", faq_schema(page))
-(HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(page))))
+# The homepage shows its own short plans section; the full plans (kept in the template) go to the Pricing page.
+HOME_PAGE = re.sub(r"\s*<!-- PLANS-FULL:START -->.*?<!-- PLANS-FULL:END -->", "", page, flags=re.S)
+(HERE / "index.html").write_text(bust(titlecase.apply(add_alt_copy(HOME_PAGE))))
 
 # The Get started page shares the moods and switcher.
 start = ((HERE / "start.template.html").read_text()
