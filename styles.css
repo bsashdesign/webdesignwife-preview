@@ -4520,3 +4520,6 @@ html, html * { font-variant-numeric: lining-nums; }
 /* Essentials' stone is the smallest, so pull it left to line up with the others and close the gap before its name */
 .plans .plan .plan__head .plan-ring-tile:has([data-plan="essentials"]) { margin-left: calc(-14px - var(--rs, 88px) * .125); margin-right: calc(var(--rs, 88px) * -.136); }
 @media (max-width: 1100px) { .plans .plan .plan__head .plan-ring-tile:has([data-plan="essentials"]) { margin-left: calc(-10px - var(--rs, 72px) * .125); } }
+/* Calm: Essentials' stone in a clearer, more saturated violet (still the lightest of the three) instead of washed-out lavender */
+.plan-ring-tile:has([data-plan="essentials"]) { --ring: #9883f7; }
+.hplan [data-plan="essentials"] { color: #9883f7; }
