@@ -33,19 +33,29 @@
   // yearly is the default; someone who chose monthly gets the switch turned off
   if (wantBilling === "monthly" && sw && sw.getAttribute("aria-checked") === "true") sw.click();
 
+  const main = document.querySelector(".start");
   function render() {
     const p = PLANS[form.elements.plan.value] || PLANS.business;
     const isYearly = billing() === "yearly";
+    // Essentials is bought here; Business and Full Suite are applied for (nothing is charged until I approve it)
+    const key0 = PLANS[form.elements.plan.value] ? form.elements.plan.value : "business";
+    main.dataset.plan = key0;
+    main.dataset.mode = p.apply ? "apply" : "buy";
     sum("plan").textContent = p.name;
     // the selected plan's gem and name colour follow the choice
     const key = PLANS[form.elements.plan.value] ? form.elements.plan.value : "business";
     sum("plan").dataset.plan = key;
     const gem = document.querySelector(".ssum__gem"); if (gem) gem.dataset.plan = key;
     const F = window.WDW_FOUNDING;
-    if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(p.found)}`; else sum("today").textContent = money(p.setup);
+    if (p.apply) {
+      sum("today").textContent = "$0";
+      // the setup they'd pay once approved, said quietly (no strike-through)
+      sum("setup").textContent = money(F ? p.found : p.setup);
+      sum("setup-was").textContent = F ? `Founding 5 setup, normally ${money(p.setup)}. ` : "";
+    } else if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(p.found)}`; else sum("today").textContent = money(p.setup);
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;
     sum("then-note").textContent = isYearly
-      ? `Billed yearly, saving ${money(p.save)} on your subscription. It starts the day your site goes live, once you've approved it.`
+      ? `Billed yearly, saving ${money(p.save)} (~20%) on your subscription. It starts the day your site goes live, once you've approved it.`
       : "Your subscription starts the day your site goes live, once you've approved it.";
     document.querySelectorAll("[data-price]").forEach((el) => {
       const q = PLANS[el.dataset.price];
@@ -76,8 +86,12 @@
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     let first = null;
-    form.querySelectorAll("input").forEach((f) => {
+    const mode = main.dataset.mode;
+    form.querySelectorAll("input, textarea, select").forEach((f) => {
       if (f.type === "radio") return;
+      // questions for the other mode are hidden, so they don't count
+      const only = f.closest("[data-mode-only]");
+      if (only && only.dataset.modeOnly !== mode) { f.removeAttribute("aria-invalid"); return; }
       const ok = f.type === "checkbox" ? (!f.required || f.checked) : f.checkValidity() && (!f.required || f.value.trim() !== "");
       f.setAttribute("aria-invalid", ok ? "false" : "true");
       if (!ok && !first) first = f;
@@ -88,6 +102,8 @@
       return;
     }
     save();
+    // Business and Full Suite: the application goes to me to review (TODO: send it to a form backend).
+    if (mode === "apply") { location.href = "applied.html"; return; }
     // TODO: create a Stripe Checkout session here and redirect to it, with welcome.html as the
     // success page. Until then, the preview skips checkout and goes straight to the welcome page.
     location.href = "welcome.html";

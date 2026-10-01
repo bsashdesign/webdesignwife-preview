@@ -34,11 +34,12 @@ FOUNDING = {"on": True, "left": None, "off": 50}
 
 # The plans: the one place prices live. Templates use {{$plan.field}} (e.g. {{$business.month}} → "$229") and
 # script.js / start.js read window.WDW_PLANS. Yearly billing is a fixed price per plan (~20% off the subscription;
-# it never applies to setup). "found" is the Founding 5 setup: 50% off, rounded down to the dollar.
+# it never applies to setup). "apply": the plan is by application (Get Started becomes an application, with nothing
+# charged until I've approved it). "found" is the Founding 5 setup: 50% off, rounded down to the dollar.
 PLANS = {
     "essentials": {"name": "Essentials", "setup": 399, "month": 149, "yearmo": 119, "year": 1430},
-    "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150},
-    "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870},
+    "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150, "apply": True},
+    "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870, "apply": True},
 }
 for _p in PLANS.values():
     _p["found"] = _p["setup"] * (100 - FOUNDING["off"]) // 100
@@ -227,6 +228,12 @@ welcome = ((HERE / "welcome.template.html").read_text()
            .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
            .replace("{{SWITCHER}}", switcher()))
 (HERE / "welcome.html").write_text(bust(titlecase.apply(welcome)))
+# After a Business or Full Suite application (start.html in apply mode)
+applied = ((HERE / "applied.template.html").read_text()
+           .replace("{{FONTS}}", FONTS)
+           .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
+           .replace("{{SWITCHER}}", switcher()))
+(HERE / "applied.html").write_text(bust(titlecase.apply(applied)))
 # Pieces shared with the other full pages (Pricing, Contact), taken from the finished homepage
 # so the header, menu and footer never drift apart.
 def between(html, start, end_tag):

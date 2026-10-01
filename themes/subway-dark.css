@@ -66,6 +66,8 @@
 .theme-dark .cf__nav .cf__arrow,
 .theme-dark .news__row input,
 .theme-dark .sform input:not([type="radio"]):not([type="checkbox"]),
+.theme-dark .sform textarea,
+.theme-dark .sform select,
 .theme-dark .splan > span,
 .theme-dark .sbilling span,
 .theme-dark .ssum,

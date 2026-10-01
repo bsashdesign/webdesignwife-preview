@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Application received — Web Design Wife</title>
+  <meta name="description" content="Your Business or Full Suite application is in. I review every one personally.">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{FONTS}}
+  <link rel="stylesheet" href="styles.css">
+  {{THEME_CSS}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {{SWITCHER}}
+
+  <header class="nav nav--simple">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
+        <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <a class="start__back" href="index.html" data-back>← Back to website</a>
+    </div>
+  </header>
+
+  <main id="main" class="start welcome applied">
+    <div class="wrap">
+      <p class="eyebrow">Pending review</p>
+      <h1 class="start__title">Application received<span data-welcome-name></span></h1>
+      <p class="start__intro">I review every Business and Full Suite application personally and get back to you within one business day. If it looks like a good fit, we'll schedule a short call before you pay anything.</p>
+
+      <div class="start__grid">
+        <aside class="ssum applied__status" aria-label="Your application">
+          <p class="ssum__kicker">Your application</p>
+          <div class="ssum__head"><canvas class="plan-ring plan-gem ssum__gem" data-plan="business" aria-hidden="true"></canvas><h2 class="ssum__plan" data-applied-plan data-plan="business">Business</h2><span class="ssum__tag applied__chip">Pending review</span></div>
+          <p class="applied__note">Nothing has been charged. If you have a question in the meantime, <a href="contact.html">write me a note or request a callback</a>.</p>
+          <p class="applied__back"><a class="btn btn--ghost" href="index.html">Back to the website</a></p>
+        </aside>
+
+        <aside class="ssum" aria-label="What happens next">
+          <p class="ssum__kicker">What happens next</p>
+          <ol class="welcome__steps">
+            <li><strong>I review your application</strong><span>Within one business day.</span></li>
+            <li><strong>A short call</strong><span>To make sure we're a good fit, and to plan my visit to your business.</span></li>
+            <li><strong>Your private link</strong><span>You pay the setup, and I come to your business.</span></li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer--simple">
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife · Brooklyn, NY</p>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    let details = {};
+    try { details = JSON.parse(localStorage.getItem("wdw-start") || "{}"); } catch (e) {}
+    // Their first name, and the plan they applied for, from the Get Started form
+    const first = (details.name || "").trim().split(" ")[0];
+    if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
+    const plan = (window.WDW_PLANS || {})[details.plan];
+    if (plan && plan.apply) {
+      const h = document.querySelector("[data-applied-plan]");
+      h.textContent = plan.name; h.dataset.plan = details.plan;
+      document.querySelector(".ssum__gem").dataset.plan = details.plan;
+    }
+  </script>
+</body>
+</html>

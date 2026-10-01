@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <script>document.documentElement.classList.add("js");</script>
-  <title>Welcome — Web Design Wife</title>
-  <meta name="description" content="Start your Web Design Wife website. Pick a plan, tell me about your business, and I'll get to work.">
+  <title>Application received — Web Design Wife</title>
+  <meta name="description" content="Your Business or Full Suite application is in. I review every one personally.">
   <link rel="icon" href="images/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,29 +35,27 @@
     </div>
   </header>
 
-  <main id="main" class="start welcome">
+  <main id="main" class="start welcome applied">
     <div class="wrap">
-      <p class="eyebrow">You're in</p>
-      <h1 class="start__title">It's Official<span data-welcome-name></span>!</h1>
-      <p class="start__intro">Thank you for choosing Web Design Wife. One last step: pick a time for our kickoff call. It's about 15 minutes, and it's where I learn about your business, your customers and what you want your site to do.</p>
+      <p class="eyebrow">Pending review</p>
+      <h1 class="start__title">Application Received<span data-welcome-name></span></h1>
+      <p class="start__intro">I review every Business and Full Suite application personally and get back to you within one business day. If it looks like a good fit, we'll schedule a short call before you pay anything.</p>
 
       <div class="start__grid">
-        <section class="welcome__cal" aria-label="Book our first call">
-          <div id="cal-inline" class="welcome__embed" hidden></div>
-          <div class="welcome__placeholder" id="cal-placeholder">
-            <strong>Pick a Day and Time</strong>
-            <p>Your booking calendar goes here. It shows the times I'm free and sends you a calendar invite.</p>
-          </div>
-        </section>
+        <aside class="ssum applied__status" aria-label="Your application">
+          <p class="ssum__kicker">Your application</p>
+          <div class="ssum__head"><canvas class="plan-ring plan-gem ssum__gem" data-plan="business" aria-hidden="true"></canvas><h2 class="ssum__plan" data-applied-plan data-plan="business">Business</h2><span class="ssum__tag applied__chip">Pending review</span></div>
+          <p class="applied__note">Nothing has been charged. If you have a question in the meantime, <a href="contact.html">write me a note or request a callback</a>.</p>
+          <p class="applied__back"><a class="btn btn--ghost" href="index.html">Back to the Website</a></p>
+        </aside>
 
         <aside class="ssum" aria-label="What happens next">
           <p class="ssum__kicker">What happens next</p>
           <ol class="welcome__steps">
-            <li><strong>Our First Call</strong><span>About 15 minutes, at the time you pick. On Business and Full Suite, we also plan my visit to your business.</span></li>
-            <li><strong>Your Design, in 14 Days</strong><span>Ready for your review within 14 days of kickoff, guaranteed. We refine it together until you love it.</span></li>
-            <li><strong>You Approve It, and It Goes Live</strong><span>Your subscription starts that day, not before.</span></li>
+            <li><strong>I Review Your Application</strong><span>Within one business day.</span></li>
+            <li><strong>A Short Call</strong><span>To make sure we're a good fit, and to plan my visit to your business.</span></li>
+            <li><strong>Your Private Link</strong><span>You pay the setup, and I come to your business.</span></li>
           </ol>
-          <p class="welcome__note">A receipt and a summary of your plan are on their way to your email.</p>
         </aside>
       </div>
     </div>
@@ -72,20 +70,16 @@
 
   <script src="script.js?v=1790852714"></script>
   <script>
-    // The new-client kickoff call (set CAL["onboarding"] in build_home.py). Separate from the prospect phone call.
-    const CAL_LINK = (window.WDW_CAL && WDW_CAL.onboarding) || "";
-
     let details = {};
     try { details = JSON.parse(localStorage.getItem("wdw-start") || "{}"); } catch (e) {}
-    // Greet them by first name if they just came from the Get started form.
+    // Their first name, and the plan they applied for, from the Get Started form
     const first = (details.name || "").trim().split(" ")[0];
     if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
-
-    // Cal.com inline booking calendar, with their name, email and business filled in.
-    if (CAL_LINK) {
-      wdwCalInline("#cal-inline", CAL_LINK, { name: details.name || "", email: details.email || "", notes: details.business ? `Business: ${details.business}${details.address ? ", " + details.address : ""}` : "" });
-      document.getElementById("cal-inline").hidden = false;
-      document.getElementById("cal-placeholder").hidden = true;
+    const plan = (window.WDW_PLANS || {})[details.plan];
+    if (plan && plan.apply) {
+      const h = document.querySelector("[data-applied-plan]");
+      h.textContent = plan.name; h.dataset.plan = details.plan;
+      document.querySelector(".ssum__gem").dataset.plan = details.plan;
     }
   </script>
 </body>

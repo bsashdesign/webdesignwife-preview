@@ -165,7 +165,7 @@
 .theme-blocks .mplan + .mplan { border-color: var(--ink); border-width: 2px; }
 .theme-blocks .mplan__ico { background: var(--lime); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
 .theme-blocks .mplan--grow .mplan__ico { background: var(--violet); }
-.theme-blocks .splan > span, .theme-blocks .ssum, .theme-blocks .sbilling span, .theme-blocks .sform input:not([type="radio"]):not([type="checkbox"]) { border: 2px solid var(--ink); }
+.theme-blocks .splan > span, .theme-blocks .ssum, .theme-blocks .sbilling span, .theme-blocks .sform input:not([type="radio"]):not([type="checkbox"]), .theme-blocks .sform textarea, .theme-blocks .sform select { border: 2px solid var(--ink); }
 .theme-blocks .ssum { box-shadow: var(--shadow); }
 .theme-blocks .splan input:checked + span { background: var(--lime); box-shadow: 4px 4px 0 var(--ink); }
 .theme-blocks .sbilling input:checked + span { background: var(--ink); color: var(--lime); }

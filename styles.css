@@ -1971,9 +1971,9 @@ dialog.audit-dialog .formcard { padding: 0; border: 0; border-radius: 0; backgro
 .sform legend { margin-bottom: 14px; padding: 0; font: 700 1.15rem var(--display); color: var(--ink); }
 .sform label { display: grid; gap: 6px; font-size: .92rem; font-weight: 600; color: var(--ink); }
 .sform .opt { font-weight: 400; color: var(--ink-soft); }
-.sform input:not([type="radio"]):not([type="checkbox"]) { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--r); background: #fff; color: var(--ink); font: 400 1rem var(--body); }
-.sform input:not([type="radio"]):not([type="checkbox"]):focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 18%, transparent); }
-.sform input[aria-invalid="true"] { border-color: #d33a5f; }
+.sform input:not([type="radio"]):not([type="checkbox"]), .sform textarea, .sform select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--r); background: #fff; color: var(--ink); font: 400 1rem var(--body); }
+.sform input:not([type="radio"]):not([type="checkbox"]):focus, .sform textarea:focus, .sform select:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 18%, transparent); }
+.sform :is(input, textarea, select)[aria-invalid="true"] { border-color: #d33a5f; }
 .splans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .splan { position: relative; cursor: pointer; }
 .splan input, .sbilling input { position: absolute; opacity: 0; pointer-events: none; }
@@ -5384,8 +5384,8 @@ html.theme-blocks .fhero:not(#z) { background: var(--lime); }
 html.theme-blocks .ftabs a[aria-current]:not(#z) { background: #fff; color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); padding: 5px 12px; }
 html.theme-blocks .ftabs:not(#z) { border-top: 0; }
 /* Transit How it works: step 2 is subway yellow (blue got lost against the purple section) */
-html.theme-subway.theme-dark #how .steps li:nth-child(2):not(#z) { --c: var(--yellow); border-top-color: var(--yellow); }
-html.theme-subway.theme-dark #how .steps li:nth-child(2):not(#z)::before { background: var(--yellow); color: #111; }
+html.theme-subway.theme-dark .steps li:nth-child(2):not(#z) { --c: var(--yellow); border-top-color: var(--yellow); }
+html.theme-subway.theme-dark .steps li:nth-child(2):not(#z)::before { background: var(--yellow); color: #111; }
 /* Transit (dark) Contact: the form card is a dark panel like the cards beside it, with a purple line on top (Contact's colour in the menu) */
 html.theme-subway.theme-dark .contact__card.section--violet:not(#z) { background: #1c1c1c; box-shadow: inset 0 0 0 1px #333; border-top: 6px solid var(--purple); }
 html.theme-subway.theme-dark .contact__card .btn--light:not(#z), html.theme-subway.theme-dark .contact__card button[type="submit"]:not(#z) { background: #0b5cd6; border-color: #0b5cd6; color: #fff; }
@@ -6411,27 +6411,17 @@ html.theme-wedding .paysteps li::before { background: none; color: var(--gold-in
 .visit__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; }
 .visit__grid:has(.visit__photo) { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
 .visit__copy .lede { max-width: 40em; }
-.visit__steps { list-style: none; counter-reset: v; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 880px; }
+/* the steps are How It Works' steps (.steps), styled the same way in every mood */
+.visit__steps:not(#z) { margin-top: 30px; }
 .visit__grid:has(.visit__photo) .visit__steps { grid-template-columns: minmax(0, 1fr); }
-.visit__steps li { counter-increment: v; display: grid; gap: 4px; padding: 18px 18px 18px 60px; position: relative; border-radius: var(--r); background: var(--tint); }
-.visit__steps li::before { content: counter(v); position: absolute; left: 18px; top: 17px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 .9rem var(--body); }
-.visit__steps span { color: var(--ink-soft); font-size: .94rem; }
 .visit__note:not(#z) { max-width: none; margin: 18px 0 0; color: var(--ink-soft); font-size: .92rem; }
 .visit__photo { margin: 0; }
 .visit__photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-lg); }
 .visit__photo figcaption { margin-top: 10px; color: var(--ink-soft); font-size: .88rem; }
 @media (max-width: 860px) { .visit__grid:has(.visit__photo) { grid-template-columns: minmax(0, 1fr); } .visit__photo { order: -1; } .visit__steps { grid-template-columns: minmax(0, 1fr); } }
-html.theme-blocks .visit { background: var(--sky); }
-html.theme-blocks .visit__steps li { background: #fff; box-shadow: inset 0 0 0 2.5px var(--ink), 4px 4px 0 var(--ink); }
-html.theme-blocks .visit__steps li::before { background: var(--lime); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
-html.theme-blocks .visit__steps span, html.theme-blocks .visit__note:not(#z) { color: var(--ink); }
+html.theme-blocks .visit { background: var(--lime); }
+html.theme-blocks .visit__note:not(#z) { color: var(--ink); }
 html.theme-blocks .visit__photo img { border: 2.5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
-html.theme-refined .visit__steps li { background: #fff; box-shadow: 0 0 0 1px #ebe6fb, 0 12px 30px -22px rgba(91,61,245,.5); }
-html.theme-refined .visit__steps li::before { background: var(--lilac); color: var(--violet); }
-html.theme-subway.theme-dark .visit__steps li { background: #1c1c1c; border-radius: 10px; box-shadow: inset 5px 0 0 #fccc0a; }
-html.theme-subway.theme-dark .visit__steps li::before { background: #fccc0a; color: #111; }
-html.theme-wedding .visit__steps li { background: #fffdf8; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(184,149,90,.45); }
-html.theme-wedding .visit__steps li::before { background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); font: italic 600 1rem var(--display); }
 html.theme-wedding .visit__photo img { border-radius: 2px; }
 /* business pages: the way back is a quiet breadcrumb at the top left (a small chevron and muted text, no box,
    no underline); it takes the mood's accent on hover */
@@ -6442,7 +6432,7 @@ html.theme-wedding .bcrumb:not(#z) { font: italic 500 1.02rem var(--display); }
 .bhero__top:not(#z) { margin-bottom: 36px; }
 @media (max-width: 760px) { .bhero__top:not(#z) { margin-bottom: 20px; } }
 /* Soirée "How it works": the steps keep their cards; the numerals stand on their own (no box), larger, in gold */
-html.theme-wedding #how .steps li:not(#z)::before { border: 0 !important; width: auto; height: auto; display: block; text-align: left; place-items: start; font-size: 2.6rem; line-height: 1; }
+html.theme-wedding .steps li:not(#z)::before { border: 0 !important; width: auto; height: auto; display: block; text-align: left; place-items: start; font-size: 2.6rem; line-height: 1; }
 /* Soirée's numbers: full-height digits from Cormorant Infant (see --display in themes/wedding.css) */
 @font-face { font-family: "Cormorant Digits"; font-style: normal; font-weight: 300 700; font-display: swap; unicode-range: U+0030-0039;
   src: url(https://fonts.gstatic.com/s/cormorantinfant/v22/HhyPU44g9vKiM1sORYSiWeAsLN997_cV2RkDTq8.woff2) format("woff2"); }
@@ -6450,3 +6440,32 @@ html.theme-wedding #how .steps li:not(#z)::before { border: 0 !important; width:
   src: url(https://fonts.gstatic.com/s/cormorantinfant/v22/HhyJU44g9vKiM1sORYSiWeAsLN997_Il2xMEbK0UPg.woff2) format("woff2"); }
 /* step numbers stand upright, like the headings beside them */
 html.theme-wedding .steps li::before, html.theme-wedding .spot__steps li::before { font-style: normal !important; }
+
+/* Get Started has two modes: Essentials is bought here (buy), Business and Full Suite are applied for (apply).
+   The page carries the mode and plan; anything marked for the other one is hidden */
+.start[data-mode="buy"] [data-mode-only="apply"], .start[data-mode="apply"] [data-mode-only="buy"],
+.start:not([data-plan="business"]) [data-plan-only="business"], .start:not([data-plan="full"]) [data-plan-only="full"] { display: none !important; }
+.sform textarea { resize: vertical; min-height: 84px; line-height: 1.5; }
+.sform select { appearance: none; padding-right: 40px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+.sform__free { margin: 0; font-size: .92rem; color: var(--ink-soft); }
+/* plan picker tags: Start Today (Essentials) / Fill Application (Business, Full Suite), like the Most Popular chip */
+.splan__tag { justify-self: start; margin-top: 8px; padding: 2px 9px; border-radius: 999px; font: 700 .64rem/1.5 var(--body); font-style: normal; letter-spacing: .06em; text-transform: uppercase; background: color-mix(in srgb, var(--violet) 12%, #fff); color: var(--violet); }
+.splan__tag--buy { background: color-mix(in srgb, #1f9d55 12%, #fff); color: #157a41; }
+html.theme-blocks .splan__tag { background: var(--sky); color: var(--ink); border: 2px solid var(--ink); }
+html.theme-blocks .splan__tag--buy { background: var(--lime); }
+html.theme-subway .splan__tag { background: #fccc0a; color: #111; border-radius: 4px; }
+html.theme-subway .splan__tag--buy { background: #00933c; color: #fff; }
+html.theme-wedding .splan__tag { background: none; border: 1px solid var(--gold); color: var(--gold-ink); border-radius: 2px; font-weight: 600; }
+html.theme-wedding .splan__tag--buy { border-color: var(--field-line, #e6dece); color: var(--ink-soft); }
+/* "Application Required" beside the plan name in the summary */
+.ssum__head { flex-wrap: wrap; }
+.ssum__tag { padding: 2px 9px; border-radius: 999px; font: 700 .64rem/1.5 var(--body); letter-spacing: .06em; text-transform: uppercase; background: color-mix(in srgb, var(--violet) 12%, #fff); color: var(--violet); }
+html.theme-blocks .ssum__tag { background: var(--sky); color: var(--ink); border: 2px solid var(--ink); }
+html.theme-subway .ssum__tag { background: #fccc0a; color: #111; border-radius: 4px; }
+html.theme-wedding .ssum__tag { background: none; border: 1px solid var(--gold); color: var(--gold-ink); border-radius: 2px; font-weight: 600; }
+/* Application received: the status card sits where the booking calendar is on the welcome page */
+.applied__note { margin: 0 0 18px; color: var(--ink-soft); font-size: .95rem; }
+.applied__back { margin: 0; }
+/* Founding crown tile: Tangy's icon tiles have the ink outline and hard 3D shadow; Transit's are round */
+html.theme-blocks .work-founding__crown:not(#z) { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); border-radius: 10px; }
+html.theme-subway .work-founding__crown:not(#z) { border-radius: 50%; }

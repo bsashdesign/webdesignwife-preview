@@ -44,7 +44,14 @@ def _inner(html):
 
 
 def apply(html):
-    html = re.sub(r"(<h[12][^>]*>)(.*?)(</h[12]>)", lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
+    # Every heading level: section titles (h1, h2) and card titles (h3 to h6) alike
+    html = re.sub(r"(<h([1-6])\b[^>]*>)(.*?)(</h\2>)", lambda m: m.group(1) + _inner(m.group(3)) + m.group(4), html, flags=re.S)
+    # A card or step title written as <strong> with its description right after it (<strong>Title</strong><span>…
+    # or <p>…) is a title too. Inline emphasis inside a sentence is followed by text, not a tag, so it's left alone.
+    html = re.sub(r"(<strong\b[^>]*>)([^<]*(?:<(?!/strong)[^>]*>[^<]*)*)(</strong>)(?=\s*<(?:span|p|small|em)\b)",
+                  lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html)
+    # Form section titles
+    html = re.sub(r"(<legend\b[^>]*>)(.*?)(</legend>)", lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
     html = re.sub(r'(<a [^>]*class="[^"]*\bbtn\b[^"]*"[^>]*>)(.*?)(</a>)', lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
     html = re.sub(r"(<button\b[^>]*>)(.*?)(</button>)", lambda m: m.group(1) + _inner(m.group(2)) + m.group(3), html, flags=re.S)
     # Anything else marked class="tc" (titles set as a link or paragraph) gets Title Case too.
