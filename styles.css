@@ -5357,3 +5357,5 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg); }
 /* the "Seriously, press one." part drops whenever it would push Sound effects onto its own line (set by script.js) */
 #moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }
+/* Tangy's "Press one" note in its bold body font, not monospace */
+html.theme-blocks #moods-tv .tv-deck__cue:not(#z) { font-family: var(--body); font-weight: 700; letter-spacing: 0; color: var(--ink); }
