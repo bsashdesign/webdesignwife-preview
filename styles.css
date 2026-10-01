@@ -5209,3 +5209,8 @@ html:not(.theme-blocks) #moods-tv .tv::after {
 }
 html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(closest-side, rgba(0,0,0,.85), rgba(0,0,0,.35) 60%, transparent); }
 #moods-tv .tv-nook { isolation: isolate; }
+/* Tangy, Google Maps: colour in the two plan halves so the big white section isn't so plain */
+.theme-blocks .mplans { overflow: hidden; }
+.theme-blocks .mplans .mplan:not(.mplan--grow) { background: var(--sky); }
+.theme-blocks .mplans .mplan--grow { background: var(--sun); }
+.theme-blocks .mplans .mplan p:not(.mplan__kicker) { color: var(--ink); }
