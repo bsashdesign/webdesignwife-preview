@@ -5971,11 +5971,6 @@ html.theme-refined .btypes__blurb { font: 500 .95rem/1.4 var(--body); letter-spa
   .bf-actions .btn { padding: 10px 14px; font-size: .86rem; white-space: nowrap; }
   .bf-actions .bf-spin { min-width: 96px; }
 }
-/* Tangy business pages: a light orange page with white cards (each type's colour moves to its arrow button) */
-html.theme-blocks :is(.btypes-page, .btype-page) { background: var(--sun); }
-html.theme-blocks .btypes.btypes a:not(#z):not(#y) { background: #fff; }
-html.theme-blocks .btypes__go:not(#z) { background: var(--hl); }
-@media (hover: hover) { html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover { background: #fff; } html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--ink); color: #fff; } }
 /* Tangy Get started: the chosen plan takes that plan's own colour (Essentials lime, Business sky, Full Suite pink),
    and hovering an unchosen one tints it lightly in its colour */
 html.theme-blocks .splans .splan--essentials { --pc: var(--lime); --pc-soft: #f1ffc4; }
@@ -5983,3 +5978,9 @@ html.theme-blocks .splans .splan--business { --pc: var(--sky); --pc-soft: #e3f4f
 html.theme-blocks .splans .splan--full { --pc: var(--rose); --pc-soft: #ffe8f5; }
 html.theme-blocks .splans .splan input:checked + span:not(#z):not(#y) { background: var(--pc); }
 @media (hover: hover) { html.theme-blocks .splans .splan:hover input:not(:checked) + span:not(#z):not(#y) { background: var(--pc-soft); } }
+/* Tangy homepage: the built-for band is light orange with white word frames, and the Brooklyn-neighbor section
+   below it is white again (its "Now it's your turn" card back in the light orange) */
+html.theme-blocks .for.for--spin:not(#z) { background: var(--sun); }
+html.theme-blocks .for--spin .treel__frame:not(#z):not(#y) { background: #fff; }
+html.theme-blocks #work:not(#z):not(#y) { background: #fff; }
+html.theme-blocks #work .work-founding.work-founding:not(#z):not(#y) { background: var(--sun); }
