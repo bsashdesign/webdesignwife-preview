@@ -5956,3 +5956,6 @@ html.theme-refined .btypes__blurb { font: 500 .95rem/1.4 var(--body); letter-spa
   html.theme-refined .btypes.btypes a:not(#z):not(#y) { padding: 28px 26px 58px; }
   html.theme-refined .btypes.btypes a:not(#z):not(#y) > span { font-size: clamp(1.5rem, 2.2vw, 1.85rem); }
 }
+/* the link under the built-for spinner sits centred under the sentence, with room above and below */
+.bf-more:not(#z) { max-width: none; margin: 6px auto 0; padding-bottom: 18px; text-align: center; }
+@media (max-width: 600px) { .bf-more:not(#z) { margin-top: 2px; padding-bottom: 12px; } }
