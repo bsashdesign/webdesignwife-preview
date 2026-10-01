@@ -2232,7 +2232,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (!away[i] || !links[i]) return; away[i] = false;
     links[i].animate([{ transform: `translateY(${-travel(i)}px)`, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: reduce ? 0 : ms, easing: CLICK, fill: "forwards" });
   };
-  const STEP = 4500, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
+  const STEP = 9000, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
   const step = (r) => {
     if (!drifting || reduce || document.hidden || heroBusy()) return;
     recentre(r); show(r, 0); void r.ul.offsetWidth;
