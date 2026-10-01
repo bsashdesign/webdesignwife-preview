@@ -2268,24 +2268,6 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   const STEP = 4500, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
   const step = (r) => {
     if (!drifting || reduce || document.hidden) return;
-    // after a win the stars stay put until each reel's next ordinary step, which carries on to the new word
-    if (r.after) {
-      const { to, toAt } = r.after; r.after = null;
-      r.pos = toAt; show(r, GLIDE, CLICK);
-      if (r.k < 2) linkBack(r.k);
-      setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
-      const gen = spins;
-      // swap in the ordinary looping list, but keep the name word in the row it's just left (still in view), so
-      // nothing visibly changes; it turns back into an ordinary word once it's out of sight, after the next step
-      setTimeout(() => {
-        if (gen !== spins) return;
-        const brand = r.ul.children[r.dir > 0 ? toAt - 1 : toAt + 1]?.outerHTML;
-        r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0);
-        const at = r.pos - r.dir, li = r.ul.children[at];
-        if (brand && li) { li.outerHTML = brand; r.keep = at; }
-      }, GLIDE + 40);
-      return;
-    }
     recentre(r); show(r, 0); void r.ul.offsetWidth;
     r.pos += r.dir; show(r, GLIDE, CLICK);
     // the name word left over from a win scrolls out of view with this step: then it goes back to its ordinary word
@@ -2295,7 +2277,32 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     }
     setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
   };
-  reels.forEach((r, k) => setTimeout(() => { step(r); setInterval(() => step(r), STEP); }, 900 + k * STEP / 3));
+  // the reels tick in turn, a third of a step apart; restarted after a win so the turns begin again from the first reel
+  let ticks = [];
+  const startTicking = (delay) => {
+    ticks.forEach(clearTimeout); ticks.forEach(clearInterval); ticks = [];
+    reels.forEach((r, k) => ticks.push(setTimeout(() => { step(r); ticks.push(setInterval(() => step(r), STEP)); }, delay + k * STEP / 3)));
+  };
+  startTicking(900);
+
+  // after a win, the name moves on all at once: all three reels step to their new words together, and "for" and
+  // "in" slide back in with them. The ordinary list goes back in afterwards, keeping the name word in the row it's
+  // just left (still in view) so nothing visibly changes; it becomes an ordinary word once it's scrolled out of sight.
+  const moveOn = (plans, gen) => {
+    plans.forEach(({ r, to, toAt }) => {
+      r.pos = toAt; show(r, GLIDE, CLICK);
+      setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
+      setTimeout(() => {
+        if (gen !== spins) return;
+        const brand = r.ul.children[r.dir > 0 ? toAt - 1 : toAt + 1]?.outerHTML;
+        r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0);
+        const at = r.pos - r.dir, li = r.ul.children[at];
+        if (brand && li) { li.outerHTML = brand; r.keep = at; }
+      }, GLIDE + 40);
+    });
+    linkBack(0); linkBack(1);
+    setTimeout(() => { if (gen !== spins) return; drifting = true; startTicking(STEP * .5); }, GLIDE + 60);
+  };
 
   const confetti = () => {
     const box = slot.getBoundingClientRect(), COLS = ["#ff4fa6", "#d4ff4f", "#9fd8ff", "#ffe27a", "#ff7d33", "#b6f5c8"];
@@ -2320,7 +2327,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (win) { linkAway(0); linkAway(1); }
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {
-      const n = r.n; r.after = null; r.keep = null; r.reel.classList.remove("is-win");
+      const n = r.n; r.keep = null; r.reel.classList.remove("is-win");
       // where the reel is right now, even mid-glide: the row showing in the frame, and the one it came from
       const R = row(r), ty = new DOMMatrixReadOnly(getComputedStyle(r.ul).transform).m42;
       const now = -ty / R + peek(), at0 = Math.max(1, Math.min(r.ul.children.length - 2, Math.round(now))), frac = now - at0;
@@ -2349,8 +2356,8 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       confetti();
     }, land);
     if (win) {
-      // hold the stars, then let the usual ticking carry on from them
-      later(() => { msg.classList.remove("is-on"); plans.forEach(({ r, to, toAt }) => { r.after = { to, toAt }; }); drifting = true; }, land + 1600);
+      // hold the name a moment, then all three reels move on together
+      later(() => { msg.classList.remove("is-on"); moveOn(plans, gen); }, land + 1600);
     } else {
       later(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); linkBack(0, 500); linkBack(1, 500); drifting = true; }, land + 60);
     }
