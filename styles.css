@@ -6285,3 +6285,22 @@ html.theme-blocks .blist li:nth-child(n+13):not(#z):not(#y) { --bc: #ff9a52; }
 html.theme-subway.theme-dark .chat-choice:not(#z) { background: #262626; color: #f2f2ee; border: 1px solid #3d3d3d; border-radius: 6px 6px 0 6px; }
 @media (hover: hover) { html.theme-subway.theme-dark .chat-choice:not(#z):hover { background: #0b5cd6; border-color: #0b5cd6; color: #fff; } }
 html.theme-subway.theme-dark .chat-choices__tip:not(#z):not(#y) { color: #8f8f8a; }
+/* Hero phone replies as a choice: a soft panel holding the two options (full width, each with an empty circle
+   like a radio button) with "or" between them, so they read as "pick one", not as messages already sent */
+.phone__compose.is-choices:not(#z) { align-items: stretch; justify-content: flex-end; }
+.chat-pick { display: grid; gap: 3px; padding: 5px; border-radius: 14px; background: color-mix(in srgb, var(--violet) 7%, #fff); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--violet) 18%, transparent); }
+.chat-pick__or { justify-self: center; font: 600 .58rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+html .chat-pick .chat-choice:not(#z):not(#y) { display: flex; align-items: center; gap: 8px; width: 100%; max-width: none; border-radius: 10px; text-align: left; }
+.chat-choice__dot { flex: none; width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px currentColor; transition: box-shadow .15s; }
+@media (hover: hover) { .chat-choice:hover .chat-choice__dot { box-shadow: inset 0 0 0 4px currentColor; } }
+.chat-choice:active .chat-choice__dot { box-shadow: inset 0 0 0 6px currentColor; }
+@media (max-width: 760px) { .chat-pick { padding: 3px; border-radius: 10px; gap: 2px; } html .chat-pick .chat-choice:not(#z):not(#y) { gap: 5px; border-radius: 7px; } .chat-choice__dot { width: 9px; height: 9px; } .chat-pick__or { font-size: .48rem; } }
+/* per mood */
+html.theme-blocks .chat-pick { background: #fff; box-shadow: inset 0 0 0 2px var(--ink); border-radius: 12px; }
+html.theme-blocks .chat-pick .chat-choice:not(#z):not(#y) { box-shadow: none; border-radius: 8px; }
+html.theme-subway.theme-dark .chat-pick { background: #1a1a1a; box-shadow: inset 0 0 0 1px #333; border-radius: 8px; }
+html.theme-subway.theme-dark .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 5px; }
+html.theme-subway.theme-dark .chat-pick__or { color: #8f8f8a; }
+html.theme-wedding .chat-pick { background: #fffdf8; box-shadow: inset 0 0 0 1px rgba(184,149,90,.45); border-radius: 4px; }
+html.theme-wedding .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 2px; }
+html.theme-wedding .chat-pick__or { font: italic 500 .8rem var(--display); letter-spacing: 0; text-transform: none; color: var(--gold-ink); }

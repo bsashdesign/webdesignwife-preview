@@ -176,18 +176,40 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     let busy = false;
     // the first time the choices show, a cue (like the Change the Channel one) nudges you to reply
     let cued = false;
-    const offer = (opts) => {
+    // The replies are shown as a choice, not as messages: a small panel with "Choose a reply", the two options
+    // (each with an empty circle, like a radio button) and an "or" between them
+    const pickPanel = (opts, first) => {
       const tip = document.createElement("span");
       tip.className = "chat-choices__tip"; tip.setAttribute("aria-hidden", "true");
-      tip.innerHTML = 'Choose a reply, <em>really.</em> <b>↓</b>';
-      const lead = cued ? [] : [tip]; cued = true;
-      compose.replaceChildren(...lead, ...opts.map((o) => {
+      tip.innerHTML = first ? 'Choose a reply, <em>really.</em> <b>↓</b>' : "Choose a reply <b>↓</b>";
+      const panel = document.createElement("div");
+      panel.className = "chat-pick"; panel.setAttribute("role", "group"); panel.setAttribute("aria-label", "Choose a reply");
+      opts.forEach((o, i) => {
+        if (i) { const or = document.createElement("span"); or.className = "chat-pick__or"; or.textContent = "or"; panel.append(or); }
         const b = document.createElement("button");
-        b.type = "button"; b.className = "chat-choice"; b.textContent = o.label;
+        b.type = "button"; b.className = "chat-choice";
+        b.innerHTML = '<span class="chat-choice__dot" aria-hidden="true"></span><span class="chat-choice__text"></span>';
+        b.querySelector(".chat-choice__text").textContent = o.label;
         b.addEventListener("click", () => pick(o));
-        return b;
-      }));
-      compose.querySelectorAll(".chat-choice, .chat-choices__tip").forEach((b, i) => b.animate([{ opacity: 0, transform: "translateY(8px)" }, { opacity: 1, transform: "none" }], { duration: 380, delay: i * 90, easing: EASE_OUT, fill: "backwards" }));
+        panel.append(b);
+      });
+      return [tip, panel];
+    };
+    // Reserve the room the tallest set of choices will need before anything appears, so the conversation above
+    // never jumps when the options come in (or go away while I'm replying)
+    const reserve = () => {
+      const sets = [];
+      const walk = (opts) => { sets.push(opts); opts.forEach((o) => o.next && walk(o.next)); };
+      walk(TREE);
+      let h = 0;
+      sets.forEach((opts, i) => { compose.replaceChildren(...pickPanel(opts, i === 0)); h = Math.max(h, compose.offsetHeight); });
+      compose.replaceChildren();
+      compose.style.minHeight = h + "px";
+    };
+    const offer = (opts) => {
+      const first = !cued; cued = true;
+      compose.replaceChildren(...pickPanel(opts, first));
+      compose.querySelectorAll(".chat-choices__tip, .chat-choice, .chat-pick__or").forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, delay: i * 70, easing: "ease-out", fill: "backwards" }));
     };
     const again = () => {
       const b = document.createElement("button");
@@ -242,6 +264,13 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       await tick(800);
     }
     busy = true;
+    reserve();
+    // re-measure when the width changes (the options may wrap differently), keeping whatever is showing
+    let lastW = innerWidth;
+    addEventListener("resize", () => {
+      if (innerWidth === lastW) return; lastW = innerWidth;
+      const kids = [...compose.children]; compose.style.minHeight = ""; reserve(); compose.replaceChildren(...kids);
+    });
     checkIn().then(() => { offer(TREE); busy = false; });
   }
   run();
