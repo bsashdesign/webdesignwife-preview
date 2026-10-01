@@ -1593,7 +1593,9 @@ document.addEventListener("click", (e) => {
   const LIGHT = (() => { const l = [-.45, .75, .55], d = Math.hypot(...l); return l.map((v) => v / d); })();
   // reading a colour from CSS is slow, so each canvas remembers its colour and checks again only once a second
   const rgbOf = (cv, now) => {
-    if (!cv._rgb || now - cv._rgbAt > 1000) { cv._rgb = (getComputedStyle(cv).color.match(/\d+(\.\d+)?/g) || [0, 0, 0]).slice(0, 3).map(Number); cv._rgbAt = now; }
+    // ...and straight away when its plan or the mood changes, so the colour never lags behind a click
+    const key = cv.dataset.plan + "|" + document.documentElement.className;
+    if (!cv._rgb || now - cv._rgbAt > 1000 || cv._rgbKey !== key) { cv._rgb = (getComputedStyle(cv).color.match(/\d+(\.\d+)?/g) || [0, 0, 0]).slice(0, 3).map(Number); cv._rgbAt = now; cv._rgbKey = key; }
     return cv._rgb;
   };
   function draw(cv, t) {
