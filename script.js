@@ -207,6 +207,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.billing === mode)));
     if (sw) sw.setAttribute("aria-checked", String(mode === "yearly"));
     if (billing) billing.classList.toggle("is-yearly", mode === "yearly");
+    // the tag says what you get: "Save 20%" before, "You're saving 20%" once yearly is on
+    document.querySelectorAll(".billing__save").forEach((t) => { t.textContent = mode === "yearly" ? "You're saving 20%" : "Save 20%"; });
     plans.forEach((plan) => {
       const price = Number(plan.dataset.price);
       const setup = Number(plan.dataset.setup);

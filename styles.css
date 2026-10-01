@@ -4499,3 +4499,6 @@ span.plan-ring:empty { display: none; }
 .billing-row { justify-content: flex-end; margin-top: 44px; }
 .billing-row + .plans { margin-top: 26px; }
 @media (max-width: 760px) { .billing-row { justify-content: center; margin-top: 32px; } .billing-row + .plans { margin-top: 30px; } }
+/* dim only the words, so the "Save 20%" tag stays bright either way */
+.billing .billing__opt[aria-pressed="false"], .billing .billing__opt[aria-pressed="false"]:hover { opacity: 1; color: color-mix(in srgb, var(--ink) 40%, transparent); }
+.billing .billing__opt[aria-pressed="false"]:hover { color: color-mix(in srgb, var(--ink) 65%, transparent); }
