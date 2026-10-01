@@ -4982,3 +4982,12 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 #footer-channel { grid-template-columns: repeat(4, auto); justify-content: start; column-gap: 40px; }
 #footer-channel .mood__opt strong { white-space: nowrap; }
 @media (max-width: 760px) { #footer-channel { grid-template-columns: repeat(2, auto); column-gap: 28px; } }
+/* Design refresh: how it differs from minor edits */
+.spot__vs { display: grid; gap: 14px; margin: 22px 0 0; }
+.spot__vs > div { padding-left: 14px; border-left: 3px solid color-mix(in srgb, currentColor 30%, transparent); }
+.spot__vs > div:last-child { border-left-color: currentColor; }
+.spot__vs dt { font-weight: 700; margin-bottom: 2px; }
+.spot__vs dd { margin: 0; opacity: .85; line-height: 1.5; }
+.theme-blocks .spot__vs > div:last-child { border-left-color: var(--lime); }
+.theme-subway .spot__vs > div:last-child { border-left-color: #fccc0a; }
+.theme-wedding .spot__vs > div:last-child { border-left-color: var(--gold); }
