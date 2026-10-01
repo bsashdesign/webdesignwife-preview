@@ -58,6 +58,8 @@
             (function(){var b=new URLSearchParams(location.search).get("billing");if(b!=="monthly"&&b!=="yearly"){try{b=JSON.parse(localStorage.getItem("wdw-start")||"{}").billing}catch(e){}}
             if(b==="monthly"){document.querySelector(".sbill .billing__switch").setAttribute("aria-checked","false");document.querySelector(".sbill .billing__opt").setAttribute("aria-pressed","false")}})();</script>
             <div class="smode" aria-live="polite">
+              <span class="smode__ico" data-mode-only="buy" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="smode__ico" data-mode-only="apply" aria-hidden="true"><i class="pi pi--clipboard-text"></i></span>
               <p data-mode-only="buy"><strong>Ready to start today.</strong> Fill this out and pay the setup, and I'll email you within one business day to set up our first call.</p>
               <p data-mode-only="apply"><strong>This is an application.</strong> Fill it out and I'll get back to you within one business day. If we're a good fit, we'll have a short call, then pick a time for me to come to your business.</p>
             </div>

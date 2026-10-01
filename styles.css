@@ -6516,3 +6516,13 @@ html.theme-blocks .smode { background: #fff; border: 2px solid var(--ink); box-s
 html.theme-blocks .smode p { color: var(--ink); }
 html.theme-subway.theme-dark .smode { background: #1c1c1c; box-shadow: inset 4px 0 0 #fccc0a; border-radius: 8px; }
 html.theme-wedding .smode { background: #fffdf8; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(184,149,90,.45); }
+/* its icon: a big check (Essentials, ready to go) or a clipboard (an application), in each mood's icon tile */
+.smode { display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: center; gap: 14px; }
+.smode__ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: color-mix(in srgb, var(--violet) 14%, #fff); color: var(--violet); }
+.smode__ico svg { width: 24px; height: 24px; }
+.smode__ico .pi { font-size: 22px; width: 22px; height: 22px; }
+html.theme-blocks .smode__ico { border-radius: 10px; background: var(--lime); color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+html.theme-blocks .smode__ico:has(.pi) { background: var(--sky); }
+html.theme-subway .smode__ico { border-radius: 50%; background: #00933c; color: #fff; }
+html.theme-subway .smode__ico:has(.pi) { background: #fccc0a; color: #111; }
+html.theme-wedding .smode__ico { border-radius: 2px; background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); }
