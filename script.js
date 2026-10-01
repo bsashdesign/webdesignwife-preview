@@ -2440,5 +2440,5 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   }
   const next = () => setTimeout(async () => { if (youSpun) return; await poke(); next(); }, 8000 + Math.random() * 8000);
   const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(async () => { await poke(); next(); }, 3000); } }, { threshold: .6 });
-  io.observe(band);
+  if (hand) io.observe(band);
 });
