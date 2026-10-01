@@ -67,6 +67,7 @@ BACK = ('<svg class="i-arrow i-arrow--back" viewBox="0 0 16 16" aria-hidden="tru
 def arrows(html):
     html = re.sub(r"\s*→\s*</(a|span)>", lambda m: ARROW + "</" + m.group(1) + ">", html)
     # "← Back" links get the same drawn arrow, pointing left (the text glyph looks odd in some fonts)
-    html = re.sub(r"(<(?:a|button)\b[^>]*>)\s*←\s*", lambda m: m.group(1) + BACK + " ", html)
+    # (the words go in their own span, so the link's underline runs under the words, not the arrow)
+    html = re.sub(r"(<(?:a|button)\b[^>]*>)\s*←\s*([^<]*)", lambda m: m.group(1) + BACK + '<span class="back__text">' + m.group(2).strip() + "</span>", html)
     # A heart ending a button or tab label is drawn too (the text glyph turns into an emoji in some fonts).
     return re.sub(r"\s*♥\s*</(button|span)>", lambda m: " " + HEART + "</" + m.group(1) + ">", html)

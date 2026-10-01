@@ -14,11 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&text=0123456789&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790818916">
-  <link rel="stylesheet" href="themes/subway.css?v=1790818916">
-  <link rel="stylesheet" href="themes/subway-dark.css?v=1790818916">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790818916">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790818916">
+  <link rel="stylesheet" href="styles.css?v=1790819122">
+  <link rel="stylesheet" href="themes/subway.css?v=1790819122">
+  <link rel="stylesheet" href="themes/subway-dark.css?v=1790819122">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790819122">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790819122">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
@@ -85,11 +85,11 @@
 
         <div class="founding"><div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Founding</span><b>5</b></div><div class="founding__body"><h2 class="founding__title">The Founding <span class="founding__num">5</span></h2><p class="founding__text">The managed service is new, so I'm opening it to five businesses first. Your setup is <strong>$1</strong> instead of $199 to $599, and your plan is the normal price. When the five spots are gone, so is the offer.</p></div></div>
         <div class="billing-row">
-          <div class="billing">
-              <button type="button" class="billing__opt" data-billing="monthly" aria-pressed="false">Monthly</button>
-              <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save 20%"><i></i></button>
-              <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly <em class="billing__save">Save 20%</em></button>
-            </div>
+          <div class="billing sbill">
+            <em class="billing__save">Save 20%</em>
+            <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly Billing</button>
+            <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save 20%"><i></i></button>
+          </div>
         </div>
         <div class="plans">
           <article class="plan" id="plan-simple" data-price="99" data-setup="199">
@@ -477,7 +477,7 @@
         </div>
 
         <div class="finder__nav">
-          <button type="button" class="linkbtn" id="finder-back" hidden><svg class="i-arrow i-arrow--back" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+          <button type="button" class="linkbtn" id="finder-back" hidden><svg class="i-arrow i-arrow--back" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="back__text">Back</span></button>
         </div>
       </form>
     </div>
@@ -488,6 +488,6 @@
     <div data-audit-slot></div>
   </dialog>
 
-  <script src="script.js?v=1790818916"></script>
+  <script src="script.js?v=1790819122"></script>
 </body>
 </html>

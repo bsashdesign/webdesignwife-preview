@@ -4655,3 +4655,24 @@ html.theme-wedding :is(.billing__switch[aria-checked="true"], .sound-toggle[aria
 /* Get started: the plan name in the order summary is the same visual size in every mood (Tangy's) */
 html .ssum .ssum__head .ssum__plan { font-size: 2.5rem; line-height: 1.05; }
 html.theme-wedding .ssum .ssum__head .ssum__plan { font-size: 2.7rem; }
+/* Sound Effects switch: one geometry in every mood, knob dead centre */
+html .sound-toggle .sound-toggle__switch:not(#z) { width: 36px; height: 20px; border: 0; box-sizing: border-box; }
+html .sound-toggle .sound-toggle__switch:not(#z) i { top: 3px; left: 3px; width: 14px; height: 14px; }
+html .sound-toggle[aria-checked="true"] .sound-toggle__switch:not(#z) i { transform: translateX(16px); }
+/* Tangy: lime knobs with a black ring on every switch */
+html.theme-blocks :is(.billing__switch, .sound-toggle__switch):not(#z) i { background: var(--lime); box-shadow: 0 0 0 2px var(--ink); }
+html.theme-blocks .sound-toggle .sound-toggle__switch:not(#z) i { top: 4px; left: 4px; width: 12px; height: 12px; }
+html.theme-blocks .sound-toggle[aria-checked="true"] .sound-toggle__switch:not(#z) i { transform: translateX(16px); }
+/* Transit: the small switch is as square as the big one */
+html.theme-subway .sound-toggle .sound-toggle__switch:not(#z) { border-radius: 5px; }
+html.theme-subway .sound-toggle .sound-toggle__switch:not(#z) i { border-radius: 3px; }
+/* Pricing page: the toggle row reads [tag] Yearly billing [switch], at the right */
+.billing-row .billing.sbill { gap: 12px; }
+.billing-row .sbill .billing__save { margin: 0; }
+/* back links: full strength, and the underline runs under the words only, not the arrow */
+:is(a, button):has(> .i-arrow--back):not(#z) { background: none !important; animation: none !important; display: inline-flex; align-items: center; }
+:is(a, button):has(> .i-arrow--back) .back__text { background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat; padding-bottom: 1px; }
+:is(a, button):has(> .i-arrow--back):hover .back__text { animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both; }
+.start__back { color: var(--ink); }
+/* Transit (dark): eyebrow badges get a lighter box so they stand off the near-black page */
+.theme-subway.theme-dark .eyebrow:not(.eyebrow--light) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; }
