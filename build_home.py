@@ -125,7 +125,7 @@ def founding(html):
               + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
               + "</div></div>") if on else ""
     return (html.replace("{{FOUNDING_BANNER}}", banner)
-                .replace("{{HERO_LABEL}}", "Limited time: <s>$199</s> $1 setup" if on else "Based in Brooklyn, New York"))
+                .replace("{{HERO_LABEL}}", '<span class="eyebrow__text">Limited time: <s>$199</s> $1 setup</span>' if on else "Based in Brooklyn, New York"))
 
 
 def work_visual():

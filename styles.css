@@ -5283,3 +5283,10 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
   .hplans .hplan .hplan__rec:not([hidden]) { right: 14px; }
 }
 @media (max-width: 760px) { .hplans .hplan .hplan__go { justify-self: end; } }
+/* the hero label stays one run of text (its struck price no longer splits it into separate pieces) */
+.eyebrow__text { display: inline; }
+/* Sophisticated on phones: tighter letter spacing and shorter rules so labels sit on one line */
+@media (max-width: 600px) {
+  .theme-wedding .eyebrow { letter-spacing: .16em; gap: 8px; max-width: 100%; }
+  .theme-wedding .eyebrow::before, .theme-wedding .eyebrow::after { width: 16px; flex: none; }
+}
