@@ -5452,3 +5452,9 @@ html.theme-wedding .hplans .hplan__go svg path { stroke-width: 1.15; }
 html.theme-blocks .hplans #plan-simple.hplan:has(.hplan__go:hover):not(#z) { background: #f3ffd0; }
 html.theme-blocks .hplans #plan-business.hplan:has(.hplan__go:hover):not(#z) { background: #e3f4ff; }
 html.theme-blocks .hplans #plan-full.hplan:has(.hplan__go:hover):not(#z) { background: #ffe8f5; }
+/* Pricing page cards, when a card is narrow: the gem sits on top of the plan name instead of beside it */
+@media (min-width: 761px) and (max-width: 1040px) {
+  .plans .plan .plan__head:not(#z) { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  .plans .plan .plan__head .plan-ring-tile:not(#z) { grid-row: auto; justify-self: start; margin: -10px 0 -4px -12px; translate: none; }
+  .plans .plan .plan__head h3:not(#z), .plans .plan .plan__head .plan__for:not(#z) { grid-column: 1; }
+}
