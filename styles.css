@@ -6844,3 +6844,5 @@ html.theme-refined .promises p:nth-child(2):not(#z)::before { background: var(--
 html.theme-refined .promises p:nth-child(3):not(#z)::before { background: var(--sun); color: #8a4b00; }
 html.theme-refined .promises p:nth-child(4):not(#z)::before { background: var(--lilac); color: var(--violet-deep); }
 html.theme-blocks .promises p:not(#z)::before { background: #fff; color: var(--ink); border: var(--edge); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+/* Tangy: one pink — the second vow card uses the same light pink as the FAQ band */
+html.theme-blocks .promises p:nth-child(2):not(#z) { background: var(--lilac); }
