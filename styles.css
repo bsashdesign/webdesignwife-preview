@@ -4381,3 +4381,5 @@ span.plan-ring:empty { display: none; }
 .theme-subway .profile__plan--full .plan-gem { color: var(--red); }
 .theme-wedding .profile__divider .plan-gem { color: var(--gold-ink); }
 .profile__pane--after li.profile__divider { display: flex; flex-wrap: wrap; align-items: center; column-gap: .4em; row-gap: 4px; }
+/* line the label up with the middle of the gem */
+.profile__divider .plan-gem.plan-ring--inline { position: relative; top: -2px; }
