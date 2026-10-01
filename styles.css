@@ -5355,7 +5355,7 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
 }
 /* Transit key (button board and pop-up): the round red-orange key, its face in a cap */
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg?v=6); }
-/* the "Seriously, press one." part drops whenever it would push Sound effects onto its own line (set by script.js) */
+/* the "Seriously, do it." part drops whenever it would push Sound effects onto its own line (set by script.js) */
 #moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }
 /* Tangy's "Press one" note in its bold body font, not monospace */
 html.theme-blocks #moods-tv .tv-deck__cue:not(#z) { font-family: var(--body); font-weight: 700; letter-spacing: 0; color: var(--ink); }
@@ -6264,3 +6264,19 @@ html.theme-blocks #btype-dialog:not(#z) { background: var(--sun); }
 html.theme-blocks .blist li:nth-child(-n+6):not(#z):not(#y) { --bc: #ff9ccc; }
 html.theme-blocks .blist li:nth-child(n+7):nth-child(-n+12):not(#z):not(#y) { --bc: #9fd8ff; }
 html.theme-blocks .blist li:nth-child(n+13):not(#z):not(#y) { --bc: #ff9a52; }
+/* Spin's labels: all stacked in one spot (so the button is always as wide as the longest), only the current one
+   shows; each new label pops in a little harder than the last */
+.bf-spin .bf-spin__l { grid-area: 1 / 1; visibility: hidden; white-space: nowrap; }
+.bf-spin .bf-spin__l.is-on { visibility: visible; }
+.bf-spin.is-new .bf-spin__l.is-on { animation: bf-label-pop calc(.35s + var(--wild, 0) * .04s) cubic-bezier(.3, 1.8, .5, 1); }
+@keyframes bf-label-pop {
+  0% { transform: scale(calc(.6 - var(--wild, 0) * .03)) rotate(calc(var(--wild, 0) * -4deg)); opacity: 0; }
+  60% { transform: scale(calc(1.08 + var(--wild, 0) * .03)) rotate(calc(var(--wild, 0) * 2deg)); opacity: 1; }
+  100% { transform: none; }
+}
+/* the jackpot: the band does a happy little shake, and confetti pours down the whole screen */
+.for--spin.is-jackpot .slot { animation: bf-jackpot 1.4s cubic-bezier(.36, .07, .19, .97); }
+@keyframes bf-jackpot { 10%, 50% { transform: translateX(-6px) rotate(-1deg) scale(1.02); } 30%, 70% { transform: translateX(6px) rotate(1deg) scale(1.03); } 90% { transform: scale(1.01); } }
+.bf-rain { position: fixed; top: -20px; z-index: 9999; width: 10px; height: 14px; border: 1.5px solid #111; border-radius: 2px; pointer-events: none; animation: bf-rain var(--fall, 2.4s) cubic-bezier(.3, .2, .6, 1) var(--delay, 0s) forwards; }
+@keyframes bf-rain { to { transform: translate(var(--drift, 0), 110vh) rotate(var(--spin, 540deg)); } }
+@media (prefers-reduced-motion: reduce) { .bf-spin.is-new .bf-spin__l.is-on, .for--spin.is-jackpot .slot { animation: none; } }

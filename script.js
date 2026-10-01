@@ -2110,8 +2110,8 @@ document.addEventListener("click", (e) => {
   });
 })();
 
-// Change the Channel: if "Press one. Seriously, press one." and the Sound effects switch can't share a line,
-// drop the "Seriously, press one." part so they do.
+// Change the Channel: if "Press one. Seriously, do it." and the Sound effects switch can't share a line,
+// drop the "Seriously, do it." part so they do.
 (() => {
   const top = document.querySelector("#moods-tv .tv-deck__top");
   const cue = top && top.querySelector(".tv-deck__cue");
@@ -2333,19 +2333,64 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     });
   };
 
+  // The Spin button's labels: a new one with each of your spins, getting sillier; the tenth is the jackpot.
+  // Every label sits stacked in the same spot inside the button, so it's always as wide as the longest one.
+  const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "Again? 😄"];
+  // what each of your spins reveals (three words, with "for" and "in" tucked away); the tenth, the jackpot, keeps
+  // them and reads "Built for You in New York"
+  const MESSAGES = [
+    ["Web", "Design", "Wife"], ["Your", "Site", "Handled"], ["Live", "By", "Tomorrow"], ["Zero", "Tech", "Headaches"],
+    ["Customers", "Find", "You"], ["Made", "In", "Brooklyn"], ["Wow,", "You're", "Persistent"], ["Okay,", "Now", "Hire Me"],
+    ["Last", "Spin,", "Promise"], ["Built", "You", "New York"],
+  ];
+  let level = 0;
+  if (btn.classList.contains("bf-spin")) {
+    btn.innerHTML = LABELS.map((t, i) => `<span class="bf-spin__l" data-l="${i}"${i ? ' aria-hidden="true"' : ""}>${t}</span>`).join("");
+  }
+  const setLabel = (i) => {
+    if (!btn.classList.contains("bf-spin")) return;
+    btn.querySelectorAll(".bf-spin__l").forEach((el) => {
+      const on = +el.dataset.l === i;
+      el.classList.toggle("is-on", on);
+      if (on) el.removeAttribute("aria-hidden"); else el.setAttribute("aria-hidden", "true");
+    });
+    // the button gets a little wilder with each new label
+    btn.style.setProperty("--wild", Math.min(i, 9));
+    btn.classList.remove("is-new"); void btn.offsetWidth; btn.classList.add("is-new");
+  };
+  setLabel(0);
+  // counts your spins (1 = first): after spin n the button shows label n; after the tenth (the jackpot) it reads
+  // "Again?" and the count starts over
+  const bumpLabel = () => {
+    level = level >= 10 ? 1 : level + 1;
+    setLabel(level);
+    return level;
+  };
+  // the jackpot: confetti pours down the whole screen and the band does a little happy shake
+  const megaParty = () => {
+    if (reduce) return;
+    band.classList.remove("is-jackpot"); void band.offsetWidth; band.classList.add("is-jackpot");
+    setTimeout(() => band.classList.remove("is-jackpot"), 1600);
+    const COLS = ["#ff4fa6", "#d4ff4f", "#9fd8ff", "#ffe27a", "#ff7d33", "#b6f5c8", "#5b3df5"];
+    for (let i = 0; i < 140; i++) {
+      const c = document.createElement("i"); c.className = "bf-rain";
+      c.style.left = Math.random() * 100 + "vw"; c.style.background = COLS[i % COLS.length];
+      c.style.setProperty("--fall", (1.8 + Math.random() * 1.6) + "s"); c.style.setProperty("--delay", (Math.random() * .8) + "s");
+      c.style.setProperty("--drift", (Math.random() * 160 - 80) + "px"); c.style.setProperty("--spin", (Math.random() * 1080 - 540) + "deg");
+      document.body.appendChild(c); setTimeout(() => c.remove(), 4400);
+    }
+  };
+
   // Spin. It can be pressed again while it's still spinning: each press starts a fresh full spin from wherever
   // the reels are at that moment, and only the last one lands (and only its timers run)
   btn.addEventListener("click", () => {
     const gen = ++spins; drifting = false; msg.classList.remove("is-on");
     const win = btn.dataset.byHand !== "1"; // your spins land on "Web Design Wife"; the hand's never do
     if (win) youSpun = true; // after that, the hand stays away
-    // after your first spin it reads "Spin Again" (both labels share one spot, so the button never changes width)
-    if (win && btn.classList.contains("bf-spin") && !btn.classList.contains("is-again")) {
-      btn.classList.add("is-again");
-      btn.querySelector(".bf-spin__one")?.setAttribute("aria-hidden", "true");
-      btn.querySelector(".bf-spin__again")?.removeAttribute("aria-hidden");
-    }
-    if (win) { linkAway(0); linkAway(1); }
+    // each of your spins gives the button a new, progressively sillier label; the tenth spin is the jackpot
+    const tier = win ? bumpLabel() : 0, jackpot = tier === 10;
+    if (win && !jackpot) { linkAway(0); linkAway(1); }
+    const brandNow = win ? MESSAGES[tier - 1] : BRAND;
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {
       const n = r.n; r.keep = null; r.reel.classList.remove("is-win");
@@ -2359,7 +2404,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       const seq = [prev, cur];
       for (let i = 0; i < LEN; i++) seq.push(word(Math.floor(Math.random() * n)));
       // your spins stop on the name with the new word right after it; the hand's go straight to the new word
-      const symAt = seq.length; if (win) seq.push(`<li class="bf-brand"><span>${BRAND[k]}</span></li>`); else seq.push(word(to - r.dir));
+      const symAt = seq.length; if (win) seq.push(`<li class="bf-brand"><span>${brandNow[k]}</span></li>`); else seq.push(word(to - r.dir));
       const toAt = seq.length; seq.push(word(to), word(to + r.dir), word(to + 2 * r.dir));
       const L = seq.length, items = r.dir > 0 ? seq : seq.slice().reverse(), at = (i) => (r.dir > 0 ? i : L - 1 - i);
       r.ul.innerHTML = items.join("");
@@ -2375,10 +2420,11 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (win) later(() => {
       reels.forEach((r) => { r.reel.classList.remove("is-win"); void r.reel.offsetWidth; r.reel.classList.add("is-win"); });
       confetti();
+      if (jackpot) megaParty();
     }, land);
     if (win) {
-      // hold the name a moment, then all three reels move on together
-      later(() => { msg.classList.remove("is-on"); moveOn(plans, gen); }, land + 1600);
+      // hold the name a moment (the jackpot a little longer), then all three reels move on together
+      later(() => { msg.classList.remove("is-on"); moveOn(plans, gen); }, land + (jackpot ? 3600 : 1600));
     } else {
       later(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); linkBack(0, 500); linkBack(1, 500); drifting = true; }, land + 60);
     }
