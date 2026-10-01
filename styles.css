@@ -5797,3 +5797,5 @@ html.theme-wedding #bf2 .treel__frame:not(#z):not(#y), html.theme-wedding #bf2 .
 @media (max-width: 760px) { .theme-wedding .chat-choice { font-size: .7rem; } }
 /* Tangy's key has no socket, like its Change the Channel key: just the outlined cap and its hard shadow */
 html.theme-blocks #bf2 .treel__well { display: none; }
+/* the socket's top edge sits under the cap's top (no sliver of socket above the key), like the channel keys */
+#bf2 .treel__well:not(#z) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2); height: calc(var(--cap) + var(--tr) + var(--pd)); }
