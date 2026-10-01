@@ -5976,3 +5976,10 @@ html.theme-blocks :is(.btypes-page, .btype-page) { background: var(--sun); }
 html.theme-blocks .btypes.btypes a:not(#z):not(#y) { background: #fff; }
 html.theme-blocks .btypes__go:not(#z) { background: var(--hl); }
 @media (hover: hover) { html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover { background: #fff; } html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--ink); color: #fff; } }
+/* Tangy Get started: the chosen plan takes that plan's own colour (Essentials lime, Business sky, Full Suite pink),
+   and hovering an unchosen one tints it lightly in its colour */
+html.theme-blocks .splans .splan--essentials { --pc: var(--lime); --pc-soft: #f1ffc4; }
+html.theme-blocks .splans .splan--business { --pc: var(--sky); --pc-soft: #e3f4ff; }
+html.theme-blocks .splans .splan--full { --pc: var(--rose); --pc-soft: #ffe8f5; }
+html.theme-blocks .splans .splan input:checked + span:not(#z):not(#y) { background: var(--pc); }
+@media (hover: hover) { html.theme-blocks .splans .splan:hover input:not(:checked) + span:not(#z):not(#y) { background: var(--pc-soft); } }
