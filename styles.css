@@ -6510,3 +6510,10 @@ html.theme-wedding .hplan__lead { font-size: .96rem; }
   .hplans .hplan .hplan__feats { flex-direction: row; }
   html.theme-blocks .hplans .hplan .hplan__money { border-top: 2px dashed var(--ink); }
 }
+/* Business and Full Suite plan cards: "Application Required" right above their Apply button */
+.plan__go { margin-top: auto; }
+.plans .plan > .plan__go { grid-row: 6; align-self: end; }
+.plan__apply { margin: 0 0 8px; font: 700 .66rem/1.4 var(--body); letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft); text-align: center; }
+.plan__apply + .plan__cta { margin-top: 0 !important; }
+html.theme-subway .plan__apply { color: #fccc0a; }
+html.theme-wedding .plan__apply { font-weight: 600; letter-spacing: .1em; color: var(--gold-ink); }

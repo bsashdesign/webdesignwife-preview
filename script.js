@@ -305,7 +305,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     // the tag says what you get: "Save ~20%" before, "You Are Saving ~20%" once yearly is on (on the subscription;
     // it never touches setup). Both wordings sit in the same spot, so the tag keeps the longer one's width.
     document.querySelectorAll(".billing__save").forEach((t) => {
-      if (!t.querySelector(".billing__save-m")) t.innerHTML = '<span class="billing__save-m">Save ~20%</span><span class="billing__save-y">You Are Saving ~20%</span>';
+      if (!t.querySelector(".billing__save-m")) t.innerHTML = '<span class="billing__save-m">Save ~20% on Your Subscription</span><span class="billing__save-y">You Are Saving ~20% on Your Subscription</span>';
       t.classList.toggle("is-on", mode === "yearly");
     });
     plans.forEach((plan) => {

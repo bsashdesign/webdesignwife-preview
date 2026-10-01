@@ -13,11 +13,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790852900">
-  <link rel="stylesheet" href="themes/subway.css?v=1790852900">
-  <link rel="stylesheet" href="themes/subway-dark.css?v=1790852900">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790852900">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790852900">
+  <link rel="stylesheet" href="styles.css?v=1790852937">
+  <link rel="stylesheet" href="themes/subway.css?v=1790852937">
+  <link rel="stylesheet" href="themes/subway-dark.css?v=1790852937">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790852937">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790852937">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "off": 50};window.WDW_PLANS={"essentials": {"name": "Essentials", "setup": 399, "month": 149, "yearmo": 119, "year": 1430, "found": 199, "save": 358}, "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150, "apply": true, "found": 449, "save": 598}, "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870, "apply": true, "found": 649, "save": 718}};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
@@ -85,7 +85,7 @@
         <div class="founding"><div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Founding</span><b>5</b></div><div class="founding__body"><h2 class="founding__title">The Founding <span class="founding__num">5</span></h2><p class="founding__text">The managed service is new, so I'm opening it to five businesses first. Founding 5 saves <strong>50% on setup</strong>. Your subscription is the regular plan price. When the five spots are gone, so is the offer.</p></div></div>
         <div class="billing-row">
           <div class="billing sbill">
-            <em class="billing__save">Save ~20%</em>
+            <em class="billing__save">Save ~20% on Your Subscription</em>
             <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly Billing</button>
             <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save about 20% on your subscription"><i></i></button>
           </div>
@@ -135,7 +135,7 @@
               <li>Visitor analytics with a cookie consent banner</li>
               <li>Local SEO setup</li>
             </ul>
-            <a class="btn btn--primary btn--block plan__cta" href="start.html?plan=business">Get Started</a>
+            <div class="plan__go"><p class="plan__apply">Application Required</p><a class="btn btn--primary btn--block plan__cta" href="start.html?plan=business">Apply for Business</a></div>
           </article>
 
           <article class="plan" id="plan-full" data-plan-key="full" data-price="299">
@@ -159,7 +159,7 @@
               <li>AI search optimization</li>
               <li>Priority edits</li>
             </ul>
-            <a class="btn btn--ghost btn--block plan__cta" href="start.html?plan=full">Get Started</a>
+            <div class="plan__go"><p class="plan__apply">Application Required</p><a class="btn btn--ghost btn--block plan__cta" href="start.html?plan=full">Apply for Full Suite</a></div>
           </article>
         </div>
 
@@ -549,6 +549,6 @@
     <div data-audit-slot></div>
   </dialog>
 
-  <script src="script.js?v=1790852900"></script>
+  <script src="script.js?v=1790852937"></script>
 </body>
 </html>
