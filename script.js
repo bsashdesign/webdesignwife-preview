@@ -1755,7 +1755,24 @@ document.addEventListener("click", (e) => {
 // Made on the fly with Web Audio, so there's no sound file to load: a sharp, bright tick.
 (function () {
   let ac = null;
+  // Sound on/off, remembered on this device. Every sound checks it first.
+  let muted = false;
+  try { muted = localStorage.getItem("wdw-muted") === "1"; } catch (e) {}
+  const syncMute = () => document.querySelectorAll("[data-mute]").forEach((b) => {
+    b.setAttribute("aria-pressed", String(muted));
+    const label = muted ? "Turn sounds on" : "Mute sounds";
+    b.setAttribute("aria-label", label); b.title = label;
+  });
+  syncMute();
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-mute]")) return;
+    muted = !muted;
+    try { localStorage.setItem("wdw-muted", muted ? "1" : "0"); } catch (err) {}
+    if (muted && window.wdwGemSound) window.wdwGemSound.stop();
+    syncMute();
+  });
   const click = () => {
+    if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       if (ac.state === "suspended") ac.resume();
@@ -1776,6 +1793,7 @@ document.addEventListener("click", (e) => {
   };
   // An old TV switching on: a soft, warm rise as the tube warms up, a low hum and a little static.
   window.wdwTvOn = () => {
+    if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       if (ac.state === "suspended") ac.resume();
@@ -1806,6 +1824,7 @@ document.addEventListener("click", (e) => {
   };
   // A sheet of paper turning over: a short, soft swoosh of air (filtered noise that sweeps up and fades).
   window.wdwSwoosh = () => {
+    if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       if (ac.state === "suspended") ac.resume();
@@ -1821,6 +1840,7 @@ document.addEventListener("click", (e) => {
   };
   // Pressing a key that's already down: a dull, low clunk, like a button that can't go any further.
   const clunk = () => {
+    if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
       if (ac.state === "suspended") ac.resume();
@@ -1856,6 +1876,7 @@ document.addEventListener("click", (e) => {
   const SCALE = [1318.5, 1480, 1661.2, 1975.5, 2217.5, 2637, 2960];
   let twinkleTimer = null, twinkleRate = 1, twinkleStep = 0;
   const twinkle = () => {
+    if (muted) { twinkleTimer = null; return; }
     try {
       // wander up and down the scale a step or two at a time
       twinkleStep = Math.max(0, Math.min(SCALE.length - 1, twinkleStep + [-1, 1, 1, 2, -2][Math.floor(Math.random() * 5)]));
@@ -1865,6 +1886,7 @@ document.addEventListener("click", (e) => {
   };
   window.wdwGemSound = {
     start() {
+      if (muted) return;
       try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) { return; }
       if (twinkleTimer) return;
       twinkleRate = 1; twinkleStep = 2; twinkle();
@@ -1873,6 +1895,7 @@ document.addEventListener("click", (e) => {
     // 1 = normal; lower while the gem is held and turning slowly
     rate(r) { twinkleRate = r; },
     clink() {
+      if (muted) return;
       try {
         ac = ac || new (window.AudioContext || window.webkitAudioContext)();
         if (ac.state === "suspended") ac.resume();

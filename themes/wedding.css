@@ -19,8 +19,8 @@
   --gold-ink: #8a6a30; /* gold dark enough to read as text on paper */
   --dusty: #8fa7bf;
 
-  /* digits come from Playfair Display (loaded for 0-9 only), every letter from Cormorant Garamond */
-  --display: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  /* digits come from Bodoni Moda (loaded for 0-9 only; its figures stand on the line), every letter from Cormorant Garamond */
+  --display: "Bodoni Moda", "Cormorant Garamond", Georgia, serif;
   --mono: "Figtree", system-ui, sans-serif;
   --r: 4px;
   --r-lg: 6px;

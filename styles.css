@@ -4526,3 +4526,29 @@ html, html * { font-variant-numeric: lining-nums; }
 /* Calm: every gem in the same violet as Business (the shapes tell the plans apart) */
 html.theme-refined canvas.plan-gem.plan-gem { color: #8670f0; }
 html.theme-refined .plan-ring-tile:has(.plan-gem) { --ring: #8670f0; }
+/* Sound on/off: one setting for every sound on the site, in the pop-up and on the "Change the Channel" board */
+.mute-btn { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: #f1f1ee; color: #111; cursor: pointer; }
+.mute-btn:hover { background: #e6e6e2; }
+.mute-btn svg { width: 18px; height: 18px; display: block; }
+.mute-btn .mute-btn__off, .mute-btn[aria-pressed="true"] .mute-btn__on { display: none; }
+.mute-btn[aria-pressed="true"] .mute-btn__off { display: inline; }
+.mood__mute { position: absolute; top: 12px; right: 52px; }
+.tryon__cue { position: relative; }
+.tryon__cue .tv-mute { position: absolute; right: 0; top: 50%; translate: 0 -50%; }
+.theme-blocks .mute-btn { background: #fff; border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.theme-subway.theme-dark .mute-btn { background: #242424; color: #f2f2ee; }
+.theme-subway.theme-dark .mute-btn:hover { background: #2f2f2f; }
+.theme-wedding .mute-btn { border-radius: 3px; background: none; box-shadow: inset 0 0 0 1px var(--gold); color: var(--gold-ink); }
+/* Sophisticated: every icon sits in a square, not a circle */
+html.theme-wedding :is(.ico, .cc__ico, .mplan__ico, .callcard__ico, .feat__icon, .mute-btn):not(#z) { border-radius: 3px; }
+/* Sophisticated: every gem in the same deep gold */
+html.theme-wedding canvas.plan-gem.plan-gem { color: #a2741f; }
+html.theme-wedding .plan-ring-tile:has(.plan-gem) { --ring: #a2741f; }
+/* Sophisticated: plan names in gold italic serif, like the Features page */
+.theme-wedding .plans .plan h3, .theme-wedding .hplans .hplan__name { font-family: var(--display); font-style: italic; font-weight: 600; color: var(--gold-ink); }
+/* the savings tag follows the mood */
+.theme-refined .billing .billing__save { background: var(--violet); color: #fff; }
+.theme-blocks .billing .billing__save { background: var(--lime); color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.theme-subway .billing .billing__save { background: #00933c; color: #fff; border-radius: 6px; letter-spacing: .02em; }
+.theme-subway.theme-dark .billing .billing__save { background: #111; color: #fccc0a; }
+.theme-wedding .billing .billing__save { background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); border-radius: 2px; font: italic 600 .95rem/1.1 var(--display); letter-spacing: .01em; padding: 3px 10px; }
