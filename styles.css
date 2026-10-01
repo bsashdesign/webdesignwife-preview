@@ -4667,10 +4667,9 @@ html.theme-subway .sound-toggle .sound-toggle__switch:not(#z) i { border-radius:
 /* Pricing page: the toggle row reads [tag] Yearly billing [switch], at the right */
 .billing-row .billing.sbill { gap: 12px; }
 .billing-row .sbill .billing__save { margin: 0; }
-/* back links: full strength, and the underline runs under the words only, not the arrow */
-:is(a, button):has(> .i-arrow--back):not(#z) { background: none !important; animation: none !important; display: inline-flex; align-items: center; }
-:is(a, button):has(> .i-arrow--back) .back__text { background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat; padding-bottom: 1px; }
-:is(a, button):has(> .i-arrow--back):hover .back__text { animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both; }
+/* back links: full strength, the underline runs under the arrow and the words like every other link */
+:is(a, button):has(> .i-arrow--back) { display: inline-flex; align-items: center; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat; padding-bottom: 1px; }
+:is(a, button):has(> .i-arrow--back):hover { animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both; }
 .start__back { color: var(--ink); }
 /* Transit (dark): eyebrow badges get a lighter box so they stand off the near-black page */
 .theme-subway.theme-dark .eyebrow:not(.eyebrow--light) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; }
@@ -4925,13 +4924,13 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 }
 a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover,
-:is(a, button):has(> .i-arrow--back):hover .back__text {
+:is(a, button):has(> .i-arrow--back):hover {
   animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both, link-loop 2.4s cubic-bezier(.45, 0, .25, 1) .9s infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
   .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover,
-  :is(a, button):has(> .i-arrow--back):hover .back__text { animation: none; background-size: 100% 1.5px; }
+  :is(a, button):has(> .i-arrow--back):hover { animation: none; background-size: 100% 1.5px; }
 }
 /* Link hover, revised: the loop starts straight away (the line retracts from the left, then redraws from the left), a quicker cycle */
 @keyframes link-loop2 {
@@ -4942,7 +4941,7 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 }
 a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover,
-:is(a, button):has(> .i-arrow--back):hover .back__text {
+:is(a, button):has(> .i-arrow--back):hover {
   animation: link-loop2 1.6s cubic-bezier(.5, 0, .25, 1) infinite;
 }
 /* nav and footer-column links have no line until hovered, so they draw in first, then loop */
@@ -4950,7 +4949,7 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 @media (prefers-reduced-motion: reduce) {
   a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
   .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover,
-  :is(a, button):has(> .i-arrow--back):hover .back__text { animation: none; background-size: 100% 1.5px; }
+  :is(a, button):has(> .i-arrow--back):hover { animation: none; background-size: 100% 1.5px; }
 }
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover { animation: link-redraw .35s cubic-bezier(.4, 0, .2, 1) both, link-loop2 1.6s cubic-bezier(.5, 0, .25, 1) .5s infinite; }
 @media (prefers-reduced-motion: reduce) { .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover { animation: none; } }
@@ -5320,3 +5319,12 @@ html.theme-subway #moods .yours__back .btn { background: var(--btn-blue); border
 html.theme-subway .billing__switch { --switch-on: var(--btn-blue); }
 /* menu close button: just the cross, no tile behind it (Calm keeps its soft tile) */
 html:not(.theme-refined) .drawer__close.drawer__close { background: transparent; box-shadow: none; }
+/* Tangy Get started: the chosen plan is a bright sunny yellow; hovering another plan previews a paler yellow */
+html.theme-blocks .splans .splan input:checked + span:not(#z) { background: var(--sun); }
+@media (hover: hover) { html.theme-blocks .splans .splan:hover input:not(:checked) + span:not(#z) { background: #fff2bd; } }
+/* "Back to website" shortens to "Back" when there isn't room for it on one line */
+.start__back .back__more { white-space: pre; }
+@media (max-width: 259px) { .start__back .back__more { display: none; } }
+/* Get started: the nav shows just the face from the logo, and it isn't a link (no way back home from the sign-up form but the back link) */
+.brand--mark { display: block; width: 34px; height: 34px; overflow: hidden; border-radius: 7px; flex: none; }
+.brand--mark img { display: block; width: auto; height: 34px; max-width: none; }
