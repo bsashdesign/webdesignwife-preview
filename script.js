@@ -1758,11 +1758,8 @@ document.addEventListener("click", (e) => {
   // Sound on/off, remembered on this device. Every sound checks it first.
   let muted = false;
   try { muted = localStorage.getItem("wdw-muted") === "1"; } catch (e) {}
-  const syncMute = () => document.querySelectorAll("[data-mute]").forEach((b) => {
-    b.setAttribute("aria-pressed", String(muted));
-    const label = muted ? "Turn sounds on" : "Mute sounds";
-    b.setAttribute("aria-label", label); b.title = label;
-  });
+  // the switches read "on" when sound is playing
+  const syncMute = () => document.querySelectorAll("[data-mute]").forEach((b) => b.setAttribute("aria-checked", String(!muted)));
   syncMute();
   document.addEventListener("click", (e) => {
     if (!e.target.closest("[data-mute]")) return;
