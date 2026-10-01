@@ -6898,3 +6898,6 @@ html.theme-subway .nav.nav--autohide:not(.is-scrolled):not(#z) { transform: tran
 html.theme-subway.theme-dark #pricing:not(#z) { background: #0b0b0b; color-scheme: dark; --paper: #111; --card: #1c1c1c; --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #2f2f2f; --tint: #1c1c1c; --violet: #4d8dff; --violet-deep: #2a74e6; color: var(--ink); }
 html.theme-subway.theme-dark .plans-dialog:not(#z) { background: #0b0b0b; box-shadow: 0 0 0 1px #2f2f2f, 0 30px 60px -20px rgba(0,0,0,.8); }
 html.theme-subway.theme-dark .plans-dialog .hplan:not(#z) { background: #1f1f1f; }
+/* Transit: the New Age section sits on a deep subway green, so it does not run into the dark section after it */
+html.theme-subway.theme-dark #work:not(#z) { background: #0e2a1a; }
+html.theme-subway.theme-dark #work .work-founding:not(#z) { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
