@@ -6228,3 +6228,9 @@ html.theme-blocks .blist li:nth-child(-n+6):not(#z) { --bc: #d4ff4f; }
 html.theme-blocks .blist li:nth-child(n+7):nth-child(-n+12):not(#z) { --bc: #9fd8ff; }
 html.theme-blocks .blist li:nth-child(n+13):not(#z) { --bc: #ffb27a; }
 html.theme-blocks .blist:not(#z) { column-gap: 44px; }
+/* each column only as wide as its longest name, with the spare room shared out between the columns, so a long
+   name like "Salons & Barbers" always has clear space before the next column */
+@media (min-width: 901px) {
+  .blist:not(#z):not(#y) { grid-template-columns: repeat(3, max-content); justify-content: space-between; column-gap: 56px; }
+  .btype-dialog:not(#z):not(#y) { width: min(900px, calc(100% - 32px)); }
+}
