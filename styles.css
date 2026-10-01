@@ -4383,68 +4383,71 @@ span.plan-ring:empty { display: none; }
 .profile__pane--after li.profile__divider { display: flex; flex-wrap: wrap; align-items: center; column-gap: .4em; row-gap: 4px; }
 /* line the label up with the middle of the gem */
 .profile__divider .plan-gem.plan-ring--inline { position: relative; top: -2px; }
-/* Homepage pricing: a short list of the three plans (gem, name, price) that leads to the Pricing page.
-   Deliberately not the Pricing page's cards, so the two never look like the same section. */
-.hplans { max-width: 780px; margin: 0 auto; border-radius: 20px; background: var(--card, #fff); box-shadow: 0 0 0 1px var(--line), 0 18px 40px -26px rgba(27,21,48,.35); }
-.hplan { position: relative; display: grid; grid-template-columns: 60px minmax(0, 1fr) auto 18px; align-items: center; gap: 18px; padding: 16px 24px 16px 18px; color: var(--ink); text-decoration: none; transition: background .2s ease; }
-.hplan + .hplan { border-top: 1px solid var(--line); }
-.hplan:first-child { border-radius: 20px 20px 0 0; } .hplan:last-child { border-radius: 0 0 20px 20px; }
-.hplan::after { content: "→"; font-weight: 700; color: var(--ink-soft); transition: transform .2s ease; }
-.hplan:hover { background: color-mix(in srgb, var(--violet) 6%, transparent); }
-.hplan:hover::after { transform: translateX(4px); color: var(--ink); }
-.hplan__gem { display: block; width: 60px; height: 60px; }
+/* Homepage pricing: three short plan cards (gem, three key features, yearly price and setup) that lead to the Pricing page.
+   Laid out sideways, unlike the Pricing page's tall cards, so the two never look like the same section. */
+.hplans { display: grid; gap: 16px; max-width: 940px; margin: 0 auto; }
+.hplan { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 20px 26px 20px 20px; border-radius: 20px; background: var(--card, #fff); color: var(--ink); text-decoration: none; box-shadow: 0 0 0 1px var(--line), 0 14px 30px -22px rgba(27,21,48,.4); transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease; }
+.hplan:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line), 0 22px 40px -24px rgba(27,21,48,.5); }
+.hplan__gem { display: block; width: 64px; height: 64px; }
 .hplan__gem .plan-gem { display: block; width: 100%; height: 100%; }
-.hplan__body { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; min-width: 0; }
-.hplan__name { margin: 0; font-size: 1.2rem; line-height: 1.2; }
-.hplan__for { flex: 0 0 100%; color: var(--ink-soft); font-size: .95rem; }
+.hplan__body { display: grid; gap: 8px; min-width: 0; }
+.hplan__top { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.hplan__name { margin: 0; font-size: 1.25rem; line-height: 1.2; }
 .hplan__chip { padding: 2px 9px; border-radius: 999px; font: 700 .68rem var(--body); letter-spacing: .06em; text-transform: uppercase; background: color-mix(in srgb, var(--violet) 12%, #fff); color: var(--violet); }
-.hplan__price { font-size: .95rem; color: var(--ink-soft); white-space: nowrap; }
-.hplan__price b { font: 700 1.7rem/1 var(--display); color: var(--ink); letter-spacing: -.02em; }
+.hplan__feats { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; padding: 0; list-style: none; font-size: .95rem; color: var(--ink-soft); }
+.hplan__feats li { position: relative; padding-left: 20px; }
+.hplan__feats li::before { content: ""; position: absolute; left: 0; top: .3em; width: 13px; height: 13px; background: var(--done, #19a463); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.hplan__money { display: grid; justify-items: end; gap: 3px; text-align: right; white-space: nowrap; }
+.hplan__price { font-size: .95rem; color: var(--ink-soft); }
+.hplan__price s { margin-right: 6px; font-size: 1.05rem; opacity: .7; }
+.hplan__price b { font: 700 1.8rem/1 var(--display); color: var(--ink); letter-spacing: -.02em; }
+.hplan__billed { font-size: .8rem; color: var(--ink-soft); }
+.hplan__setup { font-size: .85rem; font-weight: 600; color: var(--ink); }
+.hplan__setup s { font-weight: 500; color: var(--ink-soft); }
+.hplan__setup em { display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; padding: 1px 7px; border-radius: 999px; font: 700 .66rem var(--body); font-style: normal; letter-spacing: .04em; text-transform: uppercase; background: color-mix(in srgb, var(--marigold, #ffd23f) 35%, #fff); color: var(--ink); }
+.hplan__setup em .pi { width: 11px; height: 11px; }
 .hplan__rec:not([hidden]) { position: absolute; top: -11px; right: 22px; padding: 3px 10px; border-radius: 999px; background: var(--done, #19a463); color: #fff; font: 700 .7rem var(--body); }
-.hplan.is-recommended { background: color-mix(in srgb, var(--done, #19a463) 8%, transparent); }
-.hplans__founding { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 18px auto 0; font-weight: 600; font-size: .95rem; }
-.hplans__founding .pi { color: var(--violet); }
-.hplans__cta { margin: 22px 0 0; text-align: center; }
+.hplan.is-recommended { box-shadow: 0 0 0 2px var(--done, #19a463), 0 14px 30px -22px rgba(27,21,48,.4); }
+.hplans__cta { display: flex; justify-content: center; max-width: none; margin: 26px 0 0; }
 /* gem colours, the same as the Pricing page's cards */
 .hplan [data-plan="essentials"] { color: #b4abe6; } .hplan [data-plan="business"] { color: #8670f0; } .hplan [data-plan="full"] { color: #4424db; }
 .theme-blocks .hplan [data-plan="essentials"] { color: var(--lime); } .theme-blocks .hplan [data-plan="business"] { color: var(--sky); } .theme-blocks .hplan [data-plan="full"] { color: var(--rose); }
-.theme-subway .hplan [data-plan="essentials"] { color: #00933c; } .theme-subway .hplan [data-plan="business"] { color: #0b5cd6; } .theme-subway .hplan [data-plan="full"] { color: #a336b0; }
+.theme-subway .hplan [data-plan="essentials"] { color: #3fd07a; } .theme-subway .hplan [data-plan="business"] { color: #4d8dff; } .theme-subway .hplan [data-plan="full"] { color: #d27be0; }
 .theme-wedding .hplan [data-plan="essentials"] { color: #d8c9a8; } .theme-wedding .hplan [data-plan="business"] { color: #c4a36a; } .theme-wedding .hplan [data-plan="full"] { color: #a2741f; }
-/* Tangy: one outlined board with a hard shadow, ink dividers, lime chip */
-.theme-blocks .hplans { border: var(--edge); box-shadow: var(--shadow); border-radius: var(--r-lg); }
-.theme-blocks .hplan + .hplan { border-top: 2.5px solid var(--ink); }
-.theme-blocks .hplan:first-child { border-radius: 15px 15px 0 0; } .theme-blocks .hplan:last-child { border-radius: 0 0 15px 15px; }
-.theme-blocks .hplan::after { color: var(--ink); }
-.theme-blocks .hplan:hover { background: #f6ffd9; }
+/* Calm: violet ticks */
+.theme-refined .hplan__feats li::before { background: var(--violet); }
+/* Tangy: outlined cards with hard shadows, ink ticks, lime chip */
+.theme-blocks .hplan { border: var(--edge); border-radius: var(--r-lg); box-shadow: var(--shadow); }
+.theme-blocks .hplan:hover { box-shadow: 7px 8px 0 var(--ink); }
+.theme-blocks .hplan__feats { color: var(--ink); }
+.theme-blocks .hplan__feats li::before { background: var(--ink); }
 .theme-blocks .hplan__chip { background: var(--lime); color: var(--ink); border: 2px solid var(--ink); }
-.theme-blocks .hplans__founding .pi { color: var(--ink); }
-/* Transit: a dark board on the yellow band, each plan with its own line colour down the side */
-.theme-subway.theme-dark .hplans { --card: #1c1c1c; --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #2f2f2f; background: #1c1c1c; border-radius: 12px; box-shadow: 0 18px 40px -24px rgba(0,0,0,.6); color: var(--ink); }
-.theme-subway .hplan { border-radius: 0; box-shadow: inset 6px 0 0 var(--c); padding-left: 26px; }
-.theme-subway .hplan:first-child { border-radius: 12px 0 0 0; } .theme-subway .hplan:last-child { border-radius: 0 0 0 12px; }
+.theme-blocks .hplan__setup em { background: var(--sun); border: 1.5px solid var(--ink); }
+/* Transit: dark cards on the yellow band, each with its line colour down the side */
+.theme-subway.theme-dark .hplan { --card: #1c1c1c; --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #2f2f2f; background: #1c1c1c; color: var(--ink); border-radius: 12px; box-shadow: inset 6px 0 0 var(--c), 0 14px 30px -20px rgba(0,0,0,.6); padding-left: 28px; }
+.theme-subway.theme-dark .hplan:hover { box-shadow: inset 6px 0 0 var(--c), 0 22px 40px -22px rgba(0,0,0,.7); }
 .theme-subway #plan-simple.hplan { --c: #00933c; } .theme-subway #plan-business.hplan { --c: #0b5cd6; } .theme-subway #plan-full.hplan { --c: #a336b0; }
-.theme-subway.theme-dark .hplan:hover { background: #242424; }
+.theme-subway .hplan__feats li::before { background: #3fd07a; }
 .theme-subway .hplan__chip { background: #fccc0a; color: #111; }
-.theme-subway.theme-dark .hplan [data-plan="business"] { color: #4d8dff; } .theme-subway.theme-dark .hplan [data-plan="full"] { color: #d27be0; } .theme-subway.theme-dark .hplan [data-plan="essentials"] { color: #3fd07a; }
-.theme-subway .hplans__founding .pi { color: #111; }
-/* Sophisticated: paper with a gold double keyline, serif names */
-.theme-wedding .hplans { border-radius: 3px; background: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 6px #fffdf8, inset 0 0 0 7px rgba(184,149,90,.45), 0 18px 40px -28px rgba(31,35,54,.35); padding: 8px; }
-.theme-wedding .hplan { border-radius: 0; }
-.theme-wedding .hplan + .hplan { border-top-color: rgba(184,149,90,.35); }
-.theme-wedding .hplan__name { font: 600 1.5rem var(--display); }
+.theme-subway .hplan__setup em { background: #fccc0a; color: #111; }
+/* Sophisticated: paper cards with a gold double keyline, serif names, gold ticks */
+.theme-wedding .hplan { border-radius: 3px; background: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 14px 30px -24px rgba(31,35,54,.35); }
+.theme-wedding .hplan:hover { box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 22px 40px -26px rgba(31,35,54,.45); }
+.theme-wedding .hplan__name { font: 600 1.55rem var(--display); }
+.theme-wedding .hplan__feats li::before { background: var(--gold-ink); }
 .theme-wedding .hplan__chip { background: none; border: 1px solid var(--gold); color: var(--gold-ink); }
-.theme-wedding .hplan:hover { background: #f8f2e6; }
-.theme-wedding .hplans__founding .pi { color: var(--gold-ink); }
-@media (max-width: 600px) {
-  .hplan { grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; padding: 14px 16px 14px 14px; }
-  .hplan::after { display: none; }
-  .hplan__gem { width: 48px; height: 48px; }
-  .hplan__name { font-size: 1.05rem; }
-  .hplan__for { font-size: .85rem; }
-  .hplan__price b { font-size: 1.35rem; }
-  .theme-subway .hplan { padding-left: 20px; }
+.theme-wedding .hplan__setup em { background: none; border: 1px solid var(--gold); color: var(--gold-ink); }
+@media (max-width: 760px) {
+  .hplan { grid-template-columns: 52px minmax(0, 1fr); gap: 14px 16px; padding: 18px; }
+  .hplan__gem { width: 52px; height: 52px; }
+  .hplan__money { grid-column: 1 / -1; justify-items: start; text-align: left; padding-top: 12px; border-top: 1px solid var(--line); }
+  .hplan__feats { flex-direction: column; gap: 4px; }
+  .theme-blocks .hplan__money { border-top: 2px dashed var(--ink); }
+  .theme-subway.theme-dark .hplan { padding-left: 24px; }
 }
-.hplans__cta { display: flex; justify-content: center; }
-.hplans__founding { display: block; text-align: center; text-wrap: balance; }
-.hplans__founding .pi { display: inline-block; vertical-align: -2px; margin-right: 6px; }
-.hplans__cta, .hplans__founding { max-width: none; }
+/* Billing toggle: the side that isn't on is dimmed, so it's obvious which one you're seeing */
+.billing .billing__opt { transition: opacity .2s ease, color .2s ease; }
+.billing .billing__opt[aria-pressed="false"] { opacity: .4; font-weight: 500; }
+.billing .billing__opt[aria-pressed="true"] { opacity: 1; font-weight: 700; color: var(--ink); }
+.billing .billing__opt[aria-pressed="false"]:hover { opacity: .7; }
+@media (max-width: 760px) { .hplan__gem { align-self: start; } }

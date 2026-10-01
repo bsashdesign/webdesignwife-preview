@@ -13,11 +13,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790815313">
-  <link rel="stylesheet" href="themes/subway.css?v=1790815313">
-  <link rel="stylesheet" href="themes/subway-dark.css?v=1790815313">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790815313">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790815313">
+  <link rel="stylesheet" href="styles.css?v=1790815618">
+  <link rel="stylesheet" href="themes/subway.css?v=1790815618">
+  <link rel="stylesheet" href="themes/subway-dark.css?v=1790815618">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790815618">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790815618">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
@@ -81,20 +81,9 @@
           <h1>Simple Plans. Clear Pricing.</h1>
           <p class="muted">Three plans, all with hosting, security and unlimited minor edits. Pay monthly, or pay yearly and save 20%. <a class="pricing__link" href="#pricing" data-open-finder>Help me choose a plan</a></p>
           <div class="billing">
-            <button type="button" class="billing__opt" data-billing="monthly" aria-pressed="true">Monthly</button>
-            <button type="button" class="billing__switch" role="switch" aria-checked="false" aria-label="Pay yearly and save 20%"><i></i></button>
-            <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="false">Yearly <em class="billing__save">Save 20%</em></button>
-            <span class="vow" aria-hidden="true">
-              <svg class="ringbox" viewBox="0 0 64 64">
-                <g class="ringbox__spark"><path d="M10 20l1.5 3.5L15 25l-3.5 1.5L10 30l-1.5-3.5L5 25l3.5-1.5z"/><path d="M54 14l1.2 2.8L58 18l-2.8 1.2L54 22l-1.2-2.8L50 18l2.8-1.2z"/><path d="M52 34l.9 2.1L55 37l-2.1.9L52 40l-.9-2.1L49 37l2.1-.9z"/></g>
-                <g class="ringbox__lid-open"><path d="M13 36 16 14h32l3 22z" class="ringbox__shell"/><path d="M17 34 19.5 17.5h25L47 34z" class="ringbox__lining"/></g>
-                <g class="ringbox__ring"><circle cx="32" cy="33" r="7" fill="none" stroke-width="3"/><path d="M28.5 25.5 32 21l3.5 4.5L32 28z" class="ringbox__gem"/></g>
-                <rect x="12" y="36" width="40" height="20" rx="4" class="ringbox__shell"/>
-                <rect x="16" y="36" width="32" height="6" rx="2" class="ringbox__lining"/>
-                <g class="ringbox__lid"><rect x="12" y="25" width="40" height="11" rx="4" class="ringbox__shell"/><rect x="12" y="33" width="40" height="3" class="ringbox__band"/></g>
-              </svg>
-              <span class="vow__text">Let's get married!</span>
-            </span>
+            <button type="button" class="billing__opt" data-billing="monthly" aria-pressed="false">Monthly</button>
+            <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save 20%"><i></i></button>
+            <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly <em class="billing__save">Save 20%</em></button>
           </div>
         </div>
 
@@ -496,6 +485,6 @@
     <div data-audit-slot></div>
   </dialog>
 
-  <script src="script.js?v=1790815313"></script>
+  <script src="script.js?v=1790815618"></script>
 </body>
 </html>

@@ -206,7 +206,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   function render(mode) {
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.billing === mode)));
     if (sw) sw.setAttribute("aria-checked", String(mode === "yearly"));
-    // Yearly is the commitment: the ring box opens.
     if (billing) billing.classList.toggle("is-yearly", mode === "yearly");
     plans.forEach((plan) => {
       const price = Number(plan.dataset.price);
@@ -226,13 +225,13 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>${setupLine}`
         : setupLine;
       const cta = plan.querySelector(".plan__cta");
-      if (cta) cta.textContent = mode === "yearly" ? "Say “I Do”" : "Get Started";
       if (cta) { const u = new URL(cta.getAttribute("href"), location.href); u.searchParams.set("billing", mode); cta.setAttribute("href", "start.html" + u.search); }
     });
   }
   buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.billing)));
   if (sw) sw.addEventListener("click", () => render(sw.getAttribute("aria-checked") === "true" ? "monthly" : "yearly"));
-  render("monthly");
+  // Yearly (20% off) is the default
+  render("yearly");
 })();
 
 // ---------------------------------------------------------------
@@ -1406,6 +1405,7 @@ function wdwCalInline(selector, calLink, config) {
       front.setAttribute("aria-expanded", String(open));
       if (open) back.hidden = false;
       card.classList.toggle("is-flipped", open);
+      if (window.wdwSwoosh) window.wdwSwoosh();
       if (!open) setTimeout(() => { if (!card.classList.contains("is-flipped")) back.hidden = true; }, reduce ? 0 : 600);
       (open ? back.querySelector("a") : front).focus({ preventScroll: true });
     };
@@ -1782,6 +1782,21 @@ document.addEventListener("click", (e) => {
       st.buffer = buf; sf.type = "bandpass"; sf.frequency.value = 1800; sf.Q.value = .5;
       sg.gain.setValueAtTime(.0001, t); sg.gain.exponentialRampToValueAtTime(.04, t + .03); sg.gain.exponentialRampToValueAtTime(.0001, t + .4);
       st.connect(sf).connect(sg).connect(out); st.start(t);
+    } catch (e) {}
+  };
+  // A sheet of paper turning over: a short, soft swoosh of air (filtered noise that sweeps up and fades).
+  window.wdwSwoosh = () => {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === "suspended") ac.resume();
+      const t = ac.currentTime, dur = .32;
+      const len = Math.floor(ac.sampleRate * dur), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      const src = ac.createBufferSource(), bp = ac.createBiquadFilter(), g = ac.createGain();
+      src.buffer = buf; bp.type = "bandpass"; bp.Q.value = .9;
+      bp.frequency.setValueAtTime(700, t); bp.frequency.exponentialRampToValueAtTime(2600, t + dur * .55); bp.frequency.exponentialRampToValueAtTime(1500, t + dur);
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.09, t + .09); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      src.connect(bp).connect(g).connect(ac.destination); src.start(t); src.stop(t + dur);
     } catch (e) {}
   };
   document.addEventListener("pointerdown", (e) => {
