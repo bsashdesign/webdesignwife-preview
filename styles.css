@@ -5691,3 +5691,7 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 :is(.theme-blocks, .theme-wedding) .for--spin .treel__frame:not(#z) { top: calc(var(--row) * var(--peek) - .16em); height: calc(var(--row) + .32em); }
 /* hero chat note: wraps inside the little phone on small screens instead of spilling out */
 @media (max-width: 760px) { .chat-nudge { white-space: normal; width: max-content; max-width: 88%; text-align: center; line-height: 1.25; } }
+/* Built-for band, all sizes: three full rows always show (the word before, the framed word, the word after),
+   with no fading or dimming at all */
+.for--spin .tick:not(#z) { --peek: 1; }
+.for--spin .treel__win:not(#z) { -webkit-mask-image: none; mask-image: none; }
