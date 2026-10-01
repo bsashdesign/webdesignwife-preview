@@ -5882,3 +5882,39 @@ html.theme-blocks .btypes a:not(#z):focus-visible > span { background-size: 100%
 .bhero__top { margin: 0 0 48px; text-align: left; }
 .bhero__back .i-arrow { margin-right: 2px; }
 @media (max-width: 760px) { .bhero__top { margin-bottom: 28px; } .bhero--type { padding-top: 18px; } }
+/* ===== Business types as tiles: each one a big, obviously clickable card with an arrow button ===== */
+.btypes.btypes:not(#z) { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 1000px; }
+.btypes.btypes a:not(#z):not(#y) { display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 100%; box-sizing: border-box; padding: 22px 22px 22px 28px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--card, #fff); box-shadow: 0 10px 24px -18px rgba(27,21,48,.45); transition: transform .2s var(--ease-out), box-shadow .2s, border-color .2s, background-color .2s; }
+.btypes.btypes a:not(#z):not(#y) > span { font-size: clamp(1.5rem, 2.8vw, 2.1rem); }
+.btypes__go { flex: none; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--lilac); color: var(--violet-deep); font-style: normal; transition: transform .25s var(--ease-out), background-color .2s, color .2s; }
+.btypes__go .i-arrow { width: 18px; height: 18px; }
+@media (hover: hover) {
+  .btypes.btypes a:not(#z):not(#y):hover { transform: translateY(-3px); border-color: var(--violet); box-shadow: 0 18px 32px -20px rgba(27,21,48,.55); }
+  .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--violet); color: #fff; transform: translateX(3px); }
+}
+.btypes.btypes a:not(#z):not(#y):active { transform: translateY(0) scale(.99); }
+@media (max-width: 760px) {
+  .btypes.btypes:not(#z) { grid-template-columns: 1fr; gap: 10px; text-align: left; }
+  .btypes.btypes a:not(#z):not(#y) { padding: 14px 14px 14px 20px; }
+  .btypes__go { width: 38px; height: 38px; }
+}
+/* Tangy: each tile in its own palette colour, ink outline and hard shadow; pressing it pushes it into the shadow */
+html.theme-blocks .btypes.btypes a:not(#z):not(#y) { background: var(--hl); border: 2.5px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+html.theme-blocks .btypes.btypes a:not(#z):not(#y) > span { background: none; color: var(--ink); }
+html.theme-blocks .btypes__go { background: #fff; color: var(--ink); border: 2px solid var(--ink); }
+@media (hover: hover) {
+  html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); border-color: var(--ink); }
+  html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--ink); color: #fff; }
+}
+html.theme-blocks .btypes.btypes a:not(#z):not(#y):active { transform: translate(5px, 5px); box-shadow: 0 0 0 var(--ink); }
+/* Calm: soft white cards, violet arrow */
+html.theme-refined .btypes.btypes a:not(#z):not(#y) { border-color: #ebe6fb; }
+/* Transit: dark station-sign tiles, the line dot before the name, the arrow in the line's colour */
+html.theme-subway .btypes.btypes a:not(#z):not(#y) { border-radius: 10px; background: #1c1c1c; border-color: #2f2f2f; box-shadow: none; }
+html.theme-subway .btypes__go { border-radius: 50%; background: var(--hl); color: #111; }
+@media (hover: hover) { html.theme-subway .btypes.btypes a:not(#z):not(#y):hover { border-color: var(--hl); background: #222; } html.theme-subway .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--hl); color: #111; } html.theme-subway .btypes.btypes a:not(#z):not(#y):hover > span { color: #f2f2ee; } }
+/* Soirée: ivory cards with a gold hairline, a gold-ringed arrow */
+html.theme-wedding .btypes.btypes a:not(#z):not(#y) { border-radius: 2px; background: #fffdf8; border-color: rgba(184,149,90,.45); box-shadow: inset 0 0 0 4px #fffdf8, inset 0 0 0 5px rgba(184,149,90,.25), 0 10px 24px -18px rgba(31,35,54,.4); }
+html.theme-wedding .btypes__go { background: none; border: 1px solid #b8955a; color: var(--gold-ink); }
+@media (hover: hover) { html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover { border-color: #b8955a; } html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--ink); border-color: var(--ink); color: #e9d9b4; } html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover > span { color: var(--ink); } }
+.bdo__note:not(#z) { max-width: none; margin-inline: auto; }
