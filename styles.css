@@ -5443,8 +5443,8 @@ html.theme-subway.theme-dark #mood .mood__sound:not(#z) { border-top-color: #3d3
 .hplans .hplan .hplan__go::after { content: none; }
 .hplans .hplan { cursor: pointer; }
 .hplans .hplan .hplan-ring-tile, .hplans .hplan .plan-gem { position: relative; z-index: 1; }
-/* Soirée: the arrow buttons are the secondary style (gold outline, ink arrow; gold fill with a white arrow on hover), with a finer arrow */
-html.theme-wedding .hplans .hplan__go:not(#z) { width: 40px; height: 40px; background: transparent; color: var(--ink); border: 1px solid var(--gold); border-radius: 4px; box-sizing: border-box; }
+/* Soirée: the arrow buttons are the secondary style (gold outline, gold arrow, square corners; gold fill with a white arrow on hover), with a finer arrow */
+html.theme-wedding .hplans .hplan__go:not(#z) { width: 40px; height: 40px; background: transparent; color: var(--gold-ink); border: 1px solid var(--gold); border-radius: 0; box-sizing: border-box; }
 html.theme-wedding .hplans .hplan:has(.hplan__go:hover) .hplan__go:not(#z) { background: var(--gold-ink); border-color: var(--gold-ink); color: #fff; }
 html.theme-wedding .hplans .hplan__go svg:not(#z) { width: 20px; height: 20px; }
 html.theme-wedding .hplans .hplan__go svg path { stroke-width: 1.15; }
