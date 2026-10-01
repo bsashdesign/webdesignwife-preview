@@ -1978,11 +1978,11 @@ document.addEventListener("click", (e) => {
     const k = e.target.closest("[data-tv-knob]");
     if (k) {
       if (k.dataset.tvKnob === "spin") {
-        // the big dial sweeps most of the way round (320°) and stays where it lands
-        const turn = (Number(k.dataset.turn) || 0) + 320; k.dataset.turn = turn; k.style.setProperty("--turn", turn + "deg");
+        // the big dial sweeps a random big way round (200–340°) and stays where it lands; the small one ticks a random 25–70°
+        const turn = (Number(k.dataset.turn) || 0) + Math.round(200 + Math.random() * 140); k.dataset.turn = turn; k.style.setProperty("--turn", turn + "deg");
         knobSpin();
       } else {
-        const turn = (Number(k.dataset.turn) || 0) + 45; k.dataset.turn = turn; k.style.setProperty("--turn", turn + "deg");
+        const turn = (Number(k.dataset.turn) || 0) + Math.round(25 + Math.random() * 45); k.dataset.turn = turn; k.style.setProperty("--turn", turn + "deg");
         knobTick();
       }
       return;
