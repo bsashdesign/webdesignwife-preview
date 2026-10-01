@@ -1793,7 +1793,7 @@ document.addEventListener("click", (e) => {
     syncMute();
   });
   const click = () => {
-    dance(320);
+    dance(1320);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1815,7 +1815,7 @@ document.addEventListener("click", (e) => {
   };
   // An old TV switching on: a soft, warm rise as the tube warms up, a low hum and a little static.
   window.wdwTvOn = () => {
-    dance(1100);
+    dance(2100);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1847,7 +1847,7 @@ document.addEventListener("click", (e) => {
   };
   // A sheet of paper turning over: a short, soft swoosh of air (filtered noise that sweeps up and fades).
   window.wdwSwoosh = () => {
-    dance(450);
+    dance(1450);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1864,7 +1864,7 @@ document.addEventListener("click", (e) => {
   };
   // Pressing a key that's already down: a dull, low clunk, like a button that can't go any further.
   const clunk = () => {
-    dance(380);
+    dance(1380);
     if (muted) return;
     try {
       ac = ac || new (window.AudioContext || window.webkitAudioContext)();
@@ -1920,7 +1920,7 @@ document.addEventListener("click", (e) => {
     // 1 = normal; lower while the gem is held and turning slowly
     rate(r) { twinkleRate = r; },
     clink() {
-      dance(500);
+      dance(1500);
       if (muted) return;
       try {
         ac = ac || new (window.AudioContext || window.webkitAudioContext)();
