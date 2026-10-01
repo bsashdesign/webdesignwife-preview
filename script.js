@@ -2127,26 +2127,6 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
   const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li><span>${t}</span></li>`).join("")).join("");
 
-  // the sound of the reels spinning: a quick ratchet of little reel-notch clicks that slows as the reels come
-  // to rest (follows the site's Sound switch)
-  let ac;
-  const spinSound = (ms) => {
-    try { if (localStorage.getItem("wdw-muted") === "1") return; } catch (e) {}
-    try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
-    if (ac.state === "suspended") ac.resume();
-    if (ac.state !== "running") return;
-    const click = (when) => {
-      const len = .03, buf = ac.createBuffer(1, Math.floor(ac.sampleRate * len), ac.sampleRate), d = buf.getChannelData(0);
-      for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 6);
-      const src = ac.createBufferSource(); src.buffer = buf; src.playbackRate.value = 1.05;
-      const bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 2400; bp.Q.value = 3;
-      const g = ac.createGain(); g.gain.value = .12;
-      src.connect(bp).connect(g).connect(ac.destination); src.start(ac.currentTime + when);
-    };
-    let t = 0, gap = .03; const end = ms / 1000;
-    while (t < end) { click(t); t += gap; gap = .03 + .2 * Math.pow(t / end, 2.2); }
-  };
-
   const reels = [...slot.querySelectorAll(".treel")].map((reel, k) => {
     const items = LISTS[k], ul = reel.querySelector("ul"), n = items.length;
     ul.innerHTML = wordsHTML(items);
@@ -2265,7 +2245,6 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
       plans.push({ r, to, toAt: at(toAt) });
     });
     const land = reduce ? 0 : 1300 + 2 * 350 + 40;
-    spinSound(land);
     if (win) setTimeout(() => {
       reels.forEach((r) => { r.reel.classList.remove("is-win"); void r.reel.offsetWidth; r.reel.classList.add("is-win"); });
       confetti();
