@@ -4681,8 +4681,8 @@ html.theme-blocks .sound-toggle .sound-toggle__switch:not(#z) i { top: 5px; left
 /* the simple footer already has a top border, so drop the extra divider line inside it */
 .footer--simple .footer__bottom::before { display: none; }
 /* footer text starts clear of the floating mini TV in the bottom-left corner */
-.footer__bottom > :first-child { padding-left: 76px; }
-@media (min-width: 1440px) { .footer__bottom > :first-child { padding-left: 0; } }
+.footer--simple .footer__bottom > :first-child { padding-left: 76px; }
+@media (min-width: 1440px) { .footer--simple .footer__bottom > :first-child { padding-left: 0; } }
 /* the Sound Effects label at full strength */
 .sound-toggle { color: var(--ink); }
 /* plan picker check circles: unselected ones look like little buttons (so they don't read as a switch knob);
@@ -5158,3 +5158,14 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 .theme-wedding #footer-channel .mood__opt:hover:not(#z) { background: rgba(184,149,90,.12); border-radius: 3px; }
 /* Tangy: the footer's Change the Channel block is an outlined card like the rest of Tangy */
 .theme-blocks .footer__moods { background: #fff; border: var(--edge); box-shadow: var(--shadow); border-radius: var(--r-lg); }
+/* Change the Channel, desktop: title and intro left-aligned; the TV on the left, the button panel and note on the right */
+@media (min-width: 1100px) {
+  #moods-tv .tryon__head { max-width: none; margin: 0; text-align: left; }
+  #moods-tv .tryon__head .eyebrow { margin-left: 0; }
+  #moods-tv .tvset { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; justify-items: stretch; gap: 48px; }
+  #moods-tv .tvset .tv-nook { width: 100%; }
+  #moods-tv .tv-panel { justify-content: flex-start; align-content: center; }
+  #moods-tv .tv-deck { width: 100%; }
+  #moods-tv .tv-panel .tv-yours { max-width: none; }
+}
+@media (min-width: 1100px) { #moods-tv .tryon__head > * { margin-left: 0; margin-right: 0; } #moods-tv .tryon__head h2 { max-width: none; } }
