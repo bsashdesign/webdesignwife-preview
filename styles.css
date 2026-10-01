@@ -6963,3 +6963,20 @@ html.theme-refined .pcard__feats li::before { background: var(--violet); }
 .founding__emblem b:not(#z) { font-size: 1.45rem; letter-spacing: -.01em; }
 @media (max-width: 560px) { .founding__emblem b:not(#z) { font-size: 1.15rem; } }
 html.theme-wedding .founding__emblem b:not(#z) { font-size: 1.7rem; }
+/* plans pop-up: the gems take each plan's colour in every mood (same as the Pricing rows) */
+.pcard [data-plan="essentials"] { color: #9883f7; } .pcard [data-plan="business"] { color: #8670f0; } .pcard [data-plan="full"] { color: #4424db; }
+html.theme-blocks .pcard [data-plan="essentials"] { color: var(--lime); } html.theme-blocks .pcard [data-plan="business"] { color: var(--sky); } html.theme-blocks .pcard [data-plan="full"] { color: var(--rose); }
+html.theme-subway .pcard [data-plan="essentials"] { color: #3fd07a; } html.theme-subway .pcard [data-plan="business"] { color: #4d8dff; } html.theme-subway .pcard [data-plan="full"] { color: #d27be0; }
+html.theme-wedding .pcard [data-plan="essentials"] { color: #d8c9a8; } html.theme-wedding .pcard [data-plan="business"] { color: #c4a36a; } html.theme-wedding .pcard [data-plan="full"] { color: #a2741f; }
+/* Tangy: the pop-up sits on the soft green of the hero */
+html.theme-blocks .plans-dialog:not(#z) { background: #eaf3d2; }
+/* the three cards line up row by row (top, lead, points, prices, button); the pill sits on the card's top edge, and
+   Essentials keeps the "Application Required" line's space so the prices start level */
+@media (min-width: 761px) {
+  .pcards:not(#z) { grid-template-rows: repeat(5, auto); row-gap: 0; }
+  .pcard:not(#z) { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 10px; }
+  .pcard__pill:not(#z) { position: absolute; top: 0; left: 18px; translate: 0 -50%; }
+  .pcard__money:not(:has(.pcard__status))::before { content: "\00a0"; display: block; margin: 0 0 4px; font: 700 .62rem/1.4 var(--body); }
+  .pcard__money:not(#z) { margin-top: 0; align-self: start; }
+  .pcard__cta:not(#z) { align-self: end; }
+}
