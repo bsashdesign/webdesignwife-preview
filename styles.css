@@ -5357,3 +5357,8 @@ html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff;
 }
 /* Soirée: the shared card drops the inner frame so it reads as one card */
 html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow: none; }
+/* Transit key: a thin ring of the subway line colours around the top face */
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) {
+  box-sizing: border-box; border: 2.5px solid transparent;
+  background: linear-gradient(#3a3a3a, #3a3a3a) padding-box, conic-gradient(from -30deg, #e8392e 0 60deg, #ff6319 0 120deg, #fccc0a 0 180deg, #00933c 0 240deg, #1f6ff0 0 300deg, #a336b0 0) border-box;
+}
