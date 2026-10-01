@@ -2143,7 +2143,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
   let drifting = true;
-  const STEP = 2500, GLIDE = 1300, CLICK = "cubic-bezier(.34,1.45,.55,1)";
+  const STEP = 4500, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
   const step = (r) => {
     if (!drifting || reduce || document.hidden) return;
     // after a win the stars stay put until each reel's next ordinary step, which carries on to the new word
