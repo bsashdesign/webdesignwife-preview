@@ -562,7 +562,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     advance = setTimeout(() => {
       if (current < 2) show(current + 1);
       else { renderResult(); show(3); }
-    }, 260);
+    }, 0);
   };
   form.addEventListener("change", next);
   form.addEventListener("click", (e) => { if (e.target.matches('input[type="radio"]')) next(); });

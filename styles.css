@@ -4572,3 +4572,5 @@ html.theme-wedding .plan-ring-tile:has(.plan-gem) { --ring: #a2741f; }
 /* less room under the Sound switch at the bottom of the Change the Channel section */
 section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
 @media (max-width: 640px) { section.tv-sec:has(.tv-sound) { padding-bottom: 32px; } }
+/* plan finder: the next question appears straight away */
+.finder-dialog .finder__step { animation-duration: .15s; }
