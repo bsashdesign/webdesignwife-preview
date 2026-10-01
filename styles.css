@@ -5326,3 +5326,6 @@ html.theme-blocks .splans .splan input:checked + span:not(#z) { background: #ff6
 .start__back .back__more { white-space: pre; }
 @media (max-width: 369px) { .start__back .back__more { display: none; } }
 html.theme-blocks .splans .splan input:checked + span:not(#z) small { color: var(--ink); }
+/* Tangy: the money-back seal's lettering and inner ring are black on the orange */
+html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
+html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
