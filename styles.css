@@ -6809,3 +6809,8 @@ html.theme-subway.theme-dark .lpv { background: #262626; box-shadow: 0 0 0 1px #
 html.theme-subway.theme-dark .lpv__row mark { background: #fccc0a; color: #111; }
 html.theme-wedding .lpv { border-radius: 3px; box-shadow: 0 0 0 1px rgba(184, 149, 90, .5); }
 html.theme-wedding .lpv__row mark { background: rgba(184, 149, 90, .22); }
+/* Desktop: the phone (after the opening scene too) is 50% bigger, everything in it scaled up together */
+@media (min-width: 1101px) {
+  html .hero .demo .phone:not(#z):not(#y):not(#x) { scale: 1.5; }
+  .hero .demo:not(#z) { height: 680px; }
+}
