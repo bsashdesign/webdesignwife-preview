@@ -6439,15 +6439,6 @@ html.theme-wedding .steps li::before, html.theme-wedding .spot__steps li::before
 .sform textarea { resize: vertical; min-height: 84px; line-height: 1.5; }
 .sform select { appearance: none; padding-right: 40px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
 .sform__free { margin: 0; font-size: .92rem; color: var(--ink-soft); }
-/* plan picker tags: Start Today (Essentials) / Fill Application (Business, Full Suite), like the Most Popular chip */
-.splan__tag { justify-self: start; margin-top: 8px; padding: 2px 9px; border-radius: 999px; font: 700 .64rem/1.5 var(--body); font-style: normal; letter-spacing: .06em; text-transform: uppercase; background: color-mix(in srgb, var(--violet) 12%, #fff); color: var(--violet); }
-.splan__tag--buy { background: color-mix(in srgb, #1f9d55 12%, #fff); color: #157a41; }
-html.theme-blocks .splan__tag { background: var(--sky); color: var(--ink); border: 2px solid var(--ink); }
-html.theme-blocks .splan__tag--buy { background: var(--lime); }
-html.theme-subway .splan__tag { background: #fccc0a; color: #111; border-radius: 4px; }
-html.theme-subway .splan__tag--buy { background: #00933c; color: #fff; }
-html.theme-wedding .splan__tag { background: none; border: 1px solid var(--gold); color: var(--gold-ink); border-radius: 2px; font-weight: 600; }
-html.theme-wedding .splan__tag--buy { border-color: var(--field-line, #e6dece); color: var(--ink-soft); }
 /* "Application Required" beside the plan name in the summary */
 .ssum__head { flex-wrap: wrap; }
 .ssum__tag { padding: 2px 9px; border-radius: 999px; font: 700 .64rem/1.5 var(--body); letter-spacing: .06em; text-transform: uppercase; background: color-mix(in srgb, var(--violet) 12%, #fff); color: var(--violet); }
@@ -6511,6 +6502,4 @@ html.theme-wedding .plan__apply { font-weight: 600; letter-spacing: .1em; color:
 /* Homepage plan rows aren't links themselves: only their Get Started / Apply buttons go anywhere */
 .hplans .hplan.hplan { cursor: default; }
 html .hplans .hplan.hplan:hover { transform: none; }
-/* plan picker tags never wrap; in Tangy they're white with the ink outline, whichever card they sit on */
-.splan__tag:not(#z), .ssum__tag:not(#z) { white-space: nowrap; }
-html.theme-blocks .splan__tag:not(#z) { background: #fff; color: var(--ink); }
+.ssum__tag:not(#z) { white-space: nowrap; }
