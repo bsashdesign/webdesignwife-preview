@@ -272,14 +272,25 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     // conversation and the replies. Picking a reply fades the frame in around them, then the whole phone sweeps
     // down into its usual spot along an arc, and the conversation carries on.
     let big = null, fromRow = null;
+    // if the opening conversation still reaches above its space, the space grows to hold it (and it's re-placed)
+    function fitSpace() {
+      if (!demo.classList.contains("is-intro")) return;
+      const top = thread.querySelector(".m--from, .m--us");
+      if (!top) return;
+      const over = demo.getBoundingClientRect().top + 4 - top.getBoundingClientRect().top;
+      if (over > 0) { extra += Math.ceil(over); big = fitBig(); }
+    }
+    let extra = 0;
     const fitBig = () => {
       phone.style.transform = "";
-      const P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
-      // big on desktop; on phones a more modest size, so it doesn't take over the screen
-      // the hidden frame and the conversation's inner padding may hang past the edges, so the messages themselves
-      // line up with the page's text (on phones)
+      let P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
+      // big on desktop; on phones the hidden frame and the conversation's inner padding may hang past the edges,
+      // so the messages themselves line up with the page's text
       const T = thread.getBoundingClientRect(), inset = (P.width - T.width) / 2 + 4;
       const K = innerWidth <= 760 ? Math.min(2.6, D.width / (P.width - 2 * inset)) : Math.min(2.2, (D.width * .98) / P.width);
+      // on phones the space grows with the scale first, so the whole opening conversation fits under the nav
+      demo.style.minHeight = innerWidth <= 760 ? Math.round(166 * K + 20 + extra) + "px" : "";
+      P = phone.getBoundingClientRect(); D = demo.getBoundingClientRect();
       const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
@@ -307,6 +318,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       // the website comes back into the layout; the space grows smoothly to make room for it (phones)
       const h0 = demo.offsetHeight;
       demo.classList.remove("is-intro");
+      demo.style.minHeight = "";
       const h1 = demo.offsetHeight;
       if (h1 !== h0) demo.animate([{ height: h0 + "px" }, { height: h1 + "px" }], { duration: 750 * SLOW, easing: EASE_OUT });
       await sweep.finished.catch(() => {});
@@ -332,7 +344,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span><strong>Web Design Wife</strong></span></span>');
       demo.getAnimations().forEach((x) => { if (x.effect && x.effect.target === demo) x.cancel(); });
       demo.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, easing: "ease-out" });
-      await checkIn(); offer(TREE); busy = false;
+      await checkIn(); offer(TREE); busy = false; setTimeout(fitSpace, 560);
     }
     busy = true;
     demo.classList.add("is-intro", "is-bare");
@@ -340,7 +352,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     let lastW = innerWidth;
     addEventListener("resize", () => { if (innerWidth !== lastW && demo.classList.contains("is-intro")) { lastW = innerWidth; big = fitBig(); } });
     fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span><strong>Web Design Wife</strong></span></span>');
-    checkIn().then(() => { offer(TREE); busy = false; });
+    checkIn().then(() => { offer(TREE); busy = false; setTimeout(fitSpace, 560); });
   }
   run();
 })();

@@ -6721,3 +6721,7 @@ html.theme-wedding .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size
    after the row starts to open */
 .thread .m > .m__in:not(#z) { overflow: visible; }
 .thread .m.is-in .bubble:not(#z), .thread .m.is-in .stamp:not(#z) { transition-delay: .14s; }
+/* reply outlines are fine lines, even in the big opening view (Soirée's are already 1px) */
+html .chat-choice:not(#z):not(#y):not(#x) { border-width: 1.5px; border-style: dashed; }
+html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { border-width: 1.5px; }
+html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-width: 1px; }
