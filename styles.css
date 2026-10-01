@@ -6609,7 +6609,14 @@ html .phone__compose.is-choices .chat-choices__tip:not(#z):not(#y) { align-self:
 /* the time stamp belongs to the phone: hidden in the opening view, it fades in with the frame */
 .demo .phone .m--stamp { transition: opacity .45s ease; }
 .demo.is-bare .phone .m--stamp { opacity: 0; }
-@media (max-width: 640px) { .demo.is-intro { min-height: 430px; } }
+@media (max-width: 640px) {
+  .demo.is-intro { min-height: 520px; }
+  /* a quiet divider between the hero text and the chat, so the two don't run together */
+  .demo { margin-top: 8px; padding-top: 22px; border-top: 1px solid var(--line); }
+  html.theme-blocks .demo { border-top: 2px solid var(--ink); }
+  /* the three stats share the width evenly */
+  .hero__stats:not(#z) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 14px; }
+}
 /* Chat bubbles read as speech bubbles in every mood: each mood keeps its own roundness, but the corner nearest the
    sender is sharper (bottom-left for my messages, bottom-right for yours and for the replies you can pick) */
 html .m--us .bubble:not(#z) { border-bottom-left-radius: 5px; }

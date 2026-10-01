@@ -292,8 +292,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const fitBig = () => {
       phone.style.transform = "";
       const P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
-      // a little smaller on phones, so the whole conversation fits under the headline
-      const K = Math.min(innerWidth <= 640 ? 1.75 : 2.1, (D.width * .92) / P.width);
+      // as wide as the space allows (on phones, nearly the full width)
+      const K = Math.min(2.2, (D.width * .94) / P.width);
       const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
