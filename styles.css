@@ -5636,10 +5636,11 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
 .theme-wedding .for--spin .bf-ico path { stroke: var(--gold-ink); stroke-width: 1.6px; }
 .theme-subway.theme-dark .for--spin .bf-ico path { stroke: none; fill: currentColor; }
 .theme-refined .for--spin .bf-ico path { stroke: none; fill: #4b63f2; }
-/* Built-for band: the sentence and Sound switch share one row; where space is tight the sentence sits at the left
-   and the switch at the right (instead of the switch disappearing) */
-.bf-wrap:not(#z) { display: flex; align-items: center; gap: 24px; }
-.bf-wrap .slot:not(#z) { flex: 1; min-width: 0; }
-.bf-wrap .bf-sound:not(#z) { position: static; translate: none; display: inline-flex; flex: none; }
-@media (max-width: 1180px) { .bf-wrap .slot:not(#z) { justify-content: flex-start; } }
+/* Built-for band: the sentence sits centred with the Sound switch at the far right; only when the two would
+   collide (script.js sets .is-tight) does the sentence move to the left, with the switch still on the right */
+.bf-wrap .bf-sound:not(#z) { position: absolute; right: 20px; top: 50%; translate: 0 -50%; display: inline-flex; }
+.bf-wrap.is-tight:not(#z) { display: flex; align-items: center; gap: 24px; }
+.bf-wrap.is-tight .slot:not(#z) { flex: 1; min-width: 0; justify-content: flex-start; }
+.bf-wrap.is-tight .bf-sound:not(#z) { position: static; translate: none; flex: none; }
 @media (max-width: 600px) { .bf-wrap .bf-sound:not(#z) { display: none; } }
+.theme-wedding .for--spin .treel__list li.bf-ico svg { height: 58%; }

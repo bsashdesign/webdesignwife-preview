@@ -2090,32 +2090,31 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
   const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li>${t}</li>`).join("")).join("");
 
-  // the sound of the reels spinning: a soft whirr with gentle clicks that slow down as the reels come to rest
-  // (follows the site's Sound switch)
+  // the sound of the reels spinning: a smooth "shhh" that rises and settles, with soft wooden ticks (like a prize
+  // wheel's pegs) that slow down as the reels come to rest. Follows the site's Sound switch.
   let ac;
   const spinSound = (ms) => {
     try { if (localStorage.getItem("wdw-muted") === "1") return; } catch (e) {}
     try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
     if (ac.state === "suspended") ac.resume();
     if (ac.state !== "running") return;
-    const t0 = ac.currentTime, dur = ms / 1000;
-    // the whirr: filtered noise that sweeps down and fades as it slows
+    const t0 = ac.currentTime, dur = ms / 1000, out = ac.createGain(); out.gain.value = 1; out.connect(ac.destination);
+    // the shhh: soft, smoothed noise (each sample leans on the last, so there's no hiss or crunch)
     const len = Math.floor(ac.sampleRate * dur), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    let last = 0; for (let i = 0; i < len; i++) { last = last * .96 + (Math.random() * 2 - 1) * .04; d[i] = last * 6; }
     const src = ac.createBufferSource(); src.buffer = buf;
-    const bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.Q.value = 1.2;
-    bp.frequency.setValueAtTime(1400, t0); bp.frequency.exponentialRampToValueAtTime(380, t0 + dur);
-    const g = ac.createGain(); g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.05, t0 + .08); g.gain.exponentialRampToValueAtTime(.002, t0 + dur);
-    src.connect(bp).connect(g).connect(ac.destination); src.start(t0); src.stop(t0 + dur);
-    // the clicks: quick at first, then further and further apart
-    let t = 0, gap = .045;
-    while (t < dur - .05) {
-      const at = t0 + t, cl = ac.createBufferSource(), cb = ac.createBuffer(1, Math.floor(ac.sampleRate * .02), ac.sampleRate), cd = cb.getChannelData(0);
-      for (let i = 0; i < cd.length; i++) cd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / cd.length, 5);
-      cl.buffer = cb; const f = ac.createBiquadFilter(); f.type = "bandpass"; f.frequency.value = 1700; f.Q.value = 2.5;
-      const cg = ac.createGain(); cg.gain.value = .05 * (1 - t / dur * .5);
-      cl.connect(f).connect(cg).connect(ac.destination); cl.start(at);
-      t += gap; gap = .045 + .22 * Math.pow(t / dur, 2.4);
+    const lp = ac.createBiquadFilter(); lp.type = "lowpass"; lp.Q.value = .4;
+    lp.frequency.setValueAtTime(1800, t0); lp.frequency.exponentialRampToValueAtTime(500, t0 + dur);
+    const g = ac.createGain(); g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.09, t0 + .18); g.gain.setValueAtTime(.09, t0 + dur * .35); g.gain.exponentialRampToValueAtTime(.001, t0 + dur);
+    src.connect(lp).connect(g).connect(out); src.start(t0); src.stop(t0 + dur);
+    // the ticks: tiny, rounded wooden taps, quick at first and slowing down
+    let t = .06, gap = .06;
+    while (t < dur - .04) {
+      const o = ac.createOscillator(), og = ac.createGain(), at = t0 + t;
+      o.type = "sine"; o.frequency.setValueAtTime(950, at); o.frequency.exponentialRampToValueAtTime(600, at + .03);
+      og.gain.setValueAtTime(0, at); og.gain.linearRampToValueAtTime(.045, at + .003); og.gain.exponentialRampToValueAtTime(.0005, at + .045);
+      o.connect(og).connect(out); o.start(at); o.stop(at + .05);
+      t += gap; gap = .06 + .2 * Math.pow(t / dur, 2.2);
     }
   };
 
@@ -2134,8 +2133,20 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   const show = (r, ms, ease) => { r.ul.style.transition = ms ? `transform ${ms}ms ${ease}` : "none"; r.ul.style.transform = `translateY(${-(r.pos - .75) * row(r)}px)`; };
   const idx = (r) => ((Math.round(r.pos) % r.n) + r.n) % r.n;
   const recentre = (r) => { r.pos = r.n * 6 + idx(r); };
-  size();
-  if (document.fonts) document.fonts.ready.then(size);
+  // keep the sentence centred unless it would run into the Sound switch
+  const wrap = slot.parentElement, sound = wrap.querySelector(".bf-sound");
+  const fit = () => {
+    if (!sound) return;
+    wrap.classList.remove("is-tight");
+    const kids = [...slot.children].filter((c) => c.offsetParent && !c.classList.contains("jackpot") && !c.classList.contains("confetti"));
+    const right = Math.max(...kids.map((c) => c.getBoundingClientRect().right));
+    if (right + 16 > sound.getBoundingClientRect().left) wrap.classList.add("is-tight");
+  };
+  const sizeAll = () => { size(); fit(); };
+  sizeAll();
+  if (document.fonts) document.fonts.ready.then(sizeAll);
+  addEventListener("resize", fit);
+  new MutationObserver(() => setTimeout(fit, 80)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   addEventListener("resize", size);
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
