@@ -6835,3 +6835,12 @@ html.theme-wedding .lpv:not(#z):not(#y) mark { background: rgba(217, 196, 154, .
 html.theme-blocks .lpv:not(#z):not(#y) mark { background: var(--lime); }
 /* "Suggested replies" over the replies: a quiet label (not a sender name) */
 html .chat-you:not(#z):not(#y):not(#x) { font-weight: 600; color: var(--ink-soft); }
+/* "My Vows to You": the numbers sit in the same boxes as the steps (I Come to Your Business / How It Works) —
+   Tangy a white square with the ink outline and 3D shadow, Calm soft coloured squares; Transit keeps its round badges,
+   Soirée its unboxed numerals */
+html:is(.theme-blocks, .theme-refined) .promises p:not(#z)::before { content: counter(vow); display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 16px; border-radius: 14px; font: 800 1.1rem/1 var(--display); letter-spacing: 0; }
+html.theme-refined .promises p:nth-child(1):not(#z)::before { background: var(--mint); color: #0f6b43; }
+html.theme-refined .promises p:nth-child(2):not(#z)::before { background: var(--sky); color: #1f4fa3; }
+html.theme-refined .promises p:nth-child(3):not(#z)::before { background: var(--sun); color: #8a4b00; }
+html.theme-refined .promises p:nth-child(4):not(#z)::before { background: var(--lilac); color: var(--violet-deep); }
+html.theme-blocks .promises p:not(#z)::before { background: #fff; color: var(--ink); border: var(--edge); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
