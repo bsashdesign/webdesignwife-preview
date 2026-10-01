@@ -5335,3 +5335,9 @@ html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff;
 .tv-key.tv-key--transit { --cap: #161616; --cap-edge: #8a6d00; }
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #161616; --cap-edge: #8a6d00; }
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-yellow.svg); }
+/* Tangy "Three ways": every card is coloured in (pink, yellow, lime), icons on white; ours keeps its framed double edge */
+html.theme-blocks #compare .compare-cards .cc:nth-child(1):not(#z) { background: var(--rose); }
+html.theme-blocks #compare .compare-cards .cc:nth-child(2):not(#z) { background: var(--sun); }
+html.theme-blocks #compare .compare-cards .cc:is(:nth-child(1), :nth-child(2)) .cc__ico:not(#z) { background: #fff; }
+html.theme-blocks #compare .compare-cards .cc:not(.cc--us):not(#z) :is(h3, ul) { color: var(--ink); }
+html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: var(--lime); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px #fff, inset 0 0 0 9px var(--ink); }
