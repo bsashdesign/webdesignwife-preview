@@ -5389,3 +5389,6 @@ html.theme-blocks .mplans .mplan__ico:not(#z) { background: #fff; }
 html.theme-blocks .fhero:not(#z) { background: var(--lime); }
 html.theme-blocks .ftabs a[aria-current]:not(#z) { background: #fff; color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); padding: 5px 12px; }
 html.theme-blocks .ftabs:not(#z) { border-top: 0; }
+/* Transit How it works: step 2 is subway yellow (blue got lost against the purple section) */
+html.theme-subway.theme-dark #how .steps li:nth-child(2):not(#z) { --c: var(--yellow); border-top-color: var(--yellow); }
+html.theme-subway.theme-dark #how .steps li:nth-child(2):not(#z)::before { background: var(--yellow); color: #111; }
