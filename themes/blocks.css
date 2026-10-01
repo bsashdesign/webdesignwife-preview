@@ -189,7 +189,7 @@
 .theme-blocks #compare h2 { color: var(--ink); }
 .theme-blocks #compare .eyebrow { color: var(--ink); }
 .theme-blocks #how { background: #fff; }
-.theme-blocks #maps { background: var(--rose); color: var(--ink); }
+.theme-blocks #maps { background: #fff; color: var(--ink); }
 .theme-blocks #maps h2 { color: var(--ink); }
 .theme-blocks #maps .maps__included { background: #fff; border: var(--edge); color: var(--ink); }
 .theme-blocks #maps .maps__included strong { color: var(--ink); }
