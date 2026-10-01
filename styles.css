@@ -5226,3 +5226,6 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 @media (min-width: 1240px) {
   #moods-tv > .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 80px; }
 }
+/* Tangy: homepage plan cards turn the pale beige of a selected field on hover */
+.theme-blocks .hplans .hplan { transition: background-color .15s ease, box-shadow .15s ease, transform .25s cubic-bezier(.2, .8, .2, 1); }
+.theme-blocks .hplans .hplan:hover { background: #fffbe0; }
