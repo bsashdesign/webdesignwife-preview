@@ -148,13 +148,14 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       ["them", `<div class="bubble">${last.ask}</div>`],
       ["us", `<div class="bubble">${CHECK}${last.reply}</div>`],
     ].forEach(([k, h]) => addMessage(k, h).classList.add("is-in"));
+    enableChat();
     return;
   }
 
-  // ---- The loop
+  // ---- The conversation plays through once, and the finished site stays as it is
   async function run() {
     await wait(700);
-    for (;;) {
+    {
       addMessage("stamp", '<span class="stamp">Today 9:41 AM</span>');
       await wait(500);
 
@@ -185,9 +186,45 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         await wait(900);
       }
 
-      await wait(2600);
-      await resetAll();
     }
+    await wait(1200);
+    enableChat();
+  }
+
+  // ---- After the demo: the phone becomes a real (pretend) chat. A note invites you to try it; whatever you send
+  // gets a cheerful "I'm on it!" back.
+  function enableChat() {
+    const phone = demo.querySelector(".phone");
+    phone.removeAttribute("aria-hidden");
+    compose.classList.add("is-live");
+    compose.innerHTML = '<form class="compose__form"><input class="compose__input" type="text" maxlength="140" placeholder="Message" aria-label="Send Web Design Wife a message" autocomplete="off" enterkeyhint="send"></form>';
+    const form = compose.querySelector("form"), input = compose.querySelector("input");
+    const nudge = document.createElement("div");
+    nudge.className = "chat-nudge"; nudge.setAttribute("role", "status");
+    nudge.textContent = "Try asking me for something";
+    phone.append(nudge);
+    nextFrame().then(() => nudge.classList.add("is-in"));
+    const hideNudge = () => nudge.classList.remove("is-in");
+    input.addEventListener("focus", hideNudge);
+    compose.addEventListener("click", () => input.focus());
+    let busy = false;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text || busy) return;
+      busy = true; hideNudge(); input.value = ""; hideOldReceipts();
+      const sent = addMessage("them", '<div class="bubble"></div><div class="receipt"><span>Delivered</span></div>');
+      sent.querySelector(".bubble").textContent = text;
+      const receipt = sent.querySelector(".receipt span");
+      await tick(800); receipt.classList.add("is-hidden"); await tick(220); receipt.textContent = "Read"; receipt.classList.remove("is-hidden");
+      await tick(400);
+      const typing = addMessage("typing", '<div class="bubble"><i></i><i></i><i></i></div>');
+      await tick(1200);
+      await removeMessage(typing);
+      addMessage("us", `<div class="bubble">${CHECK}I'm on it!</div>`);
+      thread.scrollTop = thread.scrollHeight;
+      busy = false;
+    });
   }
   run();
 })();
@@ -2116,13 +2153,24 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     return { reel, ul, items, n, dir: reel.dataset.dir === "down" ? -1 : 1, pos: n * 6 + (k === 1 ? 5 : 0) };
   });
   // each window is as wide as its longest word, measured in whichever mood's font is showing
+  // phones stack the reels and slide the words sideways instead of up and down
+  const horizMQ = matchMedia("(max-width: 600px)"), horiz = () => horizMQ.matches;
   const size = () => reels.forEach((r) => {
-    const probe = document.createElement("li"); probe.style.cssText = "position:absolute;visibility:hidden"; r.ul.appendChild(probe);
+    const probe = document.createElement("li"); probe.style.cssText = "position:absolute;visibility:hidden;width:auto;padding:0 .5em"; r.ul.appendChild(probe);
     let w = 0; r.items.forEach((t) => { probe.textContent = t; w = Math.max(w, probe.getBoundingClientRect().width); }); probe.remove();
-    r.reel.style.width = Math.ceil(w) + 2 + "px"; show(r, 0);
+    r.reel.style.width = horiz() ? "" : Math.ceil(w) + 2 + "px";
+    r.reel.style.setProperty("--fw", Math.ceil(w) + 4 + "px");
+    show(r, 0);
   });
-  const row = (r) => r.ul.firstElementChild.getBoundingClientRect().height;
-  const show = (r, ms, ease) => { r.ul.style.transition = ms ? `transform ${ms}ms ${ease}, filter .45s ease-out` : "filter .45s ease-out"; r.ul.style.transform = `translateY(${-(r.pos - .75) * row(r)}px)`; };
+  horizMQ.addEventListener("change", () => setTimeout(() => { size(); fit(); }, 30));
+  const row = (r) => r.ul.firstElementChild.getBoundingClientRect()[horiz() ? "width" : "height"];
+  const show = (r, ms, ease) => {
+    r.ul.style.transition = ms ? `transform ${ms}ms ${ease}, filter .45s ease-out` : "filter .45s ease-out";
+    r.ul.style.transform = horiz()
+      ? `translateX(${-r.pos * row(r) + (r.reel.clientWidth - row(r)) / 2}px)`
+      : `translateY(${-(r.pos - peek()) * row(r)}px)`;
+  };
+  const peek = () => parseFloat(getComputedStyle(slot).getPropertyValue("--peek")) || .75;
   const idx = (r) => ((Math.round(r.pos) % r.n) + r.n) % r.n;
   const recentre = (r) => { r.pos = r.n * 6 + idx(r); };
   // keep the sentence centred unless it would run into the Sound switch
@@ -2211,7 +2259,23 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     }
   });
 
-  // the hand
+  // phones: a lever on the right edge; drag the red ball down (or tap it) to spin
+  const lever = band.querySelector(".bf-lever");
+  if (lever) {
+    const knob = lever.querySelector(".bf-lever__knob"), stick = lever.querySelector(".bf-lever__stick");
+    const TOP = 2, PIVOT = 78, MAX = 56, FIRE = 32, R = 14;
+    let pull = 0, startY = 0, dragging = false, fired = false;
+    const draw = () => { const ky = TOP + pull; knob.style.top = ky + "px"; const a = Math.min(ky + R, PIVOT), b = Math.max(ky + R, PIVOT); stick.style.top = a + "px"; stick.style.height = Math.max(4, b - a) + "px"; };
+    const back = () => { lever.classList.add("is-back"); pull = 0; draw(); setTimeout(() => lever.classList.remove("is-back"), 520); };
+    const fire = () => { if (fired) return; fired = true; btn.click(); };
+    draw();
+    lever.addEventListener("pointerdown", (e) => { dragging = true; fired = false; startY = e.clientY; lever.setPointerCapture(e.pointerId); lever.classList.remove("is-back"); e.preventDefault(); });
+    lever.addEventListener("pointermove", (e) => { if (!dragging) return; pull = Math.max(0, Math.min(MAX, e.clientY - startY)); draw(); if (pull >= FIRE) fire(); });
+    const up = () => { if (!dragging) return; dragging = false; if (!fired) { pull = MAX; draw(); setTimeout(() => { fire(); back(); }, 200); } else back(); };
+    lever.addEventListener("pointerup", up); lever.addEventListener("pointercancel", () => { dragging = false; back(); });
+  }
+
+  // the hand (only where the round Spin button is showing)
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   const aim = () => {
     const b = band.getBoundingClientRect(), r = btn.getBoundingClientRect();
@@ -2219,7 +2283,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     hand.style.setProperty("--hy", (r.bottom - b.bottom - r.height * .22 + 99) + "px");
   };
   async function poke() {
-    if (reduce || document.hidden || !drifting) return;
+    if (reduce || document.hidden || !drifting || !btn.offsetParent) return;
     aim(); hand.classList.remove("is-leave"); hand.classList.add("is-up", "is-hover"); await wait(380);
     await wait(900 + Math.random() * 700);
     hand.classList.remove("is-hover"); hand.classList.add("is-press"); btn.classList.add("is-down");
