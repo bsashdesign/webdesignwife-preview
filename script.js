@@ -365,9 +365,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
           const to = { left: P.left + (S.left - P.left) * k + tx, top: P.top + (S.top - P.top) * k + ty };
           const from = b.getBoundingClientRect();
           phone.style.transformOrigin = "0 0";
-          const BIG = `translate(${tx}px, ${ty}px) scale(${k})`, SLIDE = 420, SHRINK = 1000;
+          // ?slowmo=8 plays the handover in slow motion (for checking it frame by frame)
+          const SLOW = +new URLSearchParams(location.search).get("slowmo") || 1;
+          const BIG = `translate(${tx}px, ${ty}px) scale(${k})`, SLIDE = 420 * SLOW, SHRINK = 1000 * SLOW;
           box.querySelectorAll(".hintro__from, .hintro__you, .hintro__cue, .chat-pick__or, .chat-choice").forEach((el) => {
-            if (el !== b) el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: "ease-out", fill: "forwards" });
+            if (el !== b) el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260 * SLOW, easing: "ease-out", fill: "forwards" });
           });
           b.animate([{ transform: "none" }, { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px)` }], { duration: SLIDE, easing: "cubic-bezier(.4, 0, .2, 1)", fill: "forwards" });
           const move = phone.animate([
