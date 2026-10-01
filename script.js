@@ -2339,6 +2339,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     const gen = ++spins; drifting = false; msg.classList.remove("is-on");
     const win = btn.dataset.byHand !== "1"; // your spins land on "Web Design Wife"; the hand's never do
     if (win) youSpun = true; // after that, the hand stays away
+    if (win && btn.classList.contains("bf-spin")) btn.textContent = "Spin Again"; // after your first spin
     if (win) { linkAway(0); linkAway(1); }
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {

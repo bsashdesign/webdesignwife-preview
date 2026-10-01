@@ -5984,3 +5984,6 @@ html.theme-blocks .for.for--spin:not(#z) { background: var(--sun); }
 html.theme-blocks .for--spin .treel__frame:not(#z):not(#y) { background: #fff; }
 html.theme-blocks #work:not(#z):not(#y) { background: #fff; }
 html.theme-blocks #work .work-founding.work-founding:not(#z):not(#y) { background: var(--sun); }
+/* Spin again: a little narrower than the button beside it */
+.bf-actions .bf-spin:not(#z) { min-width: 0; padding-left: 20px; padding-right: 20px; }
+@media (max-width: 600px) { .bf-actions .bf-spin:not(#z) { padding-left: 14px; padding-right: 14px; } }
