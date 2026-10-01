@@ -4991,3 +4991,8 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-blocks .spot__vs > div:last-child { border-left-color: var(--lime); }
 .theme-subway .spot__vs > div:last-child { border-left-color: #fccc0a; }
 .theme-wedding .spot__vs > div:last-child { border-left-color: var(--gold); }
+/* the edits-vs-refresh note is smaller and quieter than the intro */
+.spot__vs { gap: 10px; margin-top: 18px; font-size: .88rem; }
+.spot__vs > div { padding-left: 12px; border-left-width: 2px; }
+.spot__vs dt { font-size: .92rem; margin-bottom: 1px; }
+.spot__vs dd { line-height: 1.45; }
