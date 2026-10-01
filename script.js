@@ -2316,7 +2316,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
 
   // The Spin button's labels: a new one with each of your spins, getting sillier; the tenth is the jackpot.
   // Every label sits stacked in the same spot inside the button, so it's always as wide as the longest one.
-  const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "Again? 😄"];
+  const LABELS = ["Spin", "Spin Again", "Once More?", "Okay, Again", "Try Me", "LOL, Again", "You're Hooked", "Still Going?!", "One More…", "Last One!!", "No More", "If You Insist"];
   // What your spins reveal: a friendly three-word benefit each time ("for" and "in" tucked away), picked from this
   // pool without repeats; the tenth spin, the jackpot, always lands on Web Design Wife
   const PERKS = [
@@ -2348,11 +2348,11 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     btn.classList.remove("is-new"); void btn.offsetWidth; btn.classList.add("is-new");
   };
   setLabel(0);
-  // counts your spins (1 = first): after spin n the button shows label n; after the tenth (the jackpot) it reads
-  // "Again?" and the count starts over
+  // counts your spins (1 = first): after spin n the button shows label n; the tenth (the jackpot) reads "No More",
+  // then "If You Insist", and the count starts over
   const bumpLabel = () => {
     level = level >= 10 ? 1 : level + 1;
-    setLabel(level);
+    setLabel(level); // the tenth spin, the jackpot, reads "No More" while it plays
     return level;
   };
   // the jackpot: confetti pours down the whole screen and the band does a little happy shake
@@ -2360,13 +2360,25 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (reduce) return;
     band.classList.remove("is-jackpot"); void band.offsetWidth; band.classList.add("is-jackpot");
     setTimeout(() => band.classList.remove("is-jackpot"), 1600);
-    const COLS = ["#ff4fa6", "#d4ff4f", "#9fd8ff", "#ffe27a", "#ff7d33", "#b6f5c8", "#5b3df5"];
-    for (let i = 0; i < 140; i++) {
-      const c = document.createElement("i"); c.className = "bf-rain";
-      c.style.left = Math.random() * 100 + "vw"; c.style.background = COLS[i % COLS.length];
-      c.style.setProperty("--fall", (1.8 + Math.random() * 1.6) + "s"); c.style.setProperty("--delay", (Math.random() * .8) + "s");
-      c.style.setProperty("--drift", (Math.random() * 160 - 80) + "px"); c.style.setProperty("--spin", (Math.random() * 1080 - 540) + "deg");
-      document.body.appendChild(c); setTimeout(() => c.remove(), 4400);
+    // each mood throws its own confetti: Tangy chunky ink-edged bits in the bright palette, Calm soft lilac and
+    // violet dots that float down, Transit subway-line bullets and MetroCard-yellow strips, Soirée gold and ivory
+    // petals that drift and flutter
+    const root = document.documentElement, mood = root.classList.contains("theme-subway") ? "transit" : root.classList.contains("theme-refined") ? "calm" : root.classList.contains("theme-wedding") ? "soiree" : "tangy";
+    const SETS = {
+      tangy: ["#ff4fa6", "#d4ff4f", "#9fd8ff", "#ffe27a", "#ff7d33", "#b6f5c8"],
+      calm: ["#5b3df5", "#8b74ff", "#c9bdff", "#e3defa", "#b4abe6"],
+      transit: ["#ee352e", "#ff6319", "#fccc0a", "#00933c", "#0039a6", "#b933ad"],
+      soiree: ["#b8955a", "#d9c49a", "#e9d9b4", "#fffdf8", "#a2741f"],
+    };
+    const cols = SETS[mood], count = mood === "calm" ? 90 : 140;
+    for (let i = 0; i < count; i++) {
+      const c = document.createElement("i"); c.className = `bf-rain bf-rain--${mood}`;
+      if (mood === "transit" && i % 4 === 0) c.classList.add("is-strip");
+      c.style.left = Math.random() * 100 + "vw"; c.style.background = cols[i % cols.length];
+      const slow = mood === "calm" || mood === "soiree";
+      c.style.setProperty("--fall", ((slow ? 2.8 : 1.8) + Math.random() * 1.6) + "s"); c.style.setProperty("--delay", (Math.random() * (slow ? 1.2 : .8)) + "s");
+      c.style.setProperty("--drift", (Math.random() * (slow ? 260 : 160) - (slow ? 130 : 80)) + "px"); c.style.setProperty("--spin", (Math.random() * 1080 - 540) + "deg");
+      document.body.appendChild(c); setTimeout(() => c.remove(), 5600);
     }
   };
 
@@ -2411,6 +2423,12 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       confetti();
       if (jackpot) megaParty();
     }, land);
+    if (jackpot) {
+      // the jackpot plays out in full: Spin says "No More" and is switched off until it's done, then gives in
+      // with "If You Insist" (and the count starts over)
+      btn.disabled = true;
+      later(() => { btn.disabled = false; setLabel(11); }, land + 3600 + GLIDE + 200);
+    }
     if (win) {
       // hold the name a moment (the jackpot a little longer), then all three reels move on together
       later(() => { msg.classList.remove("is-on"); moveOn(plans, gen); }, land + (jackpot ? 3600 : 1600));

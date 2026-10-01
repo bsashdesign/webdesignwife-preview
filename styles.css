@@ -6304,3 +6304,16 @@ html.theme-subway.theme-dark .chat-pick__or { color: #8f8f8a; }
 html.theme-wedding .chat-pick { background: #fffdf8; box-shadow: inset 0 0 0 1px rgba(184,149,90,.45); border-radius: 4px; }
 html.theme-wedding .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 2px; }
 html.theme-wedding .chat-pick__or { font: italic 500 .8rem var(--display); letter-spacing: 0; text-transform: none; color: var(--gold-ink); }
+/* jackpot confetti, per mood */
+.bf-rain--calm { width: 9px; height: 9px; border: 0; border-radius: 50%; opacity: .9; animation-timing-function: cubic-bezier(.25, .1, .4, 1); }
+.bf-rain--transit { width: 12px; height: 12px; border: 0; border-radius: 50%; }
+.bf-rain--transit.is-strip { width: 22px; height: 8px; border-radius: 2px; background: #fccc0a !important; }
+.bf-rain--soiree { width: 9px; height: 13px; border: 0; border-radius: 60% 0 60% 0; box-shadow: inset 0 0 0 1px rgba(162,116,31,.35); animation-name: bf-flutter; animation-timing-function: linear; }
+@keyframes bf-flutter {
+  25% { transform: translate(calc(var(--drift, 0) * .4), 28vh) rotate(calc(var(--spin, 540deg) * .25)) rotateY(180deg); }
+  50% { transform: translate(calc(var(--drift, 0) * -.2), 55vh) rotate(calc(var(--spin, 540deg) * .5)) rotateY(0deg); }
+  75% { transform: translate(calc(var(--drift, 0) * .8), 82vh) rotate(calc(var(--spin, 540deg) * .75)) rotateY(180deg); }
+  to { transform: translate(var(--drift, 0), 110vh) rotate(var(--spin, 540deg)) rotateY(0deg); }
+}
+/* Spin is switched off while the jackpot plays */
+.bf-spin:disabled { opacity: .55; cursor: default; pointer-events: none; }
