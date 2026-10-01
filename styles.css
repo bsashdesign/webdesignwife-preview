@@ -5321,9 +5321,9 @@ html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
 html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
 /* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
-/* on the button board and in the Change the Channel pop-up, Transit's key is charcoal with a near-black edge */
-.tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #161616; }
-#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #161616; }
+/* on the button board and in the Change the Channel pop-up, Transit's key is charcoal with a darker charcoal edge */
+.tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #262626; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #262626; }
 /* Tangy: the Brooklyn-neighbor section is white, its "Now it's your turn" card in the light yellow-orange the section used to be */
 html.theme-blocks #work:not(#z) { background: #fff; }
 html.theme-blocks #work .work-founding.work-founding:not(#z) { background: var(--sun); color: var(--ink); }
