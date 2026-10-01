@@ -6871,3 +6871,17 @@ html.theme-wedding #compare .cc--us .cc__alt, html.theme-wedding #compare .cc--u
 .plans-dialog__more a { color: inherit; text-underline-offset: 3px; }
 /* Transit: while the homepage nav is tucked away, its rainbow stripe still shows along the top */
 html.theme-subway .nav.nav--autohide:not(.is-scrolled):not(#z) { transform: translateY(calc(-100% + 6px)); }
+/* the plans pop-up always fits the screen: it scrolls inside itself, and on phones it's condensed (no feature lists —
+   the lead line says what each plan is, and "Compare the plans in detail" has the rest) */
+.plans-dialog:not(#z) { max-height: calc(100dvh - 24px); overflow-y: auto; overscroll-behavior: contain; }
+@media (max-width: 760px) {
+  .plans-dialog .finder-dialog__inner { padding: 22px 16px 18px; }
+  .plans-dialog h2 { font-size: 1.6rem; }
+  .plans-dialog .hplans__founding { font-size: .82rem; margin-bottom: 12px; }
+  .plans-dialog .hplans { gap: 12px; }
+  .plans-dialog .hplans .hplan.hplan { padding: 14px 14px 14px; gap: 8px 12px; }
+  .plans-dialog .hplans .hplan__feats { display: none; }
+  .plans-dialog .hplans .hplan .hplan__money { padding-top: 8px; display: grid; grid-template-columns: auto auto; justify-content: space-between; align-items: end; column-gap: 12px; }
+  .plans-dialog .hplans .hplan .hplan__money > * { grid-column: auto; }
+  .plans-dialog .hplans .hplan__status { grid-column: 1 / -1; }
+}
