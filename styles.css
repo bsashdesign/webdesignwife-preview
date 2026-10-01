@@ -4695,3 +4695,24 @@ html.theme-blocks .sound-toggle .sound-toggle__switch:not(#z) i { top: 5px; left
 .theme-blocks .splans .splan input:checked + span::after { box-shadow: none; transform: translate(2px, 2px); background-color: var(--ink); }
 /* Tangy switches: a black knob while off, lime once switched on */
 html.theme-blocks :is(.billing__switch:not([aria-checked="true"]), .sound-toggle:not([aria-checked="true"]) .sound-toggle__switch):not(#z) i { background: var(--ink); }
+/* the Yearly billing switch, a size smaller in every mood (knob kept centred) */
+html .billing .billing__switch:not(#z) { width: 50px; height: 28px; }
+html .billing .billing__switch:not(#z) i { top: 4px; left: 4px; width: 20px; height: 20px; }
+html .billing .billing__switch[aria-checked="true"]:not(#z) i { transform: translateX(22px); }
+html.theme-blocks .billing .billing__switch:not(#z) i { top: 7px; left: 7px; width: 14px; height: 14px; }
+html.theme-wedding .billing .billing__switch:not(#z) { width: 48px; height: 26px; }
+html.theme-wedding .billing .billing__switch:not(#z) i { top: 5px; left: 5px; width: 16px; height: 16px; }
+/* Tangy: switches get the hard 3D shadow like the rest of Tangy */
+html.theme-blocks :is(.billing__switch, .sound-toggle__switch):not(#z) { box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); }
+html.theme-blocks .sound-toggle__switch:not(#z) { box-shadow: inset 0 0 0 2px var(--ink), 2px 2px 0 var(--ink); }
+/* Sophisticated: switches are softly squared (so they read as switches, not boxes), with a faint gold track when off */
+html.theme-wedding :is(.billing__switch, .sound-toggle__switch):not(#z) { border-radius: 8px; background: rgba(184,149,90,.14); }
+html.theme-wedding :is(.billing__switch, .sound-toggle__switch):not(#z) i { border-radius: 5px; }
+html.theme-wedding .sound-toggle .sound-toggle__switch:not(#z) { border-radius: 6px; }
+html.theme-wedding .sound-toggle .sound-toggle__switch:not(#z) i { border-radius: 4px; }
+html.theme-wedding :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { background: var(--ink); }
+/* Sophisticated savings tag: solid gold, white text */
+html.theme-wedding .billing .billing__save:not(#z) { background: var(--gold-ink); color: #fff; box-shadow: none; border-radius: 3px; }
+/* the summary's plan name shrinks a little on narrower screens so it never runs past the card */
+html .ssum .ssum__head .ssum__plan { font-size: clamp(1.7rem, 3.1vw, 2.5rem); }
+html.theme-wedding .ssum .ssum__head .ssum__plan { font-size: clamp(1.85rem, 3.35vw, 2.7rem); }
