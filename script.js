@@ -315,10 +315,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       plan.querySelector(".plan__price").innerHTML = mode === "yearly"
         ? `<s class="plan__was">$${price}</s><b class="plan__now"><span>$${perMonth}</span>/month</b>`
         : `<b class="plan__now"><span>$${price}</span>/month</b>`;
-      // Founding 5: the setup fee shows struck through, with the 50%-off founding setup next to it
+      // Launch offer: the setup fee shows struck through, with the 50%-off setup next to it
       const F = window.WDW_FOUNDING;
       const setupLine = F
-        ? `+ <s>${money(setup)}</s> <strong>${money(P.found)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>Founding 5: ${F.off}% off</span>`
+        ? `+ <s>${money(setup)}</s> <strong>${money(P.found)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>${F.off}% Launch Offer</span>`
         : `+ ${money(setup)} one-time setup`;
       terms.innerHTML = mode === "yearly"
         ? `${money(yearly)} billed yearly · <strong>save ${money(P.save)} on your subscription</strong><br>${setupLine}`
@@ -1389,7 +1389,7 @@ function openSheet(d) {
     const P = window.WDW_PLANS[plan], price = P.month, setup = P.setup, year = P.year;
     const F = window.WDW_FOUNDING;
     set("today", F ? `<s>${money(setup)}</s> ${money(P.found)}` : money(setup));
-    set("today-note", F ? `One-time setup, ${F.off}% off with the Founding 5 offer` : "One-time setup fee");
+    set("today-note", F ? `One-time setup, with the ${F.off}% Launch Offer` : "One-time setup fee");
     set("then", yearly ? `${money(year)}/year` : `${money(price)}/month`);
     set("then-note", yearly ? `Your subscription starts: a year at about 20% off, saving ${money(P.save)}` : "Your subscription starts");
     set("after", yearly ? `${money(year)} every year` : `${money(price)} every month`);

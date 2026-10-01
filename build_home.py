@@ -25,11 +25,11 @@ MOODS = [
 ]
 DEFAULT = "tangy"
 
-# Founding 5 launch offer: the first five new clients pay $1 setup instead of $199/$399/$599.
+# The 50% Launch Offer: the first five businesses I accept get 50% off setup (internally still FOUNDING).
 # The plan price itself is never discounted.
 #   left: None shows no count; a number shows "N of 5 spots left". Only ever set it to the real number.
 #   on:   set to False once all five spots are taken. Every mention disappears from the built pages
-#         (also remove the "Founding 5" paragraph in terms.html by hand).
+#         (also remove the "50% Launch Offer" paragraph in terms.html by hand).
 FOUNDING = {"on": True, "left": None, "off": 50}
 
 # The plans: the one place prices live. Templates use {{$plan.field}} (e.g. {{$business.month}} → "$229") and
@@ -132,16 +132,16 @@ def founding(html):
     html = re.sub(r"<!-- FOUNDING:START -->(.*?)<!-- FOUNDING:END -->", (lambda m: m.group(1)) if on else "", html, flags=re.S)
     left = FOUNDING["left"]
     banner = ('<div class="founding">'
-              '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Founding</span><b>5</b></div>'
+              '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Launch</span><b>50%</b></div>'
               '<div class="founding__body">'
-              '<h2 class="founding__title">The Founding <span class="founding__num">5</span></h2>'
-              '<p class="founding__text">The managed service is new, so I\'m opening it to the first five businesses I take on. '
-              f'Founding 5 saves <strong>{FOUNDING["off"]}% on setup</strong>. Your subscription is the regular plan price. '
+              '<h2 class="founding__title">The <span class="founding__num">50%</span> Launch Offer</h2>'
+              '<p class="founding__text">The managed service is new, so the first five businesses I accept get '
+              f'<strong>{FOUNDING["off"]}% off setup</strong>. Your subscription is the regular plan price. '
               'When the five spots are gone, so is the offer.</p>'
               + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
               + "</div></div>") if on else ""
     return (html.replace("{{FOUNDING_BANNER}}", banner)
-                .replace("{{HERO_LABEL}}", f'<span class="eyebrow__text">Founding 5: {FOUNDING["off"]}% off setup</span>' if on else "Based in Brooklyn, New York"))
+                .replace("{{HERO_LABEL}}", f'<span class="eyebrow__text">Launch offer: {FOUNDING["off"]}% off setup</span>' if on else "Based in Brooklyn, New York"))
 
 
 def work_visual():
