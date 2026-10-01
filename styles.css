@@ -5365,3 +5365,6 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
   #moods-tv > .wrap:not(#z) { grid-template-columns: 460px minmax(0, 1fr); column-gap: 40px; }
   #moods-tv .tv-keys .tv-key:not(#z) { width: 88px; }
 }
+/* (the pressed state has to come after the hover rule above, or hovering a pressed Transit key brings its edge back) */
+#moods-tv .tv-key--transit:is([aria-pressed="true"], :active) .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 3px 6px rgba(0,0,0,.35); }
+:is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.35); }
