@@ -6846,3 +6846,7 @@ html.theme-refined .promises p:nth-child(4):not(#z)::before { background: var(--
 html.theme-blocks .promises p:not(#z)::before { background: #fff; color: var(--ink); border: var(--edge); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
 /* Tangy: one pink — the second vow card uses the same light pink as the FAQ band */
 html.theme-blocks .promises p:nth-child(2):not(#z) { background: var(--lilac); }
+/* the map pin's outline isn't clipped at the edges of its drawing */
+.gmcard__pin svg:not(#z) { overflow: visible; }
+/* Tangy: the Google Maps icon boxes get the hard 3D shadow like Tangy's other icon tiles */
+html.theme-blocks .mplans .mplan__ico:not(#z) { box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); }
