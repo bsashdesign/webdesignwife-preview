@@ -2339,7 +2339,12 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     const gen = ++spins; drifting = false; msg.classList.remove("is-on");
     const win = btn.dataset.byHand !== "1"; // your spins land on "Web Design Wife"; the hand's never do
     if (win) youSpun = true; // after that, the hand stays away
-    if (win && btn.classList.contains("bf-spin")) btn.textContent = "Spin Again"; // after your first spin
+    // after your first spin it reads "Spin Again" (both labels share one spot, so the button never changes width)
+    if (win && btn.classList.contains("bf-spin") && !btn.classList.contains("is-again")) {
+      btn.classList.add("is-again");
+      btn.querySelector(".bf-spin__one")?.setAttribute("aria-hidden", "true");
+      btn.querySelector(".bf-spin__again")?.removeAttribute("aria-hidden");
+    }
     if (win) { linkAway(0); linkAway(1); }
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {

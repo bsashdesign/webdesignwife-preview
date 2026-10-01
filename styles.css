@@ -5991,3 +5991,8 @@ html.theme-blocks #work .work-founding.work-founding:not(#z):not(#y) { backgroun
 .bf-actions:not(#z) { position: relative; z-index: 2; margin-top: -20px; }
 @media (max-width: 600px) { .bf-actions:not(#z) { margin-top: -8px; } }
 .bf-actions:not(#z):not(#y) { margin-top: -8px; }
+/* Spin and Spin Again share one spot, so the button is always as wide as "Spin Again" */
+.bf-spin:not(#z) { display: inline-grid; justify-items: center; }
+.bf-spin > span { grid-area: 1 / 1; }
+.bf-spin .bf-spin__again, .bf-spin.is-again .bf-spin__one { visibility: hidden; }
+.bf-spin.is-again .bf-spin__again { visibility: visible; }
