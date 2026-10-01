@@ -5329,3 +5329,5 @@ html.theme-blocks .splans .splan input:checked + span:not(#z) small { color: var
 /* Tangy: the money-back seal's lettering and inner ring are black on the orange */
 html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
 html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
+/* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
+html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
