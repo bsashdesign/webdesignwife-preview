@@ -5655,14 +5655,14 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 @media (max-width: 600px) {
   .for.for--spin:not(#z) { padding: 12px 0; }
   .bf-wrap { padding-right: 46px; }
-  .for--spin .slot:not(#z) { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 1rem; }
+  .for--spin .slot:not(#z) { display: flex; flex-direction: column; align-items: center; gap: 0; font-size: 1rem; }
   .for--spin .tick:not(#z) { --row: 1.9em; }
   .for--spin .treel:not(#z) { width: 100% !important; height: var(--row); }
   .for--spin .treel__frame:not(#z) { top: 0; left: 50%; right: auto; width: var(--fw, 60%); translate: -50% 0; border-radius: 12px; }
   .for--spin .treel__win:not(#z) { -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.4) 14%, rgba(0,0,0,.4) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.4) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.4) 86%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.4) 14%, rgba(0,0,0,.4) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.4) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.4) 86%, transparent 100%); }
   .for--spin .treel__list:not(#z) { display: flex; }
   .for--spin .treel__list li:not(#z) { flex: none; width: var(--fw, 60%); padding: 0; }
-  .for--spin .slot__word:not(#z) { font-size: .72em; opacity: .7; line-height: 1.1; }
+  .for--spin .slot__word:not(#z) { margin: 7px 0 3px; font-size: .78em; opacity: 1; color: var(--ink); line-height: 1.1; }
   .for--spin .drift__btn:not(#z) { display: none; }
   .for--spin .bf-lever { position: absolute; right: 8px; top: 50%; translate: 0 -50%; display: block; width: 36px; height: 96px; padding: 0; border: 0; background: none; cursor: grab; touch-action: none; z-index: 4; }
   .bf-lever__track { position: absolute; left: 50%; top: 10px; bottom: 6px; width: 10px; translate: -50% 0; border-radius: 6px; background: color-mix(in srgb, var(--ink) 14%, transparent); box-shadow: inset 0 1px 2px rgba(0,0,0,.25); }

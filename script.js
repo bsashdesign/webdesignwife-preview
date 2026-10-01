@@ -2155,13 +2155,20 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   // each window is as wide as its longest word, measured in whichever mood's font is showing
   // phones stack the reels and slide the words sideways instead of up and down
   const horizMQ = matchMedia("(max-width: 600px)"), horiz = () => horizMQ.matches;
-  const size = () => reels.forEach((r) => {
-    const probe = document.createElement("li"); probe.style.cssText = "position:absolute;visibility:hidden;width:auto;padding:0 .5em"; r.ul.appendChild(probe);
-    let w = 0; r.items.forEach((t) => { probe.textContent = t; w = Math.max(w, probe.getBoundingClientRect().width); }); probe.remove();
-    r.reel.style.width = horiz() ? "" : Math.ceil(w) + 2 + "px";
-    r.reel.style.setProperty("--fw", Math.ceil(w) + 4 + "px");
-    show(r, 0);
-  });
+  const size = () => {
+    const widths = reels.map((r) => {
+      const probe = document.createElement("li"); probe.style.cssText = "position:absolute;visibility:hidden;width:auto;padding:0 .5em"; r.ul.appendChild(probe);
+      let w = 0; r.items.forEach((t) => { probe.textContent = t; w = Math.max(w, probe.getBoundingClientRect().width); }); probe.remove();
+      return Math.ceil(w);
+    });
+    // stacked on phones, all three frames share the widest one's width
+    const same = Math.max(...widths);
+    reels.forEach((r, k) => {
+      r.reel.style.width = horiz() ? "" : widths[k] + 2 + "px";
+      r.reel.style.setProperty("--fw", (horiz() ? same : widths[k]) + 4 + "px");
+      show(r, 0);
+    });
+  };
   horizMQ.addEventListener("change", () => setTimeout(() => { size(); fit(); }, 30));
   const row = (r) => r.ul.firstElementChild.getBoundingClientRect()[horiz() ? "width" : "height"];
   const show = (r, ms, ease) => {
