@@ -5414,3 +5414,9 @@ html.theme-wedding { --page-title: clamp(2.8rem, 6vw, 5rem); }
 #moods-tv .tv__grille { position: relative; }
 #moods-tv .tv__grille .tv__waves:not(#z) { left: 100%; top: 50%; margin-left: 2px; }
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z):not(#y) { border-radius: 9px; }
+/* Calm and Soirée: "My Vows to You" and the FAQ are two separate sections, the vows on a soft colour of their own */
+html:is(.theme-refined, .theme-wedding) #faq:not(#z) { padding-top: 72px; }
+@media (max-width: 760px) { html:is(.theme-refined, .theme-wedding) #faq:not(#z) { padding-top: 56px; } }
+html.theme-refined #promises:not(#z) { background: #efeaff; }
+html.theme-wedding #promises:not(#z) { background: #efe6d2; }
+html:is(.theme-refined, .theme-wedding) #promises .promises > *:not(#z) { background: #fff; }
