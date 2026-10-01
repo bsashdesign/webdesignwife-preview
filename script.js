@@ -2133,8 +2133,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     return { reel, ul, items, n, dir: reel.dataset.dir === "down" ? -1 : 1, pos: n * 6 + (k === 1 ? 5 : 0) };
   });
   // each window is as wide as its longest word, measured in whichever mood's font is showing
-  // phones stack the reels and slide the words sideways instead of up and down
-  const horizMQ = matchMedia("(max-width: 600px)"), horiz = () => horizMQ.matches;
+  const horizMQ = matchMedia("(max-width: 0px)"), horiz = () => false;
   const size = () => {
     const widths = reels.map((r) => {
       const probe = document.createElement("li"); probe.style.cssText = "position:absolute;visibility:hidden;width:auto;padding:0 .5em"; r.ul.appendChild(probe);
@@ -2181,7 +2180,19 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     const right = Math.max(...kids.map((c) => c.getBoundingClientRect().right));
     if (right + 16 > sound.getBoundingClientRect().left) wrap.classList.add("is-tight");
   };
-  const sizeAll = () => { size(); fit(); };
+  // phones: shrink the sentence's text until all three reels fit on one line
+  const phoneMQ = matchMedia("(max-width: 600px)");
+  const shrink = () => {
+    slot.style.fontSize = "";
+    if (!phoneMQ.matches) return;
+    size();
+    const kids = [...slot.children].filter((c) => c.classList.contains("treel") || c.classList.contains("slot__word"));
+    const need = kids.reduce((w, c) => w + c.getBoundingClientRect().width, 0) + parseFloat(getComputedStyle(slot).columnGap || 0) * (kids.length - 1);
+    const room = slot.clientWidth - 4;
+    if (need > room) { slot.style.fontSize = (parseFloat(getComputedStyle(slot).fontSize) * room / need) + "px"; }
+  };
+  const sizeAll = () => { shrink(); size(); fit(); };
+  addEventListener("resize", () => { shrink(); size(); });
   sizeAll();
   if (document.fonts) document.fonts.ready.then(sizeAll);
   addEventListener("resize", fit);
@@ -2256,6 +2267,9 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
       setTimeout(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); drifting = true; }, land + 60);
     }
   });
+
+  // phones: no Spin button; a tap anywhere on the sentence spins it
+  slot.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn")) btn.click(); });
 
   // phones: a lever on the right edge; drag the red ball down (or tap it) to spin
   const lever = band.querySelector(".bf-lever");

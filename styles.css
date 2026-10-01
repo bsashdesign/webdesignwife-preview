@@ -5649,30 +5649,16 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
    invitation: clearly a button, not another reel */
 html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%; background: var(--ink); color: #e9d9b4; box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 4px rgba(217,196,154,.75), 0 6px 14px -8px rgba(31,35,54,.6); font: italic 600 1.05rem/1 var(--display); letter-spacing: .01em; text-transform: none; transition: background-color .15s, color .15s, transform .1s; }
 @media (hover: hover) { html.theme-wedding .for--spin .drift__btn:not(#z):hover { background: var(--gold-ink); color: #fffdf8; box-shadow: inset 0 0 0 3px var(--gold-ink), inset 0 0 0 4px rgba(255,253,248,.7), 0 6px 14px -8px rgba(31,35,54,.6); } }
-/* Built-for band on phones: the three reels stack ("Polished / for / Cleaners / in / Park Slope"), each sliding
-   sideways with its neighbours peeking in at the sides, and Spin becomes a slot-machine lever on the right edge */
+/* Built-for band on phones: still one line ("Built for Plumbers in Bushwick"), the text shrunk just enough
+   (by script.js) for all three reels to fit; no Spin button, tapping the sentence spins it */
 .bf-lever { display: none; }
 @media (max-width: 600px) {
-  .for.for--spin:not(#z) { padding: 12px 0; }
-  .bf-wrap { padding-right: 46px; }
-  .for--spin .slot:not(#z) { display: flex; flex-direction: column; align-items: center; gap: 0; font-size: 1rem; }
-  .for--spin .tick:not(#z) { --row: 1.9em; }
-  .for--spin .treel:not(#z) { width: 100% !important; height: var(--row); }
-  .for--spin .treel__frame:not(#z) { top: 0; left: 50%; right: auto; width: var(--fw, 60%); translate: -50% 0; border-radius: 12px; }
-  .for--spin .treel__win:not(#z) { -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.2) 0, rgba(0,0,0,.55) 8%, rgba(0,0,0,.55) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.55) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.55) 92%, rgba(0,0,0,.2) 100%); mask-image: linear-gradient(90deg, rgba(0,0,0,.2) 0, rgba(0,0,0,.55) 8%, rgba(0,0,0,.55) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.55) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.55) 92%, rgba(0,0,0,.2) 100%); }
-  .for--spin .treel__list:not(#z) { display: flex; }
-  .for--spin .treel__list li:not(#z) { flex: none; width: var(--fw, 60%); padding: 0; }
-  .for--spin .slot__word:not(#z) { margin: 7px 0 3px; font-size: .78em; opacity: 1; color: var(--ink); line-height: 1.1; }
-  .for--spin .drift__btn:not(#z) { display: none; }
-  .for--spin .bf-lever { position: absolute; right: 8px; top: 50%; translate: 0 -50%; display: block; width: 36px; height: 96px; padding: 0; border: 0; background: none; cursor: grab; touch-action: none; z-index: 4; }
-  .bf-lever__track { position: absolute; left: 50%; top: 10px; bottom: 6px; width: 10px; translate: -50% 0; border-radius: 6px; background: color-mix(in srgb, var(--ink) 14%, transparent); box-shadow: inset 0 1px 2px rgba(0,0,0,.25); }
-  .bf-lever__stick { position: absolute; left: 50%; width: 6px; translate: -50% 0; border: 2px solid var(--ink); border-radius: 4px; background: linear-gradient(90deg, #8d8d8d, #f4f4f4 45%, #a9a9a9); }
-  .bf-lever__knob { position: absolute; left: 50%; width: 28px; height: 28px; translate: -50% 0; border-radius: 50%; border: 2px solid var(--ink); background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.85) 0 15%, transparent 22%), radial-gradient(circle at 60% 70%, #b8231a, #e8392e 60%); box-shadow: 2px 2px 0 var(--ink); }
-  .bf-lever.is-back .bf-lever__knob, .bf-lever.is-back .bf-lever__stick { transition: top .5s cubic-bezier(.3, 1.7, .5, 1), height .5s cubic-bezier(.3, 1.7, .5, 1); }
-  .theme-refined .bf-lever__knob { background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.85) 0 15%, transparent 22%), radial-gradient(circle at 60% 70%, #3d23d6, #5b3df5 60%); border-color: #3d23d6; box-shadow: none; }
-  .theme-wedding .bf-lever__knob { background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.7) 0 15%, transparent 22%), radial-gradient(circle at 60% 70%, #6b5023, #b8955a 60%); border-color: #6b5023; box-shadow: none; }
-  .theme-subway.theme-dark .bf-lever__track { background: #2a2a2a; }
-  .theme-subway.theme-dark .bf-lever__knob { border-color: #111; box-shadow: none; }
+  .for.for--spin:not(#z) { padding: 6px 0; }
+  .for--spin .slot:not(#z) { display: grid; grid-template-columns: repeat(5, auto); justify-content: center; align-items: center; column-gap: .3em; row-gap: 4px; }
+  .for--spin .slot .drift__btn:not(#z) { display: none; }
+  .for--spin .slot:not(#z) { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .for--spin .treel__list li { padding: 0 .35em; }
+  .for--spin .treel__frame { border-radius: 10px; }
 }
 /* Hero phone, after its demo: a real message field, and a little note inviting you to try it */
 .phone__compose.is-live { padding: 0; cursor: text; }
@@ -5691,4 +5677,3 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 .theme-subway.theme-dark .chat-nudge { background: #fccc0a; color: #111; }
 .theme-subway.theme-dark .chat-nudge::after { border-top-color: #fccc0a; }
 .theme-wedding .chat-nudge { background: var(--ink); color: #e9d9b4; border-radius: 2px; font: italic 600 .9rem/1.2 var(--display); }
-@media (max-width: 600px) { .for--spin .treel__list li:not(#z) { display: flex; justify-content: center; } .for--spin .treel__list li > span { display: inline-block; white-space: nowrap; } }
