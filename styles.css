@@ -6580,5 +6580,7 @@ html.theme-wedding .hintro__you { font-family: var(--display); font-style: itali
 html.theme-blocks .hintro .m--us .bubble:not(#z) { box-shadow: 4px 4px 0 var(--ink); }
 /* replies you can choose from have a dotted outline: a message not sent yet (the solid bubble appears once it's sent) */
 html .chat-choice:not(#z):not(#y):not(#x) { border-style: dotted; border-width: 2px; }
-html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { box-shadow: none; }
+/* Tangy: a bolder dashed outline, and a see-through fill rather than solid white */
+html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { box-shadow: none; border: 2.5px dashed var(--ink); background: rgba(255, 255, 255, .45); }
+@media (hover: hover) { html.theme-blocks .chat-choice:not(#z):not(#y):not(#x):hover { background: rgba(255, 255, 255, .85); } }
 html .hintro .m--typing .bubble i:not(#z) { width: 10px; height: 10px; }
