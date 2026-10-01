@@ -78,7 +78,7 @@
 /* Vows: centered, numbered in roman numerals */
 .theme-wedding .promises { counter-reset: vow; }
 .theme-wedding .promises p { text-align: center; counter-increment: vow; padding: 34px 26px; background: #fff !important; }
-.theme-wedding .promises p::before { content: counter(vow, upper-roman); display: block; font: italic 500 1.5rem var(--display); color: var(--gold); margin-bottom: 8px; }
+.theme-wedding .promises p::before { content: counter(vow); display: block; font: italic 500 1.5rem var(--display); color: var(--gold); margin-bottom: 8px; }
 .theme-wedding .promises strong { font-family: var(--display); font-weight: 600; font-size: 1.4rem; }
 
 /* Local section and boroughs */

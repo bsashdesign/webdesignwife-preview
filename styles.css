@@ -2540,7 +2540,7 @@ h1, h2, .blog-hero h1, .fhero h1, .fchap h2, #how h2, #audit h2, #pricing .prici
 .theme-blocks .spot__steps strong { color: var(--ink); } .theme-blocks .spot__steps span { color: var(--ink-soft); }
 .theme-blocks .spot__steps li:nth-child(1)::before { background: var(--lime); } .theme-blocks .spot__steps li:nth-child(2)::before { background: var(--rose); } .theme-blocks .spot__steps li:nth-child(3)::before { background: var(--sun); }
 .theme-blocks .spot__steps li::before { box-shadow: inset 0 0 0 2px var(--ink); color: var(--ink); }
-.theme-wedding .spot__steps li::before { content: counter(s, upper-roman); }
+.theme-wedding .spot__steps li::before { content: counter(s); }
 .theme-wedding .spot__steps li { background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(217,196,154,.3); border-radius: 2px; }
 /* Features plan bar: real tabs (underline), not pill buttons */
 .ftabs__inner { gap: 4px; padding-top: 0; padding-bottom: 0; }
@@ -2898,7 +2898,7 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-subway .psteps li::before { background: var(--yellow); color: #111; }
 .theme-subway .paysample, .theme-subway .paysample__plans, .theme-subway .paysample__plans button { border-radius: 8px; }
 .theme-wedding .psteps li, .theme-wedding .paysample { border-radius: 2px; background: #fff; box-shadow: inset 0 0 0 1px rgba(184,149,90,.3); }
-.theme-wedding .psteps li::before { content: counter(ps, upper-roman); background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold-ink); font: italic 600 1rem var(--display); }
+.theme-wedding .psteps li::before { content: counter(ps); background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold-ink); font: italic 600 1rem var(--display); }
 .theme-wedding .paysample__plans button[aria-pressed="true"] { background: var(--gold-ink); }
 .theme-refined .psteps li::before, .theme-refined .paysample__plans button[aria-pressed="true"] { background: var(--violet); }
 @media (max-width: 640px) { .guarantee--big { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } }
@@ -4138,7 +4138,7 @@ span.plan-ring:empty { display: none; }
 /* Transit: circles, at the normal size */
 .theme-subway ol.steps li::before { border-radius: 50%; width: 40px; height: 40px; font-size: 1.1rem; }
 /* Sophisticated: Roman numerals in square frames */
-.theme-wedding .steps li::before { content: counter(step, upper-roman); border-radius: 2px; }
+.theme-wedding .steps li::before { content: counter(step); border-radius: 2px; }
 #compare .compare-cards .cc.cc--us { background: var(--us-bg, #f1edff); border: 2px solid var(--us-edge, var(--violet)); }
 .theme-subway #compare .compare-cards .cc.cc--us { background: #fff; border: 1px solid var(--line); border-top: 6px solid var(--blue); }
 .theme-wedding #compare .compare-cards .cc.cc--us { background: var(--ink); border-color: var(--ink); }
