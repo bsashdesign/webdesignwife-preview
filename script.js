@@ -2399,14 +2399,14 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       hand.style.setProperty("--hy", (tipY - 130) + "px");
       hand.style.setProperty("--hxo", (b.width + 150) + "px");
     } else {
-      // phones: tilted to point up and left (60°), the arm running off to the bottom right. The fingertip sits
-      // .87 × the hand's height left of, and half its height above, the sleeve's end; it lands just right of and
-      // below the middle of the frame
+      // phones: turned to point down and left, the arm running off to the top right (two o'clock). The fingertip
+      // sits .87 × the hand's height left of, and half its height below, the sleeve's end; it lands just right of
+      // and above the middle of the frame
       hand.classList.add("from-corner");
       const H = hand.offsetHeight, w = hand.offsetWidth;
-      const cx = r.left - b.left + r.width * .62, cy = r.top - b.top + r.height * .62;
+      const cx = r.left - b.left + r.width * .62, cy = r.top - b.top + r.height * .4;
       hand.style.setProperty("--hx", (cx - w / 2 + .866 * H) + "px");
-      hand.style.setProperty("--hy", (cy - b.height + .5 * H) + "px");
+      hand.style.setProperty("--hy", (cy - b.height - .5 * H) + "px");
     }
   };
   async function poke() {

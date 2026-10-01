@@ -5749,3 +5749,7 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 .for--spin .pokehand.from-corner.is-up { transform: translate(calc(var(--hx, 0px) + 9px), calc(var(--hy, 0px) + 5px)) rotate(-60deg); }
 .for--spin .pokehand.from-corner.is-hover { transform: translate(calc(var(--hx, 0px) + 9px), calc(var(--hy, 0px) + 5px)) rotate(-60deg); }
 .for--spin .pokehand.from-corner.is-press { transform: translate(calc(var(--hx, 0px) - 1px), calc(var(--hy, 0px) - 1px)) rotate(-60deg); }
+/* phones: the hand reaches in from the top right (two o'clock), pointing down and left at the middle reel */
+.for--spin .pokehand.from-corner { transform: translate(calc(var(--hx, 0px) + 230px), calc(var(--hy, 0px) - 133px)) rotate(-120deg); }
+.for--spin .pokehand.from-corner.is-up, .for--spin .pokehand.from-corner.is-hover { transform: translate(calc(var(--hx, 0px) + 9px), calc(var(--hy, 0px) - 5px)) rotate(-120deg); }
+.for--spin .pokehand.from-corner.is-press { transform: translate(calc(var(--hx, 0px) - 1px), calc(var(--hy, 0px) + 1px)) rotate(-120deg); }
