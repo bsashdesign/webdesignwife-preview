@@ -6551,7 +6551,7 @@ html .gmcard__btns:not(#z) { gap: 6px; }
 .demo.is-intro .browser, .demo.is-intro .phone { opacity: 0; transform: translateY(24px) scale(.96); pointer-events: none; }
 .demo.is-intro { min-height: 420px; }
 .hintro { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; justify-content: center; gap: 18px; max-width: 520px; margin-left: auto; padding: 8px 0; transition: opacity .38s ease, transform .38s ease; }
-.hintro.is-out { opacity: 0; transform: translateY(-10px); }
+.hintro.is-out { opacity: 0; transition: opacity .3s ease; }
 .hintro__from { display: flex; align-items: center; gap: 10px; margin: 0; font-size: .95rem; color: var(--ink-soft); }
 .hintro__from img { width: 34px; height: 34px; border-radius: 50%; }
 .hintro__from strong { color: var(--ink); }
@@ -6576,3 +6576,8 @@ html.theme-subway .hintro .chat-choice:not(#z):not(#y):not(#x) { border-radius: 
   .hintro { max-width: none; gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { .hintro__cue b { animation: none; } }
+/* while the close-up hands over to the phone, the phone is shown (the script scales it down from the close-up) */
+.demo.is-handoff .phone:not(#z) { opacity: 1; transform: none; transition: none; }
+/* "You" over the replies, on the right, like the sender name over the message on the left */
+.hintro__you { align-self: flex-end; margin: 6px 0 -10px; font-size: .95rem; color: var(--ink-soft); }
+html.theme-wedding .hintro__you { font-family: var(--display); font-style: italic; font-size: 1.1rem; }

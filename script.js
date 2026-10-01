@@ -291,7 +291,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const box = document.createElement("div");
     box.className = "hintro";
     box.innerHTML = '<p class="hintro__from"><img src="images/favicon.jpg" alt=""><span>Message from <strong>Web Design Wife</strong></span></p>'
-      + '<div class="hintro__msg"></div><div class="hintro__pick" role="group" aria-label="Choose a reply"></div>'
+      + '<div class="hintro__msg"></div><p class="hintro__you" aria-hidden="true">You</p><div class="hintro__pick" role="group" aria-label="Choose a reply"></div>'
       + '<p class="hintro__cue" aria-hidden="true"><b>↑</b> Choose a reply, <em>really.</em></p>';
     demo.classList.add("is-intro");
     demo.append(box);
@@ -318,14 +318,27 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         b.addEventListener("click", async () => {
           if (box.classList.contains("is-out")) return;
           box.classList.add("is-out");
-          await tick(380);
+          // The phone appears behind the close-up, as big as it, then everything shrinks down into the phone in
+          // its usual spot while the website fades in beside it.
+          const phone = demo.querySelector(".phone");
+          demo.classList.add("is-handoff");
+          const pf = phone.getBoundingClientRect(), ib = box.getBoundingClientRect();
+          const sc = Math.min(ib.width / pf.width, ib.height / pf.height) * 1.05;
+          const dx = ib.left + ib.width / 2 - (pf.left + pf.width / 2), dy = ib.top + ib.height / 2 - (pf.top + pf.height / 2);
+          const big = `translate(${dx}px, ${dy}px) scale(${sc})`;
+          const grow = phone.animate([{ transform: big, opacity: 0 }, { transform: big, opacity: 1, offset: .3 }, { transform: "none", opacity: 1 }],
+            { duration: 1150, easing: "cubic-bezier(.65, 0, .25, 1)" });
+          setTimeout(() => demo.classList.remove("is-intro"), 420);
+          await tick(320);
           box.remove();
-          demo.classList.remove("is-intro");
-          await tick(650);
+          await grow.finished.catch(() => {});
+          demo.classList.remove("is-handoff");
+          await tick(250);
           resolve(o);
         });
         pickBox.append(b); show(b, 120 + i * 90);
       });
+      show(box.querySelector(".hintro__you"), 60);
       show(box.querySelector(".hintro__cue"), 500);
     });
   }
