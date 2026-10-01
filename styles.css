@@ -6223,3 +6223,8 @@ html.theme-subway .blist li .blist__ic:not(#z) { background: #2e2e2e; color: #d9
 html.theme-subway .blist li a:focus-visible .blist__ic:not(#z) { background: var(--bc); color: var(--bi); }
 /* Transit: the subway rainbow along the top of the pop-up (drawn as its background, so it follows the rounded corners) */
 html.theme-subway #btype-dialog:not(#z) { background-image: linear-gradient(90deg, var(--red) 0 14.28%, var(--orange) 0 28.56%, var(--yellow) 0 42.84%, var(--green) 0 57.12%, var(--blue) 0 71.4%, var(--purple) 0 85.68%, var(--gray) 0); background-size: 100% 6px; background-repeat: no-repeat; background-position: top; }
+/* Tangy: one colour per column (the list runs down the columns): lime, then sky, then orange */
+html.theme-blocks .blist li:nth-child(-n+6):not(#z) { --bc: #d4ff4f; }
+html.theme-blocks .blist li:nth-child(n+7):nth-child(-n+12):not(#z) { --bc: #9fd8ff; }
+html.theme-blocks .blist li:nth-child(n+13):not(#z) { --bc: #ffb27a; }
+html.theme-blocks .blist:not(#z) { column-gap: 44px; }
