@@ -6814,3 +6814,9 @@ html.theme-wedding .lpv__row mark { background: rgba(184, 149, 90, .22); }
   html .hero .demo .phone:not(#z):not(#y):not(#x) { scale: 1.5; }
   .hero .demo:not(#z) { height: 680px; }
 }
+/* the link preview is one of my messages, so it has the same speech-bubble shape (sharper corner bottom-left) */
+html .lpv:not(#z) { border-radius: 17px 17px 17px 5px; }
+html.theme-refined .lpv:not(#z) { border-radius: 18px 18px 18px 4px; }
+html.theme-blocks .lpv:not(#z) { border-radius: 17px 17px 17px 5px; }
+html.theme-subway .lpv:not(#z) { border-radius: 12px 12px 12px 0; }
+html.theme-wedding .lpv:not(#z) { border-radius: 10px 10px 10px 1px; }
