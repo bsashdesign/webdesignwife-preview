@@ -5331,3 +5331,8 @@ html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
 html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
 /* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
+/* Trying it: on the button board and in the Change the Channel pop-up, Tangy's key is the deep orange and Transit's is subway yellow */
+.tv-key.tv-key--tangy { --cap: #ff7d33; --cap-edge: #c2541a; }
+.tv-key.tv-key--transit { --cap: #fccc0a; --cap-edge: #b38f00; }
+#moods-tv .tv-key--tangy .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--tangy:not(#z) { background: #ff7d33; color: #0e0e0e; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #fccc0a; --cap-edge: #b38f00; }
