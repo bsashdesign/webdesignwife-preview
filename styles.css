@@ -5093,3 +5093,11 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
   background: linear-gradient(rgba(0,0,0,.38), rgba(0,0,0,.38)), linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0);
 }
 #moods-tv .tv-key--transit .key-well::before { border-radius: 14px; }
+/* the "Press one" note: small and playful, at the left of the button panel, pointing down at the keys */
+.tv-deck__top { justify-content: space-between; }
+.tv-deck__cue { margin: 0; font: 600 .82rem/1.2 var(--body); color: var(--ink-soft); max-width: none; }
+.tv-deck__cue span { display: inline-block; margin-left: 2px; animation: cue-bob 1.6s ease-in-out infinite; }
+.theme-blocks .tv-deck__cue { font-family: "DM Mono", ui-monospace, monospace; font-weight: 500; letter-spacing: .02em; color: var(--ink); }
+.theme-subway.theme-dark .tv-deck__cue { color: #c9c9c4; }
+.theme-wedding .tv-deck__cue { font: italic 500 1rem var(--display); color: var(--gold-ink); }
+@media (prefers-reduced-motion: reduce) { .tv-deck__cue span { animation: none; } }
