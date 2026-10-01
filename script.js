@@ -1642,22 +1642,23 @@ document.addEventListener("click", (e) => {
     for (const { face, p, n } of shown) {
       const up = (face.n[1] + 1) / 2, alt = face.alt ? FINISH.alt : -FINISH.alt;
       let tone, lift;
-      // every stone is lit from the upper left: faces brighten as they turn toward it and darken as they turn
-      // away. Full Suite's richer colour sets it apart.
+      // every stone is lit from the upper left: faces brighten as they turn toward it and keep darkening as they
+      // turn away, so the lower facets still read as separate faces. Full Suite's richer colour sets it apart.
       if (plan === "full") {
-        const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
+        const d = n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2], side = d > 0 ? d : d * .42;
         // the same light as Business (Full Suite's richer colour still sets it apart)
         tone = .58 + .6 * side + alt; lift = Math.max(0, side - .45) * 1.5;
         if (face.n[1] > .99) { tone += .2; lift += .35; }
       }
       else {
-        const side = Math.max(0, n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2]);
+        const d = n[0] * SIDE[0] + n[1] * SIDE[1] + n[2] * SIDE[2], side = d > 0 ? d : d * .42;
         tone = .58 + .6 * side + alt; lift = Math.max(0, side - .45) * FINISH.lift;
         // the table catches more light
         if (face.n[1] > .99) { tone += .2; lift += .35; }
         // Essentials is brightened a touch overall
         if (plan === "essentials") { tone += .08; lift += .12; }
       }
+      tone = Math.max(.34, tone);
       if (style === "sophisticated") { path(p); ctx.stroke(); continue; }
       {
         ctx.fillStyle = `rgb(${col0.map((v) => Math.round(Math.min(255, v * tone + (255 - v * tone) * Math.min(1, lift))))})`;
