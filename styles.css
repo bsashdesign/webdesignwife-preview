@@ -4306,5 +4306,18 @@ span.plan-ring:empty { display: none; }
 .tv-yours .tv-yours__back > p { line-height: 1.35; margin-top: 3px; }
 /* Tangy board: the usual Tangy hard shadow (down and to the right), made deeper so the board feels solid */
 .theme-blocks #moods-tv .tv-keys { box-shadow: 0 0 0 2.5px var(--ink), 10px 12px 0 2.5px var(--ink); }
-/* Tangy keys: the cap's own ink outline is the socket rim, so no extra dark band shows around the sides */
-#mood .mood__opt[data-mood="tangy"][data-mood] .key-well, #moods-tv .tv-key.tv-key--tangy .key-well { padding: 0; }
+/* Keys: every state uses the same shadow list (ring, edge, inset), so the edge animates smoothly
+   and never pops out past the socket while a key springs back up.
+   Tangy's ink outline is a 3px ring drawn over the socket rim, so it's the same size and height as the others. */
+#moods-tv .tv-key .key-well.key-well .tv-key__cap { border: 0; box-shadow: 0 0 0 0 transparent, 0 12px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key:hover .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 0 transparent, 0 14px 0 var(--cap-edge, #999), inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key[aria-pressed="true"] .key-well.key-well .tv-key__cap, #moods-tv .tv-key:active .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge, #999), inset 0 3px 6px rgba(0,0,0,.28); }
+#moods-tv .tv-key--tangy .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 3px #111, 0 12px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy:hover .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 3px #111, 0 14px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#moods-tv .tv-key--tangy[aria-pressed="true"] .key-well.key-well .tv-key__cap, #moods-tv .tv-key--tangy:active .key-well.key-well .tv-key__cap { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 3px 6px rgba(0,0,0,.28); }
+#mood .mood__opt .key-well.key-well .moodicon { border: 0; box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt:hover .key-well.key-well .moodicon { box-shadow: 0 0 0 0 transparent, 0 7px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt[aria-pressed="true"] .key-well.key-well .moodicon { transform: translateY(6px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
+#mood .mood__opt .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 6px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt:hover .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 7px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+#mood .mood__opt[aria-pressed="true"] .key-well.key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 2px 5px rgba(0,0,0,.25); }
