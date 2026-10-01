@@ -2090,20 +2090,33 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
   const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li>${t}</li>`).join("")).join("");
 
-  // a soft two-note marimba when the stars line up (follows the site's Sound switch)
+  // the sound of the reels spinning: a soft whirr with gentle clicks that slow down as the reels come to rest
+  // (follows the site's Sound switch)
   let ac;
-  const ding = () => {
+  const spinSound = (ms) => {
     try { if (localStorage.getItem("wdw-muted") === "1") return; } catch (e) {}
     try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
     if (ac.state === "suspended") ac.resume();
     if (ac.state !== "running") return;
-    const t = ac.currentTime, out = ac.createGain(), lp = ac.createBiquadFilter();
-    out.gain.value = .5; lp.type = "lowpass"; lp.frequency.value = 2600; out.connect(lp).connect(ac.destination);
-    [[392, 0], [587.3, .11]].forEach(([f, d]) => [[1, .5, .55], [4, .07, .12]].forEach(([m, v, len]) => {
-      const o = ac.createOscillator(), g = ac.createGain(); o.type = "sine"; o.frequency.value = f * m;
-      g.gain.setValueAtTime(0, t + d); g.gain.linearRampToValueAtTime(v, t + d + .006); g.gain.exponentialRampToValueAtTime(.001, t + d + len);
-      o.connect(g).connect(out); o.start(t + d); o.stop(t + d + len + .05);
-    }));
+    const t0 = ac.currentTime, dur = ms / 1000;
+    // the whirr: filtered noise that sweeps down and fades as it slows
+    const len = Math.floor(ac.sampleRate * dur), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    const src = ac.createBufferSource(); src.buffer = buf;
+    const bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.Q.value = 1.2;
+    bp.frequency.setValueAtTime(1400, t0); bp.frequency.exponentialRampToValueAtTime(380, t0 + dur);
+    const g = ac.createGain(); g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.05, t0 + .08); g.gain.exponentialRampToValueAtTime(.002, t0 + dur);
+    src.connect(bp).connect(g).connect(ac.destination); src.start(t0); src.stop(t0 + dur);
+    // the clicks: quick at first, then further and further apart
+    let t = 0, gap = .045;
+    while (t < dur - .05) {
+      const at = t0 + t, cl = ac.createBufferSource(), cb = ac.createBuffer(1, Math.floor(ac.sampleRate * .02), ac.sampleRate), cd = cb.getChannelData(0);
+      for (let i = 0; i < cd.length; i++) cd[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / cd.length, 5);
+      cl.buffer = cb; const f = ac.createBiquadFilter(); f.type = "bandpass"; f.frequency.value = 1700; f.Q.value = 2.5;
+      const cg = ac.createGain(); cg.gain.value = .05 * (1 - t / dur * .5);
+      cl.connect(f).connect(cg).connect(ac.destination); cl.start(at);
+      t += gap; gap = .045 + .22 * Math.pow(t / dur, 2.4);
+    }
   };
 
   const reels = [...slot.querySelectorAll(".treel")].map((reel, k) => {
@@ -2172,10 +2185,10 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
       plans.push({ r, to, toAt: at(toAt) });
     });
     const land = reduce ? 0 : 1300 + 2 * 350 + 40;
+    spinSound(land);
     if (win) setTimeout(() => {
-      ding(); setTimeout(ding, 220);
       reels.forEach((r) => { r.reel.classList.remove("is-win"); void r.reel.offsetWidth; r.reel.classList.add("is-win"); });
-      msg.textContent = "Three stars! Five-star reviews incoming"; msg.classList.add("is-on"); confetti();
+      confetti();
     }, land);
     const hold = win ? 2200 : 0;
     setTimeout(() => {

@@ -5618,7 +5618,7 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
 .theme-subway.theme-dark .for--spin .treel__frame { border: 0; border-radius: 8px; background: #1e1e1e; box-shadow: inset 0 0 0 1px #3a3a3a; }
 .theme-subway.theme-dark .for--spin .treel--verb .treel__list li { color: #3fd07a; }
 .theme-subway.theme-dark .for--spin .treel--biz .treel__list li { color: #fccc0a; }
-.theme-subway.theme-dark .for--spin .treel--hood .treel__list li { color: #fff; }
+.theme-subway.theme-dark .for--spin .treel--hood .treel__list li { color: #4d8dff; }
 .theme-subway.theme-dark .for--spin .drift__btn { background: #e8392e; border: 0; box-shadow: 0 0 0 3px #111, 0 0 0 5px #444; }
 .theme-subway.theme-dark .for--spin { --flash: #333; }
 .theme-subway.theme-dark .for--spin .pokehand rect:first-child { fill: #0b5cd6; }
@@ -5631,3 +5631,15 @@ html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box
 .theme-wedding .for--spin .jackpot { border-radius: 2px; border-width: 1px; background: #fffdf8; color: var(--gold-ink); font: italic 600 1rem var(--display); }
 .theme-wedding .for--spin { --flash: #efe4cc; }
 .theme-wedding .for--spin .pokehand rect:first-child { fill: #1f2336; }
+/* Built-for stars, per mood */
+.for--spin .bf-ico path { fill: none; stroke: var(--ink); stroke-width: 3.4px; }
+.theme-wedding .for--spin .bf-ico path { stroke: var(--gold-ink); stroke-width: 1.6px; }
+.theme-subway.theme-dark .for--spin .bf-ico path { stroke: none; fill: currentColor; }
+.theme-refined .for--spin .bf-ico path { stroke: none; fill: #4b63f2; }
+/* Built-for band: the sentence and Sound switch share one row; where space is tight the sentence sits at the left
+   and the switch at the right (instead of the switch disappearing) */
+.bf-wrap:not(#z) { display: flex; align-items: center; gap: 24px; }
+.bf-wrap .slot:not(#z) { flex: 1; min-width: 0; }
+.bf-wrap .bf-sound:not(#z) { position: static; translate: none; display: inline-flex; flex: none; }
+@media (max-width: 1180px) { .bf-wrap .slot:not(#z) { justify-content: flex-start; } }
+@media (max-width: 600px) { .bf-wrap .bf-sound:not(#z) { display: none; } }
