@@ -4637,3 +4637,18 @@ section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
 .theme-blocks .splans .splan input:checked + span { background: #fffbe0; border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
 /* Tangy savings tag in sky blue, so it doesn't repeat the green */
 .theme-blocks .billing .billing__save { background: var(--sky); }
+/* Every switch (billing and sound) looks the same within a mood */
+/* Tangy: white track off, orange track on, always a black knob and black outline */
+html.theme-blocks :is(.billing__switch, .sound-toggle__switch):not(#z) { background: #fff; box-shadow: inset 0 0 0 2px var(--ink); border: 0; }
+html.theme-blocks :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { background: #ff6a1a; }
+html.theme-blocks :is(.billing__switch, .sound-toggle__switch):not(#z) i { background: var(--ink); box-shadow: none; }
+/* Transit: subway blue when on, a white knob, slightly squared */
+html.theme-subway :is(.billing__switch, .sound-toggle__switch):not(#z) { border-radius: 8px; }
+html.theme-subway :is(.billing__switch, .sound-toggle__switch):not(#z) i { border-radius: 5px; background: #fff; }
+html.theme-subway :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { background: #0b5cd6; }
+html.theme-subway.theme-dark :is(.billing__switch:not([aria-checked="true"]), .sound-toggle:not([aria-checked="true"]) .sound-toggle__switch):not(#z) { background: #3a3a3a; }
+/* Sophisticated: square; gold outline and gold knob when off, navy with a champagne knob when on */
+html.theme-wedding :is(.billing__switch, .sound-toggle__switch):not(#z) { border-radius: 2px; background: transparent; box-shadow: inset 0 0 0 1px var(--gold); }
+html.theme-wedding :is(.billing__switch, .sound-toggle__switch):not(#z) i { border-radius: 1px; background: var(--gold); box-shadow: none; }
+html.theme-wedding :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { background: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+html.theme-wedding :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) i { background: #d9c49a; }
