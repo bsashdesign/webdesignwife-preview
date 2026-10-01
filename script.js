@@ -2125,7 +2125,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   const HOODS = ["Bushwick", "Park Slope", "Astoria", "Harlem", "Flushing", "Williamsburg", "Jackson Heights", "Bay Ridge", "The Bronx", "Chelsea", "Fort Greene", "St. George", "Crown Heights", "Long Island City"];
   const STAR = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4.5l4.7 9.7 10.6 1.3-7.8 7.4 2 10.5L20 28.2l-9.5 5.2 2-10.5-7.8-7.4 10.6-1.3z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/></svg>';
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
-  const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li>${t}</li>`).join("")).join("");
+  const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li><span>${t}</span></li>`).join("")).join("");
 
   // the sound of the reels spinning: a quick ratchet of little reel-notch clicks that slows as the reels come
   // to rest (follows the site's Sound switch)
@@ -2176,6 +2176,18 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     r.ul.style.transform = horiz()
       ? `translateX(${-r.pos * row(r) + (r.reel.clientWidth - row(r)) / 2}px)`
       : `translateY(${-(r.pos - peek()) * row(r)}px)`;
+    if (horiz()) huddle(r, ms);
+  };
+  // phones: every slot is as wide as the frame, so short neighbours would sit far off; nudge the words either side
+  // in towards the frame (and back to centre as one arrives), so they sit a short, even distance from it
+  const huddle = (r, ms) => {
+    const lis = r.ul.children, at = Math.round(r.pos), W = row(r), GAP = 14;
+    for (let i = Math.max(0, at - 3); i <= Math.min(lis.length - 1, at + 3); i++) {
+      const sp = lis[i].firstElementChild; if (!sp || sp.tagName !== "SPAN") continue;
+      const shift = i === at ? 0 : Math.max(0, (W - sp.offsetWidth) / 2 - GAP) * (i < at ? 1 : -1);
+      sp.style.transition = ms ? `transform ${ms}ms ease` : "none";
+      sp.style.transform = shift ? `translateX(${shift}px)` : "";
+    }
   };
   const peek = () => parseFloat(getComputedStyle(slot).getPropertyValue("--peek")) || .75;
   const idx = (r) => ((Math.round(r.pos) % r.n) + r.n) % r.n;
@@ -2236,7 +2248,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     reels.forEach((r, k) => {
       const n = r.n, from = idx(r);
       let to; do { to = Math.floor(Math.random() * n); } while (to === from);
-      const word = (i) => `<li>${r.items[((i % n) + n) % n]}</li>`, star = () => `<li class="bf-ico">${STAR}</li>`;
+      const word = (i) => `<li><span>${r.items[((i % n) + n) % n]}</span></li>`, star = () => `<li class="bf-ico">${STAR}</li>`;
       // current word → a whirl of words and stars → (your spins: a star) → the new word with its real neighbours
       const seq = [word(from - r.dir), word(from)];
       for (let i = 0; i < LEN; i++) seq.push(i % 2 ? word(Math.floor(Math.random() * n)) : star());

@@ -5659,7 +5659,7 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
   .for--spin .tick:not(#z) { --row: 1.9em; }
   .for--spin .treel:not(#z) { width: 100% !important; height: var(--row); }
   .for--spin .treel__frame:not(#z) { top: 0; left: 50%; right: auto; width: var(--fw, 60%); translate: -50% 0; border-radius: 12px; }
-  .for--spin .treel__win:not(#z) { -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.4) 14%, rgba(0,0,0,.4) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.4) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.4) 86%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,.4) 14%, rgba(0,0,0,.4) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.4) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.4) 86%, transparent 100%); }
+  .for--spin .treel__win:not(#z) { -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.2) 0, rgba(0,0,0,.55) 8%, rgba(0,0,0,.55) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.55) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.55) 92%, rgba(0,0,0,.2) 100%); mask-image: linear-gradient(90deg, rgba(0,0,0,.2) 0, rgba(0,0,0,.55) 8%, rgba(0,0,0,.55) calc(50% - var(--fw, 60%) / 2 - 2px), #000 calc(50% - var(--fw, 60%) / 2), #000 calc(50% + var(--fw, 60%) / 2), rgba(0,0,0,.55) calc(50% + var(--fw, 60%) / 2 + 2px), rgba(0,0,0,.55) 92%, rgba(0,0,0,.2) 100%); }
   .for--spin .treel__list:not(#z) { display: flex; }
   .for--spin .treel__list li:not(#z) { flex: none; width: var(--fw, 60%); padding: 0; }
   .for--spin .slot__word:not(#z) { margin: 7px 0 3px; font-size: .78em; opacity: 1; color: var(--ink); line-height: 1.1; }
@@ -5691,3 +5691,4 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 .theme-subway.theme-dark .chat-nudge { background: #fccc0a; color: #111; }
 .theme-subway.theme-dark .chat-nudge::after { border-top-color: #fccc0a; }
 .theme-wedding .chat-nudge { background: var(--ink); color: #e9d9b4; border-radius: 2px; font: italic 600 .9rem/1.2 var(--display); }
+@media (max-width: 600px) { .for--spin .treel__list li:not(#z) { display: flex; justify-content: center; } .for--spin .treel__list li > span { display: inline-block; white-space: nowrap; } }
