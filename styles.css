@@ -4788,3 +4788,9 @@ html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[
 /* the two header buttons sit closer together: half the usual gap */
 .nav__inner .nav__start + .nav__cta { margin-left: -14px; }
 @media (max-width: 1180px) { .nav__inner .nav__start + .nav__cta { margin-left: -10px; } }
+/* Transit (dark), audit section: a black badge on the red band (like "Hi, I'm Ben"), and fields you can see on the dark card */
+.theme-subway.theme-dark #audit .eyebrow.eyebrow--light { background: #111; color: #fff; box-shadow: none; }
+.theme-subway.theme-dark .formcard :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(#z) { background: #2a2a2a; border: 1px solid #444; border-radius: 8px; color: #f2f2ee; }
+.theme-subway.theme-dark .formcard :is(input, select, textarea):not(#z)::placeholder { color: #8d8d88; }
+.theme-subway.theme-dark .formcard :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(#z):hover { border-color: #5a5a5a; }
+.theme-subway.theme-dark .formcard :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(#z):focus { border-color: #4d8dff; outline: none; box-shadow: 0 0 0 3px rgba(77,141,255,.25); }
