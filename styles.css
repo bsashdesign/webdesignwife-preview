@@ -6586,3 +6586,6 @@ html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { box-shadow: none; borde
 html .hintro .m--typing .bubble i:not(#z) { width: 10px; height: 10px; }
 /* the close-up's messages don't grow open like the phone's, so nothing clips their outline or 3D shadow */
 .hintro .m > .m__in { overflow: visible; padding-bottom: 6px; }
+/* the close-up's "or" between the replies is sized for the big bubbles, not the phone */
+html .hintro .chat-pick__or:not(#z):not(#y) { font-size: 1.05rem; margin: 2px 22px 2px 0; }
+html.theme-wedding .hintro .chat-pick__or:not(#z):not(#y) { font-size: 1.6rem; line-height: 1; }
