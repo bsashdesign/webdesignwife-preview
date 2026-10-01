@@ -4584,15 +4584,15 @@ section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
 .sbill .billing__save.is-on .billing__save-y { display: inline; visibility: visible; }
 /* Sophisticated's savings tag in the body font (gold outline kept) */
 .theme-wedding .billing .billing__save { font: 600 .74rem/1.2 var(--body); font-style: normal; letter-spacing: .03em; padding: 4px 10px; }
-/* Get started: plan names coloured per mood, like Features and Pricing */
-.theme-blocks .splan--essentials strong, .theme-blocks .ssum__plan[data-plan="essentials"] { --hi: var(--lime); }
-.theme-blocks .splan--business strong, .theme-blocks .ssum__plan[data-plan="business"] { --hi: var(--sky); }
-.theme-blocks .splan--full strong, .theme-blocks .ssum__plan[data-plan="full"] { --hi: var(--rose); }
-.theme-blocks :is(.splan strong, .ssum__plan) { justify-self: start; width: fit-content; background: linear-gradient(transparent 55%, var(--hi) 55% 95%, transparent 95%); padding: 0 2px; }
-.theme-subway.theme-dark :is(.splan--essentials strong, .ssum__plan[data-plan="essentials"]) { color: #3fd07a; }
-.theme-subway.theme-dark :is(.splan--business strong, .ssum__plan[data-plan="business"]) { color: #6ea8ff; }
-.theme-subway.theme-dark :is(.splan--full strong, .ssum__plan[data-plan="full"]) { color: #d27be0; }
-.theme-wedding .splan strong, .theme-wedding .ssum .ssum__plan { font-family: var(--display); font-style: italic; font-weight: 600; color: var(--gold-ink); }
+/* Get started: the order summary's plan name is coloured per mood (the picker's names stay plain) */
+.theme-blocks .ssum__plan[data-plan="essentials"] { --hi: var(--lime); }
+.theme-blocks .ssum__plan[data-plan="business"] { --hi: var(--sky); }
+.theme-blocks .ssum__plan[data-plan="full"] { --hi: var(--rose); }
+.theme-blocks .ssum__plan { width: fit-content; background: linear-gradient(transparent 55%, var(--hi) 55% 95%, transparent 95%); padding: 0 2px; }
+.theme-subway.theme-dark .ssum__plan[data-plan="essentials"] { color: #3fd07a; }
+.theme-subway.theme-dark .ssum__plan[data-plan="business"] { color: #6ea8ff; }
+.theme-subway.theme-dark .ssum__plan[data-plan="full"] { color: #d27be0; }
+.theme-wedding .ssum .ssum__plan { font-family: var(--display); font-style: italic; font-weight: 600; color: var(--gold-ink); font-size: 1.75rem; line-height: 1.1; }
 /* the order summary shows the chosen plan's gem beside its name */
 .ssum__head { display: flex; align-items: center; gap: 10px; margin: 4px 0 18px; }
 .ssum__head .ssum__plan { margin: 0; }
@@ -4603,3 +4603,23 @@ section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
 /* a fieldset's legend sits outside its content box, so anchor the toggle from above the content, level with "Your plan" */
 .sform .billing.sbill { top: auto; bottom: calc(100% + 10px); }
 @media (max-width: 560px) { .sform .billing.sbill { bottom: auto; } }
+.i-arrow--back { margin: 0 .25em 0 0; }
+/* Get started: a tinted box behind the money-back guarantee in every mood */
+.theme-blocks .ssum .ssum__promise { background: var(--sun); border: 2px solid var(--ink); border-radius: var(--r); }
+.theme-subway.theme-dark .ssum .ssum__promise { background: #262626; box-shadow: inset 0 0 0 1px #333; }
+/* Transit (dark): the seal is a yellow subway-sign disc with black lettering, so it shows on the dark card */
+.theme-subway.theme-dark .seal__edge, .theme-subway.theme-dark .seal__inner { fill: #fccc0a; }
+.theme-subway.theme-dark .seal__ring { stroke: rgba(0,0,0,.45); }
+.theme-subway.theme-dark .seal__arc, .theme-subway.theme-dark .seal__num { fill: #111; }
+/* order summary: room between "Your order" and the plan, and the gem sized and centred on the name */
+.ssum .ssum__head { margin: 14px 0 20px; gap: 12px; }
+.ssum .ssum__gem.plan-ring { width: 46px; height: 46px; margin: -6px -2px -6px -6px; translate: 0 -4px; }
+/* each stone is drawn at a different size inside its box, so give each plan its own box size and keep the slot the same */
+.ssum .ssum__gem.plan-ring { --g: 50px; width: var(--g); height: var(--g); margin: calc((36px - var(--g)) / 2); translate: 0 -3px; }
+.ssum .ssum__gem.plan-ring[data-plan="essentials"] { --g: 66px; }
+.ssum .ssum__gem.plan-ring[data-plan="business"] { --g: 56px; }
+.ssum .ssum__gem.plan-ring[data-plan="full"] { --g: 50px; }
+.ssum .ssum__gem.plan-ring[data-plan="essentials"] { --g: 58px; }
+.ssum .ssum__gem.plan-ring[data-plan="full"] { --g: 56px; }
+/* Get started: "Yearly billing" stays at full strength whether the switch is on or off */
+.sbill .billing__opt[aria-pressed="false"], .sbill .billing__opt[aria-pressed="false"]:hover { color: var(--ink); }

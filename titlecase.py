@@ -61,7 +61,12 @@ HEART = ('<svg class="i-heart" viewBox="0 0 16 16" aria-hidden="true"><path d="M
          'fill="currentColor"/></svg>')
 
 
+BACK = ('<svg class="i-arrow i-arrow--back" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" '
+        'stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
 def arrows(html):
     html = re.sub(r"\s*→\s*</(a|span)>", lambda m: ARROW + "</" + m.group(1) + ">", html)
+    # "← Back" links get the same drawn arrow, pointing left (the text glyph looks odd in some fonts)
+    html = re.sub(r"(<(?:a|button)\b[^>]*>)\s*←\s*", lambda m: m.group(1) + BACK + " ", html)
     # A heart ending a button or tab label is drawn too (the text glyph turns into an emoji in some fonts).
     return re.sub(r"\s*♥\s*</(button|span)>", lambda m: " " + HEART + "</" + m.group(1) + ">", html)
