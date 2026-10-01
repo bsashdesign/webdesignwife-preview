@@ -6361,3 +6361,6 @@ html.theme-blocks .m--us .bubble__check path { stroke: var(--ink); }
 /* the hero phone is taller, so the conversation and the reply options always fit */
 .demo .phone:not(#z) { height: 430px; }
 @media (max-width: 760px) { .demo .phone:not(#z) { height: 340px; } }
+/* Soirée, in the business pop-up: the icons stand on their own, no frame around them */
+html.theme-wedding #btype-dialog .blist__ic:not(#z):not(#y) { background: none; box-shadow: none; width: 26px; }
+@media (hover: hover) { html.theme-wedding #btype-dialog .blist a:not(#z):hover .blist__ic:not(#y) { box-shadow: none; color: var(--gold-ink); } }

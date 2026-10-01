@@ -245,7 +245,7 @@ TYPES = [
 
 # A small line icon for each type (24×24, drawn with the current colour), shown before the name in the lists
 ICONS = {
-  "plumbers": '<g transform="translate(12 12) scale(1.2) translate(-10.45 -12.85)"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L4 16.7a1.8 1.8 0 0 0 2.6 2.6l5.3-5.3a4 4 0 0 0 5.1-5.4l-2.4 2.4-2.1-.6-.6-2.1z" vector-effect="non-scaling-stroke"/></g>',
+  "plumbers": '<path d="M17.1 4.14a4.8 4.8 0 0 0-6.48 6.12L4.26 16.62a2.16 2.16 0 0 0 3.12 3.12l6.36-6.36a4.8 4.8 0 0 0 6.12-6.48l-2.88 2.88-2.52-.72-.72-2.52z"/>',
   "salons-and-barbershops": '<circle cx="6" cy="7" r="2.5"/><circle cx="6" cy="17" r="2.5"/><path d="M8.2 8.4 20 17M8.2 15.6 20 7"/>',
   "pet-services": '<circle cx="5.5" cy="10.5" r="2"/><circle cx="9.5" cy="5.8" r="2"/><circle cx="14.5" cy="5.8" r="2"/><circle cx="18.5" cy="10.5" r="2"/><path d="M12 11.5c-2.8 0-5.5 3.5-5.5 6 0 1.6 1.2 2.3 2.6 2.3 1.2 0 1.8-.6 2.9-.6s1.7.6 2.9.6c1.4 0 2.6-.7 2.6-2.3 0-2.5-2.7-6-5.5-6z"/>',
   "dentists": '<path d="M7.5 3.5c-2.3 0-3.8 1.8-3.8 4.3 0 3 1.5 4.3 2.1 7.2.5 2.6 1 5.5 2.4 5.5 1.6 0 1.4-4.5 3.8-4.5s2.2 4.5 3.8 4.5c1.4 0 1.9-2.9 2.4-5.5.6-2.9 2.1-4.2 2.1-7.2 0-2.5-1.5-4.3-3.8-4.3-2 0-2.9 1.2-4.5 1.2s-2.5-1.2-4.5-1.2z"/>',

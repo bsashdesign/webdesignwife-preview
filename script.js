@@ -215,7 +215,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     };
     const again = () => {
       const b = document.createElement("button");
-      b.type = "button"; b.className = "chat-choice chat-choice--again"; b.textContent = "↺ Start over";
+      b.type = "button"; b.className = "chat-choice chat-choice--again"; b.textContent = "↺ Start Over";
       b.addEventListener("click", async () => {
         if (busy) return; busy = true;
         compose.replaceChildren();
@@ -2155,7 +2155,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   const band = slot.closest(".for--spin"), btn = slot.querySelector(".drift__btn") || band.querySelector(".bf-spin"), msg = slot.querySelector(".jackpot"), hand = band.querySelector(".pokehand");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const VERBS = ["Built", "Designed", "Developed", "Crafted", "Launched", "Managed", "Made", "Polished"];
-  const TYPES = ["Plumbers", "Salons", "Barbers", "Dentists", "Restaurants", "Contractors", "Cleaners", "Gyms", "Accountants", "Bakeries", "Florists", "Pharmacies", "Law offices", "Auto shops"];
+  const TYPES = ["Plumbers", "Salons", "Barbers", "Dentists", "Restaurants", "Contractors", "Cleaners", "Gyms", "Accountants", "Bakeries", "Florists", "Pharmacies", "Law Offices", "Auto Shops"];
   const HOODS = ["Bushwick", "Park Slope", "Astoria", "Harlem", "Flushing", "Williamsburg", "Jackson Heights", "Bay Ridge", "The Bronx", "Chelsea", "Fort Greene", "St. George", "Crown Heights", "Long Island City"];
   const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
   const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li><span>${t}</span></li>`).join("")).join("");

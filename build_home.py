@@ -163,7 +163,7 @@ ARROW_SVG = '<svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="non
 def btype_tiles():
     # a plain index: a small icon, the name, and an arrow that slides in on hover (no cards)
     e = _html.escape
-    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span class="blist__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{BICONS[t["slug"]]}</svg></span><span class="blist__name">{e(t["label"])}<i class="blist__go" aria-hidden="true">{ARROW_SVG}</i></span></a></li>' for i, t in enumerate(BTYPES, 1))
+    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span class="blist__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{BICONS[t["slug"]]}</svg></span><span class="blist__name">{e(titlecase.title(t["label"]))}<i class="blist__go" aria-hidden="true">{ARROW_SVG}</i></span></a></li>' for i, t in enumerate(BTYPES, 1))
 
 page = (TEMPLATE
         .replace("{{BTYPE_TILES}}", btype_tiles())
@@ -271,7 +271,7 @@ for t in BTYPES:
     guides = "".join(
         f'<li><a href="blog/{g}.html"><span class="bguides__kicker">{esc(POSTS[g]["kicker"])}</span><span class="bguides__title">{esc(POSTS[g]["title"])}</span></a></li>'
         for g in t["guides"] if g in POSTS)
-    others = "".join(f'<li><a href="websites-for-{o["slug"]}.html">{esc(o["label"])}</a></li>' for o in BTYPES if o is not t)
+    others = "".join(f'<li><a href="websites-for-{o["slug"]}.html">{esc(titlecase.title(o["label"]))}</a></li>' for o in BTYPES if o is not t)
     pg = (pg.replace("{{META_TITLE}}", f'{titlecase.title(t["title"])} — Web Design Wife')
             .replace("{{DESC}}", esc(t["intro"].split(" Here's")[0] + " Here's what I'd build, set up and keep up to date for your business."))
             .replace("{{TITLE}}", esc(t["title"]))
