@@ -21,7 +21,7 @@ MOODS = [
     # Transit: the subway-sign look on a dark page (it replaced the original light Transit). Its key stays
     # "transit" so old links and saved choices still work; "transitdark" is kept as an alias below.
     {"key": "transit", "cls": "theme-subway theme-dark", "label": "Transit", "note": "Bold and direct, inspired by New York subway signs.", "sw": ["#111111", "#fccc0a", "#0b5cd6"]},
-    {"key": "sophisticated", "cls": "theme-wedding", "label": "Sophisticated", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
+    {"key": "sophisticated", "cls": "theme-wedding", "label": "Soirée", "note": "Elegant and refined, inspired by wedding stationery.", "sw": ["#f4ecdb", "#b8955a", "#1f2336"]},
 ]
 DEFAULT = "tangy"
 

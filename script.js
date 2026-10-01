@@ -1176,7 +1176,7 @@ function openSheet(d) {
     const b = e.target.closest(".chip[data-mood], [data-shuffle-mood]");
     if (!b || !toast) return;
     setTimeout(() => {
-      const name = { calm: "Calm", transit: "Transit", tangy: "Tangy", sophisticated: "Sophisticated" }[document.documentElement.dataset.mood];
+      const name = { calm: "Calm", transit: "Transit", tangy: "Tangy", sophisticated: "Soirée" }[document.documentElement.dataset.mood];
       toast.textContent = `✨ You're viewing ${name}. Keep scrolling.`;
       toast.classList.add("is-on");
       clearTimeout(t);
@@ -1373,7 +1373,7 @@ function wdwCalInline(selector, calLink, config) {
   const sec = document.getElementById("moods-tv");
   if (!sec) return;
   const root = document.documentElement;
-  const NAMES = { tangy: "Tangy", calm: "Calm", transit: "Transit", sophisticated: "Sophisticated" };
+  const NAMES = { tangy: "Tangy", calm: "Calm", transit: "Transit", sophisticated: "Soirée" };
   const keys = [...sec.querySelectorAll("[data-tv-key]")];
   const show = sec.querySelector("[data-tv-show]");
   const nameEl = sec.querySelector("[data-tv-name]");
