@@ -6549,7 +6549,7 @@ html .gmcard__btns:not(#z) { gap: 6px; }
    pick a reply (the script then sweeps the phone down into place) */
 .demo .phone { transition: border-color .45s ease, background-color .45s ease, box-shadow .45s ease; }
 .demo .phone__status, .demo .phone__head { transition: opacity .45s ease; }
-.demo.is-bare .phone:not(#z) { border-color: transparent; background-color: transparent; box-shadow: none; }
+@media (min-width: 641px) { .demo.is-bare .phone:not(#z) { border-color: transparent; background-color: transparent; box-shadow: none; } }
 .demo.is-bare .phone__status, .demo.is-bare .phone__head { opacity: 0; }
 .demo.is-bare .thread { -webkit-mask-image: none; mask-image: none; }
 .demo.is-intro { min-height: 420px; }
@@ -6786,3 +6786,26 @@ html.theme-wedding .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y)
 /* the "Web Design Wife" label in the opening view fades away as the phone appears (while its row folds away) */
 .thread .m--from { transition: grid-template-rows .5s var(--ease-out), opacity .28s ease; }
 .thread .m--from:not(.is-in) { opacity: 0; }
+
+/* ---- Hero without the website mock (Oct 2026): just the phone, centred in its column. A change to the site shows
+   as a link preview under my reply. */
+html .hero .demo .phone:not(#z):not(#y):not(#x) { left: 50%; right: auto; top: 50%; bottom: auto; translate: -50% -50%; }
+@media (max-width: 640px) {
+  html .hero .demo .phone:not(#z):not(#y):not(#x) { top: 0; translate: -50% 0; width: min(70%, 250px); height: 360px; }
+  html .hero .demo:not(.is-intro):not(#z):not(#y):not(#x) { min-height: 372px; }
+  /* the opening card is the handset itself (its frame shows); the status bar and header slide in when it narrows */
+  .hero .demo .phone__status, .hero .demo .phone__head { max-height: 70px; overflow: hidden; transition: max-height .6s ease, padding .6s ease, opacity .4s ease .25s, border-color .4s ease; }
+  .hero .demo.is-bare .phone__status, .hero .demo.is-bare .phone__head { max-height: 0; padding-top: 0; padding-bottom: 0; opacity: 0; border-bottom-color: transparent; }
+  .hero .demo .phone .bubble:not(#z), html .hero .demo .phone .chat-choice:not(#z):not(#y):not(#x) { font-size: .66rem; }
+}
+/* link preview under my reply: the page and the line that changed (the new part highlighted) */
+.lpv { display: grid; gap: 2px; max-width: 92%; margin-top: 4px; padding: 6px 9px 7px; border-radius: 12px; background: #fff; box-shadow: 0 0 0 1px var(--line); font-size: .62rem; line-height: 1.35; color: var(--ink); }
+.lpv__site { font-size: .52rem; color: var(--ink-soft); letter-spacing: .01em; }
+.lpv__row b { font-weight: 700; }
+.lpv__row mark { background: color-mix(in srgb, var(--violet) 16%, transparent); color: inherit; padding: 0 2px; border-radius: 3px; }
+html.theme-blocks .lpv { border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); border-radius: 10px; }
+html.theme-blocks .lpv__row mark { background: var(--lime); }
+html.theme-subway.theme-dark .lpv { background: #262626; box-shadow: 0 0 0 1px #3d3d3d; border-radius: 8px; }
+html.theme-subway.theme-dark .lpv__row mark { background: #fccc0a; color: #111; }
+html.theme-wedding .lpv { border-radius: 3px; box-shadow: 0 0 0 1px rgba(184, 149, 90, .5); }
+html.theme-wedding .lpv__row mark { background: rgba(184, 149, 90, .22); }

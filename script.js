@@ -9,18 +9,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   if (!demo || !thread) return;
 
   const compose = demo.querySelector(".phone__compose");
-  const live = document.getElementById("live");
-  const liveText = live.querySelector(".live__text");
-  const banner = document.getElementById("slot-banner");
-  const rows = {
-    hours: document.getElementById("row-hours"),
-    services: document.getElementById("row-services"),
-  };
-  const initial = {
-    hours: rows.hours.querySelector(".val").textContent,
-    services: rows.services.querySelector(".val").textContent,
-  };
-
   const EASE_OUT = "cubic-bezier(.22, 1, .36, 1)";
   const CHECK = '<span class="bubble__check"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.4l2.3 2.3 4.7-5" fill="none" stroke="#5b3df5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 
@@ -59,71 +47,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     thread.querySelectorAll(".receipt:not(.is-gone)").forEach((r) => r.classList.add("is-gone"));
   }
 
-  async function typeIntoCompose(text) {
-    compose.classList.add("is-typing");
-    compose.innerHTML = '<span class="compose__text"></span><span class="caret"></span>';
-    const out = compose.querySelector(".compose__text");
-    for (const ch of text) {
-      out.textContent += ch;
-      await wait(ch === " " ? 55 : 32 + Math.random() * 28);
-    }
-    await wait(280);
-  }
-  function clearCompose() {
-    compose.classList.remove("is-typing");
-    compose.innerHTML = "<span>Message</span>";
-  }
-
-  // ---- Site helpers
-  function swapValue(row, text, flash = true) {
-    const dd = row.querySelector("dd");
-    const oldVal = dd.querySelector(".val");
-    const startH = dd.offsetHeight;
-
-    const newVal = document.createElement("span");
-    newVal.className = "val";
-    newVal.textContent = text;
-    dd.append(newVal);
-    oldVal.style.visibility = "hidden";
-    const endH = Math.max(newVal.offsetHeight, 1);
-    oldVal.style.visibility = "";
-
-    dd.animate([{ height: `${startH}px` }, { height: `${endH}px` }], { duration: 520, easing: EASE_OUT });
-    oldVal.animate(
-      [{ transform: "translateY(0)", opacity: 1 }, { transform: "translateY(-110%)", opacity: 0 }],
-      { duration: 420, easing: EASE_OUT, fill: "forwards" }
-    ).finished.then(() => oldVal.remove());
-    newVal.animate(
-      [{ transform: "translateY(110%)", opacity: 0 }, { transform: "translateY(0)", opacity: 1 }],
-      { duration: 560, delay: 90, easing: EASE_OUT, fill: "backwards" }
-    );
-    if (flash) {
-      row.animate(
-        [{ backgroundColor: "rgba(25, 164, 99, 0)" }, { backgroundColor: "rgba(25, 164, 99, .16)", offset: 0.15 }, { backgroundColor: "rgba(25, 164, 99, 0)" }],
-        { duration: 2200, easing: "ease-out" }
-      );
-    }
-  }
-
-  async function setLive(text, updated) {
-    liveText.classList.add("is-swapping");
-    await tick(220);
-    liveText.textContent = text;
-    live.classList.toggle("is-updated", updated);
-    liveText.classList.remove("is-swapping");
-  }
-
-  async function resetAll() {
-    thread.classList.add("is-fading");
-    await wait(500);
-    thread.replaceChildren();
-    thread.classList.remove("is-fading");
-    banner.classList.remove("is-open");
-    swapValue(rows.hours, initial.hours, false);
-    swapValue(rows.services, initial.services, false);
-    await wait(900);
-  }
-
   // ---- The phone starts with Web Design Wife checking in, then offers replies to pick from (no pre-played demo)
   function run() {
     addMessage("stamp", '<span class="stamp">Today 9:41 AM</span>');
@@ -133,9 +56,10 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   // ---- After the demo: the phone offers two replies to pick from. Each answer gets its own reply (sometimes the
   // site changes too), then two new choices, three levels deep; at the end you can start over.
   const T = (label, reply, apply, next) => ({ label, reply, apply, next });
-  const hours = (t) => () => swapValue(rows.hours, t);
-  const promo = (t) => () => setBanner(t);
-  const services = (t) => () => swapValue(rows.services, t);
+  // a change to the site shows as a link preview under my reply: the page and the line that changed
+  const hours = (t) => ({ k: "Hours", v: t });
+  const promo = (t) => ({ k: "Banner", v: t });
+  const services = (t) => ({ k: "Services", v: t });
   // every request here is a minor edit (hours, services, prices, a promo banner), the kind that's included in a plan
   const TREE = [
     T("Can you add Saturday hours?", "Done!", hours("Mon–Fri 8–5 · Sat 9–2"), [
@@ -159,20 +83,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       ]),
     ]),
   ];
-  let bannerTip = null;
-  function setBanner(text) {
-    const p = banner.querySelector("p");
-    if (bannerTip === null) bannerTip = p.textContent;
-    banner.classList.add("is-open");
-    p.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, fill: "forwards" }).finished.then(() => {
-      p.textContent = text;
-      p.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 380, easing: EASE_OUT, fill: "forwards" });
-    });
-  }
-
   function enableChat() {
     const phone = demo.querySelector(".phone");
-    const start = { services: rows.services.querySelector(".val").textContent, hours: rows.hours.querySelector(".val").textContent, banner: banner.querySelector("p").textContent, open: banner.classList.contains("is-open") };
     compose.classList.add("is-choices");
     compose.replaceChildren();
     phone.removeAttribute("aria-hidden");
@@ -279,7 +191,17 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       await removeMessage(typing);
       const r = addMessage("us", `<div class="bubble">${o.apply ? CHECK : ""}</div>`);
       r.querySelector(".bubble").append(o.reply);
-      if (o.apply) { await tick(350); o.apply(); }
+      if (o.apply) {
+        // like a real text with a link: a preview of the updated page unfurls under my reply
+        await tick(450);
+        const card = document.createElement("div");
+        card.className = "lpv";
+        card.innerHTML = '<span class="lpv__site">riveraplumbing.com</span><span class="lpv__row"><b></b> <mark></mark></span>';
+        card.querySelector("b").textContent = o.apply.k;
+        card.querySelector("mark").textContent = o.apply.v;
+        r.querySelector(".m__in").append(card);
+        card.animate([{ opacity: 0, transform: "translateY(6px) scale(.96)" }, { opacity: 1, transform: "none" }], { duration: 420, easing: EASE_OUT });
+      }
       await tick(650);
       if (o.next) offer(o.next); else again();
       busy = false;
@@ -293,74 +215,77 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       addMessage("us", '<div class="bubble">Hey, just checking in :)</div>');
       await tick(800);
     }
-    // The opening view is the phone itself, shown big with its frame, status bar and header hidden: just the
-    // conversation and the replies. Picking a reply fades the frame in around them, then the whole phone sweeps
-    // down into its usual spot along an arc, and the conversation carries on.
-    let big = null, fromRow = null;
+    // The opening view is the phone itself, shown big, with no status bar or header: just the conversation and the
+    // replies. Desktop: no frame either; picking a reply fades the frame in and the phone swoops into place. Phones:
+    // the frame is there from the start as a wide card, and picking a reply squeezes it into the phone's shape.
+    let big = null, fromRow = null, extra = 0;
+    const small = () => innerWidth <= 640;
     // if the opening conversation still reaches above its space, the space grows to hold it (and it's re-placed)
     function fitSpace() {
       if (!demo.classList.contains("is-intro")) return;
       const top = thread.querySelector(".m--from, .m--us");
       if (!top) return;
-      const barEl = demo.querySelector(".browser__bar"), edge = innerWidth <= 760 && barEl.offsetParent ? barEl.getBoundingClientRect().bottom : demo.getBoundingClientRect().top;
-      const over = edge + 4 - top.getBoundingClientRect().top;
+      const over = demo.getBoundingClientRect().top + 4 - top.getBoundingClientRect().top;
       if (over > 0) { extra += Math.ceil(over); big = fitBig(); }
     }
-    let extra = 0;
     const fitBig = () => {
-      phone.style.transform = "";
+      phone.style.transform = phone.style.width = phone.style.height = "";
       let P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
-      // big on desktop; on phones the hidden frame and the conversation's inner padding may hang past the edges,
-      // so the messages themselves line up with the page's text
+      const norm = { w: phone.offsetWidth, h: phone.offsetHeight };
+      // big on desktop; on phones about the size of a button's text (~15px), no bigger
       const T = thread.getBoundingClientRect(), inset = (P.width - T.width) / 2 + 4;
-      // on phones the messages are about the size of a button's text (~15px), no bigger
       const K = innerWidth <= 760 ? Math.min(1.5, D.width / (P.width - 2 * inset)) : Math.min(2.2, (D.width * .98) / P.width);
       // on phones the space grows with the scale first, so the whole opening conversation fits under the nav
-      // (on phones the website's browser window holds the chat, so its address bar sits above it)
-      const barEl = demo.querySelector(".browser__bar"), bar = innerWidth <= 760 && barEl.offsetParent ? barEl.offsetHeight + 6 : 0;
-      demo.style.minHeight = innerWidth <= 760 ? Math.round(156 * K + 30 + bar + extra) + "px" : "";
-      P = phone.getBoundingClientRect(); D = demo.getBoundingClientRect();
-      // the phone's hidden bottom padding (below the replies) may hang below the space too
-      const below = innerWidth <= 760 ? (P.bottom - compose.getBoundingClientRect().bottom) * K : 6;
-      const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - (innerWidth <= 760 ? 16 - below : 6) - P.bottom;
+      demo.style.minHeight = innerWidth <= 760 ? Math.round(156 * K + 30 + extra) + "px" : "";
+      D = demo.getBoundingClientRect();
+      // phones: the handset is a wide card the width of the space (it's narrowed back into a phone later)
+      if (small()) { phone.style.width = (D.width + 16) / K + "px"; phone.style.height = (D.height + 6) / K + "px"; }
+      P = phone.getBoundingClientRect();
+      const below = innerWidth <= 760 && !small() ? (P.bottom - compose.getBoundingClientRect().bottom) * K : 0;
+      const dx = D.left + D.width / 2 - (P.left + P.width / 2);
+      const dy = small() ? D.bottom + 3 - P.bottom : D.bottom - (innerWidth <= 760 ? 16 - below : 6) - P.bottom;
       phone.style.transformOrigin = "50% 100%";
       phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
-      return { dx, dy, K };
+      return { dx, dy, K, norm };
     };
     async function handoff() {
       // ?slowmo=8 plays the handover in slow motion (for checking it frame by frame)
       const SLOW = +new URLSearchParams(location.search).get("slowmo") || 1;
       if (fromRow) fromRow.classList.remove("is-in");
-      // the frame fades in and the phone is already on its way: one quick, smooth swoop that swings out to the left
-      // first, then curves back right and down into its spot, shrinking as it goes
       demo.classList.remove("is-bare");
-      const { dx, dy, K } = big;
-      const ease = (u) => 1 - Math.pow(1 - u, 3);
-      const swing = Math.min(150, Math.max(90, Math.abs(dx) * .85));
-      const frames = [];
-      for (let n = 0; n <= 48; n++) {
-        const u = n / 48, e = ease(u);
-        const x = dx * (1 - e) - swing * Math.sin(Math.PI * e) * (1 - e * .4);
-        const y = dy * (1 - e);
-        frames.push({ transform: `translate(${x}px, ${y}px) scale(${K + (1 - K) * e})` });
+      const { dx, dy, K, norm } = big;
+      let move;
+      if (small()) {
+        // phones: the card squeezes into the phone's shape as the messages shrink, and the status bar and header
+        // slide in at the top
+        const from = { width: phone.style.width, height: phone.style.height, transform: phone.style.transform };
+        move = phone.animate([from, { width: norm.w + "px", height: norm.h + "px", transform: "none" }], { duration: 820 * SLOW, easing: "cubic-bezier(.65, 0, .25, 1)" });
+        phone.style.width = phone.style.height = "";
+      } else {
+        // desktop: the frame fades in and the phone is already on its way, in one quick swoop that swings out to the
+        // left first, then curves back right and down into its spot, shrinking as it goes
+        const ease = (u) => 1 - Math.pow(1 - u, 3);
+        const swing = Math.min(150, Math.max(90, Math.abs(dx) * .85));
+        const frames = [];
+        for (let n = 0; n <= 48; n++) {
+          const e = ease(n / 48);
+          frames.push({ transform: `translate(${dx * (1 - e) - swing * Math.sin(Math.PI * e) * (1 - e * .4)}px, ${dy * (1 - e)}px) scale(${K + (1 - K) * e})` });
+        }
+        move = phone.animate(frames, { duration: 900 * SLOW, easing: "linear" });
       }
-      const sweep = phone.animate(frames, { duration: 900 * SLOW, easing: "linear" });
       phone.style.transform = "";
-      // the website comes back into the layout; the space grows smoothly to make room for it (phones)
-      const browserEl = demo.querySelector(".browser");
-      const h0 = demo.offsetHeight, b0 = browserEl.offsetHeight;
+      // the space eases to the phone's own height
+      const h0 = demo.offsetHeight;
       demo.classList.remove("is-intro");
       demo.style.minHeight = "";
-      const h1 = demo.offsetHeight, b1 = browserEl.offsetHeight;
-      if (h1 !== h0) demo.animate([{ height: h0 + "px" }, { height: h1 + "px" }], { duration: 750 * SLOW, easing: EASE_OUT });
-      // (on phones the browser window held the chat; it eases to the website's own height)
-      if (innerWidth <= 640 && b1 !== b0) browserEl.animate([{ height: b0 + "px" }, { height: b1 + "px" }], { duration: 750 * SLOW, easing: EASE_OUT });
-      await sweep.finished.catch(() => {});
+      const h1 = demo.offsetHeight;
+      if (h1 !== h0) demo.animate([{ height: h0 + "px" }, { height: h1 + "px" }], { duration: 820 * SLOW, easing: "cubic-bezier(.65, 0, .25, 1)" });
+      await move.finished.catch(() => {});
       phone.style.transformOrigin = "";
       if (fromRow) { fromRow.remove(); fromRow = null; }
     }
-    // Start Over goes back to the very beginning: the hero fades out, everything resets (the site's hours,
-    // services and banner, the conversation), and it fades back in as the big opening view
+    // Start Over goes back to the very beginning: the hero fades out, the conversation resets, and it fades back in
+    // as the big opening view
     async function restart() {
       if (busy) return; busy = true;
       await demo.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 380, easing: "ease-in", fill: "forwards" }).finished.catch(() => {});
@@ -369,10 +294,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       thread.replaceChildren();
       addMessage("stamp", '<span class="stamp">Today 9:41 AM</span>');
       cued = false;
-      if (rows.hours.querySelector(".val").textContent !== start.hours) swapValue(rows.hours, start.hours, false);
-      if (rows.services.querySelector(".val").textContent !== start.services) swapValue(rows.services, start.services, false);
-      banner.querySelector("p").textContent = start.banner;
-      banner.classList.toggle("is-open", start.open);
       demo.classList.add("is-intro", "is-bare");
       big = fitBig();
       fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span><strong>Web Design Wife</strong></span></span>');
