@@ -5385,7 +5385,7 @@ html.theme-subway.theme-dark #how .btn--primary:not(#z):hover { background: #ffd
 /* Tangy Google Maps: the Every plan half is mint (not two blues in a row); the icons sit on plain white */
 html.theme-blocks .mplans .mplan:not(.mplan--grow):not(#z) { background: var(--mint); }
 html.theme-blocks .mplans .mplan__ico:not(#z) { background: #fff; }
-/* Tangy Features: the hero is bright lime like the tab bar; the selected tab is an orange pill with an ink outline and hard shadow */
+/* Tangy Features: the hero is bright lime like the tab bar; the selected tab is a white pill with an ink outline and hard shadow */
 html.theme-blocks .fhero:not(#z) { background: var(--lime); }
-html.theme-blocks .ftabs a[aria-current]:not(#z) { background: var(--violet); color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); padding: 5px 12px; }
+html.theme-blocks .ftabs a[aria-current]:not(#z) { background: #fff; color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); padding: 5px 12px; }
 html.theme-blocks .ftabs:not(#z) { border-top: 0; }
