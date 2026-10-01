@@ -5948,3 +5948,11 @@ html.theme-refined .btypes__go { position: absolute; right: 18px; bottom: 18px; 
 html.theme-refined .btypes__blurb { font: 500 .95rem/1.4 var(--body); letter-spacing: 0; }
 /* the mini TV in the corner dances while you hover over it (only then; changing the mood doesn't set it off) */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .mood__btn:hover .minitv { animation: tv-dance .5s ease-in-out infinite; transform-origin: 50% 100%; } }
+/* business types: three columns whenever there's room (every mood), two on tablets, one on phones */
+@media (min-width: 961px) {
+  .btypes.btypes:not(#z) { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1120px; }
+  .btypes.btypes a:not(#z):not(#y) > span { font-size: clamp(1.3rem, 1.8vw, 1.7rem); }
+  .btypes.btypes a:not(#z):not(#y) { padding: 20px 18px 20px 24px; }
+  html.theme-refined .btypes.btypes a:not(#z):not(#y) { padding: 28px 26px 58px; }
+  html.theme-refined .btypes.btypes a:not(#z):not(#y) > span { font-size: clamp(1.5rem, 2.2vw, 1.85rem); }
+}
