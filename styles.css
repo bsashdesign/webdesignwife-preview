@@ -6584,3 +6584,5 @@ html .chat-choice:not(#z):not(#y):not(#x) { border-style: dotted; border-width: 
 html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { box-shadow: none; border: 2.5px dashed var(--ink); background: rgba(255, 255, 255, .45); }
 @media (hover: hover) { html.theme-blocks .chat-choice:not(#z):not(#y):not(#x):hover { background: rgba(255, 255, 255, .85); } }
 html .hintro .m--typing .bubble i:not(#z) { width: 10px; height: 10px; }
+/* the close-up's messages don't grow open like the phone's, so nothing clips their outline or 3D shadow */
+.hintro .m > .m__in { overflow: visible; padding-bottom: 6px; }
