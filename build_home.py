@@ -49,6 +49,8 @@ ALT_COPY = [
     ("theme-wedding", "Get in touch", "RSVP"),
     ("theme-wedding", "From first call to live site in 14 days", "From first date to launch day in 14 days"),
     ("theme-wedding", "A quick call", "A first date"),
+    ("theme-wedding", "A design you approve", "The proposal"),
+    ("theme-wedding", "A live site I look after", "Happily ever after"),
 ]
 
 SPARKLE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.5 4.6 2.4 6.5 7 7-4.6.5-6.5 2.4-7 7-.5-4.6-2.4-6.5-7-7 '
