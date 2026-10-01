@@ -2233,8 +2233,16 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   sizeAll();
   if (document.fonts) document.fonts.ready.then(sizeAll);
   addEventListener("resize", fit);
-  new MutationObserver(() => setTimeout(fit, 80)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-  new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  // a mood change swaps the fonts and type sizes: re-fit the sentence (phones) and re-measure the reels right away,
+  // again once the new mood's fonts have loaded, and once more after the switch has fully settled
+  let lastMood = document.documentElement.className;
+  new MutationObserver(() => {
+    const now = document.documentElement.className;
+    if (now === lastMood) return; lastMood = now;
+    setTimeout(sizeAll, 60);
+    if (document.fonts) document.fonts.ready.then(() => setTimeout(sizeAll, 30));
+    setTimeout(sizeAll, 450);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
   let drifting = true, spins = 0, youSpun = false;
   // the reels hold still only while you're using the hero's little phone (pointer over it, or a tap/click in it in
