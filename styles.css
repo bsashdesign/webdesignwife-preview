@@ -6589,3 +6589,6 @@ html .hintro .m--typing .bubble i:not(#z) { width: 10px; height: 10px; }
 /* the close-up's "or" between the replies is sized for the big bubbles, not the phone */
 html .hintro .chat-pick__or:not(#z):not(#y) { font-size: 1.05rem; margin: 2px 22px 2px 0; }
 html.theme-wedding .hintro .chat-pick__or:not(#z):not(#y) { font-size: 1.6rem; line-height: 1; }
+/* Transit: hovering a reply turns its text and outline yellow (Transit hovers change the text, not the fill), so it
+   never looks like Web Design Wife's blue message */
+@media (hover: hover) { html.theme-subway.theme-dark .chat-choice:not(#z):not(#y):not(#x):hover { background: #262626; color: #fccc0a; border-color: #fccc0a; } }
