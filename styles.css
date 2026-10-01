@@ -5255,3 +5255,8 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 @media (min-width: 1240px) { #moods-tv > .wrap { grid-template-columns: 530px minmax(0, 1fr); } }
 /* Transit: the button board is a mid charcoal (not near-black) so every key's edge shows against it */
 html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #2c2c2c; box-shadow: inset 0 0 0 1px #3a3a3a, 0 18px 0 #151515, 0 18px 0 1px #2a2a2a, 0 21px 6px -2px rgba(0, 0, 0, .7); }
+/* "For you" note: both sides share one grid cell, so the card is always tall enough for the back's text and button */
+#moods-tv .tv-yours__inner { display: grid; height: auto; }
+#moods-tv .tv-yours__front, #moods-tv .tv-yours__back { position: relative; inset: auto; grid-area: 1 / 1; }
+#moods-tv .tv-yours .tv-yours__back { padding: 18px 24px; }
+@media (min-width: 601px) and (max-width: 1239px) { #moods-tv .tv-panel .tv-yours { max-width: 540px; } }
