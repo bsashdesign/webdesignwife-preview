@@ -5918,3 +5918,5 @@ html.theme-wedding .btypes.btypes a:not(#z):not(#y) { border-radius: 2px; backgr
 html.theme-wedding .btypes__go { background: none; border: 1px solid #b8955a; color: var(--gold-ink); }
 @media (hover: hover) { html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover { border-color: #b8955a; } html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--ink); border-color: var(--ink); color: #e9d9b4; } html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover > span { color: var(--ink); } }
 .bdo__note:not(#z) { max-width: none; margin-inline: auto; }
+.btypes__go svg { display: block; width: 20px; height: 20px; }
+@media (max-width: 760px) { .btypes__go svg { width: 17px; height: 17px; } }

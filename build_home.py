@@ -254,7 +254,7 @@ btypes_index = full_page((HERE / "businesses.template.html").read_text()).replac
 btypes_index = (btypes_index
     .replace("{{META_TITLE}}", "See What I'd Do for Your Business — Web Design Wife")
     .replace("{{DESC}}", "Plumbers, salons, dentists, restaurants and more: pick your type of business and see what I'd build, set up and keep up to date for you.")
-    .replace("{{TYPES}}", "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span>{esc(t["label"])}</span><i class="btypes__go" aria-hidden="true">→</i></a></li>' for t in BTYPES)))
+    .replace("{{TYPES}}", "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span>{esc(t["label"])}</span><i class="btypes__go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a></li>' for t in BTYPES)))
 (HERE / "businesses.html").write_text(bust(titlecase.apply(btypes_index)))
 BTYPE_TEMPLATE = (HERE / "business.template.html").read_text()
 for t in BTYPES:
