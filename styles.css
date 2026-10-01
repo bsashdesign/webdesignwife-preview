@@ -5368,3 +5368,5 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
 /* (the pressed state has to come after the hover rule above, or hovering a pressed Transit key brings its edge back) */
 #moods-tv .tv-key--transit:is([aria-pressed="true"], :active) .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 3px 6px rgba(0,0,0,.35); }
 :is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.35); }
+/* Transit key: the face is a plain white circle (no hair band) */
+#moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-key.svg); }
