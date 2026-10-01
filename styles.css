@@ -6372,3 +6372,64 @@ html.theme-wedding .blist .blist__name:not(#z):not(#y) { color: var(--gold-ink);
 html.theme-refined .blist .blist__ic:not(#z):not(#y) { border-radius: 10px; }
 html.theme-blocks .blist .blist__ic:not(#z):not(#y) { border-radius: 8px; box-shadow: inset 0 0 0 2px var(--ink), 3px 3px 0 var(--ink); }
 @media (max-width: 600px) { html.theme-refined .blist .blist__ic:not(#z):not(#y) { border-radius: 8px; } html.theme-blocks .blist .blist__ic:not(#z):not(#y) { border-radius: 7px; box-shadow: inset 0 0 0 2px var(--ink), 2px 2px 0 var(--ink); } }
+/* Tangy's hover highlighter sits on the words themselves (an inline span), so a name that wraps onto two lines
+   gets a stripe under each line instead of one block below */
+html.theme-blocks .blist__name:not(#z):not(#y) { background: none; }
+html.theme-blocks .blist__t { padding: 0 2px; background: linear-gradient(var(--bc), var(--bc)) 100% 88% / 0 .55em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size .45s cubic-bezier(.65, 0, .35, 1); }
+@media (hover: hover) { html.theme-blocks .blist a:not(#z):hover .blist__t { background-position: 0 88%; background-size: 100% .55em; } }
+/* room after the last column for the hover arrow, so it never touches the pop-up's edge */
+@media (min-width: 901px) { #btype-dialog .blist:not(#z):not(#y) { padding-right: 30px; } }
+
+/* ===== New pricing model ===== */
+/* the plan card's headline difference (Business and Full Suite: in person + photography) */
+.plan .ticks li.plan__key { margin: 2px 0 6px; padding: 8px 10px 8px 36px; border-radius: 10px; background: color-mix(in srgb, var(--violet) 10%, transparent); }
+.plan .ticks li.plan__key::before { left: 10px; top: calc(8px + .8em - 8px); }
+html.theme-blocks .plan .ticks li.plan__key { background: #fffbe0; box-shadow: inset 0 0 0 2px var(--ink); border-radius: 8px; }
+html.theme-subway.theme-dark .plan .ticks li.plan__key { background: rgba(252,204,10,.12); border-radius: 6px; }
+html.theme-wedding .plan .ticks li.plan__key { background: rgba(184,149,90,.12); border-radius: 2px; }
+/* the setup section: two labelled step lists */
+.psteps__label { margin: 30px 0 0; }
+.psteps__label + .psteps { margin-top: 14px; }
+.psteps--extra { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.psteps--extra li::before { content: "+"; }
+@media (max-width: 960px) { .psteps--extra { grid-template-columns: minmax(0, 1fr); } }
+/* what you pay, and when: four numbered steps */
+.paysteps { list-style: none; counter-reset: pay; margin: 18px 0 16px; padding: 0; display: grid; gap: 10px; }
+.paysteps li { counter-increment: pay; display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 12px; align-items: baseline; }
+.paysteps li::before { content: counter(pay); grid-row: 1 / 3; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 .85rem var(--body); align-self: start; }
+.paysteps strong { font-size: 1.02rem; }
+.paysteps span { grid-column: 2; color: var(--ink-soft); font-size: .92rem; }
+html.theme-blocks .paysteps li::before { background: var(--lime); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+html.theme-subway .paysteps li::before { background: #fccc0a; color: #111; }
+html.theme-wedding .paysteps li::before { background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); font: italic 600 1rem var(--display); }
+/* the guarantee: two promises side by side */
+.promises2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.promises2 h3 { margin: 0 0 8px; font-size: clamp(1.25rem, 2.2vw, 1.6rem) !important; }
+.promises2 p { margin: 0; font-size: 1rem !important; }
+@media (max-width: 760px) { .promises2 { grid-template-columns: minmax(0, 1fr); gap: 18px; } }
+/* "I come to your business": copy and steps, with the visit photo beside them once it's added */
+.visit__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; }
+.visit__grid:has(.visit__photo) { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+.visit__copy .lede { max-width: 40em; }
+.visit__steps { list-style: none; counter-reset: v; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 880px; }
+.visit__grid:has(.visit__photo) .visit__steps { grid-template-columns: minmax(0, 1fr); }
+.visit__steps li { counter-increment: v; display: grid; gap: 4px; padding: 18px 18px 18px 60px; position: relative; border-radius: var(--r); background: var(--tint); }
+.visit__steps li::before { content: counter(v); position: absolute; left: 18px; top: 17px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 .9rem var(--body); }
+.visit__steps span { color: var(--ink-soft); font-size: .94rem; }
+.visit__note:not(#z) { max-width: none; margin: 18px 0 0; color: var(--ink-soft); font-size: .92rem; }
+.visit__photo { margin: 0; }
+.visit__photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--r-lg); }
+.visit__photo figcaption { margin-top: 10px; color: var(--ink-soft); font-size: .88rem; }
+@media (max-width: 860px) { .visit__grid:has(.visit__photo) { grid-template-columns: minmax(0, 1fr); } .visit__photo { order: -1; } .visit__steps { grid-template-columns: minmax(0, 1fr); } }
+html.theme-blocks .visit { background: var(--sky); }
+html.theme-blocks .visit__steps li { background: #fff; box-shadow: inset 0 0 0 2.5px var(--ink), 4px 4px 0 var(--ink); }
+html.theme-blocks .visit__steps li::before { background: var(--lime); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+html.theme-blocks .visit__steps span, html.theme-blocks .visit__note:not(#z) { color: var(--ink); }
+html.theme-blocks .visit__photo img { border: 2.5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+html.theme-refined .visit__steps li { background: #fff; box-shadow: 0 0 0 1px #ebe6fb, 0 12px 30px -22px rgba(91,61,245,.5); }
+html.theme-refined .visit__steps li::before { background: var(--lilac); color: var(--violet); }
+html.theme-subway.theme-dark .visit__steps li { background: #1c1c1c; border-radius: 10px; box-shadow: inset 5px 0 0 #fccc0a; }
+html.theme-subway.theme-dark .visit__steps li::before { background: #fccc0a; color: #111; }
+html.theme-wedding .visit__steps li { background: #fffdf8; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(184,149,90,.45); }
+html.theme-wedding .visit__steps li::before { background: none; color: var(--gold-ink); box-shadow: inset 0 0 0 1px var(--gold); font: italic 600 1rem var(--display); }
+html.theme-wedding .visit__photo img { border-radius: 2px; }

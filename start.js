@@ -3,13 +3,10 @@
   const form = document.getElementById("start-form");
   if (!form) return;
 
-  const PLANS = {
-    essentials: { name: "Essentials", price: 99, setup: 199 },
-    business: { name: "Business", price: 149, setup: 399 },
-    full: { name: "Full Suite", price: 249, setup: 599 },
-  };
+  // prices come from the build (build_home.py PLANS → window.WDW_PLANS)
+  const PLANS = Object.fromEntries(Object.entries(window.WDW_PLANS).map(([k, p]) => [k, { ...p, price: p.month }]));
   const money = (n) => "$" + n.toLocaleString("en-US");
-  const yearly = (p) => Math.round(p.price * 12 * 0.8);
+  const yearly = (p) => p.year;
   const sum = (k) => document.querySelector(`[data-sum="${k}"]`);
   const KEY = "wdw-start";
 
@@ -45,14 +42,14 @@
     sum("plan").dataset.plan = key;
     const gem = document.querySelector(".ssum__gem"); if (gem) gem.dataset.plan = key;
     const F = window.WDW_FOUNDING;
-    if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(F.setup)}`; else sum("today").textContent = money(p.setup);
+    if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(p.found)}`; else sum("today").textContent = money(p.setup);
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;
     sum("then-note").textContent = isYearly
-      ? `Billed yearly, saving ${money(p.price * 12 - yearly(p))}. Your plan starts the day your site goes live, once you've approved it.`
-      : "Your plan starts the day your site goes live, once you've approved it.";
+      ? `Billed yearly, saving ${money(p.save)} on your subscription. It starts the day your site goes live, once you've approved it.`
+      : "Your subscription starts the day your site goes live, once you've approved it.";
     document.querySelectorAll("[data-price]").forEach((el) => {
       const q = PLANS[el.dataset.price];
-      el.textContent = isYearly ? `${money(Math.round(q.price * 0.8))}/month, billed yearly` : `${money(q.price)}/month`;
+      el.textContent = isYearly ? `${money(q.yearmo)}/month, billed yearly` : `${money(q.price)}/month`;
     });
   }
 

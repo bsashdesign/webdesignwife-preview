@@ -293,28 +293,26 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.billing === mode)));
     if (sw) sw.setAttribute("aria-checked", String(mode === "yearly"));
     if (billing) billing.classList.toggle("is-yearly", mode === "yearly");
-    // the tag says what you get: "Save 20%" before, "You Are Saving 20%" once yearly is on.
-    // Both wordings sit in the same spot, so the tag keeps the longer one's width and the toggle never moves.
+    // the tag says what you get: "Save ~20%" before, "You Are Saving ~20%" once yearly is on (on the subscription;
+    // it never touches setup). Both wordings sit in the same spot, so the tag keeps the longer one's width.
     document.querySelectorAll(".billing__save").forEach((t) => {
-      if (!t.querySelector(".billing__save-m")) t.innerHTML = '<span class="billing__save-m">Save 20%</span><span class="billing__save-y">You Are Saving 20%</span>';
+      if (!t.querySelector(".billing__save-m")) t.innerHTML = '<span class="billing__save-m">Save ~20%</span><span class="billing__save-y">You Are Saving ~20%</span>';
       t.classList.toggle("is-on", mode === "yearly");
     });
     plans.forEach((plan) => {
-      const price = Number(plan.dataset.price);
-      const setup = Number(plan.dataset.setup);
+      const P = window.WDW_PLANS[plan.dataset.planKey];
+      const price = P.month, setup = P.setup, yearly = P.year, perMonth = P.yearmo;
       const terms = plan.querySelector(".plan__terms");
-      const yearly = Math.round(price * 12 * 0.8);
-      const perMonth = Math.round(price * 0.8);
       plan.querySelector(".plan__price").innerHTML = mode === "yearly"
         ? `<s class="plan__was">$${price}</s><b class="plan__now"><span>$${perMonth}</span>/month</b>`
         : `<b class="plan__now"><span>$${price}</span>/month</b>`;
-      // Founding 5: the setup fee shows struck through, with the $1 founding setup next to it.
+      // Founding 5: the setup fee shows struck through, with the 50%-off founding setup next to it
       const F = window.WDW_FOUNDING;
       const setupLine = F
-        ? `+ <s>${money(setup)}</s> <strong>${money(F.setup)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>Founder</span>`
+        ? `+ <s>${money(setup)}</s> <strong>${money(P.found)} setup</strong> <span class="plan__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>Founding 5: ${F.off}% off</span>`
         : `+ ${money(setup)} one-time setup`;
       terms.innerHTML = mode === "yearly"
-        ? `${money(yearly)} billed yearly · <strong>save ${money(price * 12 - yearly)}</strong><br>${setupLine}`
+        ? `${money(yearly)} billed yearly · <strong>save ${money(P.save)} on your subscription</strong><br>${setupLine}`
         : setupLine;
       const cta = plan.querySelector(".plan__cta");
       if (cta) { const u = new URL(cta.getAttribute("href"), location.href); u.searchParams.set("billing", mode); cta.setAttribute("href", "start.html" + u.search); }
@@ -322,7 +320,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   }
   buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.billing)));
   if (sw) sw.addEventListener("click", () => render(sw.getAttribute("aria-checked") === "true" ? "monthly" : "yearly"));
-  // Yearly (20% off) is the default
+  // Yearly (about 20% off the subscription) is the default
   render("yearly");
 })();
 
@@ -592,12 +590,12 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   const others = document.getElementById("finder-others");
 
   const PLANS = [
-    { id: "plan-simple", name: "Essentials", price: 99, why: "Everything a small business needs on one polished page.",
-      feats: ["One scrolling page", "Contact form", "Google Maps kept up to date", "Unlimited minor edits"] },
-    { id: "plan-business", name: "Business", price: 149, why: "A full site that helps nearby customers find you.",
-      feats: ["Up to 5 pages", "Google Maps growth and review routine", "Live Google reviews and Instagram feed", "Unlimited minor edits"] },
-    { id: "plan-full", name: "Full Suite", price: 249, why: "Everything, plus tools that keep bringing in new customers.",
-      feats: ["Up to 10 pages", "AI chat assistant", "Neighborhood SEO pages and a monthly blog post", "AI search optimization"] },
+    { id: "plan-simple", name: "Essentials", price: window.WDW_PLANS.essentials.month, why: "Everything a small business needs on one polished page, set up remotely.",
+      feats: ["One scrolling page", "Remote kickoff, with your own photos", "Google Maps kept up to date", "Unlimited minor edits"] },
+    { id: "plan-business", name: "Business", price: window.WDW_PLANS.business.month, why: "I come to your business, then build a full site that helps nearby customers find you.",
+      feats: ["In-person kickoff + original business photography", "Up to 5 pages", "Google Maps growth and review routine", "Live Google reviews and Instagram feed"] },
+    { id: "plan-full", name: "Full Suite", price: window.WDW_PLANS.full.month, why: "Everything in Business, plus tools that keep bringing in new customers.",
+      feats: ["In-person kickoff + original business photography", "Up to 10 pages", "AI chat assistant", "Neighborhood SEO pages and a monthly blog post"] },
   ];
 
   let current = 0;
@@ -1374,19 +1372,17 @@ function openSheet(d) {
 (function () {
   const box = document.querySelector("[data-paysample]");
   if (!box) return;
-  const PLANS = { essentials: [99, 199], business: [149, 399], full: [249, 599] };
   const money = (n) => "$" + n.toLocaleString("en-US");
   const set = (k, v) => { box.querySelector(`[data-ps="${k}"]`).innerHTML = v; };
   let plan = "business";
   const render = () => {
     const yearly = document.querySelector(".billing__switch")?.getAttribute("aria-checked") === "true";
-    const [price, setup] = PLANS[plan];
+    const P = window.WDW_PLANS[plan], price = P.month, setup = P.setup, year = P.year;
     const F = window.WDW_FOUNDING;
-    const year = Math.round(price * 12 * 0.8);
-    set("today", F ? `<s>${money(setup)}</s> ${money(F.setup)}` : money(setup));
-    set("today-note", F ? "One-time setup, with the Founding 5 offer" : "One-time setup fee");
+    set("today", F ? `<s>${money(setup)}</s> ${money(P.found)}` : money(setup));
+    set("today-note", F ? `One-time setup, ${F.off}% off with the Founding 5 offer` : "One-time setup fee");
     set("then", yearly ? `${money(year)}/year` : `${money(price)}/month`);
-    set("then-note", yearly ? `Your plan starts: a year at 20% off, saving ${money(price * 12 - year)}` : "Your plan starts");
+    set("then-note", yearly ? `Your subscription starts: a year at about 20% off, saving ${money(P.save)}` : "Your subscription starts");
     set("after", yearly ? `${money(year)} every year` : `${money(price)} every month`);
     set("after-note", "Cancel anytime");
     box.querySelectorAll("[data-sample]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.sample === plan)));
@@ -2114,7 +2110,8 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
 (function () {
   const box = document.querySelector("[data-buycalc]");
   if (!box) return;
-  const PRICE = { essentials: 99, business: 149, full: 249 };
+  const PRICE = Object.fromEntries(Object.entries(window.WDW_PLANS).map(([k, p]) => [k, p.month]));
+  const YEARMO = Object.fromEntries(Object.entries(window.WDW_PLANS).map(([k, p]) => [k, p.yearmo]));
   const MONTHS = [24, 20, 16, 12, 8, 4], FEE = 299;
   const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
   const set = (k, v) => { box.querySelector(`[data-bc="${k}"]`).textContent = v; };
@@ -2122,7 +2119,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   let plan = "business", bill = "yearly";
   const render = () => {
     const m = +range.value;
-    const per = bill === "yearly" ? Math.round(PRICE[plan] * 0.8) : PRICE[plan];
+    const per = bill === "yearly" ? YEARMO[plan] : PRICE[plan];
     range.style.setProperty("--fill", ((m - 1) / 72 * 100) + "%");
     if (m > 72) {
       set("when", "After six years");

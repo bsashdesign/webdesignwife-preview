@@ -30,7 +30,23 @@ DEFAULT = "tangy"
 #   left: None shows no count; a number shows "N of 5 spots left". Only ever set it to the real number.
 #   on:   set to False once all five spots are taken. Every mention disappears from the built pages
 #         (also remove the "Founding 5" paragraph in terms.html by hand).
-FOUNDING = {"on": True, "left": None, "setup": 1}
+FOUNDING = {"on": True, "left": None, "off": 50}
+
+# The plans: the one place prices live. Templates use {{$plan.field}} (e.g. {{$business.month}} → "$229") and
+# script.js / start.js read window.WDW_PLANS. Yearly billing is a fixed price per plan (~20% off the subscription;
+# it never applies to setup). "found" is the Founding 5 setup: 50% off, rounded down to the dollar.
+PLANS = {
+    "essentials": {"name": "Essentials", "setup": 399, "month": 149, "yearmo": 119, "year": 1430},
+    "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150},
+    "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870},
+}
+for _p in PLANS.values():
+    _p["found"] = _p["setup"] * (100 - FOUNDING["off"]) // 100
+    _p["save"] = _p["month"] * 12 - _p["year"]
+
+def prices(html):
+    """Fill {{$plan.field}} with the formatted price, e.g. {{$full.setup}} → $1,299."""
+    return re.sub(r"\{\{\$(\w+)\.(\w+)\}\}", lambda m: f"${PLANS[m.group(1)][m.group(2)]:,}", html)
 
 # Cal.com scheduling. Two separate event types; availability, buffers and daily limits live in Cal.com.
 #   call:       the 15-minute scheduled callback for prospects ("Request a callback"); location: Ben calls the attendee's phone.
@@ -49,8 +65,8 @@ THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n i
 # Copy that changes with a mood: (mood class, current text, mood text)
 ALT_COPY = [
     ("theme-wedding", "Get in touch", "RSVP"),
-    ("theme-wedding", "From first call to live site in 14 days", "From first date to launch day in 14 days"),
-    ("theme-wedding", "A quick call", "A first date"),
+    ("theme-wedding", "Designed in 14 days, launched when you love it", "The proposal in 14 days, the wedding when you're ready"),
+    ("theme-wedding", "We get to know your business", "A first date"),
     ("theme-wedding", "A design you approve", "The proposal"),
     ("theme-wedding", "A live site I look after", "Happily ever after"),
 ]
@@ -101,7 +117,7 @@ def mood_boot():
     return (f'<script>(function(){{var M={{{table}}},k=new URLSearchParams(location.search).get("mood");'
             f'try{{if(!M[k])k=localStorage.getItem("wdw-mood")}}catch(e){{}}if(!M[k])k="{DEFAULT}";'
             f'M[k].split(" ").forEach(function(c){{document.documentElement.classList.add(c)}});document.documentElement.dataset.mood=k}})();'
-            f'window.WDW_FOUNDING={json.dumps(FOUNDING if FOUNDING["on"] else None)};window.WDW_CAL={json.dumps(CAL)};</script>')
+            f'window.WDW_FOUNDING={json.dumps(FOUNDING if FOUNDING["on"] else None)};window.WDW_PLANS={json.dumps(PLANS)};window.WDW_CAL={json.dumps(CAL)};</script>')
 
 
 def add_alt_copy(html):
@@ -120,12 +136,12 @@ def founding(html):
               '<div class="founding__body">'
               '<h2 class="founding__title">The Founding <span class="founding__num">5</span></h2>'
               '<p class="founding__text">The managed service is new, so I\'m opening it to five businesses first. '
-              'Your setup is <strong>$1</strong> instead of $199 to $599, and your plan is the normal price. '
+              f'Founding 5 saves <strong>{FOUNDING["off"]}% on setup</strong>. Your subscription is the regular plan price. '
               'When the five spots are gone, so is the offer.</p>'
               + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
               + "</div></div>") if on else ""
     return (html.replace("{{FOUNDING_BANNER}}", banner)
-                .replace("{{HERO_LABEL}}", '<span class="eyebrow__text">Limited time: <s>$199</s> $1 setup</span>' if on else "Based in Brooklyn, New York"))
+                .replace("{{HERO_LABEL}}", f'<span class="eyebrow__text">Founding 5: {FOUNDING["off"]}% off setup</span>' if on else "Based in Brooklyn, New York"))
 
 
 def work_visual():
@@ -149,7 +165,17 @@ def work_visual():
             '</figure>' + live + '</div>')
 
 
+def visit_photo():
+    """The photo beside "I come to your business": me with the owner of New Age Pharmacy. It only appears once
+    images/visit.jpg exists (and only with the owner's OK to be on the site)."""
+    if not (HERE / "images" / "visit.jpg").exists():
+        return ""
+    return ('<figure class="visit__photo"><img src="images/visit.jpg" alt="Ben with the owner of New Age Pharmacy, Brooklyn" loading="lazy">'
+            '<figcaption>With the owner of New Age Pharmacy, Brooklyn</figcaption></figure>')
+
+
 def bust(html):
+    html = prices(html)
     # Version asset links so browsers pick up new styles after each publish.
     html = re.sub(r'(href="(?:\.\./)?(?:styles|themes/[a-z-]+)\.css)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
     return re.sub(r'(src="(?:\.\./)?(?:script|start)\.js)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
@@ -163,7 +189,7 @@ ARROW_SVG = '<svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="non
 def btype_tiles():
     # a plain index: a small icon, the name, and an arrow that slides in on hover (no cards)
     e = _html.escape
-    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span class="blist__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{BICONS[t["slug"]]}</svg></span><span class="blist__name">{e(titlecase.title(t["label"]))}<i class="blist__go" aria-hidden="true">{ARROW_SVG}</i></span></a></li>' for i, t in enumerate(BTYPES, 1))
+    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span class="blist__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{BICONS[t["slug"]]}</svg></span><span class="blist__name"><span class="blist__t">{e(titlecase.title(t["label"]))}</span><i class="blist__go" aria-hidden="true">{ARROW_SVG}</i></span></a></li>' for i, t in enumerate(BTYPES, 1))
 
 page = (TEMPLATE
         .replace("{{BTYPE_TILES}}", btype_tiles())
@@ -172,6 +198,7 @@ page = (TEMPLATE
         .replace(' class="{{BODY_CLASS}}"', "")
         .replace("{{SWITCHER}}", switcher())
         .replace("{{WORK_VISUAL}}", work_visual())
+        .replace("{{VISIT_PHOTO}}", visit_photo())
         .replace("{{MOODS}}", footer_moods())
         .replace("{{NEWSLETTER}}", newsletter())
         .replace("{{HOME}}", "index.html"))

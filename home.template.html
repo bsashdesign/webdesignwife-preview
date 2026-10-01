@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <script>document.documentElement.classList.add("js");</script>
-  <title>Web Design Wife — Managed websites for New York local businesses, from $99/month</title>
-  <meta name="description" content="Your local web partner in New York. A professional website for your business with design, hosting, edits and support included. Plans from $99/month.">
+  <title>Web Design Wife — Managed websites for New York local businesses, from {{$essentials.month}}/month</title>
+  <meta name="description" content="Your local web partner in New York. A professional website for your business with design, hosting, edits and support included. Plans from {{$essentials.month}}/month.">
   <meta property="og:title" content="Web Design Wife — Your website, handled.">
-  <meta property="og:description" content="Managed websites for New York local businesses. Design, hosting, edits and support included, from $99/month.">
+  <meta property="og:description" content="Managed websites for New York local businesses. Design, hosting, edits and support included, from {{$essentials.month}}/month.">
   <link rel="icon" href="images/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
       "founder": {
         "@id": "https://webdesignwife.com/#ben"
       },
-      "description": "Managed websites for New York small businesses: custom design, hosting, unlimited minor edits and Google Maps upkeep for a monthly fee. Plans from $99 to $249 a month, live in 14 days or your money back.",
+      "description": "Managed websites for New York small businesses: custom design, hosting, unlimited minor edits and Google Maps upkeep for a monthly fee. Plans from $149 to $299 a month. Designed in 14 days, refined until you love it, and the subscription starts at launch. On Business and Full Suite I come to your business in person.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Brooklyn",
@@ -67,7 +67,7 @@
           "name": "Staten Island"
         }
       ],
-      "priceRange": "$99–$249/month",
+      "priceRange": "$149–$299/month",
       "knowsAbout": [
         "Small business web design",
         "Website hosting and maintenance",
@@ -81,20 +81,7 @@
           {
             "@type": "Offer",
             "name": "Essentials",
-            "description": "A one-page website with hosting, unlimited minor edits and Google Maps kept up to date.",
-            "price": "99",
-            "priceCurrency": "USD",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "99",
-              "priceCurrency": "USD",
-              "unitText": "MONTH"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Business",
-            "description": "Up to 5 pages, Google Maps growth and review routine, live reviews, a competitor comparison and a design refresh every 3 years.",
+            "description": "A one-page website set up remotely, with hosting, unlimited minor edits and Google Maps kept up to date.",
             "price": "149",
             "priceCurrency": "USD",
             "priceSpecification": {
@@ -106,13 +93,26 @@
           },
           {
             "@type": "Offer",
-            "name": "Full Suite",
-            "description": "Up to 10 pages, AI chat assistant, neighborhood SEO pages, a monthly blog post, AI search optimization, a design refresh every 2 years and priority edits.",
-            "price": "249",
+            "name": "Business",
+            "description": "An in-person kickoff with original business photography, up to 5 pages, Google Maps growth and review routine, live reviews, a competitor comparison and a design refresh every 4 years.",
+            "price": "229",
             "priceCurrency": "USD",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
-              "price": "249",
+              "price": "229",
+              "priceCurrency": "USD",
+              "unitText": "MONTH"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Full Suite",
+            "description": "Everything in Business in person, plus up to 10 pages, AI chat assistant, neighborhood SEO pages, a monthly blog post, AI search optimization, a design refresh every 3 years and priority edits.",
+            "price": "299",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "299",
               "priceCurrency": "USD",
               "unitText": "MONTH"
             }
@@ -179,7 +179,7 @@
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
-        <a class="drawer__big" href="pricing.html"><span>Pricing</span><small>Plans from $99/month and FAQs</small></a>
+        <a class="drawer__big" href="pricing.html"><span>Pricing</span><small>Plans from {{$essentials.month}}/month and FAQs</small></a>
         <a class="drawer__big" href="features.html"><span>Features</span><small>What’s in each plan</small></a>
         <a class="drawer__big" href="contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
         <a class="drawer__big" href="blog/index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
@@ -207,14 +207,14 @@
       <div class="wrap hero__grid">
         <div class="hero__copy">
           <p class="eyebrow">{{HERO_LABEL}}</p>
-          <h1><span class="hero__line">Your website, handled.</span> <span class="hl">From&nbsp;$99/month.</span></h1>
+          <h1><span class="hero__line">Your website, handled.</span> <span class="hl">From&nbsp;{{$essentials.month}}/month.</span></h1>
           <p class="lede">I design it, host it and keep it up to date. Need a change? Send me a quick message and it's live by tomorrow. You get back to running your business.</p>
           <div class="hero__ctas">
             <a class="btn btn--primary" href="#audit">Get a free website + Maps audit</a>
             <a class="btn btn--ghost" href="start.html">Get started</a>
           </div>
           <dl class="hero__stats" aria-label="At a glance">
-            <div><dt>14 days</dt><dd>to launch, guaranteed</dd></div>
+            <div><dt>14 days</dt><dd>to your design, guaranteed</dd></div>
             <div><dt>1 day</dt><dd>for edits</dd></div>
             <div><dt>6 years</dt><dd>to own your site</dd></div>
           </dl>
@@ -295,6 +295,24 @@
       </div>
     </section>
 
+    <!-- IN PERSON: Business and Full Suite start with a visit to the business -->
+    <section class="section visit" id="visit">
+      <div class="wrap visit__grid">
+        <div class="visit__copy">
+          <p class="eyebrow">Business &amp; Full Suite</p>
+          <h2>I come to your business</h2>
+          <p class="lede">For Business and Full Suite, I meet you where you work, learn how the business actually runs and photograph the real place and people behind it. Then I build the site around what I saw.</p>
+          <ol class="visit__steps">
+            <li><strong>We sit down together</strong><span>Your business, your customers, what matters to you.</span></li>
+            <li><strong>I see how it runs</strong><span>The space, the work and the way people find you.</span></li>
+            <li><strong>I photograph the real place</strong><span>Your people and your work, not stock photos.</span></li>
+          </ol>
+          <p class="visit__note">We confirm the visit on our first call. Essentials is set up remotely, with your own photos.</p>
+        </div>
+        {{VISIT_PHOTO}}
+      </div>
+    </section>
+
     <!-- COMPARISON -->
     <section class="section section--tint" id="compare">
       <div class="wrap">
@@ -303,7 +321,7 @@
         <div class="compare-cards">
           <div class="cc"><span class="cc__ico"><i class="pi pi--hammer" aria-hidden="true"></i></span><h3>Do it yourself</h3><ul><li>No build fee</li><li>$20–$50/mo, plus your evenings</li><li>You design it and make every change</li><li>Google Maps is up to you</li></ul></div>
           <div class="cc"><span class="cc__ico"><i class="pi pi--buildings" aria-hidden="true"></i></span><h3>Hire an agency</h3><ul><li>$3,000–$10,000 upfront</li><li>Edits billed hourly</li><li>The agency designs it</li><li>Google Maps usually extra</li></ul></div>
-          <div class="cc cc--us"><span class="cc__ico cc__ico--us"><img src="images/favicon.jpg" alt="" width="48" height="48"></span><h3>Web Design Wife</h3><ul><li>One-time setup from $199</li><li>$99–$249/mo, all included</li><li>I design it and make every change. Just message me.</li><li>Google Maps kept up to date</li><li>100% money back if you don't love the design</li></ul></div>
+          <div class="cc cc--us"><span class="cc__ico cc__ico--us"><img src="images/favicon.jpg" alt="" width="48" height="48"></span><h3>Web Design Wife</h3><ul><li>One-time setup from {{$essentials.setup}}</li><li>{{$essentials.month}}–{{$full.month}}/mo, all included</li><li>I design it and make every change. Just message me.</li><li>On Business and Full Suite, I come to your business</li><li>It doesn't launch until you love it</li></ul></div>
         </div>
         <p class="section-cta"><a class="btn btn--primary" href="start.html">Get started</a><a class="section-cta__alt" href="#audit">or get a free audit first</a></p>
       </div>
@@ -414,21 +432,21 @@
       <div class="wrap">
         <p class="eyebrow">How it works</p>
         <div class="carousel-head">
-          <h2>From first call to live site in 14 days</h2>
+          <h2>Designed in 14 days, launched when you love it</h2>
           <div data-nav-slot></div>
         </div>
         <ol class="steps">
           <li>
-            <h3>A quick call</h3>
-            <p>Fifteen minutes about your business, your customers and what you want people to do when they find you.</p>
+            <h3>We get to know your business</h3>
+            <p>On Essentials, a call about your business and your customers. On Business and Full Suite, I come to you, see how it runs and photograph the real place and people.</p>
           </li>
           <li>
             <h3>A design you approve</h3>
-            <p>I write the copy, pick the photos and design every page. You review it and ask for changes until it's right.</p>
+            <p>Your design is ready for review within 14 days. I keep refining it with you until you're happy to approve it.</p>
           </li>
           <li>
             <h3>A live site I look after</h3>
-            <p>I launch the site and look after it from then on: hosting, fixes and every minor edit you need.</p>
+            <p>Your subscription starts the day it goes live. I look after it from then on: hosting, fixes and every minor edit you need.</p>
           </li>
         </ol>
         <p class="section-cta"><a class="btn btn--primary" href="start.html">Get started</a><a class="section-cta__alt" href="#audit">or get a free audit first</a></p>
@@ -442,28 +460,30 @@
         <div class="pricing__head">
           <p class="eyebrow">Pricing</p>
           <h2>Simple plans. Clear pricing.</h2>
-          <p class="muted">Three plans, all with hosting, security and unlimited minor edits. Pay monthly, or pay yearly and save 20%. <a class="pricing__link" href="#pricing" data-open-finder>Help me choose a plan</a></p>
+          <p class="muted">Three plans, all with hosting, security and unlimited minor edits. Save ~20% on your subscription with yearly billing. <a class="pricing__link" href="#pricing" data-open-finder>Help me choose a plan</a></p>
         </div>
 
         {{FOUNDING_BANNER}}
         <div class="billing-row">
           <div class="billing sbill">
-            <em class="billing__save">Save 20%</em>
+            <em class="billing__save">Save ~20%</em>
             <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly billing</button>
-            <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save 20%"><i></i></button>
+            <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save about 20% on your subscription"><i></i></button>
           </div>
         </div>
         <div class="plans">
-          <article class="plan" id="plan-simple" data-price="99" data-setup="199">
+          <article class="plan" id="plan-simple" data-plan-key="essentials" data-price="149">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-simple">i</button><span class="plan__tip" role="tooltip" id="rec-tip-simple">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
             <div class="plan__head">
               <span class="plan-ring-tile" aria-hidden="true"><canvas class="plan-ring plan-gem" data-plan="essentials"></canvas></span>
               <h3>Essentials</h3>
-              <p class="plan__for">A polished one-page site</p>
+              <p class="plan__for">A polished one-page site, set up remotely</p>
             </div>
-            <p class="plan__price"><span>$99</span>/month</p>
+            <p class="plan__price"><span>{{$essentials.month}}</span>/month</p>
             <p class="plan__terms"></p>
             <ul class="ticks ticks--dark">
+              <li><strong>Remote kickoff</strong></li>
+              <li>You supply the photos</li>
               <li>One scrolling page</li>
               <li>Contact form</li>
               <li>Google Maps kept up to date</li>
@@ -475,20 +495,21 @@
             <a class="btn btn--ghost btn--block plan__cta" href="start.html?plan=essentials">Get started</a>
           </article>
 
-          <article class="plan plan--best" id="plan-business" data-price="149" data-setup="399">
+          <article class="plan plan--best" id="plan-business" data-plan-key="business" data-price="229">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-business">i</button><span class="plan__tip" role="tooltip" id="rec-tip-business">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
             <span class="plan__badge">Most popular</span>
             <div class="plan__head">
               <span class="plan-ring-tile" aria-hidden="true"><canvas class="plan-ring plan-gem" data-plan="business"></canvas></span>
               <h3>Business</h3>
-              <p class="plan__for">More pages, built to be found</p>
+              <p class="plan__for">I come to your business</p>
             </div>
-            <p class="plan__price"><span>$149</span>/month</p>
+            <p class="plan__price"><span>{{$business.month}}</span>/month</p>
             <p class="plan__terms"></p>
             <ul class="ticks ticks--dark">
-              <li>Everything in Essentials</li>
+              <li class="plan__key"><strong>In-person kickoff + original business photography</strong></li>
+              <li>Everything in Essentials, done in person</li>
               <li><strong>Up to 5 pages</strong></li>
-              <li><strong>Design refresh every 3 years</strong></li>
+              <li><strong>Design refresh every 4 years</strong></li>
               <li>Google Maps growth and review routine</li>
               <li>Live Google reviews and Instagram feed</li>
               <li>Competitor comparison report</li>
@@ -498,19 +519,20 @@
             <a class="btn btn--primary btn--block plan__cta" href="start.html?plan=business">Get started</a>
           </article>
 
-          <article class="plan" id="plan-full" data-price="249" data-setup="599">
+          <article class="plan" id="plan-full" data-plan-key="full" data-price="299">
             <span class="plan__rec" hidden>Recommended for you<button type="button" class="plan__info" aria-label="Why is this recommended?" aria-describedby="rec-tip-full">i</button><span class="plan__tip" role="tooltip" id="rec-tip-full">Based on your answers in the plan finder. <button type="button" class="linkbtn" data-open-finder>Change answers</button></span></span>
             <div class="plan__head">
               <span class="plan-ring-tile" aria-hidden="true"><canvas class="plan-ring plan-gem" data-plan="full"></canvas></span>
               <h3>Full Suite</h3>
-              <p class="plan__for">Everything, plus growth tools</p>
+              <p class="plan__for">In person, plus ongoing growth</p>
             </div>
-            <p class="plan__price"><span>$249</span>/month</p>
+            <p class="plan__price"><span>{{$full.month}}</span>/month</p>
             <p class="plan__terms"></p>
             <ul class="ticks ticks--dark">
+              <li class="plan__key"><strong>In-person kickoff + original business photography</strong></li>
               <li>Everything in Business</li>
               <li><strong>Up to 10 pages</strong></li>
-              <li><strong>Design refresh every 2 years</strong></li>
+              <li><strong>Design refresh every 3 years</strong></li>
               <li>AI chat assistant</li>
               <li>Done-for-you local SEO pages</li>
               <li>Monthly Google Maps posts</li>
@@ -522,7 +544,7 @@
           </article>
         </div>
 
-        <ul class="assure"><li>100% money-back guarantee</li><li>Your domain is always yours</li><li>Cancel anytime</li><li>Own your site after 6 years</li></ul>
+        <ul class="assure"><li>Designed in 14 days</li><li>Refined until you love it</li><li>Subscription starts at launch</li><li>Own your site after 6 years</li></ul>
         <!-- PRICING-MORE:START --><p class="pricing__more"><a href="pricing.html">View the Pricing page →</a><a href="features.html">View the Features page →</a></p><!-- PRICING-MORE:END -->
         <div class="callcard">
           <span class="callcard__ico" aria-hidden="true"><i class="pi pi--phone"></i></span>
@@ -541,26 +563,26 @@
           <h2>Simple plans. Clear pricing.</h2>
           <p class="muted">Every plan includes hosting, security and unlimited minor edits. Prices shown are per month, billed yearly (monthly billing available). <a class="pricing__link" href="#pricing" data-open-finder>Help me choose a plan</a></p>
         </div>
-        <!-- FOUNDING:START --><p class="hplans__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>Founding 5: the first five businesses pay a $1 setup instead of $199 to $599.</p><!-- FOUNDING:END -->
+        <!-- FOUNDING:START --><p class="hplans__founding"><i class="pi pi--crown-fill" aria-hidden="true"></i>Founding 5: 50% off setup for the first five businesses. Your subscription is the regular plan price.</p><!-- FOUNDING:END -->
         <div class="hplans">
           <div class="hplan" id="plan-simple">
             <span class="hplan__gem"><canvas class="plan-ring plan-gem" data-plan="essentials" aria-hidden="true"></canvas></span>
-            <span class="hplan__body"><span class="hplan__top"><h3 class="hplan__name">Essentials</h3></span><ul class="hplan__feats"><li>1 page</li><li>Google Maps kept up to date</li><li>Unlimited minor edits</li><li class="hplan__more"><a class="hplan__plus" href="pricing.html#plan-simple" aria-label="4 more features on the Pricing page">+4</a></li></ul></span>
-            <span class="hplan__money"><span class="hplan__price"><b>$79</b>/mo</span><!-- FOUNDING:START --><span class="hplan__setup"><s>$199</s> $1 setup</span><!-- FOUNDING:END --></span>
+            <span class="hplan__body"><span class="hplan__top"><h3 class="hplan__name">Essentials</h3></span><ul class="hplan__feats"><li>Remote kickoff</li><li>1 page</li><li>Google Maps kept up to date</li><li>Unlimited minor edits</li><li class="hplan__more"><a class="hplan__plus" href="pricing.html#plan-simple" aria-label="5 more features on the Pricing page">+5</a></li></ul></span>
+            <span class="hplan__money"><span class="hplan__price"><b>{{$essentials.yearmo}}</b>/mo</span><!-- FOUNDING:START --><span class="hplan__setup"><s>{{$essentials.setup}}</s> {{$essentials.found}} setup</span><!-- FOUNDING:END --></span>
             <a class="hplan__go" href="start.html?plan=essentials" aria-label="Get started with Essentials"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <span class="hplan__rec" hidden>Recommended for you</span>
           </div>
           <div class="hplan hplan--best" id="plan-business">
             <span class="hplan__gem"><canvas class="plan-ring plan-gem" data-plan="business" aria-hidden="true"></canvas></span>
-            <span class="hplan__body"><span class="hplan__top"><h3 class="hplan__name">Business</h3><span class="hplan__chip">Most popular</span><span class="hplan__inc">+ everything in Essentials</span></span><ul class="hplan__feats"><li>5 pages</li><li>Google review growth</li><li>Design refresh every 3 years</li><li class="hplan__more"><a class="hplan__plus" href="pricing.html#plan-business" aria-label="4 more features on the Pricing page">+4</a></li></ul></span>
-            <span class="hplan__money"><span class="hplan__price"><b>$119</b>/mo</span><!-- FOUNDING:START --><span class="hplan__setup"><s>$399</s> $1 setup</span><!-- FOUNDING:END --></span>
+            <span class="hplan__body"><span class="hplan__top"><h3 class="hplan__name">Business</h3><span class="hplan__chip">Most popular</span><span class="hplan__inc">+ everything in Essentials</span></span><ul class="hplan__feats"><li><strong>In-person kickoff + original photography</strong></li><li>5 pages</li><li>Google review growth</li><li>Design refresh every 4 years</li><li class="hplan__more"><a class="hplan__plus" href="pricing.html#plan-business" aria-label="4 more features on the Pricing page">+4</a></li></ul></span>
+            <span class="hplan__money"><span class="hplan__price"><b>{{$business.yearmo}}</b>/mo</span><!-- FOUNDING:START --><span class="hplan__setup"><s>{{$business.setup}}</s> {{$business.found}} setup</span><!-- FOUNDING:END --></span>
             <a class="hplan__go" href="start.html?plan=business" aria-label="Get started with Business"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <span class="hplan__rec" hidden>Recommended for you</span>
           </div>
           <div class="hplan" id="plan-full">
             <span class="hplan__gem"><canvas class="plan-ring plan-gem" data-plan="full" aria-hidden="true"></canvas></span>
-            <span class="hplan__body"><span class="hplan__top"><h3 class="hplan__name">Full Suite</h3><span class="hplan__inc">+ everything in Business</span></span><ul class="hplan__feats"><li>10 pages</li><li>AI chat assistant</li><li>A monthly blog post</li><li class="hplan__more"><a class="hplan__plus" href="pricing.html#plan-full" aria-label="5 more features on the Pricing page">+5</a></li></ul></span>
-            <span class="hplan__money"><span class="hplan__price"><b>$199</b>/mo</span><!-- FOUNDING:START --><span class="hplan__setup"><s>$599</s> $1 setup</span><!-- FOUNDING:END --></span>
+            <span class="hplan__body"><span class="hplan__top"><h3 class="hplan__name">Full Suite</h3><span class="hplan__inc">+ everything in Business</span></span><ul class="hplan__feats"><li><strong>In person, plus ongoing growth</strong></li><li>10 pages</li><li>AI chat assistant</li><li>A monthly blog post</li><li class="hplan__more"><a class="hplan__plus" href="pricing.html#plan-full" aria-label="5 more features on the Pricing page">+5</a></li></ul></span>
+            <span class="hplan__money"><span class="hplan__price"><b>{{$full.yearmo}}</b>/mo</span><!-- FOUNDING:START --><span class="hplan__setup"><s>{{$full.setup}}</s> {{$full.found}} setup</span><!-- FOUNDING:END --></span>
             <a class="hplan__go" href="start.html?plan=full" aria-label="Get started with Full Suite"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <span class="hplan__rec" hidden>Recommended for you</span>
           </div>
@@ -657,7 +679,7 @@
         <div class="faq__list">
           <details>
             <summary>What if I don't like the design?</summary>
-            <p>You'll see your design before anything goes live, and nothing goes live until you approve it. If you don't love it and decide not to move forward, you get back 100% of what you paid, setup fee included.</p>
+            <p>It doesn't launch until you love it. You'll see your design within 14 days, and I keep refining it with you, within what we agreed, until you're happy to approve it. Your subscription only starts once it goes live.</p>
           </details>
           <details>
             <summary>Can I cancel?</summary>

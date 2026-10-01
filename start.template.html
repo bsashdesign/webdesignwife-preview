@@ -39,14 +39,14 @@
           <fieldset class="sform__group">
             <legend>Your plan</legend>
             <div class="splans" role="radiogroup" aria-label="Plan">
-              <label class="splan splan--essentials"><input type="radio" name="plan" value="essentials"><span><strong>Essentials</strong><small>A polished one-page site</small><em data-price="essentials"></em></span></label>
-              <label class="splan splan--business"><input type="radio" name="plan" value="business" checked><span><strong>Business</strong><small>More pages, built to be found</small><em data-price="business"></em></span></label>
-              <label class="splan splan--full"><input type="radio" name="plan" value="full"><span><strong>Full Suite</strong><small>Everything, plus growth tools</small><em data-price="full"></em></span></label>
+              <label class="splan splan--essentials"><input type="radio" name="plan" value="essentials"><span><strong>Essentials</strong><small>A one-page site, set up remotely</small><em data-price="essentials"></em></span></label>
+              <label class="splan splan--business"><input type="radio" name="plan" value="business" checked><span><strong>Business</strong><small>I come to your business</small><em data-price="business"></em></span></label>
+              <label class="splan splan--full"><input type="radio" name="plan" value="full"><span><strong>Full Suite</strong><small>In person, plus ongoing growth</small><em data-price="full"></em></span></label>
             </div>
             <div class="billing sbill">
-              <em class="billing__save">Save 20%</em>
+              <em class="billing__save">Save ~20%</em>
               <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly billing</button>
-              <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save 20%"><i></i></button>
+              <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save about 20% on your subscription"><i></i></button>
             </div>
           </fieldset>
 
@@ -65,9 +65,9 @@
             <label>Phone<input name="phone" type="tel" required autocomplete="tel"></label>
           </fieldset>
 
-          <label class="sform__agree"><input type="checkbox" name="agree" required><span>I agree to the <a href="terms.html" target="_blank" rel="noopener">terms</a>, including the setup fee today and my plan starting the day my site goes live, once I approve it.</span></label>
+          <label class="sform__agree"><input type="checkbox" name="agree" required><span>I agree to the <a href="terms.html" target="_blank" rel="noopener">terms</a>, including the setup fee today and my subscription starting the day my site goes live, once I approve it.</span></label>
           <button class="btn btn--primary btn--block" type="submit">Continue to secure checkout</button>
-          <p class="talk-first talk-first--start">After you sign up, we'll start with a short call. If you don't love the design, you can cancel for a full refund before your site goes live.</p>
+          <p class="talk-first talk-first--start">After you sign up, we'll start with a short call to plan your kickoff. Your design is ready within 14 days, and it doesn't launch until you love it.</p>
           <p class="sform__msg" role="status" aria-live="polite"></p>
         </form>
 
@@ -75,10 +75,10 @@
           <p class="ssum__kicker">Your order</p>
           <div class="ssum__head"><canvas class="plan-ring plan-gem ssum__gem" data-plan="business" aria-hidden="true"></canvas><h2 class="ssum__plan" data-sum="plan" data-plan="business">Business</h2></div>
           <dl class="ssum__lines">
-            <div><dt>Due today</dt><dd data-sum="today">$399</dd></div>
-            <dd class="ssum__note">One-time setup fee: I design and develop your site.<!-- FOUNDING:START --> Founding 5 price.<!-- FOUNDING:END --></dd>
-            <div><dt data-sum="then-label">When your site goes live</dt><dd data-sum="then">$149/month</dd></div>
-            <dd class="ssum__note" data-sum="then-note">Your plan starts the day your site goes live, once you've approved it.</dd>
+            <div><dt>Due today</dt><dd data-sum="today">{{$business.setup}}</dd></div>
+            <dd class="ssum__note">One-time setup fee: I design and develop your site.<!-- FOUNDING:START --> Founding 5: 50% off setup.<!-- FOUNDING:END --></dd>
+            <div><dt data-sum="then-label">When your site goes live</dt><dd data-sum="then">{{$business.month}}/month</dd></div>
+            <dd class="ssum__note" data-sum="then-note">Your subscription starts the day your site goes live, once you've approved it.</dd>
           </dl>
           <div class="ssum__promise">
             <span class="ssum__seal"><svg class="seal" viewBox="0 0 128 128" aria-hidden="true">
@@ -86,12 +86,12 @@
               <circle cx="64" cy="64" r="48" class="seal__ring"/>
               <circle cx="64" cy="64" r="43" class="seal__inner"/>
               <defs><path id="sealTop" d="M 30 64 A 34 34 0 0 1 98 64"/><path id="sealBottom" d="M 26 64 A 38 38 0 0 0 102 64"/></defs>
-              <text class="seal__arc"><textPath href="#sealTop" startOffset="50%" text-anchor="middle">MONEY-BACK</textPath></text>
-              <text x="64" y="72" text-anchor="middle" class="seal__num">100%</text>
-              <text class="seal__arc"><textPath href="#sealBottom" startOffset="50%" text-anchor="middle">GUARANTEE</textPath></text>
+              <text class="seal__arc"><textPath href="#sealTop" startOffset="50%" text-anchor="middle">DESIGNED IN</textPath></text>
+              <text x="64" y="74" text-anchor="middle" class="seal__num">14</text>
+              <text class="seal__arc"><textPath href="#sealBottom" startOffset="50%" text-anchor="middle">DAYS · GUARANTEED</textPath></text>
             </svg></span>
-            <div><strong>100% money-back guarantee</strong>
-            <p>If your site isn't live 14 days after our first call (not counting time I'm waiting on you), or you don't love the design, you may cancel for a full refund.</p></div>
+            <div><strong>Designed in 14 days. Guaranteed.</strong>
+            <p>Your design is ready for review within 14 days of kickoff (not counting time I'm waiting on you), or you can cancel and get everything you paid back. Then it doesn't launch until you love it.</p></div>
           </div>
           <ul class="ssum__list">
             <li>Your domain is always registered in your name.</li>

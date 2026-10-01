@@ -262,7 +262,7 @@ HEAD = """<!DOCTYPE html>
         <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
       </div>
       <nav class="drawer__nav" aria-label="Menu">
-        <a class="drawer__big" href="../pricing.html"><span>Pricing</span><small>Plans from $99/month and FAQs</small></a>
+        <a class="drawer__big" href="../pricing.html"><span>Pricing</span><small>Plans from $149/month and FAQs</small></a>
         <a class="drawer__big" href="../features.html"><span>Features</span><small>What’s in each plan</small></a>
         <a class="drawer__big" href="../contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
         <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
