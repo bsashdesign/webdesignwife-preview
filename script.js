@@ -2188,7 +2188,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     size();
     const kids = [...slot.children].filter((c) => c.classList.contains("treel") || c.classList.contains("slot__word"));
     const need = kids.reduce((w, c) => w + c.getBoundingClientRect().width, 0) + parseFloat(getComputedStyle(slot).columnGap || 0) * (kids.length - 1);
-    const room = slot.clientWidth - 4;
+    const room = slot.clientWidth - 8; // a little slack for the frames' shadows
     if (need > room) { slot.style.fontSize = (parseFloat(getComputedStyle(slot).fontSize) * room / need) + "px"; }
   };
   const sizeAll = () => { shrink(); size(); fit(); };

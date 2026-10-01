@@ -5677,3 +5677,12 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 .theme-subway.theme-dark .chat-nudge { background: #fccc0a; color: #111; }
 .theme-subway.theme-dark .chat-nudge::after { border-top-color: #fccc0a; }
 .theme-wedding .chat-nudge { background: var(--ink); color: #e9d9b4; border-radius: 2px; font: italic 600 .9rem/1.2 var(--display); }
+/* Built-for band on phones: the words above and below show in full (only lightly dimmed), the sentence uses the
+   full width, and "for" / "in" keep clear of the frames' shadows */
+@media (max-width: 600px) {
+  .for--spin .bf-wrap:not(#z) { padding-left: 10px; padding-right: 10px; }
+  .for--spin .tick:not(#z) { --peek: 1; }
+  .for--spin .slot:not(#z) { column-gap: .55em; }
+  .for--spin .treel__win:not(#z) { -webkit-mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32%, #000 33.4%, #000 66.6%, rgba(0,0,0,.5) 68%, rgba(0,0,0,.5) 100%); mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32%, #000 33.4%, #000 66.6%, rgba(0,0,0,.5) 68%, rgba(0,0,0,.5) 100%); }
+  .theme-blocks .for--spin .treel__frame:not(#z) { box-shadow: 2px 2px 0 var(--ink); border-width: 2px; }
+}
