@@ -3627,7 +3627,6 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key--tangy:hover .tv-key__cap { transform: translate(1px, 1px); box-shadow: 3px 3px 0 #111; }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translate(4px, 4px); box-shadow: 0 0 0 #111; }
 /* Transit: a round key */
-#moods-tv .tv-key--transit .tv-key__cap { width: auto; aspect-ratio: 1; border-radius: 50%; }
 /* Sophisticated: a crisp corner and a fine gold rule inside */
 #moods-tv .tv-key--sophisticated .tv-key__cap { border-radius: 3px; }
 #moods-tv .tv-key--sophisticated .tv-key__cap::after { content: ""; position: absolute; inset: 5px; border: 1px solid #b8955a; border-radius: 1px; pointer-events: none; }
@@ -3847,7 +3846,7 @@ span.plan-ring:empty { display: none; }
 :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"] .moodicon:not(.moodicon--tangy) { transform: translateY(2px); box-shadow: 0 1px 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.2); }
 /* each socket hugs its key (it doesn't stretch to the column) */
 .tv-key .key-well { width: auto; }
-@media (max-width: 600px) { .tv-key:not(.tv-key--transit) .key-well { width: min(100%, 64px); } }
+@media (max-width: 600px) { .tv-key .key-well { width: min(100%, 64px); } }
 /* an even rim all the way round; the key's edge fits inside it */
 .key-well, :is(#mood, #footer-channel) .mood__opt .key-well, .tv-key--transit .key-well, .mood__opt[data-mood="transit"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well { padding: 3px; }
 .tv-key--tangy .key-well, .mood__opt[data-mood="tangy"] .key-well, :is(#mood, #footer-channel) .mood__opt[data-mood="tangy"] .key-well { padding: 3px 6px 6px 3px; }
@@ -3917,10 +3916,9 @@ span.plan-ring:empty { display: none; }
 #moods-tv .tv-key--tangy[aria-pressed="true"] .tv-key__cap, #moods-tv .tv-key--tangy:active .tv-key__cap { transform: translateY(8px); box-shadow: 0 1px 0 #111, inset 0 3px 6px rgba(0,0,0,.28); }
 #moods-tv .tv-key .tv-key__cap { border-radius: 14px; }
 #moods-tv .tv-key .key-well { border-radius: 17px; }
-#moods-tv .tv-key--transit .tv-key__cap, #moods-tv .tv-key--transit .key-well { border-radius: 50%; }
 #moods-tv .tv-key--sophisticated .tv-key__cap { border-radius: 3px; }
 #moods-tv .tv-key--sophisticated .key-well { border-radius: 5px; }
-@media (max-width: 600px) { #moods-tv .tv-key:not(.tv-key--transit):not(.tv-key--sophisticated) .tv-key__cap { border-radius: 10px; } #moods-tv .tv-key:not(.tv-key--transit):not(.tv-key--sophisticated) .key-well { border-radius: 13px; } }
+@media (max-width: 600px) { #moods-tv .tv-key:not(.tv-key--sophisticated) .tv-key__cap { border-radius: 10px; } #moods-tv .tv-key:not(.tv-key--sophisticated) .key-well { border-radius: 13px; } }
 
 /* the floating button is square (Transit's is round) */
 #mood .mood__btn .moodicon { width: 48px; height: 48px; }
@@ -5070,3 +5068,28 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap { background: radial-gradient(circle, #2c2c2c 0 63%, #fccc0a 64% 69%, #2c2c2c 70%); }
 :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { --cap-edge: #0a0a0a; background: radial-gradient(circle, #2c2c2c 0 63%, #fccc0a 64% 69%, #2c2c2c 70%); }
 .moods__card .moodicon--transit, .chip .moodicon--transit { background: radial-gradient(circle, #2c2c2c 0 63%, #fccc0a 64% 69%, #2c2c2c 70%); box-shadow: none; }
+/* Transit key: plain black, and its edge (the thickness under the cap) is the Transit rainbow.
+   A rainbow disc sits in the socket where the key lands when pressed: the raised key shows its lower rim as the edge,
+   a pressed key covers it */
+.tv-key.tv-key--transit { --cap: #101010; --cap-edge: transparent; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap { background: #101010; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { --cap-edge: transparent; background: #101010; }
+.moods__card .moodicon--transit, .chip .moodicon--transit { background: #101010; }
+:is(#moods-tv .tv-key--transit, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"]) .key-well { position: relative; }
+:is(#moods-tv .tv-key--transit, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"]) .key-well::before {
+  content: ""; position: absolute; inset: 3px; border-radius: 50%; z-index: 0;
+  background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0);
+}
+#moods-tv .tv-key--transit .tv-key__cap, :is(#mood, #footer-channel) .mood__opt .moodicon--transit { position: relative; z-index: 1; }
+/* The Transit key is a rounded square like Calm's (not a circle), on the board, in the pop-up and in the footer */
+#moods-tv .tv-key--transit .key-well.key-well:not(#z) { border-radius: 17px; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { border-radius: 14px; }
+@media (max-width: 600px) { #moods-tv .tv-key--transit .key-well.key-well:not(#z) { border-radius: 13px; } #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { border-radius: 10px; } }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well:not(#z) { border-radius: 12px; margin-inline: 2px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z) { width: 52px; border-radius: 11px; margin-inline: 0; }
+/* its rainbow edge sits in shadow (darker), and follows the square shape */
+:is(#moods-tv .tv-key--transit, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"]) .key-well::before {
+  border-radius: 12px;
+  background: linear-gradient(rgba(0,0,0,.38), rgba(0,0,0,.38)), linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0);
+}
+#moods-tv .tv-key--transit .key-well::before { border-radius: 14px; }
