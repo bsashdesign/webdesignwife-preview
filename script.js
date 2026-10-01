@@ -686,12 +686,22 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
   root.classList.add("m-on");
 
   const pending = new Set(targets);
+  // An eyebrow appears together with the title right after it (never alone above an empty space),
+  // so it waits for that title to reach the reveal line.
+  const partner = new Map();
+  targets.forEach((el) => {
+    if (!el.classList.contains("eyebrow")) return;
+    let n = el.nextElementSibling;
+    while (n && !n.matches("h1, h2, h3") && !n.querySelector("h1, h2, h3")) n = n.nextElementSibling;
+    const h = n && (n.matches("h1, h2, h3") ? n : n.querySelector("h1, h2, h3"));
+    if (h && h.classList.contains("m-words")) partner.set(el, h);
+  });
   let queued = false, first = true;
   function check() {
     queued = false;
     const limit = window.innerHeight * 0.9;
     pending.forEach((el) => {
-      const r = el.getBoundingClientRect();
+      const r = (partner.get(el) || el).getBoundingClientRect();
       // Anything in view, or already scrolled past, is revealed. Labels already on screen
       // when the page opens just appear; the pop is for ones you scroll to.
       if (r.top < limit) {
