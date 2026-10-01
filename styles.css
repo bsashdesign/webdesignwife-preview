@@ -6356,3 +6356,8 @@ html.theme-blocks .m--us .bubble__check path { stroke: var(--ink); }
   .blist--page .blist__ic:not(#z) { width: 34px; height: 34px; }
   .blist--page .blist__name:not(#z):not(#y) { font-size: 1.1rem; }
 }
+/* Tangy: hovering a reply option fills it the light beige of your sent messages (not lime) */
+@media (hover: hover) { html.theme-blocks .chat-choice:not(#z):hover { background: #fffbe0; color: var(--ink); } }
+/* the hero phone is taller, so the conversation and the reply options always fit */
+.demo .phone:not(#z) { height: 430px; }
+@media (max-width: 760px) { .demo .phone:not(#z) { height: 340px; } }
