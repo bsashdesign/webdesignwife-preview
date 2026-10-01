@@ -6511,3 +6511,6 @@ html.theme-wedding .plan__apply { font-weight: 600; letter-spacing: .1em; color:
 /* Homepage plan rows aren't links themselves: only their Get Started / Apply buttons go anywhere */
 .hplans .hplan.hplan { cursor: default; }
 html .hplans .hplan.hplan:hover { transform: none; }
+/* plan picker tags never wrap; in Tangy they're white with the ink outline, whichever card they sit on */
+.splan__tag:not(#z), .ssum__tag:not(#z) { white-space: nowrap; }
+html.theme-blocks .splan__tag:not(#z) { background: #fff; color: var(--ink); }
