@@ -182,9 +182,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     // The replies: "Choose a reply" with a bobbing arrow either side, then the two options as message-shaped
     // bubbles (outlined, not yet sent) with an "or" between them
     const pickPanel = (opts, first) => {
+      const you = document.createElement("span");
+      you.className = "chat-you"; you.setAttribute("aria-hidden", "true"); you.textContent = "You";
       const tip = document.createElement("span");
       tip.className = "chat-choices__tip"; tip.setAttribute("aria-hidden", "true");
-      tip.innerHTML = first ? '<b>↓</b> Choose a reply, <em>really.</em> <b>↓</b>' : "<b>↓</b> Choose a reply <b>↓</b>";
+      tip.innerHTML = first ? '<b>↑</b> Choose a reply, <em>really.</em>' : "<b>↑</b> Choose a reply";
       const panel = document.createElement("div");
       panel.className = "chat-pick"; panel.setAttribute("role", "group"); panel.setAttribute("aria-label", "Choose a reply");
       opts.forEach((o, i) => {
@@ -196,7 +198,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         b.addEventListener("click", () => pick(o));
         panel.append(b);
       });
-      return [tip, panel];
+      return [you, panel, tip];
     };
     // The choices take only the room they need: with nothing to pick, the conversation sits at the bottom of the
     // phone. When choices come in they grow up from the bottom (pushing the conversation up), and when they go
@@ -227,7 +229,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const offer = (opts) => {
       const first = !cued; cued = true;
       morph(() => compose.replaceChildren(...pickPanel(opts, first)));
-      compose.querySelectorAll(".chat-choices__tip, .chat-choice, .chat-pick__or").forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, delay: i * 70, easing: "ease-out", fill: "backwards" }));
+      compose.querySelectorAll(".chat-you, .chat-choice, .chat-pick__or, .chat-choices__tip").forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, delay: i * 70, easing: "ease-out", fill: "backwards" }));
     };
     const again = () => {
       const b = document.createElement("button");
@@ -253,13 +255,13 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       if (banner.querySelector("p").textContent !== start.banner) setBanner(start.banner);
       if (!start.open) banner.classList.remove("is-open");
     }
-    // pre: the sent message is already in the thread (the close-up just flew it there)
-    async function pick(o, pre) {
+    async function pick(o) {
       if (busy) return; busy = true;
+      if (demo.classList.contains("is-intro")) await handoff();
       clearChoices();
-      if (!pre) hideOldReceipts();
-      const sent = pre || addMessage("them", '<div class="bubble"></div><div class="receipt"><span>Delivered</span></div>');
-      if (!pre) sent.querySelector(".bubble").textContent = o.label;
+      hideOldReceipts();
+      const sent = addMessage("them", '<div class="bubble"></div><div class="receipt"><span>Delivered</span></div>');
+      sent.querySelector(".bubble").textContent = o.label;
       const receipt = sent.querySelector(".receipt span");
       await tick(700); receipt.classList.add("is-hidden"); await tick(200); receipt.textContent = "Read"; receipt.classList.remove("is-hidden");
       await tick(350);
@@ -282,132 +284,48 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       addMessage("us", '<div class="bubble">Hey, just checking in :)</div>');
       await tick(800);
     }
+    // The opening view is the phone itself, shown big with its frame, status bar and header hidden: just the
+    // conversation and the replies. Picking a reply fades the frame in around them, then the whole phone sweeps
+    // down into its usual spot along an arc, and the conversation carries on.
+    let big = null, fromRow = null;
+    const fitBig = () => {
+      phone.style.transform = "";
+      const P = phone.getBoundingClientRect(), D = demo.getBoundingClientRect();
+      // a little smaller on phones, so the whole conversation fits under the headline
+      const K = Math.min(innerWidth <= 640 ? 1.75 : 2.1, (D.width * .92) / P.width);
+      const dx = D.left + D.width / 2 - (P.left + P.width / 2), dy = D.bottom - 6 - P.bottom;
+      phone.style.transformOrigin = "50% 100%";
+      phone.style.transform = `translate(${dx}px, ${dy}px) scale(${K})`;
+      return { dx, dy, K };
+    };
+    async function handoff() {
+      // ?slowmo=8 plays the handover in slow motion (for checking it frame by frame)
+      const SLOW = +new URLSearchParams(location.search).get("slowmo") || 1;
+      if (fromRow) fromRow.classList.remove("is-in");
+      demo.classList.remove("is-bare");
+      await tick(380 * SLOW);
+      const { dx, dy, K } = big;
+      // an arc, not a straight diagonal: it drops first, then glides across, shrinking as it goes
+      const ease = (u) => (u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const frames = [];
+      for (let n = 0; n <= 40; n++) {
+        const e = ease(n / 40), down = 1 - Math.pow(1 - e, 2.2), across = Math.pow(e, 1.8);
+        frames.push({ transform: `translate(${dx * (1 - across)}px, ${dy * (1 - down)}px) scale(${K + (1 - K) * e})` });
+      }
+      const sweep = phone.animate(frames, { duration: 1150 * SLOW, easing: "linear" });
+      phone.style.transform = "";
+      demo.classList.remove("is-intro");
+      await sweep.finished.catch(() => {});
+      phone.style.transformOrigin = "";
+      if (fromRow) { fromRow.remove(); fromRow = null; }
+    }
     busy = true;
-    // First, a close-up: no phone and no website, just Web Design Wife's message and the replies, large, with a
-    // cue under them. Picking one brings in the phone and the website, and the conversation carries on in the phone.
-    intro().then((r) => { busy = false; cued = true; if (r) pick(r.o, r.sent); else { checkIn().then(() => { offer(TREE); busy = false; }); } });
-  }
-
-  async function intro() {
-    const box = document.createElement("div");
-    box.className = "hintro";
-    box.innerHTML = '<p class="hintro__from"><img src="images/favicon.jpg" alt=""><span>Message from <strong>Web Design Wife</strong></span></p>'
-      + '<div class="hintro__msg"></div><p class="hintro__you" aria-hidden="true" style="opacity:0">You</p><div class="hintro__pick" role="group" aria-label="Choose a reply"></div>'
-      + '<p class="hintro__cue" aria-hidden="true" style="opacity:0"><b>↑</b> Choose a reply, <em>really.</em></p>';
-    demo.classList.add("is-intro");
-    demo.append(box);
-    const msg = box.querySelector(".hintro__msg"), pickBox = box.querySelector(".hintro__pick");
-    const show = (el, delay = 0) => el.animate([{ opacity: 0, transform: "translateY(14px)" }, { opacity: 1, transform: "none" }], { duration: 520, delay, easing: EASE_OUT, fill: "backwards" });
-    // The close-up's bubbles are exact enlargements of the phone's own (same font, line breaks, padding and corners,
-    // all times K), so when you pick a reply they can shrink straight into their places in the phone.
-    addMessage("us", '<div class="bubble">Hey, just checking in :)</div>');
-    const them = document.createElement("div");
-    them.className = "m m--them is-in"; them.innerHTML = '<div class="m__in"><div class="bubble">x</div></div>';
-    thread.append(them);
-    await nextFrame();
-    const metrics = (bubble) => {
-      // a snapshot of the values (the measuring bubble is removed afterwards)
-      const c = getComputedStyle(bubble), w = bubble.parentElement.clientWidth;
-      const cs = Object.fromEntries(["fontFamily", "fontWeight", "fontStyle", "letterSpacing", "fontSize", "lineHeight", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
-        "borderTopLeftRadius", "borderTopRightRadius", "borderBottomRightRadius", "borderBottomLeftRadius", "maxWidth"].map((k) => [k, c[k]]));
-      return { cs, max: cs.maxWidth.endsWith("%") ? w * parseFloat(cs.maxWidth) / 100 : parseFloat(cs.maxWidth) || w };
-    };
-    const mUs = metrics([...thread.querySelectorAll(".m--us .bubble")].pop()), mThem = metrics(them.querySelector(".bubble"));
-    const K = Math.max(1.3, Math.min(2.1, (box.clientWidth * .98) / Math.max(mUs.max, mThem.max)));
-    const enlarge = (el, { cs, max }) => {
-      const px = (v) => parseFloat(v) * K + "px";
-      [["font-family", cs.fontFamily], ["font-weight", cs.fontWeight], ["font-style", cs.fontStyle], ["letter-spacing", cs.letterSpacing === "normal" ? "normal" : px(cs.letterSpacing)],
-       ["font-size", px(cs.fontSize)], ["line-height", px(cs.lineHeight)], ["padding", `${px(cs.paddingTop)} ${px(cs.paddingRight)} ${px(cs.paddingBottom)} ${px(cs.paddingLeft)}`],
-       ["max-width", max * K + "px"], ["border-radius", `${px(cs.borderTopLeftRadius)} ${px(cs.borderTopRightRadius)} ${px(cs.borderBottomRightRadius)} ${px(cs.borderBottomLeftRadius)}`]]
-        .forEach(([k, v]) => el.style.setProperty(k, v, "important"));
-    };
-    them.remove();
-    show(box.querySelector(".hintro__from"));
-    // typing, then the message
-    const typing = document.createElement("div");
-    typing.className = "m m--typing is-in"; typing.innerHTML = '<div class="m__in"><div class="bubble"><i></i><i></i><i></i></div></div>';
-    enlarge(typing.querySelector(".bubble"), mUs); typing.querySelector(".bubble").style.setProperty("max-width", "none", "important");
-    msg.append(typing); show(typing, 150);
-    await tick(1300);
-    typing.remove();
-    const hey = document.createElement("div");
-    hey.className = "m m--us is-in"; hey.innerHTML = '<div class="m__in"><div class="bubble">Hey, just checking in :)</div></div>';
-    enlarge(hey.querySelector(".bubble"), mUs);
-    msg.append(hey); show(hey);
-    await tick(650);
-    return new Promise((resolve) => {
-      TREE.forEach((o, i) => {
-        if (i) { const or = document.createElement("span"); or.className = "chat-pick__or"; or.textContent = "or"; pickBox.append(or); show(or, 120 + i * 90); }
-        const b = document.createElement("button");
-        b.type = "button"; b.className = "chat-choice"; b.textContent = o.label;
-        enlarge(b, mThem);
-        b.addEventListener("click", async () => {
-          if (box.classList.contains("is-out")) return;
-          box.classList.add("is-out");
-          // The phone appears behind the close-up, just as big, lined up so its messages sit exactly under the big
-          // ones; then the phone and its messages shrink together into the phone's usual spot, as one piece.
-          const phone = demo.querySelector(".phone");
-          hideOldReceipts();
-          const sent = document.createElement("div");
-          sent.className = "m m--them is-in";
-          sent.innerHTML = '<div class="m__in"><div class="bubble"></div><div class="receipt"><span>Delivered</span></div></div>';
-          sent.querySelector(".bubble").textContent = o.label;
-          sent.querySelector(".receipt").style.opacity = "0";
-          thread.append(sent);
-          demo.classList.add("is-handoff");
-          const heyIn = [...thread.querySelectorAll(".m--us .bubble")].pop(), sentIn = sent.querySelector(".bubble");
-          heyIn.style.visibility = sentIn.style.visibility = "hidden";
-          const P = phone.getBoundingClientRect(), H = heyIn.getBoundingClientRect(), S = sentIn.getBoundingClientRect();
-          const big = hey.querySelector(".bubble").getBoundingClientRect();
-          const k = big.width / H.width;
-          const tx = big.left - P.left - (H.left - P.left) * k, ty = big.top - P.top - (H.top - P.top) * k;
-          // in the big phone your message would sit right under mine; it starts where the reply you picked is
-          // instead, and settles into its place during the sweep (in the phone's own, unscaled pixels)
-          const from = b.getBoundingClientRect();
-          const ox = (from.left - (P.left + (S.left - P.left) * k + tx)) / k, oy = (from.top - (P.top + (S.top - P.top) * k + ty)) / k;
-          phone.style.transformOrigin = "0 0";
-          // ?slowmo=8 plays the handover in slow motion (for checking it frame by frame)
-          const SLOW = +new URLSearchParams(location.search).get("slowmo") || 1;
-          const BIG = `translate(${tx}px, ${ty}px) scale(${k})`, APPEAR = 380 * SLOW, SWEEP = 1150 * SLOW;
-          box.querySelectorAll(".hintro__from, .hintro__you, .hintro__cue, .chat-pick__or, .chat-choice").forEach((el) => {
-            if (el !== b) el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260 * SLOW, easing: "ease-out", fill: "forwards" });
-          });
-          // 1. the phone fades in behind the messages, big, lined up with them (nothing moves)
-          const appear = phone.animate([{ transform: BIG, opacity: 0 }, { transform: BIG, opacity: 1 }], { duration: APPEAR, easing: "ease-out", fill: "forwards" });
-          await tick(APPEAR);
-          // 2. the phone's own messages take over in exactly the same places
-          const mIn = sent.querySelector(".m__in");
-          mIn.style.overflow = "visible"; thread.style.overflow = "visible";
-          thread.style.webkitMaskImage = thread.style.maskImage = "none";
-          sentIn.style.transform = `translate(${ox}px, ${oy}px)`;
-          heyIn.style.visibility = sentIn.style.visibility = "";
-          box.remove();
-          // 3. one sweep down into place, along an arc: it drops first, then glides across, shrinking as it goes
-          const ease = (u) => (u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
-          const frames = [];
-          for (let n = 0; n <= 40; n++) {
-            const e = ease(n / 40), down = 1 - Math.pow(1 - e, 2.2), across = Math.pow(e, 1.8);
-            frames.push({ transform: `translate(${tx * (1 - across)}px, ${ty * (1 - down)}px) scale(${k + (1 - k) * e})`, opacity: 1 });
-          }
-          const sweep = phone.animate(frames, { duration: SWEEP, easing: "linear" });
-          appear.cancel();
-          sentIn.style.transform = "";
-          sentIn.animate([{ transform: `translate(${ox}px, ${oy}px)` }, { transform: "none" }], { duration: SWEEP * .8, easing: "cubic-bezier(.65, 0, .35, 1)" });
-          demo.classList.remove("is-intro");
-          await sweep.finished.catch(() => {});
-          mIn.style.overflow = thread.style.overflow = thread.style.webkitMaskImage = thread.style.maskImage = "";
-          phone.style.transformOrigin = "";
-          demo.classList.remove("is-handoff");
-          sent.querySelector(".receipt").style.opacity = "";
-          resolve({ o, sent });
-        });
-        pickBox.append(b); show(b, 120 + i * 90);
-      });
-      // "You" and the cue only appear once the replies are there to pick
-      const you = box.querySelector(".hintro__you"), cue = box.querySelector(".hintro__cue");
-      you.style.opacity = cue.style.opacity = "";
-      show(you, 60); show(cue, 500);
-    });
+    demo.classList.add("is-intro", "is-bare");
+    big = fitBig();
+    let lastW = innerWidth;
+    addEventListener("resize", () => { if (innerWidth !== lastW && demo.classList.contains("is-intro")) { lastW = innerWidth; big = fitBig(); } });
+    fromRow = addMessage("from", '<span class="chat-from"><img src="images/favicon.jpg" alt=""><span>Message from <strong>Web Design Wife</strong></span></span>');
+    checkIn().then(() => { offer(TREE); busy = false; });
   }
   run();
 })();
