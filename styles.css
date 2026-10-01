@@ -6051,3 +6051,66 @@ html.theme-wedding .btypes__go svg { width: 20px; height: 20px; }
 @media (hover: hover) { html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--gold-ink); border-color: var(--gold-ink); color: #fff; } }
 html.theme-wedding #btype-dialog .btypes__go:not(#z) { width: 32px; height: 32px; }
 html.theme-wedding #btype-dialog .btypes__go svg { width: 16px; height: 16px; }
+
+/* ===== Business types, redesigned to match the homepage plan cards in every mood (the list page and the
+   "Choose your business" pop-up). A card per type: the name (with a short line under it on the list page),
+   and the plan cards' own arrow button on the right. One colour per mood, no cycling. ===== */
+html .btypes.btypes li a:not(#z):not(#y):not(#x) { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto; align-items: center; column-gap: 16px; row-gap: 4px; min-height: 0; padding: 20px 20px 20px 24px; border: 0; border-radius: 20px; background: var(--card, #fff); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 14px 30px -22px rgba(27,21,48,.4); text-decoration: none; transform: none; transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease; }
+html .btypes.btypes li a:not(#z):not(#y):not(#x) > span { grid-column: 1; grid-row: 1; align-self: end; font: 800 1.25rem/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); background: none; }
+html .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__blurb { display: block; grid-column: 1; grid-row: 2; align-self: start; font: 400 .92rem/1.4 var(--body); color: var(--ink-soft); }
+html .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { position: static; translate: none; grid-column: 2; grid-row: 1 / 3; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--violet); color: #fff; box-shadow: none; transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease; }
+html .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go svg { width: 20px; height: 20px; }
+@media (hover: hover) {
+  html .btypes.btypes li a:not(#z):not(#y):not(#x):hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line), 0 22px 40px -24px rgba(27,21,48,.5); }
+  html .btypes.btypes li a:not(#z):not(#y):not(#x):hover > span { color: var(--ink); }
+  html .btypes.btypes li a:not(#z):not(#y):not(#x):hover .btypes__go { transform: translateX(3px); background: var(--violet-deep, #4424db); color: #fff; }
+}
+/* Tangy: white card, ink edge and hard shadow, the name on a lime highlighter stripe, the orange arrow button */
+html.theme-blocks .btypes.btypes li a:not(#z):not(#y):not(#x) { border: 2.5px solid var(--ink); border-radius: var(--r-lg); background: #fff; box-shadow: 5px 5px 0 var(--ink); }
+html.theme-blocks .btypes.btypes li a:not(#z):not(#y):not(#x) > span { justify-self: start; padding: 0 2px; background: linear-gradient(transparent 55%, var(--lime) 55% 95%, transparent 95%); }
+html.theme-blocks .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__blurb { color: var(--ink); }
+html.theme-blocks .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { background: #ff7d33; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+@media (hover: hover) {
+  html.theme-blocks .btypes.btypes li a:not(#z):not(#y):not(#x):hover { transform: translate(-1px, -1px); box-shadow: 7px 8px 0 var(--ink); background: #fffbe0; }
+  html.theme-blocks .btypes.btypes li a:not(#z):not(#y):not(#x):hover .btypes__go { background: #ff7d33; color: var(--ink); transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+}
+/* Transit: dark card with a blue line down the side, white lettering, the blue arrow button */
+html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x) { padding-left: 28px; border-radius: 12px; background: #1c1c1c; box-shadow: inset 6px 0 0 #0b5cd6, 0 14px 30px -20px rgba(0,0,0,.6); }
+html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x) > span { font-family: "Inter Tight", sans-serif; color: #f2f2ee; }
+html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x) > span::before { display: none; }
+html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__blurb { color: #a9a9a3; }
+html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { border-radius: 8px; background: #0b5cd6; color: #fff; }
+@media (hover: hover) {
+  html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x):hover { box-shadow: inset 6px 0 0 #0b5cd6, 0 22px 40px -22px rgba(0,0,0,.7); }
+  html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x):hover > span { color: #f2f2ee; }
+  html.theme-subway .btypes.btypes li a:not(#z):not(#y):not(#x):hover .btypes__go { background: #2a74e6; color: #fff; }
+}
+/* Soirée: paper card with the gold double keyline, italic serif name in gold, the square gold-outline arrow */
+html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x) { border-radius: 3px; background: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 14px 30px -24px rgba(31,35,54,.35); }
+html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x) > span { font: italic 600 1.5rem/1.15 var(--display); color: var(--gold-ink); letter-spacing: 0; }
+html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { width: 40px; height: 40px; box-sizing: border-box; border-radius: 0; border: 1px solid var(--gold); background: transparent; color: var(--gold-ink); }
+html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go svg path { stroke-width: 1.15; }
+@media (hover: hover) {
+  html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x):hover { box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 22px 40px -26px rgba(31,35,54,.45); }
+  html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x):hover > span { color: var(--gold-ink); }
+  html.theme-wedding .btypes.btypes li a:not(#z):not(#y):not(#x):hover .btypes__go { background: var(--gold-ink); border-color: var(--gold-ink); color: #fff; }
+}
+/* the pop-up: the same cards, compact, just the names */
+html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) { padding: 12px 12px 12px 16px; border-radius: 14px; row-gap: 0; }
+html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) > span { grid-row: 1 / 3; align-self: center; font-size: 1.02rem; }
+html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__blurb { display: none; }
+html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { width: 32px; height: 32px; }
+html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go svg { width: 16px; height: 16px; }
+html.theme-blocks #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) { border-width: 2px; box-shadow: 3px 3px 0 var(--ink); }
+html.theme-subway #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) { padding-left: 20px; border-radius: 8px; box-shadow: inset 4px 0 0 #0b5cd6; background: #242424; }
+html.theme-wedding #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) { border-radius: 2px; }
+html.theme-wedding #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) > span { font-size: 1.2rem; }
+@media (max-width: 480px) {
+  html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+  html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { display: none; }
+  html #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) > span { font-size: .95rem; }
+}
+@media (max-width: 600px) {
+  html .btypes.btypes li a:not(#z):not(#y):not(#x) { padding: 16px 16px 16px 20px; }
+  html .btypes.btypes li a:not(#z):not(#y):not(#x) .btypes__go { width: 38px; height: 38px; }
+}
