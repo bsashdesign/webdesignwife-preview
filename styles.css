@@ -4910,3 +4910,5 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 /* a little less space between the nav links and Get Started */
 .nav__inner .nav__start { margin-left: -10px; }
 @media (max-width: 1180px) { .nav__inner .nav__start { margin-left: -6px; } }
+/* the "or …" link under the homepage plans looks the same as the one under How it works */
+#pricing .section-cta .section-cta__alt { color: var(--ink); }
