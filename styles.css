@@ -6774,3 +6774,8 @@ html .chat-you:not(#z):not(#y) { font-family: var(--body); font-style: normal; f
 }
 /* Phones: the website window has no address bar (the frame is just the window) */
 @media (max-width: 640px) { .hero .demo .browser__bar { display: none; } }
+/* "or" is a small, quiet connector: lowercase, regular weight, muted, so it never looks like the bold "You" label
+   (Soirée keeps its small gold italic) */
+html .phone .chat-pick__or:not(#z):not(#y) { font: 500 .5rem/1 var(--body); letter-spacing: .02em; text-transform: lowercase; color: var(--ink-soft); margin-top: 1px; margin-bottom: 1px; }
+html.theme-blocks .phone .chat-pick__or:not(#z):not(#y) { font-family: "DM Mono", ui-monospace, monospace; }
+html.theme-wedding .phone .chat-pick__or:not(#z):not(#y) { font: italic 500 .7rem/1 var(--display); color: var(--gold-ink); text-transform: none; }
