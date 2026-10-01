@@ -5158,7 +5158,7 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 /* Tangy: the footer's Change the Channel block is an outlined card like the rest of Tangy */
 .theme-blocks .footer__moods { background: #fff; border: var(--edge); box-shadow: var(--shadow); border-radius: var(--r-lg); }
 /* Change the Channel, desktop: title and intro left-aligned; the TV on the left, the button panel and note on the right */
-@media (min-width: 1100px) {
+@media (min-width: 960px) {
   #moods-tv .tryon__head { max-width: none; margin: 0; text-align: left; }
   #moods-tv .tryon__head .eyebrow { margin-left: 0; }
   #moods-tv .tvset { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; justify-items: stretch; gap: 48px; }
@@ -5167,7 +5167,7 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
   #moods-tv .tv-deck { width: 100%; }
   #moods-tv .tv-panel .tv-yours { max-width: none; }
 }
-@media (min-width: 1100px) { #moods-tv .tryon__head > * { margin-left: 0; margin-right: 0; } #moods-tv .tryon__head h2 { max-width: none; } }
+@media (min-width: 960px) { #moods-tv .tryon__head > * { margin-left: 0; margin-right: 0; } #moods-tv .tryon__head h2 { max-width: none; } }
 /* Tangy footer channel options: a clear ink outline on hover */
 .theme-blocks #footer-channel .mood__opt:hover:not(#z) { box-shadow: inset 0 0 0 2px var(--ink); }
 /* Transit key back to its red-orange (keeping the rounded square) */
@@ -5176,7 +5176,7 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #ff6319; }
 .moods__card .moodicon--transit, .chip .moodicon--transit { background: #ff6319; }
 /* desktop: buttons on the left, TV on the right */
-@media (min-width: 1100px) {
+@media (min-width: 960px) {
   #moods-tv .tvset { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
   #moods-tv .tvset .tv-panel { grid-column: 1; grid-row: 1; }
   #moods-tv .tvset .tv-nook { grid-column: 2; grid-row: 1; }
@@ -5186,14 +5186,14 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 .theme-subway.theme-dark #moods-tv .eyebrow:not(#z) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; color: #fff; }
 /* Change the Channel, desktop: left column = title, description, button panel and note; right column = the TV,
    in its own area running the full height of the section */
-@media (min-width: 1240px) {
+@media (min-width: 960px) {
   #moods-tv > .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); grid-template-rows: auto 1fr; column-gap: 64px; row-gap: 28px; align-items: start; }
   #moods-tv .tryon__head { grid-column: 1; grid-row: 1; max-width: none; }
   #moods-tv .tvset { display: contents; }
   #moods-tv .tvset .tv-panel { grid-column: 1; grid-row: 2; align-self: start; margin: 0; }
   #moods-tv .tvset .tv-nook { grid-column: 2; grid-row: 1 / span 2; align-self: center; margin: 0; }
 }
-@media (min-width: 1100px) {
+@media (min-width: 960px) {
   #moods-tv > .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); column-gap: 56px; }
   #moods-tv .tvset .tv-nook { align-self: stretch; display: flex; align-items: center; justify-content: center; }
   #moods-tv .tvset .tv-nook .tv { width: 100%; }
@@ -5213,23 +5213,13 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 .theme-blocks .mplans .mplan:not(.mplan--grow) { background: var(--sky); }
 .theme-blocks .mplans .mplan--grow { background: var(--sun); }
 .theme-blocks .mplans .mplan p:not(.mplan__kicker) { color: var(--ink); }
-/* the side-by-side layout only when there's room for a generous 80px gap; below that it stacks */
-@media (min-width: 1100px) and (max-width: 1239px) {
-  #moods-tv .tryon__head { max-width: 680px; margin: 0 auto; text-align: center; }
-  #moods-tv .tryon__head > * { margin-left: auto; margin-right: auto; }
-  #moods-tv .tvset { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 32px; }
-  #moods-tv .tvset .tv-panel, #moods-tv .tvset .tv-nook { grid-column: 1; grid-row: auto; }
-  #moods-tv .tvset .tv-nook { width: min(100%, 720px); }
-  #moods-tv .tv-deck { width: auto; }
-}
-@media (min-width: 1240px) {
+@media (min-width: 960px) {
   #moods-tv > .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 80px; }
 }
 /* Tangy: homepage plan cards turn the pale beige of a selected field on hover */
 .theme-blocks .hplans .hplan { transition: background-color .15s ease, box-shadow .15s ease, transform .25s cubic-bezier(.2, .8, .2, 1); }
 .theme-blocks .hplans .hplan:hover { background: #fffbe0; }
-@media (min-width: 1240px) { #moods-tv .tv-deck { width: 100%; } }
-@media (min-width: 1100px) and (max-width: 1239px) { #moods-tv .tv-panel { justify-content: center; } }
+@media (min-width: 960px) { #moods-tv .tv-deck { width: 100%; } }
 /* phones: the "Press one" note and Sound effects share one line */
 @media (max-width: 600px) {
   #moods-tv .tv-deck__top { flex-wrap: nowrap; gap: 10px; }
@@ -5247,18 +5237,18 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 }
 /* Change the Channel, wide screens: the left column takes just what the panel needs and the TV gets the rest,
    growing out into the page margin on wide screens (up to ~780px) */
-@media (min-width: 1240px) {
+@media (min-width: 960px) {
   #moods-tv > .wrap { grid-template-columns: 480px minmax(0, 1fr); column-gap: 80px; }
   #moods-tv .tvset .tv-nook { width: min(780px, calc(100% + max(0px, (100vw - 1160px) / 2 - 56px))); max-width: none; justify-self: start; }
 }
-@media (min-width: 1240px) { #moods-tv > .wrap { grid-template-columns: 530px minmax(0, 1fr); } }
+@media (min-width: 960px) { #moods-tv > .wrap { grid-template-columns: 530px minmax(0, 1fr); } }
 /* Transit: the button board is a mid charcoal (not near-black) so every key's edge shows against it */
 html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #2c2c2c; box-shadow: inset 0 0 0 1px #3a3a3a, 0 18px 0 #151515, 0 18px 0 1px #2a2a2a, 0 21px 6px -2px rgba(0, 0, 0, .7); }
 /* "For you" note: both sides share one grid cell, so the card is always tall enough for the back's text and button */
 #moods-tv .tv-yours__inner { display: grid; height: auto; }
 #moods-tv .tv-yours__front, #moods-tv .tv-yours__back { position: relative; inset: auto; grid-area: 1 / 1; }
 #moods-tv .tv-yours .tv-yours__back { padding: 18px 24px; }
-@media (min-width: 601px) and (max-width: 1239px) { #moods-tv .tv-panel .tv-yours { max-width: 540px; } }
+@media (min-width: 601px) and (max-width: 959px) { #moods-tv .tv-panel .tv-yours { max-width: 540px; } }
 /* Homepage plan cards on phones: compact.
    Top line: gem, name (and tag), price. Then the features as one wrapping line. Then the setup and the arrow. */
 @media (max-width: 760px) {
@@ -5331,10 +5321,9 @@ html.theme-blocks .seal__arc, html.theme-blocks .seal__num { fill: var(--ink); }
 html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
 /* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
-/* on the button board and in the Change the Channel pop-up, Transit's key is charcoal with a near-black edge, and its face is a pale grey moon */
+/* on the button board and in the Change the Channel pop-up, Transit's key is charcoal with a near-black edge */
 .tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #161616; }
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #161616; }
-#moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-moon.svg); }
 /* Tangy: the Brooklyn-neighbor section is white, its "Now it's your turn" card in the light yellow-orange the section used to be */
 html.theme-blocks #work:not(#z) { background: #fff; }
 html.theme-blocks #work .work-founding.work-founding:not(#z) { background: var(--sun); color: var(--ink); }
@@ -5357,8 +5346,22 @@ html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff;
 }
 /* Soirée: the shared card drops the inner frame so it reads as one card */
 html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow: none; }
-/* Transit key: a thin ring of the subway line colours around the top face */
+/* Transit key: a thin ring of the subway line colours around the top face (painted as background, so the pressed shading falls over it too) */
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) {
-  box-sizing: border-box; border: 2.5px solid transparent;
-  background: linear-gradient(#3a3a3a, #3a3a3a) padding-box, conic-gradient(from -30deg, #e8392e 0 60deg, #ff6319 0 120deg, #fccc0a 0 180deg, #00933c 0 240deg, #1f6ff0 0 300deg, #a336b0 0) border-box;
+  box-sizing: border-box; border: 0; padding: 2.5px;
+  background: linear-gradient(#3a3a3a, #3a3a3a) content-box, conic-gradient(from -30deg, #e8392e 0 60deg, #ff6319 0 120deg, #fccc0a 0 180deg, #00933c 0 240deg, #1f6ff0 0 300deg, #a336b0 0) border-box;
+}
+
+/* Change the Channel, 960–1239px: still side by side (buttons left, TV right), with a narrower left column and gap */
+@media (min-width: 960px) and (max-width: 1239px) {
+  #moods-tv > .wrap:not(#z) { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); column-gap: 48px; }
+}
+/* Transit key: no light highlight along the top inside the rainbow ring (it read as a grey line on the charcoal) */
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 12px 0 var(--cap-edge), inset 0 2px 0 transparent; }
+#moods-tv .tv-key--transit:hover .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 14px 0 var(--cap-edge), inset 0 2px 0 transparent; }
+:is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 transparent; }
+/* Change the Channel, 960–1239px: the left column is just as wide as the button board, with slightly narrower keys */
+@media (min-width: 960px) and (max-width: 1239px) {
+  #moods-tv > .wrap:not(#z) { grid-template-columns: 460px minmax(0, 1fr); column-gap: 40px; }
+  #moods-tv .tv-keys .tv-key:not(#z) { width: 88px; }
 }
