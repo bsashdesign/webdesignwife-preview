@@ -6364,3 +6364,6 @@ html.theme-blocks .m--us .bubble__check path { stroke: var(--ink); }
 /* Soirée, in the business pop-up: the icons stand on their own, no frame around them */
 html.theme-wedding #btype-dialog .blist__ic:not(#z):not(#y) { background: none; box-shadow: none; width: 26px; }
 @media (hover: hover) { html.theme-wedding #btype-dialog .blist a:not(#z):hover .blist__ic:not(#y) { box-shadow: none; color: var(--gold-ink); } }
+/* Soirée: business type names in the gold-brown; on hover they deepen to the navy ink */
+html.theme-wedding .blist .blist__name:not(#z):not(#y) { color: var(--gold-ink); }
+@media (hover: hover) { html.theme-wedding .blist a:not(#z):hover .blist__name:not(#z):not(#y) { color: var(--ink); } }
