@@ -2269,7 +2269,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   });
 
   // phones: no Spin button; a tap anywhere on the sentence spins it
-  slot.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn")) btn.click(); });
+  band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn")) btn.click(); });
 
   // phones: a lever on the right edge; drag the red ball down (or tap it) to spin
   const lever = band.querySelector(".bf-lever");
@@ -2289,16 +2289,20 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
 
   // the hand (only where the round Spin button is showing)
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  // what the hand presses: the Spin button, or on phones (no button) the middle reel
+  const target = () => (btn.offsetParent ? btn : slot.querySelector(".treel--biz .treel__frame"));
   const aim = () => {
-    const b = band.getBoundingClientRect(), r = btn.getBoundingClientRect();
+    const b = band.getBoundingClientRect(), r = target().getBoundingClientRect();
     hand.style.setProperty("--hx", (r.left - b.left + r.width / 2 + 60) + "px");
     hand.style.setProperty("--hy", (r.bottom - b.bottom - r.height * .22 + 99) + "px");
   };
   async function poke() {
-    if (reduce || document.hidden || !drifting || !btn.offsetParent) return;
+    if (reduce || document.hidden || !drifting) return;
     aim(); hand.classList.remove("is-leave"); hand.classList.add("is-up", "is-hover"); await wait(380);
     await wait(900 + Math.random() * 700);
     hand.classList.remove("is-hover"); hand.classList.add("is-press"); btn.classList.add("is-down");
+    const tapped = btn.offsetParent ? null : slot.querySelector(".treel--biz");
+    if (tapped) { tapped.classList.add("is-click"); setTimeout(() => tapped.classList.remove("is-click"), 140); }
     btn.dataset.byHand = "1"; btn.click(); delete btn.dataset.byHand; await wait(110);
     hand.classList.remove("is-press"); btn.classList.remove("is-down"); await wait(140);
     hand.classList.add("is-leave"); hand.classList.remove("is-up"); await wait(240);

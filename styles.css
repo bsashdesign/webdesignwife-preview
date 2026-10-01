@@ -5686,3 +5686,8 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
   .for--spin .treel__win:not(#z) { -webkit-mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32%, #000 33.4%, #000 66.6%, rgba(0,0,0,.5) 68%, rgba(0,0,0,.5) 100%); mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32%, #000 33.4%, #000 66.6%, rgba(0,0,0,.5) 68%, rgba(0,0,0,.5) 100%); }
   .theme-blocks .for--spin .treel__frame:not(#z) { box-shadow: 2px 2px 0 var(--ink); border-width: 2px; }
 }
+@media (max-width: 600px) { .for.for--spin { cursor: pointer; -webkit-tap-highlight-color: transparent; } }
+/* Tangy and Soirée: the word frames get a little more height around the type */
+:is(.theme-blocks, .theme-wedding) .for--spin .treel__frame:not(#z) { top: calc(var(--row) * var(--peek) - .16em); height: calc(var(--row) + .32em); }
+/* hero chat note: wraps inside the little phone on small screens instead of spilling out */
+@media (max-width: 760px) { .chat-nudge { white-space: normal; width: max-content; max-width: 88%; text-align: center; line-height: 1.25; } }
