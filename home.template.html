@@ -857,6 +857,15 @@
   </dialog>
 
   <!-- Get in touch pop-up: the same three forms, opened from any "free audit" or "let's talk" link -->
+  <dialog class="finder-dialog plans-dialog" id="plans-dialog" aria-labelledby="plans-dialog-title">
+    <div class="finder-dialog__inner">
+      <button type="button" class="finder-dialog__close" data-close-plans aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <h2 id="plans-dialog-title">Choose your plan</h2>
+      <div data-plans-slot></div>
+      <p class="plans-dialog__more"><a href="pricing.html">Compare the plans in detail →</a></p>
+    </div>
+  </dialog>
+
   <dialog class="finder-dialog btype-dialog" id="btype-dialog" aria-labelledby="btype-title">
     <div class="finder-dialog__inner">
       <button type="button" class="finder-dialog__close" data-close-btype aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
