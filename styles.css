@@ -5415,9 +5415,10 @@ html.theme-wedding #promises:not(#z) { background: #efe6d2; }
 html:is(.theme-refined, .theme-wedding) #promises .promises > *:not(#z) { background: #fff; }
 /* Transit key: round again (red-orange disc in a round socket), on the board and in the pop-up */
 #moods-tv .tv-key--transit .key-well.key-well:not(#z) { border-radius: 50%; }
-#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { border-radius: 50%; aspect-ratio: 1; width: auto; height: 62px; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { border-radius: 50%; aspect-ratio: 1; width: auto; max-width: none; }
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well.key-well:not(#z) { border-radius: 50%; }
-:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z):not(#y) { border-radius: 50%; width: 46px; height: 46px; margin-inline: 3px; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z):not(#y) { border-radius: 50%; width: 46px; height: 46px; margin-inline: 0; }
+:is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well.key-well:not(#z) { width: 52px; margin-inline: 5px; box-sizing: border-box; }
 /* Homepage plan cards: the whole card stays a link while hovered. Moving the arrow button with a transform made it the
    anchor for the card-wide click area (its ::after), shrinking that to the button, so only the arrow inside moves now */
 .hplans .hplan:hover .hplan__go:not(#z), .hplans .hplan .hplan__go:is(:hover, :active):not(#z) { transform: none; translate: none; }
@@ -5429,3 +5430,7 @@ html.theme-subway.theme-dark .callcard:not(#z) { background: #1c1c1c; color: #f2
 html.theme-subway.theme-dark .callcard:not(#z) :is(strong, h3, p, span:not(.callcard__ico)) { color: inherit; }
 html.theme-subway.theme-dark .callcard:not(#z) p { color: #c9c9c4; }
 html.theme-subway.theme-dark .callcard .btn:not(#z) { background: transparent; color: #fff; border-color: #fff; }
+/* Transit (dark): the Change the Channel pop-up is the same mid charcoal as the button board, so the keys' sockets show */
+html.theme-subway.theme-dark #mood .mood__panel:not(#z) { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #2c2c2c; box-shadow: inset 0 0 0 1px #3a3a3a, 0 24px 48px rgba(0,0,0,.6); }
+html.theme-subway.theme-dark #mood .mood__close:not(#z) { background: #3a3a3a; }
+html.theme-subway.theme-dark #mood .mood__sound:not(#z) { border-top-color: #3d3d3d; }
