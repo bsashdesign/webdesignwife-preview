@@ -2025,3 +2025,13 @@ document.addEventListener("click", (e) => {
   new MutationObserver(fit).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   if (document.fonts) document.fonts.ready.then(fit);
 })();
+
+// Homepage plan cards: a click anywhere on a card (outside its own links) goes where its arrow goes.
+document.querySelectorAll(".hplans .hplan").forEach((card) => {
+  const go = card.querySelector(".hplan__go");
+  if (!go) return;
+  card.addEventListener("click", (e) => {
+    if (e.target.closest("a, button") || String(getSelection()).trim()) return;
+    go.click();
+  });
+});

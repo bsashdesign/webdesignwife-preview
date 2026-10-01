@@ -4385,7 +4385,7 @@ span.plan-ring:empty { display: none; }
    Laid out sideways, unlike the Pricing page's tall cards, so the two never look like the same section. */
 .hplans { display: grid; gap: 16px; max-width: 940px; margin: 0 auto; }
 .hplan { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 20px 26px 20px 20px; border-radius: 20px; background: var(--card, #fff); color: var(--ink); text-decoration: none; box-shadow: 0 0 0 1px var(--line), 0 14px 30px -22px rgba(27,21,48,.4); transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease; }
-.hplan:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line), 0 22px 40px -24px rgba(27,21,48,.5); }
+.hplan:has(.hplan__go:hover) { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line), 0 22px 40px -24px rgba(27,21,48,.5); }
 .hplan__gem { display: block; width: 64px; height: 64px; }
 .hplan__gem .plan-gem { display: block; width: 100%; height: 100%; }
 .hplan__body { display: grid; gap: 8px; min-width: 0; }
@@ -4416,21 +4416,21 @@ span.plan-ring:empty { display: none; }
 .theme-refined .hplan__feats li::before { background: var(--violet); }
 /* Tangy: outlined cards with hard shadows, ink ticks, lime chip */
 .theme-blocks .hplan { border: var(--edge); border-radius: var(--r-lg); box-shadow: var(--shadow); }
-.theme-blocks .hplan:hover { box-shadow: 7px 8px 0 var(--ink); }
+.theme-blocks .hplan:has(.hplan__go:hover) { box-shadow: 7px 8px 0 var(--ink); }
 .theme-blocks .hplan__feats { color: var(--ink); }
 .theme-blocks .hplan__feats li::before { background: var(--ink); }
 .theme-blocks .hplan__chip { background: var(--lime); color: var(--ink); border: 2px solid var(--ink); }
 .theme-blocks .hplan__setup em { background: var(--sun); border: 1.5px solid var(--ink); }
 /* Transit: dark cards on the yellow band, each with its line colour down the side */
 .theme-subway.theme-dark .hplan { --card: #1c1c1c; --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #2f2f2f; background: #1c1c1c; color: var(--ink); border-radius: 12px; box-shadow: inset 6px 0 0 var(--c), 0 14px 30px -20px rgba(0,0,0,.6); padding-left: 28px; }
-.theme-subway.theme-dark .hplan:hover { box-shadow: inset 6px 0 0 var(--c), 0 22px 40px -22px rgba(0,0,0,.7); }
+.theme-subway.theme-dark .hplan:has(.hplan__go:hover) { box-shadow: inset 6px 0 0 var(--c), 0 22px 40px -22px rgba(0,0,0,.7); }
 .theme-subway #plan-simple.hplan { --c: #00933c; } .theme-subway #plan-business.hplan { --c: #0b5cd6; } .theme-subway #plan-full.hplan { --c: #a336b0; }
 .theme-subway .hplan__feats li::before { background: #3fd07a; }
 .theme-subway .hplan__chip { background: #fccc0a; color: #111; }
 .theme-subway .hplan__setup em { background: #fccc0a; color: #111; }
 /* Sophisticated: paper cards with a gold double keyline, serif names, gold ticks */
 .theme-wedding .hplan { border-radius: 3px; background: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 14px 30px -24px rgba(31,35,54,.35); }
-.theme-wedding .hplan:hover { box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 22px 40px -26px rgba(31,35,54,.45); }
+.theme-wedding .hplan:has(.hplan__go:hover) { box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 22px 40px -26px rgba(31,35,54,.45); }
 .theme-wedding .hplan__name { font: 600 1.55rem var(--display); }
 .theme-wedding .hplan__feats li::before { background: var(--gold-ink); }
 .theme-wedding .hplan__chip { background: none; border: 1px solid var(--gold); color: var(--gold-ink); }
@@ -4819,7 +4819,7 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 .hplans__cta { gap: 12px; flex-wrap: wrap; }
 /* homepage plan cards: "+N more" links to the plan on the Pricing page; the arrow starts sign-up with that plan */
 .hplans .hplan { grid-template-columns: 64px minmax(0, 1fr) auto auto; cursor: default; }
-.hplans .hplan:hover { transform: none; }
+.hplans .hplan:has(.hplan__go:hover) { transform: none; }
 .hplan__inc { font-size: .85rem; color: var(--ink-soft); }
 .hplan__more a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -4849,13 +4849,13 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 .hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .hplan__go { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--violet); color: #fff; transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease; }
 .hplan__go svg { width: 20px; height: 20px; }
-.hplan:hover .hplan__go { transform: translateX(3px); background: var(--violet-deep, #4424db); }
+.hplan:has(.hplan__go:hover) .hplan__go { transform: translateX(3px); background: var(--violet-deep, #4424db); }
 .theme-blocks .hplan__go { background: #ff7d33; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
-.theme-blocks .hplan:hover .hplan__go { background: #ff7d33; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+.theme-blocks .hplan:has(.hplan__go:hover) .hplan__go { background: #ff7d33; transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
 .theme-subway .hplan__go { background: #0b5cd6; border-radius: 8px; }
-.theme-subway .hplan:hover .hplan__go { background: #2a74e6; }
+.theme-subway .hplan:has(.hplan__go:hover) .hplan__go { background: #2a74e6; }
 .theme-wedding .hplan__go { background: var(--ink); color: #d9c49a; border-radius: 4px; }
-.theme-wedding .hplan:hover .hplan__go { background: #343a58; }
+.theme-wedding .hplan:has(.hplan__go:hover) .hplan__go { background: #343a58; }
 @media (max-width: 760px) {
   .hplans .hplan { grid-template-columns: 52px minmax(0, 1fr) auto; }
   .hplans .hplan .hplan__money { grid-column: 1 / 3; }
@@ -4866,7 +4866,7 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 /* Sophisticated: a plain gold arrow, no box */
 .theme-wedding .hplans .hplan__go { width: 32px; height: 32px; background: none; color: var(--gold-ink); border-radius: 0; }
 .theme-wedding .hplans .hplan__go svg { width: 22px; height: 22px; }
-.theme-wedding .hplans .hplan:hover .hplan__go { background: none; color: var(--ink); }
+.theme-wedding .hplans .hplan:has(.hplan__go:hover) .hplan__go { background: none; color: var(--ink); }
 /* homepage plans: "everything in…" hidden; the "+4" link is plain (no underline, not bold) and gets a soft pill on hover */
 .hplan__inc { display: none; }
 .hplans .hplan__more a.hplan__plus { display: inline-block; margin: -2px 0; padding: 2px 8px; border-radius: 999px; font-weight: 500; color: var(--ink-soft); text-decoration: none; background: none; transition: background-color .15s ease, color .15s ease; }
@@ -5218,7 +5218,7 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 }
 /* Tangy: homepage plan cards turn the pale beige of a selected field on hover */
 .theme-blocks .hplans .hplan { transition: background-color .15s ease, box-shadow .15s ease, transform .25s cubic-bezier(.2, .8, .2, 1); }
-.theme-blocks .hplans .hplan:hover { background: #fffbe0; }
+.theme-blocks .hplans .hplan:has(.hplan__go:hover) { background: #fffbe0; }
 @media (min-width: 960px) { #moods-tv .tv-deck { width: 100%; } }
 /* phones: the "Press one" note and Sound effects share one line */
 @media (max-width: 600px) {
@@ -5419,12 +5419,6 @@ html:is(.theme-refined, .theme-wedding) #promises .promises > *:not(#z) { backgr
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well.key-well:not(#z) { border-radius: 50%; }
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well .moodicon--transit:not(#z):not(#y) { border-radius: 50%; width: 46px; height: 46px; margin-inline: 0; }
 :is(#mood, #footer-channel) .mood__opt[data-mood="transit"] .key-well.key-well:not(#z) { width: 52px; margin-inline: 5px; box-sizing: border-box; }
-/* Homepage plan cards: the whole card stays a link while hovered. Moving the arrow button with a transform made it the
-   anchor for the card-wide click area (its ::after), shrinking that to the button, so only the arrow inside moves now */
-.hplans .hplan:hover .hplan__go:not(#z), .hplans .hplan .hplan__go:is(:hover, :active):not(#z) { transform: none; translate: none; }
-.hplans .hplan .hplan__go svg { transition: transform .15s ease; }
-.hplans .hplan:hover .hplan__go svg { transform: translateX(3px); }
-html.theme-blocks .hplans .hplan:hover .hplan__go:not(#z) { margin: -1px 1px 1px -1px; }
 /* Transit (dark): the "Want to talk first?" card is a dark card like the rest of the dark mood */
 html.theme-subway.theme-dark .callcard:not(#z) { background: #1c1c1c; color: #f2f2ee; box-shadow: inset 6px 0 0 var(--blue), 0 0 0 1px #333; }
 html.theme-subway.theme-dark .callcard:not(#z) :is(strong, h3, p, span:not(.callcard__ico)) { color: inherit; }
@@ -5444,3 +5438,13 @@ html.theme-subway.theme-dark #mood .mood__sound:not(#z) { border-top-color: #3d3
 }
 /* Tangy TV screen says "Boing!": big and on a diagonal across the lower right, clear of the face and the Wow! sticker */
 .tch-word { font-size: 21cqh; top: auto; right: 8.7cqw; bottom: 24cqh; transform: rotate(-12deg); transform-origin: 50% 50%; z-index: 3; }
+/* Homepage plan cards: the card is clicked through by script.js (not an overlay), so the gems can be hovered and
+   the card's hover look only shows while the arrow button itself is hovered; the button moves as one piece */
+.hplans .hplan .hplan__go::after { content: none; }
+.hplans .hplan { cursor: pointer; }
+.hplans .hplan .hplan-ring-tile, .hplans .hplan .plan-gem { position: relative; z-index: 1; }
+/* Soirée: the arrow sits in its navy tile again, with a finer arrow */
+html.theme-wedding .hplans .hplan__go:not(#z) { width: 40px; height: 40px; background: var(--ink); color: #d9c49a; border-radius: 4px; }
+html.theme-wedding .hplans .hplan:has(.hplan__go:hover) .hplan__go:not(#z) { background: #343a58; color: #e9d9b4; }
+html.theme-wedding .hplans .hplan__go svg:not(#z) { width: 20px; height: 20px; }
+html.theme-wedding .hplans .hplan__go svg path { stroke-width: 1.15; }
