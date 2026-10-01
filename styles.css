@@ -5501,3 +5501,55 @@ html.theme-blocks .hplans #plan-full.hplan:has(.hplan__go:hover):not(#z) { backg
 /* Transit (dark): the free-audit section is a calm charcoal with the subway line colours along its top, not a full red block */
 html.theme-subway.theme-dark #audit:not(#z) { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 6px no-repeat, #232323; }
 html.theme-subway.theme-dark #audit .formcard:not(#z) { background: #1a1a1a; box-shadow: inset 0 0 0 1px #333; }
+/* Google Maps section: a Maps-style result card beside the intro, so the section reads as "Google Maps" at a glance */
+.maps__head--card { align-items: center; }
+.maps__head--card .maps__intro h2 { margin: 0 0 18px; }
+.maps__head--card .maps__intro p { margin: 0; font-size: 1.08rem; opacity: .9; }
+.gmcard { --gm-land: #f1f3f4; --gm-road: #fff; --gm-road-edge: #dadce0; --gm-park: #c8e6c9; --gm-water: #aadaff; --gm-pin: #ea4335;
+  margin: 0; justify-self: end; width: min(100%, 420px); border-radius: 18px; overflow: hidden; background: #fff; color: #202124; box-shadow: 0 24px 50px -24px rgba(0,0,0,.6); text-align: left; }
+.gmcard__map { position: relative; height: 140px; }
+.gmcard__map > svg { display: block; width: 100%; height: 100%; }
+.gmcard__land { fill: var(--gm-land); }
+.gmcard__park { fill: var(--gm-park); }
+.gmcard__water { fill: var(--gm-water); }
+.gmcard__road { fill: none; stroke: var(--gm-road); stroke-width: 7; stroke-linecap: round; filter: drop-shadow(0 0 .6px var(--gm-road-edge)); }
+.gmcard__road--big { stroke-width: 11; }
+.gmcard__road--thin { stroke-width: 4; }
+.gmcard__pin { position: absolute; left: 50%; top: 50%; width: 30px; translate: -50% -88%; filter: drop-shadow(0 3px 3px rgba(0,0,0,.3)); animation: gmcard-drop 2.6s cubic-bezier(.3, 1.6, .5, 1) infinite; }
+.gmcard__pin svg { display: block; width: 100%; }
+.gmcard__pin path { fill: var(--gm-pin); }
+.gmcard__pin circle { fill: rgba(0,0,0,.28); }
+@keyframes gmcard-drop { 0%, 70%, 100% { transform: translateY(0); } 80% { transform: translateY(-8px); } 90% { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .gmcard__pin { animation: none; } }
+.gmcard__info { display: grid; gap: 3px; padding: 16px 18px 18px; font: 400 .92rem/1.4 var(--body); }
+.gmcard__name { font: 600 1.15rem/1.25 var(--body); color: inherit; }
+.gmcard__rating { color: #70757a; }
+.gmcard__rating b { color: #202124; font-weight: 500; }
+.gmcard__stars { color: #fbbc04; letter-spacing: 1px; }
+.gmcard__meta { color: #70757a; }
+.gmcard__open { color: #70757a; }
+.gmcard__open b { color: #188038; font-weight: 600; }
+.gmcard__btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.gmcard__btn { padding: 7px 14px; border-radius: 999px; border: 1px solid #dadce0; color: #1a73e8; font-weight: 600; font-size: .85rem; }
+.gmcard__btn--go { background: #1a73e8; border-color: #1a73e8; color: #fff; }
+@media (max-width: 900px) { .gmcard { justify-self: start; } }
+/* per mood */
+.theme-blocks .gmcard { border: var(--edge); box-shadow: 6px 6px 0 var(--ink); border-radius: var(--r-lg); --gm-land: #fff8d6; --gm-road: #fff; --gm-road-edge: #0e0e0e; --gm-park: #b6f5c8; --gm-water: #9fd8ff; --gm-pin: #ff4fa6; }
+.theme-blocks .gmcard__map { border-bottom: 2px solid var(--ink); }
+.theme-blocks .gmcard__pin path { stroke: #0e0e0e; stroke-width: 1.6; }
+.theme-blocks .gmcard__btn { border: 2px solid var(--ink); color: var(--ink); }
+.theme-blocks .gmcard__btn--go { background: #ff7d33; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+.theme-refined .gmcard { --gm-land: #f6f4fa; --gm-park: #dff3e6; --gm-water: #dceaff; --gm-pin: #5b3df5; border-radius: 20px; }
+.theme-refined .gmcard__btn { color: #5b3df5; border-color: #e3defa; }
+.theme-refined .gmcard__btn--go { background: #5b3df5; border-color: #5b3df5; color: #fff; }
+.theme-subway .gmcard { border-radius: 12px; }
+.theme-subway.theme-dark .gmcard { background: #1c1c1c; color: #f2f2ee; box-shadow: inset 0 0 0 1px #333, 0 24px 50px -24px #000; --gm-land: #2a2a2a; --gm-road: #3d3d3d; --gm-road-edge: #222; --gm-park: #1f3a27; --gm-water: #1d2f44; --gm-pin: #e8392e; }
+.theme-subway.theme-dark .gmcard__rating, .theme-subway.theme-dark .gmcard__meta, .theme-subway.theme-dark .gmcard__open { color: #a9a9a4; }
+.theme-subway.theme-dark .gmcard__rating b { color: #f2f2ee; }
+.theme-subway.theme-dark .gmcard__open b { color: #3fd07a; }
+.theme-subway.theme-dark .gmcard__btn { border-color: #444; color: #8ab4ff; border-radius: 8px; }
+.theme-subway.theme-dark .gmcard__btn--go { background: #0b5cd6; border-color: #0b5cd6; color: #fff; }
+.theme-wedding .gmcard { border-radius: 2px; background: #fffdf8; box-shadow: inset 0 0 0 1px rgba(184,149,90,.5), 0 24px 50px -26px rgba(0,0,0,.6); --gm-land: #f3ecdc; --gm-road: #fffdf8; --gm-road-edge: #d8c9a6; --gm-park: #dfe6cf; --gm-water: #d6e2e6; --gm-pin: #8a6a30; }
+.theme-wedding .gmcard__name { font: italic 600 1.5rem/1.1 var(--display); color: var(--gold-ink); }
+.theme-wedding .gmcard__btn { border-radius: 0; border-color: var(--gold); color: var(--ink); }
+.theme-wedding .gmcard__btn--go { background: var(--ink); border-color: var(--ink); color: #e9d9b4; }
