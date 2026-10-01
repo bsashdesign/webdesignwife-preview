@@ -135,7 +135,7 @@ def founding(html):
               '<div class="founding__emblem" aria-hidden="true"><i class="pi pi--crown-fill"></i><span>Founding</span><b>5</b></div>'
               '<div class="founding__body">'
               '<h2 class="founding__title">The Founding <span class="founding__num">5</span></h2>'
-              '<p class="founding__text">The managed service is new, so I\'m opening it to five businesses first. '
+              '<p class="founding__text">The managed service is new, so I\'m opening it to the first five businesses I take on. '
               f'Founding 5 saves <strong>{FOUNDING["off"]}% on setup</strong>. Your subscription is the regular plan price. '
               'When the five spots are gone, so is the offer.</p>'
               + (f'<p class="founding__left">{left} of 5 spots left</p>' if left is not None else "")
