@@ -6341,3 +6341,18 @@ html.theme-blocks .m--them .bubble:not(#z) { background: #fffbe0; }
 html.theme-blocks .m--us .bubble:not(#z) { background: #9fd8ff; color: var(--ink); }
 html.theme-blocks .m--us .bubble__check:not(#z) { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); }
 html.theme-blocks .m--us .bubble__check path { stroke: var(--ink); }
+/* phones: the business list fits two columns comfortably: smaller icons and type, names may wrap, tighter gaps */
+@media (max-width: 600px) {
+  .btype-dialog .finder-dialog__inner:not(#z) { padding: 22px 16px 20px; }
+  #btype-dialog h2:not(#z):not(#y) { font-size: 1.3rem; margin: 0 40px 14px 0; }
+  .blist:not(#z):not(#y) { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; }
+  .blist a:not(#z):not(#y) { gap: 8px; padding: 6px 0; }
+  .blist .blist__ic:not(#z) { width: 28px; height: 28px; }
+  .blist .blist__ic svg { width: 15px; height: 15px; }
+  .blist .blist__name:not(#z):not(#y) { font-size: .92rem; line-height: 1.15; white-space: normal; min-width: 0; }
+  html.theme-blocks .blist .blist__name:not(#z):not(#y) { font-size: .82rem; letter-spacing: -.02em; }
+  html.theme-wedding .blist .blist__name:not(#z):not(#y) { font-size: 1.08rem; }
+  .blist__go:not(#z):not(#y) { display: none; }
+  .blist--page .blist__ic:not(#z) { width: 34px; height: 34px; }
+  .blist--page .blist__name:not(#z):not(#y) { font-size: 1.1rem; }
+}
