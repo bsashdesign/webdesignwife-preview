@@ -6368,11 +6368,7 @@ html.theme-blocks .blist__t { padding: 0 2px; background: linear-gradient(var(--
 
 /* ===== New pricing model ===== */
 /* the plan card's headline difference (Business and Full Suite: in person + photography) */
-.plan .ticks li.plan__key { margin: 2px 0 6px; padding: 8px 10px 8px 36px; border-radius: 10px; background: color-mix(in srgb, var(--violet) 10%, transparent); }
-.plan .ticks li.plan__key::before { left: 10px; top: calc(8px + .8em - 8px); }
-html.theme-blocks .plan .ticks li.plan__key { background: #fffbe0; box-shadow: inset 0 0 0 2px var(--ink); border-radius: 8px; }
-html.theme-subway.theme-dark .plan .ticks li.plan__key { background: rgba(252,204,10,.12); border-radius: 6px; }
-html.theme-wedding .plan .ticks li.plan__key { background: rgba(184,149,90,.12); border-radius: 2px; }
+/* the in-person line on the plan cards is just a bold item in the list (no box around it) */
 /* the setup section: two labelled step lists */
 .psteps__label { margin: 30px 0 0; }
 .psteps__label + .psteps { margin-top: 14px; }
@@ -6963,3 +6959,7 @@ html.theme-refined .pcard__feats li::before { background: var(--violet); }
   .pcard__cta { margin-top: 8px; }
 }
 .pcard__billed:not(#z) { white-space: nowrap; }
+/* the launch-offer badge reads "Launch / Offer" (the word sized to fit the badge) */
+.founding__emblem b:not(#z) { font-size: 1.45rem; letter-spacing: -.01em; }
+@media (max-width: 560px) { .founding__emblem b:not(#z) { font-size: 1.15rem; } }
+html.theme-wedding .founding__emblem b:not(#z) { font-size: 1.7rem; }
