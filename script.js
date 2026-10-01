@@ -1778,6 +1778,8 @@ document.addEventListener("click", (e) => {
   const danceT = new Map();
   // (the big TV only dances to its tune; its other sounds just send out waves)
   const dance = (ms, big, moves = !big) => {
+    // the big TV only reacts (dance and waves) to its tune; its other sounds show nothing
+    if (big && !moves) return;
     const el = big ? document.querySelector("#moods-tv .tv") : document.querySelector(".mood__btn");
     if (!el) return;
     el.classList.toggle("is-dancing", moves);
