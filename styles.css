@@ -5448,3 +5448,7 @@ html.theme-wedding .hplans .hplan__go:not(#z) { width: 40px; height: 40px; backg
 html.theme-wedding .hplans .hplan:has(.hplan__go:hover) .hplan__go:not(#z) { background: var(--gold-ink); border-color: var(--gold-ink); color: #fff; }
 html.theme-wedding .hplans .hplan__go svg:not(#z) { width: 20px; height: 20px; }
 html.theme-wedding .hplans .hplan__go svg path { stroke-width: 1.15; }
+/* Tangy: hovering a plan's arrow tints its card a light version of that plan's colour */
+html.theme-blocks .hplans #plan-simple.hplan:has(.hplan__go:hover):not(#z) { background: #f3ffd0; }
+html.theme-blocks .hplans #plan-business.hplan:has(.hplan__go:hover):not(#z) { background: #e3f4ff; }
+html.theme-blocks .hplans #plan-full.hplan:has(.hplan__go:hover):not(#z) { background: #ffe8f5; }
