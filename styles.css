@@ -6538,3 +6538,10 @@ html.theme-blocks .ssum__shield { color: var(--ink); }
 html.theme-subway .ssum__shield { color: var(--yellow); }
 html.theme-subway.theme-dark .ssum__shield { color: #111; }
 html.theme-wedding .ssum__shield { color: var(--gold-ink); }
+/* The Google Maps card is a picture of a listing, not something to click: its Directions / Call / Website read as
+   part of the drawing (small, hairline, muted, no fill or shadow), never as the site's own buttons */
+html .gmcard__btns .gmcard__btn:not(#z) { padding: 3px 10px; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: 999px; background: none; box-shadow: none; color: var(--ink-soft); font-size: .72rem; font-weight: 500; cursor: default; pointer-events: none; }
+html .gmcard__btns .gmcard__btn--go:not(#z) { background: color-mix(in srgb, var(--ink-soft) 10%, transparent); }
+html.theme-subway .gmcard__btns .gmcard__btn:not(#z) { border-radius: 6px; }
+html.theme-wedding .gmcard__btns .gmcard__btn:not(#z) { border-radius: 2px; }
+html .gmcard__btns:not(#z) { gap: 6px; }
