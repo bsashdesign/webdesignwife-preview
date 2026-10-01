@@ -4489,3 +4489,13 @@ span.plan-ring:empty { display: none; }
 /* Transit's switch knob is white, so it doesn't look like a hole through to the yellow band */
 .theme-subway .billing__switch[aria-checked="true"] i { background: #fff; }
 @supports (grid-template-rows: subgrid) { .plans .plan > .plan__head { align-self: start; } }
+/* Pricing cards: the yearly total, savings and setup line in the body font, a size up, with room to breathe */
+.plans .plan .plan__terms { font-family: var(--body); font-size: .95rem; line-height: 1.75; letter-spacing: 0; }
+.plans .plan .plan__terms strong { font-weight: 600; }
+.plans .plan .plan__founding { vertical-align: 1px; }
+/* Transit's switch knob is white, so it doesn't look like a hole through to the yellow band */
+.theme-subway .billing .billing__switch[aria-checked="true"] i { background: #fff; }
+/* the toggle sits at the right, lined up with the cards' right edge, clear of the banner and the "Most popular" tag */
+.billing-row { justify-content: flex-end; margin-top: 44px; }
+.billing-row + .plans { margin-top: 26px; }
+@media (max-width: 760px) { .billing-row { justify-content: center; margin-top: 32px; } .billing-row + .plans { margin-top: 30px; } }
