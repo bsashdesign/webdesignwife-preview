@@ -5312,3 +5312,7 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
   .sform .sbill .billing__switch { grid-area: sw; }
 }
 @media (max-width: 560px) { .sform__group:has(.sbill) { margin-top: 44px; } }
+/* Tangy homepage plan cards: each arrow button takes its plan's colour (the same as the name's highlight) */
+html.theme-blocks #plan-simple .hplan__go, html.theme-blocks #plan-simple:hover .hplan__go { background: var(--lime); }
+html.theme-blocks #plan-business .hplan__go, html.theme-blocks #plan-business:hover .hplan__go { background: var(--sky); }
+html.theme-blocks #plan-full .hplan__go, html.theme-blocks #plan-full:hover .hplan__go { background: var(--rose); }
