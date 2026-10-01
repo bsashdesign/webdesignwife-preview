@@ -1877,7 +1877,7 @@ document.addEventListener("click", (e) => {
     try {
       // wander up and down the scale a step or two at a time
       twinkleStep = Math.max(0, Math.min(SCALE.length - 1, twinkleStep + [-1, 1, 1, 2, -2][Math.floor(Math.random() * 5)]));
-      bell(SCALE[twinkleStep] * (twinkleRate < 1 ? .5 : 1), ac.currentTime, .045, twinkleRate < 1 ? 1.6 : .9);
+      bell(SCALE[twinkleStep] * (twinkleRate < 1 ? .5 : 1), ac.currentTime, .022, twinkleRate < 1 ? 1.6 : .9);
     } catch (e) {}
     twinkleTimer = setTimeout(twinkle, (140 + Math.random() * 90) / twinkleRate);
   };
