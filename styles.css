@@ -5319,9 +5319,10 @@ html.theme-subway #moods .yours__back .btn { background: var(--btn-blue); border
 html.theme-subway .billing__switch { --switch-on: var(--btn-blue); }
 /* menu close button: just the cross, no tile behind it (Calm keeps its soft tile) */
 html:not(.theme-refined) .drawer__close.drawer__close { background: transparent; box-shadow: none; }
-/* Tangy Get started: the chosen plan is a bright sunny yellow; hovering another plan previews a paler yellow */
-html.theme-blocks .splans .splan input:checked + span:not(#z) { background: var(--sun); }
-@media (hover: hover) { html.theme-blocks .splans .splan:hover input:not(:checked) + span:not(#z) { background: #fff2bd; } }
+/* Tangy Get started: the chosen plan is the deep orange of the buttons; hovering another plan previews a paler orange */
+html.theme-blocks .splans .splan input:checked + span:not(#z) { background: #ff6a1a; }
+@media (hover: hover) { html.theme-blocks .splans .splan:hover input:not(:checked) + span:not(#z) { background: #ffd9c2; } }
 /* "Back to website" shortens to "Back" when there isn't room for it on one line */
 .start__back .back__more { white-space: pre; }
 @media (max-width: 369px) { .start__back .back__more { display: none; } }
+html.theme-blocks .splans .splan input:checked + span:not(#z) small { color: var(--ink); }
