@@ -6832,3 +6832,6 @@ html.theme-blocks .lpv:not(#z):not(#y) mark { background: #fff; }
 html.theme-subway .lpv:not(#z):not(#y) { background: var(--blue); color: #fff; border-top-left-radius: 0; }
 html.theme-wedding .lpv:not(#z):not(#y) { background: var(--ink); color: #fff; border-top-left-radius: 1px; }
 html.theme-wedding .lpv:not(#z):not(#y) mark { background: rgba(217, 196, 154, .3); }
+html.theme-blocks .lpv:not(#z):not(#y) mark { background: var(--lime); }
+/* "Suggested replies" over the replies: a quiet label (not a sender name) */
+html .chat-you:not(#z):not(#y):not(#x) { font-weight: 600; color: var(--ink-soft); }

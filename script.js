@@ -95,7 +95,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     // bubbles (outlined, not yet sent) with an "or" between them
     const pickPanel = (opts, first) => {
       const you = document.createElement("span");
-      you.className = "chat-you"; you.setAttribute("aria-hidden", "true"); you.textContent = "You";
+      you.className = "chat-you"; you.setAttribute("aria-hidden", "true"); you.textContent = "Suggested replies";
       const tip = document.createElement("span");
       tip.className = "chat-choices__tip"; tip.setAttribute("aria-hidden", "true");
       tip.innerHTML = first ? '<b>↑</b> Choose a reply, <em>really.</em>' : "<b>↑</b> Choose a reply";
@@ -110,8 +110,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         b.addEventListener("click", () => pick(o));
         panel.append(b);
       });
-      // "You", "or" and the cue are only for the opening scene; after that, just the replies
-      return first ? [you, panel, tip] : [panel];
+      // "or" and the cue are only for the opening scene; the "Suggested replies" label is always there
+      return first ? [you, panel, tip] : [you, panel];
     };
     // The choices take only the room they need: with nothing to pick, the conversation sits at the bottom of the
     // phone. When choices come in they grow up from the bottom (pushing the conversation up), and when they go
