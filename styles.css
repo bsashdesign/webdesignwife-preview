@@ -6709,3 +6709,8 @@ html.theme-subway .chat-choice:not(#z):not(#y):not(#x) { font-weight: 500; }
   .demo .site > .site__nav:not(#z):not(#y), .demo .site > .site__h:not(#z):not(#y), .demo .site > .site__btn:not(#z):not(#y) { margin-right: 0; }
   .demo .site > .site__h:not(#z):not(#y) { max-width: none; padding-right: 10px; }
 }
+/* replies (and your messages once sent) can use the conversation's full width, so they stay on one line */
+html .demo .phone .chat-choice:not(#z):not(#y):not(#x), html .demo .phone .m--them .bubble:not(#z):not(#y) { max-width: 100%; }
+html .demo .phone .chat-pick:not(#z):not(#y) { width: 100%; }
+/* the website mock's headline runs the full width, behind the phone (on desktop as on phones) */
+.demo .site > .site__h:not(#z) { max-width: none; }
