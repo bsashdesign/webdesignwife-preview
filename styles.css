@@ -4355,7 +4355,7 @@ span.plan-ring:empty { display: none; }
 .theme-blocks .profile .profile__pane--after li.profile__divider { border-top: 2px dashed var(--ink); color: var(--ink); }
 /* Transit: dark panes, a green line bar on "after", green checks and blue arrows */
 .theme-subway .profile .profile__pane { border-radius: 10px; }
-.theme-subway.theme-dark .profile.profile .profile__pane--before { background: #1c1c1c; color: #8a8a85; }
+.theme-subway.theme-dark .profile.profile .profile__pane--before { background: #272727; color: #8f8f8a; box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
 .theme-subway.theme-dark .profile .profile__pane--before li { text-decoration-color: rgba(255,255,255,.3); }
 .theme-subway.theme-dark .profile.profile .profile__pane--after { background: #12291c; color: var(--ink); box-shadow: inset 0 5px 0 #00933c; padding-top: 22px; }
 .theme-subway .profile .profile__pane--after li::before { background: #3fd07a; }
@@ -4371,3 +4371,13 @@ span.plan-ring:empty { display: none; }
 .theme-wedding .profile .profile__label { font: 600 1.05rem var(--display); letter-spacing: .16em; }
 .theme-wedding .profile .profile__pane--after .profile__label { color: var(--gold-ink); }
 .theme-wedding .profile .profile__pane--after li.profile__divider { border-top-color: rgba(184,149,90,.45); color: var(--gold-ink); }
+/* Google Maps card: the plan gems beside "Business" and "Full Suite" */
+.profile__plan { display: inline-flex; align-items: center; white-space: nowrap; }
+.profile__divider .plan-gem.plan-ring--inline { width: 26px; height: 26px; margin: -8px 1px -8px -3px; color: #5b3df5; }
+.profile__plan--full .plan-gem.plan-ring--inline { margin-left: 0; }
+.theme-blocks .profile__plan--business .plan-gem { color: var(--sky); }
+.theme-blocks .profile__plan--full .plan-gem { color: var(--rose); }
+.theme-subway .profile__plan--business .plan-gem { color: var(--blue); }
+.theme-subway .profile__plan--full .plan-gem { color: var(--red); }
+.theme-wedding .profile__divider .plan-gem { color: var(--gold-ink); }
+.profile__pane--after li.profile__divider { display: flex; flex-wrap: wrap; align-items: center; column-gap: .4em; row-gap: 4px; }
