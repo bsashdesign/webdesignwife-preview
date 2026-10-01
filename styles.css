@@ -5335,12 +5335,25 @@ html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff;
 .tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #161616; }
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #161616; }
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-yellow.svg); }
-/* Tangy: the Brooklyn-neighbor section is white, its "Now it's your turn" card orange */
+/* Tangy: the Brooklyn-neighbor section is white, its "Now it's your turn" card in the light yellow-orange the section used to be */
 html.theme-blocks #work:not(#z) { background: #fff; }
-html.theme-blocks #work .work-founding.work-founding:not(#z) { background: var(--violet); color: var(--ink); }
+html.theme-blocks #work .work-founding.work-founding:not(#z) { background: var(--sun); color: var(--ink); }
 html.theme-blocks #work .work-founding:not(#z) :is(p, strong, a) { color: var(--ink); }
-/* Tangy "Three ways": a pink section with white cards; ours is lime */
+/* Tangy "Three ways": a pink section with white cards; ours is white too, set apart by its size and deeper shadow */
 html.theme-blocks #compare:not(#z) { background: var(--rose); color: var(--ink); }
 html.theme-blocks #compare .compare-cards .cc:not(#z) { background: #fff; }
 html.theme-blocks #compare .compare-cards .cc:not(.cc--us):not(#z) :is(h3, ul) { color: var(--ink); }
-html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: var(--lime); box-shadow: 8px 8px 0 var(--ink); }
+html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; box-shadow: 8px 8px 0 var(--ink); }
+/* "Three ways": Do it yourself and Hire an agency share one card, split by a vertical line (stacked on phones, split by a horizontal one) */
+@media (min-width: 761px) {
+  #compare .compare-cards:not(#z) { column-gap: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 24px minmax(0, 1.3fr); }
+  #compare .compare-cards .cc.cc--us:not(#z) { grid-column: 4; }
+  #compare .compare-cards .cc:nth-child(1):not(#z) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+  #compare .compare-cards .cc:nth-child(2):not(#z) { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left-width: 0; }
+}
+@media (max-width: 760px) {
+  #compare .compare-cards .cc:nth-child(1):not(#z) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  #compare .compare-cards .cc:nth-child(2):not(#z) { border-top-left-radius: 0; border-top-right-radius: 0; border-top-width: 0; margin-top: -16px; }
+}
+/* Soirée: the shared card drops the inner frame so it reads as one card */
+html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow: none; }
