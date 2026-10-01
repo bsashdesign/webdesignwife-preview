@@ -5015,3 +5015,5 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 @media (prefers-reduced-motion: reduce) {
   :is(.cf-card__view:hover, .borough:hover em, .chip:hover .chip__try, .ref-preview:hover .ref-preview__go) { animation: none; background-size: 100% 1.5px; }
 }
+/* Transit (dark): the founding note sits on its own dark-grey card */
+.theme-subway.theme-dark .work-founding:not(#z) { background: #1c1c1c; box-shadow: inset 0 0 0 1px #2f2f2f; border-radius: 12px; }
