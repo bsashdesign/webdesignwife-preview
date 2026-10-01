@@ -174,6 +174,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     const phone = demo.querySelector(".phone");
     const start = { services: rows.services.querySelector(".val").textContent, hours: rows.hours.querySelector(".val").textContent, banner: banner.querySelector("p").textContent, open: banner.classList.contains("is-open") };
     compose.classList.add("is-choices");
+    compose.replaceChildren();
     phone.removeAttribute("aria-hidden");
     let busy = false;
     // the first time the choices show, a cue (like the Change the Channel one) nudges you to reply
@@ -197,20 +198,35 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       });
       return [tip, panel];
     };
-    // Reserve the room the tallest set of choices will need before anything appears, so the conversation above
-    // never jumps when the options come in (or go away while I'm replying)
-    const reserve = () => {
-      const sets = [];
-      const walk = (opts) => { sets.push(opts); opts.forEach((o) => o.next && walk(o.next)); };
-      walk(TREE);
-      let h = 0;
-      sets.forEach((opts, i) => { compose.replaceChildren(...pickPanel(opts, i === 0)); h = Math.max(h, compose.offsetHeight); });
-      compose.replaceChildren();
-      compose.style.minHeight = h + "px";
+    // The choices take only the room they need: with nothing to pick, the conversation sits at the bottom of the
+    // phone. When choices come in they grow up from the bottom (pushing the conversation up), and when they go
+    // they shrink away, so nothing ever jumps.
+    let morphing = null;
+    const morph = (fill) => {
+      if (morphing) morphing.cancel();
+      const from = compose.offsetHeight;
+      fill();
+      const to = compose.offsetHeight;
+      if (from === to) return Promise.resolve();
+      compose.style.overflow = "hidden";
+      const a = morphing = compose.animate([{ height: from + "px" }, { height: to + "px" }], { duration: 480, easing: EASE_OUT });
+      return a.finished.catch(() => {}).then(() => { if (morphing === a) { morphing = null; compose.style.overflow = ""; } });
+    };
+    // shrink the choices away (fading as they go), then empty the space
+    const clearChoices = () => {
+      if (!compose.children.length) return Promise.resolve();
+      if (morphing) morphing.cancel();
+      const from = compose.offsetHeight;
+      compose.style.overflow = "hidden";
+      const a = morphing = compose.animate([{ height: from + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 380, easing: EASE_OUT, fill: "forwards" });
+      return a.finished.catch(() => {}).then(() => {
+        if (morphing !== a) return;
+        compose.replaceChildren(); a.cancel(); morphing = null; compose.style.overflow = "";
+      });
     };
     const offer = (opts) => {
       const first = !cued; cued = true;
-      compose.replaceChildren(...pickPanel(opts, first));
+      morph(() => compose.replaceChildren(...pickPanel(opts, first)));
       compose.querySelectorAll(".chat-choices__tip, .chat-choice, .chat-pick__or").forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, delay: i * 70, easing: "ease-out", fill: "backwards" }));
     };
     const again = () => {
@@ -218,11 +234,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       b.type = "button"; b.className = "chat-choice chat-choice--again"; b.textContent = "↺ Start Over";
       b.addEventListener("click", async () => {
         if (busy) return; busy = true;
-        compose.replaceChildren();
+        await clearChoices();
         await resetChat();
         await checkIn(); offer(TREE); busy = false;
       });
-      compose.replaceChildren(b);
+      morph(() => compose.replaceChildren(b));
       b.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, fill: "backwards" });
     };
     async function resetChat() {
@@ -239,7 +255,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     }
     async function pick(o) {
       if (busy) return; busy = true;
-      compose.replaceChildren();
+      clearChoices();
       hideOldReceipts();
       const sent = addMessage("them", '<div class="bubble"></div><div class="receipt"><span>Delivered</span></div>');
       sent.querySelector(".bubble").textContent = o.label;
@@ -266,13 +282,6 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       await tick(800);
     }
     busy = true;
-    reserve();
-    // re-measure when the width changes (the options may wrap differently), keeping whatever is showing
-    let lastW = innerWidth;
-    addEventListener("resize", () => {
-      if (innerWidth === lastW) return; lastW = innerWidth;
-      const kids = [...compose.children]; compose.style.minHeight = ""; reserve(); compose.replaceChildren(...kids);
-    });
     checkIn().then(() => { offer(TREE); busy = false; });
   }
   run();
