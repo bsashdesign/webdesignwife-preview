@@ -1895,8 +1895,18 @@ document.addEventListener("click", (e) => {
   // Sound on/off, remembered on this device. Every sound checks it first.
   let muted = false;
   try { muted = localStorage.getItem("wdw-muted") === "1"; } catch (e) {}
-  // (the TVs used to dance and send out waves whenever a sound played; that's switched off)
-  const dance = () => {};
+  // The big TV dances and sends out sound waves only when you press its speaker (its tune); mood changes and the
+  // other sounds don't set it off
+  const danceT = new Map();
+  const dance = (ms, big, moves = !big) => {
+    if (!(big && moves)) return;
+    const el = document.querySelector("#moods-tv .tv");
+    if (!el) return;
+    el.classList.add("is-dancing");
+    el.classList.toggle("is-sounding", !muted);
+    clearTimeout(danceT.get(el));
+    danceT.set(el, setTimeout(() => el.classList.remove("is-dancing", "is-sounding"), ms));
+  };
   // the switches read "on" when sound is playing
   const syncMute = () => document.querySelectorAll("[data-mute]").forEach((b) => b.setAttribute("aria-checked", String(!muted)));
   syncMute();
