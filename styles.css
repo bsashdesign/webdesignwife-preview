@@ -6465,7 +6465,7 @@ html.theme-subway .work-founding__crown:not(#z) { border-radius: 50%; }
 .hplans .hplan .hplan__billed { font-size: .8rem; color: var(--ink-soft); }
 .hplans .hplan .hplan__setup { display: grid; justify-items: end; margin-top: 6px; font-size: .85rem; font-weight: 600; color: var(--ink); }
 .hplans .hplan .hplan__setup small { font-size: .74rem; font-weight: 400; color: var(--ink-soft); }
-.hplans .hplan .hplan__cta { position: relative; z-index: 2; white-space: nowrap; min-width: 132px; justify-content: center; }
+.hplans .hplan .hplan__cta { position: relative; z-index: 2; white-space: nowrap; min-width: 96px; justify-content: center; }
 .hplans .hplan .hplan__cta .i-arrow { transform: none !important; translate: none !important; }
 /* Business, the heart of the offer, stands out a little in every mood */
 html.theme-refined .hplans .hplan--best.hplan { box-shadow: 0 0 0 2px color-mix(in srgb, var(--violet) 40%, transparent), 0 18px 36px -24px rgba(27,21,48,.45); }
