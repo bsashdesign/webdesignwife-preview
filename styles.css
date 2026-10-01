@@ -6811,8 +6811,8 @@ html.theme-wedding .lpv { border-radius: 3px; box-shadow: 0 0 0 1px rgba(184, 14
 html.theme-wedding .lpv__row mark { background: rgba(184, 149, 90, .22); }
 /* Desktop: the phone (after the opening scene too) is 50% bigger, everything in it scaled up together */
 @media (min-width: 1101px) {
-  html .hero .demo .phone:not(#z):not(#y):not(#x) { scale: 1.5; }
-  .hero .demo:not(#z) { height: 680px; }
+  html .hero .demo .phone:not(#z):not(#y):not(#x) { scale: 1.5; height: 372px; }
+  .hero .demo:not(#z) { height: 580px; }
 }
 /* the link preview is one of my messages, so it has the same speech-bubble shape (sharper corner bottom-left) */
 html .lpv:not(#z) { border-radius: 17px 17px 17px 5px; }
