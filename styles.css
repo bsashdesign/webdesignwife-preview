@@ -6725,7 +6725,7 @@ html.theme-wedding .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size
 html .chat-choice:not(#z):not(#y):not(#x) { border-width: 1.5px; border-style: dashed; }
 html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { border-width: 1.5px; }
 html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-width: 1px; }
-@media (max-width: 760px) { .hero:not(#z) { padding-top: 18px; } }
+@media (max-width: 760px) { .hero:not(#z) { padding-top: 18px; padding-bottom: 26px; } }
 /* phones: the cue in the opening view is a touch bigger (the chat is shown smaller there than on desktop) */
 @media (max-width: 760px) {
   html .demo.is-bare .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .56rem; }
