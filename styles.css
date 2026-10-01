@@ -4385,7 +4385,6 @@ span.plan-ring:empty { display: none; }
    Laid out sideways, unlike the Pricing page's tall cards, so the two never look like the same section. */
 .hplans { display: grid; gap: 16px; max-width: 940px; margin: 0 auto; }
 .hplan { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 22px; padding: 20px 26px 20px 20px; border-radius: 20px; background: var(--card, #fff); color: var(--ink); text-decoration: none; box-shadow: 0 0 0 1px var(--line), 0 14px 30px -22px rgba(27,21,48,.4); transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease; }
-.hplan:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line), 0 22px 40px -24px rgba(27,21,48,.5); }
 .hplan__gem { display: block; width: 64px; height: 64px; }
 .hplan__gem .plan-gem { display: block; width: 100%; height: 100%; }
 .hplan__body { display: grid; gap: 8px; min-width: 0; }
@@ -4416,21 +4415,18 @@ span.plan-ring:empty { display: none; }
 .theme-refined .hplan__feats li::before { background: var(--violet); }
 /* Tangy: outlined cards with hard shadows, ink ticks, lime chip */
 .theme-blocks .hplan { border: var(--edge); border-radius: var(--r-lg); box-shadow: var(--shadow); }
-.theme-blocks .hplan:hover { box-shadow: 7px 8px 0 var(--ink); }
 .theme-blocks .hplan__feats { color: var(--ink); }
 .theme-blocks .hplan__feats li::before { background: var(--ink); }
 .theme-blocks .hplan__chip { background: var(--lime); color: var(--ink); border: 2px solid var(--ink); }
 .theme-blocks .hplan__setup em { background: var(--sun); border: 1.5px solid var(--ink); }
 /* Transit: dark cards on the yellow band, each with its line colour down the side */
 .theme-subway.theme-dark .hplan { --card: #1c1c1c; --ink: #f2f2ee; --ink-soft: #a9a9a3; --line: #2f2f2f; background: #1c1c1c; color: var(--ink); border-radius: 12px; box-shadow: inset 6px 0 0 var(--c), 0 14px 30px -20px rgba(0,0,0,.6); padding-left: 28px; }
-.theme-subway.theme-dark .hplan:hover { box-shadow: inset 6px 0 0 var(--c), 0 22px 40px -22px rgba(0,0,0,.7); }
 .theme-subway #plan-simple.hplan { --c: #00933c; } .theme-subway #plan-business.hplan { --c: #0b5cd6; } .theme-subway #plan-full.hplan { --c: #a336b0; }
 .theme-subway .hplan__feats li::before { background: #3fd07a; }
 .theme-subway .hplan__chip { background: #fccc0a; color: #111; }
 .theme-subway .hplan__setup em { background: #fccc0a; color: #111; }
 /* Sophisticated: paper cards with a gold double keyline, serif names, gold ticks */
 .theme-wedding .hplan { border-radius: 3px; background: #fffdf8; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 14px 30px -24px rgba(31,35,54,.35); }
-.theme-wedding .hplan:hover { box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184,149,90,.45), 0 22px 40px -26px rgba(31,35,54,.45); }
 .theme-wedding .hplan__name { font: 600 1.55rem var(--display); }
 .theme-wedding .hplan__feats li::before { background: var(--gold-ink); }
 .theme-wedding .hplan__chip { background: none; border: 1px solid var(--gold); color: var(--gold-ink); }
@@ -4819,7 +4815,6 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 .hplans__cta { gap: 12px; flex-wrap: wrap; }
 /* homepage plan cards: "+N more" links to the plan on the Pricing page; the arrow starts sign-up with that plan */
 .hplans .hplan { grid-template-columns: 64px minmax(0, 1fr) auto auto; cursor: default; }
-.hplans .hplan:hover { transform: none; }
 .hplan__inc { font-size: .85rem; color: var(--ink-soft); }
 .hplan__more a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .hplan__more a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -5218,7 +5213,6 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 }
 /* Tangy: homepage plan cards turn the pale beige of a selected field on hover */
 .theme-blocks .hplans .hplan { transition: background-color .15s ease, box-shadow .15s ease, transform .25s cubic-bezier(.2, .8, .2, 1); }
-.theme-blocks .hplans .hplan:hover { background: #fffbe0; }
 @media (min-width: 960px) { #moods-tv .tv-deck { width: 100%; } }
 /* phones: the "Press one" note and Sound effects share one line */
 @media (max-width: 600px) {
@@ -5449,9 +5443,6 @@ html.theme-wedding .hplans .hplan:hover .hplan__go:not(#z) { background: var(--g
 html.theme-wedding .hplans .hplan__go svg:not(#z) { width: 20px; height: 20px; }
 html.theme-wedding .hplans .hplan__go svg path { stroke-width: 1.15; }
 /* Tangy: hovering a plan's arrow tints its card a light version of that plan's colour */
-html.theme-blocks .hplans #plan-simple.hplan:hover:not(#z) { background: #f3ffd0; }
-html.theme-blocks .hplans #plan-business.hplan:hover:not(#z) { background: #e3f4ff; }
-html.theme-blocks .hplans #plan-full.hplan:hover:not(#z) { background: #ffe8f5; }
 /* Pricing page cards, when a card is narrow: the gem sits on top of the plan name instead of beside it */
 @media (min-width: 761px) and (max-width: 1040px) {
   .plans .plan .plan__head:not(#z) { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
@@ -6517,3 +6508,6 @@ html.theme-wedding .hplan__lead { font-size: .96rem; }
 .plan__apply + .plan__cta { margin-top: 0 !important; }
 html.theme-subway .plan__apply { color: #fccc0a; }
 html.theme-wedding .plan__apply { font-weight: 600; letter-spacing: .1em; color: var(--gold-ink); }
+/* Homepage plan rows aren't links themselves: only their Get Started / Apply buttons go anywhere */
+.hplans .hplan.hplan { cursor: default; }
+html .hplans .hplan.hplan:hover { transform: none; }

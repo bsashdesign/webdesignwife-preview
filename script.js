@@ -2104,16 +2104,6 @@ document.addEventListener("click", (e) => {
   if (document.fonts) document.fonts.ready.then(fit);
 })();
 
-// Homepage plan cards: a click anywhere on a card (outside its own links) goes where its button goes.
-document.querySelectorAll(".hplans .hplan").forEach((card) => {
-  const go = card.querySelector(".hplan__cta");
-  if (!go) return;
-  card.addEventListener("click", (e) => {
-    if (e.target.closest("a, button") || String(getSelection()).trim()) return;
-    go.click();
-  });
-});
-
 // Pricing page: the buyout calculator. Months with me sets the year; each year has its buyout in months of the plan,
 // plus the one-time transfer fee. From month 73 (after six years) the site is already yours.
 (function () {
