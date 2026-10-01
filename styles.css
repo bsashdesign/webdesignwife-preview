@@ -6641,3 +6641,7 @@ html.theme-refined .chat-pick .chat-choice:not(#z):not(#y):not(#x) { border-radi
 }
 /* Soirée: replies to pick have a fine dashed outline */
 html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-style: dashed; border-width: 1px; }
+/* the replies to pick are set exactly like the message they become once sent: same font, weight, size and spacing */
+html .chat-choice:not(#z):not(#y):not(#x) { font-family: var(--body); font-style: normal; font-weight: 400; font-size: .78rem; line-height: 1.35; letter-spacing: normal; padding: 7px 11px; }
+html.theme-subway .chat-choice:not(#z):not(#y):not(#x) { font-weight: 500; }
+@media (max-width: 760px) { html .chat-choice:not(#z):not(#y):not(#x) { font-size: .64rem; padding: 5px 8px; } }
