@@ -5316,3 +5316,10 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
 html.theme-blocks #plan-simple .hplan__go, html.theme-blocks #plan-simple:hover .hplan__go { background: var(--lime); }
 html.theme-blocks #plan-business .hplan__go, html.theme-blocks #plan-business:hover .hplan__go { background: var(--sky); }
 html.theme-blocks #plan-full .hplan__go, html.theme-blocks #plan-full:hover .hplan__go { background: var(--rose); }
+/* Transit menu: each page name lights up in its own line colour on hover, and "You're here" matches its dot */
+html.theme-subway .drawer__big:hover span { color: var(--c); }
+html.theme-subway .drawer__big[aria-current="page"] small::before { color: var(--c); }
+/* Transit's line blue is a touch brighter now; buttons and switches keep the deeper button blue */
+html.theme-subway { --btn-blue: #0b5cd6; }
+html.theme-subway #moods .yours__back .btn { background: var(--btn-blue); border-color: var(--btn-blue); }
+html.theme-subway .billing__switch { --switch-on: var(--btn-blue); }
