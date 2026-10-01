@@ -2161,7 +2161,7 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
 })();
 
 // "Built for" band: three slot reels (verb, business, neighborhood) that tick one step at a time, taking turns.
-// Spin whirls them through words and stars; your spins land on three stars, then roll on to a new sentence.
+// Spin whirls them through words and stars; your spins land on "Web Design Wife", then roll on to a new sentence.
 // Now and then a gloved hand pops up from the band's bottom line, hovers, and presses Spin itself (its spins
 // skip the stars and go straight to a new sentence).
 document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
@@ -2177,7 +2177,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   const reels = [...slot.querySelectorAll(".treel")].map((reel, k) => {
     const items = LISTS[k], ul = reel.querySelector("ul"), n = items.length;
     ul.innerHTML = wordsHTML(items);
-    return { reel, ul, items, n, dir: reel.dataset.dir === "down" ? -1 : 1, pos: n * 6 + (k === 1 ? 5 : 0) };
+    return { k, reel, ul, items, n, dir: reel.dataset.dir === "down" ? -1 : 1, pos: n * 6 + (k === 1 ? 5 : 0) };
   });
   // each window is as wide as its longest word, measured in whichever mood's font is showing
   const horizMQ = matchMedia("(max-width: 0px)"), horiz = () => false;
@@ -2249,6 +2249,21 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
   let drifting = true, spins = 0;
+  // Your spins land on "Web Design Wife": "for" and "in" slide away (each in its neighbouring reel's direction)
+  // so the name reads cleanly, then slide back in with that reel's next step, coming from the other side.
+  // "for" travels with the first reel, "in" with the second.
+  const BRAND = ["Web", "Design", "Wife"];
+  const links = [slot.querySelector(".slot__word--for"), slot.querySelector(".slot__word--in")];
+  const away = [false, false];
+  const travel = (i) => -reels[i].dir * row(reels[i]); // + is down, matching how that reel's words move
+  const linkAway = (i) => {
+    if (away[i] || !links[i]) return; away[i] = true;
+    links[i].animate([{ transform: "none", opacity: 1 }, { transform: `translateY(${travel(i)}px)`, opacity: 0 }], { duration: reduce ? 0 : 420, easing: "cubic-bezier(.5,0,.75,0)", fill: "forwards" });
+  };
+  const linkBack = (i, ms = GLIDE) => {
+    if (!away[i] || !links[i]) return; away[i] = false;
+    links[i].animate([{ transform: `translateY(${-travel(i)}px)`, opacity: 0 }, { transform: "none", opacity: 1 }], { duration: reduce ? 0 : ms, easing: CLICK, fill: "forwards" });
+  };
   const STEP = 4500, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
   const step = (r) => {
     if (!drifting || reduce || document.hidden) return;
@@ -2256,6 +2271,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (r.after) {
       const { to, toAt } = r.after; r.after = null;
       r.pos = toAt; show(r, GLIDE, CLICK);
+      if (r.k < 2) linkBack(r.k);
       setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
       const gen = spins;
       setTimeout(() => { if (gen !== spins) return; r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }, GLIDE + 40);
@@ -2285,7 +2301,8 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   // the reels are at that moment, and only the last one lands (and only its timers run)
   btn.addEventListener("click", () => {
     const gen = ++spins; drifting = false; msg.classList.remove("is-on");
-    const win = btn.dataset.byHand !== "1"; // your spins line up three stars; the hand's never do
+    const win = btn.dataset.byHand !== "1"; // your spins land on "Web Design Wife"; the hand's never do
+    if (win) { linkAway(0); linkAway(1); }
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {
       const n = r.n; r.after = null; r.reel.classList.remove("is-win");
@@ -2299,7 +2316,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       const seq = [prev, cur];
       for (let i = 0; i < LEN; i++) seq.push(i % 2 ? word(Math.floor(Math.random() * n)) : star());
       // your spins stop on a star with the new word right after it; the hand's go straight to the new word
-      const symAt = seq.length; if (win) seq.push(star()); else seq.push(word(to - r.dir));
+      const symAt = seq.length; if (win) seq.push(`<li class="bf-brand"><span>${BRAND[k]}</span></li>`); else seq.push(word(to - r.dir));
       const toAt = seq.length; seq.push(word(to), word(to + r.dir), word(to + 2 * r.dir));
       const L = seq.length, items = r.dir > 0 ? seq : seq.slice().reverse(), at = (i) => (r.dir > 0 ? i : L - 1 - i);
       r.ul.innerHTML = items.join("");
@@ -2320,7 +2337,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       // hold the stars, then let the usual ticking carry on from them
       later(() => { msg.classList.remove("is-on"); plans.forEach(({ r, to, toAt }) => { r.after = { to, toAt }; }); drifting = true; }, land + 1600);
     } else {
-      later(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); drifting = true; }, land + 60);
+      later(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); linkBack(0, 500); linkBack(1, 500); drifting = true; }, land + 60);
     }
   });
 

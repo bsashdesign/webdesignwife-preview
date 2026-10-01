@@ -5799,3 +5799,13 @@ html.theme-wedding #bf2 .treel__frame:not(#z):not(#y), html.theme-wedding #bf2 .
 html.theme-blocks #bf2 .treel__well { display: none; }
 /* the socket's top edge sits under the cap's top (no sliver of socket above the key), like the channel keys */
 #bf2 .treel__well:not(#z) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2); height: calc(var(--cap) + var(--tr) + var(--pd)); }
+/* the hand's sleeve runs on and on behind it, so it can reach Spin from the right edge however far in it sits */
+.for--spin .pokehand::after { content: ""; position: absolute; top: calc(100% - 1px); left: 20.45%; width: 59.1%; height: 3000px; box-sizing: border-box; background: var(--sleeve, #ff4fa6); border: solid #0e0e0e; border-width: 0 2.5px; }
+.theme-subway.theme-dark .for--spin .pokehand { --sleeve: #0b5cd6; }
+.theme-wedding .for--spin .pokehand { --sleeve: #1f2336; }
+@media (max-width: 600px) { .for--spin .pokehand::after { border-width: 0 1.5px; } }
+/* desktop: the sentence (three reels with "for" and "in") is centred on the page by itself; Spin sits just past it on the right */
+@media (min-width: 601px) {
+  #bf.slot { width: fit-content; max-width: 100%; margin-inline: auto; }
+  #bf .drift__btn { position: absolute; left: calc(100% + 26px); top: 50%; translate: 0 -50%; }
+}
