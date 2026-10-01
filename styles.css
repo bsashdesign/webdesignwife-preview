@@ -6676,7 +6676,7 @@ html.theme-subway .chat-choice:not(#z):not(#y):not(#x) { font-weight: 500; }
 /* Phones: a wider handset, so short messages ("Hey, just checking in :)", each reply) fit on one line; the
    website's text keeps to the narrower space on its left */
 @media (max-width: 640px) {
-  .demo .phone:not(#z) { width: 56%; }
+  .demo .phone:not(#z) { width: min(56%, 200px); }
   .demo .site > :not(.site__banner):not(#z), .demo .site__info:not(#z) { margin-right: 58%; }
   .demo .phone .bubble:not(#z), html .demo .phone .chat-choice:not(#z):not(#y):not(#x) { font-size: .62rem; padding: 5px 8px; max-width: 98%; }
   .demo .phone .thread:not(#z) { padding-left: 6px; padding-right: 6px; }
@@ -6717,3 +6717,7 @@ html .demo .phone .chat-pick:not(#z):not(#y) { width: 100%; }
 /* the "Choose a reply" cue is a quiet hint, about half the size of the messages */
 html .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .4rem; }
 html.theme-wedding .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .48rem; }
+/* a new message is never shown cropped: its row opens without clipping it, and the bubble pops in (whole) a beat
+   after the row starts to open */
+.thread .m > .m__in:not(#z) { overflow: visible; }
+.thread .m.is-in .bubble:not(#z), .thread .m.is-in .stamp:not(#z) { transition-delay: .14s; }
