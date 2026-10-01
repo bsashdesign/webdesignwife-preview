@@ -1911,12 +1911,12 @@ document.addEventListener("click", (e) => {
   };
   const sound = (key) => (key.getAttribute("aria-pressed") === "true" ? clunk() : click());
   document.addEventListener("pointerdown", (e) => {
-    const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt");
+    const key = e.button === 0 && e.target.closest("[data-tv-key], .mood__opt, .moods__key");
     if (key) sound(key);
   });
   // keyboard presses of the same keys make the same sounds
   document.addEventListener("keydown", (e) => {
-    const key = (e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.closest("[data-tv-key], .mood__opt");
+    const key = (e.key === "Enter" || e.key === " ") && document.activeElement && document.activeElement.closest("[data-tv-key], .mood__opt, .moods__key");
     if (key) sound(key);
   });
 })();

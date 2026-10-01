@@ -4794,3 +4794,25 @@ html.theme-blocks :is(.billing__switch, .sound-toggle__switch, .billing__switch[
 .theme-subway.theme-dark .formcard :is(input, select, textarea):not(#z)::placeholder { color: #8d8d88; }
 .theme-subway.theme-dark .formcard :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(#z):hover { border-color: #5a5a5a; }
 .theme-subway.theme-dark .formcard :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea):not(#z):focus { border-color: #4d8dff; outline: none; box-shadow: 0 0 0 3px rgba(77,141,255,.25); }
+/* Footer: "Change the channel" with the same 3D keys as the pop-up (name under each key) and the Sound effects switch */
+.footer__moods .moods--keys { display: flex; gap: 22px; flex-wrap: wrap; }
+.moods__key { display: grid; justify-items: center; gap: 8px; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer; font: 500 .7rem "DM Mono", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.moods__key .key-well { padding: 3px; margin-top: 6px; border-radius: 14px; }
+.moods__key .key-well .moodicon { width: 52px; height: 46px; margin: -6px 0 6px; border: 0; border-radius: 11px; font-size: 22px; box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 2px 0 rgba(255,255,255,.55); transition: transform .09s ease, box-shadow .09s ease; }
+.moods__key .key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 6px 0 3px #111, inset 0 2px 0 rgba(255,255,255,.55); }
+.moods__key[data-mood="transit"] .key-well, .moods__key[data-mood="transit"] .key-well .moodicon { border-radius: 50%; }
+.moods__key[data-mood="transit"] .key-well .moodicon { width: 46px; }
+.moods__key[data-mood="sophisticated"] .key-well { border-radius: 5px; }
+.moods__key[data-mood="sophisticated"] .key-well .moodicon { border-radius: 4px; }
+@media (hover: hover) { .moods__key:hover:not([aria-pressed="true"]) .key-well .moodicon { transform: translateY(-1px); } }
+.moods__key:is([aria-pressed="true"], :active) .key-well .moodicon { transform: translateY(6px); box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.25); }
+.moods__key:is([aria-pressed="true"], :active) .key-well .moodicon--tangy { box-shadow: 0 0 0 3px #111, 0 0 0 3px #111, inset 0 2px 5px rgba(0,0,0,.25); }
+.moods__key[aria-pressed="true"] .moods__name { font-weight: 700; }
+.footer__sound { margin-top: 10px; }
+.theme-wedding .moods__key { font-family: var(--display); font-size: .95rem; letter-spacing: .02em; text-transform: none; font-style: italic; }
+/* Tangy: the "Most popular" tag on the homepage plans in the Business sky blue */
+.theme-blocks .hplan__chip { background: var(--sky); }
+/* homepage plan cards: 4px less space under the plan name */
+.hplans .hplan__body { gap: 4px; }
+/* Sophisticated "Most popular" tag: solid gold with white text, like the Save 20% tag */
+html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #fff; border: 0; box-shadow: none; border-radius: 3px; font: 600 .7rem/1.2 var(--body); letter-spacing: .04em; padding: 4px 10px; }

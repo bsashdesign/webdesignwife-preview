@@ -13,11 +13,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&text=0123456789&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790820221">
-  <link rel="stylesheet" href="themes/subway.css?v=1790820221">
-  <link rel="stylesheet" href="themes/subway-dark.css?v=1790820221">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790820221">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790820221">
+  <link rel="stylesheet" href="styles.css?v=1790820325">
+  <link rel="stylesheet" href="themes/subway.css?v=1790820325">
+  <link rel="stylesheet" href="themes/subway-dark.css?v=1790820325">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790820325">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790820325">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
 </head>
 <body>
@@ -164,10 +164,11 @@
     </div>
     <div class="wrap"><div class="footer__moods">
       <div>
-        <h4>Choose your mood</h4>
-        <p>Same site, four personalities. It's a small taste of the range I design in.</p>
+        <h4>Change the Channel</h4>
+        <p>Same website, four completely different directions. Press a button and watch the whole page change.</p>
+        <div class="footer__sound"><button type="button" class="sound-toggle" data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
       </div>
-      <div class="moods" role="group" aria-label="Choose your mood"><button type="button" class="moods__card" data-mood="tangy" aria-pressed="false"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span><span>Tangy</span></button><button type="button" class="moods__card" data-mood="calm" aria-pressed="false"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span><span>Calm</span></button><button type="button" class="moods__card" data-mood="transit" aria-pressed="false"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span><span>Transit</span></button><button type="button" class="moods__card" data-mood="sophisticated" aria-pressed="false"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span><span>Sophisticated</span></button></div>
+      <div class="moods moods--keys" role="group" aria-label="Change the channel"><button type="button" class="moods__key" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span class="moods__name">Tangy</span></button><button type="button" class="moods__key" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span class="moods__name">Calm</span></button><button type="button" class="moods__key" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span class="moods__name">Transit</span></button><button type="button" class="moods__key" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span class="moods__name">Sophisticated</span></button></div>
     </div></div>
     <div class="wrap footer__bottom">
       <p>© 2026 Web Design Wife</p>
@@ -198,7 +199,7 @@
         </div></div>
   </dialog>
 
-  <script src="script.js?v=1790820221"></script>
+  <script src="script.js?v=1790820325"></script>
   <script>
     // Open the callback tab when linked with ?type=callback
     if (["call", "callback"].includes(new URLSearchParams(location.search).get("type"))) document.getElementById("tab-call").click();
