@@ -4962,3 +4962,15 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 }
 /* Tangy: the line across the Design Refresh card is the dashed ink line, not a faint white one */
 .theme-blocks .spot--refresh .spot__foot { border-top: 2px dashed var(--ink); }
+/* Footer channel block: Sound effects on the right of the title, the light right after each name, smaller keys */
+.footer__moods:has(#footer-channel) > div:first-child { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; align-items: center; }
+.footer__moods:has(#footer-channel) > div:first-child > :is(h4, p) { grid-column: 1; }
+.footer__moods:has(#footer-channel) .footer__sound { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+#footer-channel .mood__opt::after, #footer-channel .mood__opt[aria-pressed="true"]::after { display: none; }
+#footer-channel .mood__opt strong::after { content: ""; display: inline-block; width: 8px; height: 8px; margin-left: 8px; border-radius: 50%; vertical-align: 2px; background: color-mix(in srgb, var(--ink) 22%, transparent); transition: background-color .2s ease, box-shadow .2s ease; }
+#footer-channel .mood__opt[aria-pressed="true"] strong::after { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
+#footer-channel .key-well { zoom: .8; }
+@media (max-width: 640px) {
+  .footer__moods:has(#footer-channel) > div:first-child { grid-template-columns: minmax(0, 1fr); }
+  .footer__moods:has(#footer-channel) .footer__sound { grid-column: 1; grid-row: auto; margin-top: 10px; }
+}
