@@ -5017,3 +5017,5 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 }
 /* Transit (dark): the founding note sits on its own dark-grey card */
 .theme-subway.theme-dark .work-founding:not(#z) { background: #1c1c1c; box-shadow: inset 0 0 0 1px #2f2f2f; border-radius: 12px; }
+/* Transit (dark), Three Ways: the alternatives' icon circles are a quiet grey, not green, on the blue band */
+.theme-subway.theme-dark #compare .cc:not(.cc--us) .cc__ico:not(#z) { background: #3a3a3a; color: #fff; box-shadow: none; }
