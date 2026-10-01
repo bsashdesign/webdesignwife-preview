@@ -6443,8 +6443,10 @@ html.theme-wedding .bcrumb:not(#z) { font: italic 500 1.02rem var(--display); }
 @media (max-width: 760px) { .bhero__top:not(#z) { margin-bottom: 20px; } }
 /* Soirée "How it works": the steps keep their cards; the numerals stand on their own (no box), larger, in gold */
 html.theme-wedding #how .steps li:not(#z)::before { border: 0 !important; width: auto; height: auto; display: block; text-align: left; place-items: start; font-size: 2.6rem; line-height: 1; }
-/* Soirée uses one font (Cormorant Garamond) for letters and numbers; its numbers are set as lining figures, so they
-   stand on the line at the height of the capitals */
-html.theme-wedding *, html.theme-wedding *::before, html.theme-wedding *::after { font-variant-numeric: lining-nums; }
+/* Soirée's numbers: full-height digits from Cormorant Infant (see --display in themes/wedding.css) */
+@font-face { font-family: "Cormorant Digits"; font-style: normal; font-weight: 300 700; font-display: swap; unicode-range: U+0030-0039;
+  src: url(https://fonts.gstatic.com/s/cormorantinfant/v22/HhyPU44g9vKiM1sORYSiWeAsLN997_cV2RkDTq8.woff2) format("woff2"); }
+@font-face { font-family: "Cormorant Digits"; font-style: italic; font-weight: 300 700; font-display: swap; unicode-range: U+0030-0039;
+  src: url(https://fonts.gstatic.com/s/cormorantinfant/v22/HhyJU44g9vKiM1sORYSiWeAsLN997_Il2xMEbK0UPg.woff2) format("woff2"); }
 /* step numbers stand upright, like the headings beside them */
-html.theme-wedding .steps li::before, html.theme-wedding .spot__steps li::before { font-style: normal !important; font-variant-numeric: lining-nums !important; }
+html.theme-wedding .steps li::before, html.theme-wedding .spot__steps li::before { font-style: normal !important; }

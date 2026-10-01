@@ -19,8 +19,9 @@
   --gold-ink: #8a6a30; /* gold dark enough to read as text on paper */
   --dusty: #8fa7bf;
 
-  /* one font for Soirée's display type: Cormorant Garamond, letters and numbers alike (lining figures, below) */
-  --display: "Cormorant Garamond", Georgia, serif;
+  /* one font for Soirée's display type: Cormorant. Letters are Cormorant Garamond; the digits 0-9 come from its
+     sister cut Cormorant Infant (same design), whose numbers stand full height on the line instead of dropping below it */
+  --display: "Cormorant Digits", "Cormorant Garamond", Georgia, serif;
   --mono: "Figtree", system-ui, sans-serif;
   --r: 4px;
   --r-lg: 6px;
