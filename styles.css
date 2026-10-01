@@ -5370,3 +5370,6 @@ html.theme-blocks #moods-tv .tv-deck__cue:not(#z) { font-family: var(--body); fo
 }
 /* Tangy "Three ways": Do it yourself's icon is sky blue (pink vanished on the pink section) */
 html.theme-blocks #compare .compare-cards .cc:nth-child(1) .cc__ico:not(#z) { background: var(--sky); }
+/* Transit: on the purple How it works section, Get started is subway yellow (blue got lost on the purple), like the Three ways button */
+html.theme-subway.theme-dark #how .btn--primary:not(#z) { background: #fccc0a; border-color: #fccc0a; color: #111; }
+html.theme-subway.theme-dark #how .btn--primary:not(#z):hover { background: #ffd83a; border-color: #ffd83a; }
