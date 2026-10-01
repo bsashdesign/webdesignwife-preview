@@ -6542,8 +6542,9 @@ html.theme-wedding .gmcard__btns .gmcard__btn:not(#z) { border-radius: 2px; }
 html .gmcard__btns:not(#z) { gap: 6px; }
 /* ---- Hero intro: before you reply, the hero is a close-up of the message (no phone, no website), large, with the
    replies and a cue under them. Choosing one brings in the phone and the website. */
-.demo .browser { transition: opacity .6s ease, transform .7s cubic-bezier(.22, 1, .36, 1); }
-.demo.is-intro .browser { opacity: 0; transform: translateY(24px) scale(.96); pointer-events: none; }
+/* the website rises into place, smoothly, as the phone settles */
+.demo .browser { transition: opacity .7s ease .2s, transform 1.15s cubic-bezier(.16, 1, .3, 1) .2s; }
+.demo.is-intro .browser { opacity: 0; transform: translateY(90px); pointer-events: none; transition: none; }
 /* the opening view is the phone itself, big, with its frame, status bar and header hidden; they fade in when you
    pick a reply (the script then sweeps the phone down into place) */
 .demo .phone { transition: border-color .45s ease, background-color .45s ease, box-shadow .45s ease; }
