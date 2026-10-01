@@ -2234,8 +2234,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     if (!phoneMQ.matches) return;
     size();
     const kids = [...slot.children].filter((c) => c.classList.contains("treel") || c.classList.contains("slot__word"));
-    // a key's socket (version B) reaches a little past its reel, so measure that instead
-    const need = kids.reduce((w, c) => w + Math.max(c.getBoundingClientRect().width, c.querySelector(".treel__well")?.getBoundingClientRect().width || 0), 0) + parseFloat(getComputedStyle(slot).columnGap || 0) * (kids.length - 1);
+    const need = kids.reduce((w, c) => w + c.getBoundingClientRect().width, 0) + parseFloat(getComputedStyle(slot).columnGap || 0) * (kids.length - 1);
     const room = slot.clientWidth - 8; // a little slack for the frames' shadows
     if (need > room) { slot.style.fontSize = (parseFloat(getComputedStyle(slot).fontSize) * room / need) + "px"; }
   };
@@ -2342,7 +2341,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   });
 
   // phones: no Spin button; a tap anywhere on the sentence spins it
-  if (hand) band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn")) btn.click(); });
+  band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn")) btn.click(); });
 
   // phones: a lever on the right edge; drag the red ball down (or tap it) to spin
   const lever = band.querySelector(".bf-lever");
@@ -2395,28 +2394,5 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   }
   const next = () => setTimeout(async () => { await poke(); next(); }, 8000 + Math.random() * 8000);
   const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(async () => { await poke(); next(); }, 3000); } }, { threshold: .6 });
-  if (hand) io.observe(band);
-
-  // version B: no Spin button and no hand; each of the three word frames is a key. Press any of them to spin.
-  // The first time the band comes into view, the middle key presses itself once, to show it can be pressed.
-  if (band.classList.contains("for--keys")) {
-    reels.forEach((r) => {
-      const up = () => r.reel.classList.remove("is-press");
-      r.reel.addEventListener("pointerdown", () => r.reel.classList.add("is-press"));
-      r.reel.addEventListener("pointerup", up); r.reel.addEventListener("pointerleave", up); r.reel.addEventListener("pointercancel", up);
-      r.reel.addEventListener("click", () => btn.click());
-    });
-    const demo = new IntersectionObserver((es) => {
-      if (!es.some((e) => e.isIntersecting)) return;
-      demo.disconnect();
-      if (reduce) return;
-      setTimeout(async () => {
-        const mid = reels[1].reel;
-        mid.classList.add("is-press", "is-demo"); await wait(220);
-        btn.dataset.byHand = "1"; btn.click(); delete btn.dataset.byHand;
-        mid.classList.remove("is-press"); await wait(700); mid.classList.remove("is-demo");
-      }, 1200);
-    }, { threshold: .6 });
-    demo.observe(band);
-  }
+  io.observe(band);
 });

@@ -5710,73 +5710,6 @@ html.theme-wedding .for--spin .drift__btn:not(#z) { width: 56px; height: 56px; p
 :is(.theme-blocks, .theme-wedding) .for--spin .treel__frame:not(#z):not(#y) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--fh)) / 2 - .16em); height: calc(var(--fh) + .32em); }
 /* Built-for band: the words above and below the frames sit at half strength (flat, no fade), the framed row full */
 .for--spin .treel__win:not(#z):not(#y) { -webkit-mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32.5%, #000 34%, #000 66%, rgba(0,0,0,.5) 67.5%, rgba(0,0,0,.5) 100%); mask-image: linear-gradient(rgba(0,0,0,.5) 0, rgba(0,0,0,.5) 32.5%, #000 34%, #000 66%, rgba(0,0,0,.5) 67.5%, rgba(0,0,0,.5) 100%); }
-/* ===== Built-for band, version B: the three word frames are push keys, built like the Change the Channel keys:
-   a dark socket, a solid cap with a lit top edge and a thick coloured side, pressed down into the socket.
-   Tangy's cap has its ink outline and hard shadow; Calm is soft lilac; Transit is black with the words in line
-   colours; Soirée is ivory with a gold hairline. Press any key to spin. ===== */
-.for--keys { border-top: 0; }
-#bf2 { --cap: calc(var(--fh) + .2em); --pd: 3px; --tr: 6px; --push: 5px; --capr: 12px; column-gap: .9em; }
-#bf2 .drift__btn:not(#z) { display: none; }
-#bf2 .treel { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-/* the cap sits centred on the middle row; the socket wraps it, deeper below to take the key's travel */
-#bf2 .treel__frame:not(#z):not(#y) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2); height: var(--cap); z-index: 1;
-  border: 0; border-radius: var(--capr); background: var(--cap-bg, #efeaff);
-  box-shadow: 0 var(--tr) 0 var(--cap-edge, #a996ff), inset 0 2px 0 rgba(255,255,255,.55);
-  transition: transform .09s ease, box-shadow .09s ease; }
-#bf2 .treel__well { position: absolute; z-index: 0; left: calc(-1 * var(--pd)); right: calc(-1 * var(--pd));
-  top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2 - var(--pd)); height: calc(var(--cap) + var(--tr) + 2 * var(--pd));
-  border-radius: calc(var(--capr) + var(--pd)); background: #1c1815; box-shadow: inset 0 1px 3px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.18); }
-#bf2 .treel__win { z-index: 2; transition: transform .09s ease; }
-@media (hover: hover) {
-  #bf2 .treel:hover .treel__frame:not(#z):not(#y) { transform: translateY(1px); box-shadow: 0 calc(var(--tr) - 1px) 0 var(--cap-edge, #a996ff), inset 0 2px 0 rgba(255,255,255,.55); }
-  #bf2 .treel:hover .treel__win { transform: translateY(1px); }
-}
-#bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translateY(var(--push)); box-shadow: 0 1px 0 var(--cap-edge, #a996ff), inset 0 2px 5px rgba(0,0,0,.25); transition-duration: .06s; }
-#bf2 .treel.is-press .treel__win:not(#z) { transform: translateY(var(--push)); transition-duration: .06s; }
-#bf2 .treel.is-click .treel__frame:not(#z):not(#y) { transform: none; }
-#bf2 .treel.is-demo.is-press .treel__frame:not(#z):not(#y), #bf2 .treel.is-demo.is-press .treel__win:not(#z) { transition-duration: .16s; }
-
-/* Tangy: the arcade key. Bright cap with an ink outline and a hard ink shadow; it presses flat into the corner,
-   then springs back with a little bounce */
-html.theme-blocks #bf2 { --tr: 5px; --push: 5px; }
-html.theme-blocks #bf2 .treel--verb { --cap-bg: #d4ff4f; } html.theme-blocks #bf2 .treel--biz { --cap-bg: #9fd8ff; } html.theme-blocks #bf2 .treel--hood { --cap-bg: #ffe27a; }
-html.theme-blocks #bf2 .treel__well { right: calc(-1 * (var(--pd) + var(--tr))); }
-html.theme-blocks #bf2 .treel__frame:not(#z):not(#y) { border: 2.5px solid #111; box-shadow: var(--tr) var(--tr) 0 #111; transition: transform .35s cubic-bezier(.3, 1.8, .5, 1), box-shadow .35s cubic-bezier(.3, 1.8, .5, 1); }
-html.theme-blocks #bf2 .treel__win { transition: transform .35s cubic-bezier(.3, 1.8, .5, 1); }
-@media (hover: hover) {
-  html.theme-blocks #bf2 .treel:hover .treel__frame:not(#z):not(#y) { transform: translate(1px, 1px); box-shadow: calc(var(--tr) - 1px) calc(var(--tr) - 1px) 0 #111; }
-  html.theme-blocks #bf2 .treel:hover .treel__win { transform: translate(1px, 1px); }
-}
-html.theme-blocks #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { transform: translate(var(--push), var(--push)); box-shadow: 0 0 0 #111; transition-duration: .06s; }
-html.theme-blocks #bf2 .treel.is-press .treel__win:not(#z) { transform: translate(var(--push), var(--push)); transition-duration: .06s; }
-
-/* Calm: the soft lilac keycap, pressed with a cushioned ease */
-html.theme-refined #bf2 { --cap-bg: #efeaff; --cap-edge: #a996ff; }
-html.theme-refined #bf2 .treel__frame:not(#z):not(#y), html.theme-refined #bf2 .treel__win { transition-duration: .2s; transition-timing-function: cubic-bezier(.25, .8, .35, 1); }
-
-/* Transit: a black push button, the words lit in their line colours; a short, firm press */
-html.theme-subway #bf2 { --cap-bg: #1c1c1c; --cap-edge: #000; --capr: 999px; --push: 5px; }
-html.theme-subway #bf2 .treel__frame:not(#z):not(#y) { box-shadow: 0 var(--tr) 0 #000, inset 0 2px 0 rgba(255,255,255,.16); }
-html.theme-subway #bf2 .treel:hover .treel__frame:not(#z):not(#y) { box-shadow: 0 calc(var(--tr) - 1px) 0 #000, inset 0 2px 0 rgba(255,255,255,.16); }
-html.theme-subway #bf2 .treel.is-press .treel__frame:not(#z):not(#y) { box-shadow: 0 1px 0 #000, inset 0 2px 5px rgba(0,0,0,.6); transition-duration: .04s; }
-html.theme-subway #bf2 .treel__well { background: #2b2b2b; box-shadow: inset 0 1px 3px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.1); }
-
-/* Soirée: the ivory key with its gold hairline, a gentle press */
-html.theme-wedding #bf2 { --cap-bg: #f4ecdb; --cap-edge: #b8955a; --capr: 2px; --pd: 3px; }
-html.theme-wedding #bf2 .treel__well { border-radius: 4px; }
-html.theme-wedding #bf2 .treel__frame::after { content: ""; position: absolute; inset: 4px; border: 1px solid #b8955a; border-radius: 1px; }
-html.theme-wedding #bf2 .treel__frame:not(#z):not(#y), html.theme-wedding #bf2 .treel__win { transition-duration: .15s; }
-
-/* phones: shallower keys, a little more room around them */
-@media (max-width: 600px) {
-  #bf2.tick:not(#z) { --row: 2.9em; --cap: calc(var(--fh) + .1em); --pd: 2px; --tr: 4px; --push: 3px; --capr: 9px; }
-  #bf2.slot:not(#z):not(#y) { column-gap: 1.05em; }
-  html.theme-blocks #bf2.tick:not(#z) { --tr: 3px; --push: 3px; }
-  html.theme-blocks #bf2 .treel__frame:not(#z):not(#y) { border-width: 2px; }
-  html.theme-subway #bf2.tick:not(#z) { --capr: 999px; }
-  html.theme-wedding #bf2.tick:not(#z) { --capr: 2px; }
-  html.theme-wedding #bf2 .treel__frame::after { inset: 3px; }
-}
 /* Hero phone, after its demo: two replies to tap instead of a message field */
 .phone__compose.is-choices { flex-direction: column; align-items: flex-end; gap: 5px; min-height: 0; padding: 0; border: 0; border-radius: 0; background: none; }
 .chat-choices__tip { align-self: center; font: 500 .6rem var(--mono); letter-spacing: .04em; color: #9a95ad; }
@@ -5795,10 +5728,6 @@ html.theme-wedding #bf2 .treel__frame:not(#z):not(#y), html.theme-wedding #bf2 .
 .theme-wedding .chat-choice { border: 1px solid var(--gold-ink, #b8955a); color: var(--ink); border-radius: 4px; font: italic 600 .86rem/1.2 var(--display); }
 @media (hover: hover) { .theme-wedding .chat-choice:hover { background: var(--ink); color: #e9d9b4; } }
 @media (max-width: 760px) { .theme-wedding .chat-choice { font-size: .7rem; } }
-/* Tangy's key has no socket, like its Change the Channel key: just the outlined cap and its hard shadow */
-html.theme-blocks #bf2 .treel__well { display: none; }
-/* the socket's top edge sits under the cap's top (no sliver of socket above the key), like the channel keys */
-#bf2 .treel__well:not(#z) { top: calc(var(--row) * var(--peek) + (var(--row) - var(--cap)) / 2); height: calc(var(--cap) + var(--tr) + var(--pd)); }
 /* the hand's sleeve runs on and on behind it, so it can reach Spin from the right edge however far in it sits */
 .for--spin .pokehand::after { content: ""; position: absolute; top: calc(100% - 1px); left: 20.45%; width: 59.1%; height: 3000px; box-sizing: border-box; background: var(--sleeve, #ff4fa6); border: solid #0e0e0e; border-width: 0 2.5px; }
 .theme-subway.theme-dark .for--spin .pokehand { --sleeve: #0b5cd6; }
@@ -5811,6 +5740,7 @@ html.theme-blocks #bf2 .treel__well { display: none; }
 }
 /* Soirée's Spin: a square brown key with a gold hairline and gold lettering */
 html.theme-wedding .for--spin .drift__btn:not(#z):not(#y) { border-radius: 3px; background: #5e4127; color: #e9d3a1; box-shadow: inset 0 0 0 3px #5e4127, inset 0 0 0 4px rgba(217,186,124,.85), 0 6px 14px -8px rgba(31,35,54,.6); }
-@media (hover: hover) { html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):hover { background: #b8955a; color: #3a2817; box-shadow: inset 0 0 0 3px #b8955a, inset 0 0 0 4px rgba(255,253,248,.75), 0 6px 14px -8px rgba(31,35,54,.6); } }
+@media (hover: hover) { html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):hover { background: #6f4d2f; color: #f6e6bd; box-shadow: inset 0 0 0 3px #6f4d2f, inset 0 0 0 4px #e3c486, 0 8px 16px -8px rgba(31,35,54,.6); } }
+html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wedding .for--spin .drift__btn.is-down:not(#z):not(#y) { background: #4f361f; box-shadow: inset 0 0 0 3px #4f361f, inset 0 0 0 4px rgba(217,186,124,.85), 0 3px 8px -6px rgba(31,35,54,.6); }
 /* the long sleeve lines up exactly with the sleeve drawn on the hand (same edges, same outline), so it reads as one piece */
 .for--spin .pokehand::after { top: calc(100% - 4px); left: 17.6%; width: 64.8%; }
