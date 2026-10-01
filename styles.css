@@ -6193,3 +6193,9 @@ html.theme-blocks .blist__ic svg { stroke-width: 2.4; }
 /* Transit: on hover the name is drawn into a sign plate in its route colour (lettering white, or black on yellow) */
 html.theme-subway .blist__name:not(#z) { margin: -2px -6px; padding: 2px 6px; border-radius: 4px; background: linear-gradient(var(--bc), var(--bc)) 100% 0 / 0 100% no-repeat; transition: background-size .45s cubic-bezier(.65, 0, .35, 1), color .25s .1s, transform .25s var(--ease-out); }
 @media (hover: hover) { html.theme-subway .blist a:not(#z):hover .blist__name:not(#z) { background-position: 0 0; background-size: 100% 100%; color: var(--bi, #fff); } html.theme-subway .blist__go { color: var(--bc); } }
+/* Tangy: a tighter, deliberate cycle of three core colours for the business badges (and their highlights) */
+html.theme-blocks .blist li:nth-child(3n+1) { --bc: #d4ff4f; }
+html.theme-blocks .blist li:nth-child(3n+2) { --bc: #9fd8ff; }
+html.theme-blocks .blist li:nth-child(3n) { --bc: #ffb27a; }
+/* Transit: six route colours (one green, the dark one) */
+html.theme-subway .blist li:nth-child(6n+1) { --bc: #ee352e; --bi: #fff; } html.theme-subway .blist li:nth-child(6n+2) { --bc: #ff6319; --bi: #fff; } html.theme-subway .blist li:nth-child(6n+3) { --bc: #fccc0a; --bi: #111; } html.theme-subway .blist li:nth-child(6n+4) { --bc: #00933c; --bi: #fff; } html.theme-subway .blist li:nth-child(6n+5) { --bc: #0039a6; --bi: #fff; } html.theme-subway .blist li:nth-child(6n) { --bc: #b933ad; --bi: #fff; }
