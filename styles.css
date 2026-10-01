@@ -5290,3 +5290,5 @@ html.theme-subway #moods-tv .tv-keys.tv-keys { background: linear-gradient(90deg
   .theme-wedding .eyebrow { letter-spacing: .16em; gap: 8px; max-width: 100%; }
   .theme-wedding .eyebrow::before, .theme-wedding .eyebrow::after { width: 16px; flex: none; }
 }
+/* Soirée: the pop-up's "Change the Channel" title sized up for its serif */
+.theme-wedding #mood .mood__title { font-size: 1.45rem; font-weight: 600; line-height: 1.1; }

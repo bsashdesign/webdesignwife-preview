@@ -970,6 +970,11 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     m.addEventListener("mouseleave", () => { clearTimeout(t); t = setTimeout(() => setOpen(false), 250); });
   }
   m.querySelector(".mood__close").addEventListener("click", () => { setOpen(false); btn.focus(); });
+  // On phones the pop-up covers the page, so picking a channel closes it (after the key press shows) to reveal the change
+  m.addEventListener("click", (e) => {
+    if (!e.target.closest(".mood__opt[data-mood]") || !matchMedia("(max-width: 760px)").matches) return;
+    setTimeout(() => setOpen(false), 380);
+  });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && m.classList.contains("is-open")) setOpen(false); });
   document.addEventListener("click", (e) => { if (!m.contains(e.target)) { m.classList.remove("is-open"); btn.setAttribute("aria-expanded", "false"); } });
 })();
