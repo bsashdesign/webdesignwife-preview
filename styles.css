@@ -4907,3 +4907,6 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 #footer-channel { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; flex: none; gap: 4px 16px; }
 @media (max-width: 960px) { #footer-channel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { #footer-channel { grid-template-columns: minmax(0, 1fr); } }
+/* a little less space between the nav links and Get Started */
+.nav__inner .nav__start { margin-left: -10px; }
+@media (max-width: 1180px) { .nav__inner .nav__start { margin-left: -6px; } }
