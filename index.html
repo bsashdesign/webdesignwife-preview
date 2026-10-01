@@ -15,11 +15,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&text=0123456789&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=1790845564">
-  <link rel="stylesheet" href="themes/subway.css?v=1790845564">
-  <link rel="stylesheet" href="themes/subway-dark.css?v=1790845564">
-  <link rel="stylesheet" href="themes/blocks.css?v=1790845564">
-  <link rel="stylesheet" href="themes/wedding.css?v=1790845564">
+  <link rel="stylesheet" href="styles.css?v=1790845664">
+  <link rel="stylesheet" href="themes/subway.css?v=1790845664">
+  <link rel="stylesheet" href="themes/subway-dark.css?v=1790845664">
+  <link rel="stylesheet" href="themes/blocks.css?v=1790845664">
+  <link rel="stylesheet" href="themes/wedding.css?v=1790845664">
   <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "setup": 1};window.WDW_CAL={"call": "", "onboarding": ""};</script>
   <script type="application/ld+json">
 {
@@ -263,33 +263,12 @@
       </div>
     </section>
 
-    <section class="for for--spin" aria-label="Who I build for">
-      <span class="bf-handclip" aria-hidden="true"><span class="pokehand"><svg viewBox="0 0 44 130">
-        <rect x="9" y="66" width="26" height="70" rx="3" fill="#ff4fa6" stroke="#0e0e0e" stroke-width="2.5"/>
-        <rect x="6" y="58" width="32" height="12" rx="3" fill="#fff" stroke="#0e0e0e" stroke-width="2.5"/>
-        <path d="M11 58 C9 48 10 40 14 36 L18 34 L18 8 C18 3 26 3 26 8 L26 32 C30 31 34 33 34 37 C37 37 39 40 38 44 C38 50 36 55 34 58 Z" fill="#fff" stroke="#0e0e0e" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M26 36 L26 42 M30 38 L30 43" stroke="#0e0e0e" stroke-width="1.8" stroke-linecap="round"/>
-      </svg></span></span>
+    <!-- Built-for band: three reels, then "See what I'd do for you" (primary) and Spin (secondary) under them.
+         The earlier version (round Spin button and the hand) is kept in archive/built-for-band-spin-hand.html -->
+    <section class="for for--spin for--b" aria-label="Who I build for">
       <div class="wrap bf-wrap">
         <p class="bf-sr">Built for plumbers, salons, barbers, dentists, restaurants, contractors, cleaners, gyms, accountants, bakeries, florists, pharmacies, law offices and auto shops, in every borough of New York.</p>
         <div class="slot tick" id="bf" aria-hidden="true">
-          <span class="treel treel--verb" data-dir="down"><span class="treel__frame"></span><span class="treel__win"><ul class="treel__list"></ul></span></span>
-          <span class="slot__word slot__word--for">for</span>
-          <span class="treel treel--biz" data-dir="up"><span class="treel__frame"></span><span class="treel__win"><ul class="treel__list"></ul></span></span>
-          <span class="slot__word slot__word--in">in</span>
-          <span class="treel treel--hood" data-dir="down"><span class="treel__frame"></span><span class="treel__win"><ul class="treel__list"></ul></span></span>
-          <button class="drift__btn" type="button" tabindex="-1">Spin</button>
-          <span class="jackpot"></span>
-        </div>
-        <p class="bf-more"><a href="businesses.html">See what I'd do for you<svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-        <button class="bf-lever" type="button" tabindex="-1" aria-hidden="true"><span class="bf-lever__track"></span><span class="bf-lever__stick"></span><span class="bf-lever__knob"></span></button>
-      </div>
-    </section>
-
-    <!-- Built-for band, version B (to compare): no hand; "See what I'd do for you" (primary) and a regular Spin button (secondary) under the reels -->
-    <section class="for for--spin for--b" aria-label="Who I build for (version B)">
-      <div class="wrap bf-wrap">
-        <div class="slot tick" id="bf2" aria-hidden="true">
           <span class="treel treel--verb" data-dir="down"><span class="treel__frame"></span><span class="treel__win"><ul class="treel__list"></ul></span></span>
           <span class="slot__word slot__word--for">for</span>
           <span class="treel treel--biz" data-dir="up"><span class="treel__frame"></span><span class="treel__win"><ul class="treel__list"></ul></span></span>
@@ -299,7 +278,7 @@
         </div>
         <div class="bf-actions">
           <a class="btn btn--primary bf-actions__more" href="businesses.html">See What I'd Do for You</a>
-          <button class="btn btn--ghost bf-spin" type="button" tabindex="-1">Spin</button>
+          <button class="btn btn--ghost bf-spin" type="button">Spin</button>
         </div>
       </div>
     </section>
@@ -796,6 +775,6 @@
 
   <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
 
-  <script src="script.js?v=1790845564"></script>
+  <script src="script.js?v=1790845664"></script>
 </body>
 </html>

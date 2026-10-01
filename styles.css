@@ -5961,7 +5961,7 @@ html.theme-refined .btypes__blurb { font: 500 .95rem/1.4 var(--body); letter-spa
 @media (max-width: 600px) { .bf-more:not(#z) { margin-top: 2px; padding-bottom: 12px; } }
 /* Built-for band, version B: the reels on their own, then a row under them: "See what I'd do for you" on the left,
    a regular (long) Spin button on the right */
-.for--b { border-top: 0; }
+
 .bf-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px 0 22px; }
 .bf-actions .btn { min-width: 0; }
 .bf-actions .bf-spin { min-width: 150px; }
