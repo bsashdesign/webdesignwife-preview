@@ -5187,7 +5187,7 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 .theme-subway.theme-dark #moods-tv .eyebrow:not(#z) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; color: #fff; }
 /* Change the Channel, desktop: left column = title, description, button panel and note; right column = the TV,
    in its own area running the full height of the section */
-@media (min-width: 1100px) {
+@media (min-width: 1240px) {
   #moods-tv > .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); grid-template-rows: auto 1fr; column-gap: 64px; row-gap: 28px; align-items: start; }
   #moods-tv .tryon__head { grid-column: 1; grid-row: 1; max-width: none; }
   #moods-tv .tvset { display: contents; }
@@ -5214,3 +5214,15 @@ html.theme-subway.theme-dark #moods-tv .tv::after { background: radial-gradient(
 .theme-blocks .mplans .mplan:not(.mplan--grow) { background: var(--sky); }
 .theme-blocks .mplans .mplan--grow { background: var(--sun); }
 .theme-blocks .mplans .mplan p:not(.mplan__kicker) { color: var(--ink); }
+/* the side-by-side layout only when there's room for a generous 80px gap; below that it stacks */
+@media (min-width: 1100px) and (max-width: 1239px) {
+  #moods-tv .tryon__head { max-width: 680px; margin: 0 auto; text-align: center; }
+  #moods-tv .tryon__head > * { margin-left: auto; margin-right: auto; }
+  #moods-tv .tvset { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 32px; }
+  #moods-tv .tvset .tv-panel, #moods-tv .tvset .tv-nook { grid-column: 1; grid-row: auto; }
+  #moods-tv .tvset .tv-nook { width: min(100%, 720px); }
+  #moods-tv .tv-deck { width: auto; }
+}
+@media (min-width: 1240px) {
+  #moods-tv > .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 80px; }
+}
