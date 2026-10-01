@@ -5410,3 +5410,6 @@ html.theme-subway .blog-hero .eyebrow:not(#z) { --dot: var(--green); }
 :is(.pricing-page > #pricing .pricing__head, .fhero > .wrap, main.start > .wrap, .blog-hero > .wrap) > h1:not(#z) { margin-top: 0; font-size: var(--page-title, clamp(2.3rem, 4.4vw, 3.6rem)); }
 html.theme-wedding { --page-title: clamp(2.8rem, 6vw, 5rem); }
 @media (max-width: 760px) { :is(.pricing-page > #pricing, .fhero, main.start, .blog-hero):not(#z) { padding-top: 44px; } }
+/* the big TV's sound waves come straight off the speaker grille, not from the TV's far edge */
+#moods-tv .tv__grille { position: relative; }
+#moods-tv .tv__grille .tv__waves:not(#z) { left: 100%; top: 50%; margin-left: 2px; }
