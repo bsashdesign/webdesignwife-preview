@@ -6331,3 +6331,9 @@ html.theme-wedding .chat-pick .chat-choice:not(#z):not(#y) { border-radius: 4px;
 .chat-choices__tip:not(#z):not(#y) { white-space: nowrap; }
 html.theme-blocks .chat-choices__tip:not(#z):not(#y) { font-size: .66rem; letter-spacing: -.01em; }
 @media (max-width: 760px) { html.theme-blocks .chat-choices__tip:not(#z):not(#y) { font-size: .5rem; } }
+/* the "or" between the replies: a touch bigger in Soirée; in Tangy it clears the hard shadow of the bubble above */
+html.theme-wedding .chat-pick__or:not(#z) { font-size: 1rem; line-height: 1; }
+html.theme-blocks .chat-pick__or:not(#z) { margin-top: 4px; margin-bottom: 1px; }
+@media (max-width: 760px) { html.theme-wedding .chat-pick__or:not(#z) { font-size: .78rem; } html.theme-blocks .chat-pick__or:not(#z) { margin-top: 3px; } }
+/* Tangy hero phone: the messages you send are the light beige of a selected field, not lime */
+html.theme-blocks .m--them .bubble:not(#z) { background: #fffbe0; }
