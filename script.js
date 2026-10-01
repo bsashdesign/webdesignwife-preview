@@ -2457,4 +2457,12 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   dialog.querySelector("[data-close-btype]").addEventListener("click", () => dialog.close());
   // a click on the dimmed backdrop (outside the box) closes it too
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+  // coming back from a business page ("All business types" links to index.html#business): the homepage opens at
+  // the built-for band with this pop-up already open
+  if (location.hash === "#business") {
+    const band = document.querySelector(".for--spin");
+    if (band) band.scrollIntoView({ block: "center", behavior: "instant" });
+    openSheet(dialog);
+    history.replaceState(null, "", location.pathname + location.search);
+  }
 })();
