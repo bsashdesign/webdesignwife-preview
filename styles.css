@@ -6901,3 +6901,6 @@ html.theme-subway.theme-dark .plans-dialog .hplan:not(#z) { background: #1f1f1f;
 /* Transit: the New Age section sits on a deep subway green, so it does not run into the dark section after it */
 html.theme-subway.theme-dark #work:not(#z) { background: #0e2a1a; }
 html.theme-subway.theme-dark #work .work-founding:not(#z) { background: rgba(255, 255, 255, .07); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+/* Transit: the free audit pop-up is black (not red); its fields sit a shade lighter so they stand out */
+html.theme-subway.theme-dark .audit-dialog:not(#z):not(#y) { background: #0b0b0b; box-shadow: 0 0 0 1px #2f2f2f, 0 30px 60px -20px rgba(0, 0, 0, .8); }
+html.theme-subway.theme-dark .audit-dialog :is(input, textarea, select):not(#z):not(#y) { background: #1f1f1f; border-color: #3a3a3a; }
