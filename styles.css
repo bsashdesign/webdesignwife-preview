@@ -5359,3 +5359,14 @@ html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow
 #moods-tv .tv-deck__top.is-tight .tv-deck__more { display: none; }
 /* Tangy's "Press one" note in its bold body font, not monospace */
 html.theme-blocks #moods-tv .tv-deck__cue:not(#z) { font-family: var(--body); font-weight: 700; letter-spacing: 0; color: var(--ink); }
+/* Change the Channel: the TV's side column (knobs and speaker) grows with the TV, so a big TV doesn't get tiny dials */
+#moods-tv .tv-nook { container-type: inline-size; }
+@media (min-width: 601px) {
+  #moods-tv .tv:not(#z) { grid-template-columns: minmax(0, 1fr) clamp(56px, 10.5cqw, 84px); }
+  #moods-tv .tv__side:not(#z) { gap: clamp(14px, 2.6cqw, 20px); }
+  #moods-tv .tv__side .tv__knob:not(.tv__knob--sm):not(#z) { width: clamp(32px, 6.2cqw, 48px); height: clamp(32px, 6.2cqw, 48px); }
+  #moods-tv .tv__side .tv__knob--sm:not(#z) { width: clamp(24px, 4.6cqw, 36px); height: clamp(24px, 4.6cqw, 36px); }
+  #moods-tv .tv__side .tv__grille:not(#z) { width: clamp(40px, 7.6cqw, 58px); height: clamp(76px, 14.5cqw, 110px); }
+}
+/* Tangy "Three ways": Do it yourself's icon is sky blue (pink vanished on the pink section) */
+html.theme-blocks #compare .compare-cards .cc:nth-child(1) .cc__ico:not(#z) { background: var(--sky); }
