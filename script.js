@@ -235,10 +235,14 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
     compose.classList.add("is-choices");
     phone.removeAttribute("aria-hidden");
     let busy = false;
+    // the first time the choices show, a cue (like the Change the Channel one) nudges you to reply
+    let cued = false;
     const offer = (opts) => {
       const tip = document.createElement("span");
-      tip.className = "chat-choices__tip"; tip.textContent = "Tap a reply to send";
-      compose.replaceChildren(tip, ...opts.map((o) => {
+      tip.className = "chat-choices__tip"; tip.setAttribute("aria-hidden", "true");
+      tip.innerHTML = 'Go on, reply. <em>Really.</em> <b>↓</b>';
+      const lead = cued ? [] : [tip]; cued = true;
+      compose.replaceChildren(...lead, ...opts.map((o) => {
         const b = document.createElement("button");
         b.type = "button"; b.className = "chat-choice"; b.textContent = o.label;
         b.addEventListener("click", () => pick(o));
@@ -253,7 +257,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         if (busy) return; busy = true;
         compose.replaceChildren();
         await resetChat();
-        offer(TREE); busy = false;
+        await checkIn(); offer(TREE); busy = false;
       });
       compose.replaceChildren(b);
       b.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, fill: "backwards" });
@@ -264,6 +268,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       thread.replaceChildren();
       addMessage("stamp", '<span class="stamp">Today 9:42 AM</span>');
       thread.classList.remove("is-fading");
+      cued = false;
       if (rows.hours.querySelector(".val").textContent !== start.hours) swapValue(rows.hours, start.hours, false);
       if (banner.querySelector("p").textContent !== start.banner) setBanner(start.banner);
     }
@@ -286,7 +291,17 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       if (o.next) offer(o.next); else again();
       busy = false;
     }
-    offer(TREE);
+    // Web Design Wife checks in first, then the replies appear
+    async function checkIn() {
+      await tick(500);
+      const typing = addMessage("typing", '<div class="bubble"><i></i><i></i><i></i></div>');
+      await tick(1100);
+      await removeMessage(typing);
+      addMessage("us", '<div class="bubble">Hey! Just checking in. Need anything changed on your site?</div>');
+      await tick(800);
+    }
+    busy = true;
+    checkIn().then(() => { offer(TREE); busy = false; });
   }
   run();
 })();

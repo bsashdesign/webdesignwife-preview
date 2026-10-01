@@ -5843,3 +5843,28 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 .bguides__list li { min-width: 0; }
 .bguides__title, .bguides__kicker { min-width: 0; white-space: normal; overflow-wrap: break-word; }
 @media (max-width: 1000px) and (min-width: 761px) { .bguides__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* the business-type list needs no rule under every row; the size and the arrow make it clear they're links */
+.btypes a:not(#z) { border-bottom: 0; padding: 12px 2px; }
+@media (max-width: 760px) { .btypes a:not(#z) { padding: 9px 2px; } }
+/* the hero phone's nudge to reply, in the Change the Channel cue's style, with the arrow bobbing down at the replies */
+.chat-choices__tip:not(#z) { align-self: center; font: 600 .74rem/1.2 var(--body); letter-spacing: 0; color: var(--ink-soft); }
+.chat-choices__tip em { font-style: normal; }
+.chat-choices__tip b { display: inline-block; margin-left: 2px; font: 900 1.05em system-ui, sans-serif; -webkit-text-stroke: .5px currentColor; animation: cue-bob 1.6s ease-in-out infinite; }
+.theme-blocks .chat-choices__tip:not(#z) { font-family: "DM Mono", ui-monospace, monospace; font-weight: 500; color: var(--ink); }
+.theme-subway .chat-choices__tip:not(#z) { color: #555; }
+.theme-wedding .chat-choices__tip:not(#z) { font: italic 500 .95rem var(--display); color: var(--gold-ink); }
+.theme-wedding .chat-choices__tip b { font-family: var(--display); font-weight: 400; -webkit-text-stroke: 0; }
+@media (max-width: 760px) { .chat-choices__tip:not(#z) { font-size: .58rem; } .theme-wedding .chat-choices__tip:not(#z) { font-size: .72rem; } }
+@media (prefers-reduced-motion: reduce) { .chat-choices__tip b { animation: none; } }
+/* the business-type list reads like the menu's big links: large display type, no arrows or markers, the colour changes on hover */
+.btypes:not(#z) { column-gap: 48px; }
+.btypes a:not(#z) { display: block; padding: 10px 0; }
+.btypes a:not(#z) > span { display: inline-block; background: none; font: 800 clamp(1.9rem, 4.2vw, 3rem)/1.08 var(--display); letter-spacing: -0.03em; transition: color .2s ease; }
+@media (hover: hover) { .btypes a:not(#z):hover > span { color: var(--violet); } }
+.theme-subway .btypes a:not(#z) > span { display: inline-flex; font-family: "Inter Tight", sans-serif; }
+@media (hover: hover) { .theme-subway .btypes a:not(#z):hover > span { color: var(--hl); } }
+.theme-wedding .btypes a:not(#z) { border-bottom: 0; }
+.theme-wedding .btypes a:not(#z) > span { font-weight: 500; font-style: normal; letter-spacing: 0; font-size: clamp(2.1rem, 4.6vw, 3.3rem); }
+@media (hover: hover) { .theme-wedding .btypes a:not(#z):hover > span { color: var(--gold); } }
+@media (max-width: 760px) { .btypes a:not(#z) { padding: 7px 0; } .btypes:not(#z) { text-align: center; } }
+.btypes a:not(#z):not(#y) { background: none; }
