@@ -6152,10 +6152,10 @@ html.theme-blocks .blist__go { color: var(--ink); }
 html.theme-subway .blist__name { font-family: "Inter Tight", sans-serif; }
 html.theme-subway .blist__go { color: #fccc0a; }
 @media (hover: hover) { html.theme-subway .blist a:not(#z):hover .blist__name { color: #fccc0a; } }
-/* Soirée: italic serif names, Bodoni numerals, gold on hover */
+/* Soirée: italic serif names, gold numerals, gold on hover */
 html.theme-wedding .blist__name { font: italic 500 1.4rem/1.15 var(--display); letter-spacing: 0; }
 html.theme-wedding .blist--page .blist__name { font-size: clamp(1.7rem, 2.6vw, 2.1rem); }
-html.theme-wedding .blist__n { font: 500 .85rem "Bodoni Moda", serif; letter-spacing: 0; color: var(--gold-ink); }
+html.theme-wedding .blist__n { font: 500 .85rem var(--display); letter-spacing: 0; color: var(--gold-ink); }
 html.theme-wedding .blist__go { color: var(--gold-ink); }
 html.theme-wedding .blist__go svg path { stroke-width: 1.2; }
 @media (hover: hover) { html.theme-wedding .blist a:not(#z):hover .blist__name { color: var(--gold-ink); } }
@@ -6444,6 +6444,6 @@ html.theme-wedding .bcrumb:not(#z) { font: italic 500 1.02rem var(--display); }
 /* Soirée "How it works": the steps stand on the page (no card around them), with larger numerals */
 html.theme-wedding #how .steps li:not(#z) { background: none; border: 0; box-shadow: none; padding-left: 0; padding-right: 0; }
 html.theme-wedding #how .steps li:not(#z)::before { width: 52px; height: 52px; font-size: 1.7rem; }
-/* Soirée headings: the Bodoni digits sit at the same height as the Cormorant capitals around them (they were
-   noticeably taller, e.g. the "14" in a heading) */
-html.theme-wedding :is(h1, h2, h3) { font-size-adjust: cap-height 0.63; }
+/* Soirée uses one font (Cormorant Garamond) for letters and numbers; its numbers are set as lining figures, so they
+   stand on the line at the height of the capitals */
+html.theme-wedding, html.theme-wedding body { font-variant-numeric: lining-nums; }

@@ -57,8 +57,7 @@ CAL = {"call": "", "onboarding": ""}
 FONTS = (
     '<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700'
     '&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">'
-    # Sophisticated's numbers: just the digits 0-9 from Bodoni Moda, whose figures all stand on the line
-    '\n  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&text=0123456789&display=swap" rel="stylesheet">'
+''
 )
 THEME_CSS = "\n  ".join(f'<link rel="stylesheet" href="themes/{n}.css">' for n in ("subway", "subway-dark", "blocks", "wedding"))
 
