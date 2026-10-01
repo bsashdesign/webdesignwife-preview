@@ -5176,3 +5176,9 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { --cap-edge: #b8440f; }
 #moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #ff6319; }
 .moods__card .moodicon--transit, .chip .moodicon--transit { background: #ff6319; }
+/* desktop: buttons on the left, TV on the right */
+@media (min-width: 1100px) {
+  #moods-tv .tvset { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  #moods-tv .tvset .tv-panel { grid-column: 1; grid-row: 1; }
+  #moods-tv .tvset .tv-nook { grid-column: 2; grid-row: 1; }
+}
