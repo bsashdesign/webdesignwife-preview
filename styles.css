@@ -6779,3 +6779,7 @@ html .chat-you:not(#z):not(#y) { font-family: var(--body); font-style: normal; f
 html .phone .chat-pick__or:not(#z):not(#y) { font: 500 .5rem/1 var(--body); letter-spacing: .02em; text-transform: lowercase; color: var(--ink-soft); margin-top: 1px; margin-bottom: 1px; }
 html.theme-blocks .phone .chat-pick__or:not(#z):not(#y) { font-family: "DM Mono", ui-monospace, monospace; }
 html.theme-wedding .phone .chat-pick__or:not(#z):not(#y) { font: italic 500 .7rem/1 var(--display); color: var(--gold-ink); text-transform: none; }
+/* inside the small phone (after the reveal) the cue is a readable size; the big opening view keeps it quieter */
+html .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .6rem; }
+html.theme-wedding .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .7rem; }
+@media (max-width: 640px) { html .demo:not(.is-bare) .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .54rem; } }
