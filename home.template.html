@@ -572,9 +572,9 @@
     <!-- GOOGLE MAPS -->
     <section class="section section--ink" id="maps">
       <div class="wrap maps">
-        <p class="eyebrow eyebrow--light">Google Maps</p>
         <div class="maps__head maps__head--card">
           <div class="maps__intro">
+            <p class="eyebrow eyebrow--light">Google Maps</p>
             <h2>Your Google Maps, handled too</h2>
             <p>For many local businesses, customers see your Google listing before they ever visit your website. I set yours up properly, or if you already have one, I audit it and fix what's holding it back.</p>
           </div>
@@ -856,6 +856,15 @@
   </dialog>
 
   <!-- Get in touch pop-up: the same three forms, opened from any "free audit" or "let's talk" link -->
+  <dialog class="finder-dialog btype-dialog" id="btype-dialog" aria-labelledby="btype-title">
+    <div class="finder-dialog__inner">
+      <button type="button" class="finder-dialog__close" data-close-btype aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <h2 id="btype-title">Choose your business</h2>
+      <ul class="btypes">{{BTYPE_TILES}}</ul>
+      <p class="btype-dialog__else">Don't see yours? <a href="contact.html">Tell me about it →</a></p>
+    </div>
+  </dialog>
+
   <dialog class="audit-dialog section--violet" id="audit-dialog" aria-labelledby="audit-dialog-title">
     <button type="button" class="finder-dialog__close audit-dialog__close" data-close-audit aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     <h2 class="audit-dialog__title" id="audit-dialog-title">Get a free website audit</h2>

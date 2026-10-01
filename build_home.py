@@ -155,7 +155,17 @@ def bust(html):
     return re.sub(r'(src="(?:\.\./)?(?:script|start)\.js)(\?v=\d+)?"', r'\1?v=' + VERSION + '"', html)
 
 
+# Business types (business_types.py): the same clickable tiles on businesses.html and in the homepage's
+# "Choose your business" pop-up
+import html as _html
+from business_types import TYPES as BTYPES
+ARROW_SVG = '<svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+def btype_tiles():
+    e = _html.escape
+    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span>{e(t["label"])}</span><small class="btypes__blurb">{e(t["blurb"])}</small><i class="btypes__go" aria-hidden="true">{ARROW_SVG}</i></a></li>' for t in BTYPES)
+
 page = (TEMPLATE
+        .replace("{{BTYPE_TILES}}", btype_tiles())
         .replace("{{FONTS}}", FONTS)
         .replace("{{THEME_CSS}}", THEME_CSS + "\n  " + mood_boot())
         .replace(' class="{{BODY_CLASS}}"', "")
@@ -246,15 +256,13 @@ features = full_page((HERE / "features.template.html").read_text()).replace("{{A
 
 # Business types: businesses.html lists every type in large, clickable text; each opens its own page
 # (websites-for-<slug>.html) about what I'd do for that kind of business. Data: business_types.py.
-import html as _html
-from business_types import TYPES as BTYPES
 POSTS = {p["slug"]: p for p in json.loads((HERE / "blog" / "posts.json").read_text())}
 esc = _html.escape
 btypes_index = full_page((HERE / "businesses.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
 btypes_index = (btypes_index
     .replace("{{META_TITLE}}", "See What I'd Do for Your Business — Web Design Wife")
     .replace("{{DESC}}", "Plumbers, salons, dentists, restaurants and more: pick your type of business and see what I'd build, set up and keep up to date for you.")
-    .replace("{{TYPES}}", "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span>{esc(t["label"])}</span><small class="btypes__blurb">{esc(t["blurb"])}</small><i class="btypes__go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a></li>' for t in BTYPES)))
+    .replace("{{TYPES}}", btype_tiles()))
 (HERE / "businesses.html").write_text(bust(titlecase.apply(btypes_index)))
 BTYPE_TEMPLATE = (HERE / "business.template.html").read_text()
 for t in BTYPES:

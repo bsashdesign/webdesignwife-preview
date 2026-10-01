@@ -5996,3 +5996,46 @@ html.theme-blocks #work .work-founding.work-founding:not(#z):not(#y) { backgroun
 .bf-spin > span { grid-area: 1 / 1; }
 .bf-spin .bf-spin__again, .bf-spin.is-again .bf-spin__one { visibility: hidden; }
 .bf-spin.is-again .bf-spin__again { visibility: visible; }
+/* "Choose your business" pop-up: a compact version of the business-type tiles */
+.btype-dialog:not(#z) { width: min(820px, calc(100% - 32px)); }
+.btype-dialog h2 { margin: 0 44px 20px 0; font-size: clamp(1.5rem, 2.6vw, 1.9rem); }
+#btype-dialog .btypes.btypes:not(#z) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: none; margin: 0; }
+#btype-dialog .btypes.btypes a:not(#z):not(#y) { position: relative; display: flex; align-items: center; justify-content: space-between; min-height: 0; padding: 12px 12px 12px 16px; border-radius: 14px; }
+#btype-dialog .btypes.btypes a:not(#z):not(#y) > span { font-size: 1.05rem; line-height: 1.2; }
+#btype-dialog .btypes__blurb { display: none; }
+#btype-dialog .btypes__go:not(#z) { position: static; translate: none; width: 30px; height: 30px; border-width: 1.5px; }
+#btype-dialog .btypes__go svg { width: 14px; height: 14px; }
+html.theme-blocks #btype-dialog .btypes.btypes a:not(#z):not(#y) { border-width: 2px; box-shadow: 3px 3px 0 var(--ink); }
+html.theme-wedding #btype-dialog .btypes.btypes a:not(#z):not(#y) { border-radius: 2px; }
+html.theme-subway #btype-dialog .btypes.btypes a:not(#z):not(#y) { border-radius: 8px; }
+.btype-dialog__else:not(#z) { max-width: none; margin: 18px 0 0; text-align: center; color: var(--ink-soft); font-size: .92rem; }
+.btype-dialog__else a { color: var(--ink); font-weight: 600; }
+@media (max-width: 700px) { #btype-dialog .btypes.btypes:not(#z) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { #btype-dialog .btypes.btypes a:not(#z):not(#y) { padding: 10px 10px 10px 12px; } #btype-dialog .btypes.btypes a:not(#z):not(#y) > span { font-size: .95rem; } #btype-dialog .btypes__go:not(#z) { width: 26px; height: 26px; } }
+#btype-dialog h2:not(#z) { font-size: clamp(1.4rem, 2.4vw, 1.75rem); line-height: 1.15; }
+html.theme-wedding #btype-dialog h2:not(#z) { font-size: clamp(1.7rem, 2.8vw, 2.1rem); }
+/* the Google Maps eyebrow sits right above its heading (inside the intro, which is centred beside the card) */
+.maps__head--card { margin-top: 0; }
+.maps__intro .eyebrow { margin-bottom: 12px; }
+/* Eyebrows animate with their heading: they rise into place (straight up, no sideways or scaling) as they fade
+   in, on the same easing as the heading's words. Uses "translate" so a mood's label tilt is kept */
+.m-on .eyebrow.m-ready:not(.m-in) { opacity: 0; translate: 0 16px; }
+.m-on .eyebrow.m-in { transition: opacity .6s ease, translate .9s cubic-bezier(.19, 1, .22, 1); }
+/* "Choose your business" on phones: two columns of names without the arrow buttons, so nothing spills out */
+@media (max-width: 480px) {
+  #btype-dialog .btypes__go:not(#z) { display: none; }
+  #btype-dialog .btypes.btypes a:not(#z):not(#y) { padding: 12px 12px; }
+  #btype-dialog .btypes.btypes a:not(#z):not(#y) > span { font-size: .95rem; }
+  .btype-dialog .finder-dialog__inner { padding: 24px 18px; }
+}
+/* Calm business types: one calm colour for every tile (soft lilac, violet arrows), not a rainbow */
+html.theme-refined .btypes li:nth-child(n) { --tile: #f4f1ff; --tile-ink: #5b3df5; }
+/* Transit business types: one look for every tile, like a station sign: black tile, white lettering, no coloured
+   dots, a white arrow disc that turns Transit yellow on hover */
+html.theme-subway .btypes a:not(#z) > span::before { display: none; }
+html.theme-subway .btypes__go:not(#z) { background: #f2f2ee; color: #111; }
+@media (hover: hover) {
+  html.theme-subway .btypes.btypes a:not(#z):not(#y):hover { border-color: #fccc0a; background: #1c1c1c; }
+  html.theme-subway .btypes.btypes a:not(#z):not(#y):hover > span { color: #f2f2ee; }
+  html.theme-subway .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: #fccc0a; color: #111; }
+}

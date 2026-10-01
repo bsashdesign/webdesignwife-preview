@@ -2446,3 +2446,15 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(async () => { await poke(); next(); }, 3000); } }, { threshold: .6 });
   if (hand) io.observe(band);
 });
+
+// "See what I'd do for you" opens the "Choose your business" pop-up; each type there goes to its own page.
+// (The link still works as a plain link to businesses.html if the pop-up can't open.)
+(() => {
+  const dialog = document.getElementById("btype-dialog");
+  if (!dialog || !dialog.show) return;
+  // opened like the other pop-ups (not modal), so the mood switcher stays usable while it's open
+  document.querySelectorAll(".bf-actions__more").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); openSheet(dialog); }));
+  dialog.querySelector("[data-close-btype]").addEventListener("click", () => dialog.close());
+  // a click on the dimmed backdrop (outside the box) closes it too
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+})();
