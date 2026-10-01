@@ -190,7 +190,7 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const panel = document.createElement("div");
       panel.className = "chat-pick"; panel.setAttribute("role", "group"); panel.setAttribute("aria-label", "Choose a reply");
       opts.forEach((o, i) => {
-        if (i) { const or = document.createElement("span"); or.className = "chat-pick__or"; or.textContent = "or"; panel.append(or); }
+        if (i && first) { const or = document.createElement("span"); or.className = "chat-pick__or"; or.textContent = "or"; panel.append(or); }
         const b = document.createElement("button");
         b.type = "button"; b.className = "chat-choice";
         b.innerHTML = '<span class="chat-choice__text"></span>';
@@ -198,7 +198,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
         b.addEventListener("click", () => pick(o));
         panel.append(b);
       });
-      return [you, panel, tip];
+      // "You", "or" and the cue are only for the opening scene; after that, just the replies
+      return first ? [you, panel, tip] : [panel];
     };
     // The choices take only the room they need: with nothing to pick, the conversation sits at the bottom of the
     // phone. When choices come in they grow up from the bottom (pushing the conversation up), and when they go
