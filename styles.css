@@ -5809,3 +5809,8 @@ html.theme-blocks #bf2 .treel__well { display: none; }
   #bf.slot { width: fit-content; max-width: 100%; margin-inline: auto; }
   #bf .drift__btn { position: absolute; left: calc(100% + 26px); top: 50%; translate: 0 -50%; }
 }
+/* Soirée's Spin: a square brown key with a gold hairline and gold lettering */
+html.theme-wedding .for--spin .drift__btn:not(#z):not(#y) { border-radius: 3px; background: #5e4127; color: #e9d3a1; box-shadow: inset 0 0 0 3px #5e4127, inset 0 0 0 4px rgba(217,186,124,.85), 0 6px 14px -8px rgba(31,35,54,.6); }
+@media (hover: hover) { html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):hover { background: #b8955a; color: #3a2817; box-shadow: inset 0 0 0 3px #b8955a, inset 0 0 0 4px rgba(255,253,248,.75), 0 6px 14px -8px rgba(31,35,54,.6); } }
+/* the long sleeve lines up exactly with the sleeve drawn on the hand (same edges, same outline), so it reads as one piece */
+.for--spin .pokehand::after { top: calc(100% - 4px); left: 17.6%; width: 64.8%; }
