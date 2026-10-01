@@ -4513,3 +4513,5 @@ span.plan-ring:empty { display: none; }
 .theme-subway .founding .founding__emblem { background: radial-gradient(circle at 30% 20%, #262626, #0a0a0a 70%); color: #e8c766; border-radius: 10px; box-shadow: inset 0 0 0 2px #d6ad45, inset 0 0 0 6px #0b0b0b, inset 0 0 0 7px rgba(214,173,69,.55), 0 10px 24px -12px rgba(0,0,0,.8); }
 .theme-subway .founding .founding__emblem span { color: #e8c766; opacity: 1; }
 .theme-subway .founding .founding__emblem b { background: linear-gradient(180deg, #fbe7a1 0%, #e2b84e 55%, #b8862a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* the stones are drawn a little below the middle of their box, so lift them to sit level with the name and line */
+.plans .plan .plan__head .plan-ring-tile { translate: 0 calc(var(--rs, 88px) * -.14); }
