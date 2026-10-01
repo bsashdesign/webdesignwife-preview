@@ -5324,7 +5324,4 @@ html.theme-blocks .splans .splan input:checked + span:not(#z) { background: var(
 @media (hover: hover) { html.theme-blocks .splans .splan:hover input:not(:checked) + span:not(#z) { background: #fff2bd; } }
 /* "Back to website" shortens to "Back" when there isn't room for it on one line */
 .start__back .back__more { white-space: pre; }
-@media (max-width: 259px) { .start__back .back__more { display: none; } }
-/* Get started: the nav shows just the face from the logo, and it isn't a link (no way back home from the sign-up form but the back link) */
-.brand--mark { display: block; width: 34px; height: 34px; overflow: hidden; border-radius: 7px; flex: none; }
-.brand--mark img { display: block; width: auto; height: 34px; max-width: none; }
+@media (max-width: 369px) { .start__back .back__more { display: none; } }
