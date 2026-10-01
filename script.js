@@ -230,16 +230,29 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const first = !cued; cued = true;
       morph(() => compose.replaceChildren(...pickPanel(opts, first)));
       compose.querySelectorAll(".chat-you, .chat-choice, .chat-pick__or, .chat-choices__tip").forEach((el, i) => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, delay: i * 70, easing: "ease-out", fill: "backwards" }));
-      // then the replies do a little dance, one after the other, so it's clear they're there to be tapped
+      // then the replies do a little dance, one after the other, so it's clear they're there to be tapped. Three
+      // rounds, three seconds apart, and it stops for good once you've hovered over (or tapped) a reply.
       if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        compose.querySelectorAll(".chat-choice").forEach((b, i) => b.animate([
-          { transform: "none" },
-          { transform: "translateY(-5px) rotate(-3deg)", offset: .2 },
-          { transform: "translateY(0) rotate(2.5deg)", offset: .42 },
-          { transform: "translateY(-3px) rotate(-1.5deg)", offset: .62 },
-          { transform: "translateY(0) rotate(.8deg)", offset: .8 },
-          { transform: "none" },
-        ], { duration: 700, delay: 650 + i * 620, easing: "ease-in-out" }));
+        const btns = [...compose.querySelectorAll(".chat-choice")];
+        let stopped = false;
+        btns.forEach((b) => ["pointerenter", "pointerdown", "focus"].forEach((ev) => b.addEventListener(ev, () => { stopped = true; }, { once: true })));
+        const DANCE = 700, GAP = 620;
+        const round = (n) => {
+          if (stopped || n >= 3 || !btns[0].isConnected) return;
+          btns.forEach((b, i) => setTimeout(() => {
+            if (stopped || !b.isConnected) return;
+            b.animate([
+              { transform: "none" },
+              { transform: "translateY(-5px) rotate(-3deg)", offset: .2 },
+              { transform: "translateY(0) rotate(2.5deg)", offset: .42 },
+              { transform: "translateY(-3px) rotate(-1.5deg)", offset: .62 },
+              { transform: "translateY(0) rotate(.8deg)", offset: .8 },
+              { transform: "none" },
+            ], { duration: DANCE, easing: "ease-in-out" });
+          }, i * GAP));
+          setTimeout(() => round(n + 1), (btns.length - 1) * GAP + DANCE + 3000);
+        };
+        setTimeout(() => round(0), 650);
       }
     };
     const again = () => {
@@ -288,7 +301,8 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       if (!demo.classList.contains("is-intro")) return;
       const top = thread.querySelector(".m--from, .m--us");
       if (!top) return;
-      const over = demo.getBoundingClientRect().top + 4 - top.getBoundingClientRect().top;
+      const barEl = demo.querySelector(".browser__bar"), edge = innerWidth <= 760 && barEl.offsetParent ? barEl.getBoundingClientRect().bottom : demo.getBoundingClientRect().top;
+      const over = edge + 4 - top.getBoundingClientRect().top;
       if (over > 0) { extra += Math.ceil(over); big = fitBig(); }
     }
     let extra = 0;
@@ -301,7 +315,9 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       // on phones the messages are about the size of a button's text (~15px), no bigger
       const K = innerWidth <= 760 ? Math.min(1.5, D.width / (P.width - 2 * inset)) : Math.min(2.2, (D.width * .98) / P.width);
       // on phones the space grows with the scale first, so the whole opening conversation fits under the nav
-      demo.style.minHeight = innerWidth <= 760 ? Math.round(156 * K + 30 + extra) + "px" : "";
+      // (on phones the website's browser window holds the chat, so its address bar sits above it)
+      const barEl = demo.querySelector(".browser__bar"), bar = innerWidth <= 760 && barEl.offsetParent ? barEl.offsetHeight + 6 : 0;
+      demo.style.minHeight = innerWidth <= 760 ? Math.round(156 * K + 30 + bar + extra) + "px" : "";
       P = phone.getBoundingClientRect(); D = demo.getBoundingClientRect();
       // the phone's hidden bottom padding (below the replies) may hang below the space too
       const below = innerWidth <= 760 ? (P.bottom - compose.getBoundingClientRect().bottom) * K : 6;
@@ -330,11 +346,14 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
       const sweep = phone.animate(frames, { duration: 900 * SLOW, easing: "linear" });
       phone.style.transform = "";
       // the website comes back into the layout; the space grows smoothly to make room for it (phones)
-      const h0 = demo.offsetHeight;
+      const browserEl = demo.querySelector(".browser");
+      const h0 = demo.offsetHeight, b0 = browserEl.offsetHeight;
       demo.classList.remove("is-intro");
       demo.style.minHeight = "";
-      const h1 = demo.offsetHeight;
+      const h1 = demo.offsetHeight, b1 = browserEl.offsetHeight;
       if (h1 !== h0) demo.animate([{ height: h0 + "px" }, { height: h1 + "px" }], { duration: 750 * SLOW, easing: EASE_OUT });
+      // (on phones the browser window held the chat; it eases to the website's own height)
+      if (innerWidth <= 640 && b1 !== b0) browserEl.animate([{ height: b0 + "px" }, { height: b1 + "px" }], { duration: 750 * SLOW, easing: EASE_OUT });
       await sweep.finished.catch(() => {});
       phone.style.transformOrigin = "";
       if (fromRow) { fromRow.remove(); fromRow = null; }

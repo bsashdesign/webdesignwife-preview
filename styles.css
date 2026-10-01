@@ -6762,3 +6762,15 @@ html .chat-you:not(#z):not(#y) { font-family: var(--body); font-style: normal; f
   .hero .demo:not(.is-intro) .phone:not(#z):not(#y) { right: 6px; }
   .hero .demo:not(.is-intro):not(#z):not(#y) { min-height: 356px; }
 }
+/* Phones: the website's browser window IS the frame that holds the opening chat. Its address bar shows from the
+   start; the website itself fades in inside it once you pick a reply, and the phone shrinks into its corner */
+@media (max-width: 640px) {
+  .hero .demo::before { display: none; }
+  .hero .demo.is-intro .browser:not(#z):not(#y) { opacity: 1; transform: none; position: absolute; inset: 0; width: auto; margin: 0; }
+  .hero .demo .site { transition: opacity .5s ease .25s; }
+  .hero .demo.is-intro .site { opacity: 0; transition: none; }
+  .hero .demo:not(.is-intro) .browser:not(#z) { width: 100%; margin: 0; }
+  .hero .demo:not(.is-intro) .phone:not(#z):not(#y) { right: -6px; }
+}
+/* Phones: the website window has no address bar (the frame is just the window) */
+@media (max-width: 640px) { .hero .demo .browser__bar { display: none; } }
