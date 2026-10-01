@@ -51,7 +51,10 @@
       sum("today").textContent = "$0";
       // the setup they'd pay once approved, said quietly (no strike-through)
       sum("setup").textContent = money(F ? p.found : p.setup);
-      sum("setup-was").textContent = F ? `Founding 5 setup, normally ${money(p.setup)}. ` : "";
+      // the price shown is already the Founding 5 price; it's only for the first five clients I accept
+      sum("setup-was").textContent = F
+        ? `That's 50% off the regular ${money(p.setup)}, a thank-you to the first five clients I accept. If those five spots are taken by the time you're approved, setup is the regular ${money(p.setup)}. `
+        : "";
     } else if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(p.found)}`; else sum("today").textContent = money(p.setup);
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;
     sum("then-note").textContent = isYearly
