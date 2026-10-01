@@ -2073,3 +2073,139 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
   range.addEventListener("input", render);
   render();
 })();
+
+// "Built for" band: three slot reels (verb, business, neighborhood) that tick one step at a time, taking turns.
+// Spin whirls them through words and stars; your spins land on three stars, then roll on to a new sentence.
+// Now and then a gloved hand pops up from the band's bottom line, hovers, and presses Spin itself (its spins
+// skip the stars and go straight to a new sentence).
+(() => {
+  const slot = document.getElementById("bf");
+  if (!slot) return;
+  const band = slot.closest(".for--spin"), btn = slot.querySelector(".drift__btn"), msg = slot.querySelector(".jackpot"), hand = band.querySelector(".pokehand");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const VERBS = ["Built", "Designed", "Developed", "Crafted", "Launched", "Managed", "Made", "Polished"];
+  const TYPES = ["Plumbers", "Salons", "Barbers", "Dentists", "Restaurants", "Contractors", "Cleaners", "Gyms", "Accountants", "Bakeries", "Florists", "Pharmacies", "Law offices", "Auto shops"];
+  const HOODS = ["Bushwick", "Park Slope", "Astoria", "Harlem", "Flushing", "Williamsburg", "Jackson Heights", "Bay Ridge", "the Bronx", "Chelsea", "Fort Greene", "St. George", "Crown Heights", "Long Island City"];
+  const STAR = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4.5l4.7 9.7 10.6 1.3-7.8 7.4 2 10.5L20 28.2l-9.5 5.2 2-10.5-7.8-7.4 10.6-1.3z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/></svg>';
+  const LISTS = [VERBS, TYPES, HOODS], LOOPS = 12;
+  const wordsHTML = (items) => Array.from({ length: LOOPS }, () => items.map((t) => `<li>${t}</li>`).join("")).join("");
+
+  // a soft two-note marimba when the stars line up (follows the site's Sound switch)
+  let ac;
+  const ding = () => {
+    try { if (localStorage.getItem("wdw-muted") === "1") return; } catch (e) {}
+    try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
+    if (ac.state === "suspended") ac.resume();
+    if (ac.state !== "running") return;
+    const t = ac.currentTime, out = ac.createGain(), lp = ac.createBiquadFilter();
+    out.gain.value = .5; lp.type = "lowpass"; lp.frequency.value = 2600; out.connect(lp).connect(ac.destination);
+    [[392, 0], [587.3, .11]].forEach(([f, d]) => [[1, .5, .55], [4, .07, .12]].forEach(([m, v, len]) => {
+      const o = ac.createOscillator(), g = ac.createGain(); o.type = "sine"; o.frequency.value = f * m;
+      g.gain.setValueAtTime(0, t + d); g.gain.linearRampToValueAtTime(v, t + d + .006); g.gain.exponentialRampToValueAtTime(.001, t + d + len);
+      o.connect(g).connect(out); o.start(t + d); o.stop(t + d + len + .05);
+    }));
+  };
+
+  const reels = [...slot.querySelectorAll(".treel")].map((reel, k) => {
+    const items = LISTS[k], ul = reel.querySelector("ul"), n = items.length;
+    ul.innerHTML = wordsHTML(items);
+    return { reel, ul, items, n, dir: reel.dataset.dir === "down" ? -1 : 1, pos: n * 6 + (k === 1 ? 5 : 0) };
+  });
+  // each window is as wide as its longest word, measured in whichever mood's font is showing
+  const size = () => reels.forEach((r) => {
+    const probe = document.createElement("li"); probe.style.cssText = "position:absolute;visibility:hidden"; r.ul.appendChild(probe);
+    let w = 0; r.items.forEach((t) => { probe.textContent = t; w = Math.max(w, probe.getBoundingClientRect().width); }); probe.remove();
+    r.reel.style.width = Math.ceil(w) + 2 + "px"; show(r, 0);
+  });
+  const row = (r) => r.ul.firstElementChild.getBoundingClientRect().height;
+  const show = (r, ms, ease) => { r.ul.style.transition = ms ? `transform ${ms}ms ${ease}` : "none"; r.ul.style.transform = `translateY(${-(r.pos - .75) * row(r)}px)`; };
+  const idx = (r) => ((Math.round(r.pos) % r.n) + r.n) % r.n;
+  const recentre = (r) => { r.pos = r.n * 6 + idx(r); };
+  size();
+  if (document.fonts) document.fonts.ready.then(size);
+  addEventListener("resize", size);
+  new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+  let drifting = true;
+  const STEP = 2500, GLIDE = 1300, CLICK = "cubic-bezier(.34,1.45,.55,1)";
+  const step = (r) => {
+    if (!drifting || reduce || document.hidden) return;
+    recentre(r); show(r, 0); void r.ul.offsetWidth;
+    r.pos += r.dir; show(r, GLIDE, CLICK);
+    setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
+  };
+  reels.forEach((r, k) => setTimeout(() => { step(r); setInterval(() => step(r), STEP); }, 900 + k * STEP / 3));
+
+  const confetti = () => {
+    const box = slot.getBoundingClientRect(), COLS = ["#ff4fa6", "#d4ff4f", "#9fd8ff", "#ffe27a", "#ff7d33", "#b6f5c8"];
+    reels.forEach((r) => {
+      const f = r.reel.querySelector(".treel__frame").getBoundingClientRect();
+      for (let i = 0; i < 12; i++) {
+        const c = document.createElement("i"); c.className = "confetti";
+        c.style.left = (f.left - box.left + f.width / 2) + "px"; c.style.top = (f.top - box.top + f.height / 2) + "px"; c.style.background = COLS[i % COLS.length];
+        const a = Math.random() * Math.PI * 2, d = 45 + Math.random() * 70;
+        c.style.setProperty("--dx", Math.cos(a) * d + "px"); c.style.setProperty("--dy", Math.sin(a) * d - 20 + "px"); c.style.setProperty("--rot", (Math.random() * 720 - 360) + "deg");
+        slot.appendChild(c); setTimeout(() => c.remove(), 1200);
+      }
+    });
+  };
+
+  btn.addEventListener("click", () => {
+    if (!drifting) return; drifting = false; msg.classList.remove("is-on");
+    const win = btn.dataset.byHand !== "1"; // your spins line up three stars; the hand's never do
+    const LEN = 24, plans = [];
+    reels.forEach((r, k) => {
+      const n = r.n, from = idx(r);
+      let to; do { to = Math.floor(Math.random() * n); } while (to === from);
+      const word = (i) => `<li>${r.items[((i % n) + n) % n]}</li>`, star = () => `<li class="bf-ico">${STAR}</li>`;
+      // current word → a whirl of words and stars → (your spins: a star) → the new word with its real neighbours
+      const seq = [word(from - r.dir), word(from)];
+      for (let i = 0; i < LEN; i++) seq.push(i % 2 ? word(Math.floor(Math.random() * n)) : star());
+      const symAt = seq.length; seq.push(star(), word(Math.floor(Math.random() * n)), star());
+      const toAt = seq.length + 1; seq.push(word(to - r.dir), word(to), word(to + r.dir), word(to + 2 * r.dir));
+      const L = seq.length, items = r.dir > 0 ? seq : seq.slice().reverse(), at = (i) => (r.dir > 0 ? i : L - 1 - i);
+      r.ul.innerHTML = items.join("");
+      r.pos = at(1); show(r, 0); void r.ul.offsetWidth;
+      const ms = reduce ? 0 : 1300 + k * 350;
+      r.reel.classList.add("is-spinning"); r.pos = at(win ? symAt : toAt); show(r, ms, "cubic-bezier(.15,.85,.25,1.06)");
+      setTimeout(() => r.reel.classList.remove("is-spinning"), ms);
+      plans.push({ r, to, toAt: at(toAt) });
+    });
+    const land = reduce ? 0 : 1300 + 2 * 350 + 40;
+    if (win) setTimeout(() => {
+      ding(); setTimeout(ding, 220);
+      reels.forEach((r) => { r.reel.classList.remove("is-win"); void r.reel.offsetWidth; r.reel.classList.add("is-win"); });
+      msg.textContent = "Three stars! Five-star reviews incoming"; msg.classList.add("is-on"); confetti();
+    }, land);
+    const hold = win ? 2200 : 0;
+    setTimeout(() => {
+      msg.classList.remove("is-on");
+      if (win) plans.forEach(({ r, toAt }, k) => setTimeout(() => { r.pos = toAt; show(r, reduce ? 0 : 700, CLICK); }, k * 140));
+    }, land + hold);
+    setTimeout(() => {
+      plans.forEach(({ r, to }) => { r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); });
+      drifting = true;
+    }, land + hold + (win ? 2 * 140 + 760 : 60));
+  });
+
+  // the hand
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const aim = () => {
+    const b = band.getBoundingClientRect(), r = btn.getBoundingClientRect();
+    hand.style.setProperty("--hx", (r.left - b.left + r.width / 2 + 60) + "px");
+    hand.style.setProperty("--hy", (r.bottom - b.bottom - r.height * .22 + 99) + "px");
+  };
+  async function poke() {
+    if (reduce || document.hidden || !drifting) return;
+    aim(); hand.classList.remove("is-leave"); hand.classList.add("is-up", "is-hover"); await wait(380);
+    await wait(900 + Math.random() * 700);
+    hand.classList.remove("is-hover"); hand.classList.add("is-press"); btn.classList.add("is-down");
+    btn.dataset.byHand = "1"; btn.click(); delete btn.dataset.byHand; await wait(110);
+    hand.classList.remove("is-press"); btn.classList.remove("is-down"); await wait(140);
+    hand.classList.add("is-leave"); hand.classList.remove("is-up"); await wait(240);
+    hand.classList.remove("is-leave");
+  }
+  const next = () => setTimeout(async () => { await poke(); next(); }, 8000 + Math.random() * 8000);
+  const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(async () => { await poke(); next(); }, 3000); } }, { threshold: .6 });
+  io.observe(band);
+})();
