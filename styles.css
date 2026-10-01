@@ -6039,3 +6039,15 @@ html.theme-subway .btypes__go:not(#z) { background: #f2f2ee; color: #111; }
   html.theme-subway .btypes.btypes a:not(#z):not(#y):hover > span { color: #f2f2ee; }
   html.theme-subway .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: #fccc0a; color: #111; }
 }
+/* Business-type arrows, styled like the homepage plan cards' arrow buttons in each mood */
+html.theme-refined .btypes__go:not(#z) { background: var(--violet); color: #fff; box-shadow: none; }
+@media (hover: hover) { html.theme-refined .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--violet-deep, #4424db); color: #fff; } }
+html.theme-subway .btypes__go:not(#z) { border-radius: 8px; background: #0b5cd6; color: #fff; }
+@media (hover: hover) { html.theme-subway .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: #2a74e6; color: #fff; } html.theme-subway .btypes.btypes a:not(#z):not(#y):hover { border-color: #0b5cd6; } }
+html.theme-blocks .btypes__go:not(#z) { background: #fff; color: var(--ink); border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+html.theme-wedding .btypes__go:not(#z) { width: 40px; height: 40px; box-sizing: border-box; border-radius: 0; background: transparent; border: 1px solid var(--gold); color: var(--gold-ink); }
+html.theme-wedding .btypes__go svg path { stroke-width: 1.15; }
+html.theme-wedding .btypes__go svg { width: 20px; height: 20px; }
+@media (hover: hover) { html.theme-wedding .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--gold-ink); border-color: var(--gold-ink); color: #fff; } }
+html.theme-wedding #btype-dialog .btypes__go:not(#z) { width: 32px; height: 32px; }
+html.theme-wedding #btype-dialog .btypes__go svg { width: 16px; height: 16px; }
