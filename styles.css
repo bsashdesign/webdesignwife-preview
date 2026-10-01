@@ -4668,8 +4668,8 @@ html.theme-subway .sound-toggle .sound-toggle__switch:not(#z) i { border-radius:
 .billing-row .billing.sbill { gap: 12px; }
 .billing-row .sbill .billing__save { margin: 0; }
 /* back links: full strength, the underline runs under the arrow and the words like every other link */
-:is(a, button):has(> .i-arrow--back) { display: inline-flex; align-items: center; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat; padding-bottom: 1px; }
-:is(a, button):has(> .i-arrow--back):hover { animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both; }
+:is(a, button):not(.btn):has(> .i-arrow--back) { display: inline-flex; align-items: center; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat; padding-bottom: 1px; }
+:is(a, button):not(.btn):has(> .i-arrow--back):hover { animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both; }
 .start__back { color: var(--ink); }
 /* Transit (dark): eyebrow badges get a lighter box so they stand off the near-black page */
 .theme-subway.theme-dark .eyebrow:not(.eyebrow--light) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; }
@@ -4924,13 +4924,13 @@ html.theme-wedding .hplan__chip:not(#z) { background: var(--gold-ink); color: #f
 }
 a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover,
-:is(a, button):has(> .i-arrow--back):hover {
+:is(a, button):not(.btn):has(> .i-arrow--back):hover {
   animation: link-redraw .45s cubic-bezier(.4, 0, .2, 1) both, link-loop 2.4s cubic-bezier(.45, 0, .25, 1) .9s infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
   .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover,
-  :is(a, button):has(> .i-arrow--back):hover { animation: none; background-size: 100% 1.5px; }
+  :is(a, button):not(.btn):has(> .i-arrow--back):hover { animation: none; background-size: 100% 1.5px; }
 }
 /* Link hover, revised: the loop starts straight away (the line retracts from the left, then redraws from the left), a quicker cycle */
 @keyframes link-loop2 {
@@ -4941,7 +4941,7 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 }
 a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover,
-:is(a, button):has(> .i-arrow--back):hover {
+:is(a, button):not(.btn):has(> .i-arrow--back):hover {
   animation: link-loop2 1.6s cubic-bezier(.5, 0, .25, 1) infinite;
 }
 /* nav and footer-column links have no line until hovered, so they draw in first, then loop */
@@ -4949,7 +4949,7 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 @media (prefers-reduced-motion: reduce) {
   a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__more a:hover, .article__back:hover, .linkbtn:hover, .audit__alt a:hover, .mplan__more:hover,
   .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover, .nav__links a:not([aria-current]):hover,
-  :is(a, button):has(> .i-arrow--back):hover { animation: none; background-size: 100% 1.5px; }
+  :is(a, button):not(.btn):has(> .i-arrow--back):hover { animation: none; background-size: 100% 1.5px; }
 }
 .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover { animation: link-redraw .35s cubic-bezier(.4, 0, .2, 1) both, link-loop2 1.6s cubic-bezier(.5, 0, .25, 1) .5s infinite; }
 @media (prefers-reduced-motion: reduce) { .footer__col a:hover, .drawer__more a:hover, .footer__bottom a:hover { animation: none; } }
@@ -5758,8 +5758,6 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 .bhero { padding: 88px 0 36px; text-align: center; }
 .bhero h1 { margin: 10px auto 16px; font-size: clamp(2.4rem, 5.6vw, 4.4rem); line-height: 1.04; text-wrap: balance; }
 .bhero__lede { max-width: 620px; margin: 0 auto; font-size: 1.2rem; color: var(--ink-soft); text-wrap: balance; }
-.bhero__back { display: inline-block; margin-bottom: 18px; color: var(--ink-soft); font-weight: 600; text-decoration: none; }
-.bhero__back:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .bindex { padding: 8px 0 var(--band); }
 .btypes { list-style: none; margin: 0 auto; padding: 0; max-width: 1040px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
 .btypes a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 2px; border-bottom: 2px solid var(--line); color: var(--ink); font: 800 clamp(1.7rem, 3.6vw, 3rem)/1.1 var(--display); letter-spacing: -.01em; text-decoration: none; }
@@ -5839,7 +5837,6 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 @media (hover: hover) { .bf-more a:hover { color: var(--violet); } .theme-blocks .bf-more a:hover { color: var(--ink); background: var(--lime); } }
 .theme-wedding .bf-more a { font: italic 600 1.1rem var(--display); color: var(--gold-ink); }
 @media (max-width: 600px) { .bf-more { margin-bottom: 10px; font-size: .85rem; } }
-.bhero__back:not(#z) { display: table; margin: 0 auto 18px; }
 .bguides__list li { min-width: 0; }
 .bguides__title, .bguides__kicker { min-width: 0; white-space: normal; overflow-wrap: break-word; }
 @media (max-width: 1000px) and (min-width: 761px) { .bguides__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -5872,14 +5869,6 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 html.theme-blocks .btypes a:not(#z) > span { background: linear-gradient(var(--hl), var(--hl)) 0 90% / 0 .5em no-repeat; transition: background-size .3s var(--ease-out); }
 @media (hover: hover) { html.theme-blocks .btypes a:not(#z):hover > span { color: var(--ink); background-size: 100% .5em; } }
 html.theme-blocks .btypes a:not(#z):focus-visible > span { background-size: 100% .5em; }
-/* the business page's way back: a small pill above the heading, not an underlined link */
-.bhero__back:not(#z):not(#y) { display: table; margin: 0 auto 22px; padding: 7px 16px 7px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--card, #fff); color: var(--ink); font: 600 .88rem/1.2 var(--body); text-decoration: none; background-image: none; transition: border-color .15s, background-color .15s, transform .15s; }
-.bhero__back:not(#z):not(#y):hover { border-color: var(--ink); text-decoration: none; }
-.bhero__back .i-arrow { width: 13px; height: 13px; margin-right: 5px; vertical-align: -2px; }
-.theme-blocks .bhero__back:not(#z):not(#y) { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
-.theme-blocks .bhero__back:not(#z):not(#y):hover { background: var(--lime); transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
-.theme-subway .bhero__back:not(#z):not(#y) { border-radius: 6px; }
-.theme-wedding .bhero__back:not(#z):not(#y) { border-radius: 2px; border-color: rgba(184,149,90,.5); background: #fffdf8; font: italic 600 1rem var(--display); color: var(--gold-ink); }
 /* businesses.html: the heading steps back so it doesn't read like one more item in the list; the list is lighter
    than the heading (Soirée's in italic) and the note under it is centred */
 .btypes-page .bhero h1:not(#z) { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
@@ -5887,3 +5876,9 @@ html.theme-blocks .btypes a:not(#z):focus-visible > span { background-size: 100%
 .theme-subway .btypes a:not(#z) > span { font-weight: 700; }
 .theme-wedding .btypes a:not(#z) > span { font-style: italic; }
 .bindex__else:not(#z) { max-width: none; margin-inline: auto; }
+
+/* a business page's way back: a real (small, outlined) button at the top left, apart from the heading */
+.bhero--type { padding-top: 28px; }
+.bhero__top { margin: 0 0 48px; text-align: left; }
+.bhero__back .i-arrow { margin-right: 2px; }
+@media (max-width: 760px) { .bhero__top { margin-bottom: 28px; } .bhero--type { padding-top: 18px; } }
