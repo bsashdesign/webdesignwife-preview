@@ -6503,3 +6503,8 @@ html.theme-wedding .plan__apply { font-weight: 600; letter-spacing: .1em; color:
 .hplans .hplan.hplan { cursor: default; }
 html .hplans .hplan.hplan:hover { transform: none; }
 .ssum__tag:not(#z) { white-space: nowrap; }
+/* the seal's bottom line ("DAYS · GUARANTEED") is longer than its arc at the normal spacing, so it's set a touch
+   smaller and tighter to fit without being cut off */
+.seal .seal__arc--long:not(#z) { font-size: 8.4px; letter-spacing: .9px; }
+/* Tangy: the guarantee card has the ink outline and the hard 3D shadow, like Tangy's other cards */
+html.theme-blocks .ssum .ssum__promise:not(#z) { box-shadow: 4px 4px 0 var(--ink); }
