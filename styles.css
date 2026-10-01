@@ -5434,3 +5434,11 @@ html.theme-subway.theme-dark .callcard .btn:not(#z) { background: transparent; c
 html.theme-subway.theme-dark #mood .mood__panel:not(#z) { background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #2c2c2c; box-shadow: inset 0 0 0 1px #3a3a3a, 0 24px 48px rgba(0,0,0,.6); }
 html.theme-subway.theme-dark #mood .mood__close:not(#z) { background: #3a3a3a; }
 html.theme-subway.theme-dark #mood .mood__sound:not(#z) { border-top-color: #3d3d3d; }
+/* Change the Channel pop-up: options sit closer together (the hover highlight hugs each one more tightly),
+   and the option that's on still highlights under the pointer */
+#mood .mood__opt:not(#z) { padding-top: 6px; padding-bottom: 8px; }
+#mood .mood__opt + .mood__opt:not(#z) { margin-top: 2px; }
+@media (hover: hover) {
+  :is(#mood, #footer-channel) .mood__opt[aria-pressed="true"]:hover:not(#z) { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+  html.theme-subway.theme-dark #footer-channel .mood__opt[aria-pressed="true"]:hover:not(#z) { background: #242424; }
+}
