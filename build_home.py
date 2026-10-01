@@ -161,8 +161,9 @@ import html as _html
 from business_types import TYPES as BTYPES
 ARROW_SVG = '<svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 def btype_tiles():
+    # a plain index: a small number, the name, and an arrow that slides in on hover (no cards)
     e = _html.escape
-    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span>{e(t["label"])}</span><small class="btypes__blurb">{e(t["blurb"])}</small><i class="btypes__go" aria-hidden="true">{ARROW_SVG}</i></a></li>' for t in BTYPES)
+    return "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span class="blist__n">{i:02d}</span><span class="blist__name">{e(t["label"])}</span><i class="blist__go" aria-hidden="true">{ARROW_SVG}</i></a></li>' for i, t in enumerate(BTYPES, 1))
 
 page = (TEMPLATE
         .replace("{{BTYPE_TILES}}", btype_tiles())

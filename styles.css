@@ -6118,3 +6118,45 @@ html.theme-wedding #btype-dialog .btypes.btypes li a:not(#z):not(#y):not(#x) > s
    with the gold knob on the right) */
 html.theme-wedding .billing__switch:not([aria-checked="true"]):not(#z):not(#y), html.theme-wedding .sound-toggle:not([aria-checked="true"]) .sound-toggle__switch:not(#z):not(#y) { background: #fff; box-shadow: inset 0 0 0 1px rgba(31,35,54,.22); }
 html.theme-wedding .billing__switch:not([aria-checked="true"]):not(#z):not(#y) i, html.theme-wedding .sound-toggle:not([aria-checked="true"]) .sound-toggle__switch:not(#z):not(#y) i { background: #cfc8bb; box-shadow: none; }
+/* Transit (dark): an outlined button's hover fills light, so its lettering turns dark (it was white on white) */
+html.theme-subway.theme-dark .btn--ghost:hover:not(#z) { background: #f2f2ee; color: #111; border-color: #f2f2ee; }
+
+/* ===== Business types as a plain index (the list page and the "Choose your business" pop-up): no cards or
+   buttons, just a small number and the name; on hover the name nudges over and an arrow slides in ===== */
+.blist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 36px; }
+.blist a:not(#z) { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; color: var(--ink); text-decoration: none; background: none; animation: none; }
+.blist__n { flex: none; min-width: 1.7em; font: 500 .72rem var(--mono); letter-spacing: .06em; color: var(--ink-soft); transition: color .2s; }
+.blist__name { font: 700 1.2rem/1.2 var(--display); letter-spacing: -0.01em; transition: color .2s, transform .25s var(--ease-out); }
+.blist__go { display: inline-grid; align-self: center; opacity: 0; transform: translateX(-8px); transition: opacity .2s, transform .25s var(--ease-out); color: var(--violet); }
+.blist__go svg { width: 16px; height: 16px; }
+@media (hover: hover) {
+  .blist a:not(#z):hover .blist__name { transform: translateX(4px); color: var(--violet); }
+  .blist a:not(#z):hover .blist__go { opacity: 1; transform: translateX(4px); }
+  .blist a:not(#z):hover .blist__n { color: var(--ink); }
+}
+.blist a:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; border-radius: 4px; }
+/* the list page: larger, centred */
+.blist--page { max-width: 1000px; margin: 0 auto; column-gap: 48px; }
+.blist--page a:not(#z) { padding: 12px 0; }
+.blist--page .blist__name { font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
+.blist--page .blist__go svg { width: 20px; height: 20px; }
+@media (max-width: 900px) { .blist, .blist--page { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; } }
+@media (max-width: 520px) { .blist--page { grid-template-columns: 1fr; } .blist .blist__name { font-size: 1.05rem; } .blist--page .blist__name { font-size: 1.4rem; } .blist a:not(#z) { padding: 8px 0; gap: 8px; } }
+/* Tangy: on hover the name gets the lime highlighter */
+html.theme-blocks .blist__n { color: var(--ink); }
+html.theme-blocks .blist__name { padding: 0 2px; background: linear-gradient(var(--lime), var(--lime)) 0 88% / 0 .5em no-repeat; transition: background-size .3s var(--ease-out), transform .25s var(--ease-out); }
+html.theme-blocks .blist__go { color: var(--ink); }
+@media (hover: hover) { html.theme-blocks .blist a:not(#z):hover .blist__name { color: var(--ink); background-size: 100% .5em; } }
+/* Calm: violet on hover (the default) */
+/* Transit: signage type; the name turns Transit yellow on hover */
+html.theme-subway .blist__name { font-family: "Inter Tight", sans-serif; }
+html.theme-subway .blist__go { color: #fccc0a; }
+@media (hover: hover) { html.theme-subway .blist a:not(#z):hover .blist__name { color: #fccc0a; } }
+/* Soirée: italic serif names, Bodoni numerals, gold on hover */
+html.theme-wedding .blist__name { font: italic 500 1.4rem/1.15 var(--display); letter-spacing: 0; }
+html.theme-wedding .blist--page .blist__name { font-size: clamp(1.7rem, 2.6vw, 2.1rem); }
+html.theme-wedding .blist__n { font: 500 .85rem "Bodoni Moda", serif; letter-spacing: 0; color: var(--gold-ink); }
+html.theme-wedding .blist__go { color: var(--gold-ink); }
+html.theme-wedding .blist__go svg path { stroke-width: 1.2; }
+@media (hover: hover) { html.theme-wedding .blist a:not(#z):hover .blist__name { color: var(--gold-ink); } }
+@media (max-width: 520px) { html.theme-wedding .blist .blist__name { font-size: 1.2rem; } }
