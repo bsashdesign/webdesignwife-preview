@@ -5872,3 +5872,18 @@ html.theme-wedding .for--spin .drift__btn:not(#z):not(#y):active, html.theme-wed
 html.theme-blocks .btypes a:not(#z) > span { background: linear-gradient(var(--hl), var(--hl)) 0 90% / 0 .5em no-repeat; transition: background-size .3s var(--ease-out); }
 @media (hover: hover) { html.theme-blocks .btypes a:not(#z):hover > span { color: var(--ink); background-size: 100% .5em; } }
 html.theme-blocks .btypes a:not(#z):focus-visible > span { background-size: 100% .5em; }
+/* the business page's way back: a small pill above the heading, not an underlined link */
+.bhero__back:not(#z):not(#y) { display: table; margin: 0 auto 22px; padding: 7px 16px 7px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--card, #fff); color: var(--ink); font: 600 .88rem/1.2 var(--body); text-decoration: none; background-image: none; transition: border-color .15s, background-color .15s, transform .15s; }
+.bhero__back:not(#z):not(#y):hover { border-color: var(--ink); text-decoration: none; }
+.bhero__back .i-arrow { width: 13px; height: 13px; margin-right: 5px; vertical-align: -2px; }
+.theme-blocks .bhero__back:not(#z):not(#y) { border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.theme-blocks .bhero__back:not(#z):not(#y):hover { background: var(--lime); transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+.theme-subway .bhero__back:not(#z):not(#y) { border-radius: 6px; }
+.theme-wedding .bhero__back:not(#z):not(#y) { border-radius: 2px; border-color: rgba(184,149,90,.5); background: #fffdf8; font: italic 600 1rem var(--display); color: var(--gold-ink); }
+/* businesses.html: the heading steps back so it doesn't read like one more item in the list; the list is lighter
+   than the heading (Soirée's in italic) and the note under it is centred */
+.btypes-page .bhero h1:not(#z) { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+.btypes a:not(#z) > span { font-weight: 600; }
+.theme-subway .btypes a:not(#z) > span { font-weight: 700; }
+.theme-wedding .btypes a:not(#z) > span { font-style: italic; }
+.bindex__else:not(#z) { max-width: none; margin-inline: auto; }
