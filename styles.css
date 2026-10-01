@@ -6258,3 +6258,5 @@ html.theme-blocks .blist li a:focus-visible .blist__ic:not(#z) { background: var
 .blist__go:not(#z):not(#y) { left: 100%; margin-left: 8px; }
 /* Soirée: on hover the icon frame doesn't tilt; it just darkens its gold edge */
 @media (hover: hover) { html.theme-wedding .blist a:not(#z):hover .blist__ic { transform: none; box-shadow: inset 0 0 0 1px var(--gold-ink); } }
+/* Tangy: the business pop-up is light orange (the white icon badges and the close button sit on it) */
+html.theme-blocks #btype-dialog:not(#z) { background: var(--sun); }
