@@ -5005,3 +5005,13 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 .theme-subway.theme-dark .filter[aria-pressed="true"]:not(#z) { background: #0b5cd6; border-color: #0b5cd6; color: #fff; }
 .theme-subway.theme-dark .filter[aria-pressed="true"]:not(#z) * { color: rgba(255,255,255,.75); }
 .theme-subway.theme-dark .borough:hover:not(#z) { border-color: #4a4a4a; box-shadow: 0 16px 34px -22px rgba(0,0,0,.9); }
+/* Links that only show an underline on hover get the same animated line as every other link:
+   it draws in, then loops gently while hovered */
+:is(.cf-card__view, .borough em, .chip__try, .ref-preview__go) { text-decoration: none !important; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; padding-bottom: 1px; }
+:is(.cf-card__view:hover, .borough:hover em, .chip:hover .chip__try, .ref-preview:hover .ref-preview__go) {
+  text-decoration: none !important;
+  animation: link-redraw .35s cubic-bezier(.4, 0, .2, 1) both, link-loop2 1.6s cubic-bezier(.5, 0, .25, 1) .5s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.cf-card__view:hover, .borough:hover em, .chip:hover .chip__try, .ref-preview:hover .ref-preview__go) { animation: none; background-size: 100% 1.5px; }
+}
