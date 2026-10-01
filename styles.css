@@ -5118,3 +5118,16 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 .theme-wedding .tv__side .tv__knob::after { --ptr: #3a2413; }
 @media (prefers-reduced-motion: reduce) { .tv__side .tv__knob.is-spinning::after { animation: none; } }
 .tv__side .tv__knob:not(.tv__knob--sm)::after { transition: transform .75s cubic-bezier(.25, .8, .3, 1); }
+/* Transit key, revised: black cap with the Transit rainbow along its top edge, a plain grey edge underneath,
+   and no white top highlight (it showed as a grey rim on black) */
+:is(#moods-tv .tv-key--transit, :is(#mood, #footer-channel) .mood__opt[data-mood="transit"]) .key-well::before { display: none; }
+.tv-key.tv-key--transit { --cap-edge: #3a3a3a; }
+:is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { --cap-edge: #3a3a3a; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) {
+  background: linear-gradient(90deg, #e8392e 0 14.28%, #ff6319 0 28.56%, #fccc0a 0 42.84%, #00933c 0 57.12%, #0b5cd6 0 71.4%, #a336b0 0 85.68%, #8a8c8d 0) top / 100% 5px no-repeat, #101010;
+}
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 12px 0 var(--cap-edge), inset 0 0 0 0 transparent; }
+#moods-tv .tv-key--transit:hover .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 14px 0 var(--cap-edge), inset 0 0 0 0 transparent; }
+#moods-tv .tv-key--transit:is([aria-pressed="true"], :active) .key-well.key-well .tv-key__cap:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 3px 6px rgba(0,0,0,.5); }
+:is(#mood, #footer-channel) .mood__opt .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 6px 0 var(--cap-edge), inset 0 0 0 0 transparent; }
+:is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.5); }
