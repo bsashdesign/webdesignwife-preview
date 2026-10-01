@@ -5971,3 +5971,8 @@ html.theme-refined .btypes__blurb { font: 500 .95rem/1.4 var(--body); letter-spa
   .bf-actions .btn { padding: 10px 14px; font-size: .86rem; white-space: nowrap; }
   .bf-actions .bf-spin { min-width: 96px; }
 }
+/* Tangy business pages: a light orange page with white cards (each type's colour moves to its arrow button) */
+html.theme-blocks :is(.btypes-page, .btype-page) { background: var(--sun); }
+html.theme-blocks .btypes.btypes a:not(#z):not(#y) { background: #fff; }
+html.theme-blocks .btypes__go:not(#z) { background: var(--hl); }
+@media (hover: hover) { html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover { background: #fff; } html.theme-blocks .btypes.btypes a:not(#z):not(#y):hover .btypes__go { background: var(--ink); color: #fff; } }
