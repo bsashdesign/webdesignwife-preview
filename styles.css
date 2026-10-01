@@ -5392,3 +5392,21 @@ html.theme-blocks .ftabs:not(#z) { border-top: 0; }
 /* Transit How it works: step 2 is subway yellow (blue got lost against the purple section) */
 html.theme-subway.theme-dark #how .steps li:nth-child(2):not(#z) { --c: var(--yellow); border-top-color: var(--yellow); }
 html.theme-subway.theme-dark #how .steps li:nth-child(2):not(#z)::before { background: var(--yellow); color: #111; }
+/* Transit (dark) Contact: the form card is a dark panel like the cards beside it, with a purple line on top (Contact's colour in the menu) */
+html.theme-subway.theme-dark .contact__card.section--violet:not(#z) { background: #1c1c1c; box-shadow: inset 0 0 0 1px #333; border-top: 6px solid var(--purple); }
+html.theme-subway.theme-dark .contact__card .btn--light:not(#z), html.theme-subway.theme-dark .contact__card button[type="submit"]:not(#z) { background: #0b5cd6; border-color: #0b5cd6; color: #fff; }
+
+/* Transit: each page's badge dot matches that page's colour in the menu (Pricing orange, Features blue, Contact purple, Blog green) */
+html.theme-subway #pricing:not(#z) { --dot: var(--orange); }
+html.theme-subway .fhero:not(#z) { --dot: var(--blue); }
+html.theme-subway main.contact:not(#z) { --dot: var(--purple); }
+html.theme-subway .blog-hero .eyebrow:not(#z) { --dot: var(--green); }
+
+/* Page heroes (Pricing, Features, Contact, Blog, Get started): the badge sits the same distance below the nav on every page,
+   with the same gap to a title of the same size, in every mood */
+:is(.pricing-page > #pricing, .fhero, main.start, .blog-hero):not(#z) { padding-top: 72px; }
+:is(.pricing-page > #pricing .pricing__head, .fhero > .wrap, main.start > .wrap, .blog-hero > .wrap) { margin-top: 0; padding-top: 0; }
+:is(.pricing-page > #pricing .pricing__head, .fhero > .wrap, main.start > .wrap, .blog-hero > .wrap) > .eyebrow:first-child:not(#z) { margin-top: 0; margin-bottom: 18px; }
+:is(.pricing-page > #pricing .pricing__head, .fhero > .wrap, main.start > .wrap, .blog-hero > .wrap) > h1:not(#z) { margin-top: 0; font-size: var(--page-title, clamp(2.3rem, 4.4vw, 3.6rem)); }
+html.theme-wedding { --page-title: clamp(2.8rem, 6vw, 5rem); }
+@media (max-width: 760px) { :is(.pricing-page > #pricing, .fhero, main.start, .blog-hero):not(#z) { padding-top: 44px; } }
