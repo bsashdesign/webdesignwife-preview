@@ -5332,8 +5332,8 @@ html.theme-blocks .seal__ring { stroke: rgba(14,14,14,.55); }
 /* Tangy "Three ways": the Web Design Wife card is framed like the Founding 5 box (white inside, a lime band between two ink lines) instead of a flat lime fill */
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; border: var(--edge); box-shadow: 8px 8px 0 var(--ink), inset 0 0 0 7px var(--lime), inset 0 0 0 9px var(--ink); }
 /* on the button board and in the Change the Channel pop-up, Transit's key is black with a dark mustard edge, and its face is a yellow circle */
-.tv-key.tv-key--transit { --cap: #161616; --cap-edge: #8a6d00; }
-#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #161616; --cap-edge: #8a6d00; }
+.tv-key.tv-key--transit { --cap: #3a3a3a; --cap-edge: #8a6d00; }
+#moods-tv .tv-key--transit .key-well.key-well .tv-key__cap:not(#z), :is(#mood, #footer-channel) .mood__opt .moodicon--transit:not(#z) { background: #3a3a3a; --cap-edge: #8a6d00; }
 #moods-tv .tv-key--transit .tv-key__face, :is(#mood, #footer-channel) .mood__opt .moodicon--transit .mi { background-image: url(images/moods/transit-yellow.svg); }
 /* Tangy "Three ways": every card is coloured in (pink, yellow, lime), icons on white; ours keeps its framed double edge */
 html.theme-blocks #compare .compare-cards .cc:nth-child(1):not(#z) { background: var(--rose); }
