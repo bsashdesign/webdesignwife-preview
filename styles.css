@@ -5324,16 +5324,11 @@ html.theme-blocks #compare:not(#z) { background: var(--rose); color: var(--ink);
 html.theme-blocks #compare .compare-cards .cc:not(#z) { background: #fff; }
 html.theme-blocks #compare .compare-cards .cc:not(.cc--us):not(#z) :is(h3, ul) { color: var(--ink); }
 html.theme-blocks #compare .compare-cards .cc.cc--us:not(#z) { background: #fff; box-shadow: 8px 8px 0 var(--ink); }
-/* "Three ways": Do it yourself and Hire an agency share one card, split by a vertical line (stacked on phones, split by a horizontal one) */
+/* "Three ways": Do it yourself and Hire an agency are two separate cards, each only as tall as its text; the Web
+   Design Wife card beside them is the tall one */
 @media (min-width: 761px) {
-  #compare .compare-cards:not(#z) { column-gap: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 24px minmax(0, 1.3fr); }
-  #compare .compare-cards .cc.cc--us:not(#z) { grid-column: 4; }
-  #compare .compare-cards .cc:nth-child(1):not(#z) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-  #compare .compare-cards .cc:nth-child(2):not(#z) { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left-width: 0; }
-}
-@media (max-width: 760px) {
-  #compare .compare-cards .cc:nth-child(1):not(#z) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-  #compare .compare-cards .cc:nth-child(2):not(#z) { border-top-left-radius: 0; border-top-right-radius: 0; border-top-width: 0; margin-top: -16px; }
+  #compare .compare-cards:not(#z) { column-gap: 18px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr); align-items: start; }
+  #compare .compare-cards .cc.cc--us:not(#z) { align-self: stretch; }
 }
 /* Soirée: the shared card drops the inner frame so it reads as one card */
 html.theme-wedding #compare .compare-cards .cc:not(.cc--us):not(#z) { box-shadow: none; }
@@ -6592,3 +6587,5 @@ html.theme-wedding .hintro .chat-pick__or:not(#z):not(#y) { font-size: 1.6rem; l
 /* Transit: hovering a reply turns its text and outline yellow (Transit hovers change the text, not the fill), so it
    never looks like Web Design Wife's blue message */
 @media (hover: hover) { html.theme-subway.theme-dark .chat-choice:not(#z):not(#y):not(#x):hover { background: #262626; color: #fccc0a; border-color: #fccc0a; } }
+/* the reels are a second Spin button */
+.for--spin .treel { cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none; }

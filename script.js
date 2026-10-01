@@ -361,32 +361,41 @@ const CHEV_R = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13
           const big = hey.querySelector(".bubble").getBoundingClientRect();
           const k = big.width / H.width;
           const tx = big.left - P.left - (H.left - P.left) * k, ty = big.top - P.top - (H.top - P.top) * k;
-          // where the sent message sits in the big phone: the reply you picked slides there first
-          const to = { left: P.left + (S.left - P.left) * k + tx, top: P.top + (S.top - P.top) * k + ty };
+          // in the big phone your message would sit right under mine; it starts where the reply you picked is
+          // instead, and settles into its place during the sweep (in the phone's own, unscaled pixels)
           const from = b.getBoundingClientRect();
+          const ox = (from.left - (P.left + (S.left - P.left) * k + tx)) / k, oy = (from.top - (P.top + (S.top - P.top) * k + ty)) / k;
           phone.style.transformOrigin = "0 0";
           // ?slowmo=8 plays the handover in slow motion (for checking it frame by frame)
           const SLOW = +new URLSearchParams(location.search).get("slowmo") || 1;
-          const BIG = `translate(${tx}px, ${ty}px) scale(${k})`, SLIDE = 420 * SLOW, SHRINK = 1000 * SLOW;
+          const BIG = `translate(${tx}px, ${ty}px) scale(${k})`, APPEAR = 380 * SLOW, SWEEP = 1150 * SLOW;
           box.querySelectorAll(".hintro__from, .hintro__you, .hintro__cue, .chat-pick__or, .chat-choice").forEach((el) => {
             if (el !== b) el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260 * SLOW, easing: "ease-out", fill: "forwards" });
           });
-          b.animate([{ transform: "none" }, { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px)` }], { duration: SLIDE, easing: "cubic-bezier(.4, 0, .2, 1)", fill: "forwards" });
-          const move = phone.animate([
-            { transform: BIG, opacity: 0 },
-            { transform: BIG, opacity: 1, offset: SLIDE / (SLIDE + SHRINK) },
-            { transform: "none", opacity: 1 },
-          ], { duration: SLIDE + SHRINK, easing: "linear" });
-          // the shrink itself eases in and out (the linear timeline above just holds the big phone during the slide)
-          move.effect.updateTiming({ easing: "linear" });
-          await tick(SLIDE);
-          // the big messages hand over to the phone's own, in exactly the same place
+          // 1. the phone fades in behind the messages, big, lined up with them (nothing moves)
+          const appear = phone.animate([{ transform: BIG, opacity: 0 }, { transform: BIG, opacity: 1 }], { duration: APPEAR, easing: "ease-out", fill: "forwards" });
+          await tick(APPEAR);
+          // 2. the phone's own messages take over in exactly the same places
+          const mIn = sent.querySelector(".m__in");
+          mIn.style.overflow = "visible"; thread.style.overflow = "visible";
+          thread.style.webkitMaskImage = thread.style.maskImage = "none";
+          sentIn.style.transform = `translate(${ox}px, ${oy}px)`;
           heyIn.style.visibility = sentIn.style.visibility = "";
           box.remove();
-          move.cancel();
-          const shrink = phone.animate([{ transform: BIG }, { transform: "none" }], { duration: SHRINK, easing: "cubic-bezier(.6, 0, .2, 1)" });
+          // 3. one sweep down into place, along an arc: it drops first, then glides across, shrinking as it goes
+          const ease = (u) => (u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+          const frames = [];
+          for (let n = 0; n <= 40; n++) {
+            const e = ease(n / 40), down = 1 - Math.pow(1 - e, 2.2), across = Math.pow(e, 1.8);
+            frames.push({ transform: `translate(${tx * (1 - across)}px, ${ty * (1 - down)}px) scale(${k + (1 - k) * e})`, opacity: 1 });
+          }
+          const sweep = phone.animate(frames, { duration: SWEEP, easing: "linear" });
+          appear.cancel();
+          sentIn.style.transform = "";
+          sentIn.animate([{ transform: `translate(${ox}px, ${oy}px)` }, { transform: "none" }], { duration: SWEEP * .8, easing: "cubic-bezier(.65, 0, .35, 1)" });
           demo.classList.remove("is-intro");
-          await shrink.finished.catch(() => {});
+          await sweep.finished.catch(() => {});
+          mIn.style.overflow = thread.style.overflow = thread.style.webkitMaskImage = thread.style.maskImage = "";
           phone.style.transformOrigin = "";
           demo.classList.remove("is-handoff");
           sent.querySelector(".receipt").style.opacity = "";
@@ -2619,6 +2628,11 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     hand.classList.add("is-leave"); hand.classList.remove("is-up"); await wait(240);
     hand.classList.remove("is-leave");
   }
+  // Clicking any of the reels is the same as pressing Spin
+  reels.forEach((r) => r.reel.addEventListener("click", () => {
+    r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 140);
+    btn.click();
+  }));
   const next = () => setTimeout(async () => { if (youSpun) return; await poke(); next(); }, 8000 + Math.random() * 8000);
   const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(async () => { await poke(); next(); }, 3000); } }, { threshold: .6 });
   if (hand) io.observe(band);
