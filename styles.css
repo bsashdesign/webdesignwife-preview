@@ -6731,3 +6731,12 @@ html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-width: 1px; }
   html .demo.is-bare .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .56rem; }
   html.theme-wedding .demo.is-bare .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .66rem; }
 }
+/* the typing bubble is Web Design Wife typing, so it looks like her messages in each mood (dots in the text colour) */
+html .m--typing .bubble:not(#z):not(#y) { background: var(--violet); border-bottom-left-radius: 5px; }
+html .m--typing .bubble i:not(#z) { background: rgba(255, 255, 255, .85); }
+html.theme-refined .m--typing .bubble:not(#z):not(#y) { border-radius: 18px 18px 18px 4px; }
+html.theme-blocks .m--typing .bubble:not(#z):not(#y) { background: #9fd8ff; }
+html.theme-blocks .m--typing .bubble i:not(#z) { background: var(--ink); }
+html.theme-subway .m--typing .bubble:not(#z):not(#y) { background: var(--blue); border-radius: 12px 12px 12px 0; }
+html.theme-wedding .m--typing .bubble:not(#z):not(#y) { background: var(--ink); border-radius: 10px 10px 10px 1px; }
+html.theme-wedding .m--typing .bubble i:not(#z) { background: #e9d9b4; }
