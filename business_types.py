@@ -245,7 +245,7 @@ TYPES = [
 
 # A small line icon for each type (24×24, drawn with the current colour), shown before the name in the lists
 ICONS = {
-  "plumbers": '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L4 16.7a1.8 1.8 0 0 0 2.6 2.6l5.3-5.3a4 4 0 0 0 5.1-5.4l-2.4 2.4-2.1-.6-.6-2.1z"/>',
+  "plumbers": '<g transform="translate(12 12) scale(1.2) translate(-10.45 -12.85)"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L4 16.7a1.8 1.8 0 0 0 2.6 2.6l5.3-5.3a4 4 0 0 0 5.1-5.4l-2.4 2.4-2.1-.6-.6-2.1z" vector-effect="non-scaling-stroke"/></g>',
   "salons-and-barbershops": '<circle cx="6" cy="7" r="2.5"/><circle cx="6" cy="17" r="2.5"/><path d="M8.2 8.4 20 17M8.2 15.6 20 7"/>',
   "pet-services": '<circle cx="5.5" cy="10.5" r="2"/><circle cx="9.5" cy="5.8" r="2"/><circle cx="14.5" cy="5.8" r="2"/><circle cx="18.5" cy="10.5" r="2"/><path d="M12 11.5c-2.8 0-5.5 3.5-5.5 6 0 1.6 1.2 2.3 2.6 2.3 1.2 0 1.8-.6 2.9-.6s1.7.6 2.9.6c1.4 0 2.6-.7 2.6-2.3 0-2.5-2.7-6-5.5-6z"/>',
   "dentists": '<path d="M7.5 3.5c-2.3 0-3.8 1.8-3.8 4.3 0 3 1.5 4.3 2.1 7.2.5 2.6 1 5.5 2.4 5.5 1.6 0 1.4-4.5 3.8-4.5s2.2 4.5 3.8 4.5c1.4 0 1.9-2.9 2.4-5.5.6-2.9 2.1-4.2 2.1-7.2 0-2.5-1.5-4.3-3.8-4.3-2 0-2.9 1.2-4.5 1.2s-2.5-1.2-4.5-1.2z"/>',
@@ -256,7 +256,7 @@ ICONS = {
   "accountants": '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 6.5h8v3H8zM8.5 13.5h.01M12 13.5h.01M15.5 13.5h.01M8.5 17h.01M12 17h.01M15.5 17h.01"/>',
   "bakeries": '<path d="M6 11.5a3.6 3.6 0 0 1-.6-7C7 3.9 9.4 3.5 12 3.5s5 .4 6.6 1a3.6 3.6 0 0 1-.6 7v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1z"/>',
   "florists": '<path d="M12 21v-9M12 17.5c-2.6 0-4.6-1.5-5.2-4 2.6 0 4.6 1.5 5.2 4zM12 15.5c2.6 0 4.6-1.5 5.2-4-2.6 0-4.6 1.5-5.2 4zM8 3.5l2 2 2-2.5 2 2.5 2-2v4.2a4 4 0 0 1-8 0z"/>',
-  "pharmacies": '<path d="M10.6 3.9a5 5 0 0 1 7.1 7.1l-6.7 6.7a5 5 0 0 1-7.1-7.1zM7.6 7.6l7 7"/>',
+  "pharmacies": '<g transform="translate(1.2 1.2)"><path d="M10.6 3.9a5 5 0 0 1 7.1 7.1l-6.7 6.7a5 5 0 0 1-7.1-7.1zM7.6 7.6l7 7"/></g>',
   "law-offices": '<path d="M12 4v16M8 20h8M5 7h14M5 7l-2.5 6a2.5 2.2 0 0 0 5 0zM19 7l-2.5 6a2.5 2.2 0 0 0 5 0z"/>',
   "auto-repair-shops": '<path d="M3.5 15.5v-3.2l2.2-4.6h12.6l2.2 4.6v3.2zM6 12.3h12"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/>',
   "real-estate": '<path d="M3.5 11 12 4l8.5 7M5.5 9.5V20h13V9.5M10 20v-5h4v5"/>',
