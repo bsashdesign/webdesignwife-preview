@@ -1815,21 +1815,8 @@ document.addEventListener("click", (e) => {
   // Sound on/off, remembered on this device. Every sound checks it first.
   let muted = false;
   try { muted = localStorage.getItem("wdw-muted") === "1"; } catch (e) {}
-  // Whenever a sound plays, the mini TV in the corner does a little dance; with sound on, waves come out of it too
-  // (muted, it still dances, just without the waves).
-  // Sounds made on the big "Change the Channel" TV (its keys, knobs and speaker) make the big TV dance instead.
-  const danceT = new Map();
-  // (the big TV only dances to its tune; its other sounds just send out waves)
-  const dance = (ms, big, moves = !big) => {
-    // the big TV only reacts (dance and waves) to its tune; its other sounds show nothing
-    if (big && !moves) return;
-    const el = big ? document.querySelector("#moods-tv .tv") : document.querySelector(".mood__btn");
-    if (!el) return;
-    el.classList.toggle("is-dancing", moves);
-    el.classList.toggle("is-sounding", !muted);
-    clearTimeout(danceT.get(el));
-    danceT.set(el, setTimeout(() => el.classList.remove("is-dancing", "is-sounding"), ms));
-  };
+  // (the TVs used to dance and send out waves whenever a sound played; that's switched off)
+  const dance = () => {};
   // the switches read "on" when sound is playing
   const syncMute = () => document.querySelectorAll("[data-mute]").forEach((b) => b.setAttribute("aria-checked", String(!muted)));
   syncMute();
@@ -2199,7 +2186,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   addEventListener("resize", size);
   new MutationObserver(() => setTimeout(size, 60)).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
-  let drifting = true;
+  let drifting = true, spins = 0;
   const STEP = 4500, GLIDE = 1600, CLICK = "cubic-bezier(.34,1.45,.55,1)";
   const step = (r) => {
     if (!drifting || reduce || document.hidden) return;
@@ -2208,7 +2195,8 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
       const { to, toAt } = r.after; r.after = null;
       r.pos = toAt; show(r, GLIDE, CLICK);
       setTimeout(() => { r.reel.classList.add("is-click"); setTimeout(() => r.reel.classList.remove("is-click"), 120); }, GLIDE * .6);
-      setTimeout(() => { r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }, GLIDE + 40);
+      const gen = spins;
+      setTimeout(() => { if (gen !== spins) return; r.reel.classList.remove("is-win"); r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }, GLIDE + 40);
       return;
     }
     recentre(r); show(r, 0); void r.ul.offsetWidth;
@@ -2231,39 +2219,46 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
     });
   };
 
+  // Spin. It can be pressed again while it's still spinning: each press starts a fresh full spin from wherever
+  // the reels are at that moment, and only the last one lands (and only its timers run)
   btn.addEventListener("click", () => {
-    if (!drifting) return; drifting = false; msg.classList.remove("is-on");
+    const gen = ++spins; drifting = false; msg.classList.remove("is-on");
     const win = btn.dataset.byHand !== "1"; // your spins line up three stars; the hand's never do
     const LEN = 24, plans = [];
     reels.forEach((r, k) => {
-      const n = r.n, from = idx(r);
-      let to; do { to = Math.floor(Math.random() * n); } while (to === from);
+      const n = r.n; r.after = null; r.reel.classList.remove("is-win");
+      // where the reel is right now, even mid-glide: the row showing in the frame, and the one it came from
+      const R = row(r), ty = new DOMMatrixReadOnly(getComputedStyle(r.ul).transform).m42;
+      const now = -ty / R + peek(), at0 = Math.max(1, Math.min(r.ul.children.length - 2, Math.round(now))), frac = now - at0;
+      const cur = r.ul.children[at0].outerHTML, prev = r.ul.children[at0 - r.dir].outerHTML;
+      let to; do { to = Math.floor(Math.random() * n); } while (n > 1 && r.ul.children[at0].textContent === r.items[to]);
       const word = (i) => `<li><span>${r.items[((i % n) + n) % n]}</span></li>`, star = () => `<li class="bf-ico">${STAR}</li>`;
       // current word → a whirl of words and stars → (your spins: a star) → the new word with its real neighbours
-      const seq = [word(from - r.dir), word(from)];
+      const seq = [prev, cur];
       for (let i = 0; i < LEN; i++) seq.push(i % 2 ? word(Math.floor(Math.random() * n)) : star());
       // your spins stop on a star with the new word right after it; the hand's go straight to the new word
       const symAt = seq.length; if (win) seq.push(star()); else seq.push(word(to - r.dir));
       const toAt = seq.length; seq.push(word(to), word(to + r.dir), word(to + 2 * r.dir));
       const L = seq.length, items = r.dir > 0 ? seq : seq.slice().reverse(), at = (i) => (r.dir > 0 ? i : L - 1 - i);
       r.ul.innerHTML = items.join("");
-      r.pos = at(1); show(r, 0); void r.ul.offsetWidth;
+      r.pos = at(1) + frac; show(r, 0); void r.ul.offsetWidth;
       const ms = reduce ? 0 : 1300 + k * 350;
       r.reel.classList.add("is-spinning"); r.pos = at(win ? symAt : toAt); show(r, ms, "cubic-bezier(.15,.85,.25,1.06)");
       // the blur eases off while the reel is still slowing, so the last few rows are crisp as it settles
-      setTimeout(() => r.reel.classList.remove("is-spinning"), ms * .45);
+      setTimeout(() => { if (gen === spins) r.reel.classList.remove("is-spinning"); }, ms * .45);
       plans.push({ r, to, toAt: at(toAt) });
     });
     const land = reduce ? 0 : 1300 + 2 * 350 + 40;
-    if (win) setTimeout(() => {
+    const later = (fn, ms) => setTimeout(() => { if (gen === spins) fn(); }, ms);
+    if (win) later(() => {
       reels.forEach((r) => { r.reel.classList.remove("is-win"); void r.reel.offsetWidth; r.reel.classList.add("is-win"); });
       confetti();
     }, land);
     if (win) {
       // hold the stars, then let the usual ticking carry on from them
-      setTimeout(() => { msg.classList.remove("is-on"); plans.forEach(({ r, to, toAt }) => { r.after = { to, toAt }; }); drifting = true; }, land + 1600);
+      later(() => { msg.classList.remove("is-on"); plans.forEach(({ r, to, toAt }) => { r.after = { to, toAt }; }); drifting = true; }, land + 1600);
     } else {
-      setTimeout(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); drifting = true; }, land + 60);
+      later(() => { plans.forEach(({ r, to }) => { r.ul.innerHTML = wordsHTML(r.items); r.pos = r.n * 6 + to; show(r, 0); }); drifting = true; }, land + 60);
     }
   });
 
@@ -2328,7 +2323,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   if (band.classList.contains("for--keys")) {
     reels.forEach((r) => {
       const up = () => r.reel.classList.remove("is-press");
-      r.reel.addEventListener("pointerdown", () => { if (drifting) r.reel.classList.add("is-press"); });
+      r.reel.addEventListener("pointerdown", () => r.reel.classList.add("is-press"));
       r.reel.addEventListener("pointerup", up); r.reel.addEventListener("pointerleave", up); r.reel.addEventListener("pointercancel", up);
       r.reel.addEventListener("click", () => btn.click());
     });
