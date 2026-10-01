@@ -2366,7 +2366,7 @@ document.querySelectorAll(".for--spin .slot.tick").forEach((slot) => {
   });
 
   // phones: no Spin button; a tap anywhere on the sentence spins it
-  band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn")) btn.click(); });
+  band.addEventListener("click", (e) => { if (phoneMQ.matches && !e.target.closest(".drift__btn, a")) btn.click(); });
 
   // phones: a lever on the right edge; drag the red ball down (or tap it) to spin
   const lever = band.querySelector(".bf-lever");

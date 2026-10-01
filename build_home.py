@@ -244,6 +244,34 @@ pricing = pricing.replace("{{FAQ_SCHEMA}}", faq_schema(pricing))
 features = full_page((HERE / "features.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
 (HERE / "features.html").write_text(bust(titlecase.apply(add_alt_copy(features))))
 
+# Business types: businesses.html lists every type in large, clickable text; each opens its own page
+# (websites-for-<slug>.html) about what I'd do for that kind of business. Data: business_types.py.
+import html as _html
+from business_types import TYPES as BTYPES
+POSTS = {p["slug"]: p for p in json.loads((HERE / "blog" / "posts.json").read_text())}
+esc = _html.escape
+btypes_index = full_page((HERE / "businesses.template.html").read_text()).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
+btypes_index = (btypes_index
+    .replace("{{META_TITLE}}", "See What I'd Do for Your Business — Web Design Wife")
+    .replace("{{DESC}}", "Plumbers, salons, dentists, restaurants and more: pick your type of business and see what I'd build, set up and keep up to date for you.")
+    .replace("{{TYPES}}", "".join(f'<li><a href="websites-for-{t["slug"]}.html"><span>{esc(t["label"])}</span> →</a></li>' for t in BTYPES)))
+(HERE / "businesses.html").write_text(bust(titlecase.apply(btypes_index)))
+BTYPE_TEMPLATE = (HERE / "business.template.html").read_text()
+for t in BTYPES:
+    pg = full_page(BTYPE_TEMPLATE).replace("{{AUDIT_DIALOG}}", AUDIT_DIALOG_STANDALONE)
+    guides = "".join(
+        f'<li><a href="blog/{g}.html"><span class="bguides__kicker">{esc(POSTS[g]["kicker"])}</span><span class="bguides__title">{esc(POSTS[g]["title"])}</span></a></li>'
+        for g in t["guides"] if g in POSTS)
+    others = "".join(f'<li><a href="websites-for-{o["slug"]}.html">{esc(o["label"])}</a></li>' for o in BTYPES if o is not t)
+    pg = (pg.replace("{{META_TITLE}}", f'{titlecase.title(t["title"])} — Web Design Wife')
+            .replace("{{DESC}}", esc(t["intro"].split(" Here's")[0] + " Here's what I'd build, set up and keep up to date for your business."))
+            .replace("{{TITLE}}", esc(t["title"]))
+            .replace("{{INTRO}}", esc(t["intro"]))
+            .replace("{{POINTS}}", "".join(f"<li>{esc(x)}</li>" for x in t["points"]))
+            .replace("{{GUIDES}}", guides)
+            .replace("{{OTHERS}}", others))
+    (HERE / f'websites-for-{t["slug"]}.html').write_text(bust(titlecase.apply(pg)))
+
 # Old per-style URLs now open the homepage in that mood.
 for old, key in (("design-a", "calm"), ("design-b", "transit"), ("design-c", "tangy"), ("design-d", "sophisticated")):
     (HERE / f"{old}.html").write_text(
@@ -264,7 +292,7 @@ print("built index.html (moods: " + ", ".join(m["label"] for m in MOODS) + ")")
 
 # Sitemap for the live domain (webdesignwife.com). Regenerated on every build.
 SITE = "https://webdesignwife.com/"
-pages = ["", "pricing.html", "features.html", "contact.html", "start.html", "blog/"] + sorted(
+pages = ["", "pricing.html", "features.html", "contact.html", "start.html", "businesses.html"] + [f'websites-for-{t["slug"]}.html' for t in BTYPES] + ["blog/"] + sorted(
     "blog/" + f.name for f in (HERE / "blog").glob("*.html") if f.name != "index.html")
 today = time.strftime("%Y-%m-%d")
 (HERE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

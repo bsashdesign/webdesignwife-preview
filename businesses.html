@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <script>document.documentElement.classList.add("js");</script>
-  <title>Contact — Web Design Wife</title>
-  <meta name="description" content="Get in touch with Ben at Web Design Wife: write a note, or request a callback at a time that suits you.">
+  <title>See What I'd Do for Your Business — Web Design Wife</title>
+  <meta name="description" content="Plumbers, salons, dentists, restaurants and more: pick your type of business and see what I'd build, set up and keep up to date for you.">
   <link rel="icon" href="images/favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,6 @@
     <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel"><span class="minitv__waves" aria-hidden="true"><i></i><i></i><i></i></span><span class="minitv" aria-hidden="true"><i class="minitv__ant"></i><span class="minitv__set"><span class="minitv__screen"><span class="minitv__show"></span><span class="minitv__face"></span></span><i class="minitv__knob"></i></span></span></button>
     <div class="mood__panel" id="mood-panel" role="group" aria-label="Change the channel"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Change the Channel</p><p class="mood__intro">Same website, four completely different directions. Press a button and watch the whole page change.</p><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Tangy</strong><small>Bright, playful and full of color.</small></span></button><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Soirée</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button><div class="mood__sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div></div>
   </div>
-
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="index.html" aria-label="Web Design Wife home">
@@ -73,57 +72,20 @@
     </aside>
   </div>
 
-  <main id="main" class="start contact">
-    <div class="wrap">
-      <p class="eyebrow">Contact</p>
-      <h1 class="start__title"><span data-alt-theme-wedding="RSVP">Get in Touch</span></h1>
-      <p class="start__intro">A question about your website, a plan, or anything else? It comes straight to me, and I reply within one business day.</p>
-
-      <div class="start__grid">
-        <div class="contact__card section--violet">
-          <div class="formcard">
-            <div class="tabs" role="tablist" aria-label="How would you like to talk?">
-              <button type="button" role="tab" id="tab-note" aria-selected="true" aria-controls="form-note">Write Me a Note <svg class="i-heart" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.6S1.8 9.9 1.8 5.8A3.2 3.2 0 0 1 8 4.6a3.2 3.2 0 0 1 6.2 1.2C14.2 9.9 8 13.6 8 13.6Z" fill="currentColor"/></svg></button>
-              <button type="button" role="tab" id="tab-call" aria-selected="false" aria-controls="panel-call" tabindex="-1">Request a Callback</button>
-            </div>
-            <!-- TODO: connect these forms to a form backend (Formspree, etc.) -->
-            <div class="form callpanel" id="panel-call" role="tabpanel" aria-labelledby="tab-call" hidden>
-              <p class="form__desc">Choose a 15-minute time that works for you. I'll call the number you provide at that time.</p>
-              <div class="callpanel__cal" id="cal-call" hidden></div>
-              <div class="callpanel__soon" id="cal-call-soon">
-                <strong>Booking opens soon</strong>
-                <p>Until then, <a href="mailto:ben@webdesignwife.com?subject=Callback">email me</a> a couple of times that work and your number, and I'll call you.</p>
-              </div>
-              <p class="callpanel__note">You're booking a scheduled callback. Please be available at the time you pick: I'll call you directly. No Zoom or Google Meet needed.</p>
-            </div>
-          <form class="form form--note" id="form-note" role="tabpanel" aria-labelledby="tab-note" novalidate data-success="Sealed and sent ♥ I'll write back within one business day.">
-            <p class="form__desc note__intro">Not ready for a call? Send me a note with any question. It stays between us, no pressure.</p>
-            <label>Your name<input name="name" required autocomplete="name"></label>
-            <label>Email<input name="email" type="email" required autocomplete="email"></label>
-            <label>Your note<textarea name="note" rows="4" required placeholder="Dear Web Design Wife…"></textarea></label>
-            <button class="btn btn--light btn--block" type="submit">Seal It and Send <svg class="i-heart" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.6S1.8 9.9 1.8 5.8A3.2 3.2 0 0 1 8 4.6a3.2 3.2 0 0 1 6.2 1.2C14.2 9.9 8 13.6 8 13.6Z" fill="currentColor"/></svg></button>
-            <p class="form__msg" role="status" aria-live="polite"></p>
-          </form>
-          </div>
-        </div>
-
-        <aside class="contact__info" aria-label="Contact details">
-          <dl class="contact__list">
-            <div><dt>Email</dt><dd><a href="mailto:ben@webdesignwife.com">ben@webdesignwife.com</a></dd></div>
-            <div><dt>Based in</dt><dd>Brooklyn, NY. Working with businesses in all five boroughs.</dd></div>
-            <div><dt>Replies</dt><dd>Within one business day, Monday to Friday</dd></div>
-          </dl>
-          <div class="contact__next">
-            <p><strong>Want a free website audit?</strong> I'll review your site and Google Maps listing and send you the fixes that matter most.</p>
-            <a class="btn btn--primary btn--block" href="index.html#audit">Get a Free Audit</a>
-          </div>
-          <div class="contact__next">
-            <p><strong>Ready to start?</strong> Pick a plan and tell me about your business.</p>
-            <a class="btn btn--ghost btn--block" href="start.html">Get Started</a>
-          </div>
-        </aside>
+  <main id="main" class="btypes-page">
+    <section class="bhero">
+      <div class="wrap">
+        <p class="eyebrow">Who I build for</p>
+        <h1>See What I'd Do for Your Business</h1>
+        <p class="bhero__lede">Pick the one closest to yours.</p>
       </div>
-    </div>
+    </section>
+    <section class="bindex">
+      <div class="wrap">
+        <ul class="btypes"><li><a href="websites-for-plumbers.html"><span>Plumbers</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-salons.html"><span>Salons</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-barbershops.html"><span>Barbers</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-dentists.html"><span>Dentists</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-restaurants.html"><span>Restaurants</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-contractors.html"><span>Contractors</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-cleaning-services.html"><span>Cleaners</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-gyms.html"><span>Gyms</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-accountants.html"><span>Accountants</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-bakeries.html"><span>Bakeries</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-florists.html"><span>Florists</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-pharmacies.html"><span>Pharmacies</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-law-offices.html"><span>Law offices</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="websites-for-auto-repair-shops.html"><span>Auto shops</span><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+        <p class="bindex__else">Don't see yours? I work with all kinds of local businesses. <a href="contact.html">Tell me about yours<svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -200,15 +162,5 @@
   </dialog>
 
   <script src="script.js?v=1790844560"></script>
-  <script>
-    // Open the callback tab when linked with ?type=callback
-    if (["call", "callback"].includes(new URLSearchParams(location.search).get("type"))) document.getElementById("tab-call").click();
-    // The scheduled callback: a Cal.com calendar showing Ben's real availability (set in Cal.com, not here).
-    if (window.WDW_CAL && WDW_CAL.call) {
-      wdwCalInline("#cal-call", WDW_CAL.call, {});
-      document.getElementById("cal-call").hidden = false;
-      document.getElementById("cal-call-soon").hidden = true;
-    }
-  </script>
 </body>
 </html>

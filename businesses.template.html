@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{DESC}}">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{FONTS}}
+  <link rel="stylesheet" href="styles.css">
+  {{THEME_CSS}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {{SWITCHER}}
+  {{NAV}}
+  {{DRAWER}}
+
+  <main id="main" class="btypes-page">
+    <section class="bhero">
+      <div class="wrap">
+        <p class="eyebrow">Who I build for</p>
+        <h1>See what I'd do for your business</h1>
+        <p class="bhero__lede">Pick the one closest to yours.</p>
+      </div>
+    </section>
+    <section class="bindex">
+      <div class="wrap">
+        <ul class="btypes">{{TYPES}}</ul>
+        <p class="bindex__else">Don't see yours? I work with all kinds of local businesses. <a href="contact.html">Tell me about yours →</a></p>
+      </div>
+    </section>
+  </main>
+
+  {{FOOTER}}
+  {{MOBILEBAR}}
+  {{AUDIT_DIALOG}}
+
+  <script src="script.js"></script>
+</body>
+</html>

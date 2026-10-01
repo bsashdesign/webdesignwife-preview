@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{DESC}}">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{FONTS}}
+  <link rel="stylesheet" href="styles.css">
+  {{THEME_CSS}}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {{SWITCHER}}
+  {{NAV}}
+  {{DRAWER}}
+
+  <main id="main" class="btype-page">
+    <section class="bhero bhero--type">
+      <div class="wrap">
+        <a class="bhero__back" href="businesses.html">← All business types</a>
+        <p class="eyebrow">What I'd do</p>
+        <h1>{{TITLE}}</h1>
+        <p class="bhero__lede">{{INTRO}}</p>
+      </div>
+    </section>
+    <section class="bdo">
+      <div class="wrap">
+        <ol class="bdo__list">{{POINTS}}</ol>
+        <p class="bdo__note">All of it is included in your plan, and I keep it up to date for you. <a href="features.html">See everything that's included →</a></p>
+      </div>
+    </section>
+    <section class="bcta">
+      <div class="wrap">
+        <h2>Want this for your business?</h2>
+        <p>Start with a free look at your website and Google Maps profile, or tell me about your business.</p>
+        <div class="bcta__btns">
+          <a class="btn btn--primary" href="#audit">Get a Free Website + Maps Audit</a>
+          <a class="btn btn--ghost" href="start.html">Get Started</a>
+          <a class="btn btn--ghost" href="contact.html?type=callback">Request a callback</a>
+        </div>
+      </div>
+    </section>
+    <section class="bguides">
+      <div class="wrap">
+        <h2>Helpful guides</h2>
+        <ul class="bguides__list">{{GUIDES}}</ul>
+      </div>
+    </section>
+    <section class="bothers">
+      <div class="wrap">
+        <h2>Other business types</h2>
+        <ul class="bothers__list">{{OTHERS}}</ul>
+      </div>
+    </section>
+  </main>
+
+  {{FOOTER}}
+  {{MOBILEBAR}}
+  {{AUDIT_DIALOG}}
+
+  <script src="script.js"></script>
+</body>
+</html>
