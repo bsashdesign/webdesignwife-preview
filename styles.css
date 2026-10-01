@@ -4678,3 +4678,12 @@ html.theme-subway .sound-toggle .sound-toggle__switch:not(#z) i { border-radius:
 .theme-subway.theme-dark .eyebrow:not(.eyebrow--light) { background: #262626; box-shadow: inset 0 0 0 1px #3a3a3a; }
 /* Tangy's small switch: a smaller knob so its ring sits clear of the track's outline */
 html.theme-blocks .sound-toggle .sound-toggle__switch:not(#z) i { top: 5px; left: 5px; width: 10px; height: 10px; box-shadow: 0 0 0 1.5px var(--ink); }
+/* Get started: the reassurance under the checkout button, centred in the form column */
+.sform .talk-first--start { max-width: 46ch; margin: 16px auto 0; text-align: center; text-wrap: balance; line-height: 1.55; }
+/* the simple footer already has a top border, so drop the extra divider line inside it */
+.footer--simple .footer__bottom::before { display: none; }
+/* footer text starts clear of the floating mini TV in the bottom-left corner */
+.footer__bottom > :first-child { padding-left: 76px; }
+@media (min-width: 1440px) { .footer__bottom > :first-child { padding-left: 0; } }
+/* the Sound Effects label at full strength */
+.sound-toggle { color: var(--ink); }
