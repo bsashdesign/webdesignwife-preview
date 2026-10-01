@@ -33,12 +33,17 @@
   const sw = document.querySelector(".billing__switch");
   const billing = () => (sw && sw.getAttribute("aria-checked") === "true" ? "yearly" : "monthly");
   const wantBilling = ["monthly", "yearly"].includes(params.get("billing")) ? params.get("billing") : saved.billing;
-  if (wantBilling === "yearly") document.querySelector('[data-billing="yearly"]')?.click();
+  // yearly is the default; someone who chose monthly gets the switch turned off
+  if (wantBilling === "monthly" && sw && sw.getAttribute("aria-checked") === "true") sw.click();
 
   function render() {
     const p = PLANS[form.elements.plan.value] || PLANS.business;
     const isYearly = billing() === "yearly";
     sum("plan").textContent = p.name;
+    // the selected plan's gem and name colour follow the choice
+    const key = PLANS[form.elements.plan.value] ? form.elements.plan.value : "business";
+    sum("plan").dataset.plan = key;
+    const gem = document.querySelector(".ssum__gem"); if (gem) gem.dataset.plan = key;
     const F = window.WDW_FOUNDING;
     if (F) sum("today").innerHTML = `<s>${money(p.setup)}</s> ${money(F.setup)}`; else sum("today").textContent = money(p.setup);
     sum("then").textContent = isYearly ? `${money(yearly(p))}/year` : `${money(p.price)}/month`;

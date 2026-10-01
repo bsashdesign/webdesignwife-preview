@@ -4574,3 +4574,32 @@ section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
 @media (max-width: 640px) { section.tv-sec:has(.tv-sound) { padding-bottom: 32px; } }
 /* plan finder: the next question appears straight away */
 .finder-dialog .finder__step { animation-duration: .15s; }
+/* Get started: "Yearly", the switch and the savings tag sit on the "Your plan" line, at the right */
+.sform__group:has(.sbill) { position: relative; }
+.sform .billing.sbill { position: absolute; top: -4px; right: 0; margin: 0; gap: 10px; }
+@media (max-width: 560px) { .sform .billing.sbill { position: static; justify-content: flex-start; } }
+/* here the tag just fits its words (nothing sits to its right), growing when it says "You Are Saving 20%" */
+.sbill .billing__save { display: inline-block; margin-left: 0; }
+.sbill .billing__save .billing__save-y, .sbill .billing__save.is-on .billing__save-m { display: none; }
+.sbill .billing__save.is-on .billing__save-y { display: inline; visibility: visible; }
+/* Sophisticated's savings tag in the body font (gold outline kept) */
+.theme-wedding .billing .billing__save { font: 600 .74rem/1.2 var(--body); font-style: normal; letter-spacing: .03em; padding: 4px 10px; }
+/* Get started: plan names coloured per mood, like Features and Pricing */
+.theme-blocks .splan--essentials strong, .theme-blocks .ssum__plan[data-plan="essentials"] { --hi: var(--lime); }
+.theme-blocks .splan--business strong, .theme-blocks .ssum__plan[data-plan="business"] { --hi: var(--sky); }
+.theme-blocks .splan--full strong, .theme-blocks .ssum__plan[data-plan="full"] { --hi: var(--rose); }
+.theme-blocks :is(.splan strong, .ssum__plan) { justify-self: start; width: fit-content; background: linear-gradient(transparent 55%, var(--hi) 55% 95%, transparent 95%); padding: 0 2px; }
+.theme-subway.theme-dark :is(.splan--essentials strong, .ssum__plan[data-plan="essentials"]) { color: #3fd07a; }
+.theme-subway.theme-dark :is(.splan--business strong, .ssum__plan[data-plan="business"]) { color: #6ea8ff; }
+.theme-subway.theme-dark :is(.splan--full strong, .ssum__plan[data-plan="full"]) { color: #d27be0; }
+.theme-wedding .splan strong, .theme-wedding .ssum .ssum__plan { font-family: var(--display); font-style: italic; font-weight: 600; color: var(--gold-ink); }
+/* the order summary shows the chosen plan's gem beside its name */
+.ssum__head { display: flex; align-items: center; gap: 10px; margin: 4px 0 18px; }
+.ssum__head .ssum__plan { margin: 0; }
+.ssum__gem.plan-ring { width: 52px; height: 52px; flex: none; margin: -8px -4px -8px -8px; translate: 0 -5px; }
+.ssum__gem[data-plan="essentials"] { color: #8670f0; } .ssum__gem[data-plan="business"] { color: #8670f0; } .ssum__gem[data-plan="full"] { color: #8670f0; }
+.theme-blocks .ssum__gem[data-plan="essentials"] { color: var(--lime); } .theme-blocks .ssum__gem[data-plan="business"] { color: var(--sky); } .theme-blocks .ssum__gem[data-plan="full"] { color: var(--rose); }
+.theme-subway .ssum__gem[data-plan="essentials"] { color: #3fd07a; } .theme-subway .ssum__gem[data-plan="business"] { color: #4d8dff; } .theme-subway .ssum__gem[data-plan="full"] { color: #d27be0; }
+/* a fieldset's legend sits outside its content box, so anchor the toggle from above the content, level with "Your plan" */
+.sform .billing.sbill { top: auto; bottom: calc(100% + 10px); }
+@media (max-width: 560px) { .sform .billing.sbill { bottom: auto; } }

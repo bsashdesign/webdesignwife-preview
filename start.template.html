@@ -41,14 +41,14 @@
           <fieldset class="sform__group">
             <legend>Your plan</legend>
             <div class="splans" role="radiogroup" aria-label="Plan">
-              <label class="splan"><input type="radio" name="plan" value="essentials"><span><strong>Essentials</strong><small>A polished one-page site</small><em data-price="essentials"></em></span></label>
-              <label class="splan"><input type="radio" name="plan" value="business" checked><span><strong>Business</strong><small>More pages, built to be found</small><em data-price="business"></em></span></label>
-              <label class="splan"><input type="radio" name="plan" value="full"><span><strong>Full Suite</strong><small>Everything, plus growth tools</small><em data-price="full"></em></span></label>
+              <label class="splan splan--essentials"><input type="radio" name="plan" value="essentials"><span><strong>Essentials</strong><small>A polished one-page site</small><em data-price="essentials"></em></span></label>
+              <label class="splan splan--business"><input type="radio" name="plan" value="business" checked><span><strong>Business</strong><small>More pages, built to be found</small><em data-price="business"></em></span></label>
+              <label class="splan splan--full"><input type="radio" name="plan" value="full"><span><strong>Full Suite</strong><small>Everything, plus growth tools</small><em data-price="full"></em></span></label>
             </div>
             <div class="billing sbill">
-              <button type="button" class="billing__opt" data-billing="monthly" aria-pressed="true">Monthly</button>
-              <button type="button" class="billing__switch" role="switch" aria-checked="false" aria-label="Pay yearly and save 20%"><i></i></button>
-              <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="false">Yearly <em class="billing__save">Save 20%</em></button>
+              <button type="button" class="billing__opt" data-billing="yearly" aria-pressed="true">Yearly</button>
+              <button type="button" class="billing__switch" role="switch" aria-checked="true" aria-label="Pay yearly and save 20%"><i></i></button>
+              <em class="billing__save">Save 20%</em>
             </div>
           </fieldset>
 
@@ -75,7 +75,7 @@
 
         <aside class="ssum" aria-label="Order summary">
           <p class="ssum__kicker">Your order</p>
-          <h2 class="ssum__plan" data-sum="plan">Business</h2>
+          <div class="ssum__head"><canvas class="plan-ring plan-gem ssum__gem" data-plan="business" aria-hidden="true"></canvas><h2 class="ssum__plan" data-sum="plan" data-plan="business">Business</h2></div>
           <dl class="ssum__lines">
             <div><dt>Due today</dt><dd data-sum="today">$399</dd></div>
             <dd class="ssum__note">One-time setup fee: I design and develop your site.<!-- FOUNDING:START --> Founding 5 price.<!-- FOUNDING:END --></dd>
