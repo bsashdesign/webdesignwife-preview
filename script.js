@@ -1694,7 +1694,8 @@ document.addEventListener("click", (e) => {
     }
     // a sparkle in the same spot on the crown, twinkling every few seconds
     if (plan === "full" && !small) {
-      const PERIOD = 3200, phase = (t % PERIOD) / PERIOD;
+      // while you hover and it spins faster, it twinkles more often
+      const PERIOD = cv._hover ? 1100 : 3200, phase = (t % PERIOD) / PERIOD;
       const tw = phase < .3 ? Math.sin(phase / .3 * Math.PI) ** 2 : 0;
       if (tw > .02) {
         const r = W * .14 * tw, x = W * .66, y = H * .42;
