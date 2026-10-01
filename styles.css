@@ -6725,7 +6725,7 @@ html.theme-wedding .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size
 html .chat-choice:not(#z):not(#y):not(#x) { border-width: 1.5px; border-style: dashed; }
 html.theme-blocks .chat-choice:not(#z):not(#y):not(#x) { border-width: 1.5px; }
 html.theme-wedding .chat-choice:not(#z):not(#y):not(#x) { border-width: 1px; }
-@media (max-width: 760px) { .hero:not(#z) { padding-top: 18px; padding-bottom: 26px; } }
+@media (max-width: 760px) { .hero:not(#z) { padding-top: 30px; padding-bottom: 26px; } }
 /* phones: the cue in the opening view is a touch bigger (the chat is shown smaller there than on desktop) */
 @media (max-width: 760px) {
   html .demo.is-bare .phone .chat-choices__tip:not(#z):not(#y):not(#x) { font-size: .56rem; }
@@ -6753,4 +6753,12 @@ html .chat-you:not(#z):not(#y) { font-family: var(--body); font-style: normal; f
   html.theme-refined .hero .demo::before { box-shadow: 0 0 0 1px #ebe6fb, 0 18px 36px -24px rgba(91, 61, 245, .35); border-radius: 22px; }
   html.theme-subway.theme-dark .hero .demo::before { background: #1c1c1c; box-shadow: inset 0 0 0 1px #2f2f2f; border-radius: 12px; }
   html.theme-wedding .hero .demo::before { background: #fffdf8; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--gold), inset 0 0 0 5px #fffdf8, inset 0 0 0 6px rgba(184, 149, 90, .45); }
+}
+/* the card stays once the phone and website come in: they land inside it */
+@media (max-width: 640px) {
+  .hero .demo::before { opacity: 1; }
+  .hero .demo:not(#z):not(#y) { border-bottom-color: transparent; }
+  .hero .demo:not(.is-intro) .browser:not(#z) { width: calc(100% - 8px); margin: 4px 0 0 4px; }
+  .hero .demo:not(.is-intro) .phone:not(#z):not(#y) { right: 6px; }
+  .hero .demo:not(.is-intro):not(#z):not(#y) { min-height: 356px; }
 }
