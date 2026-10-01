@@ -2035,3 +2035,41 @@ document.querySelectorAll(".hplans .hplan").forEach((card) => {
     go.click();
   });
 });
+
+// Pricing page: the buyout calculator. Months with me sets the year; each year has its buyout in months of the plan,
+// plus the one-time transfer fee. From month 73 (after six years) the site is already yours.
+(function () {
+  const box = document.querySelector("[data-buycalc]");
+  if (!box) return;
+  const PRICE = { essentials: 99, business: 149, full: 249 };
+  const MONTHS = [24, 20, 16, 12, 8, 4], FEE = 299;
+  const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
+  const set = (k, v) => { box.querySelector(`[data-bc="${k}"]`).textContent = v; };
+  const range = box.querySelector("[data-bc-months]");
+  let plan = "business", bill = "yearly";
+  const render = () => {
+    const m = +range.value;
+    const per = bill === "yearly" ? Math.round(PRICE[plan] * 0.8) : PRICE[plan];
+    range.style.setProperty("--fill", ((m - 1) / 72 * 100) + "%");
+    if (m > 72) {
+      set("when", "After six years");
+      set("buyout", "$0"); set("buyout-note", "After six years, the buyout price is $0: you own the site.");
+      set("total", money(FEE)); set("total-note", `If you decide to move it away from Web Design Wife, the ${money(FEE)} technical transfer fee covers packaging the site and handing the code and content to you or your new developer.`);
+    } else {
+      const year = Math.ceil(m / 12), n = MONTHS[year - 1];
+      set("when", `Month ${m} · year ${year}`);
+      set("buyout", money(n * per)); set("buyout-note", `${n} months of your plan at ${money(per)}/month`);
+      set("total", money(n * per + FEE)); set("total-note", "Or stay: it's yours after six years either way.");
+    }
+    set("fee", money(FEE));
+    box.querySelectorAll("[data-bc-plan]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.bcPlan === plan)));
+    box.querySelectorAll("[data-bc-bill]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.bcBill === bill)));
+  };
+  box.addEventListener("click", (e) => {
+    const p = e.target.closest("[data-bc-plan]"), b = e.target.closest("[data-bc-bill]");
+    if (p) plan = p.dataset.bcPlan; if (b) bill = b.dataset.bcBill;
+    if (p || b) render();
+  });
+  range.addEventListener("input", render);
+  render();
+})();

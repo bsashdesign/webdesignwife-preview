@@ -147,9 +147,43 @@
               </ol>
               <figcaption>Buyout price in months of your plan, on every plan, monthly or yearly. Dollar amounts are an example on Business ($149/month).</figcaption>
             </figure>
-            <p>Plus a one-time $299 transfer fee, locked in when you sign up. I hand the site over to you or your new developer, with a full export of the code and content.</p>
+            <p>After six years, the buyout price is $0: you own the site. If you decide to move it away from Web Design Wife, the $299 technical transfer fee covers packaging the site and handing the code and content to you or your new developer.</p>
             <p class="buyout__note">AI assistants, hosted forms, analytics, third-party feeds and other managed integrations may depend on Web Design Wife or third-party accounts, so they aren't automatically included in a transfer. I'll tell you exactly what moves and what you'd need to set up again.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buyout calculator (new design to compare with the chart above) -->
+    <section class="section psec section--tint" id="buyout">
+      <div class="wrap buycalc-wrap">
+        <div class="psec__head">
+          <p class="eyebrow">Buyout calculator</p>
+          <h2>What would it cost to own it?</h2>
+          <p>Pick your plan and how long you've been with me. The buyout drops every year, and after six years the site is yours anyway.</p>
+        </div>
+        <div class="buycalc" data-buycalc>
+          <div class="buycalc__controls">
+            <div class="buycalc__plans tabs tabs--light" role="group" aria-label="Your plan">
+              <button type="button" data-bc-plan="essentials" aria-pressed="false">Essentials</button>
+              <button type="button" data-bc-plan="business" aria-pressed="true">Business</button>
+              <button type="button" data-bc-plan="full" aria-pressed="false">Full Suite</button>
+            </div>
+            <div class="buycalc__plans buycalc__bill tabs tabs--light" role="group" aria-label="How you pay">
+              <button type="button" data-bc-bill="monthly" aria-pressed="false">Monthly</button>
+              <button type="button" data-bc-bill="yearly" aria-pressed="true">Yearly</button>
+            </div>
+            <label class="buycalc__slider">
+              <span class="buycalc__label">How long you've been with me <b data-bc="when">Month 18 · year 2</b></span>
+              <input type="range" min="1" max="73" step="1" value="18" data-bc-months aria-label="Months with Web Design Wife">
+              <span class="buycalc__ticks" aria-hidden="true"><i>1 mo</i><i>Year 2</i><i>Year 3</i><i>Year 4</i><i>Year 5</i><i>Year 6</i><i>6+ yrs</i></span>
+            </label>
+          </div>
+          <dl class="buycalc__rows">
+            <div><dt>Buyout</dt><dd data-bc="buyout">$2,288</dd><small data-bc="buyout-note">20 months of your plan at $119/month</small></div>
+            <div><dt>Technical transfer fee</dt><dd data-bc="fee">$299</dd><small data-bc="fee-note">Covers packaging the site and handing the code and content to you or your new developer</small></div>
+            <div class="buycalc__total"><dt>To take it with you</dt><dd data-bc="total">$2,587</dd><small data-bc="total-note">Or stay: it's yours after six years either way.</small></div>
+          </dl>
         </div>
       </div>
     </section>
