@@ -4652,3 +4652,6 @@ html.theme-wedding :is(.billing__switch, .sound-toggle__switch):not(#z) { border
 html.theme-wedding :is(.billing__switch, .sound-toggle__switch):not(#z) i { border-radius: 1px; background: var(--gold); box-shadow: none; }
 html.theme-wedding :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) { background: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 html.theme-wedding :is(.billing__switch[aria-checked="true"], .sound-toggle[aria-checked="true"] .sound-toggle__switch):not(#z) i { background: #d9c49a; }
+/* Get started: the plan name in the order summary is the same visual size in every mood (Tangy's) */
+html .ssum .ssum__head .ssum__plan { font-size: 2.5rem; line-height: 1.05; }
+html.theme-wedding .ssum .ssum__head .ssum__plan { font-size: 2.7rem; }
