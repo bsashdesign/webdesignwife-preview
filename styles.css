@@ -5147,3 +5147,14 @@ section.tv-sec:has(.tv-deck) { padding-bottom: 72px; }
 :is(#mood, #footer-channel) .mood__opt:is([aria-pressed="true"], :active) .key-well.key-well .moodicon--transit:not(#z) { box-shadow: 0 0 0 0 transparent, 0 0 0 var(--cap-edge), inset 0 2px 5px rgba(0,0,0,.35); }
 /* Sophisticated: a fine arrow on the "Press one" note, in keeping with the serif */
 .theme-wedding .tv-deck__cue span { font-family: var(--display); font-weight: 400; -webkit-text-stroke: 0; font-size: 1em; }
+/* Footer channel options: snug spacing, a clear gap before each light, a simple hover tint */
+#footer-channel { column-gap: 14px; }
+#footer-channel .mood__opt:not(#z) { padding: 6px 14px 6px 8px; gap: 12px; border-radius: 12px; }
+#footer-channel .mood__opt strong::after { margin-left: 11px; }
+#footer-channel .mood__opt:hover:not(#z) { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+#footer-channel .mood__opt:hover .key-well .moodicon--tangy:not(#z) { transform: none; }
+.theme-blocks #footer-channel .mood__opt:hover:not(#z) { background: #fffbe0; }
+.theme-subway.theme-dark #footer-channel .mood__opt:hover:not(#z) { background: #242424; }
+.theme-wedding #footer-channel .mood__opt:hover:not(#z) { background: rgba(184,149,90,.12); border-radius: 3px; }
+/* Tangy: the footer's Change the Channel block is an outlined card like the rest of Tangy */
+.theme-blocks .footer__moods { background: #fff; border: var(--edge); box-shadow: var(--shadow); border-radius: var(--r-lg); }
