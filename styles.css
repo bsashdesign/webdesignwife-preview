@@ -4623,3 +4623,17 @@ section.tv-sec:has(.tv-sound) { padding-bottom: 44px; }
 .ssum .ssum__gem.plan-ring[data-plan="full"] { --g: 56px; }
 /* Get started: "Yearly billing" stays at full strength whether the switch is on or off */
 .sbill .billing__opt[aria-pressed="false"], .sbill .billing__opt[aria-pressed="false"]:hover { color: var(--ink); }
+/* Get started plan picker: a check circle on every plan; the chosen one fills in with a check */
+.splan > span { position: relative; padding-right: 44px; }
+.splan > span::after { content: ""; position: absolute; top: 14px; right: 14px; width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid color-mix(in srgb, var(--ink) 30%, transparent); background: transparent center / 12px 12px no-repeat; transition: background-color .15s ease, border-color .15s ease; }
+.splan input:checked + span::after { --tick: var(--violet); border-color: var(--tick); background-color: var(--tick); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.theme-blocks .splan > span::after { border: 2px solid var(--ink); }
+.theme-blocks .splan input:checked + span::after { --tick: var(--ink); }
+.theme-subway .splan input:checked + span::after { --tick: #0b5cd6; border-radius: 50%; }
+.theme-subway.theme-dark .splan > span::after { border-color: #555; }
+.theme-wedding .splan > span::after { border-radius: 2px; border: 1px solid var(--gold); }
+.theme-wedding .splan input:checked + span::after { --tick: var(--ink); }
+/* Tangy: the chosen plan keeps its ink outline and shadow on the same pale beige as a selected field (no lime, no orange) */
+.theme-blocks .splans .splan input:checked + span { background: #fffbe0; border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+/* Tangy savings tag in sky blue, so it doesn't repeat the green */
+.theme-blocks .billing .billing__save { background: var(--sky); }
