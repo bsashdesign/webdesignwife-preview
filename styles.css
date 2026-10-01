@@ -4999,3 +4999,9 @@ a:not([class]):hover, .section-cta__alt:hover, .pricing__link:hover, .pricing__m
 /* 4px more room before Get Started */
 .nav__inner .nav__start { margin-left: -6px; }
 @media (max-width: 1180px) { .nav__inner .nav__start { margin-left: -2px; } }
+/* Transit (dark) blog: the search box keeps its magnifier, the chosen filter is subway blue (not white),
+   and borough cards lift with a soft grey edge on hover instead of a white outline */
+.theme-subway.theme-dark .blog-search input:not(#z) { background: #1f1f1f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='9' cy='9' r='6' fill='none' stroke='%239a9a95' stroke-width='1.8'/%3E%3Cpath d='M13.5 13.5 17 17' stroke='%239a9a95' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") 16px center / 18px no-repeat; }
+.theme-subway.theme-dark .filter[aria-pressed="true"]:not(#z) { background: #0b5cd6; border-color: #0b5cd6; color: #fff; }
+.theme-subway.theme-dark .filter[aria-pressed="true"]:not(#z) * { color: rgba(255,255,255,.75); }
+.theme-subway.theme-dark .borough:hover:not(#z) { border-color: #4a4a4a; box-shadow: 0 16px 34px -22px rgba(0,0,0,.9); }
