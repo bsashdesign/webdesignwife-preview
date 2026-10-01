@@ -6234,3 +6234,9 @@ html.theme-blocks .blist:not(#z) { column-gap: 44px; }
   .blist:not(#z):not(#y) { grid-template-columns: repeat(3, max-content); justify-content: space-between; column-gap: 56px; }
   .btype-dialog:not(#z):not(#y) { width: min(900px, calc(100% - 32px)); }
 }
+/* Soirée: the icons sit in small square frames */
+html.theme-wedding .blist__ic:not(#z) { border-radius: 2px; }
+/* Tangy: the icon badges are plain white until hovered, then fill with their column's colour */
+html.theme-blocks .blist li .blist__ic:not(#z) { background: #fff; transition: background-color .25s ease, transform .25s var(--ease-out); }
+@media (hover: hover) { html.theme-blocks .blist li a:hover .blist__ic:not(#z) { background: var(--bc); } }
+html.theme-blocks .blist li a:focus-visible .blist__ic:not(#z) { background: var(--bc); }
