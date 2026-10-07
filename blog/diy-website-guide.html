@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>The Do-It-Yourself Website Guide: How to Do It Right — Web Design Wife</title>
+  <meta name="description" content="Building your own site is a perfectly good choice. Here&#x27;s a practical, step-by-step plan to get it right the first time.">
+  <link rel="icon" href="../images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css?v=3bc25caad5">
+  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "off": 50};window.WDW_PLANS={"essentials": {"name": "Essentials", "setup": 399, "month": 149, "yearmo": 119, "year": 1430, "found": 199, "save": 358}, "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150, "apply": true, "found": 449, "save": 598}, "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870, "apply": true, "found": 649, "save": 718}};window.WDW_CAL={"call": "", "onboarding": "", "intro": ""};</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="mood" id="mood">
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel"><span class="minitv__waves" aria-hidden="true"><i></i><i></i><i></i></span><span class="minitv" aria-hidden="true"><i class="minitv__ant"></i><span class="minitv__set"><span class="minitv__screen"><span class="minitv__show"></span><span class="minitv__face"></span></span><i class="minitv__knob"></i></span></span></button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Change the channel"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Change the Channel</p><p class="mood__intro">Same website, four completely different directions. Press a button and watch the whole page change.</p><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Tangy</strong><small>Bright, playful and full of color.</small></span></button><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Soirée</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button><div class="mood__sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div></div>
+  </div>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html" aria-label="Web Design Wife home">
+        <img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="../pricing.html">Pricing</a>
+        <a href="../features.html">Features</a>
+        <a href="../contact.html">Contact</a>
+        <a href="index.html">Blog</a>
+      </nav>
+      <a class="btn btn--ghost btn--sm nav__start" href="../start.html">Get Started</a>
+      <a class="btn btn--primary btn--sm nav__cta" href="../index.html#audit">Free Website Audit</a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" data-close-drawer></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer__head">
+        <a class="brand drawer__brand" href="../index.html" aria-label="Web Design Wife home"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
+        <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
+      </div>
+      <nav class="drawer__nav" aria-label="Menu">
+        <a class="drawer__big" href="../pricing.html"><span>Pricing</span><small>Plans from $149/month and FAQs</small></a>
+        <a class="drawer__big" href="../features.html"><span>Features</span><small>What’s in each plan</small></a>
+        <a class="drawer__big" href="../contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
+        <a class="drawer__big" href="index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
+      </nav>
+      <div class="drawer__cta">
+        <a class="btn btn--ghost btn--block" href="../start.html">Get Started</a>
+        <a class="btn btn--primary btn--block" href="../index.html#audit">Get a Free Website + Maps Audit</a>
+      </div>
+      <div class="drawer__more">
+        <p class="drawer__label">Helpful links</p>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#work">My work: New Age Pharmacy</a>
+        <a href="../index.html#maps">Google Maps management</a>
+        <a href="../pricing.html#faq">FAQ</a>
+        <a href="index.html#compare">Compare website builders</a>
+        <a href="diy-website-guide.html">Do-it-yourself guide</a>
+      </div>
+      <p class="drawer__where">Based in Brooklyn, NY</p>
+    </aside>
+  </div>
+
+
+  <main id="main">
+    <article class="article">
+      <div class="article__wrap">
+        <a class="article__back" href="index.html"><svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> All articles</a>
+        <h1>The Do-It-Yourself Website Guide: How to Do It Right</h1>
+        <p class="article__meta">By Ben Sash · 7 min read</p>
+        <div class="article__body">
+<p class="lede-note"><strong>The short answer:</strong> plenty of local businesses build their own websites and do great. The key is keeping it simple, focusing on what your customers need, and keeping it up to date. Here's the plan I'd follow, step by step.</p>
+
+<h2>1. Pick a Website Builder</h2>
+<p>There's no single best builder. Pick the one that fits how you work, then commit: moving a site between builders later usually means rebuilding it. Here are the main options, with my honest comparison of each:</p>
+<ul>
+  <li>Squarespace: polished templates, great if you care about design. <a class="ref-chip" href="vs-squarespace.html" data-slug="vs-squarespace" aria-label="Article: Web Design Wife vs. Squarespace: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Squarespace</span></a></li>
+  <li>Wix: the most drag-and-drop freedom, lots of add-on apps. <a class="ref-chip" href="vs-wix.html" data-slug="vs-wix" aria-label="Article: Web Design Wife vs. Wix: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Wix</span></a></li>
+  <li>WordPress: the most flexible, but you (or someone) maintains it. <a class="ref-chip" href="vs-wordpress.html" data-slug="vs-wordpress" aria-label="Article: Web Design Wife vs. WordPress: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. WordPress</span></a></li>
+  <li>Shopify: the best choice if you mainly sell products online. <a class="ref-chip" href="vs-shopify.html" data-slug="vs-shopify" aria-label="Article: Web Design Wife vs. Shopify: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Shopify</span></a></li>
+  <li>Square Online: simple, and a natural fit if you already use Square. <a class="ref-chip" href="vs-square-online.html" data-slug="vs-square-online" aria-label="Article: Web Design Wife vs. Square Online: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Square Online</span></a></li>
+  <li>GoDaddy Website Builder: quick to set up if your domain is already there. <a class="ref-chip" href="vs-godaddy.html" data-slug="vs-godaddy" aria-label="Article: Web Design Wife vs. GoDaddy Website Builder: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. GoDaddy Website Builder</span></a></li>
+  <li>Google Sites: free and basic, fine for a simple info page. <a class="ref-chip" href="vs-google-sites.html" data-slug="vs-google-sites" aria-label="Article: Web Design Wife vs. Google Sites: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Google Sites</span></a></li>
+  <li>Carrd: very cheap one-page sites. <a class="ref-chip" href="vs-carrd.html" data-slug="vs-carrd" aria-label="Article: Web Design Wife vs. Carrd: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Carrd</span></a></li>
+  <li>Hostinger: low-cost builder with hosting included. <a class="ref-chip" href="vs-hostinger.html" data-slug="vs-hostinger" aria-label="Article: Web Design Wife vs. Hostinger Website Builder: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Hostinger Website Builder</span></a></li>
+  <li>Webflow and Framer: powerful design tools, with a learning curve. <a class="ref-chip" href="vs-webflow.html" data-slug="vs-webflow" aria-label="Article: Web Design Wife vs. Webflow: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Webflow</span></a><a class="ref-chip" href="vs-framer.html" data-slug="vs-framer" aria-label="Article: Web Design Wife vs. Framer: An Honest Comparison"><i class="pi pi--lines" aria-hidden="true"></i><span>vs. Framer</span></a></li>
+</ul>
+<p>Step-by-step getting-started guides for each builder are on the way.</p>
+
+<h2>2. Get the Right Domain, in Your Own Name</h2>
+<p>Your domain (like yourbusiness.com) is your address online, and it's the one part of your website you should never let someone else own. Register it with an account in your name, using your email, even if someone else builds your site.</p>
+
+<h3>Where to Buy Your Domain</h3>
+<p>These registrars are all reputable. A .com usually costs about $10 to $25 a year.</p>
+<ul>
+  <li><a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a>: charges exactly what the domain costs, with no markup, at purchase and at renewal.</li>
+  <li><a href="https://www.namecheap.com/" target="_blank" rel="noopener">Namecheap</a></li>
+  <li><a href="https://porkbun.com/" target="_blank" rel="noopener">Porkbun</a></li>
+  <li><a href="https://www.godaddy.com/" target="_blank" rel="noopener">GoDaddy</a></li>
+  <li><a href="https://domains.squarespace.com/" target="_blank" rel="noopener">Squarespace Domains</a> (which took over Google Domains)</li>
+</ul>
+<div class="callout callout--info"><strong>Watch the renewal price.</strong> Many registrars advertise a cheap first year, then charge much more to renew. Check the renewal price before you buy.</div>
+<div class="callout callout--warn"><strong>Turn on auto-renew.</strong> If your domain expires, your website and any email on that domain stop working, and someone else can register it. Once that happens, you will very likely never get it back.</div>
+
+<h3>Check Whether the Name Is Taken</h3>
+<ul>
+  <li>Search the name on any registrar above. If it's available, you'll see a price.</li>
+  <li>Before you commit to a business name, search the <a href="https://tmsearch.uspto.gov/" target="_blank" rel="noopener">USPTO trademark database</a> so you don't build on a name someone else has protected.</li>
+</ul>
+
+<h3>If the .com You Want Is Taken</h3>
+<p>You can usually still get a .com by adding a word that keeps the essence of your name:</p>
+<ul>
+  <li><strong>Add your location:</strong> rosebakerybrooklyn.com, kingscutbronx.com</li>
+  <li><strong>Add what you do:</strong> riveraplumbing.com, juniperhairstudio.com</li>
+  <li><strong>Add a Short Word:</strong> <em>get</em>, <em>hello</em>, <em>shop</em> or <em>studio</em>, like hellojuniper.com</li>
+  <li><strong>Use your full name</strong> if the short one is taken: caldwelltaxandaccounting.com</li>
+</ul>
+<p>Avoid hyphens and numbers. They're hard to say out loud and easy to mistype.</p>
+
+<h3>Alternatives to .com</h3>
+<p>If your business grows by word of mouth, people will type ".com" out of habit, so it's worth the effort to get one. If most customers find you on Google Maps or Instagram, the ending matters less. Good options:</p>
+<ul>
+  <li><strong><a href="https://www.ownit.nyc/" target="_blank" rel="noopener">.nyc</a>:</strong> yes, it's real. It's New York City's official ending, and you need a city address to register one, which makes it a nice local signal.</li>
+  <li><strong>.co:</strong> short and professional, though people sometimes add the "m" by mistake.</li>
+  <li><strong>Industry endings</strong> like .salon, .dental, .studio or .shop: memorable, but less familiar to some customers.</li>
+</ul>
+
+<h2>3. Start Small: One Page Is Often Enough</h2>
+<p>You probably don't need a big website. You need a site that answers your customers' questions in the right order. You can always add pages later, and every extra page is one more thing to keep updated. There's no one-size-fits-all layout, but here's a starting point.</p>
+
+<h3>If One Page Fits Your Business</h3>
+<p>This works well for barbers, cleaners, food trucks, handymen, solo therapists and trainers, or anyone with a short list of services. Here's one way you could organize it, top to bottom:</p>
+<ol>
+  <li><strong>What you do and where</strong>, with one clear button: "Call now," "Book online" or "Get a quote"</li>
+  <li><strong>Your services</strong>, with prices or starting prices if you can</li>
+  <li><strong>Reviews</strong> from your customers</li>
+  <li><strong>About you</strong>, with a real photo of you or your team (see my guide to photos for your business website) <a class="ref-chip" href="business-photos-guide.html" data-slug="business-photos-guide" aria-label="Article: Photos for Your Business Website: What to Shoot, and How to Use AI Honestly"><i class="pi pi--lines" aria-hidden="true"></i><span>Photos for Your Business Website</span></a></li>
+  <li><strong>Hours, address and a map</strong></li>
+  <li><strong>Contact</strong>: phone, text, email or a short form, repeated at the bottom</li>
+</ol>
+<div class="callout callout--info"><strong>Showing your Google reviews:</strong> use your builder's built-in Google reviews feature or an official integration, which keeps them live and up to date. Don't copy and paste reviews onto your site by hand: Google's terms restrict reusing review content that way.</div>
+
+<h3>If You Need Three to Five Pages</h3>
+<ul>
+  <li><strong>Restaurant or café:</strong> Home, Menu, Visit (hours, location, reservations), About, Contact</li>
+  <li><strong>Salon or spa:</strong> Home, Services and prices, Book, About the team</li>
+  <li><strong>Dentist, clinic or law office:</strong> Home, Services, About the team, Contact</li>
+  <li><strong>Contractor:</strong> Home, Services, Past projects, Contact</li>
+</ul>
+<p>A separate Contact page helps when you have a longer form, several locations or a booking tool. Keep your phone number on every page anyway.</p>
+
+<h2>4. Write for Your Customers, Not About Yourself</h2>
+<p>Your visitors skim. They're looking for their exact problem, a reason to trust you, and the fastest way to reach you. Write every section with that in mind.</p>
+<ul>
+  <li><strong>Lead with what you do and where.</strong> "Emergency plumbing in Queens, same-day service" beats "Welcome to our website." Someone should know they're in the right place within three seconds.</li>
+  <li><strong>Name your services the way customers do.</strong> Not "plumbing solutions," but "drain cleaning," "leak repair" and "water heater installation." That's also what Google matches against.</li>
+  <li><strong>Talk about their problem, then your fix.</strong> "Water heater out? I can usually replace it the same day."</li>
+  <li><strong>Show proof.</strong> Reviews, years in business, licenses, insurance, "family-run since 1987." Proof does more than adjectives.</li>
+  <li><strong>Give prices, or at least a range.</strong> "Haircuts from $35" gets more calls than no price at all, because people assume the worst.</li>
+  <li><strong>Mention your neighborhood.</strong> Cross streets, nearby landmarks and the areas you serve help locals and help Google.</li>
+  <li><strong>End each section with a next step</strong>, and keep your phone number one tap away on phones.</li>
+  <li><strong>Answer the questions you hear every day</strong> in a short FAQ: parking, payment, walk-ins, how long it takes.</li>
+</ul>
+
+
+<form class="quickcheck" novalidate>
+  <div class="quickcheck__step" data-step="url">
+    <p class="quickcheck__title tc">Want My Honest Take on Your Website?</p>
+    <p class="quickcheck__sub">Enter your web address and I'll look it over personally. Free, with no obligation.</p>
+    <div class="quickcheck__row">
+      <input name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com" aria-label="Your website address">
+      <button class="btn btn--primary" type="submit">Get My Take</button>
+    </div>
+  </div>
+  <div class="quickcheck__step" data-step="email" hidden>
+    <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> <span class="qc-url"></span> is in my review queue</p>
+    <p class="quickcheck__sub">Where should I send your notes? I review every site personally and reply within one business day.</p>
+    <div class="quickcheck__row">
+      <input name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" aria-label="Your email">
+      <button class="btn btn--primary" type="submit">Send My Notes</button>
+    </div>
+  </div>
+  <div class="quickcheck__step" data-step="done" hidden>
+    <p class="quickcheck__title"><span class="quickcheck__ok" aria-hidden="true">✓</span> You're all set</p>
+    <p class="quickcheck__sub">I'll email my notes on <span class="qc-url"></span> within one business day.</p>
+  </div>
+  <p class="quickcheck__msg" role="status" aria-live="polite"></p>
+</form>
+
+
+<h2>5. Use Real Photos</h2>
+<p>Your team, your space and your work build more trust than any stock photo, and a recent phone camera is plenty. My guide to photos for your business website covers what to shoot, what to do if you'd rather not be in photos yourself, and how to clean photos up with AI honestly. <a class="ref-chip" href="business-photos-guide.html" data-slug="business-photos-guide" aria-label="Article: Photos for Your Business Website: What to Shoot, and How to Use AI Honestly"><i class="pi pi--lines" aria-hidden="true"></i><span>Photos for Your Business Website</span></a></p>
+
+<h2>6. Set Up Your Google Business Profile</h2>
+<p>For most local businesses, the Google Maps listing brings in as many customers as the website, often more:</p>
+<ul>
+  <li><strong>Claim and verify it</strong> at <a href="https://business.google.com/" target="_blank" rel="noopener">business.google.com</a>, using an account you own.</li>
+  <li><strong>Pick the most specific main category</strong>, like "Emergency plumber" rather than "Plumber," then add a few secondary ones.</li>
+  <li><strong>Keep hours exact</strong>, including holiday hours, and match them to your website.</li>
+  <li><strong>Add real photos</strong> and keep adding new ones.</li>
+  <li><strong>List your services</strong> with the same names you use on your website.</li>
+  <li><strong>Ask for reviews</strong> after every good job, and reply to every review, good or bad.</li>
+</ul>
+<p>More in my guide: <a class="ref-chip" href="google-maps-profile.html" data-slug="google-maps-profile" aria-label="Article: Why Your Google Maps Profile Might Matter More Than Your Website"><i class="pi pi--lines" aria-hidden="true"></i><span>Why Your Google Maps Profile Might Matter More Than Your Website</span></a>.</p>
+
+<h2>7. Test It Properly Before You Share It</h2>
+<ul>
+  <li><strong>Test on your phone first.</strong> Tap every button and link: do call, directions and booking go to the right place?</li>
+  <li><strong>Send yourself a message</strong> through your own contact form, and confirm it arrives in your inbox, not spam.</li>
+  <li><strong>Check your speed</strong> with Google's free <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a>. Large photos are the usual culprit, so shrink them before you upload.</li>
+  <li><strong>Proofread</strong> your phone number, address, hours and prices twice. These are the mistakes that cost calls.</li>
+  <li><strong>Ask a friend</strong> to find your hours and contact you without your help, and watch where they get stuck.</li>
+</ul>
+
+<h2>8. Keep It Current</h2>
+<p>An outdated website quietly costs you customers: wrong hours send people away, and old prices start arguments. Put a monthly reminder on your calendar to check your hours (including upcoming holidays), prices, services, photos and Google profile. It takes fifteen minutes, and it's the difference between a website that works and one that just exists.</p>
+</div>
+        <aside class="endcta" aria-label="Next steps">
+          <h2 class="endcta__title">Want Help with Your Website?</h2>
+          <p class="endcta__sub">I'll personally review your site and Google Maps listing and send you the fixes that matter most. Free, no pressure.</p>
+          <div class="endcta__btns"><a class="btn btn--primary" href="../index.html#audit">Get a Free Website Audit</a><a class="btn btn--ghost" href="../start.html">Get Started</a></div>
+          <p class="talk-first">Want to talk first? <a href="../contact.html?type=callback">Request a callback<svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+        </aside>
+        <section class="related" data-slug="diy-website-guide" data-group="guides" aria-label="Related articles" hidden>
+          <h2 class="related__h">Keep Reading</h2>
+          <div class="related__list"></div>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><div class="news"><div class="news__copy"><h2 class="news__title">Get Tips &amp; Updates by Email</h2><p>Practical website and Google Maps tips, New York small-business updates, and occasional offers. About once a month; unsubscribe anytime.</p></div><form class="news__form" novalidate data-error="Enter a valid email address." data-success="You're subscribed! Watch your inbox."><div class="news__row"><input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address"><button class="btn btn--primary" type="submit">Subscribe</button></div><p class="form__msg" role="status" aria-live="polite"></p></form></div></div>
+
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="../index.html"><img src="../images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
+        <p>Managed websites for New York local businesses. Your web partner, for the long haul.</p>
+        <a class="btn btn--primary btn--sm" href="../index.html#audit">Free Website + Maps Audit</a>
+      </div>
+      <nav class="footer__col" aria-label="Pages">
+        <h4>Pages</h4>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../features.html">Features</a>
+        <a href="../contact.html">Contact</a>
+        <a href="index.html">Blog</a>
+        <a href="../start.html">Get started</a>
+        <a href="../index.html#audit">Free website audit</a>
+      </nav>
+      <nav class="footer__col" aria-label="On the homepage">
+        <h4>On the Homepage</h4>
+        <a href="../index.html#work">My work</a>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#maps">Google Maps</a>
+        <a href="../index.html#about">About me</a>
+        <a href="../pricing.html#faq">Pricing &amp; FAQ</a>
+      </nav>
+      <nav class="footer__col" aria-label="Resources">
+        <h4>Resources</h4>
+        <a href="index.html#compare">Compare website builders</a>
+        <a href="diy-website-guide.html">Do-it-yourself guide</a>
+        <a href="google-maps-profile.html">Google Maps guide</a>
+        <a href="../pricing.html#custom">Custom projects</a>
+        <a href="../privacy.html">Privacy policy</a>
+        <a href="../terms.html">Terms</a>
+        <span>Based in Brooklyn, NY</span>
+      </nav>
+    </div>
+    <div class="wrap"><div class="footer__moods">
+      <div>
+        <h4>Change the Channel</h4>
+        <p>Same website, four completely different directions. Press a button and watch the whole page change.</p>
+        <div class="footer__sound"><button type="button" class="sound-toggle" data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
+      </div>
+      <div class="moods moods--popup" id="footer-channel" role="group" aria-label="Change the channel"><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Tangy</strong><small>Bright, playful and full of color.</small></span></button><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Soirée</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button></div>
+    </div></div>
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife</p>
+      <nav aria-label="Legal">
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../images/CREDITS.txt">Icon credits</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <a class="mobilebar" href="../index.html#audit">Get a free website + Maps audit</a>
+
+
+  <script src="../assets/blog.js?v=01bff0eb6f"></script>
+</body>
+</html>

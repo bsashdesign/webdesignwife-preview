@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Application received — Web Design Wife</title>
+  <meta name="description" content="Your application is in. Pick a time for a 15-minute video call.">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=3bc25caad5">
+  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "off": 50};window.WDW_PLANS={"essentials": {"name": "Essentials", "setup": 399, "month": 149, "yearmo": 119, "year": 1430, "found": 199, "save": 358}, "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150, "apply": true, "found": 449, "save": 598}, "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870, "apply": true, "found": 649, "save": 718}};window.WDW_CAL={"call": "", "onboarding": "", "intro": ""};</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="mood" id="mood">
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel"><span class="minitv__waves" aria-hidden="true"><i></i><i></i><i></i></span><span class="minitv" aria-hidden="true"><i class="minitv__ant"></i><span class="minitv__set"><span class="minitv__screen"><span class="minitv__show"></span><span class="minitv__face"></span></span><i class="minitv__knob"></i></span></span></button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Change the channel"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Change the Channel</p><p class="mood__intro">Same website, four completely different directions. Press a button and watch the whole page change.</p><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Tangy</strong><small>Bright, playful and full of color.</small></span></button><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Soirée</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button><div class="mood__sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div></div>
+  </div>
+
+  <header class="nav nav--simple">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
+        <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <a class="start__back" href="index.html" data-back><svg class="i-arrow i-arrow--back" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3.5M7.5 4l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="back__text">Back to website</span></a>
+    </div>
+  </header>
+
+  <main id="main" class="start welcome applied">
+    <div class="wrap">
+      <p class="eyebrow">Pending review</p>
+      <h1 class="start__title">Application Received<span data-welcome-name></span></h1>
+      <p class="start__intro">One last step: pick a time for a 15-minute video call. We'll talk about your business and make sure we're a good fit.</p>
+
+      <div class="start__grid">
+        <section class="welcome__cal" aria-label="Book our video call">
+          <div id="cal-inline" class="welcome__embed" hidden></div>
+          <div class="welcome__placeholder" id="cal-placeholder">
+            <strong>Pick a Day and Time</strong>
+            <p>My booking calendar goes here. It shows the times I'm free and sends you a calendar invite with the video link.</p>
+          </div>
+        </section>
+
+        <aside class="ssum" aria-label="Your application">
+          <p class="ssum__kicker">Your application</p>
+          <div class="ssum__head"><canvas class="plan-ring plan-gem ssum__gem" data-plan="business" aria-hidden="true"></canvas><h2 class="ssum__plan" data-applied-plan data-plan="business">Business</h2><span class="ssum__tag applied__chip">Pending review</span></div>
+          <ol class="welcome__steps">
+            <li><strong>Our Video Call</strong><span>15 minutes, at the time you pick. Nothing has been charged.</span></li>
+            <li><strong>If We're a Good Fit</strong><span>I send you a private link to pay the setup.</span></li>
+            <li><strong>I Come to Your Business</strong><span>We pick a day for my visit, and your design is ready within 14 days of it.</span></li>
+          </ol>
+          <p class="applied__note">Questions in the meantime? <a href="contact.html">Write me a note</a>.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer footer--simple">
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife · Brooklyn, NY</p>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+  </footer>
+
+
+  <script src="assets/start.js?v=ac7451d4c4"></script>
+  <script>
+    const CAL_LINK = (window.WDW_CAL && WDW_CAL.intro) || "";
+    let details = {};
+    try {
+      details = JSON.parse(localStorage.getItem("wdw-start") || sessionStorage.getItem("wdw-start") || "{}");
+      sessionStorage.setItem("wdw-start", JSON.stringify(details));
+      localStorage.removeItem("wdw-start");
+    } catch (e) {}
+    const first = (details.name || "").trim().split(" ")[0];
+    if (first) document.querySelector("[data-welcome-name]").textContent = ", " + first;
+    const plan = (window.WDW_PLANS || {})[details.plan];
+    if (plan && plan.apply) {
+      const h = document.querySelector("[data-applied-plan]");
+      h.textContent = plan.name; h.dataset.plan = details.plan;
+      document.querySelector(".ssum__gem").dataset.plan = details.plan;
+    }
+    if (CAL_LINK) {
+      wdwCalInline("#cal-inline", CAL_LINK, { name: details.name || "", email: details.email || "", notes: [details.business, details.industry, details.address, details.website, details.maps].filter(Boolean).join(" · ") });
+      document.getElementById("cal-inline").hidden = false;
+      document.getElementById("cal-placeholder").hidden = true;
+    }
+  </script>
+</body>
+</html>

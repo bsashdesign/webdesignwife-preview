@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Features — Web Design Wife</title>
+  <meta name="description" content="What Web Design Wife actually does: custom design, hosting and ongoing care, a fully managed Google Maps profile, SEO, content and a periodic design refresh, with what each plan includes.">
+  <link rel="icon" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=3bc25caad5">
+  <script>(function(){var M={"tangy":"theme-blocks","calm":"theme-refined","transit":"theme-subway theme-dark","sophisticated":"theme-wedding","transitdark":"theme-subway theme-dark"},k=new URLSearchParams(location.search).get("mood");try{if(!M[k])k=localStorage.getItem("wdw-mood")}catch(e){}if(!M[k])k="tangy";M[k].split(" ").forEach(function(c){document.documentElement.classList.add(c)});document.documentElement.dataset.mood=k})();window.WDW_FOUNDING={"on": true, "left": null, "off": 50};window.WDW_PLANS={"essentials": {"name": "Essentials", "setup": 399, "month": 149, "yearmo": 119, "year": 1430, "found": 199, "save": 358}, "business": {"name": "Business", "setup": 899, "month": 229, "yearmo": 179, "year": 2150, "apply": true, "found": 449, "save": 598}, "full": {"name": "Full Suite", "setup": 1299, "month": 299, "yearmo": 239, "year": 2870, "apply": true, "found": 649, "save": 718}};window.WDW_CAL={"call": "", "onboarding": "", "intro": ""};</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="mood" id="mood">
+    <button type="button" class="mood__btn" aria-expanded="false" aria-controls="mood-panel" aria-label="Change the channel"><span class="minitv__waves" aria-hidden="true"><i></i><i></i><i></i></span><span class="minitv" aria-hidden="true"><i class="minitv__ant"></i><span class="minitv__set"><span class="minitv__screen"><span class="minitv__show"></span><span class="minitv__face"></span></span><i class="minitv__knob"></i></span></span></button>
+    <div class="mood__panel" id="mood-panel" role="group" aria-label="Change the channel"><button type="button" class="mood__close" aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><p class="mood__title">Change the Channel</p><p class="mood__intro">Same website, four completely different directions. Press a button and watch the whole page change.</p><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Tangy</strong><small>Bright, playful and full of color.</small></span></button><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Soirée</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button><div class="mood__sound"><button type="button" class="sound-toggle " data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div></div>
+  </div>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Web Design Wife home">
+        <img src="images/logo.svg" alt="Web Design Wife" width="247" height="31">
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="pricing.html">Pricing</a>
+        <a href="features.html">Features</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog/index.html">Blog</a>
+      </nav>
+      <a class="btn btn--ghost btn--sm nav__start" href="start.html">Get Started</a>
+      <a class="btn btn--primary btn--sm nav__cta" href="#audit">Free Website Audit</a>
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" data-close-drawer></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer__head">
+        <a class="brand drawer__brand" href="index.html" aria-label="Web Design Wife home"><img src="images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
+        <button type="button" class="drawer__close" data-close-drawer aria-label="Close menu"><span></span><span></span></button>
+      </div>
+      <nav class="drawer__nav" aria-label="Menu">
+        <a class="drawer__big" href="pricing.html"><span>Pricing</span><small>Plans from $149/month and FAQs</small></a>
+        <a class="drawer__big" href="features.html"><span>Features</span><small>What’s in each plan</small></a>
+        <a class="drawer__big" href="contact.html"><span>Contact</span><small>Write me a note or request a callback</small></a>
+        <a class="drawer__big" href="blog/index.html"><span>Blog</span><small>Honest guides and website builder comparisons</small></a>
+      </nav>
+      <div class="drawer__cta">
+        <a class="btn btn--ghost btn--block" href="start.html">Get Started</a>
+        <a class="btn btn--primary btn--block" href="#audit">Get a Free Website + Maps Audit</a>
+      </div>
+      <div class="drawer__more">
+        <p class="drawer__label">Helpful links</p>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#work">My work: New Age Pharmacy</a>
+        <a href="index.html#maps">Google Maps management</a>
+        <a href="pricing.html#faq">FAQ</a>
+        <a href="blog/index.html#compare">Compare website builders</a>
+        <a href="blog/diy-website-guide.html">Do-it-yourself guide</a>
+      </div>
+      <p class="drawer__where">Based in Brooklyn, NY</p>
+    </aside>
+  </div>
+
+
+  <main id="main" class="features-page">
+    <section class="fhero">
+      <div class="wrap">
+        <p class="eyebrow">Features</p>
+        <h1>Everything Your Website Needs. Handled.</h1>
+        <p class="fhero__lede">Not just a website. I run your whole web presence: the site, your changes, your Google Maps profile and more.</p>
+      </div>
+    </section>
+
+    <nav class="ftabs" aria-label="What I do">
+      <div class="wrap ftabs__inner">
+        <a class="ftab" href="#design" data-tab-for="design">Design</a>
+        <a class="ftab" href="#care" data-tab-for="care">Care</a>
+        <a class="ftab" href="#google" data-tab-for="google">Google Maps</a>
+        <a class="ftab" href="#seo" data-tab-for="seo">SEO</a>
+        <a class="ftab" href="#ai-search" data-tab-for="ai-search">AI search</a>
+        <a class="ftab" href="#content" data-tab-for="content">Content</a>
+        <a class="ftab" href="#tools" data-tab-for="tools">Analytics &amp; AI</a>
+        <a class="ftab" href="#refresh" data-tab-for="refresh">Refresh</a>
+      </div>
+    </nav>
+
+    <section class="fsec" id="design">
+      <div class="wrap fsec__grid">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">Design &amp; build</p>
+          <h2>Built for the Phone in Your Customer's Hand</h2>
+          <p>Your site is designed around your business, your customers and your neighborhood. I build it with my own design system: tested, reusable pieces that I style and put together specifically for you. That's why it's fast, consistent and reliable, and it's never an off-the-shelf template with your logo dropped in.</p>
+          <ul class="ticks ticks--dark fsec__list">
+            <li><strong>Mobile-first.</strong> Calls, directions, bookings and key info are one tap away.</li>
+            <li><strong>Fast and lightweight.</strong> No bloated pages slowing things down.</li>
+            <li><strong>Written and organized for you.</strong> I arrange your content so customers find answers quickly.</li>
+            <li><strong>Made to get calls.</strong> Clear buttons, a contact form and WhatsApp, text and social links.</li>
+            <li><strong>Accessible.</strong> Readable text, good contrast and pages that work with screen readers.</li>
+          </ul>
+        </div>
+        <figure class="fx phone fx-phone" aria-hidden="true">
+          <div class="phone__status"><span>9:41</span><span class="phone__icons"><i></i><i></i><i></i></span></div>
+          <div class="fx-phone__screen">
+            <div class="fx-phone__bar"><i></i><b>Rosa's Bakery</b></div>
+            <div class="fx-phone__hero"><strong>Fresh Bread, Every Morning in Park Slope</strong><span>Open today · 7am–6pm</span></div>
+            <div class="fx-phone__btns"><span>Call</span><span>Directions</span><span>Order</span></div>
+            <div class="fx-phone__lines"><i></i><i></i><i style="width:60%"></i></div>
+            <div class="fx-phone__stars">★★★★★ <small>4.9 · 212 reviews</small></div>
+          </div>
+        </figure>
+      </div>
+      <div class="wrap">
+        <div class="levels levels--3">
+            <div class="level level--essentials">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="essentials" aria-hidden="true"></canvas><span class="level__name">Essentials</span></p>
+              <h4>One Scrolling Page, Set Up Remotely</h4>
+              <ul class="ticks ticks--dark"><li>Everything on one well-organized page</li><li>A remote kickoff, built with your own photos</li></ul>
+            </div>
+            <div class="level level--business">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="business" aria-hidden="true"></canvas><span class="level__name">Business</span></p>
+              <h4>Up to 5 Pages, Built in Person</h4>
+              <ul class="ticks ticks--dark"><li>I come to your business and take original photos</li><li>Room for services, about, reviews, a gallery and contact</li></ul>
+            </div>
+            <div class="level level--full">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="full" aria-hidden="true"></canvas><span class="level__name">Full Suite</span></p>
+              <h4>Up to 10 Pages, Built in Person</h4>
+              <ul class="ticks ticks--dark"><li>I come to your business and take original photos</li><li>Space for every service, location or menu, without cramming</li></ul>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fsec fsec--tint" id="care">
+      <div class="wrap fsec__grid fsec__grid--flip">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">Hosting &amp; ongoing care</p>
+          <h2>Live, and Looked After for You</h2>
+          <p>This is what the monthly plan pays for after launch. Most web designers build your site and disappear. I keep it running, keep it safe and keep it current, and you never have to log into a website builder.</p>
+          <ul class="ticks ticks--dark fsec__list">
+            <li><strong>Hosting, SSL and security.</strong> Fast, secure hosting with an SSL certificate.</li>
+            <li><strong>Backups and uptime monitoring.</strong> If something goes wrong, I know about it and fix it.</li>
+            <li><strong>Technical maintenance.</strong> Updates and fixes handled for you.</li>
+            <li><strong>Unlimited minor edits.</strong> Message me a change and it's done within one business day.</li>
+            <li><strong>Your domain stays yours.</strong> Registered in your name from day one.</li>
+          </ul>
+          <p class="lede-note fsec__note">Same on every plan. Full Suite edits jump to the front of the line.</p>
+        </div>
+        <figure class="fx fx-chat" aria-hidden="true" data-chat>
+          <p class="fx-chat__msg fx-chat__msg--them">Hi Ben! Can we change Saturday hours to 10–4 and add the new cinnamon loaf? 🍞<small>9:12 am</small></p>
+          <p class="fx-chat__msg fx-chat__msg--me">On it!<small>9:20 am</small></p>
+          <p class="fx-chat__msg fx-chat__msg--me">Done. Your site and Google Maps both show the new hours, and the loaf is on the menu page.<small>11:05 am</small></p>
+          <p class="fx-chat__msg fx-chat__msg--them">Amazing, thank you!<small>11:07 am</small></p>
+        </figure>
+      </div>
+    </section>
+
+    <section class="fsec fsec--deep" id="google">
+      <div class="wrap fsec__grid">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">Google Maps · included at every level</p>
+          <h2>I Run Your Google Maps Profile</h2>
+          <p>For many local businesses, customers see your Google listing before they ever visit your website. Behind that listing is your Google Business Profile, and I don't just add a map to your site: I set up, complete and manage the profile itself, so it's accurate, complete and active.</p>
+          <p>That makes your business easier for customers to understand, easier for Google to understand, and better at turning the people who find you into calls and visits.</p>
+          <p class="lede-note fsec__note">Google Business Profile itself is free from Google. You're paying me to set it up, optimize it and manage it for you.</p>
+          <p class="fsec__read"><a class="ref-chip" href="blog/google-maps-profile.html" data-slug="google-maps-profile"><i class="pi pi--lines" aria-hidden="true"></i><span>Why your Google Maps profile matters</span></a> <a class="ref-chip" href="blog/get-more-google-reviews.html" data-slug="get-more-google-reviews"><i class="pi pi--lines" aria-hidden="true"></i><span>How to get more Google reviews</span></a></p>
+        </div>
+        <figure class="fx fx-gbp" aria-hidden="true">
+          <div class="fx-gbp__map"><span class="fx-gbp__pin"></span></div>
+          <div class="fx-gbp__body">
+            <strong class="fx-gbp__name">Rosa's Bakery</strong>
+            <span class="fx-gbp__rating">4.9 ★★★★★ <small>(212)</small></span>
+            <span class="fx-gbp__cat">Bakery · Café · Park Slope</span>
+            <div class="fx-gbp__btns"><span>Call</span><span>Directions</span><span>Website</span><span>Order</span></div>
+            <p class="fx-gbp__row"><b>Open</b> · Closes 6pm</p>
+            <div class="fx-gbp__chips"><span>Sourdough</span><span>Custom cakes</span><span>Catering</span><span>Gluten-free</span></div>
+            <p class="fx-gbp__post"><small>Update · 2 days ago</small>Our holiday pie pre-orders are open!</p>
+          </div>
+        </figure>
+      </div>
+      <div class="wrap">
+        <div class="levels levels--3 levels--wide-mid">
+            <div class="level level--essentials">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="essentials" aria-hidden="true"></canvas><span class="level__name">Essentials</span></p>
+              <h4>Keep It Accurate</h4>
+              <ul class="ticks ticks--dark"><li>Hours kept current, including holidays</li><li>Phone, website and core details updated</li><li>Your new photos added</li><li>Everyday changes you ask for</li></ul>
+            </div>
+            <div class="level level--business level--focus">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="business" aria-hidden="true"></canvas><span class="level__name">Business</span></p>
+              <h4>Build It Out and Manage It</h4>
+              <p class="level__note">Everything in Essentials, plus:</p><ul class="ticks ticks--dark"><li>The right main and extra categories</li><li>Every relevant service, with descriptions</li><li>Prices, where they make sense</li><li>A clear business description</li><li>Your service area</li><li>Opening and holiday hours</li><li>Photos that show what you do</li><li>Links to your site, booking and menu</li><li>A simple routine for getting more reviews</li><li>Replies to reviews, if you want me to</li><li>Updates whenever something changes</li><li>A comparison with your top local competitors</li><li>Monitoring of views, calls and direction requests</li></ul>
+            </div>
+            <div class="level level--full">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="full" aria-hidden="true"></canvas><span class="level__name">Full Suite</span></p>
+              <h4>Keep It Actively Growing</h4>
+              <p class="level__note">Everything in Business, plus:</p><ul class="ticks ticks--dark"><li>Monthly Google posts, so your profile always looks active</li></ul>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fsec fsec--tint" id="seo">
+      <div class="wrap fsec__grid fsec__grid--flip">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">SEO &amp; search visibility</p>
+          <h2>What "SEO Included" Actually Means</h2>
+          <p>Some of it is the groundwork every site should have. Some of it is ongoing work that builds up over time. Here's what each plan gets.</p>
+          <p class="lede-note fsec__note">I improve the things we control. No one can honestly guarantee where Google will rank a business.</p>
+        </div>
+        <figure class="fx fx-serp" aria-hidden="true">
+          <p class="fx-serp__q">bakery near me</p>
+          <div class="fx-serp__res"><small>rosasbakery.nyc</small><strong>Rosa's Bakery | Fresh Bread &amp; Cakes in Park Slope, Brooklyn</strong><span>Family-run bakery on 7th Avenue. Sourdough, custom cakes and catering. Open daily from 7am.</span></div>
+          <div class="fx-serp__res fx-serp__res--dim"><small>example.com</small><strong>Home</strong><span>Welcome to our website. Click here to learn more…</span></div>
+        </figure>
+      </div>
+      <div class="wrap">
+        <div class="levels levels--3">
+            <div class="level level--essentials">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="essentials" aria-hidden="true"></canvas><span class="level__name">Essentials</span></p>
+              <h4>Foundations</h4>
+              <ul class="ticks ticks--dark"><li>Page titles and descriptions</li><li>Clean page structure and headings</li><li>Content Google can read</li><li>Fast, mobile-friendly pages</li><li>Your business details, marked up for search</li></ul>
+            </div>
+            <div class="level level--business">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="business" aria-hidden="true"></canvas><span class="level__name">Business</span></p>
+              <h4>Local Setup</h4>
+              <p class="level__note">Everything in Essentials, plus:</p><ul class="ticks ticks--dark"><li>Consistent name, address and phone everywhere</li><li>Local business information for Google</li><li>Pages for each of your services</li></ul>
+            </div>
+            <div class="level level--full">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="full" aria-hidden="true"></canvas><span class="level__name">Full Suite</span></p>
+              <h4>Ongoing Growth</h4>
+              <p class="level__note">Everything in Business, plus:</p><ul class="ticks ticks--dark"><li>Neighborhood pages for the areas you serve</li><li>A new blog post every month</li><li>Updates to important content</li><li>New topics your customers search for</li></ul>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fsec" id="ai-search">
+      <div class="wrap fsec__grid">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">AI search · Full Suite</p>
+          <h2>Easier for AI Search Tools to Understand</h2>
+          <p>More people ask ChatGPT, Google's AI answers and other assistants where to go. Those tools rely on clear, trustworthy information. On Full Suite, I make your business easier for search engines and AI systems to understand and discover. No one can promise an AI tool will recommend you, but this is the work that gives you the best chance.</p>
+        </div>
+        <ul class="fx fx-list">
+          <li><strong>Clear First-Party Content</strong><span>Your site says plainly what you do, where and for whom.</span></li>
+          <li><strong>Consistent Business Details</strong><span>The same name, address, hours and phone everywhere they appear.</span></li>
+          <li><strong>Detailed Services and Locations</strong><span>A proper page for what you offer and where you offer it.</span></li>
+          <li><strong>Answers to Real Questions</strong><span>Pages that answer what customers actually ask.</span></li>
+          <li><strong>Structured Data</strong><span>Behind-the-scenes labels that help machines read your site correctly.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="fsec fsec--tint" id="content">
+      <div class="wrap fsec__grid fsec__grid--flip">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">Content &amp; growth</p>
+          <h2>A Site That Keeps Growing, Without the Work</h2>
+          <p>Business keeps your reputation working for you. Full Suite goes further: every month there's something new, so your site and profile never go quiet.</p>
+          <p class="lede-note fsec__note">You never have to write a blog post. Each month you answer a short questionnaire, by typing or sending a voice memo, and I turn it into a post. Nothing goes live until you approve it.</p>
+        </div>
+        <figure class="fx fx-cal" aria-hidden="true">
+          <p class="fx-cal__month">This month</p>
+          <ol>
+            <li><b>Week 1</b><span class="fx-tag fx-tag--a">Questionnaire</span> Your answers, or a voice memo</li>
+            <li><b>Week 2</b><span class="fx-tag fx-tag--b">Blog post</span> "What makes real sourdough different"</li>
+            <li><b>Week 3</b><span class="fx-tag fx-tag--c">Google post</span> Holiday pie pre-orders</li>
+            <li><b>Week 4</b><span class="fx-tag fx-tag--d">Content update</span> The new seasonal menu, on your site</li>
+          </ol>
+        </figure>
+      </div>
+      <div class="wrap">
+        <div class="levels levels--2">
+            <div class="level level--business">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="business" aria-hidden="true"></canvas><span class="level__name">Business</span></p>
+              <h4>Keep Your Reputation Working</h4>
+              <ul class="ticks ticks--dark"><li>A simple routine for getting more reviews</li><li>Your newest Google reviews shown live on your site</li><li>Your Instagram feed on your site</li><li>A comparison with your top local competitors</li></ul>
+            </div>
+            <div class="level level--full">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="full" aria-hidden="true"></canvas><span class="level__name">Full Suite</span></p>
+              <h4>Something New Every Month</h4>
+              <p class="level__note">Everything in Business, plus:</p><ul class="ticks ticks--dark"><li>A monthly blog post, written with you</li><li>Monthly Google posts</li><li>Neighborhood pages for the areas you serve</li><li>Updates to your most important content</li></ul>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fsec" id="tools">
+      <div class="wrap fsec__grid">
+        <div class="fsec__copy">
+          <p class="fchap__kicker">Analytics, AI &amp; integrations</p>
+          <h2>The Tools, Connected and Looked After</h2>
+          <p>Every plan has a contact form that sends messages straight to your inbox. Higher plans add the numbers and tools that help you understand and serve your customers.</p>
+        </div>
+        <div class="fx fx-duo" aria-hidden="true">
+          <figure class="fx-stats">
+            <p class="fx-stats__title">Visitors this month <b>1,284</b></p>
+            <div class="fx-stats__bars"><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:70%"></i><i style="--h:62%"></i><i style="--h:85%"></i><i style="--h:78%"></i></div>
+            <p class="fx-stats__row"><span>Calls from site</span><b>46</b></p>
+            <p class="fx-stats__row"><span>Direction requests</span><b>91</b></p>
+          </figure>
+          <figure class="fx-bot" data-chat>
+            <p class="fx-chat__msg fx-chat__msg--them">Do you have gluten-free bread?</p>
+            <p class="fx-chat__msg fx-chat__msg--me">Yes! Gluten-free loaves are baked Tuesday and Friday mornings. Want directions or to call the shop?</p>
+          </figure>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="levels levels--3">
+            <div class="level level--essentials">
+              <p class="level__tag">Every plan</p>
+              <h4><span data-alt-theme-wedding="RSVP">Get in Touch</span></h4>
+              <ul class="ticks ticks--dark"><li>A contact form that goes to your inbox</li><li>One-tap WhatsApp, text and social links</li></ul>
+            </div>
+            <div class="level level--business">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="business" aria-hidden="true"></canvas><span class="level__name">Business</span></p>
+              <h4>See What's Working</h4>
+              <p class="level__note">Everything in Essentials, plus:</p><ul class="ticks ticks--dark"><li>Visitor analytics: how many people visit, from where, and what they click</li><li>A proper cookie consent banner</li><li>Live Google reviews and your Instagram feed</li></ul>
+            </div>
+            <div class="level level--full">
+              <p class="level__tag"><canvas class="plan-ring plan-ring--inline plan-gem" data-plan="full" aria-hidden="true"></canvas><span class="level__name">Full Suite</span></p>
+              <h4>An AI Assistant</h4>
+              <p class="level__note">Everything in Business, plus:</p><ul class="ticks ticks--dark"><li>Answers common questions, any time of day</li><li>Helps visitors find the right information</li><li>Points people to the right action, like calling or booking</li><li>Hands anything else to you</li></ul>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fsec" id="refresh">
+      <div class="wrap">
+        <div class="spot spot--refresh">
+          <div class="spot__copy">
+            <p class="spot__label">Design refresh</p>
+            <h2 class="spot__title">Your Site Can Change as Your Business Does</h2>
+            <p>Your website shouldn't age in place. On Business and Full Suite, a design refresh is included in your plan, and you choose when to use it.</p>
+            <dl class="spot__vs">
+              <div><dt>Minor edits</dt><dd>Unlimited and included on every plan, any time. Small updates like new hours, fresh photos or a new menu item.</dd></div>
+              <div><dt>A design refresh</dt><dd>A chance to do more than a minor edit: freshen up the look, rework your pages, or add new ones up to your plan's page limit.</dd></div>
+            </dl>
+          </div>
+          <div class="cadence">
+            <div class="cadence__years" aria-hidden="true"><span></span><span>Yr 1</span><span>Yr 2</span><span>Yr 3</span><span>Yr 4</span><span>Yr 5</span><span>Yr 6</span></div>
+            <ul class="cadence__rows">
+              <li class="cadence__row cadence__row--full">
+                <span class="cadence__plan"><span class="plan-ring" data-plan="full" aria-hidden="true"></span><span><strong>Full Suite</strong><small>Included every 3 years</small></span></span>
+                <span class="cadence__track" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i></span>
+              </li>
+              <li class="cadence__row cadence__row--business">
+                <span class="cadence__plan"><span class="plan-ring" data-plan="business" aria-hidden="true"></span><span><strong>Business</strong><small>Included every 4 years</small></span></span>
+                <span class="cadence__track" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i><i></i></span>
+              </li>
+              <li class="cadence__row cadence__row--essentials">
+                <span class="cadence__plan"><span class="plan-ring" data-plan="essentials" aria-hidden="true"></span><span><strong>Essentials</strong><small>Available separately</small></span></span>
+                <span class="cadence__track cadence__track--quiet" aria-hidden="true"><em>Add one whenever you're ready, quoted upfront</em></span>
+              </li>
+            </ul>
+          </div>
+          <div class="spot__foot">
+            <div class="refresh-covers">
+              <p class="spot__label">What a refresh covers</p>
+              <ul class="refresh-covers__list"><li>Imagery</li><li>Typography</li><li>Colors &amp; styling</li><li>Key sections</li><li>Calls to action</li><li>Overall feel</li></ul>
+            </div>
+            <ol class="spot__steps spot__steps--row">
+              <li><strong>You Pick the Moment</strong><span>When your site starts to feel dated.</span></li>
+              <li><strong>Review Together</strong><span>What's working and what's changed.</span></li>
+              <li><strong>Refresh and Relaunch</strong><span>The same site, looking current again.</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fown">
+      <div class="wrap">
+        <h2>Own Your Site After 6 Years</h2>
+        <p>Cancel anytime. Change plans as your needs change. Buy the site early if you want to leave with it. Your buyout gets cheaper every year. After six years, you own it.</p>
+        <div class="fown__ctas"><a class="btn btn--primary" href="start.html">Get Started</a><a class="btn btn--ghost" href="pricing.html">Compare Plans and Prices</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><div class="news"><div class="news__copy"><h2 class="news__title">Get Tips &amp; Updates by Email</h2><p>Practical website and Google Maps tips, New York small-business updates, and occasional offers. About once a month; unsubscribe anytime.</p></div><form class="news__form" novalidate data-error="Enter a valid email address." data-success="You're subscribed! Watch your inbox."><div class="news__row"><input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address"><button class="btn btn--primary" type="submit">Subscribe</button></div><p class="form__msg" role="status" aria-live="polite"></p></form></div></div>
+
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="index.html"><img src="images/logo.svg" alt="Web Design Wife" width="247" height="31"></a>
+        <p>Managed websites for New York local businesses. Your web partner, for the long haul.</p>
+        <a class="btn btn--primary btn--sm" href="#audit">Free Website + Maps Audit</a>
+      </div>
+      <nav class="footer__col" aria-label="Pages">
+        <h4>Pages</h4>
+        <a href="pricing.html">Pricing</a>
+        <a href="features.html">Features</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="start.html">Get started</a>
+        <a href="#audit">Free website audit</a>
+      </nav>
+      <nav class="footer__col" aria-label="On the homepage">
+        <h4>On the Homepage</h4>
+        <a href="index.html#work">My work</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#maps">Google Maps</a>
+        <a href="index.html#about">About me</a>
+        <a href="pricing.html#faq">Pricing &amp; FAQ</a>
+      </nav>
+      <nav class="footer__col" aria-label="Resources">
+        <h4>Resources</h4>
+        <a href="blog/index.html#compare">Compare website builders</a>
+        <a href="blog/diy-website-guide.html">Do-it-yourself guide</a>
+        <a href="blog/google-maps-profile.html">Google Maps guide</a>
+        <a href="pricing.html#custom">Custom projects</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms</a>
+        <span>Based in Brooklyn, NY</span>
+      </nav>
+    </div>
+    <div class="wrap"><div class="footer__moods">
+      <div>
+        <h4>Change the Channel</h4>
+        <p>Same website, four completely different directions. Press a button and watch the whole page change.</p>
+        <div class="footer__sound"><button type="button" class="sound-toggle" data-mute role="switch" aria-checked="true"><span class="sound-toggle__label">Sound Effects</span><span class="sound-toggle__switch" aria-hidden="true"><i></i></span></button></div>
+      </div>
+      <div class="moods moods--popup" id="footer-channel" role="group" aria-label="Change the channel"><button type="button" class="mood__opt" data-mood="tangy" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--tangy" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Tangy</strong><small>Bright, playful and full of color.</small></span></button><button type="button" class="mood__opt" data-mood="calm" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--calm" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Calm</strong><small>Soft, quiet and easy on the eyes.</small></span></button><button type="button" class="mood__opt" data-mood="transit" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--transit" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Transit</strong><small>Bold and direct, inspired by New York subway signs.</small></span></button><button type="button" class="mood__opt" data-mood="sophisticated" aria-pressed="false"><span class="key-well"><span class="moodicon moodicon--sophisticated" aria-hidden="true"><i class="mi"></i></span></span><span><strong>Soirée</strong><small>Elegant and refined, inspired by wedding stationery.</small></span></button></div>
+    </div></div>
+    <div class="wrap footer__bottom">
+      <p>© 2026 Web Design Wife</p>
+      <nav aria-label="Legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="images/CREDITS.txt">Icon credits</a>
+      </nav>
+    </div>
+  </footer>
+
+  <a class="mobilebar" href="#audit">Get a free website + Maps audit</a>
+
+  <dialog class="audit-dialog section--violet" id="audit-dialog" aria-labelledby="audit-dialog-title">
+    <button type="button" class="finder-dialog__close audit-dialog__close" data-close-audit aria-label="Close"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <h2 class="audit-dialog__title" id="audit-dialog-title">Get a Free Website Audit</h2>
+    <div data-audit-slot><div class="formcard">
+
+          <form class="form" id="form-audit" novalidate data-success="Thanks! Your audit is on its way. I'll email your report within one business day.">
+            <p class="form__desc">I personally review every audit. I'll look at your website, your Google Maps listing and a few local competitors, then send you the highest-impact things I'd fix first, within one business day.</p>
+            <label>Business name<input name="business" required autocomplete="organization"></label>
+            <label>Business address<span class="saddr"><input name="address" required autocomplete="off" data-address placeholder="Start typing your business address"></span></label>
+            <label><span>Current website <span class="opt">(optional)</span></span><input name="website" type="url" placeholder="https://" inputmode="url"></label>
+            <label>Your name<input name="name" required autocomplete="name"></label>
+            <label>Email<input name="email" type="email" required autocomplete="email"></label>
+            <button class="btn btn--light btn--block" type="submit">Get My Free Audit</button>
+            <p class="form__msg" role="status" aria-live="polite"></p>
+          </form>
+        </div></div>
+  </dialog>
+
+
+
+  <script src="assets/features.js?v=9fd34dbf55"></script>
+  <script>
+    (function () {
+      const tabs = [...document.querySelectorAll("[data-tab-for]")];
+      const secs = tabs.map((t) => document.getElementById(t.dataset.tabFor));
+      const nav = document.querySelector(".nav");
+      const bar = document.querySelector(".ftabs");
+      const strip = bar.querySelector(".ftabs__inner");
+      const navH = () => (nav ? nav.getBoundingClientRect().height : 69);
+      const stuck = () => navH() + bar.getBoundingClientRect().height;
+      const mark = () => {
+        const y = stuck() + 40;
+        let cur = secs[0];
+        secs.forEach((s) => { if (s.getBoundingClientRect().top <= y) cur = s; });
+        tabs.forEach((t) => {
+          const on = t.dataset.tabFor === cur.id;
+          if (on && !t.hasAttribute("aria-current")) strip.scrollTo({ left: t.offsetLeft - strip.clientWidth / 2 + t.offsetWidth / 2, behavior: "smooth" });
+          t.toggleAttribute("aria-current", on);
+        });
+      };
+      const fit = () => document.documentElement.style.setProperty("--nav-h", navH() + "px");
+      tabs.forEach((t) => t.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.getElementById(t.dataset.tabFor);
+        const top = target.getBoundingClientRect().top + scrollY - stuck() + 1;
+        scrollTo({ top, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        history.replaceState(null, "", "#" + target.id);
+      }));
+      addEventListener("scroll", () => { fit(); mark(); }, { passive: true });
+      addEventListener("resize", fit);
+      fit(); mark();
+    })();
+  </script>
+</body>
+</html>
