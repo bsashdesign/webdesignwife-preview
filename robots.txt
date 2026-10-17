@@ -1,0 +1,13 @@
+# Web Design Wife. Search and AI search crawlers are welcome.
+# ChatGPT Search (OAI-SearchBot) is allowed explicitly: blocking it keeps pages out of ChatGPT's answers and citations.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: *
+Allow: /
+Disallow: /welcome.html
+
+Sitemap: https://webdesignwife.com/sitemap.xml

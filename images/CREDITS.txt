@@ -1,0 +1,6 @@
+Icon credits
+
+Line icons: Phosphor Icons (https://phosphoricons.com), MIT License.
+Full license: images/ph/LICENSE.txt
+
+Mood faces: drawn for Web Design Wife.
